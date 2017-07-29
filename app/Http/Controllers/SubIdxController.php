@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class SubIdxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('swap-sub-and-idx')->only('post');
+    }
+
     public function index()
     {
         return view('sub-idx');
