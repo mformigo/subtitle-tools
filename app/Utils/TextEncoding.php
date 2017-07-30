@@ -6,7 +6,6 @@ class TextEncoding
 {
     private $allowedEncodings = [
     //  uchardet name       php encoding name
-        "UTF-8 BOM"      => "UTF-8", // Not a real encoding, but we use it internally
         "UTF-8"          => "UTF-8",
         "ascii/unknown"  => "UTF-8", // We assume UTF-8 here
         "UTF-16"         => "UTF-16",
@@ -27,19 +26,6 @@ class TextEncoding
         "TIS-620",
         "MacCyrillic",
     ];
-
-    public function detect($string)
-    {
-        $tempFilePath = storage_path('temp/textencoding_' . str_random(16));
-
-        file_put_contents($tempFilePath, $string);
-
-        register_shutdown_function(function() use ($tempFilePath) {
-            unlink($tempFilePath);
-        });
-
-        return $this->detectFromFile($tempFilePath);
-    }
 
     public function detectFromFile($filePath)
     {
@@ -62,12 +48,29 @@ class TextEncoding
         return $encodingName;
     }
 
-    public function to($string, $outputEncoding, $inputEncoding = null)
+    public function detect($string)
+    {
+        $tempFilePath = storage_path('temp/textencoding_' . str_random(16));
+
+        file_put_contents($tempFilePath, $string);
+
+        register_shutdown_function(function() use ($tempFilePath) {
+            unlink($tempFilePath);
+        });
+
+        return $this->detectFromFile($tempFilePath);
+    }
+
+    private function to($string, $outputEncoding, $inputEncoding = null)
     {
         $inputEncoding = $inputEncoding ?? $this->detect($string);
 
-        if(!starts_with($outputEncoding, "UTF-8")) {
-            throw new \Exception("We can only convert to UTF-8...");
+        if(starts_with($inputEncoding, "UTF-8")) {
+            $utf8_bom = pack('H*', 'EFBBBF');
+
+            if(preg_match("/^{$utf8_bom}/", $string)) {
+                $string = preg_replace("/^{$utf8_bom}/", '', $string);
+            }
         }
 
         if($this->isIconvEncoding($inputEncoding)) {
@@ -82,18 +85,6 @@ class TextEncoding
         return $this->to($string, "UTF-8", $inputEncoding);
     }
 
-    public function toUtf8Bom($string, $inputEncoding = null)
-    {
-        throw new \Exception("Not implemented yet");
-        // return $this->to($string, "UTF-8 BOM", $inputEncoding);
-    }
-
-    public function getAvailableEncodings()
-    {
-        // ascii/unknown is a fallback, and is removed from the array
-        return array_diff(array_keys($this->allowedEncodings), ["ascii/unknown"]);
-    }
-
     private function isAllowedEncoding($encoding)
     {
         return isset($this->allowedEncodings[$encoding]);
@@ -103,5 +94,11 @@ class TextEncoding
     {
         return in_array($encoding, $this->iconvEncodings);
     }
+
+//    public function getAvailableOutputEncodings()
+//    {
+//        // ascii/unknown is a fallback, and is removed from the array
+//        return array_diff(array_keys($this->allowedEncodings), ["ascii/unknown"]);
+//    }
 
 }
