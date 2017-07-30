@@ -16,6 +16,12 @@ class TextUtilsProvider extends ServiceProvider
         $this->app->singleton('Utils\TextEncoding', function($app) {
            return new \App\Utils\TextEncoding();
         });
+
+        $this->app->singleton('Utils\TextFileIdentifier', function($app) {
+            return new \App\Utils\TextFileIdentifier(
+                app('Utils\TextEncoding')
+            );
+        });
     }
 
 }

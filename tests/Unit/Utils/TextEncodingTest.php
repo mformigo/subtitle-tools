@@ -9,34 +9,46 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TextEncodingTest extends TestCase
 {
-    public function test_it_detects_encodings_correctly()
-    {
-        $fileNamesEncodings = [
-            "big5.txt" => "Big5",
-            "euc-kr.txt" => "EUC-KR",
-            "gb18030.txt" => "gb18030",
-         // "gb2312.txt" => "gb2312",
-            "iso-8859-7.txt" => "ISO-8859-7",
-            "shift-jis.txt" => "Shift_JIS",
-            "tis-620.txt" => "TIS-620",
-            "ucs-2-le-bom.txt" => "UTF-16",
-            "utf-8-bom.txt" => "UTF-8",
-            "utf-8.txt" => "UTF-8",
-            "windows-1251.txt" => "windows-1251",
-            "windows-1252-ansi.txt" => "windows-1252",
-            "x-mac-cyrillic.txt" => "MacCyrillic",
-        ];
+    private $fileNamesEncodings = [
+        "big5.txt" => "Big5",
+        "euc-kr.txt" => "EUC-KR",
+        "gb18030.txt" => "gb18030",
+        // "gb2312.txt" => "gb2312",
+        "iso-8859-7.txt" => "ISO-8859-7",
+        "shift-jis.txt" => "Shift_JIS",
+        "tis-620.txt" => "TIS-620",
+        "ucs-2-le-bom.txt" => "UTF-16",
+        "utf-8-bom.txt" => "UTF-8",
+        "utf-8.txt" => "UTF-8",
+        "windows-1251.txt" => "windows-1251",
+        "windows-1252-ansi.txt" => "windows-1252",
+        "x-mac-cyrillic.txt" => "MacCyrillic",
+    ];
 
+    function test_it_detects_encodings_from_files_correctly()
+    {
         $textEncoding = app(TextEncoding::class);
 
-        foreach($fileNamesEncodings as $fileName => $expectedEncoding) {
+        foreach($this->fileNamesEncodings as $fileName => $expectedEncoding) {
             $filePath = base_path("tests/Storage/TextEncodings/{$fileName}");
 
-            $this->assertSame($expectedEncoding, $textEncoding->detect($filePath));
+            $this->assertSame($expectedEncoding, $textEncoding->detectFromFile($filePath));
         }
     }
 
-    public function test_available_encodings()
+    function test_it_detects_encodings_from_strings_correctly()
+    {
+        $textEncoding = app(TextEncoding::class);
+
+        foreach($this->fileNamesEncodings as $fileName => $expectedEncoding) {
+            $filePath = base_path("tests/Storage/TextEncodings/{$fileName}");
+            $string = file_get_contents($filePath);
+
+            $this->assertSame($expectedEncoding, $textEncoding->detect($string));
+        }
+    }
+
+    function test_available_encodings()
     {
         $textEncoding = app(TextEncoding::class);
 

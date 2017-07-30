@@ -23,11 +23,25 @@ class TextEncoding
     ];
 
     private $iconvEncodings = [
+    //  php encoding name
         "TIS-620",
         "MacCyrillic",
     ];
 
-    public function detect($filePath)
+    public function detect($string)
+    {
+        $tempFilePath = storage_path('temp/textencoding_' . str_random(16));
+
+        file_put_contents($tempFilePath, $string);
+
+        register_shutdown_function(function() use ($tempFilePath) {
+            unlink($tempFilePath);
+        });
+
+        return $this->detectFromFile($tempFilePath);
+    }
+
+    public function detectFromFile($filePath)
     {
         if(!file_exists($filePath)) {
             throw new \Exception("File does not exist ({$filePath})");
@@ -48,19 +62,35 @@ class TextEncoding
         return $encodingName;
     }
 
-    public function to($string, $outputEncoding)
+    public function to($string, $outputEncoding, $inputEncoding = null)
     {
-        return $string;
+        $inputEncoding = $inputEncoding ?? $this->detect($string);
+
+        if(!starts_with($outputEncoding, "UTF-8")) {
+            throw new \Exception("We can only convert to UTF-8...");
+        }
+
+        if($this->isIconvEncoding($inputEncoding)) {
+            return iconv($inputEncoding, $outputEncoding, $string);
+        }
+
+        return mb_convert_encoding($string, $outputEncoding, $inputEncoding);
     }
 
-    public function toUtf8($string)
+    public function toUtf8($string, $inputEncoding = null)
     {
-        return $this->to($string, "UTF-8");
+        return $this->to($string, "UTF-8", $inputEncoding);
+    }
+
+    public function toUtf8Bom($string, $inputEncoding = null)
+    {
+        throw new \Exception("Not implemented yet");
+        // return $this->to($string, "UTF-8 BOM", $inputEncoding);
     }
 
     public function getAvailableEncodings()
     {
-        // remove ascii/unknown using array_diff
+        // ascii/unknown is a fallback, and is removed from the array
         return array_diff(array_keys($this->allowedEncodings), ["ascii/unknown"]);
     }
 
