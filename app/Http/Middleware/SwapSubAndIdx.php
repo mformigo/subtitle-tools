@@ -12,7 +12,7 @@ class SwapSubAndIdx
 
         $fileBag = $request->files;
 
-        if($fileBag->has('sub', 'idx') && $fileBag->get('sub')->isValid() && $fileBag->get('idx')->isValid()) {
+        if($fileBag->has('sub') && $fileBag->has('idx') && $fileBag->get('sub')->isValid() && $fileBag->get('idx')->isValid()) {
             $shouldSwap = strtolower($fileBag->get('idx')->getClientOriginalExtension()) === "sub";
 
             if($shouldSwap) {
