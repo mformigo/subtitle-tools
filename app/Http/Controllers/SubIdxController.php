@@ -23,7 +23,7 @@ class SubIdxController extends Controller
     {
         $this->validate($request, [
             'sub' => 'required|file',
-            'idx' => 'required|file',
+            'idx' => 'required|file|textfile',
         ]);
 
         dd($request->files);

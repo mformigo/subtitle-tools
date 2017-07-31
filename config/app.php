@@ -173,6 +173,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TextUtilsProvider::class,
+        App\Providers\CustomValidationRulesProvider::class,
 
     ],
 
