@@ -88,6 +88,7 @@ return [
     */
 
     'textfile' => 'The :attribute file must be a text file',
+    'sub_invalid_mime' => 'The :attribute file is invalid',
 
 
     /*

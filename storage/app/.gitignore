@@ -1,3 +1,4 @@
 *
 !public/
+!sub-idx/
 !.gitignore
