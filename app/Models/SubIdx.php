@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Facades\FileHash;
 use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Http\UploadedFile;
 
 /**
  * App\Models\SubIdx
@@ -35,15 +35,15 @@ class SubIdx extends Model
 {
     protected $fillable = ['page_id', 'store_directory', 'filename', 'original_name', 'sub_hash', 'idx_hash'];
 
-    public function getFilePathWithoutExtensionAttribute()
+    protected function getFilePathWithoutExtensionAttribute()
     {
         return $this->store_directory . $this->filename;
     }
 
-    public function isReadable()
+    protected function getIsReadableAttribute($isReadable)
     {
-        if($this->is_readable !== null) {
-            return $this->is_readable;
+        if($isReadable !== null) {
+            return $isReadable;
         }
 
         $output = $this->execVobsub2srt("--langlist");
@@ -64,10 +64,16 @@ class SubIdx extends Model
         return shell_exec("vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1");
     }
 
-    public static function createNewFromUpload(UploadedFile $subFile, UploadedFile $idxFile)
+    public static function getOrCreateFromUpload(UploadedFile $subFile, UploadedFile $idxFile)
     {
         $subHash = FileHash::make($subFile);
         $idxHash = FileHash::make($idxFile);
+
+        $fromCache = SubIdx::where(['sub_hash' => $subHash, 'idx_hash' => $idxHash]);
+
+        if($fromCache->count() > 0) {
+            return $fromCache->first();
+        }
 
         $baseFileName = substr($subHash, 0, 6) . substr($idxHash, 0, 6);
 
@@ -85,22 +91,6 @@ class SubIdx extends Model
             'sub_hash'      => $subHash,
             'idx_hash'      => $idxHash,
         ]);
-    }
-
-    public static function isCached($subFilePath, $idxFilePath)
-    {
-        return SubIdx::where([
-            'sub_hash' => FileHash::make($subFilePath),
-            'idx_hash' => FileHash::make($idxFilePath),
-        ])->count() > 0;
-    }
-
-    public static function getFromCache($subFilePath, $idxFilePath)
-    {
-        return SubIdx::where([
-            'sub_hash' => FileHash::make($subFilePath),
-            'idx_hash' => FileHash::make($idxFilePath),
-        ])->firstOrFail();
     }
 
 }

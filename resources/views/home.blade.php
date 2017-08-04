@@ -6,6 +6,6 @@
 
     <br/>
 
-    <a href="{{ route('sub-idx-page') }}">Sub/Idx to Srt</a>
+    <a href="{{ route('sub-idx-index') }}">Sub/Idx to Srt</a>
 
 @endsection
