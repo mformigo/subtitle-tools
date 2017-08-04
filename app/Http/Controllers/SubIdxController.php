@@ -11,7 +11,7 @@ class SubIdxController extends Controller
     {
         $this->middleware([
             'swap-sub-and-idx',
-        //    'convert-text-files-to-utf8:idx',
+            //'convert-text-files-to-utf8:idx',
         ])->only('post');
     }
 
@@ -45,8 +45,7 @@ class SubIdxController extends Controller
             return back()->withErrors(trans("validation.subidx_cant_be_read"));
         }
 
-        return redirect()->route('sub-idx-detail', [
-            'pageId' => $subIdx->page_id,
-        ]);
+        return redirect()->route('sub-idx-detail', ['pageId' => $subIdx->page_id]);
     }
+
 }

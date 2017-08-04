@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-
     public function boot()
     {
 
@@ -21,6 +20,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('FileHash', function () {
             return new \App\Utils\FileHash();
         });
-
     }
+
 }

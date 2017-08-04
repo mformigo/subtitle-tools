@@ -24,4 +24,5 @@ class CustomValidationRulesProvider extends ServiceProvider
     {
 
     }
+
 }

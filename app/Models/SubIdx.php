@@ -86,12 +86,12 @@ class SubIdx extends Model
         rename($idxFile->getRealPath(), "{$storagePath}{$baseFileName}.idx");
 
         return SubIdx::create([
-            'page_id'         => $baseFileName,
+            'original_name'   => pathinfo($subFile->getClientOriginalName(), PATHINFO_FILENAME),
             'store_directory' => $storagePath,
-            'filename'        => $baseFileName,
-            'original_name' => pathinfo($subFile->getClientOriginalName(), PATHINFO_FILENAME),
-            'sub_hash'      => $subHash,
-            'idx_hash'      => $idxHash,
+            'filename' => $baseFileName,
+            'page_id'  => $baseFileName,
+            'sub_hash' => $subHash,
+            'idx_hash' => $idxHash,
         ]);
     }
 
