@@ -20,6 +20,13 @@ class SubIdxController extends Controller
         return view('sub-idx');
     }
 
+    public function detail($postId)
+    {
+        $subIdx = SubIdx::where(['page_id' => $postId])->firstOrFail();
+
+        return view('sub-idx-detail');
+    }
+
     public function post(Request $request)
     {
         $this->validate($request, [
@@ -33,20 +40,14 @@ class SubIdxController extends Controller
         $idxFile = $request->file('idx');
 
         if(SubIdx::isCached($subFile->path(), $idxFile->path())) {
-            redirect()->route('sub-idx', ['page_id' => SubIdx::getCachedPageId($subFile->path(), $idxFile->path())]);
+            $pageId = SubIdx::getCachedPageId($subFile->path(), $idxFile->path());
+        }
+        else {
+            $pageId = SubIdx::createNewFromUpload($subFile, $idxFile)->page_id;
         }
 
-        $subIdx = SubIdx::createNewFromUpload($subFile, $idxFile);
-
-        dd($subIdx);
-
-
-
-        // Couldn't open VobSub files 'fake.idx/.sub'
-        //        Languages:
-        //        0: en
-
-
-        dd($request);
+        return redirect()->route('sub-idx-detail', [
+            'pageId' => $pageId,
+        ]);
     }
 }

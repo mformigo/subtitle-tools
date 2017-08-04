@@ -35,12 +35,27 @@ class SubIdx extends Model
 {
     protected $fillable = ['page_id', 'store_directory', 'filename', 'original_name', 'sub_hash', 'idx_hash'];
 
+    public function isReadable()
+    {
+        $output = $this->execVobsub2srt("--langlist");
+    }
+
+    private function execVobsub2srt($argument)
+    {
+
+        $path = $this->store_directory . $this->filename;
+
+        dd($path);
+
+        $output = shell_exec("vobsub2srt \"" . "" . "\" 2>&1");
+    }
+
     public static function createNewFromUpload(UploadedFile $subFile, UploadedFile $idxFile)
     {
         $subHash = FileHash::make($subFile);
         $idxHash = FileHash::make($idxFile);
 
-        $baseFileName = substr($subHash, 0, 5) . substr($idxHash, -5);
+        $baseFileName = substr($subHash, 0, 6) . substr($idxHash, -6);
 
         $storagePath = storage_path("app/sub-idx/" . time() . "-{$baseFileName}/");
 
