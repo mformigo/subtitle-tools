@@ -12,12 +12,3 @@ function file_mime($filePath)
 
     return $mimeType;
 }
-
-function make_file_hash($filePath)
-{
-    if(!file_exists($filePath)) {
-        throw new \RuntimeException("File does not exist ({$filePath})");
-    }
-
-    return sha1_file($filePath);
-}

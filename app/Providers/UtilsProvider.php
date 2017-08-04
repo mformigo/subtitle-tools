@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class TextUtilsProvider extends ServiceProvider
+class UtilsProvider extends ServiceProvider
 {
     public function boot()
     {

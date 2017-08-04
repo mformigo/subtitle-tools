@@ -29,14 +29,14 @@ class SubIdxController extends Controller
             'sub.mimetypes' => trans('validation.sub_invalid_mime'),
         ]);
 
-        $subFilePath = $request->files->get('sub')->getRealPath();
-        $idxFilePath = $request->files->get('idx')->getRealPath();
+        $subFile = $request->file('sub');
+        $idxFile = $request->file('idx');
 
-        if(SubIdx::isCached($subFilePath, $idxFilePath)) {
-            redirect()->route('sub-idx', ['page_id' => SubIdx::getCachedPageId($subFilePath, $idxFilePath)]);
+        if(SubIdx::isCached($subFile->path(), $idxFile->path())) {
+            redirect()->route('sub-idx', ['page_id' => SubIdx::getCachedPageId($subFile->path(), $idxFile->path())]);
         }
 
-        $subIdx = SubIdx::createNewFromUpload($request->files->get('sub'), $request->files->get('idx'));
+        $subIdx = SubIdx::createNewFromUpload($subFile, $idxFile);
 
         dd($subIdx);
 

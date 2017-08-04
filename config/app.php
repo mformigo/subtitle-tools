@@ -172,7 +172,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\TextUtilsProvider::class,
+        App\Providers\UtilsProvider::class,
         App\Providers\CustomValidationRulesProvider::class,
 
     ],
