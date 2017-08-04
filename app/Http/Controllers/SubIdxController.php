@@ -22,7 +22,10 @@ class SubIdxController extends Controller
 
     public function detail($postId)
     {
-        $subIdx = SubIdx::where(['page_id' => $postId])->firstOrFail();
+        $subIdx = SubIdx::where([
+            'page_id' => $postId,
+            'is_readable' => true,
+        ])->firstOrFail();
 
         return view('sub-idx-detail');
     }
@@ -33,21 +36,25 @@ class SubIdxController extends Controller
             'sub' => 'required|file|mimetypes:video/mpeg',
             'idx' => 'required|file|textfile',
         ], [
-            'sub.mimetypes' => trans('validation.sub_invalid_mime'),
+            'sub.mimetypes' => trans('validation.subidx_invalid_sub_mime'),
         ]);
 
         $subFile = $request->file('sub');
         $idxFile = $request->file('idx');
 
         if(SubIdx::isCached($subFile->path(), $idxFile->path())) {
-            $pageId = SubIdx::getCachedPageId($subFile->path(), $idxFile->path());
+            $subIdx = SubIdx::getFromCache($subFile->path(), $idxFile->path());
         }
         else {
-            $pageId = SubIdx::createNewFromUpload($subFile, $idxFile)->page_id;
+            $subIdx = SubIdx::createNewFromUpload($subFile, $idxFile);
+        }
+
+        if(!$subIdx->isReadable()) {
+            return back()->withErrors(trans("validation.subidx_cant_be_read"));
         }
 
         return redirect()->route('sub-idx-detail', [
-            'pageId' => $pageId,
+            'pageId' => $subIdx->page_id,
         ]);
     }
 }

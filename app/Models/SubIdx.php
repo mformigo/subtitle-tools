@@ -35,19 +35,33 @@ class SubIdx extends Model
 {
     protected $fillable = ['page_id', 'store_directory', 'filename', 'original_name', 'sub_hash', 'idx_hash'];
 
+    public function getFilePathWithoutExtensionAttribute()
+    {
+        return $this->store_directory . $this->filename;
+    }
+
     public function isReadable()
     {
+        if($this->is_readable !== null) {
+            return $this->is_readable;
+        }
+
         $output = $this->execVobsub2srt("--langlist");
+
+        $this->is_readable = !str_contains($output, "Couldn't open VobSub files") && str_contains($output, "Languages:");
+
+        $this->save();
+
+        return $this->is_readable;
     }
 
     private function execVobsub2srt($argument)
     {
+        if(empty($argument)) {
+            throw new \Exception("Argument can't be empty");
+        }
 
-        $path = $this->store_directory . $this->filename;
-
-        dd($path);
-
-        $output = shell_exec("vobsub2srt \"" . "" . "\" 2>&1");
+        return shell_exec("vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1");
     }
 
     public static function createNewFromUpload(UploadedFile $subFile, UploadedFile $idxFile)
@@ -55,13 +69,13 @@ class SubIdx extends Model
         $subHash = FileHash::make($subFile);
         $idxHash = FileHash::make($idxFile);
 
-        $baseFileName = substr($subHash, 0, 6) . substr($idxHash, -6);
+        $baseFileName = substr($subHash, 0, 6) . substr($idxHash, 0, 6);
 
         $storagePath = storage_path("app/sub-idx/" . time() . "-{$baseFileName}/");
 
         mkdir($storagePath);
-        $subFile->move("{$storagePath}{$baseFileName}.sub");
-        $idxFile->move("{$storagePath}{$baseFileName}.idx");
+        rename($subFile->getRealPath(), "{$storagePath}{$baseFileName}.sub");
+        rename($idxFile->getRealPath(), "{$storagePath}{$baseFileName}.idx");
 
         return SubIdx::create([
             'page_id'         => $baseFileName,
@@ -81,12 +95,12 @@ class SubIdx extends Model
         ])->count() > 0;
     }
 
-    public static function getCachedPageId($subFilePath, $idxFilePath)
+    public static function getFromCache($subFilePath, $idxFilePath)
     {
         return SubIdx::where([
             'sub_hash' => FileHash::make($subFilePath),
             'idx_hash' => FileHash::make($idxFilePath),
-        ])->firstOrFail()->page_id;
+        ])->firstOrFail();
     }
 
 }

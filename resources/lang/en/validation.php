@@ -88,7 +88,8 @@ return [
     */
 
     'textfile' => 'The :attribute file must be a text file',
-    'sub_invalid_mime' => 'The :attribute file is invalid',
+    'subidx_invalid_sub_mime' => 'The :attribute file is invalid',
+    'subidx_cant_be_read' => 'The sub/idx file can\'t be read',
 
 
     /*

@@ -17,6 +17,7 @@ class CreateSubIdxesTable extends Migration
             $table->string("original_name");
             $table->string("sub_hash");
             $table->string("idx_hash");
+            $table->boolean("is_readable")->nullable();
         });
     }
 
