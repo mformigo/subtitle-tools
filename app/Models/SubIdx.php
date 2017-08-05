@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\FileHash;
 use App\Jobs\ExtractSubIdxLanguage;
 use App\Utils\IdxFile;
+use App\Utils\VobSub2Srt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 
@@ -23,6 +24,7 @@ use Illuminate\Http\UploadedFile;
  * @property string $original_name
  * @property string $sub_hash
  * @property string $idx_hash
+ * @property string $filePathWithoutExtension
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereFilename($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereId($value)
@@ -50,48 +52,22 @@ class SubIdx extends Model
         return $this->hasMany('App\Models\SubIdxLanguage');
     }
 
-    protected function makeLanguageExtractJobs()
+    public function vobsub2srtOutputs()
     {
-        if($this->is_readable !== null) {
-            throw new \Exception("Jobs have already been made for this SubIdx");
-        }
-
-        $outputLines = preg_split("/\r\n|\n|\r/", $this->execVobsub2srt("--langlist"));
-
-        file_put_contents("{$this->store_directory}vobsub2srt-langlist-output.txt", implode("\r\n", $outputLines));
-
-        if(!in_array("Languages:", $outputLines) || in_array("Couldn't open VobSub files", $outputLines)) {
-            $this->is_readable = false;
-            $this->save();
-            return;
-        }
-
-        $idxLanguages = new IdxFile("{$this->filePathWithoutExtension}.idx");
-
-        foreach($outputLines as $line) {
-            if(preg_match('/^(?<index>\d+): ([a-z]+|\(no id\))$/', $line, $match)) {
-                $subIdxLanguage = new SubIdxLanguage([
-                   'index'    => $match['index'],
-                   'language' => $idxLanguages->getLanguageForIndex($match['index']),
-                ]);
-
-                $this->languages()->save($subIdxLanguage);
-
-                dispatch((new ExtractSubIdxLanguage($subIdxLanguage))->onQueue('sub-idx'));
-            }
-        }
-
-        $this->is_readable = true;
-        $this->save();
+        return $this->hasMany('App\Models\Vobsub2srtOutput');
     }
 
-    private function execVobsub2srt($argument)
+    private function makeLanguageExtractJobs()
     {
-        if(empty($argument)) {
-            throw new \Exception("Argument can't be empty");
-        }
+        $languages = (new VobSub2Srt($this))->getLanguages();
 
-        return shell_exec("vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1");
+        foreach($languages as $language) {
+            $subIdxLanguage = $this->languages()->create($language);
+
+            $extractJob = (new ExtractSubIdxLanguage($subIdxLanguage))->onQueue('sub-idx');
+
+            dispatch($extractJob);
+        }
     }
 
     public static function getOrCreateFromUpload(UploadedFile $subFile, UploadedFile $idxFile)
@@ -123,6 +99,9 @@ class SubIdx extends Model
         ]);
 
         $subIdx->makeLanguageExtractJobs();
+
+        $subIdx->is_readable = ($subIdx->languages->count() > 0);
+        $subIdx->save();
 
         return $subIdx;
     }
