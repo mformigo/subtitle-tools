@@ -20,14 +20,13 @@ class SubIdxController extends Controller
         return view('sub-idx');
     }
 
-    public function detail($postId)
+    public function detail($pageId)
     {
-        $subIdx = SubIdx::where([
-            'page_id' => $postId,
-            'is_readable' => true,
-        ])->firstOrFail();
+        $subIdx = SubIdx::where(['page_id' => $pageId, 'is_readable' => true])->firstOrFail();
 
-        return view('sub-idx-detail')->with('languages', $subIdx->languages()->pluck('language'));
+        return view('sub-idx-detail', [
+            'languages' => $subIdx->languages()->pluck('language'),
+        ]);
     }
 
     public function post(Request $request)
