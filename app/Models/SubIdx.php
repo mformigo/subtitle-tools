@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Facades\FileHash;
-use App\SubIdxLanguage;
+use App\Jobs\ExtractSubIdxLanguage;
 use App\Utils\IdxFile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
@@ -69,12 +69,14 @@ class SubIdx extends Model
 
         foreach($outputLines as $line) {
             if(preg_match('/^(?<index>\d+): ([a-z]+|\(no id\))$/', $line, $match)) {
-                $subIdxLanguage = $this->languages()->create([
+                $subIdxLanguage = new SubIdxLanguage([
                    'index'    => $match['index'],
                    'language' => $idxLanguages->getLanguageForIndex($match['index']),
                 ]);
 
-                // todo: create job for extracting language
+                $this->languages()->save($subIdxLanguage);
+
+                dispatch((new ExtractSubIdxLanguage($subIdxLanguage))->onQueue('sub-idx'));
             }
         }
 
