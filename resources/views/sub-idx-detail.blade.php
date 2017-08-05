@@ -4,6 +4,8 @@
 
     <h1>Sub Idx Detail</h1>
 
-    crazy
+    @foreach($languages as $lang)
+        {{ $lang }}<br/>
+    @endforeach
 
 @endsection

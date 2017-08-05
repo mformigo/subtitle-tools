@@ -27,7 +27,7 @@ class SubIdxController extends Controller
             'is_readable' => true,
         ])->firstOrFail();
 
-        return view('sub-idx-detail');
+        return view('sub-idx-detail')->with('languages', $subIdx->languages()->pluck('language'));
     }
 
     public function post(Request $request)

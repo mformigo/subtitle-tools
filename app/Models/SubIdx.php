@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Facades\FileHash;
+use App\SubIdxLanguage;
+use App\Utils\IdxFile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 
@@ -42,19 +44,42 @@ class SubIdx extends Model
         return $this->store_directory . $this->filename;
     }
 
-    protected function getIsReadableAttribute($isReadable)
+    public function languages()
     {
-        if($isReadable !== null) {
-            return $isReadable;
+        return $this->hasMany('App\Models\SubIdxLanguage');
+    }
+
+    protected function makeLanguageExtractJobs()
+    {
+        if($this->is_readable !== null) {
+            throw new \Exception("Jobs have already been made for this SubIdx");
         }
 
-        $output = $this->execVobsub2srt("--langlist");
+        $outputLines = preg_split("/\r\n|\n|\r/", $this->execVobsub2srt("--langlist"));
 
-        $this->is_readable = !str_contains($output, "Couldn't open VobSub files") && str_contains($output, "Languages:");
+        file_put_contents("{$this->store_directory}vobsub2srt-langlist-output.txt", implode("\r\n", $outputLines));
 
+        if(!in_array("Languages:", $outputLines) || in_array("Couldn't open VobSub files", $outputLines)) {
+            $this->is_readable = false;
+            $this->save();
+            return;
+        }
+
+        $idxLanguages = new IdxFile("{$this->filePathWithoutExtension}.idx");
+
+        foreach($outputLines as $line) {
+            if(preg_match('/^(?<index>\d+): ([a-z]+|\(no id\))$/', $line, $match)) {
+                $subIdxLanguage = $this->languages()->create([
+                   'index'    => $match['index'],
+                   'language' => $idxLanguages->getLanguageForIndex($match['index']),
+                ]);
+
+                // todo: create job for extracting language
+            }
+        }
+
+        $this->is_readable = true;
         $this->save();
-
-        return $this->is_readable;
     }
 
     private function execVobsub2srt($argument)
@@ -85,7 +110,7 @@ class SubIdx extends Model
         rename($subFile->getRealPath(), "{$storagePath}{$baseFileName}.sub");
         rename($idxFile->getRealPath(), "{$storagePath}{$baseFileName}.idx");
 
-        return SubIdx::create([
+        $subIdx = SubIdx::create([
             'original_name'   => pathinfo($subFile->getClientOriginalName(), PATHINFO_FILENAME),
             'store_directory' => $storagePath,
             'filename' => $baseFileName,
@@ -93,6 +118,10 @@ class SubIdx extends Model
             'sub_hash' => $subHash,
             'idx_hash' => $idxHash,
         ]);
+
+        $subIdx->makeLanguageExtractJobs();
+
+        return $subIdx;
     }
 
 }
