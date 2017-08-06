@@ -20,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('FileHash', function () {
             return new \App\Utils\FileHash();
         });
+
+
+        if ($this->app->environment('local', 'testing')) {
+            $this->app->register(\Laravel\Dusk\DuskServiceProvider::class);
+        }
     }
 
 }

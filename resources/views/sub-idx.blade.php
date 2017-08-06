@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Sub Idx</h1>
+    <h1>Convert Sub/Idx to Srt</h1>
 
     <form method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
@@ -28,7 +28,7 @@
     <br/>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" id="Errors">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
