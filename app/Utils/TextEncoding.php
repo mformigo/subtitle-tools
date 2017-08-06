@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use Illuminate\Support\Facades\Storage;
+
 class TextEncoding
 {
     private $allowedEncodings = [
@@ -50,12 +52,14 @@ class TextEncoding
 
     public function detect($string)
     {
-        $tempFilePath = storage_path('temp/textencoding_' . str_random(16));
+        $tempFilePath = storage_disk_file_path('temporary-files/text-encoding-' . str_random(16));
 
         file_put_contents($tempFilePath, $string);
 
         register_shutdown_function(function() use ($tempFilePath) {
-            unlink($tempFilePath);
+            if(file_exists($tempFilePath)) {
+                unlink($tempFilePath);
+            }
         });
 
         return $this->detectFromFile($tempFilePath);

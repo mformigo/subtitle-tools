@@ -12,3 +12,12 @@ function file_mime($filePath)
 
     return $mimeType;
 }
+
+function storage_disk_file_path($path, $disk = null)
+{
+    $disk = $disk ?: env('FILESYSTEM_DRIVER');
+
+    $storagePath = Storage::disk($disk)->getDriver()->getAdapter()->getPathPrefix();
+
+    return rtrim($storagePath, '/') . "/" . ltrim($path, '/');
+}

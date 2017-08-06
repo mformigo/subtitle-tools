@@ -21,5 +21,5 @@ class SubIdxTest extends DuskTestCase
                 ->assertMissing('@errors');
         });
     }
-    
+
 }

@@ -8,6 +8,7 @@ use App\Utils\IdxFile;
 use App\Utils\VobSub2Srt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * App\Models\SubIdx
@@ -44,7 +45,7 @@ class SubIdx extends Model
 
     protected function getFilePathWithoutExtensionAttribute()
     {
-        return $this->store_directory . $this->filename;
+        return storage_disk_file_path($this->store_directory . $this->filename);
     }
 
     public function languages()
@@ -83,11 +84,12 @@ class SubIdx extends Model
 
         $baseFileName = substr($subHash, 0, 6) . substr($idxHash, 0, 6);
 
-        $storagePath = storage_path("app/sub-idx/" . time() . "-{$baseFileName}/");
+        $storagePath = "sub-idx/" . time() . "-{$baseFileName}/";
 
-        mkdir($storagePath);
-        rename($subFile->getRealPath(), "{$storagePath}{$baseFileName}.sub");
-        rename($idxFile->getRealPath(), "{$storagePath}{$baseFileName}.idx");
+        Storage::makeDirectory($storagePath);
+        // copy instead of moving to prevent from moving test files
+        copy($subFile->getRealPath(), storage_disk_file_path("{$storagePath}{$baseFileName}.sub"));
+        copy($idxFile->getRealPath(), storage_disk_file_path("{$storagePath}{$baseFileName}.idx"));
 
         $subIdx = SubIdx::create([
             'original_name'   => pathinfo($subFile->getClientOriginalName(), PATHINFO_FILENAME),
