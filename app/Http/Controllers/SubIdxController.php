@@ -35,13 +35,13 @@ class SubIdxController extends Controller
             'sub' => 'required|file|mimetypes:video/mpeg',
             'idx' => 'required|file|textfile',
         ], [
-            'sub.mimetypes' => trans('validation.subidx_invalid_sub_mime'),
+            'sub.mimetypes' => __('validation.subidx_invalid_sub_mime'),
         ]);
 
         $subIdx = SubIdx::getOrCreateFromUpload($request->file('sub'), $request->file('idx'));
 
         if(!$subIdx->is_readable) {
-            return back()->withErrors(trans("validation.subidx_cant_be_read"));
+            return back()->withErrors(__("validation.subidx_cant_be_read"));
         }
 
         return redirect()->route('sub-idx-detail', ['pageId' => $subIdx->page_id]);
