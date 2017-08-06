@@ -9,10 +9,40 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    private $testingStorageDirectories = [
+        'sub-idx',
+        'temporary-files',
+    ];
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->ensureProperStorageDiskConfig();
+
+        foreach($this->testingStorageDirectories as $dirName) {
+            Storage::makeDirectory($dirName);
+        }
+    }
+
     public function tearDown()
     {
-        parent::tearDown();
+        $this->ensureProperStorageDiskConfig();
 
-        // Storage::deleteDirectory('/');
+        foreach($this->testingStorageDirectories as $dirName) {
+            Storage::deleteDirectory($dirName);
+        }
+
+        parent::tearDown();
     }
+
+    private function ensureProperStorageDiskConfig()
+    {
+        $storagePath = storage_disk_file_path('/');
+
+        if(!ends_with($storagePath, "/testing/")) {
+            throw new \Exception("It looks like the storage driver is not set up properly");
+        }
+    }
+
 }
