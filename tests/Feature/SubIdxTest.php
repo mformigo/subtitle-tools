@@ -51,7 +51,6 @@ class SubIdxTest extends TestCase
         $response = $this->post(route('sub-idx-index'));
 
         $response->assertStatus(302)
-            ->assertRedirect(route('sub-idx-index'))
             ->assertSessionHasErrors([
                 'sub' => __('validation.required', ['attribute' => 'sub']),
                 'idx' => __('validation.required', ['attribute' => 'idx']),
@@ -67,7 +66,6 @@ class SubIdxTest extends TestCase
         ]);
 
         $response->assertStatus(302)
-            ->assertRedirect(route('sub-idx-index'))
             ->assertSessionHasErrors([
                 'sub' => __('validation.subidx_invalid_sub_mime', ['attribute' => 'sub']),
                 'idx' => __('validation.textfile',                ['attribute' => 'idx']),
@@ -91,13 +89,12 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_creates_language_extract_jobs()
     {
+        $this->expectsJobs(\App\Jobs\ExtractSubIdxLanguage::class);
+
         $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
 
         $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 0, 'language' => 'unknown']);
         $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 1, 'language' => 'nl']);
-
-        $this->assertDatabaseHas('jobs', ['id' => 1, 'queue' => 'sub-idx']);
-        $this->assertDatabaseHas('jobs', ['id' => 2, 'queue' => 'sub-idx']);
     }
 
 }
