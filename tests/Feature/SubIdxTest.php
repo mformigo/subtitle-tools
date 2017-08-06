@@ -20,7 +20,7 @@ class SubIdxTest extends TestCase
         $fileNameWithoutExtension = $fileNameWithoutExtension ?: $this->defaultSubIdxName;
 
         return new UploadedFile(
-            base_path("tests/Storage/SubIdxFiles/{$fileNameWithoutExtension}.sub"),
+            $this->testFilesStoragePath . "SubIdxFiles/{$fileNameWithoutExtension}.sub",
             "{$fileNameWithoutExtension}.sub",
             null, null, null, true
         );
@@ -31,7 +31,7 @@ class SubIdxTest extends TestCase
         $fileNameWithoutExtension = $fileNameWithoutExtension ?: $this->defaultSubIdxName;
 
         return new UploadedFile(
-            base_path("tests/Storage/SubIdxFiles/{$fileNameWithoutExtension}.idx"),
+            $this->testFilesStoragePath . "SubIdxFiles/{$fileNameWithoutExtension}.idx",
             "{$fileNameWithoutExtension}.idx",
             null, null, null, true
         );
@@ -51,6 +51,7 @@ class SubIdxTest extends TestCase
         $response = $this->post(route('sub-idx-index'));
 
         $response->assertStatus(302)
+            ->assertRedirect(route('sub-idx-index'))
             ->assertSessionHasErrors([
                 'sub' => __('validation.required', ['attribute' => 'sub']),
                 'idx' => __('validation.required', ['attribute' => 'idx']),
@@ -66,6 +67,7 @@ class SubIdxTest extends TestCase
         ]);
 
         $response->assertStatus(302)
+            ->assertRedirect(route('sub-idx-index'))
             ->assertSessionHasErrors([
                 'sub' => __('validation.subidx_invalid_sub_mime', ['attribute' => 'sub']),
                 'idx' => __('validation.textfile',                ['attribute' => 'idx']),
@@ -83,15 +85,19 @@ class SubIdxTest extends TestCase
         $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.idx"));
 
         $response->assertStatus(302)
-            ->assertRedirect(
-                route('sub-idx-detail', ['pageId' => $subIdx->page_id])
-            );
+            ->assertRedirect(route('sub-idx-detail', ['pageId' => $subIdx->page_id]));
     }
 
     /** @test */
     function it_creates_language_extract_jobs()
     {
+        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
 
+        $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 0, 'language' => 'unknown']);
+        $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 1, 'language' => 'nl']);
+
+        $this->assertDatabaseHas('jobs', ['id' => 1, 'queue' => 'sub-idx']);
+        $this->assertDatabaseHas('jobs', ['id' => 2, 'queue' => 'sub-idx']);
     }
 
 }
