@@ -5,6 +5,12 @@
 todo
 ```
 
+## General configuration
+* `phpunit.xml` sets the database to 'subtitle-tools-testing'
+* `phpunit.xml` sets the filesystem disk to 'local-testing'
+* `TestCase.php` deletes all files from the 'local-testing' directories before each test
+* **Laravel Dusk** runs from inside vagrant homestead following [this guide](https://medium.com/@splatEric/laravel-dusk-on-homestead-dc5711987595)
+
 
 ## Format information
 
