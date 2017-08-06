@@ -9,6 +9,8 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    public $testFilesStoragePath;
+
     private $testingStorageDirectories = [
         'sub-idx',
         'temporary-files',
@@ -17,6 +19,8 @@ abstract class TestCase extends BaseTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->testFilesStoragePath = base_path('tests/Storage/');
 
         $this->ensureProperStorageDiskConfig();
 
