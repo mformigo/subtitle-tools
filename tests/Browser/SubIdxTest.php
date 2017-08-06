@@ -10,21 +10,16 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class SubIdxTest extends DuskTestCase
 {
     /** @test */
-    public function sub_and_idx_files_are_required()
+    function sub_and_idx_files_are_client_side_required()
     {
         $this->browse(function (Browser $browser) {
-            $subError = __('validation.required', ['attribute' => 'sub']);
-            $idxError = __('validation.required', ['attribute' => 'idx']);
-
             $browser->visit(new SubIdxPage)
-                ->assertMissing('#Errors')
-                ->assertDontSee($subError)
-                ->assertDontSee($idxError)
+                ->assertMissing('@errors')
                 ->click('@submit')
+                // the 'required' attribute on the inputs should prevent the form from submitting
                 ->on(new SubIdxPage)
-                ->assertVisible('#Errors')
-                ->assertSee($subError)
-                ->assertSee($idxError);
+                ->assertMissing('@errors');
         });
     }
+    
 }

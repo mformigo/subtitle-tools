@@ -10,13 +10,13 @@
 
         <label>
             Sub file:
-            <input type="file" name="sub">
+            <input type="file" name="sub" required>
         </label>
         <br/>
 
         <label>
             Idx file:
-            <input type="file" name="idx">
+            <input type="file" name="idx" required>
         </label>
         <br/>
 

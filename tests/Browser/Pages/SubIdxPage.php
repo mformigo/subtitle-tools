@@ -3,9 +3,8 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
-use Laravel\Dusk\Page as BasePage;
 
-class SubIdxPage extends BasePage
+class SubIdxPage extends Page
 {
     public function url()
     {
