@@ -56,13 +56,13 @@ class TextEncoding
 
         file_put_contents($tempFilePath, $string);
 
-        register_shutdown_function(function() use ($tempFilePath) {
-            if(file_exists($tempFilePath)) {
-                unlink($tempFilePath);
-            }
-        });
+        $resultBool = $this->detectFromFile($tempFilePath);
 
-        return $this->detectFromFile($tempFilePath);
+        if(file_exists($tempFilePath)) {
+            unlink($tempFilePath);
+        }
+
+        return $resultBool;
     }
 
     private function to($string, $outputEncoding, $inputEncoding = null)
