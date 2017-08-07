@@ -5,12 +5,19 @@
 todo
 ```
 
+## Possible improvements
+* `\App\Subtitles\VobSub\VobSub2Srt` needs the `SubIdx` model purely for diagnostic logging, it should only require the path. The logging should happen in a different, easier to test way
+
+
 ## General configuration
 * `phpunit.xml` sets the database to 'subtitle-tools-testing'
 * `phpunit.xml` sets the filesystem disk to 'local-testing'
 * `TestCase.php` deletes all files from the 'local-testing' directories before each test
 * **Laravel Dusk** runs from inside vagrant homestead following [this guide](https://medium.com/@splatEric/laravel-dusk-on-homestead-dc5711987595)
 
+## Queues and Workers
+* sub-idx language extract jobs run on the **sub-idx** queue. These jobs are extremely cpu intensive.
+* broadcasting happens on the **default** queue
 
 ## Format information
 
@@ -26,11 +33,11 @@ For each language inside the .sub file a `\App\Jobs\ExtractSubIdxLanguage` job i
 Extracting a language using `vobsub2srt filename --index 0` can have the following results:
 * stuck processing forever
 * an error and  no `filename.srt`
-* an error and  a `filename.srt`
-* an empty `filename.srt` file
+* an error and  an empty `filename.srt`
+* no error and an empty `filename.srt`
 * a `filename.srt` file filled with cues without any dialogue
 * a valid `filename.srt`
 
 Possible errors when extracting a language:
-* missing the language trainingdata
+* missing the language training data
 * bad alloc exception (server related?)

@@ -167,7 +167,7 @@ return [
         // Framework Providers...
         App\Providers\Framework\AuthServiceProvider::class,
         App\Providers\Framework\EventServiceProvider::class,
-        // App\Providers\Framework\BroadcastServiceProvider::class,
+        App\Providers\Framework\BroadcastServiceProvider::class,
         App\Providers\Framework\RouteServiceProvider::class,
 
         // Application Service Providers...

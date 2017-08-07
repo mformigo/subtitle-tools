@@ -15,6 +15,16 @@ class SubIdxTest extends TestCase
 
     private $defaultSubIdxName = "error-and-nl";
 
+    private function useMockVobSub2Srt()
+    {
+        $this->app->bind(VobSub2SrtInterface::class, function($app, $args) {
+            return new VobSub2SrtMock(
+                $args['path'],
+                $args['subIdx'] ?? null
+            );
+        });
+    }
+
     private function getSubUploadedFile($fileNameWithoutExtension = null)
     {
         $fileNameWithoutExtension = $fileNameWithoutExtension ?: $this->defaultSubIdxName;
@@ -116,12 +126,7 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_extracts_languages()
     {
-        $this->app->bind(VobSub2SrtInterface::class, function($app, $args) {
-            return new VobSub2SrtMock(
-                $args['path'],
-                $args['subIdx'] ?? null
-            );
-        });
+        $this->useMockVobSub2Srt();
 
         $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
 
@@ -143,6 +148,16 @@ class SubIdxTest extends TestCase
 
             $this->assertTrue(filesize($lang->filepath) > 0, "Extracted file is empty");
         }
+    }
+
+    /** @test */
+    function it_fires_an_event_after_extracting_a_language()
+    {
+        $this->useMockVobSub2Srt();
+
+        $this->expectsEvents(\App\Events\ExtractedSubIdxLanguage::class);
+
+        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
     }
 
 }

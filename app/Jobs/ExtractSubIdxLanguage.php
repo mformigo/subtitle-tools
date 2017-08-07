@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\ExtractedSubIdxLanguage;
 use App\Models\SubIdxLanguage;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -64,6 +65,7 @@ class ExtractSubIdxLanguage implements ShouldQueue
             ]);
         }
 
+        event(new ExtractedSubIdxLanguage($this->subIdxLanguage));
     }
 
     public function failed()
@@ -72,6 +74,8 @@ class ExtractSubIdxLanguage implements ShouldQueue
             'has_error' => true,
             'finished_at' => Carbon::now(),
         ]);
+
+        event(new ExtractedSubIdxLanguage($this->subIdxLanguage));
     }
 
 }
