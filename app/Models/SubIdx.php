@@ -4,8 +4,7 @@ namespace App\Models;
 
 use App\Facades\FileHash;
 use App\Jobs\ExtractSubIdxLanguage;
-use App\Utils\IdxFile;
-use App\Utils\VobSub2Srt;
+use App\Subtitles\VobSub\VobSub2Srt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;

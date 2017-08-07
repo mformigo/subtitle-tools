@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Subtitles\VobSub;
 
 use App\Models\SubIdx;
 
