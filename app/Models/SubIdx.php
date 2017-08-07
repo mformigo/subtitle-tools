@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Storage;
  * @property int|null $is_readable
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereIsReadable($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SubIdxLanguage[] $languages
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vobsub2srtOutput[] $vobsub2srtOutputs
  */
 class SubIdx extends Model
 {

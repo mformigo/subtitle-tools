@@ -28,6 +28,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereSubIdxId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $has_error
+ * @property string|null $started_at
+ * @property-read mixed $file_path
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereHasError($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereStartedAt($value)
  */
 class SubIdxLanguage extends Model
 {
