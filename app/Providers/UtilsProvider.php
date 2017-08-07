@@ -13,20 +13,20 @@ class UtilsProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('Utils\TextEncoding', function($app) {
-           return new \App\Utils\TextEncoding();
+        $this->app->singleton('TextEncoding', function($app) {
+           return new \App\Utils\Text\TextEncoding();
         });
 
-        $this->app->singleton('Utils\TextFileIdentifier', function($app) {
-            return new \App\Utils\TextFileIdentifier(
-                app('Utils\TextEncoding')
+        $this->app->singleton('TextFileIdentifier', function($app) {
+            return new \App\Utils\Text\TextFileIdentifier(
+                app('TextEncoding')
             );
         });
 
-        $this->app->singleton('Utils\TextFileReader', function($app) {
-            return new \App\Utils\TextFileReader(
-                app('Utils\TextFileIdentifier'),
-                app('Utils\TextEncoding')
+        $this->app->singleton('TextFileReader', function($app) {
+            return new \App\Utils\Text\TextFileReader(
+                app('TextFileIdentifier'),
+                app('TextEncoding')
             );
         });
     }

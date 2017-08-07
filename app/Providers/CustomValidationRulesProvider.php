@@ -14,7 +14,7 @@ class CustomValidationRulesProvider extends ServiceProvider
                 return false;
             }
 
-            $textFileIdentifier = app(\App\Utils\TextFileIdentifier::class);
+            $textFileIdentifier = app('TextFileIdentifier');
 
             return $textFileIdentifier->isTextFile($uploadedFile->getRealPath());
         });

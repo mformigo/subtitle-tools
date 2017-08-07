@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Utils\Text;
 
 use Illuminate\Support\Facades\Storage;
 

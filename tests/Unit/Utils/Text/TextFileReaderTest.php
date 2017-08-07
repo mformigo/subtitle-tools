@@ -9,7 +9,7 @@ class TextFileReaderTest extends TestCase
 {
     function test_it_reads_simple_text_files()
     {
-        $reader = app(\App\Utils\TextFileReader::class);
+        $reader = app('TextFileReader');
 
         $filePath = base_path("tests/Storage/TextEncodings/big5.txt");
 
@@ -22,7 +22,7 @@ class TextFileReaderTest extends TestCase
 
     function test_it_reads_empty_files()
     {
-        $reader = app(\App\Utils\TextFileReader::class);
+        $reader = app('TextFileReader');
 
         $filePath = base_path("tests/Storage/TextFiles/empty.srt");
 
@@ -35,7 +35,7 @@ class TextFileReaderTest extends TestCase
 
     function test_it_reads_text_files_with_control_characters()
     {
-        $reader = app(\App\Utils\TextFileReader::class);
+        $reader = app('TextFileReader');
 
         $content = $reader->getContents(base_path("tests/Storage/TextFiles/mime-octet-mb-chinese.ass"));
 

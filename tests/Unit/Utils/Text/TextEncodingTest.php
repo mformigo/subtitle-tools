@@ -27,7 +27,7 @@ class TextEncodingTest extends TestCase
 
     function test_it_detects_encodings_from_files_correctly()
     {
-        $textEncoding = app(TextEncoding::class);
+        $textEncoding = app('TextEncoding');
 
         foreach($this->fileNamesEncodings as $fileName => $expectedEncoding) {
             $filePath = base_path("tests/Storage/TextEncodings/{$fileName}");
@@ -38,7 +38,7 @@ class TextEncodingTest extends TestCase
 
     function test_it_detects_encodings_from_strings_correctly()
     {
-        $textEncoding = app(TextEncoding::class);
+        $textEncoding = app('TextEncoding');
 
         foreach($this->fileNamesEncodings as $fileName => $expectedEncoding) {
             $filePath = base_path("tests/Storage/TextEncodings/{$fileName}");
