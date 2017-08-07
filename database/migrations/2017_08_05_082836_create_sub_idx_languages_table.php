@@ -15,7 +15,8 @@ class CreateSubIdxLanguagesTable extends Migration
             $table->string('index');
             $table->string('language');
             $table->string('filename')->nullable();
-            $table->string('error')->nullable();
+            $table->string('has_error')->nullable();
+            $table->dateTime("started_at")->nullable();
             $table->dateTime("finished_at")->nullable();
         });
     }

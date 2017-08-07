@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\SubIdxLanguage;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -26,6 +27,8 @@ class ExtractSubIdxLanguage implements ShouldQueue
 
     public function handle()
     {
+        $this->subIdxLanguage->update(['started_at' => Carbon::now()]);
+
         $VobSub2Srt = $this->subIdxLanguage->subIdx->getVobSub2Srt();
 
         // See the readme for more information about vobsub2srt behavior
@@ -50,14 +53,14 @@ class ExtractSubIdxLanguage implements ShouldQueue
         if($newName !== null) {
             $this->subIdxLanguage->update([
                 'filename' => $this->subIdxLanguage->subIdx->filename . '-' . $this->subIdxLanguage->index . '-' . $this->subIdxLanguage->language . '.srt',
-                'error' => false,
-                'finished_at' => \Carbon\Carbon::now(),
+                'has_error' => false,
+                'finished_at' => Carbon::now(),
             ]);
         }
         else {
             $this->subIdxLanguage->update([
-                'error' => true,
-                'finished_at' => \Carbon\Carbon::now(),
+                'has_error' => true,
+                'finished_at' => Carbon::now(),
             ]);
         }
 
@@ -66,8 +69,8 @@ class ExtractSubIdxLanguage implements ShouldQueue
     public function failed()
     {
         $this->subIdxLanguage->update([
-            'error' => true,
-            'finished_at' => \Carbon\Carbon::now(),
+            'has_error' => true,
+            'finished_at' => Carbon::now(),
         ]);
     }
 

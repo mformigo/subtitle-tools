@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SubIdxLanguage extends Model
 {
-    protected $fillable = ['index', 'language', 'filename', 'error', 'finished_at'];
+    protected $fillable = ['index', 'language', 'filename', 'has_error', 'started_at', 'finished_at'];
 
     public function subIdx()
     {
