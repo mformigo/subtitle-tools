@@ -4,7 +4,7 @@ namespace App\Subtitles\VobSub;
 
 use App\Models\SubIdx;
 
-class MockVobSub2Srt implements VobSub2SrtInterface
+class VobSub2SrtMock implements VobSub2SrtInterface
 {
     private $logToSubIdx = null;
     private $filePathWithoutExtension;
