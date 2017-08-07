@@ -6,18 +6,23 @@ use App\Models\SubIdx;
 
 class VobSub2Srt implements VobSub2SrtInterface
 {
-    private $subIdx;
+    private $logToSubIdx = null;
+    private $filePathWithoutExtension;
     private $idxFile;
 
-    public function __construct(SubIdx $subIdx)
+    public function __construct($pathWithoutExtension, $logToSubIdx = null)
     {
-        if(!file_exists("{$subIdx->filePathWithoutExtension}.sub") || !file_exists("{$subIdx->filePathWithoutExtension}.idx")) {
-            throw new \Exception("{$subIdx->filePathWithoutExtension}.sub/.idx does not exist");
+        $this->filePathWithoutExtension = $pathWithoutExtension;
+
+        if($logToSubIdx !== null) {
+            $this->logToSubIdx = ($logToSubIdx instanceof SubIdx) ? $logToSubIdx : SubIdx::findOrFail($logToSubIdx);
         }
 
-        $this->subIdx = $subIdx;
+        if(!file_exists("{$this->filePathWithoutExtension}.sub") || !file_exists("{$this->filePathWithoutExtension}.idx")) {
+            throw new \Exception("{$this->filePathWithoutExtension}.sub/.idx does not exist");
+        }
 
-        $this->idxFile = new IdxFile("{$subIdx->filePathWithoutExtension}.idx");
+        $this->idxFile = new IdxFile("{$this->filePathWithoutExtension}.idx");
     }
 
     public function getLanguages()
@@ -53,15 +58,17 @@ class VobSub2Srt implements VobSub2SrtInterface
             throw new \Exception("Argument can't be empty");
         }
 
-        $command = "vobsub2srt \"{$this->subIdx->filePathWithoutExtension}\" {$argument} 2>&1";
+        $command = "vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1";
 
         $output = trim(shell_exec($command));
 
-        $this->subIdx->vobsub2srtOutputs()->create([
-            'argument' => $argument,
-            'index'    => explode("--index ", $argument)[1] ?? null,
-            'output'   => $output,
-        ]);
+        if($this->logToSubIdx !== null) {
+            $this->logToSubIdx->vobsub2srtOutputs()->create([
+                'argument' => $argument,
+                'index'    => explode("--index ", $argument)[1] ?? null,
+                'output'   => $output,
+            ]);
+        }
 
         return preg_split("/\r\n|\n|\r/", $output);
     }

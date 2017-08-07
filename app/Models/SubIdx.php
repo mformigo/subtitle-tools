@@ -57,9 +57,17 @@ class SubIdx extends Model
         return $this->hasMany('App\Models\Vobsub2srtOutput');
     }
 
+    /**
+     * @return VobSub2SrtInterface
+     */
+    public function getVobSub2Srt()
+    {
+        return app(VobSub2SrtInterface::class, ['path' => $this->filePathWithoutExtension, 'subIdx' => $this]);
+    }
+
     private function makeLanguageExtractJobs()
     {
-        $languages = app(VobSub2SrtInterface::class, ['SubIdx' => $this])->getLanguages();
+        $languages = $this->getVobSub2Srt()->getLanguages();
 
         foreach($languages as $language) {
             $subIdxLanguage = $this->languages()->create($language);

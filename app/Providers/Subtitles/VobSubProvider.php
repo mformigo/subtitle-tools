@@ -17,7 +17,10 @@ class VobSubProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(VobSub2SrtInterface::class, function($app, $args) {
-                return new VobSub2Srt($args['SubIdx']);
+                return new VobSub2Srt(
+                    $args['path'],
+                    $args['subIdx'] ?? null
+                );
         });
     }
 }

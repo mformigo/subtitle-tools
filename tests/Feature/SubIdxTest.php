@@ -97,4 +97,16 @@ class SubIdxTest extends TestCase
         $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 1, 'language' => 'nl']);
     }
 
+    /** @test */
+    function it_logs_vobsub2srt_output()
+    {
+        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
+
+        $this->assertDatabaseHas('vobsub2srt_outputs', ['sub_idx_id' => 1, 'argument' => '--langlist']);
+
+        $outputs = SubIdx::findOrFail(1)->vobsub2srtOutputs()->firstOrFail();
+
+        $this->assertTrue(strlen($outputs->output) > 20);
+    }
+
 }
