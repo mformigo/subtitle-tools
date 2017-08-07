@@ -174,6 +174,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\UtilsProvider::class,
         App\Providers\CustomValidationRulesProvider::class,
+        App\Providers\Subtitles\VobSubProvider::class,
 
     ],
 

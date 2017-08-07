@@ -4,7 +4,7 @@ namespace App\Subtitles\VobSub;
 
 use App\Models\SubIdx;
 
-class VobSub2Srt
+class VobSub2Srt implements VobSub2SrtInterface
 {
     private $subIdx;
     private $idxFile;

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Facades\FileHash;
 use App\Jobs\ExtractSubIdxLanguage;
-use App\Subtitles\VobSub\VobSub2Srt;
+use App\Subtitles\VobSub\VobSub2SrtInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -59,7 +59,7 @@ class SubIdx extends Model
 
     private function makeLanguageExtractJobs()
     {
-        $languages = (new VobSub2Srt($this))->getLanguages();
+        $languages = app(VobSub2SrtInterface::class, ['SubIdx' => $this])->getLanguages();
 
         foreach($languages as $language) {
             $subIdxLanguage = $this->languages()->create($language);
