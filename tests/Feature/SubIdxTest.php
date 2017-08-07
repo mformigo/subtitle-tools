@@ -3,15 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\SubIdx;
-use App\Subtitles\VobSub\VobSub2Srt;
 use App\Subtitles\VobSub\VobSub2SrtInterface;
 use App\Subtitles\VobSub\VobSub2SrtMock;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SubIdxTest extends TestCase
 {
@@ -83,7 +79,7 @@ class SubIdxTest extends TestCase
 
         $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
 
-        $subIdx = SubIdx::where(['original_name' => $this->defaultSubIdxName])->firstOrFail();
+        $subIdx = SubIdx::where('original_name', $this->defaultSubIdxName)->firstOrFail();
 
         $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.sub"));
         $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.idx"));
@@ -114,7 +110,7 @@ class SubIdxTest extends TestCase
 
         $outputs = SubIdx::findOrFail(1)->vobsub2srtOutputs()->firstOrFail();
 
-        $this->assertTrue(strlen($outputs->output) > 20);
+        $this->assertTrue(strlen($outputs->output) > 20, "Logged output is too short, we expect at least 20 characters");
     }
 
     /** @test */

@@ -20,7 +20,7 @@ class VobSub2SrtTest extends TestCase
         $this->assertSame("1", $languages[1]['index']);
 
         // The IdxFile class provides the language, that is tested elsewhere.
-        // It is only important that it isn't empty.
+        // For this test it is only important that the language isn't empty.
         $this->assertFalse(empty($languages[1]['language']));
         $this->assertFalse(empty($languages[0]['language']));
     }
