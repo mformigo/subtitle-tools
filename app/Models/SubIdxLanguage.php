@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $filename
  * @property string|null $error
  * @property string|null $finished_at
+ * @property string $filePath
  * @property-read \App\Models\SubIdx $subIdx
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereError($value)
@@ -35,6 +36,11 @@ class SubIdxLanguage extends Model
     public function subIdx()
     {
         return $this->belongsTo('App\Models\SubIdx');
+    }
+
+    public function getFilePathAttribute()
+    {
+        return storage_disk_file_path($this->subIdx->store_directory . $this->filename);
     }
 
 }

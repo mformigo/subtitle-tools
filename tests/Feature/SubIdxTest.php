@@ -3,7 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\SubIdx;
+use App\Subtitles\VobSub\VobSub2Srt;
+use App\Subtitles\VobSub\VobSub2SrtInterface;
+use App\Subtitles\VobSub\VobSub2SrtMock;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -75,6 +79,8 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_stores_valid_uploads_in_the_database_and_on_the_disk()
     {
+        $this->withoutJobs();
+
         $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
 
         $subIdx = SubIdx::where(['original_name' => $this->defaultSubIdxName])->firstOrFail();
@@ -100,6 +106,8 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_logs_vobsub2srt_output()
     {
+        $this->withoutJobs();
+
         $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
 
         $this->assertDatabaseHas('vobsub2srt_outputs', ['sub_idx_id' => 1, 'argument' => '--langlist']);
@@ -107,6 +115,38 @@ class SubIdxTest extends TestCase
         $outputs = SubIdx::findOrFail(1)->vobsub2srtOutputs()->firstOrFail();
 
         $this->assertTrue(strlen($outputs->output) > 20);
+    }
+
+    /** @test */
+    function it_extracts_languages()
+    {
+        $this->app->bind(VobSub2SrtInterface::class, function($app, $args) {
+            return new VobSub2SrtMock(
+                $args['path'],
+                $args['subIdx'] ?? null
+            );
+        });
+
+        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
+
+        $subIdx = SubIdx::where('original_name', $this->defaultSubIdxName)->firstOrFail();
+
+        $response->assertStatus(302)
+            ->assertRedirect(route('sub-idx-detail', ['pageId' => $subIdx->page_id]));
+
+        $languages = $subIdx->languages()
+            ->where('has_error', false)
+            ->whereNotNull('started_at')
+            ->whereNotNull('finished_at')
+            ->get();
+
+        $this->assertSame(2, count($languages));
+
+        foreach($languages->all() as $lang) {
+            $this->assertTrue(file_exists($lang->filePath), "Extracted file does not exist ({$lang->filePath})");
+
+            $this->assertTrue(filesize($lang->filepath) > 0, "Extracted file is empty");
+        }
     }
 
 }

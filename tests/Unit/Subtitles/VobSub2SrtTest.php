@@ -2,8 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Models\SubIdx;
-use App\Subtitles\VobSub\IdxFile;
 use App\Subtitles\VobSub\VobSub2Srt;
 use Tests\TestCase;
 
