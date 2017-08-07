@@ -26,6 +26,11 @@ For each language inside the .sub file a `\App\Jobs\ExtractSubIdxLanguage` job i
 Extracting a language using `vobsub2srt filename --index 0` can have the following results:
 * stuck processing forever
 * an error and  no `filename.srt`
+* an error and  a `filename.srt`
 * an empty `filename.srt` file
 * a `filename.srt` file filled with cues without any dialogue
 * a valid `filename.srt`
+
+Possible errors when extracting a language:
+* missing the language trainingdata
+* bad alloc exception (server related?)

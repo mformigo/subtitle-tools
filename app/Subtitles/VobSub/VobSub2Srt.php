@@ -49,7 +49,16 @@ class VobSub2Srt implements VobSub2SrtInterface
 
     public function extractLanguage($index)
     {
+        $outputFilePath = "{$this->filePathWithoutExtension}.srt";
 
+        if(file_exists($outputFilePath)) {
+            unlink($outputFilePath);
+        }
+
+        $this->execVobsub2srt("--index {$index}");
+
+        // It is not guaranteed that this file exists after trying to extract it
+        return $outputFilePath;
     }
 
     private function execVobsub2srt($argument)
