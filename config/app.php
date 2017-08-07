@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Subtitle Tools'),
 
     /*
     |--------------------------------------------------------------------------
@@ -137,7 +137,6 @@ return [
 
     'providers' => [
 
-
         // Laravel Framework Service Providers...
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -165,13 +164,14 @@ return [
         // Package Service Providers...
         Laravel\Tinker\TinkerServiceProvider::class,
 
+        // Framework Providers...
+        App\Providers\Framework\AuthServiceProvider::class,
+        App\Providers\Framework\EventServiceProvider::class,
+        // App\Providers\Framework\BroadcastServiceProvider::class,
+        App\Providers\Framework\RouteServiceProvider::class,
 
         // Application Service Providers...
         App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
         App\Providers\UtilsProvider::class,
         App\Providers\CustomValidationRulesProvider::class,
 
