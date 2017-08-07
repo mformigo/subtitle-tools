@@ -18,6 +18,8 @@ class ExtractedSubIdxLanguage implements ShouldBroadcast
     private $pageId;
     private $languageIndex;
     private $languageHasError;
+    private $hasStarted;
+    private $hasFinished;
 
     public function __construct(SubIdxLanguage $subIdxLanguage)
     {
@@ -26,6 +28,10 @@ class ExtractedSubIdxLanguage implements ShouldBroadcast
         $this->languageIndex = $subIdxLanguage->index;
 
         $this->languageHasError = $subIdxLanguage->has_error;
+
+        $this->hasStarted = $subIdxLanguage->hasStarted;
+
+        $this->hasFinished = $subIdxLanguage->hasFinished;
     }
 
     public function broadcastOn()
@@ -36,8 +42,10 @@ class ExtractedSubIdxLanguage implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-          'index' => $this->languageIndex,
-          'hasError' => $this->languageHasError,
+            'index' => $this->languageIndex,
+            'hasError' => $this->languageHasError,
+            'hasStarted' => $this->hasStarted,
+            'hasFinished' => $this->hasFinished,
         ];
     }
 

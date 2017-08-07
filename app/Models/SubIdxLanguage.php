@@ -47,4 +47,13 @@ class SubIdxLanguage extends Model
         return storage_disk_file_path($this->subIdx->store_directory . $this->filename);
     }
 
+    public function getHasStartedAttribute()
+    {
+        return $this->started_at !== null;
+    }
+
+    public function getHasFinishedAttribute()
+    {
+        return $this->finished_at !== null;
+    }
 }
