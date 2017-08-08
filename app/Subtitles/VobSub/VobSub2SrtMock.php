@@ -42,6 +42,8 @@ class VobSub2SrtMock implements VobSub2SrtInterface
 
     public function extractLanguage($index)
     {
+        // sleep(2);
+
         $outputFilePath = "{$this->filePathWithoutExtension}.srt";
 
         if(file_exists($outputFilePath)) {
