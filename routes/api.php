@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 
 Route::prefix('api/v1/')->group(function() {
 
-    Route::get('sub-idx/languages/{pageId}')->uses('SubIdxController@languages');
+    Route::get('sub-idx/languages/{pageId}')->uses('SubIdxController@languages')->name('api-sub-idx-languages');
 
 });
 
