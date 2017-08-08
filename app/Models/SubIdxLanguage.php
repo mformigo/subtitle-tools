@@ -56,4 +56,16 @@ class SubIdxLanguage extends Model
     {
         return $this->finished_at !== null;
     }
+
+    public function getApiValues()
+    {
+        return [
+            'index'       => $this->index,
+            'countryCode' => $this->language,
+            'language'    => __("languages.{$this->language}"),
+            'hasStarted'  => $this->hasStarted,
+            'hasFinished' => $this->hasFinished,
+            'hasError'    => $this->has_error,
+        ];
+    }
 }

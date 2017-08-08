@@ -22,7 +22,7 @@ class SubIdxController extends Controller
 
     public function detail($pageId)
     {
-        $subIdx = SubIdx::where(['page_id' => $pageId, 'is_readable' => true])->firstOrFail();
+        $subIdx = SubIdx::where('page_id', $pageId)->firstOrFail();
 
         return view('sub-idx-detail', [
             'originalName' => $subIdx->original_name,

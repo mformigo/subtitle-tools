@@ -8350,3 +8350,13 @@ button.close {
   }
 }
 
+#SubIdxLanguages .language {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#SubIdxLanguages .language > * {
+  padding: 1rem;
+}
+

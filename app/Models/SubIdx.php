@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class SubIdx extends Model
 {
-    protected $fillable = ['page_id', 'store_directory', 'filename', 'original_name', 'sub_hash', 'idx_hash'];
+    protected $fillable = ['page_id', 'store_directory', 'filename', 'original_name', 'sub_hash', 'idx_hash', 'is_readable'];
 
     protected function getFilePathWithoutExtensionAttribute()
     {
@@ -103,15 +103,18 @@ class SubIdx extends Model
             'original_name'   => pathinfo($subFile->getClientOriginalName(), PATHINFO_FILENAME),
             'store_directory' => $storagePath,
             'filename' => $baseFileName,
-            'page_id'  => $baseFileName,
             'sub_hash' => $subHash,
             'idx_hash' => $idxHash,
+            'is_readable' => false,
         ]);
 
         $subIdx->makeLanguageExtractJobs();
 
-        $subIdx->is_readable = ($subIdx->languages->count() > 0);
-        $subIdx->save();
+        if($subIdx->languages->count() > 0) {
+            $subIdx->is_readable = true;
+            $subIdx->page_id = $baseFileName;
+            $subIdx->save();
+        }
 
         return $subIdx;
     }

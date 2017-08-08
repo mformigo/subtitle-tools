@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Events\ExtractedSubIdxLanguage;
+use App\Events\ExtractingSubIdxLanguageChanged;
 use App\Models\SubIdxLanguage;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -29,6 +29,8 @@ class ExtractSubIdxLanguage implements ShouldQueue
     public function handle()
     {
         $this->subIdxLanguage->update(['started_at' => Carbon::now()]);
+
+        event(new ExtractingSubIdxLanguageChanged($this->subIdxLanguage));
 
         $VobSub2Srt = $this->subIdxLanguage->subIdx->getVobSub2Srt();
 
@@ -65,7 +67,7 @@ class ExtractSubIdxLanguage implements ShouldQueue
             ]);
         }
 
-        event(new ExtractedSubIdxLanguage($this->subIdxLanguage));
+        event(new ExtractingSubIdxLanguageChanged($this->subIdxLanguage));
     }
 
     public function failed()
@@ -75,7 +77,7 @@ class ExtractSubIdxLanguage implements ShouldQueue
             'finished_at' => Carbon::now(),
         ]);
 
-        event(new ExtractedSubIdxLanguage($this->subIdxLanguage));
+        event(new ExtractingSubIdxLanguageChanged($this->subIdxLanguage));
     }
 
 }

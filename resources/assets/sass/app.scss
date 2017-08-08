@@ -7,3 +7,14 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+#SubIdxLanguages
+{
+  .language
+  {
+    display: flex;
+    > * { padding: 1rem; }
+  }
+
+}

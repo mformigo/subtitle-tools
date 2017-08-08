@@ -46826,21 +46826,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     data: function data() {
-        return {};
+        return {
+            languages: []
+        };
     },
 
     props: ['pageId'],
 
     mounted: function mounted() {
-        console.log(this.pageId);
+        var _this = this;
 
-        // axios.get('url').then(response => {
-        //
-        // });
+        axios.get('/api/v1/sub-idx/languages/' + this.pageId).then(function (response) {
+            _this.languages = response.data;
+        });
+
+        Echo.channel('sub-idx.' + this.pageId).listen('ExtractingSubIdxLanguageChanged', function (newLanguage) {
+            var arrayIndex = _.findIndex(_this.languages, ['index', newLanguage.index]);
+
+            Vue.set(_this.languages, arrayIndex, newLanguage);
+        });
     }
 });
 
@@ -46849,14 +46876,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
     attrs: {
       "id": "SubIdxLanguages"
     }
-  })])
-}]}
+  }, _vm._l((_vm.languages), function(lang) {
+    return _c('div', {
+      staticClass: "language"
+    }, [_c('div', {
+      staticClass: "flag"
+    }, [_vm._v("X")]), _vm._v(" "), _c('div', {
+      staticClass: "name"
+    }, [_vm._v(_vm._s(lang.language))]), _vm._v(" "), (lang.hasStarted == false) ? _c('div', {
+      staticClass: "status"
+    }, [_vm._v("\n                Queued...\n            ")]) : (lang.hasFinished == false) ? _c('div', {
+      staticClass: "status"
+    }, [_vm._v("\n                Processing...\n            ")]) : (lang.hasError == true) ? _c('div', {
+      staticClass: "status"
+    }, [_vm._v("\n                Failed\n            ")]) : _c('div', {
+      staticClass: "status"
+    }, [_c('a', {
+      attrs: {
+        "href": _vm.pageId + '/' + lang.index
+      }
+    }, [_vm._v("Download")])])])
+  }))])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

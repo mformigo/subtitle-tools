@@ -11,7 +11,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ExtractedSubIdxLanguage implements ShouldBroadcast
+class ExtractingSubIdxLanguageChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -29,11 +29,6 @@ class ExtractedSubIdxLanguage implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return [
-            'index'       => $this->subIdxLanguage->index,
-            'hasError'    => $this->subIdxLanguage->has_error,
-            'hasStarted'  => $this->subIdxLanguage->hasStarted,
-            'hasFinished' => $this->subIdxLanguage->hasFinished,
-        ];
+        return $this->subIdxLanguage->getApiValues();
     }
 }

@@ -155,7 +155,7 @@ class SubIdxTest extends TestCase
     {
         $this->useMockVobSub2Srt();
 
-        $this->expectsEvents(\App\Events\ExtractedSubIdxLanguage::class);
+        $this->expectsEvents(\App\Events\ExtractingSubIdxLanguageChanged::class);
 
         $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
     }
