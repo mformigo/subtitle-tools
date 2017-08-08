@@ -15,38 +15,25 @@ class ExtractedSubIdxLanguage implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $pageId;
-    private $languageIndex;
-    private $languageHasError;
-    private $hasStarted;
-    private $hasFinished;
+    protected $subIdxLanguage;
 
     public function __construct(SubIdxLanguage $subIdxLanguage)
     {
-        $this->pageId = $subIdxLanguage->subIdx->page_id;
-
-        $this->languageIndex = $subIdxLanguage->index;
-
-        $this->languageHasError = $subIdxLanguage->has_error;
-
-        $this->hasStarted = $subIdxLanguage->hasStarted;
-
-        $this->hasFinished = $subIdxLanguage->hasFinished;
+        $this->subIdxLanguage = $subIdxLanguage;
     }
 
     public function broadcastOn()
     {
-        return new Channel("sub-idx.{$this->pageId}.{$this->languageIndex}");
+        return new Channel("sub-idx.{$this->subIdxLanguage->subIdx->page_id}");
     }
 
     public function broadcastWith()
     {
         return [
-            'index' => $this->languageIndex,
-            'hasError' => $this->languageHasError,
-            'hasStarted' => $this->hasStarted,
-            'hasFinished' => $this->hasFinished,
+            'index'       => $this->subIdxLanguage->index,
+            'hasError'    => $this->subIdxLanguage->has_error,
+            'hasStarted'  => $this->subIdxLanguage->hasStarted,
+            'hasFinished' => $this->subIdxLanguage->hasFinished,
         ];
     }
-
 }
