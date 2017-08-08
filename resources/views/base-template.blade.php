@@ -16,6 +16,7 @@
         </script>
 
         <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
+        <link href="/css/flags.css" rel="stylesheet" />
 
         <title>ST</title>
     </head>

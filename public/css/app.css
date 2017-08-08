@@ -1,3 +1,15 @@
+body {
+  background-color: rgba(245, 245, 245, 0.4);
+}
+
+.flag.flag-en {
+  background-position: -100px -210px;
+}
+
+.flag.flag-unknown {
+  background-position: -999px -999px;
+}
+
 #SubIdxLanguages {
   width: 300px;
 }
@@ -12,7 +24,7 @@
   font-weight: 700;
 }
 
-#SubIdxLanguages .language .flag {
+#SubIdxLanguages .language .country {
   width: 25px;
 }
 

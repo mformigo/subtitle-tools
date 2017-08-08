@@ -2,13 +2,15 @@
     <div id="SubIdxLanguages">
 
         <div class="language header">
-            <div class="flag"></div>
+            <div class="country"></div>
             <div class="name">Language</div>
             <div class="status">Status</div>
         </div>
 
         <div v-for="lang in languages" class="language">
-            <div class="flag">X</div>
+            <div class="country">
+                <span :class="'flag flag-' + lang.countryCode"></span>
+            </div>
             <div class="name">{{ lang.language }}</div>
 
             <div v-if="lang.downloadUrl" class="status">

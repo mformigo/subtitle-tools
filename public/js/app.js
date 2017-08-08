@@ -46843,6 +46843,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -46884,8 +46886,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "language"
     }, [_c('div', {
-      staticClass: "flag"
-    }, [_vm._v("X")]), _vm._v(" "), _c('div', {
+      staticClass: "country"
+    }, [_c('span', {
+      class: 'flag flag-' + lang.countryCode
+    })]), _vm._v(" "), _c('div', {
       staticClass: "name"
     }, [_vm._v(_vm._s(lang.language))]), _vm._v(" "), (lang.downloadUrl) ? _c('div', {
       staticClass: "status"
@@ -46901,7 +46905,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "language header"
   }, [_c('div', {
-    staticClass: "flag"
+    staticClass: "country"
   }), _vm._v(" "), _c('div', {
     staticClass: "name"
   }, [_vm._v("Language")]), _vm._v(" "), _c('div', {
