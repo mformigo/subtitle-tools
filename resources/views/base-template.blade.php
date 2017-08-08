@@ -4,10 +4,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script>
+            <?php
+                echo 'window.Laravel = ' . json_encode([
+                    'pusherKey' => env('PUSHER_APP_KEY'),
+                    'pusherCluster' => env('PUSHER_APP_CLUSTER'),
+                    'pusherEncrypted' => env('APP_HTTPS'),
+                ]);
+            ?>
+        </script>
+
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
 
         <title>ST</title>
     </head>
     <body>
-        @yield('content')
+        <div id="app">
+            @yield('content')
+        </div>
+
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

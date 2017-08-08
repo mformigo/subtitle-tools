@@ -25,7 +25,8 @@ class SubIdxController extends Controller
         $subIdx = SubIdx::where(['page_id' => $pageId, 'is_readable' => true])->firstOrFail();
 
         return view('sub-idx-detail', [
-            'languages' => $subIdx->languages()->pluck('language'),
+            'originalName' => $subIdx->original_name,
+            'pageId' => $pageId,
         ]);
     }
 

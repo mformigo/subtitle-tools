@@ -4,8 +4,11 @@
 
     <h1>Sub Idx Detail</h1>
 
-    @foreach($languages as $lang)
-        {{ $lang }}<br/>
-    @endforeach
+    <p>
+        Extracting srt files from <strong>{{ $originalName }}</strong>
+    </p>
+
+
+    <sub-idx-languages page-id="{{ $pageId }}"></sub-idx-languages>
 
 @endsection
