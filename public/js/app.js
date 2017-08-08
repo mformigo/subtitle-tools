@@ -46843,8 +46843,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -46866,7 +46864,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Echo.channel('sub-idx.' + this.pageId).listen('ExtractingSubIdxLanguageChanged', function (newLanguage) {
             var arrayIndex = _.findIndex(_this.languages, ['index', newLanguage.index]);
 
-            Vue.set(_this.languages, arrayIndex, newLanguage);
+            if (arrayIndex !== -1) {
+                Vue.set(_this.languages, arrayIndex, newLanguage);
+            }
         });
     }
 });
@@ -46876,32 +46876,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', {
     attrs: {
       "id": "SubIdxLanguages"
     }
-  }, _vm._l((_vm.languages), function(lang) {
+  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.languages), function(lang) {
     return _c('div', {
       staticClass: "language"
     }, [_c('div', {
       staticClass: "flag"
     }, [_vm._v("X")]), _vm._v(" "), _c('div', {
       staticClass: "name"
-    }, [_vm._v(_vm._s(lang.language))]), _vm._v(" "), (lang.hasStarted == false) ? _c('div', {
-      staticClass: "status"
-    }, [_vm._v("\n                Queued...\n            ")]) : (lang.hasFinished == false) ? _c('div', {
-      staticClass: "status"
-    }, [_vm._v("\n                Processing...\n            ")]) : (lang.hasError == true) ? _c('div', {
-      staticClass: "status"
-    }, [_vm._v("\n                Failed\n            ")]) : _c('div', {
+    }, [_vm._v(_vm._s(lang.language))]), _vm._v(" "), (lang.downloadUrl) ? _c('div', {
       staticClass: "status"
     }, [_c('a', {
       attrs: {
-        "href": _vm.pageId + '/' + lang.index
+        "href": lang.downloadUrl
       }
-    }, [_vm._v("Download")])])])
-  }))])
-},staticRenderFns: []}
+    }, [_vm._v("Download")])]) : _c('div', {
+      staticClass: "status"
+    }, [_vm._v("\n            " + _vm._s(lang.status) + "\n        ")])])
+  })], 2)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "language header"
+  }, [_c('div', {
+    staticClass: "flag"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "name"
+  }, [_vm._v("Language")]), _vm._v(" "), _c('div', {
+    staticClass: "status"
+  }, [_vm._v("Status")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

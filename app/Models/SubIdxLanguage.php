@@ -57,15 +57,37 @@ class SubIdxLanguage extends Model
         return $this->finished_at !== null;
     }
 
+    public function getStatusMessageAttribute()
+    {
+        switch(false)
+        {
+            case $this->hasStarted:  return __('messages.status.queued');
+            case $this->hasFinished: return __('messages.status.processing');
+            case !$this->has_error:  return __('messages.status.failed');
+            default:                 return __('messages.status.finished');
+        }
+    }
+
+    public function getDownloadUrlAttribute()
+    {
+        if($this->statusMessage !== __('messages.status.finished')) {
+            return false;
+        }
+
+        return route('sub-idx-dl', [
+            'pageId' => $this->subIdx->page_id,
+            'index'  => $this->index,
+        ]);
+    }
+
     public function getApiValues()
     {
         return [
             'index'       => $this->index,
             'countryCode' => $this->language,
             'language'    => __("languages.{$this->language}"),
-            'hasStarted'  => $this->hasStarted,
-            'hasFinished' => $this->hasFinished,
-            'hasError'    => $this->has_error,
+            'status'      => $this->statusMessage,
+            'downloadUrl' => $this->downloadUrl,
         ];
     }
 }

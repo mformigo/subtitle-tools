@@ -48,4 +48,9 @@ class SubIdxController extends Controller
         return redirect()->route('sub-idx-detail', ['pageId' => $subIdx->page_id]);
     }
 
+    public function downloadSrt($pageId, $languageIndex)
+    {
+        throw new \Exception("not implemented yet");
+    }
+
 }
