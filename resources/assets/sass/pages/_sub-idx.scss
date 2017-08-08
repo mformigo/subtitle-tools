@@ -1,0 +1,18 @@
+#SubIdxLanguages
+{
+  width: 300px;
+
+  .language
+  {
+    &.header { font-weight: 700; }
+
+    .flag { width: 25px; }
+    .name { flex-grow: 1;}
+    .status { width: 75px; text-align: center; }
+
+    display: flex;
+
+    > * { padding: 0.5rem; }
+  }
+
+}

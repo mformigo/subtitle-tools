@@ -1,20 +1,4 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
 @import "variables";
+@import "mixins";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-
-#SubIdxLanguages
-{
-  .language
-  {
-    display: flex;
-    > * { padding: 1rem; }
-  }
-
-}
+@import "pages/sub-idx";
