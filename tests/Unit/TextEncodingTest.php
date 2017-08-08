@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Utils\TextEncoding;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -25,7 +24,8 @@ class TextEncodingTest extends TestCase
         "x-mac-cyrillic.txt" => "MacCyrillic",
     ];
 
-    function test_it_detects_encodings_from_files_correctly()
+    /** @test */
+    function it_detects_encodings_from_files_correctly()
     {
         $textEncoding = app('TextEncoding');
 
@@ -36,7 +36,8 @@ class TextEncodingTest extends TestCase
         }
     }
 
-    function test_it_detects_encodings_from_strings_correctly()
+    /** @test */
+    function it_detects_encodings_from_strings_correctly()
     {
         $textEncoding = app('TextEncoding');
 
@@ -48,7 +49,8 @@ class TextEncodingTest extends TestCase
         }
     }
 
-//    function test_available_encodings()
+//    /** @test */
+//    function available_encodings()
 //    {
 //        $textEncoding = app(TextEncoding::class);
 //
@@ -63,5 +65,4 @@ class TextEncodingTest extends TestCase
 //        // ascii/unknown encoding should not exist
 //        $this->assertNotContains("ascii/unknown", $availableEncodings);
 //    }
-
 }

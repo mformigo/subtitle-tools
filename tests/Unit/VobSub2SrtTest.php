@@ -10,7 +10,7 @@ class VobSub2SrtTest extends TestCase
     /** @test */
     function it_reads_languages_from_sub_files()
     {
-        $vobsub2srt = new VobSub2Srt($this->testFilesStoragePath . 'SubIdxFiles/error-and-nl');
+        $vobsub2srt = new VobSub2Srt("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl");
 
         $languages = $vobsub2srt->getLanguages();
 
@@ -24,5 +24,4 @@ class VobSub2SrtTest extends TestCase
         $this->assertFalse(empty($languages[1]['language']));
         $this->assertFalse(empty($languages[0]['language']));
     }
-
 }

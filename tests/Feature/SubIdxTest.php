@@ -2,9 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\SubIdx;
-use App\Subtitles\VobSub\VobSub2SrtInterface;
-use App\Subtitles\VobSub\VobSub2SrtMock;
 use Illuminate\Http\UploadedFile;
 use Tests\MocksVobSub2Srt;
 use Tests\PostsVobSubs;
@@ -49,15 +46,10 @@ class SubIdxTest extends TestCase
     {
         $this->withoutJobs();
 
-        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
+        $subIdx = $this->postVobSub();
 
-        $subIdx = SubIdx::where('original_name', $this->defaultSubIdxName)->firstOrFail();
-
-        $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.sub"));
-        $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.idx"));
-
-        $response->assertStatus(302)
-            ->assertRedirect(route('sub-idx-detail', ['pageId' => $subIdx->page_id]));
+        $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.sub"), "Stored sub file does not exist");
+        $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.idx"), "Stored idx file does not exist");
     }
 
     /** @test */
@@ -65,7 +57,7 @@ class SubIdxTest extends TestCase
     {
         $this->expectsJobs(\App\Jobs\ExtractSubIdxLanguage::class);
 
-        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
+        $this->postVobSub();
 
         $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 0, 'language' => 'unknown']);
         $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 1, 'language' => 'nl']);
@@ -76,13 +68,13 @@ class SubIdxTest extends TestCase
     {
         $this->withoutJobs();
 
-        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
+        $subIdx = $this->postVobSub();
 
         $this->assertDatabaseHas('vobsub2srt_outputs', ['sub_idx_id' => 1, 'argument' => '--langlist']);
 
-        $outputs = SubIdx::findOrFail(1)->vobsub2srtOutputs()->firstOrFail();
+        $outputs = $subIdx->vobsub2srtOutputs()->firstOrFail();
 
-        $this->assertTrue(strlen($outputs->output) > 20, "Logged output is too short, we expect at least 20 characters");
+        $this->assertTrue(strlen($outputs->output) > 20, "Logged output is too short, expecting at least 20 characters");
     }
 
     /** @test */
@@ -90,12 +82,7 @@ class SubIdxTest extends TestCase
     {
         $this->useMockVobSub2Srt();
 
-        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
-
-        $subIdx = SubIdx::where('original_name', $this->defaultSubIdxName)->firstOrFail();
-
-        $response->assertStatus(302)
-            ->assertRedirect(route('sub-idx-detail', ['pageId' => $subIdx->page_id]));
+        $subIdx = $this->postVobSub();
 
         $languages = $subIdx->languages()
             ->where('has_error', false)
@@ -121,5 +108,4 @@ class SubIdxTest extends TestCase
 
         $this->postVobSub();
     }
-
 }

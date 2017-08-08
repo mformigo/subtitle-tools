@@ -4,14 +4,14 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 
-
 class TextFileReaderTest extends TestCase
 {
-    function test_it_reads_simple_text_files()
+    /** @test */
+    function it_reads_simple_text_files()
     {
         $reader = app('TextFileReader');
 
-        $filePath = base_path("tests/Storage/TextEncodings/big5.txt");
+        $filePath = "{$this->testFilesStoragePath}TextEncodings/big5.txt";
 
         $content = $reader->getContents($filePath);
         $lines = $reader->getLines($filePath);
@@ -20,11 +20,12 @@ class TextFileReaderTest extends TestCase
         $this->assertSame(6642, count($lines));
     }
 
-    function test_it_reads_empty_files()
+    /** @test */
+    function it_reads_empty_files()
     {
         $reader = app('TextFileReader');
 
-        $filePath = base_path("tests/Storage/TextFiles/empty.srt");
+        $filePath = "{$this->testFilesStoragePath}TextFiles/empty.srt";
 
         $content = $reader->getContents($filePath);
         $lines = $reader->getLines($filePath);
@@ -33,13 +34,13 @@ class TextFileReaderTest extends TestCase
         $this->assertSame([""], $lines);
     }
 
-    function test_it_reads_text_files_with_control_characters()
+    /** @test */
+    function it_reads_text_files_with_control_characters()
     {
         $reader = app('TextFileReader');
 
-        $content = $reader->getContents(base_path("tests/Storage/TextFiles/mime-octet-mb-chinese.ass"));
+        $content = $reader->getContents("{$this->testFilesStoragePath}TextFiles/mime-octet-mb-chinese.ass");
 
         $this->assertSame(821, strlen($content));
     }
-
 }

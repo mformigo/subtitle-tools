@@ -19,5 +19,4 @@ class HelpersTest extends TestCase
 
         $this->assertTrue(ends_with(storage_disk_file_path('/dirname/file.jpg'), '/storage/testing/dirname/file.jpg'));
     }
-
 }

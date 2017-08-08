@@ -10,7 +10,7 @@ class IdxFileTest extends TestCase
     /** @test */
     function it_reads_languages_from_idx_files()
     {
-        $idxFile = new IdxFile($this->testFilesStoragePath . 'SubIdxFiles/error-and-nl.idx');
+        $idxFile = new IdxFile("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.idx");
 
         $this->assertSame('unknown', $idxFile->getLanguageForIndex(0));
 
@@ -20,9 +20,8 @@ class IdxFileTest extends TestCase
     /** @test */
     function it_returns_unknown_for_non_existing_indexes()
     {
-        $idxFile = new IdxFile($this->testFilesStoragePath . 'SubIdxFiles/error-and-nl.idx');
+        $idxFile = new IdxFile("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.idx");
 
         $this->assertSame('unknown', $idxFile->getLanguageForIndex(99));
     }
-
 }
