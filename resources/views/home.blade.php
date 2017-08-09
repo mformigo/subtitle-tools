@@ -6,6 +6,8 @@
 
     <br/>
 
+    <a href="{{ route('convert-to-srt-index') }}">Convert to Srt</a>
+    <br/>
     <a href="{{ route('sub-idx-index') }}">Sub/Idx to Srt</a>
 
 @endsection

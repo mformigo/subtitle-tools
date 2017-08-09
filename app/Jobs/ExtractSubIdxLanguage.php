@@ -28,6 +28,9 @@ class ExtractSubIdxLanguage implements ShouldQueue
 
     public function handle()
     {
+        // TODO: can events fire on model change?
+        // TODO: shell_exec should timeout instead of the worker
+
         $this->subIdxLanguage->update(['started_at' => Carbon::now()]);
 
         event(new ExtractingSubIdxLanguageChanged($this->subIdxLanguage));
