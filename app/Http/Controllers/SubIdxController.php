@@ -20,21 +20,11 @@ class SubIdxController extends Controller
         return view('sub-idx');
     }
 
-    public function detail($pageId)
-    {
-        $subIdx = SubIdx::where('page_id', $pageId)->firstOrFail();
-
-        return view('sub-idx-detail', [
-            'originalName' => $subIdx->original_name,
-            'pageId' => $pageId,
-        ]);
-    }
-
     public function post(Request $request)
     {
         $this->validate($request, [
-            'sub' => 'required|file|mimetypes:video/mpeg',
-            'idx' => 'required|file|textfile',
+            'sub' => 'required|file|file_not_empty|mimetypes:video/mpeg',
+            'idx' => 'required|file|file_not_empty|textfile',
         ], [
             'sub.mimetypes' => __('validation.subidx_invalid_sub_mime'),
         ]);
@@ -46,6 +36,16 @@ class SubIdxController extends Controller
         }
 
         return redirect()->route('sub-idx-detail', ['pageId' => $subIdx->page_id]);
+    }
+
+    public function detail($pageId)
+    {
+        $subIdx = SubIdx::where('page_id', $pageId)->firstOrFail();
+
+        return view('sub-idx-detail', [
+            'originalName' => $subIdx->original_name,
+            'pageId' => $pageId,
+        ]);
     }
 
     public function downloadSrt($pageId, $languageIndex)

@@ -14,7 +14,7 @@ class ConvertToSrtController extends Controller
     public function post(Request $request)
     {
         $this->validate($request, [
-            'subtitle' => 'required|file|textfile',
+            'subtitle' => 'required|file|file_not_empty|textfile',
         ]);
 
         dd($request);

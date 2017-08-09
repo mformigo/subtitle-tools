@@ -10,13 +10,19 @@ class CustomValidationRulesProvider extends ServiceProvider
     public function boot()
     {
         \Validator::extend('textfile', function ($attribute, $uploadedFile, $parameters, $validator) {
-            if(!($uploadedFile instanceof UploadedFile)) {
-                return false;
+            if($uploadedFile instanceof UploadedFile) {
+                return app('TextFileIdentifier')->isTextFile($uploadedFile->getRealPath());
             }
 
-            $textFileIdentifier = app('TextFileIdentifier');
+            return false;
+        });
 
-            return $textFileIdentifier->isTextFile($uploadedFile->getRealPath());
+        \Validator::extend('file_not_empty', function ($attribute, $uploadedFile, $parameters, $validator) {
+            if($uploadedFile instanceof UploadedFile && file_exists($uploadedFile->getRealPath())) {
+                return filesize($uploadedFile->getRealPath()) > 0;
+            }
+
+            return false;
         });
     }
 

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Http\UploadedFile;
+use Tests\CreatesUploadedFiles;
 use Tests\MocksVobSub2Srt;
 use Tests\PostsVobSubs;
 use Tests\TestCase;
@@ -13,6 +14,7 @@ class SubIdxTest extends TestCase
     use DatabaseMigrations;
     use MocksVobSub2Srt;
     use PostsVobSubs;
+    use CreatesUploadedFiles;
 
     /** @test */
     function the_sub_and_idx_file_are_server_side_required()
@@ -23,6 +25,21 @@ class SubIdxTest extends TestCase
             ->assertSessionHasErrors([
                 'sub' => __('validation.required', ['attribute' => 'sub']),
                 'idx' => __('validation.required', ['attribute' => 'idx']),
+            ]);
+    }
+
+    /** @test */
+    function it_rejects_empty_files()
+    {
+        $response = $this->post(route('sub-idx-index'), [
+            'sub' => $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt", "empty.sub"),
+            'idx' => $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt", "empty.idx"),
+        ]);
+
+        $response->assertStatus(302)
+            ->assertSessionHasErrors([
+                'sub' => __('validation.file_not_empty', ['attribute' => 'sub']),
+                'idx' => __('validation.file_not_empty', ['attribute' => 'idx']),
             ]);
     }
 
