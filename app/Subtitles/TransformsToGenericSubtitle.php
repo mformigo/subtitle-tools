@@ -2,7 +2,7 @@
 
 namespace App\Subtitles;
 
-interface TransformToGenericSubtitle
+interface TransformsToGenericSubtitle
 {
     public function toGenericSubtitle();
 }

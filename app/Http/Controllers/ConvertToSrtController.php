@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subtitles\PlainText\Ass;
-use App\Subtitles\TransformToGenericSubtitle;
+use App\Subtitles\TransformsToGenericSubtitle;
 use Illuminate\Http\Request;
 
 class ConvertToSrtController extends Controller
@@ -29,7 +29,7 @@ class ConvertToSrtController extends Controller
 
         $subtitle->loadFile($request->file('subtitle'));
 
-         if(! $subtitle instanceof TransformToGenericSubtitle) {
+         if(! $subtitle instanceof TransformsToGenericSubtitle) {
              back()->withErrors('cant convert');
          }
 

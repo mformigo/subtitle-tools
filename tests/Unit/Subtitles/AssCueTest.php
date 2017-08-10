@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Subtitles\PlainText\AssCue;
+use App\Subtitles\PlainText\GenericSubtitleCue;
 use Tests\TestCase;
 
 class AssCueTest extends TestCase
@@ -140,5 +141,24 @@ class AssCueTest extends TestCase
             ->shift(-99999999999999999);
 
         $this->assertSame("Dialogue: 1,0:00:00.00,0:00:00.00,*Default,NTP,0000,0000,0000,,THE SUMMER OR GEORGE", $cue->toString());
+    }
+
+    /** @test */
+    function it_transforms_to_generic_cue()
+    {
+        $assCue = new AssCue();
+
+        $assCue->loadString("Dialogue: 0,0:00:00.78,0:00:01.99,*Default,NTP,0,0,0,,好啊, 朋友\NCrazy");
+
+        $genericCue = $assCue->toGenericCue();
+
+        $this->assertTrue($genericCue instanceof GenericSubtitleCue);
+
+        $this->assertFalse($genericCue instanceof AssCue);
+
+        $this->assertSame(780, $genericCue->getStartMs());
+        $this->assertSame(1990, $genericCue->getEndMs());
+
+        $this->assertSame(['好啊, 朋友', 'Crazy'], $genericCue->getLines());
     }
 }

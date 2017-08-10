@@ -10,10 +10,6 @@ class GenericSubtitleCue
 
     protected $endMs = 0;
 
-    public function __construct()
-    {
-    }
-
     public function getLines()
     {
         return $this->lines;

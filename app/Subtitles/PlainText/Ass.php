@@ -3,19 +3,15 @@
 namespace App\Subtitles\PlainText;
 
 use App\Subtitles\TextFile;
-use App\Subtitles\TransformToGenericSubtitle;
+use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Ass extends TextFile implements TransformToGenericSubtitle
+class Ass extends TextFile implements TransformsToGenericSubtitle
 {
     use WithFileLines;
 
     protected $extension = ".ass";
-
-    public function __construct()
-    {
-    }
 
     public function toGenericSubtitle()
     {
@@ -25,8 +21,16 @@ class Ass extends TextFile implements TransformToGenericSubtitle
             ->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
         foreach($this->lines as $line) {
+            if(AssCue::isTimingString($line)) {
+                $assCue = new AssCue();
 
+                $assCue->loadString($line);
+
+                $generic->addCue($assCue);
+            }
         }
+
+        return $generic;
     }
 
     public static function isThisFormat($file)

@@ -28,4 +28,12 @@ class GenericSubtitle
     {
         $this->cues[] = $cue;
     }
+
+    /**
+     * @return GenericSubtitleCue[]
+     */
+    public function getCues()
+    {
+        return $this->cues;
+    }
 }

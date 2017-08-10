@@ -2,7 +2,7 @@
 
 namespace App\Subtitles;
 
-interface TransformToGenericCue
+interface TransformsToGenericCue
 {
     public function toGenericCue();
 }

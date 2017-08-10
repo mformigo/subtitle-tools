@@ -3,9 +3,9 @@
 namespace App\Subtitles\PlainText;
 
 use App\Subtitles\TimingStrings;
-use App\Subtitles\TransformToGenericCue;
+use App\Subtitles\TransformsToGenericCue;
 
-class AssCue extends GenericSubtitleCue implements TimingStrings, TransformToGenericCue
+class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGenericCue
 {
     /**
      * @var string Unimportant information before timing
@@ -33,34 +33,6 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformToGen
         );
 
         return $this;
-    }
-
-    public static function isTimingString($string)
-    {
-        $string = trim($string);
-
-        if(!starts_with($string, 'Dialogue: ')) {
-            return false;
-        }
-
-        $parts =  explode(',', $string);
-
-        if(count($parts) < 10) {
-            return false;
-        }
-
-        if(!preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/", $string)) {
-            return false;
-        }
-
-        $startInt = str_replace([':', '.'], '', $parts[1]);
-        $endInt   = str_replace([':', '.'], '', $parts[2]);
-
-        if($startInt > $endInt) {
-            return false;
-        }
-
-        return true;
     }
 
     public function setTimingFromString($string)
@@ -129,6 +101,39 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformToGen
 
     public function toGenericCue()
     {
-        // TODO: Implement toGenericCue() method.
+        $genericCue = new GenericSubtitleCue();
+
+        $genericCue->setLines($this->lines)
+            ->setTiming($this->startMs, $this->endMs);
+
+        return $genericCue;
+    }
+
+    public static function isTimingString($string)
+    {
+        $string = trim($string);
+
+        if(!starts_with($string, 'Dialogue: ')) {
+            return false;
+        }
+
+        $parts =  explode(',', $string);
+
+        if(count($parts) < 10) {
+            return false;
+        }
+
+        if(!preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/", $string)) {
+            return false;
+        }
+
+        $startInt = str_replace([':', '.'], '', $parts[1]);
+        $endInt   = str_replace([':', '.'], '', $parts[2]);
+
+        if($startInt > $endInt) {
+            return false;
+        }
+
+        return true;
     }
 }

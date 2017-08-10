@@ -19,11 +19,14 @@ abstract class TextFile
         return $this;
     }
 
-    public function setFileNameWithoutExtension($fileNameWithoutExtension)
+    public function getFilePath()
     {
-        $this->originalFileNameWithoutExtension = $fileNameWithoutExtension;
+        return $this->filePath;
+    }
 
-        return $this;
+    public function getFileNameWithoutExtension()
+    {
+        return $this->originalFileNameWithoutExtension;
     }
 
     /**

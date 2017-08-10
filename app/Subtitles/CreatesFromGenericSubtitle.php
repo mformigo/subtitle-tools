@@ -2,7 +2,7 @@
 
 namespace App\Subtitles;
 
-interface CreateFromGenericSubtitle
+interface CreatesFromGenericSubtitle
 {
     public static function createFromGenericSubtitle();
 }
