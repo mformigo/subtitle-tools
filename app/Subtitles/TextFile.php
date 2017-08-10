@@ -24,6 +24,13 @@ abstract class TextFile
         return $this->filePath;
     }
 
+    public function setFileNameWithoutExtension($fileNameWithoutExtension)
+    {
+        $this->originalFileNameWithoutExtension = $fileNameWithoutExtension;
+
+        return $this;
+    }
+
     public function getFileNameWithoutExtension()
     {
         return $this->originalFileNameWithoutExtension;
@@ -42,16 +49,11 @@ abstract class TextFile
      */
     public function loadFile($file)
     {
-        if($file instanceof UploadedFile) {
-            $this->originalFileNameWithoutExtension = $file->getClientOriginalName();
+        $name = $file instanceof UploadedFile ? $file->getClientOriginalName() : $file;
 
-            $this->filePath = $file->getRealPath();
-        }
-        else {
-            $this->originalFileNameWithoutExtension = pathinfo($file, PATHINFO_FILENAME);
+        $this->originalFileNameWithoutExtension = pathinfo($name, PATHINFO_FILENAME);
 
-            $this->filePath = $file;
-        }
+        $this->filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
         // These properties come from the WithFileContent/WithFileLines trait
         if(property_exists($this, 'lines')) {

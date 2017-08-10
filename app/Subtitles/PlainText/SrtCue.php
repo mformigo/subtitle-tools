@@ -2,9 +2,10 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\LoadsGenericCues;
 use App\Subtitles\TimingStrings;
 
-class SrtCue extends GenericSubtitleCue implements TimingStrings
+class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCues
 {
     public static function isTimingString($string)
     {
@@ -77,5 +78,13 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings
                ($MM      * 60 * 1000) +
                ($SS           * 1000) +
                ($MIL                );
+    }
+
+    public function loadGenericCue(GenericSubtitleCue $genericCue)
+    {
+        $this->setTiming($genericCue->getStartMs(), $genericCue->getEndMs())
+            ->setLines($genericCue->getLines());
+
+        return $this;
     }
 }

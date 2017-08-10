@@ -24,6 +24,16 @@ class GenericSubtitle
         return $this;
     }
 
+    public function getFilePath()
+    {
+        return $this->filePath;
+    }
+
+    public function getFileNameWithoutExtension()
+    {
+        return $this->originalFileNameWithoutExtension;
+    }
+
     public function addCue(GenericSubtitleCue $cue)
     {
         $this->cues[] = $cue;

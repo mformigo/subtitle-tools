@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subtitles\PlainText\Ass;
+use App\Subtitles\PlainText\Srt;
 use App\Subtitles\TransformsToGenericSubtitle;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,9 @@ class ConvertToSrtController extends Controller
 
     public function post(Request $request)
     {
+        // if filehash is in cache
+        //      send to download page
+
         // TODO: if its an archive, send to other function
         return $this->postSubtitle($request);
     }
@@ -25,29 +29,23 @@ class ConvertToSrtController extends Controller
             'subtitle' => 'required|file|file_not_empty|textfile',
         ]);
 
-        $subtitle = new Ass();
+        // $subtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
 
+        $subtitle = new Ass();
         $subtitle->loadFile($request->file('subtitle'));
 
-         if(! $subtitle instanceof TransformsToGenericSubtitle) {
+
+         if(!$subtitle instanceof TransformsToGenericSubtitle) {
              back()->withErrors('cant convert');
          }
 
+        $srt = new Srt();
+
         $genericSubtitle = $subtitle->toGenericSubtitle();
 
-        // if filehash is in cache
-        //      send to download page
+        $srt->loadGenericSubtitle($genericSubtitle);
 
-
-        // $subtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
-
-
-
-        // $srt = new Srt($subtitle->toGenericSubtitle());
-
-
-
-        dd($request);
+        dd($srt);
     }
 
     private function postArchive(Request $request)
