@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Subtitles\PlainText\Ass;
+use App\Subtitles\TransformToGenericSubtitle;
 use Illuminate\Http\Request;
 
 class ConvertToSrtController extends Controller
@@ -23,15 +25,23 @@ class ConvertToSrtController extends Controller
             'subtitle' => 'required|file|file_not_empty|textfile',
         ]);
 
+        $subtitle = new Ass();
+
+        $subtitle->loadFile($request->file('subtitle'));
+
+         if(! $subtitle instanceof TransformToGenericSubtitle) {
+             back()->withErrors('cant convert');
+         }
+
+        $genericSubtitle = $subtitle->toGenericSubtitle();
+
         // if filehash is in cache
         //      send to download page
 
 
-        // $subtitle = TextFileFormat::getMatchingFormat($request->get('subtitle'));
+        // $subtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
 
-        // if(! $subtitle instanceof TransformToGenericSubtitle) {
-        //     back()->withError('cant convert');
-        // }
+
 
         // $srt = new Srt($subtitle->toGenericSubtitle());
 

@@ -2,7 +2,9 @@
 
 namespace App\Subtitles\PlainText;
 
-class SrtCue extends GenericSubtitleCue
+use App\Subtitles\TimingStrings;
+
+class SrtCue extends GenericSubtitleCue implements TimingStrings
 {
     public static function isTimingString($string)
     {
