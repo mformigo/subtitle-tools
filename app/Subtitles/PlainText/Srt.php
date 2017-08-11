@@ -2,20 +2,18 @@
 
 namespace App\Subtitles\PlainText;
 
-use App\Subtitles\LoadsGenericCues;
 use App\Subtitles\LoadsGenericSubtitles;
 use App\Subtitles\TextFile;
+use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Srt extends TextFile implements LoadsGenericSubtitles
 {
+    use WithFileLines;
+
     protected $extension = ".srt";
 
     protected $cues = [];
-
-    public function __construct()
-    {
-    }
 
     public function addCue($cue)
     {
@@ -36,12 +34,17 @@ class Srt extends TextFile implements LoadsGenericSubtitles
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        return false;
-    }
+        $lines = app('TextFileReader')->getLines($filePath);
 
-    public function getContent()
-    {
-        // TODO: Implement getContent() method.
+        // todo: make matching more strict by also checking for an id on the previous line (?)
+
+        foreach($lines as $line) {
+            if(SrtCue::isTimingString($line)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function loadGenericSubtitle(GenericSubtitle $genericSubtitle)

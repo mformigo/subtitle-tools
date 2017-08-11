@@ -7,23 +7,6 @@ use App\Subtitles\TimingStrings;
 
 class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCues
 {
-    public static function isTimingString($string)
-    {
-        $string = trim($string);
-
-        if(!preg_match("/^\d{2}:[0-5]\d:[0-5]\d,\d{3} --> \d{2}:[0-5]\d:[0-5]\d,\d{3}$/", $string)) {
-            return false;
-        }
-
-        list($startTimeInt, $endTimeInt) = explode(" --> ", str_replace([':', ','], '',$string));
-
-        if($startTimeInt > $endTimeInt) {
-            return false;
-        }
-
-        return true;
-    }
-
     public function setTimingFromString($string)
     {
         if(!self::isTimingString($string)) {
@@ -82,9 +65,27 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     public function loadGenericCue(GenericSubtitleCue $genericCue)
     {
-        $this->setTiming($genericCue->getStartMs(), $genericCue->getEndMs())
-            ->setLines($genericCue->getLines());
+        $this->setTiming($genericCue->getStartMs(), $genericCue->getEndMs());
+
+        $this->setLines($genericCue->getLines());
 
         return $this;
+    }
+
+    public static function isTimingString($string)
+    {
+        $string = trim($string);
+
+        if(!preg_match("/^\d{2}:[0-5]\d:[0-5]\d,\d{3} --> \d{2}:[0-5]\d:[0-5]\d,\d{3}$/", $string)) {
+            return false;
+        }
+
+        list($startInt, $endInt) = explode(" --> ", str_replace([':', ','], '', $string));
+
+        if($startInt > $endInt) {
+            return false;
+        }
+
+        return true;
     }
 }

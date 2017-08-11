@@ -103,8 +103,9 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
     {
         $genericCue = new GenericSubtitleCue();
 
-        $genericCue->setLines($this->lines)
-            ->setTiming($this->startMs, $this->endMs);
+        $genericCue->setLines($this->lines);
+
+        $genericCue->setTiming($this->startMs, $this->endMs);
 
         return $genericCue;
     }
@@ -113,13 +114,13 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
     {
         $string = trim($string);
 
-        if(!starts_with($string, 'Dialogue: ')) {
+        if(strpos($string, 'Dialogue: ') !== 0) {
             return false;
         }
 
-        $parts =  explode(',', $string);
+        $parts =  explode(',', $string, 10);
 
-        if(count($parts) < 10) {
+        if(count($parts) !== 10) {
             return false;
         }
 

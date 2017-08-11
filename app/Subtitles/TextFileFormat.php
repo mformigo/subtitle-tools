@@ -12,6 +12,12 @@ class TextFileFormat
 
     public function getMatchingFormat($file)
     {
+        foreach($this->formats as $class) {
+            if($class::isThisFormat($file)) {
+                return (new $class)->loadFile($file);
+            }
+        }
 
+        throw new \Exception('The file is not a text file format');
     }
 }
