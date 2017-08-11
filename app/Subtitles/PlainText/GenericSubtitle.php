@@ -81,6 +81,29 @@ class GenericSubtitle
     }
 
     /**
+     * Removes all curly brackets and lines containing .ass drawings from the text lines, then removes empty cues
+     * @return $this
+     */
+    public function stripCurlyBracketsFromCues()
+    {
+        foreach($this->cues as $cue) {
+            $cue->alterLines(function($line, $index) {
+                // lines containing \p0 or \p1 are drawings from .ass files,
+                // they contain no text and should be removed
+                if(strpos($line, '\p0') !== false || strpos($line, '\p1') !== false) {
+                    return '';
+                }
+
+                return preg_replace('/\{.*?\}/s', '', $line);
+            });
+        }
+
+        $this->removeEmptyCues();
+
+        return $this;
+    }
+
+    /**
      * @return GenericSubtitleCue[]
      */
     public function getCues()
