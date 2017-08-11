@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\PlainText;
+use App\Subtitles\PlainText\Smi;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\TextFileFormat;
 use Tests\TestCase;
@@ -28,6 +29,16 @@ class TextFileFormatTest extends TestCase
         $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}TextFiles/Normal/normal01.ass");
 
         $this->assertTrue($subtitle instanceof Ass);
+    }
+
+    /** @test */
+    function it_matches_smi_files()
+    {
+        $textFileFormat = new TextFileFormat();
+
+        $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}TextFiles/Normal/normal01.smi");
+
+        $this->assertTrue($subtitle instanceof Smi);
     }
 
     /** @test */

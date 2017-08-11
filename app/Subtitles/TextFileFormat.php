@@ -7,6 +7,7 @@ class TextFileFormat
     protected $formats = [
         \App\Subtitles\PlainText\Ass::class,
         \App\Subtitles\PlainText\Srt::class,
+        \App\Subtitles\PlainText\Smi::class,
         \App\Subtitles\PlainText\PlainText::class,
     ];
 

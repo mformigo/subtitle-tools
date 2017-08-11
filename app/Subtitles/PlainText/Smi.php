@@ -95,8 +95,8 @@ class Smi extends TextFile implements TransformsToGenericSubtitle
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        $lines = app('TextFileReader')->getLines($filePath);
+        $content = app('TextFileReader')->getContents($filePath);
 
-        return false;
+        return stripos($content, '<sami>') !== false && stripos($content, '<sync start=') !== false;
     }
 }
