@@ -4,6 +4,7 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\LoadsGenericSubtitles;
 use App\Subtitles\TextFile;
+use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -15,16 +16,29 @@ class Srt extends TextFile implements LoadsGenericSubtitles
 
     protected $cues = [];
 
+    public function __construct($source = null)
+    {
+        if($source === null) {
+            return;
+        }
+        else if($source instanceof TransformsToGenericSubtitle) {
+            $this->loadGenericSubtitle($source->toGenericSubtitle());
+        }
+        else {
+            throw new \InvalidArgumentException("Invalid Srt source");
+        }
+    }
+
     public function addCue($cue)
     {
         if($cue instanceof SrtCue) {
             $this->cues[] = $cue;
         }
         else if($cue instanceof GenericSubtitleCue) {
-            $this->cues[] = (new SrtCue())->loadGenericCue($cue);
+            $this->cues[] = new SrtCue($cue);
         }
         else {
-            throw new \Exception("Invalid cue");
+            throw new \InvalidArgumentException("Invalid cue");
         }
 
         return $this;

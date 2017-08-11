@@ -7,6 +7,19 @@ use App\Subtitles\TimingStrings;
 
 class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCues
 {
+    public function __construct($source = null)
+    {
+        if($source === null) {
+            return;
+        }
+        else if($source instanceof GenericSubtitleCue) {
+            $this->loadGenericCue($source);
+        }
+        else {
+            throw new \InvalidArgumentException("Invalid SrtCue source");
+        }
+    }
+
     public function setTimingFromString($string)
     {
         if(!self::isTimingString($string)) {

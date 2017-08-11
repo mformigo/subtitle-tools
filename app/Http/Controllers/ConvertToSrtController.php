@@ -29,17 +29,13 @@ class ConvertToSrtController extends Controller
             'subtitle' => 'required|file|file_not_empty|textfile',
         ]);
 
-        $subtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
+        $inputSubtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
 
-        if(!$subtitle instanceof TransformsToGenericSubtitle) {
+        if(!$inputSubtitle instanceof TransformsToGenericSubtitle) {
             back()->withErrors('cant convert');
         }
 
-        $srt = new Srt();
-
-        $genericSubtitle = $subtitle->toGenericSubtitle();
-
-        $srt->loadGenericSubtitle($genericSubtitle);
+        $srt = new Srt($inputSubtitle);
 
         dd($srt);
     }
