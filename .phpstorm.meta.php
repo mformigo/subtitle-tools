@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-08-07.
+    * Generated on 2017-08-11.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,7 @@ namespace PHPSTORM_META {
         'TextEncoding' => \App\Utils\Text\TextEncoding::class,
         'TextFileIdentifier' => \App\Utils\Text\TextFileIdentifier::class,
         'TextFileReader' => \App\Utils\Text\TextFileReader::class,
+        'TextFileFormat' => \App\Subtitles\TextFileFormat::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster::class,
@@ -169,6 +170,7 @@ namespace PHPSTORM_META {
         'TextEncoding' => \App\Utils\Text\TextEncoding::class,
         'TextFileIdentifier' => \App\Utils\Text\TextFileIdentifier::class,
         'TextFileReader' => \App\Utils\Text\TextFileReader::class,
+        'TextFileFormat' => \App\Subtitles\TextFileFormat::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster::class,
@@ -293,6 +295,7 @@ namespace PHPSTORM_META {
         'TextEncoding' => \App\Utils\Text\TextEncoding::class,
         'TextFileIdentifier' => \App\Utils\Text\TextFileIdentifier::class,
         'TextFileReader' => \App\Utils\Text\TextFileReader::class,
+        'TextFileFormat' => \App\Subtitles\TextFileFormat::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster::class,
@@ -417,6 +420,7 @@ namespace PHPSTORM_META {
         'TextEncoding' => \App\Utils\Text\TextEncoding::class,
         'TextFileIdentifier' => \App\Utils\Text\TextFileIdentifier::class,
         'TextFileReader' => \App\Utils\Text\TextFileReader::class,
+        'TextFileFormat' => \App\Subtitles\TextFileFormat::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster::class,
@@ -541,6 +545,7 @@ namespace PHPSTORM_META {
         'TextEncoding' => \App\Utils\Text\TextEncoding::class,
         'TextFileIdentifier' => \App\Utils\Text\TextFileIdentifier::class,
         'TextFileReader' => \App\Utils\Text\TextFileReader::class,
+        'TextFileFormat' => \App\Subtitles\TextFileFormat::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster::class,
@@ -665,6 +670,7 @@ namespace PHPSTORM_META {
         'TextEncoding' => \App\Utils\Text\TextEncoding::class,
         'TextFileIdentifier' => \App\Utils\Text\TextFileIdentifier::class,
         'TextFileReader' => \App\Utils\Text\TextFileReader::class,
+        'TextFileFormat' => \App\Subtitles\TextFileFormat::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster::class,
@@ -789,6 +795,7 @@ namespace PHPSTORM_META {
         'TextEncoding' => \App\Utils\Text\TextEncoding::class,
         'TextFileIdentifier' => \App\Utils\Text\TextFileIdentifier::class,
         'TextFileReader' => \App\Utils\Text\TextFileReader::class,
+        'TextFileFormat' => \App\Subtitles\TextFileFormat::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster::class,

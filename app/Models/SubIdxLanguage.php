@@ -32,6 +32,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $file_path
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereHasError($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereStartedAt($value)
+ * @property-read mixed $download_url
+ * @property-read mixed $has_finished
+ * @property-read mixed $has_started
+ * @property-read mixed $status_message
  */
 class SubIdxLanguage extends Model
 {

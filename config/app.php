@@ -68,6 +68,7 @@ return [
         App\Providers\UtilsProvider::class,
         App\Providers\CustomValidationRulesProvider::class,
         App\Providers\Subtitles\VobSubProvider::class,
+        App\Providers\Subtitles\PlainTextProvider::class,
 
     ],
 

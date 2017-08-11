@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\TextFileFormat;
 use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\TransformsToGenericSubtitle;
@@ -29,7 +30,7 @@ class ConvertToSrtController extends Controller
             'subtitle' => 'required|file|file_not_empty|textfile',
         ]);
 
-        // $subtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
+        $subtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
 
         $subtitle = new Ass();
         $subtitle->loadFile($request->file('subtitle'));
