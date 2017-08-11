@@ -13,6 +13,9 @@ class Ass extends TextFile implements TransformsToGenericSubtitle
 
     protected $extension = ".ass";
 
+    /**
+     * @return GenericSubtitle
+     */
     public function toGenericSubtitle()
     {
         $generic = new GenericSubtitle();

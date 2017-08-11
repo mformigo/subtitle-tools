@@ -2,6 +2,8 @@
 
 namespace App\Subtitles\PlainText;
 
+use Closure;
+
 class GenericSubtitleCue
 {
     protected $lines = [];
@@ -48,12 +50,12 @@ class GenericSubtitleCue
     public function setTiming($startMs, $endMs)
     {
         if($startMs > $endMs) {
-            throw new \Exception("EndMs must be the same or larger than StartMs");
+            throw new \Exception("Cue can't end before it starts ('{$endMs}' > '{$startMs}')");
         }
 
-        $this->startMs = ($startMs < 0) ? 0 : $startMs;
+        $this->startMs = ($startMs < 0) ? 0 : (int)$startMs;
 
-        $this->endMs = ($endMs < 0) ? 0 : $endMs;
+        $this->endMs = ($endMs < 0) ? 0 : (int)$endMs;
 
         return $this;
     }
@@ -74,6 +76,19 @@ class GenericSubtitleCue
             $this->startMs + $ms,
             $this->endMs + $ms
         );
+
+        return $this;
+    }
+
+    public function alterLines(Closure $closure)
+    {
+        $alteredLines = [];
+
+        for($i = 0; $i < count($this->lines); $i++) {
+            $alteredLines[] = $closure($this->lines[$i], $i);
+        }
+
+        $this->setLines($alteredLines);
 
         return $this;
     }

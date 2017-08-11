@@ -20,10 +20,19 @@ todo
 * broadcasting happens on the **default** queue
 
 ## Format information
+The format of each subtitle file is identified by `\App\Subtitles\TextFileFormat`. 
+It identifies based on file content, and ignores the file extension.
+File extensions can't be trusted because users regularly upload files where the content does not match the extension.
 
+### Adding a new plain-text format
+* Create a `NewFormat` class that extends the abstract `TextFile`
+* Make it use either the `WithFileContent` trait or the `WithFileLines` trait
+* If it can be converted to `Srt`, implement the `TransformsToGenericSubtitle` interface
+* Create `tests\Unit\Subtitles\NewFormatTest.php`
+* Add the `NewFormat` class to the `$formats` array in `\App\Subtitles\TextFileFormat`
+* Add a test for `NewFormat::isThisFormat()` to `tests\Unit\Subtitles\TextFileFormatTest.php`
 
-
-### Sub/idx
+### About Sub/idx
 [Vobsub2srt](https://github.com/ruediger/VobSub2SRT) is used to detect languages inside _.sub_ files, using `vobsub2srt filename --langlist`.
 The .sub file only contains the index of the language, not the [language code](https://www.loc.gov/standards/iso639-2/php/code_list.php).
 The language code is read from the _.idx_ file using `\App\Models\IdxFile`.

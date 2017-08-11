@@ -25,7 +25,7 @@ class AssTest extends TestCase
     {
         $ass = new Ass();
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/ass-three-cues.ass");
+        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
 
         $genericSub = $ass->toGenericSubtitle();
 
@@ -33,10 +33,9 @@ class AssTest extends TestCase
 
         $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof Ass);
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/ass-three-cues.ass", $ass->getFilePath());
-        $this->assertSame("ass-three-cues", $ass->getFileNameWithoutExtension());
+        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.ass", $genericSub->getFilePath());
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/ass-three-cues.ass", $ass->getFilePath());
+        $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
 
         $this->assertSame(3, count($genericCues));
 
