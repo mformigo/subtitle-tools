@@ -133,4 +133,36 @@ class GenericSubtitleCueTest extends TestCase
         $this->assertSame(0, $cue->getStartMs());
         $this->assertSame(0, $cue->getEndMs());
     }
+
+    /** @test */
+    function it_can_alter_lines()
+    {
+        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+
+        $cue->setLines(['Line #', 'Line #']);
+
+        $cue->alterLines(function($line, $index) {
+           return $line . $index;
+        });
+
+        $this->assertSame(['Line #0', 'Line #1'], $cue->getLines());
+
+        $this->assertSame([0, 1], array_keys($cue->getLines()));
+    }
+
+    /** @test */
+    function it_splits_altered_lines()
+    {
+        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+
+        $cue->setLines(['Line 1', 'Line 2']);
+
+        $cue->alterLines(function($line, $index) {
+            return $line . "\n" . strtoupper($line);
+        });
+
+        $this->assertSame(['Line 1', 'LINE 1', 'Line 2', 'LINE 2'], $cue->getLines());
+
+        $this->assertSame([0, 1, 2, 3], array_keys($cue->getLines()));
+    }
 }

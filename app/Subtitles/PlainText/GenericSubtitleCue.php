@@ -85,7 +85,10 @@ class GenericSubtitleCue
         $alteredLines = [];
 
         for($i = 0; $i < count($this->lines); $i++) {
-            $alteredLines[] = $closure($this->lines[$i], $i);
+            $alteredLines = array_merge(
+                $alteredLines,
+                explode("\n", $closure($this->lines[$i], $i))
+            );
         }
 
         $this->setLines($alteredLines);
