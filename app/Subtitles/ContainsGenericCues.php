@@ -38,6 +38,20 @@ trait ContainsGenericCues
     }
 
     /**
+     * Removes cues with identical start ms, end ms and lines
+     * @return $this
+     */
+    public function removeDuplicateCues()
+    {
+        // Filtered based on __toString value, reset keys using array_values
+        $this->cues = array_values(
+            array_unique($this->cues)
+        );
+
+        return $this;
+    }
+
+    /**
      * Removes all angle brackets from the text lines, then removes empty cues
      * @return $this
      */

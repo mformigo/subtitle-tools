@@ -65,4 +65,31 @@ class GenericSubtitleTest extends TestCase
 
         $this->assertSame(['wow'], $genericSubtitle->getCues()[0]->getLines());
     }
+
+    /** @test */
+    function it_removes_duplicate_cues()
+    {
+        $genericSubtitle = new GenericSubtitle();
+
+        $genericSubtitle->addCue((new GenericSubtitleCue())->setLines(['Summer of George'])->setTiming(100, 1200));
+        $genericSubtitle->addCue((new GenericSubtitleCue())->setLines(['Summer of George'])->setTiming(100, 600));
+        $genericSubtitle->addCue((new GenericSubtitleCue())->setLines(['Summer of George'])->setTiming(100, 1200));
+        $genericSubtitle->addCue((new GenericSubtitleCue())->setLines(['Jerry!'])->setTiming(100, 1200));
+
+        $cues = $genericSubtitle->removeDuplicateCues()->getCues();
+
+        $this->assertSame(3, count($cues));
+
+        $this->assertSame(100,  $cues[0]->getStartMs());
+        $this->assertSame(1200, $cues[0]->getEndMs());
+        $this->assertSame(['Summer of George'], $cues[0]->getLines());
+
+        $this->assertSame(100, $cues[1]->getStartMs());
+        $this->assertSame(600, $cues[1]->getEndMs());
+        $this->assertSame(['Summer of George'], $cues[1]->getLines());
+
+        $this->assertSame(100,  $cues[2]->getStartMs());
+        $this->assertSame(1200, $cues[2]->getEndMs());
+        $this->assertSame(['Jerry!'], $cues[2]->getLines());
+    }
 }

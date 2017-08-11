@@ -95,4 +95,13 @@ class GenericSubtitleCue
 
         return $this;
     }
+
+    /**
+     * Used for cue comparison (like removeDuplicateCues())
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{{$this->startMs}}{{$this->endMs}}" . json_encode($this->lines);
+    }
 }

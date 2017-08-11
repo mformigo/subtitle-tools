@@ -37,6 +37,10 @@ class ConvertToSrtController extends Controller
 
         $srt = new Srt($inputSubtitle);
 
+        $srt->stripCurlyBracketsFromCues()
+            ->stripAngleBracketsFromCues()
+            ->removeDuplicateCues();
+
         dd($srt);
     }
 
