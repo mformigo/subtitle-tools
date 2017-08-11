@@ -2,6 +2,7 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\LoadsGenericSubtitles;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
@@ -11,9 +12,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Srt extends TextFile implements LoadsGenericSubtitles
 {
     use WithFileLines;
+    use ContainsGenericCues;
 
     protected $extension = ".srt";
 
+    /**
+     * @var SrtCue[]
+     */
     protected $cues = [];
 
     public function __construct($source = null)
