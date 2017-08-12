@@ -40,15 +40,14 @@ class ConvertToSrtController extends Controller
         }
 
         $textFileJob = $this->dispatchNow(
-            new ConvertToSrtJob(
-                $storedFile,
-                $request->file('subtitle')->getClientOriginalName()
-            )
+            new ConvertToSrtJob($storedFile, $request->file('subtitle')->getClientOriginalName())
         );
 
-        dd($textFileJob);
+        if($textFileJob->error_message !== null) {
+            back()->withErrors(__($textFileJob->error_message));
+        }
 
-        dd('end of controller');
+        return redirect()->route('download-index', ['urlKey' => $textFileJob->url_key]);
     }
 
     private function postArchive(Request $request)
