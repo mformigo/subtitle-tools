@@ -8,9 +8,14 @@ abstract class TextFile
 {
     protected $originalFileNameWithoutExtension = "default";
 
-    protected $extension = ".txt";
+    protected $extension = "txt";
 
     protected $filePath = false;
+
+    public function getExtension()
+    {
+        return $this->extension;
+    }
 
     public function setFilePath($filePath)
     {
@@ -35,6 +40,8 @@ abstract class TextFile
     {
         return $this->originalFileNameWithoutExtension;
     }
+
+    public abstract function getContent();
 
     /**
      * Returns true if the $filePath file is a valid format for this class

@@ -11,7 +11,7 @@ class Smi extends TextFile implements TransformsToGenericSubtitle
 {
     use WithFileLines;
 
-    protected $extension = ".smi";
+    protected $extension = "smi";
 
     protected $cues = [];
 

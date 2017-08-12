@@ -10,7 +10,7 @@ class PlainText extends TextFile
 {
     use WithFileContent;
 
-    protected $extension = ".txt";
+    protected $extension = "txt";
 
     public static function isThisFormat($file)
     {

@@ -14,7 +14,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles
     use WithFileLines;
     use ContainsGenericCues;
 
-    protected $extension = ".srt";
+    protected $extension = "srt";
 
     /**
      * @var SrtCue[]
@@ -47,6 +47,24 @@ class Srt extends TextFile implements LoadsGenericSubtitles
         }
 
         return $this;
+    }
+
+    public function getContent()
+    {
+        usort($this->cues, function(SrtCue $a, SrtCue $b) {
+            return $a->getStartMs() <=> $b->getStartMs();
+        });
+
+        $id = 1;
+        $lines = [];
+
+        foreach($this->cues as $cue) {
+            $lines[] = $id++;
+
+            $lines = array_merge($lines, $cue->toArray());
+        }
+
+        return implode("\r\n", $lines);
     }
 
     public static function isThisFormat($file)

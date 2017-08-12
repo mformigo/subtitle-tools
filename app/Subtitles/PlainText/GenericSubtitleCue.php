@@ -80,6 +80,19 @@ class GenericSubtitleCue
         return $this;
     }
 
+    public function toArray()
+    {
+        $lines = ["# Start={$this->getStartMs()}# End={$this->getStartMs()}"];
+
+        foreach($this->lines as $line) {
+            $lines[] = $line;
+        }
+
+        $lines[] = "";
+
+        return $lines;
+    }
+
     public function alterLines(Closure $closure)
     {
         $alteredLines = [];

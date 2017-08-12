@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Facades\TextFileFormat;
+use App\Jobs\ConvertToSrtJob;
+use App\StoredFile;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\TransformsToGenericSubtitle;
 use Illuminate\Http\Request;
@@ -29,19 +31,24 @@ class ConvertToSrtController extends Controller
             'subtitle' => 'required|file|file_not_empty|textfile',
         ]);
 
-        $inputSubtitle = TextFileFormat::getMatchingFormat($request->file('subtitle'));
+        $storedFile = StoredFile::getOrCreate($request->file('subtitle'));
+
+        $inputSubtitle = TextFileFormat::getMatchingFormat($storedFile->filePath);
 
         if(!$inputSubtitle instanceof TransformsToGenericSubtitle) {
             back()->withErrors('cant convert');
         }
 
-        $srt = new Srt($inputSubtitle);
+        $textFileJob = $this->dispatchNow(
+            new ConvertToSrtJob(
+                $storedFile,
+                $request->file('subtitle')->getClientOriginalName()
+            )
+        );
 
-        $srt->stripCurlyBracketsFromCues()
-            ->stripAngleBracketsFromCues()
-            ->removeDuplicateCues();
+        dd($textFileJob);
 
-        dd($srt);
+        dd('end of controller');
     }
 
     private function postArchive(Request $request)

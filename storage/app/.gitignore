@@ -2,4 +2,5 @@
 !public/
 !sub-idx/
 !temporary-files/
+!stored-files/
 !.gitignore

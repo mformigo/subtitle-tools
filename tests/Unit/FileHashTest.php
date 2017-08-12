@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class FileHashTest extends TestCase
 {
-    protected $reasonablyLongLength = 7;
+    protected $reasonablyLongLength = 16;
 
     /** @test */
     function it_makes_a_unique_hash_from_a_file()

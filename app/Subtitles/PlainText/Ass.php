@@ -11,7 +11,7 @@ class Ass extends TextFile implements TransformsToGenericSubtitle
 {
     use WithFileLines;
 
-    protected $extension = ".ass";
+    protected $extension = "ass";
 
     /**
      * @return GenericSubtitle

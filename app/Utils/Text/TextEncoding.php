@@ -2,6 +2,7 @@
 
 namespace App\Utils\Text;
 
+use App\Utils\TempFile;
 use Illuminate\Support\Facades\Storage;
 
 class TextEncoding
@@ -52,9 +53,7 @@ class TextEncoding
 
     public function detect($string)
     {
-        $tempFilePath = storage_disk_file_path('temporary-files/text-encoding-' . str_random(16));
-
-        file_put_contents($tempFilePath, $string);
+        $tempFilePath = (new TempFile())->make($string);
 
         $resultBool = $this->detectFromFile($tempFilePath);
 
