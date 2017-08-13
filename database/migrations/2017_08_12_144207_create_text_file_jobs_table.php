@@ -12,7 +12,7 @@ class CreateTextFileJobsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('original_file_name');
-            $table->string('new_extension')->nullable();;
+            $table->string('new_extension')->nullable();
             $table->string('job_options');
             $table->string('error_message')->nullable();
             $table->integer('input_stored_file_id');
