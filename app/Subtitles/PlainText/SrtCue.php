@@ -85,6 +85,19 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
         return $this;
     }
 
+    public function toArray()
+    {
+        $lines = [$this->getTimingString()];
+
+        foreach($this->lines as $line) {
+            $lines[] = $line;
+        }
+
+        $lines[] = "";
+
+        return $lines;
+    }
+
     public static function isTimingString($string)
     {
         $string = trim($string);

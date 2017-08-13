@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Facades\TextFileFormat;
 use App\Jobs\ConvertToSrtJob;
 use App\StoredFile;
-use App\Subtitles\PlainText\Srt;
 use App\Subtitles\TransformsToGenericSubtitle;
 use Illuminate\Http\Request;
 

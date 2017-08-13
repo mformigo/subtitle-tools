@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Srt extends TextFile implements LoadsGenericSubtitles
 {
-    use WithFileLines;
-    use ContainsGenericCues;
+    use WithFileLines, ContainsGenericCues;
 
     protected $extension = "srt";
 

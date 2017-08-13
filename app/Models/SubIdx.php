@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Facades\FileHash;
-use App\Jobs\ExtractSubIdxLanguage;
+use App\Jobs\ExtractSubIdxLanguageJob;
 use App\Subtitles\VobSub\VobSub2SrtInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
@@ -73,7 +73,7 @@ class SubIdx extends Model
         foreach($languages as $language) {
             $subIdxLanguage = $this->languages()->create($language);
 
-            $extractJob = (new ExtractSubIdxLanguage($subIdxLanguage))->onQueue('sub-idx');
+            $extractJob = (new ExtractSubIdxLanguageJob($subIdxLanguage))->onQueue('sub-idx');
 
             dispatch($extractJob);
         }

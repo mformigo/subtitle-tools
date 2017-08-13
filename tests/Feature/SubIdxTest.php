@@ -11,10 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SubIdxTest extends TestCase
 {
-    use DatabaseMigrations;
-    use MocksVobSub2Srt;
-    use PostsVobSubs;
-    use CreatesUploadedFiles;
+    use DatabaseMigrations, MocksVobSub2Srt, PostsVobSubs, CreatesUploadedFiles;
 
     /** @test */
     function the_sub_and_idx_file_are_server_side_required()
@@ -72,7 +69,7 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_creates_language_extract_jobs()
     {
-        $this->expectsJobs(\App\Jobs\ExtractSubIdxLanguage::class);
+        $this->expectsJobs(\App\Jobs\ExtractSubIdxLanguageJob::class);
 
         $this->postVobSub();
 

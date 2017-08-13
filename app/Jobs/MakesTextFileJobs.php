@@ -4,9 +4,13 @@ namespace App\Jobs;
 
 use App\Models\TextFileJob;
 use Carbon\Carbon;
+use Faker\Provider\Text;
 
 trait MakesTextFileJobs
 {
+    /**
+     * @var TextFileJob
+     */
     protected $textFileJob;
 
     protected $storedFile;
@@ -23,17 +27,14 @@ trait MakesTextFileJobs
     {
         $this->textFileJob = new TextFileJob();
 
-        $this->textFileJob->started_at = Carbon::now();
-
-        $this->textFileJob->input_stored_file_id = $this->storedFile->id;
-
-        $this->textFileJob->original_file_name = $this->originalName;
-
-        $this->textFileJob->url_key = str_random(16);
-
-        $this->textFileJob->tool_route = $this->toolRouteName;
-
-        $this->textFileJob->job_options = json_encode($this->jobOptions);
+        $this->textFileJob->fill([
+            'input_stored_file_id' => $this->storedFile->id,
+            'job_options'          => json_encode($this->jobOptions),
+            'original_file_name'   => $this->originalName,
+            'started_at'           => Carbon::now(),
+            'tool_route'           => $this->toolRouteName,
+            'url_key'              => str_random(16),
+        ]);
 
         $fromCache = TextFileJob::query()
             ->where('input_stored_file_id', $this->textFileJob->input_stored_file_id)
@@ -43,13 +44,12 @@ trait MakesTextFileJobs
         if($fromCache->count() > 0) {
             $jobFromCache = $fromCache->firstOrFail();
 
-            $this->textFileJob->new_extension = $jobFromCache->new_extension;
-
-            $this->textFileJob->output_stored_file_id = $jobFromCache->output_stored_file_id;
-
-            $this->textFileJob->error_message = $jobFromCache->error_message;
-
-            $this->textFileJob->finished_at = Carbon::now();
+            $this->textFileJob->fill([
+                'error_message'         => $jobFromCache->error_message,
+                'finished_at'           => Carbon::now(),
+                'new_extension'         => $jobFromCache->new_extension,
+                'output_stored_file_id' => $jobFromCache->output_stored_file_id,
+            ]);
         }
 
         return $this->textFileJob;
@@ -57,9 +57,10 @@ trait MakesTextFileJobs
 
     public function setTextFileJobError(string $errorMessage)
     {
-        $this->textFileJob->error_message = $errorMessage;
-
-        $this->textFileJob->finished_at = Carbon::now();
+        $this->textFileJob->fill([
+            'error_message' => $errorMessage,
+            'finished_at'   => Carbon::now(),
+        ]);
 
         $this->textFileJob->save();
 

@@ -71,11 +71,11 @@ class ConvertToSrtJob implements ShouldQueue
 
         $storedOutputFile = StoredFile::createFromTextFile($srt);
 
-        $this->textFileJob->output_stored_file_id = $storedOutputFile->id;
-
-        $this->textFileJob->new_extension = $srt->getExtension();
-
-        $this->textFileJob->finished_at = Carbon::now();
+        $this->textFileJob->fill([
+            'output_stored_file_id' => $storedOutputFile->id,
+            'new_extension' => $srt->getExtension(),
+            'finished_at' => Carbon::now(),
+        ]);
 
         $this->textFileJob->save();
 
