@@ -8,7 +8,7 @@ trait WithFileLines
 
     public function getContent()
     {
-        return implode("\r\n", $this->lines);
+        return implode("\r\n", $this->getContentLines());
     }
 
     public function getContentLines()

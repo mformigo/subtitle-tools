@@ -93,4 +93,21 @@ class SrtCueTest extends TestCase
 
         $this->assertSame("00:00:00,000 --> 00:00:00,000", $cue->getTimingString());
     }
+
+    /** @test */
+    function it_converts_to_array()
+    {
+        $cue = new SrtCue();
+
+        $cue->setTimingFromString('00:01:01,266 --> 00:01:03,366')
+            ->addLine('First line')
+            ->addLine('Second line!');
+
+        $this->assertSame([
+            '00:01:01,266 --> 00:01:03,366',
+            'First line',
+            'Second line!',
+            '',
+        ], $cue->toArray());
+    }
 }

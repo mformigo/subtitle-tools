@@ -29,7 +29,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles
             $this->loadGenericSubtitle($source->toGenericSubtitle());
         }
         else {
-            throw new \InvalidArgumentException("Invalid Srt source");
+            $this->loadFile($source);
         }
     }
 
@@ -48,7 +48,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles
         return $this;
     }
 
-    public function getContent()
+    public function getContentLines()
     {
         usort($this->cues, function(SrtCue $a, SrtCue $b) {
             return $a->getStartMs() <=> $b->getStartMs();
@@ -63,7 +63,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles
             $lines = array_merge($lines, $cue->toArray());
         }
 
-        return implode("\r\n", $lines);
+        return $lines;
     }
 
     public static function isThisFormat($file)
@@ -81,6 +81,50 @@ class Srt extends TextFile implements LoadsGenericSubtitles
         }
 
         return false;
+    }
+
+    /**
+     * @param $file string|UploadedFile A file path or UploadedFile
+     * @return $this
+     */
+    public function loadFile($file)
+    {
+        $name = $file instanceof UploadedFile ? $file->getClientOriginalName() : $file;
+
+        $this->originalFileNameWithoutExtension = pathinfo($name, PATHINFO_FILENAME);
+
+        $this->filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
+
+        $lines = app('TextFileReader')->getLines($this->filePath);
+
+        $this->cues = [];
+
+        // ensure parsing works properly on files missing the required trailing empty line
+        $lines[] = "";
+
+        $timingIndexes = [];
+
+        for($i = 0; $i < count($lines); $i++) {
+            if(SrtCue::isTimingString($lines[$i])) {
+                $timingIndexes[] = $i;
+            }
+        }
+
+        $timingIndexes[] = count($lines);
+
+        for($timingIndex = 0; $timingIndex < count($timingIndexes) - 1; $timingIndex++) {
+            $newCue = new SrtCue();
+
+            $newCue->setTimingFromString($lines[$timingIndexes[$timingIndex]]);
+
+            for($lineIndex = $timingIndexes[$timingIndex] + 1; $lineIndex < $timingIndexes[$timingIndex+1] - 1; $lineIndex++) {
+                $newCue->addLine($lines[$lineIndex]);
+            }
+
+            $this->AddCue($newCue);
+        }
+
+        return $this;
     }
 
     public function loadGenericSubtitle(GenericSubtitle $genericSubtitle)
