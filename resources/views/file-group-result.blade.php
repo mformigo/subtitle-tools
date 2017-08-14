@@ -4,7 +4,7 @@
 
     <h1>Download</h1>
 
-    {{ $originalName }}
+    Group has: {{ $fileCount }} FileJobs
 
     <br/>
     <br/>

@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\TextFileFormat;
 use App\Jobs\ConvertToSrtJob;
 use App\Models\FileGroup;
-use App\Models\StoredFile;
-use App\Subtitles\TransformsToGenericSubtitle;
 use Illuminate\Http\Request;
 
 class ConvertToSrtController extends Controller
@@ -15,7 +12,7 @@ class ConvertToSrtController extends Controller
 
     public function index()
     {
-        return view($this->toolIndexRoute);
+        return view('convert-to-srt');
     }
 
     public function post(Request $request)
@@ -48,6 +45,19 @@ class ConvertToSrtController extends Controller
             }
         }
 
-        return redirect()->route("{$this->toolIndexRoute}-download", ['urlKey' => $fileGroup->url_key]);
+        return redirect()->route("{$this->toolIndexRoute}-result", ['urlKey' => $fileGroup->url_key]);
+    }
+
+    public function result($urlKey)
+    {
+        $fileGroup = FileGroup::query()
+            ->where('url_key', $urlKey)
+            ->where('tool_route', $this->toolIndexRoute)
+            ->firstOrFail();
+
+        return view('file-group-result', [
+            'returnUrl' => route($this->toolIndexRoute),
+            'fileCount' => $fileGroup->fileJobs()->count(),
+        ]);
     }
 }

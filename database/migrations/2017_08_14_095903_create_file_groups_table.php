@@ -12,7 +12,6 @@ class CreateFileGroupsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('original_name')->nullable();
-            $table->string('error_message')->nullable();
             $table->string('tool_route');
             $table->string('url_key');
         });

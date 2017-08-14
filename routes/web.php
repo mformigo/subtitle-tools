@@ -11,6 +11,7 @@ Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
 
 
 Route::get('/convert-to-srt')->uses('ConvertToSrtController@index')->name('convert-to-srt');
+Route::get('/convert-to-srt/{urlKey}')->uses('ConvertToSrtController@result')->name('convert-to-srt-result');
 Route::post('/convert-to-srt')->uses('ConvertToSrtController@post');
 
 
