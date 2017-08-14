@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\StoredFile;
+use App\Models\StoredFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

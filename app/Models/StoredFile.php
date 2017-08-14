@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Facades\FileHash;
 use App\Subtitles\TextFile;

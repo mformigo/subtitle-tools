@@ -4,24 +4,31 @@ namespace Tests\Unit;
 
 use App\Facades\TextFileFormat;
 use App\Jobs\ConvertToSrtJob;
-use App\Models\TextFileJob;
-use App\StoredFile;
+use App\Models\FileJob;
+use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class ConvertToSrtJobTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, CreatesFileGroups;
 
     /** @test */
-    function it_converts_a_stored_file_to_srt()
+    function it_converts_a_file_to_srt()
     {
-        $storedFile = StoredFile::getOrCreate("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $fileGroup = $this->createFileGroup();
 
-        dispatch(new ConvertToSrtJob($storedFile, 'three-cues.ass'));
+        dispatch(
+            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+        );
 
-        $convertedStoredFile = StoredFile::findOrFail(2);
+        $fileJob = $fileGroup->fileJobs()->firstOrFail();
+
+        $this->assertSame('three-cues.ass', $fileJob->original_name);
+
+        $convertedStoredFile = $fileJob->outputStoredFile;
 
         $subtitle = TextFileFormat::getMatchingFormat($convertedStoredFile->filePath);
 
@@ -31,50 +38,54 @@ class ConvertToSrtJobTest extends TestCase
     }
 
     /** @test */
-    function it_creates_text_file_job_models()
+    function it_creates_file_job_models()
     {
-        $storedFile = StoredFile::getOrCreate("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $fileGroup = $this->createFileGroup();
 
-        dispatch(new ConvertToSrtJob($storedFile, 'three-cues.ass'));
+        dispatch(
+            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+        );
 
-        $textFileJob = TextFileJob::findOrFail(1);
+        $textFileJob = FileJob::findOrFail(1);
 
-        $this->assertSame('three-cues.ass', $textFileJob->original_file_name);
+        $this->assertSame('three-cues.ass', $textFileJob->original_name);
         $this->assertSame('srt', $textFileJob->new_extension);
         $this->assertSame(null, $textFileJob->error_message);
-        $this->assertSame('convert-to-srt-index', $textFileJob->tool_route);
-        $this->assertFalse(empty($textFileJob->url_key));
         $this->assertNotSame(null, $textFileJob->finished_at);
     }
 
     /** @test */
     function it_reuses_output_files_for_identical_jobs()
     {
-        $storedFile = StoredFile::getOrCreate("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $fileGroup = $this->createFileGroup();
 
-        dispatch(new ConvertToSrtJob($storedFile, 'three-cues.ass'));
+        dispatch(
+            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+        );
 
-        dispatch(new ConvertToSrtJob($storedFile, 'different-name.ass'));
+        dispatch(
+            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+        );
 
-        $firstJob = TextFileJob::findOrFail(1);
+        $firstJob = FileJob::findOrFail(1);
 
-        $secondJob = TextFileJob::findOrFail(2);
+        $secondJob = FileJob::findOrFail(2);
 
         $this->assertSame($firstJob->output_stored_file_id, $secondJob->output_stored_file_id);
-        $this->assertNotSame($firstJob->original_file_name, $secondJob->original_file_name);
-        $this->assertNotSame($firstJob->url_key, $secondJob->url_key);
     }
 
     /** @test */
     function it_handles_files_that_cant_be_converted()
     {
-        $storedFile = StoredFile::getOrCreate("{$this->testFilesStoragePath}TextFiles/empty.srt");
+        $fileGroup = $this->createFileGroup();
 
-        dispatch(new ConvertToSrtJob($storedFile, 'empty'));
+        dispatch(
+            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/empty.srt")
+        );
 
         $this->assertTrue(StoredFile::count() === 1);
 
-        $textFileJob = TextFileJob::findOrFail(1);
+        $textFileJob = FileJob::findOrFail(1);
 
         $this->assertNotSame(null, $textFileJob->error_message);
         $this->assertNotSame(null, $textFileJob->finished_at);
@@ -84,13 +95,15 @@ class ConvertToSrtJobTest extends TestCase
     /** @test */
     function it_handles_files_that_have_no_valid_dialogue()
     {
-        $storedFile = StoredFile::getOrCreate("{$this->testFilesStoragePath}TextFiles/cues-no-dialogue.ass");
+        $fileGroup = $this->createFileGroup();
 
-        dispatch(new ConvertToSrtJob($storedFile, 'cues-no-dialogue'));
+        dispatch(
+            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/cues-no-dialogue.ass")
+        );
 
         $this->assertTrue(StoredFile::count() === 1);
 
-        $textFileJob = TextFileJob::findOrFail(1);
+        $textFileJob = FileJob::findOrFail(1);
 
         $this->assertNotSame(null, $textFileJob->error_message);
         $this->assertNotSame(null, $textFileJob->finished_at);

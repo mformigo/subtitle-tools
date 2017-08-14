@@ -4,53 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Facades\TextFileFormat;
 use App\Jobs\ConvertToSrtJob;
-use App\StoredFile;
+use App\Models\FileGroup;
+use App\Models\StoredFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use Illuminate\Http\Request;
 
 class ConvertToSrtController extends Controller
 {
+    protected $toolIndexRoute = 'convert-to-srt';
+
     public function index()
     {
-        return view('convert-to-srt-index');
+        return view($this->toolIndexRoute);
     }
 
     public function post(Request $request)
     {
-        // if filehash is in cache
-        //      send to download page
-
-        // TODO: if its an archive, send to other function
-        return $this->postSubtitle($request);
-    }
-
-    private function postSubtitle(Request $request)
-    {
         $this->validate($request, [
-            'subtitle' => 'required|file|file_not_empty|textfile',
+            'subtitles'   => 'required',
+            'subtitles.*' => 'file',
+        ], [
+            'subtitles.*.file' => __('validation.one_or_more_failed_subtitle_upload'),
         ]);
 
-        $storedFile = StoredFile::getOrCreate($request->file('subtitle'));
+        $files = $request->file('subtitles');
 
-        $inputSubtitle = TextFileFormat::getMatchingFormat($storedFile->filePath);
+        $fileGroup = FileGroup::create([
+            'original_name' => $request->_archiveName ?? null,
+            'tool_route' => $this->toolIndexRoute,
+            'url_key' => str_random(16),
+        ]);
 
-        if(!$inputSubtitle instanceof TransformsToGenericSubtitle) {
-            back()->withErrors('cant convert');
+        if(count($files) === 1) {
+            $fileJob = $this->dispatchNow(new ConvertToSrtJob($fileGroup, $files[0]));
+
+            if($fileJob->hasError) {
+                return back()->withErrors($fileJob->error_message);
+            }
+        }
+        else {
+            foreach($files as $file) {
+                $this->dispatch(new ConvertToSrtJob($fileGroup, $file));
+            }
         }
 
-        $textFileJob = $this->dispatchNow(
-            new ConvertToSrtJob($storedFile, $request->file('subtitle')->getClientOriginalName())
-        );
-
-        if($textFileJob->error_message !== null) {
-            back()->withErrors(__($textFileJob->error_message));
-        }
-
-        return redirect()->route('download-index', ['urlKey' => $textFileJob->url_key]);
-    }
-
-    private function postArchive(Request $request)
-    {
-        dd($request);
+        return redirect()->route("{$this->toolIndexRoute}-download", ['urlKey' => $fileGroup->url_key]);
     }
 }

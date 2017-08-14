@@ -10,7 +10,7 @@
 
         <label>
             Subtitle file
-            <input type="file" name="subtitle" multiple>
+            <input type="file" name="subtitles[]" multiple>
         </label>
 
         <br/>
