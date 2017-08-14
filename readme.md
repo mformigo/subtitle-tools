@@ -18,6 +18,7 @@ todo
 ## Queues and Workers
 * sub-idx language extract jobs run on the **sub-idx** queue. These jobs are extremely cpu intensive.
 * broadcasting happens on the **default** queue
+* File jobs happen on the **default** queue
 
 ## Format information
 The format of each subtitle file is identified by `\App\Subtitles\TextFileFormat`. 
