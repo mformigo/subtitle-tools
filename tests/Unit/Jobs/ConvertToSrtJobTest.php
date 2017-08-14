@@ -109,4 +109,26 @@ class ConvertToSrtJobTest extends TestCase
         $this->assertNotSame(null, $textFileJob->finished_at);
         $this->assertSame(null, $textFileJob->output_stored_file_id);
     }
+
+    /** @test */
+    function it_allows_srt_files_as_input()
+    {
+        $fileGroup = $this->createFileGroup();
+
+        dispatch(
+            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.srt")
+        );
+
+        $fileJob = $fileGroup->fileJobs()->firstOrFail();
+
+        $this->assertSame('three-cues.srt', $fileJob->original_name);
+
+        $convertedStoredFile = $fileJob->outputStoredFile;
+
+        $subtitle = TextFileFormat::getMatchingFormat($convertedStoredFile->filePath);
+
+        $this->assertTrue($subtitle instanceof Srt);
+
+        $this->assertSame(3, count($subtitle->getCues()));
+    }
 }
