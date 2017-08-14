@@ -6,7 +6,7 @@ class TempFile
 {
     public function make($content)
     {
-        $tempFilePath = storage_disk_file_path('temporary-files/temp-' . str_random(16));
+        $tempFilePath = storage_disk_file_path('temporary-files/' . date('Y-z') . '-temp-' . str_random(16));
 
         file_put_contents($tempFilePath, $content);
 

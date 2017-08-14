@@ -46,7 +46,7 @@ class StoredFile extends Model
             return $fromCache->first();
         }
 
-        $storagePath = "stored-files/" . date('Y-m');
+        $storagePath = "stored-files/" . date('Y-W');
 
         if(!File::isDirectory($storagePath)) {
             Storage::makeDirectory($storagePath);
