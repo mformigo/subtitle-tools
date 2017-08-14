@@ -22,6 +22,10 @@ class ConvertToSrtJob extends FileJobJob implements ShouldQueue
     {
         $this->startFileJob();
 
+        if(!app('TextFileIdentifier')->isTextFile($this->inputStoredFile->filePath)) {
+            return $this->abortFileJob('messages.not_a_text_file');
+        }
+
         $inputSubtitle = TextFileFormat::getMatchingFormat($this->inputStoredFile->filePath);
 
         // Srt input files are allowed because:
@@ -30,7 +34,7 @@ class ConvertToSrtJob extends FileJobJob implements ShouldQueue
         // * Sometimes people upload srt files, simply not understanding the point of this tool
 
         if(!$inputSubtitle instanceof TransformsToGenericSubtitle && !$inputSubtitle instanceof Srt) {
-            return $this->abortFileJob("messages.cant_convert_file_to_srt");
+            return $this->abortFileJob('messages.cant_convert_file_to_srt');
         }
 
         $srt = ($inputSubtitle instanceof Srt) ? $inputSubtitle : new Srt($inputSubtitle);
@@ -40,7 +44,7 @@ class ConvertToSrtJob extends FileJobJob implements ShouldQueue
             ->removeDuplicateCues();
 
         if(!$srt->hasCues()) {
-            return $this->abortFileJob("messages.file_has_no_dialogue_to_convert");
+            return $this->abortFileJob('messages.file_has_no_dialogue_to_convert');
         }
 
         $outputStoredFile = StoredFile::createFromTextFile($srt);

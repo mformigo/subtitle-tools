@@ -83,7 +83,7 @@ class ConvertToSrtTest extends TestCase
         ]);
 
         $response->assertStatus(302)
-            ->assertSessionHasErrors(["subtitles" => __('messages.cant_convert_file_to_srt')]);
+            ->assertSessionHasErrors(['subtitles' => __('messages.cant_convert_file_to_srt')]);
     }
 
     /** @test */
@@ -96,7 +96,20 @@ class ConvertToSrtTest extends TestCase
         ]);
 
         $response->assertStatus(302)
-            ->assertSessionHasErrors(["subtitles" => __('messages.file_has_no_dialogue_to_convert')]);
+            ->assertSessionHasErrors(['subtitles' => __('messages.file_has_no_dialogue_to_convert')]);
+    }
+
+    /** @test */
+    function it_can_handle_files_that_are_not_text_files()
+    {
+        $response = $this->post(route('convert-to-srt'), [
+            'subtitles' => [
+                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/Fake/exe.srt"),
+            ],
+        ]);
+
+        $response->assertStatus(302)
+            ->assertSessionHasErrors(['subtitles' => __('messages.not_a_text_file')]);
     }
 
     /** @test */
