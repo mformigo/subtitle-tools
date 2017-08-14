@@ -49,4 +49,9 @@ abstract class TestCase extends BaseTestCase
         }
     }
 
+    public function dumpSession()
+    {
+        dd(app('session.store'));
+    }
+
 }

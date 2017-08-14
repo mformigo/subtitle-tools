@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CustomValidationRulesProvider extends ServiceProvider
 {
@@ -23,6 +23,28 @@ class CustomValidationRulesProvider extends ServiceProvider
             }
 
             return false;
+        });
+
+        \Validator::extend('uploaded_files', function ($attribute, $valuesArray, $parameters, $validator) {
+            if(!is_array($valuesArray)) {
+                return false;
+            }
+
+            foreach($valuesArray as $value) {
+                if(!$value instanceof UploadedFile) {
+                    return false;
+                }
+
+                if($value->getError() !== UPLOAD_ERR_OK) {
+                    return false;
+                }
+
+                if(!file_exists($value->getRealPath())) {
+                    return false;
+                }
+            }
+
+            return true;
         });
     }
 

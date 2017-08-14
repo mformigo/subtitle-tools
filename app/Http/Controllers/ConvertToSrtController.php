@@ -18,10 +18,7 @@ class ConvertToSrtController extends Controller
     public function post(Request $request)
     {
         $this->validate($request, [
-            'subtitles'   => 'required',
-            'subtitles.*' => 'file',
-        ], [
-            'subtitles.*.file' => __('validation.one_or_more_failed_subtitle_upload'),
+            'subtitles'   => 'required|array|max:100|uploaded_files',
         ]);
 
         $files = $request->file('subtitles');
@@ -36,7 +33,7 @@ class ConvertToSrtController extends Controller
             $fileJob = $this->dispatchNow(new ConvertToSrtJob($fileGroup, $files[0]));
 
             if($fileJob->hasError) {
-                return back()->withErrors($fileJob->error_message);
+                return back()->withErrors(["subtitles" => __($fileJob->error_message)]);
             }
         }
         else {

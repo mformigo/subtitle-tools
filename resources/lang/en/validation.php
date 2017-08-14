@@ -91,7 +91,7 @@ return [
     'textfile' => 'The :attribute file must be a text file',
     'subidx_invalid_sub_mime' => 'The :attribute file is invalid',
     'subidx_cant_be_read' => 'The sub/idx file can\'t be read',
-    'one_or_more_failed_subtitle_upload' => 'One more more subtitles failed to upload, please try again',
+    'uploaded_files' => 'One more more files failed to upload, please try again',
 
 
     /*
