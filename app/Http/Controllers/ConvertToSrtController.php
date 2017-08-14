@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ConvertToSrtController extends Controller
 {
-    protected $toolIndexRoute = 'convert-to-srt';
+    protected $indexRouteName = 'convert-to-srt';
 
     public function index()
     {
@@ -28,7 +28,7 @@ class ConvertToSrtController extends Controller
 
         $fileGroup = FileGroup::create([
             'original_name' => $request->_archiveName ?? null,
-            'tool_route' => $this->toolIndexRoute,
+            'tool_route' => $this->indexRouteName,
             'url_key' => str_random(16),
         ]);
 
@@ -45,18 +45,18 @@ class ConvertToSrtController extends Controller
             }
         }
 
-        return redirect()->route("{$this->toolIndexRoute}-result", ['urlKey' => $fileGroup->url_key]);
+        return redirect($fileGroup->resultRoute);
     }
 
     public function result($urlKey)
     {
         $fileGroup = FileGroup::query()
             ->where('url_key', $urlKey)
-            ->where('tool_route', $this->toolIndexRoute)
+            ->where('tool_route', $this->indexRouteName)
             ->firstOrFail();
 
         return view('file-group-result', [
-            'returnUrl' => route($this->toolIndexRoute),
+            'returnUrl' => route($this->indexRouteName),
             'fileCount' => $fileGroup->fileJobs()->count(),
         ]);
     }

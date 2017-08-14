@@ -12,4 +12,9 @@ class FileGroup extends Model
     {
         return $this->hasMany(\App\Models\FileJob::class);
     }
+
+    public function getResultRouteAttribute()
+    {
+        return route("{$this->tool_route}-result", ['urlKey' => $this->url_key]);
+    }
 }
