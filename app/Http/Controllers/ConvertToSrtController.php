@@ -53,6 +53,7 @@ class ConvertToSrtController extends Controller
             ->firstOrFail();
 
         return view('file-group-result', [
+            'urlKey' => $urlKey,
             'returnUrl' => route($this->indexRouteName),
             'fileCount' => $fileGroup->fileJobs()->count(),
         ]);

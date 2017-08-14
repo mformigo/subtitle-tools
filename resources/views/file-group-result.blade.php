@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Download</h1>
+    <h1>Single Download</h1>
 
     Group has: {{ $fileCount }} FileJobs
 

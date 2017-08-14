@@ -58,7 +58,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles
         $lines = [];
 
         foreach($this->cues as $cue) {
-            $lines[] = $id++;
+            $lines[] = (string)$id++;
 
             $lines = array_merge($lines, $cue->toArray());
         }

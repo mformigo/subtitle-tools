@@ -38,9 +38,9 @@ class SrtTest extends TestCase
 
         $srt = new Srt($filePath);
 
-        $content = app('TextFileReader')->getContents($filePath);
+        $content = app('TextFileReader')->getLines($filePath);
 
-        $this->assertSame($content, $srt->getContent());
+        $this->assertSame($content, $srt->getContentLines());
     }
 
     /** @test */
