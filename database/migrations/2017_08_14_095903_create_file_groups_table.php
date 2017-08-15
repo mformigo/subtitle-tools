@@ -14,6 +14,7 @@ class CreateFileGroupsTable extends Migration
             $table->string('original_name')->nullable();
             $table->string('tool_route');
             $table->string('url_key');
+            $table->string('job_options')->default('{}');
         });
     }
 

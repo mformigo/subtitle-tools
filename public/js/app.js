@@ -46985,6 +46985,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -47028,7 +47031,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "file-job"
     }, [_c('div', {
       staticClass: "original-name"
-    }, [_vm._v(_vm._s(fileJob.originalName))]), _vm._v(" "), (fileJob.isFinished) ? _c('div', {
+    }, [_vm._v(_vm._s(fileJob.originalName))]), _vm._v(" "), (fileJob.errorMessage) ? _c('div', {
+      staticClass: "status"
+    }, [_vm._v("\n            " + _vm._s(fileJob.errorMessage) + "\n        ")]) : (fileJob.isFinished) ? _c('div', {
       staticClass: "status"
     }, [_c('a', {
       attrs: {

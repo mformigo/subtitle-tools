@@ -14,6 +14,19 @@
         </label>
 
         <br/>
+        <label>
+            Strip curly brackets
+            <input type="hidden"   name="jo_strip_curly" value="" />
+            <input type="checkbox" name="jo_strip_curly" value="checked" {{ old('jo_strip_curly', 'checked') }}>
+        </label>
+        <br/>
+
+        <label>
+            Strip angle brackets
+            <input type="hidden"   name="jo_strip_angle" value="" />
+            <input type="checkbox" name="jo_strip_angle" value="checked" {{ old('jo_strip_angle', 'checked') }}>
+        </label>
+        <br/>
 
         <button type="submit">Convert</button>
 

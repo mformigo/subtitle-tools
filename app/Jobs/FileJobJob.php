@@ -33,9 +33,8 @@ abstract class FileJobJob implements ShouldQueue
     /**
      * @param FileGroup $fileGroup
      * @param $file string|UploadedFile
-     * @param null $jobOptions
      */
-    public function __construct(FileGroup $fileGroup, $file, $jobOptions = null)
+    public function __construct(FileGroup $fileGroup, $file)
     {
         $this->fileGroup = $fileGroup;
 

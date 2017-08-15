@@ -4,7 +4,10 @@
         <div v-for="fileJob in fileJobs" class="file-job">
             <div class="original-name">{{ fileJob.originalName }}</div>
 
-            <div v-if="fileJob.isFinished" class="status">
+            <div v-if="fileJob.errorMessage" class="status">
+                {{ fileJob.errorMessage }}
+            </div>
+            <div v-else-if="fileJob.isFinished" class="status">
                 <a :href="urlKey + '/' + fileJob.id">Download</a>
             </div>
             <div v-else class="status">

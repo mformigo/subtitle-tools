@@ -54,6 +54,11 @@ class FileJob extends Model
         return $this->hasOne(\App\Models\StoredFile::class, 'id', 'output_stored_file_id');
     }
 
+    public function jobOptions()
+    {
+        return $this->fileGroup()->job_options;
+    }
+
     public function getHasErrorAttribute()
     {
         return $this->error_message !== null;

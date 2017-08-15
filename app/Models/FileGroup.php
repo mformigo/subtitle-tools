@@ -36,4 +36,14 @@ class FileGroup extends Model
     {
         return route("{$this->tool_route}-result", ['urlKey' => $this->url_key]);
     }
+
+    public function setJobOptionsAttribute(array $options)
+    {
+        $this->attributes['job_options'] = count($options) === 0 ? '{}' : json_encode($options);
+    }
+
+    public function getJobOptionsAttribute()
+    {
+        return json_decode($this->attributes['job_options']);
+    }
 }

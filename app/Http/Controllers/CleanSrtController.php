@@ -16,7 +16,12 @@ class CleanSrtController extends FileJobController
     {
         $this->validateFileJob();
 
-        return $this->doFileJobs(CleanSrtJob::class);
+        $jobOptions = [
+            'stripCurly' => $request->has('jo_strip_curly'),
+            'stripAngle' => $request->has('jo_strip_angle'),
+        ];
+
+        return $this->doFileJobs(CleanSrtJob::class, $jobOptions);
     }
 
     protected function getIndexRouteName()

@@ -32,23 +32,24 @@ abstract class FileJobController extends Controller
         $this->validate(request(), $rules);
     }
 
-    protected function doFileJobs($jobClass, $jobOptions = null, $alwaysQueue = false)
+    protected function doFileJobs($jobClass, array $jobOptions = [], $alwaysQueue = false)
     {
         $fileGroup = FileGroup::create([
             'original_name' => $request->_archiveName ?? null,
             'tool_route' => $this->getIndexRouteName(),
             'url_key' => str_random(16),
+            'job_options' => $jobOptions,
         ]);
 
         $files = request()->file('subtitles');
 
         if($alwaysQueue || count($files) > 1) {
             foreach($files as $file) {
-                $this->dispatch(new $jobClass($fileGroup, $file, $jobOptions));
+                $this->dispatch(new $jobClass($fileGroup, $file));
             }
         }
         else {
-            $fileJob = $this->dispatchNow(new $jobClass($fileGroup, $files[0], $jobOptions));
+            $fileJob = $this->dispatchNow(new $jobClass($fileGroup, $files[0]));
 
             if($fileJob->hasError) {
                 return back()->withErrors(["subtitles" => __($fileJob->error_message)]);
