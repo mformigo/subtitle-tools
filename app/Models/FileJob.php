@@ -39,6 +39,11 @@ class FileJob extends Model
 {
     protected $guarded = [];
 
+    public function fileGroup()
+    {
+        return $this->belongsTo(\App\Models\FileGroup::class);
+    }
+
     public function inputStoredFile()
     {
         return $this->hasOne(\App\Models\StoredFile::class, 'id', 'input_stored_file_id');
@@ -54,8 +59,19 @@ class FileJob extends Model
         return $this->error_message !== null;
     }
 
-    public function getInputFilePathAttribute()
+    public function getHasFinishedAttribute()
     {
+        return $this->finished_at !== null;
+    }
 
+    public function getApiValues()
+    {
+        return [
+            'newExtension' => $this->new_extension,
+            'originalName' => $this->original_name,
+            'isFinished' => $this->has_finished,
+            'errorMessage' => $this->has_error ? __($this->error_message) : false,
+            'id' => $this->id,
+        ];
     }
 }

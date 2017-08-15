@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\FileJobChanged;
 use App\Models\FileGroup;
 use App\Models\FileJob;
 use App\Models\StoredFile;
@@ -52,9 +53,7 @@ abstract class FileJobJob
             'finished_at' => Carbon::now(),
         ]);
 
-        $this->fileJob->save();
-
-        return $this->fileJob;
+        return $this->endFileJob();
     }
 
     public function abortFileJob(string $errorMessage)
@@ -64,7 +63,14 @@ abstract class FileJobJob
             'finished_at'   => Carbon::now(),
         ]);
 
+        return $this->endFileJob();
+    }
+
+    private function endFileJob()
+    {
         $this->fileJob->save();
+
+        event(new FileJobChanged($this->fileJob));
 
         return $this->fileJob;
     }

@@ -9,6 +9,11 @@
     <br/>
     <br/>
 
+    <file-group-result url-key="{{ $urlKey }}"></file-group-result>
+
+    <br/>
+    <br/>
+
     <a href="{{ $returnUrl }}">{{ $returnUrl }}</a>
 
 @endsection
