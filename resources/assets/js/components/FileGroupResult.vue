@@ -8,7 +8,7 @@
                 {{ fileJob.errorMessage }}
             </div>
             <div v-else-if="fileJob.isFinished" class="status">
-                <a :href="urlKey + '/' + fileJob.id">Download</a>
+                <a :href="urlKey + '/' + fileJob.id" target="_blank">Download</a>
             </div>
             <div v-else class="status">
                 Processing...

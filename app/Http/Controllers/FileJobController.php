@@ -25,6 +25,20 @@ abstract class FileJobController extends Controller
         ]);
     }
 
+    public function download($urlKey, $id)
+    {
+        $fileJob = FileGroup::query()
+            ->where('url_key', $urlKey)
+            ->where('tool_route', $this->getIndexRouteName())
+            ->firstOrFail()
+            ->fileJobs()
+            ->whereNotNull('finished_at')
+            ->whereNull('error_message')
+            ->findOrFail($id);
+
+        return response()->download($fileJob->outputStoredFile->filePath, $fileJob->original_name);
+    }
+
     public function validateFileJob(array $rules = [])
     {
         $rules['subtitles'] = 'required|array|max:100|uploaded_files';

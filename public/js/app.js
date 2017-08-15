@@ -47037,7 +47037,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "status"
     }, [_c('a', {
       attrs: {
-        "href": _vm.urlKey + '/' + fileJob.id
+        "href": _vm.urlKey + '/' + fileJob.id,
+        "target": "_blank"
       }
     }, [_vm._v("Download")])]) : _c('div', {
       staticClass: "status"
