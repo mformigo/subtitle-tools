@@ -16,15 +16,15 @@
         <br/>
         <label>
             Strip curly brackets
-            <input type="hidden"   name="jo_strip_curly" value="" />
-            <input type="checkbox" name="jo_strip_curly" value="checked" {{ old('jo_strip_curly', 'checked') }}>
+            <input type="hidden"   name="stripCurly" value="" />
+            <input type="checkbox" name="stripCurly" value="checked" {{ old('stripCurly', 'checked') }}>
         </label>
         <br/>
 
         <label>
             Strip angle brackets
-            <input type="hidden"   name="jo_strip_angle" value="" />
-            <input type="checkbox" name="jo_strip_angle" value="checked" {{ old('jo_strip_angle', 'checked') }}>
+            <input type="hidden"   name="stripAngle" value="" />
+            <input type="checkbox" name="stripAngle" value="checked" {{ old('stripAngle', 'checked') }}>
         </label>
         <br/>
 
