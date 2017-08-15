@@ -72,10 +72,8 @@ class Srt extends TextFile implements LoadsGenericSubtitles
 
         $lines = app('TextFileReader')->getLines($filePath);
 
-        // todo: make matching more strict by also checking for an id on the previous line (?)
-
-        foreach($lines as $line) {
-            if(SrtCue::isTimingString($line)) {
+        for($i = 1; $i < count($lines); $i++) {
+            if(SrtCue::isTimingString($lines[$i]) && preg_match('/^\d+$/', trim($lines[$i-1]))) {
                 return true;
             }
         }

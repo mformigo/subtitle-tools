@@ -16,9 +16,15 @@ class TextFileFormatTest extends TestCase
     {
         $textFileFormat = new TextFileFormat();
 
-        $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}TextFiles/Normal/normal01.srt");
+        $srtFiles = [
+            "TextFiles/Normal/normal01.srt",
+        ];
 
-        $this->assertTrue($subtitle instanceof Srt);
+        foreach($srtFiles as $fileName) {
+            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
+
+            $this->assertTrue($subtitle instanceof Srt, "'{$fileName}' is not an instance of Srt");
+        }
     }
 
     /** @test */
@@ -26,9 +32,19 @@ class TextFileFormatTest extends TestCase
     {
         $textFileFormat = new TextFileFormat();
 
-        $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}TextFiles/Normal/normal01.ass");
+        $assFiles = [
+            "TextFiles/Normal/normal01.ass",
+            "TextFiles/FormatDetection/ass01.ass",
+            "TextFiles/FormatDetection/ass02.ass",
+            "TextFiles/FormatDetection/ass03.ass",
+            "TextFiles/FormatDetection/ass04.ass",
+        ];
 
-        $this->assertTrue($subtitle instanceof Ass);
+        foreach($assFiles as $fileName) {
+            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
+
+            $this->assertTrue($subtitle instanceof Ass, "'{$fileName}' is not an instance of Ass");
+        }
     }
 
     /** @test */
@@ -36,9 +52,19 @@ class TextFileFormatTest extends TestCase
     {
         $textFileFormat = new TextFileFormat();
 
-        $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}TextFiles/Normal/normal01.smi");
+        $smiFiles = [
+            "TextFiles/Normal/normal01.smi",
+            "TextFiles/FormatDetection/smi01.smi",
+            "TextFiles/FormatDetection/smi02.smi",
+            "TextFiles/FormatDetection/smi03.smi",
+            "TextFiles/FormatDetection/smi04.smi",
+        ];
 
-        $this->assertTrue($subtitle instanceof Smi);
+        foreach($smiFiles as $fileName) {
+            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
+
+            $this->assertTrue($subtitle instanceof Smi, "'{$fileName}' is not an instance of Smi");
+        }
     }
 
     /** @test */
