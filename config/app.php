@@ -64,11 +64,12 @@ return [
         App\Providers\Framework\RouteServiceProvider::class,
 
         // Application Service Providers...
-        App\Providers\AppServiceProvider::class,
-        App\Providers\UtilsProvider::class,
-        App\Providers\CustomValidationRulesProvider::class,
         App\Providers\Subtitles\VobSubProvider::class,
         App\Providers\Subtitles\PlainTextProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\UtilsProvider::class,
+        App\Providers\RedirectsProvider::class,
+        App\Providers\CustomValidationRulesProvider::class,
 
     ],
 
