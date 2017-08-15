@@ -2,6 +2,11 @@
 
 namespace App\Jobs;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use App\Events\FileJobChanged;
 use App\Models\FileGroup;
 use App\Models\FileJob;
@@ -9,8 +14,12 @@ use App\Models\StoredFile;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 
-abstract class FileJobJob
+abstract class FileJobJob implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public $tries = 1;
+
     protected $fileGroup;
 
     protected $inputStoredFile;
@@ -24,8 +33,9 @@ abstract class FileJobJob
     /**
      * @param FileGroup $fileGroup
      * @param $file string|UploadedFile
+     * @param null $jobOptions
      */
-    public function __construct(FileGroup $fileGroup, $file)
+    public function __construct(FileGroup $fileGroup, $file, $jobOptions = null)
     {
         $this->fileGroup = $fileGroup;
 

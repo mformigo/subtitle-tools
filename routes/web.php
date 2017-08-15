@@ -9,8 +9,16 @@ Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
     Route::post('/{pageId}/{index}')->uses('SubIdxController@downloadSrt')->name('sub-idx-dl');
 });
 
+
 Route::prefix('convert-to-srt')->group(function() {
     Route::get('/')->uses('ConvertToSrtController@index')->name('convert-to-srt');
     Route::post('/')->uses('ConvertToSrtController@post');
     Route::get('/{urlKey}')->uses('ConvertToSrtController@result')->name('convert-to-srt-result');
+});
+
+
+Route::prefix('srt-cleaner')->group(function() {
+    Route::get('/')->uses('CleanSrtController@index')->name('clean-srt');
+    Route::post('/')->uses('CleanSrtController@post');
+    Route::get('/{urlKey}')->uses('CleanSrtController@result')->name('clean-srt-result');
 });

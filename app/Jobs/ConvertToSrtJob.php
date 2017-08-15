@@ -6,18 +6,9 @@ use App\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\TransformsToGenericSubtitle;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 
-class ConvertToSrtJob extends FileJobJob implements ShouldQueue
+class ConvertToSrtJob extends FileJobJob
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $tries = 1;
-
     public function handle()
     {
         $this->startFileJob();

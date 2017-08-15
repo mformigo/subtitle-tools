@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ConvertToSrtJob;
+use App\Jobs\CleanSrtJob;
 use Illuminate\Http\Request;
 
-class ConvertToSrtController extends FileJobController
+class CleanSrtController extends FileJobController
 {
     public function index()
     {
-        return view('convert-to-srt');
+        return view('clean-srt');
     }
 
     public function post(Request $request)
     {
         $this->validateFileJob();
 
-        return $this->doFileJobs(ConvertToSrtJob::class);
+        return $this->doFileJobs(CleanSrtJob::class);
     }
 
     protected function getIndexRouteName()
     {
-        return 'convert-to-srt';
+        return 'clean-srt';
     }
 }

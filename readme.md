@@ -18,7 +18,11 @@ todo
 ## Queues and Workers
 * sub-idx language extract jobs run on the **sub-idx** queue. These jobs are extremely cpu intensive.
 * broadcasting happens on the **default** queue
-* File jobs happen on the **default** queue
+* file jobs happen on the **default** queue
+
+## Adding a FileGroup + FileJob tool
+* make a new controller that extends `FileJobController`, add routes and views
+* make a new job that extends `FileJobJob`
 
 ## Format information
 The format of each subtitle file is identified by `\App\Subtitles\TextFileFormat`. 
