@@ -63,7 +63,7 @@ class Smi extends TextFile implements TransformsToGenericSubtitle
                     }
                 }
 
-                if($startMs >= $endMs) {
+                if($startMs <= $endMs) {
                     $genericCue = new GenericSubtitleCue();
 
                     $genericCue->setTiming($startMs, $endMs);
@@ -97,6 +97,6 @@ class Smi extends TextFile implements TransformsToGenericSubtitle
 
         $content = app('TextFileReader')->getContents($filePath);
 
-        return stripos($content, '<sami>') !== false && stripos($content, '<sync start=') !== false;
+        return stripos($content, '<sami>') !== false && stripos($content, '<sync ') !== false;
     }
 }
