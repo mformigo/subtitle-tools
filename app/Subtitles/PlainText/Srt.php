@@ -144,12 +144,14 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         foreach($this->cues as $cue) {
             $cue->shift($ms);
         }
+
+        return $this;
     }
 
     public function shiftPartial($fromMs, $toMs, $ms)
     {
         if($fromMs > $toMs || $ms == 0) {
-            return;
+            return $this;
         }
 
         foreach($this->cues as $cue) {
@@ -157,5 +159,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
                 $cue->shift($ms);
             }
         }
+
+        return $this;
     }
 }

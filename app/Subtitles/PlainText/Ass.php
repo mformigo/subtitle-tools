@@ -72,13 +72,13 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
 
     public function shift($ms)
     {
-        $this->shiftPartial(0, PHP_INT_MAX, $ms);
+        return $this->shiftPartial(0, PHP_INT_MAX, $ms);
     }
 
     public function shiftPartial($fromMs, $toMs, $ms)
     {
         if($fromMs > $toMs || $ms == 0) {
-            return;
+            return $this;
         }
 
         for($i = 0; $i < count($this->lines); $i++) {
@@ -92,5 +92,7 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
                 }
             }
         }
+
+        return $this;
     }
 }
