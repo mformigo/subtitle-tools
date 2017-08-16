@@ -51,4 +51,101 @@ class AssTest extends TestCase
         $this->assertSame(600000, $genericCues[2]->getEndMs());
         $this->assertSame(['And this is the third line'], $genericCues[2]->getLines());
     }
+
+    /** @test */
+    function it_shifts_cues()
+    {
+        $ass = new Ass();
+
+        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+
+        $cues = $ass->toGenericSubtitle()->getCues();
+
+        $this->assertSame(3, count($cues));
+
+        $this->assertSame(0,     $cues[0]->getStartMs());
+        $this->assertSame(38730, $cues[0]->getEndMs());
+
+        $this->assertSame(59730, $cues[1]->getStartMs());
+        $this->assertSame(60000, $cues[1]->getEndMs());
+
+        $this->assertSame(60250,  $cues[2]->getStartMs());
+        $this->assertSame(600000, $cues[2]->getEndMs());
+
+        $ass->shift(1000);
+
+        $cues = $ass->toGenericSubtitle()->getCues();
+
+        $this->assertSame(3, count($cues));
+
+        $this->assertSame(1000,  $cues[0]->getStartMs());
+        $this->assertSame(39730, $cues[0]->getEndMs());
+
+        $this->assertSame(60730, $cues[1]->getStartMs());
+        $this->assertSame(61000, $cues[1]->getEndMs());
+
+        $this->assertSame(61250,  $cues[2]->getStartMs());
+        $this->assertSame(601000, $cues[2]->getEndMs());
+
+        $ass->shift("-1000");
+
+        $cues = $ass->toGenericSubtitle()->getCues();
+
+        $this->assertSame(3, count($cues));
+
+        $this->assertSame(0,     $cues[0]->getStartMs());
+        $this->assertSame(38730, $cues[0]->getEndMs());
+
+        $this->assertSame(59730, $cues[1]->getStartMs());
+        $this->assertSame(60000, $cues[1]->getEndMs());
+
+        $this->assertSame(60250,  $cues[2]->getStartMs());
+        $this->assertSame(600000, $cues[2]->getEndMs());
+    }
+
+    /** @test */
+    function it_partial_shifts_cues()
+    {
+        $ass = new Ass();
+
+        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+
+        $cues = $ass->toGenericSubtitle()->getCues();
+
+        $this->assertSame(3, count($cues));
+
+        $this->assertSame(0,     $cues[0]->getStartMs());
+        $this->assertSame(38730, $cues[0]->getEndMs());
+
+        $this->assertSame(59730, $cues[1]->getStartMs());
+        $this->assertSame(60000, $cues[1]->getEndMs());
+
+        $this->assertSame(60250,  $cues[2]->getStartMs());
+        $this->assertSame(600000, $cues[2]->getEndMs());
+
+        $ass->shiftPartial(0, 40000, 1000);
+        $cues = $ass->toGenericSubtitle()->getCues();
+
+        $this->assertSame(1000,  $cues[0]->getStartMs());
+        $this->assertSame(39730, $cues[0]->getEndMs());
+
+        $this->assertSame(59730, $cues[1]->getStartMs());
+        $this->assertSame(60000, $cues[1]->getEndMs());
+
+        $this->assertSame(60250,  $cues[2]->getStartMs());
+        $this->assertSame(600000, $cues[2]->getEndMs());
+
+        $ass->shiftPartial(60000, 700000, "-1000");
+        $cues = $ass->toGenericSubtitle()->getCues();
+
+        $this->assertSame(1000,  $cues[0]->getStartMs());
+        $this->assertSame(39730, $cues[0]->getEndMs());
+
+        // Last two cues got swapped because they are sorted by start time
+        $this->assertSame(59250,  $cues[1]->getStartMs());
+        $this->assertSame(599000, $cues[1]->getEndMs());
+
+        $this->assertSame(59730, $cues[2]->getStartMs());
+        $this->assertSame(60000, $cues[2]->getEndMs());
+    }
 }

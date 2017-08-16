@@ -6,6 +6,7 @@ todo
 ```
 
 ## Possible improvements
+* Smi parsing uses `->getCues` a lot, the sorting is slow
 * `\App\Subtitles\VobSub\VobSub2Srt` needs the `SubIdx` model purely for diagnostic logging, it should only require the path. The logging should happen in a different, easier to test way
 
 

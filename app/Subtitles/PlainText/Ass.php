@@ -2,12 +2,13 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Ass extends TextFile implements TransformsToGenericSubtitle
+class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
 {
     use WithFileLines;
 
@@ -66,5 +67,29 @@ class Ass extends TextFile implements TransformsToGenericSubtitle
         }
 
         return false;
+    }
+
+    public function shift($ms)
+    {
+        $this->shiftPartial(0, PHP_INT_MAX, $ms);
+    }
+
+    public function shiftPartial($fromMs, $toMs, $ms)
+    {
+        if($fromMs > $toMs || $ms == 0) {
+            return;
+        }
+
+        for($i = 0; $i < count($this->lines); $i++) {
+            if(AssCue::isTimingString($this->lines[$i])) {
+                $assCue = new AssCue($this->lines[$i]);
+
+                if($assCue->getStartMs() >= $fromMs && $assCue->getEndMs() <= $toMs) {
+                    $assCue->shift($ms);
+
+                    $this->lines[$i] = $assCue->toString();
+                }
+            }
+        }
     }
 }

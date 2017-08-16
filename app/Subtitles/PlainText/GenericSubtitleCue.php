@@ -72,6 +72,10 @@ class GenericSubtitleCue
 
     public function shift($ms)
     {
+        if(!preg_match('/^(-\d+|\d+)$/', $ms)) {
+            throw new \Exception("Invalid shift amount ({$ms})");
+        }
+
         $this->setTiming(
             $this->startMs + $ms,
             $this->endMs + $ms

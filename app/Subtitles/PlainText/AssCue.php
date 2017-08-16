@@ -17,6 +17,13 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
      */
     protected $cueMiddlePart = ',*Default,NTP,0,0,0,,';
 
+    public function __construct($timingLine = null)
+    {
+        if($timingLine !== null) {
+            $this->loadString($timingLine);
+        }
+    }
+
     public function loadString($string)
     {
         $this->setTimingFromString($string);

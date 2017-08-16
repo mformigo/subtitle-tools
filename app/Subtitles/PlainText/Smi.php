@@ -56,7 +56,7 @@ class Smi extends TextFile implements TransformsToGenericSubtitle
 
                 // Smi cues end when the next cue starts, except when they have an end= attribute
                 if($genericSubtitle->hasCues()) {
-                    $previousCue = $genericSubtitle->getCues()[count($genericSubtitle->getCues()) - 1];
+                    $previousCue = $genericSubtitle->getCues(false)[count($genericSubtitle->getCues(false)) - 1];
 
                     if($previousCue->getStartMs() === $previousCue->getEndMs()) {
                         $previousCue->setTiming($previousCue->getStartMs(), $startMs);
@@ -79,7 +79,7 @@ class Smi extends TextFile implements TransformsToGenericSubtitle
 
         // The last cue in the file needs to have its end time set manually (if it did not have an end= attribute)
         if($genericSubtitle->hasCues()) {
-            $lastCue = $genericSubtitle->getCues()[count($genericSubtitle->getCues()) - 1];
+            $lastCue = $genericSubtitle->getCues(false)[count($genericSubtitle->getCues(false)) - 1];
 
             if($lastCue->getStartMs() === $lastCue->getEndMs()) {
                 $lastCue->setTiming($lastCue->GetStartMs(), $lastCue->GetStartMs() + 3000);

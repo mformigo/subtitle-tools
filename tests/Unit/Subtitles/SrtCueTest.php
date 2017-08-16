@@ -79,7 +79,7 @@ class SrtCueTest extends TestCase
     {
         $cue = new SrtCue();
 
-        $cue->shift(9999999999999999999999999);
+        $cue->shift("9999999999999999999999999");
 
         $this->assertSame("99:59:59,999 --> 99:59:59,999", $cue->getTimingString());
     }
@@ -89,7 +89,7 @@ class SrtCueTest extends TestCase
     {
         $cue = new SrtCue();
 
-        $cue->shift(-9999999999999999999999999);
+        $cue->shift("-9999999999999999999999999");
 
         $this->assertSame("00:00:00,000 --> 00:00:00,000", $cue->getTimingString());
     }

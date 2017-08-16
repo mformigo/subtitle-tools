@@ -51,14 +51,10 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues
 
     public function getContentLines()
     {
-        usort($this->cues, function(SrtCue $a, SrtCue $b) {
-            return $a->getStartMs() <=> $b->getStartMs();
-        });
-
         $id = 1;
         $lines = [];
 
-        foreach($this->cues as $cue) {
+        foreach($this->getCues() as $cue) {
             $lines[] = (string)$id++;
 
             $lines = array_merge($lines, $cue->toArray());
@@ -144,10 +140,6 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues
 
     public function shift($ms)
     {
-        if(!preg_match('/^(-\d+|\d+)$/', $ms)) {
-            throw new \Exception("Invalid shift amount ({$ms})");
-        }
-
         foreach($this->cues as $cue) {
             $cue->shift($ms);
         }
