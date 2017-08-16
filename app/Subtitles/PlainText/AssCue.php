@@ -44,8 +44,8 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
 
     public function setTimingFromString($string)
     {
-        if(!AssCue::isTimingString($string)) {
-            throw new \Exception("Not a valid ass cue string ({$string})");
+        if(!static::isTimingString($string)) {
+            throw new \Exception("Not a valid " . get_class($this) . " cue string ({$string})");
         }
 
         $parts = explode(',', $string);
@@ -121,7 +121,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
     {
         $string = trim($string);
 
-        if(strpos($string, 'Dialogue: ') !== 0) {
+        if(stripos($string, 'Dialogue: ') !== 0) {
             return false;
         }
 
@@ -131,7 +131,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
             return false;
         }
 
-        if(!preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/", $string)) {
+        if(!preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/i", $string)) {
             return false;
         }
 

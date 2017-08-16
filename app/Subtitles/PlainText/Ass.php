@@ -15,6 +15,8 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
 
     protected $extension = "ass";
 
+    protected $cueClass = AssCue::class;
+
     /**
      * @return GenericSubtitle
      */
@@ -27,8 +29,8 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
         $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
         foreach($this->lines as $line) {
-            if(AssCue::isTimingString($line)) {
-                $assCue = new AssCue();
+            if($this->cueClass::isTimingString($line)) {
+                $assCue = new $this->cueClass;
 
                 $assCue->loadString($line);
 
@@ -82,8 +84,8 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
         }
 
         for($i = 0; $i < count($this->lines); $i++) {
-            if(AssCue::isTimingString($this->lines[$i])) {
-                $assCue = new AssCue($this->lines[$i]);
+            if($this->cueClass::isTimingString($this->lines[$i])) {
+                $assCue = new $this->cueClass($this->lines[$i]);
 
                 if($assCue->getStartMs() >= $fromMs && $assCue->getEndMs() <= $toMs) {
                     $assCue->shift($ms);

@@ -2,38 +2,26 @@
 
 namespace Tests\Unit;
 
-use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\GenericSubtitle;
+use App\Subtitles\PlainText\Ssa;
 use Tests\TestCase;
 
-class AssTest extends TestCase
+class SsaTest extends TestCase
 {
-    /** @test */
-    function it_loads_from_file()
-    {
-        $ass = new Ass();
-
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/mime-octet-utf8.ass");
-
-        $this->assertSame('mime-octet-utf8', $ass->getFileNameWithoutExtension());
-
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/mime-octet-utf8.ass", $ass->getFilePath());
-    }
-
     /** @test */
     function it_transforms_to_generic_subtitle()
     {
-        $ass = new Ass();
+        $ssa = new Ssa();
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
 
-        $genericSub = $ass->toGenericSubtitle();
+        $genericSub = $ssa->toGenericSubtitle();
 
         $genericCues = $genericSub->getCues();
 
-        $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof Ass);
+        $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof Ssa);
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.ass", $genericSub->getFilePath());
+        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.ssa", $genericSub->getFilePath());
 
         $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
 
@@ -55,13 +43,13 @@ class AssTest extends TestCase
     /** @test */
     function it_shifts_cues()
     {
-        $ass = new Ass();
+        $ssa = new Ssa();
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
 
-        $originalLines = $ass->getContentLines();
+        $originalLines = $ssa->getContentLines();
 
-        $cues = $ass->toGenericSubtitle()->getCues();
+        $cues = $ssa->toGenericSubtitle()->getCues();
 
         $this->assertSame(3, count($cues));
 
@@ -74,9 +62,9 @@ class AssTest extends TestCase
         $this->assertSame(60250,  $cues[2]->getStartMs());
         $this->assertSame(600000, $cues[2]->getEndMs());
 
-        $ass->shift(1000);
+        $ssa->shift(1000);
 
-        $cues = $ass->toGenericSubtitle()->getCues();
+        $cues = $ssa->toGenericSubtitle()->getCues();
 
         $this->assertSame(3, count($cues));
 
@@ -89,9 +77,9 @@ class AssTest extends TestCase
         $this->assertSame(61250,  $cues[2]->getStartMs());
         $this->assertSame(601000, $cues[2]->getEndMs());
 
-        $ass->shift("-1000");
+        $ssa->shift("-1000");
 
-        $cues = $ass->toGenericSubtitle()->getCues();
+        $cues = $ssa->toGenericSubtitle()->getCues();
 
         $this->assertSame(3, count($cues));
 
@@ -104,17 +92,17 @@ class AssTest extends TestCase
         $this->assertSame(60250,  $cues[2]->getStartMs());
         $this->assertSame(600000, $cues[2]->getEndMs());
 
-        $this->assertSame($originalLines, $ass->getContentLines());
+        $this->assertSame($originalLines, $ssa->getContentLines());
     }
 
     /** @test */
     function it_partial_shifts_cues()
     {
-        $ass = new Ass();
+        $ssa = new Ssa();
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
 
-        $cues = $ass->toGenericSubtitle()->getCues();
+        $cues = $ssa->toGenericSubtitle()->getCues();
 
         $this->assertSame(3, count($cues));
 
@@ -127,8 +115,8 @@ class AssTest extends TestCase
         $this->assertSame(60250,  $cues[2]->getStartMs());
         $this->assertSame(600000, $cues[2]->getEndMs());
 
-        $ass->shiftPartial(0, 40000, 1000);
-        $cues = $ass->toGenericSubtitle()->getCues();
+        $ssa->shiftPartial(0, 40000, 1000);
+        $cues = $ssa->toGenericSubtitle()->getCues();
 
         $this->assertSame(1000,  $cues[0]->getStartMs());
         $this->assertSame(39730, $cues[0]->getEndMs());
@@ -139,8 +127,8 @@ class AssTest extends TestCase
         $this->assertSame(60250,  $cues[2]->getStartMs());
         $this->assertSame(600000, $cues[2]->getEndMs());
 
-        $ass->shiftPartial(60000, 700000, "-1000");
-        $cues = $ass->toGenericSubtitle()->getCues();
+        $ssa->shiftPartial(60000, 700000, "-1000");
+        $cues = $ssa->toGenericSubtitle()->getCues();
 
         $this->assertSame(1000,  $cues[0]->getStartMs());
         $this->assertSame(39730, $cues[0]->getEndMs());

@@ -6,6 +6,7 @@ use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\PlainText;
 use App\Subtitles\PlainText\Smi;
 use App\Subtitles\PlainText\Srt;
+use App\Subtitles\PlainText\Ssa;
 use App\Subtitles\TextFileFormat;
 use Tests\TestCase;
 
@@ -44,6 +45,27 @@ class TextFileFormatTest extends TestCase
             $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
 
             $this->assertTrue($subtitle instanceof Ass, "'{$fileName}' is not an instance of Ass");
+
+            $this->assertFalse($subtitle instanceof Ssa, "'{$fileName}' was Ssa, should be Ass");
+        }
+    }
+
+    /** @test */
+    function it_matches_ssa_files()
+    {
+        $textFileFormat = new TextFileFormat();
+
+        $assFiles = [
+            "TextFiles/Normal/normal01.ssa",
+            "TextFiles/FormatDetection/ssa01.ssa",
+            "TextFiles/FormatDetection/ssa02.ssa",
+            "TextFiles/FormatDetection/ssa03.ssa",
+        ];
+
+        foreach($assFiles as $fileName) {
+            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
+
+            $this->assertTrue($subtitle instanceof Ssa, "'{$fileName}' is not an instance of Ssa");
         }
     }
 
