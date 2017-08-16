@@ -122,6 +122,9 @@ class Srt extends TextFile implements LoadsGenericSubtitles
             $this->AddCue($newCue);
         }
 
+        $this->removeEmptyCues()
+            ->removeDuplicateCues();
+
         return $this;
     }
 

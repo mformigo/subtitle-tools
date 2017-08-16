@@ -52,4 +52,41 @@ class SrtTest extends TestCase
 
         $this->assertSame([], $srt->getContentLines());
     }
+
+    /** @test */
+    function it_parses_edge_cases()
+    {
+        // Starts with a timing line
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-1.srt");
+        $cues = $srt->getCues();
+        $this->assertEquals(5, count($cues));
+
+        // Ends with a timing line, it isnt added because it has no text lines
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-2.srt");
+        $cues = $srt->getCues();
+        $this->assertEquals(5, count($cues));
+
+        // Starts with three timing lines in a row, and some random timings without text
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-3.srt");
+        $cues = $srt->getCues();
+        $this->assertEquals(1, count($cues));
+        $this->assertEquals($cues[0]->getLines()[0], "One of them,");
+        $this->assertEquals($cues[0]->getLines()[1], "her total was $8.00.");
+        $this->assertEquals(false, isset($cues[0]->getLines()[2]));
+
+        // doesn't have a trailing empty line
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-4.srt");
+        $cues = $srt->getCues();
+        $this->assertEquals(5, count($cues));
+        $this->assertEquals($cues[4]->getLines()[0], "They both, of course,");
+        $this->assertEquals($cues[4]->getLines()[1], "choose to pay");
+        $this->assertEquals(false, isset($cues[4]->getLines()[2]));
+
+        // doesn't have a trailing empty line
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-5.srt");
+        $cues = $srt->getCues();
+        $this->assertEquals(5, count($cues));
+        $this->assertEquals($cues[4]->getLines()[0], "They both, of course,");
+        $this->assertEquals(false, isset($cues[4]->getLines()[1]));
+    }
 }
