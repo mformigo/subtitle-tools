@@ -81,6 +81,32 @@ class SmiTest extends TestCase
     }
 
     /** @test */
+    function it_parses_files_without_line_breaks()
+    {
+        $smi = new Smi();
+
+        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi03-big-mess-no-line-breaks.smi");
+
+        $genericSub = $smi->toGenericSubtitle();
+
+        $genericCues = $genericSub->getCues();
+
+        $this->assertSame(3, count($genericCues));
+
+        $this->assertEquals(75260, $genericCues[0]->getStartMs());
+        $this->assertEquals(78092, $genericCues[0]->getEndMs());
+        $this->assertEquals(["Your 100 parents are waiting."], $genericCues[0]->getLines());
+
+        $this->assertEquals(128413, $genericCues[1]->getStartMs());
+        $this->assertEquals(129936, $genericCues[1]->getEndMs());
+        $this->assertEquals(["200 Ryotaro Sakashiro"], $genericCues[1]->getLines());
+
+        $this->assertEquals(159077, $genericCues[2]->getStartMs());
+        $this->assertEquals(164343, $genericCues[2]->getEndMs());
+        $this->assertEquals(["Misa Amane 300, your life", "has been extended."], $genericCues[2]->getLines());
+    }
+
+    /** @test */
     function it_parses_normal_smi_files()
     {
         $smi = new Smi();
@@ -165,6 +191,64 @@ class SmiTest extends TestCase
         $smi = new Smi();
 
         $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi01-big-mess.smi");
+
+        $genericSub = $smi->toGenericSubtitle();
+        $genericCues = $genericSub->getCues();
+        $this->assertSame(3, count($genericCues));
+
+        $this->assertEquals(75260, $genericCues[0]->getStartMs());
+        $this->assertEquals(78092, $genericCues[0]->getEndMs());
+        $this->assertEquals(["Your 100 parents are waiting."], $genericCues[0]->getLines());
+
+        $this->assertEquals(128413, $genericCues[1]->getStartMs());
+        $this->assertEquals(129936, $genericCues[1]->getEndMs());
+        $this->assertEquals(["200 Ryotaro Sakashiro"], $genericCues[1]->getLines());
+
+        $this->assertEquals(159077, $genericCues[2]->getStartMs());
+        $this->assertEquals(164343, $genericCues[2]->getEndMs());
+        $this->assertEquals(["Misa Amane 300, your life", "has been extended."], $genericCues[2]->getLines());
+
+        $smi->shift(1000);
+        $genericSub = $smi->toGenericSubtitle();
+        $genericCues = $genericSub->getCues();
+        $this->assertSame(3, count($genericCues));
+
+        $this->assertEquals(76260, $genericCues[0]->getStartMs());
+        $this->assertEquals(79092, $genericCues[0]->getEndMs());
+        $this->assertEquals(["Your 100 parents are waiting."], $genericCues[0]->getLines());
+
+        $this->assertEquals(129413, $genericCues[1]->getStartMs());
+        $this->assertEquals(130936, $genericCues[1]->getEndMs());
+        $this->assertEquals(["200 Ryotaro Sakashiro"], $genericCues[1]->getLines());
+
+        $this->assertEquals(160077, $genericCues[2]->getStartMs());
+        $this->assertEquals(165343, $genericCues[2]->getEndMs());
+        $this->assertEquals(["Misa Amane 300, your life", "has been extended."], $genericCues[2]->getLines());
+
+        $smi->shift("-1000");
+        $genericSub = $smi->toGenericSubtitle();
+        $genericCues = $genericSub->getCues();
+        $this->assertSame(3, count($genericCues));
+
+        $this->assertEquals(75260, $genericCues[0]->getStartMs());
+        $this->assertEquals(78092, $genericCues[0]->getEndMs());
+        $this->assertEquals(["Your 100 parents are waiting."], $genericCues[0]->getLines());
+
+        $this->assertEquals(128413, $genericCues[1]->getStartMs());
+        $this->assertEquals(129936, $genericCues[1]->getEndMs());
+        $this->assertEquals(["200 Ryotaro Sakashiro"], $genericCues[1]->getLines());
+
+        $this->assertEquals(159077, $genericCues[2]->getStartMs());
+        $this->assertEquals(164343, $genericCues[2]->getEndMs());
+        $this->assertEquals(["Misa Amane 300, your life", "has been extended."], $genericCues[2]->getLines());
+    }
+
+    /** @test */
+    function it_shifts_all_kinds_of_stuff_without_line_breaks()
+    {
+        $smi = new Smi();
+
+        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi03-big-mess-no-line-breaks.smi");
 
         $genericSub = $smi->toGenericSubtitle();
         $genericCues = $genericSub->getCues();
