@@ -2,8 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;
+use App\Subtitles\ShiftsCues;
 use App\Subtitles\Watermarkable;
 use Tests\TestCase;
 
@@ -97,6 +99,8 @@ class SrtTest extends TestCase
     {
         $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
 
+        $this->assertTrue($srt instanceof ShiftsCues);
+
         $this->assertSame(1266, $srt->getCues()[0]->getStartMs());
         $this->assertSame(3366, $srt->getCues()[0]->getEndMs());
 
@@ -133,6 +137,8 @@ class SrtTest extends TestCase
     function it_partial_shifts_cues()
     {
         $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+
+        $this->assertTrue($srt instanceof PartialShiftsCues);
 
         $this->assertSame(1266, $srt->getCues()[0]->getStartMs());
         $this->assertSame(3366, $srt->getCues()[0]->getEndMs());

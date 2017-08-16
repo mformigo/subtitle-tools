@@ -2,8 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\GenericSubtitle;
+use App\Subtitles\ShiftsCues;
 use Tests\TestCase;
 
 class AssTest extends TestCase
@@ -56,6 +58,8 @@ class AssTest extends TestCase
     function it_shifts_cues()
     {
         $ass = new Ass();
+
+        $this->assertTrue($ass instanceof ShiftsCues);
 
         $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
 
@@ -111,6 +115,8 @@ class AssTest extends TestCase
     function it_partial_shifts_cues()
     {
         $ass = new Ass();
+
+        $this->assertTrue($ass instanceof PartialShiftsCues);
 
         $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
 

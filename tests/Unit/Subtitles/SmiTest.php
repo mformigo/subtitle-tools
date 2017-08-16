@@ -2,8 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\GenericSubtitle;
 use App\Subtitles\PlainText\Smi;
+use App\Subtitles\ShiftsCues;
 use Tests\TestCase;
 
 class SmiTest extends TestCase
@@ -124,6 +126,9 @@ class SmiTest extends TestCase
     function it_shifts_normal_start_cues()
     {
         $smi = new Smi();
+
+        $this->assertTrue($smi instanceof ShiftsCues);
+        $this->assertFalse($smi instanceof PartialShiftsCues);
 
         $smi->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.smi");
 

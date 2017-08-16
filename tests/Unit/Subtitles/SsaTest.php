@@ -2,8 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\GenericSubtitle;
 use App\Subtitles\PlainText\Ssa;
+use App\Subtitles\ShiftsCues;
 use Tests\TestCase;
 
 class SsaTest extends TestCase
@@ -44,6 +46,8 @@ class SsaTest extends TestCase
     function it_shifts_cues()
     {
         $ssa = new Ssa();
+
+        $this->assertTrue($ssa instanceof ShiftsCues);
 
         $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
 
@@ -99,6 +103,8 @@ class SsaTest extends TestCase
     function it_partial_shifts_cues()
     {
         $ssa = new Ssa();
+
+        $this->assertTrue($ssa instanceof PartialShiftsCues);
 
         $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
 
