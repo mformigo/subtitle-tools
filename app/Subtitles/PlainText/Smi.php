@@ -2,12 +2,13 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Smi extends TextFile implements TransformsToGenericSubtitle
+class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
 {
     use WithFileLines;
 
@@ -98,5 +99,47 @@ class Smi extends TextFile implements TransformsToGenericSubtitle
         $content = app('TextFileReader')->getContents($filePath);
 
         return stripos($content, '<sami>') !== false && stripos($content, '<sync ') !== false;
+    }
+
+    public function shift($ms)
+    {
+        // Smi files don't support partial shifts
+        // It would be a lot of work because the EndMs is often decided by the next cues StartMs
+
+        if($ms == 0) {
+            return $this;
+        }
+
+        // a line can contain multiple sync tags
+        $this->lines = array_map(function($line) use ($ms) {
+            if(stripos($line, "<sync ") === false) {
+                return $line;
+            }
+
+            $parts = array_map(function($part) use ($ms) {
+                if(!preg_match('/<sync .*?start=.*$/i', $part)) {
+                    return $part;
+                }
+
+                $syncTags = array_map(function($syncTag) use ($ms) {
+                    if(stripos($syncTag, 'sync ') !== 0) {
+                        return $syncTag;
+                    }
+
+                    return preg_replace_callback('/\d+/', function ($matches) use ($ms) {
+                        $newNumber = (int)$matches[0] + $ms;
+
+                        return ($newNumber < 0) ? "0" : (string)$newNumber;
+                    }, $syncTag);
+
+                }, explode('<', $part));
+
+                return implode('<', $syncTags);
+            }, explode('>', $line));
+
+            return implode('>', $parts);
+        }, $this->lines);
+
+        return $this;
     }
 }

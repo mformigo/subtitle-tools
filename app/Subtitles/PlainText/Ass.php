@@ -2,13 +2,14 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
+class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, PartialShiftsCues
 {
     use WithFileLines;
 

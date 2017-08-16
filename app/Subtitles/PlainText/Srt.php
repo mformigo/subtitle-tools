@@ -4,13 +4,14 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\LoadsGenericSubtitles;
+use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues
+class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues
 {
     use WithFileLines, ContainsGenericCues;
 
