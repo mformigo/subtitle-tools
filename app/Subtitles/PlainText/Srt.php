@@ -8,10 +8,11 @@ use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
+use App\Subtitles\Watermarkable;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues
+class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues, Watermarkable
 {
     use WithFileLines, ContainsGenericCues;
 
@@ -161,5 +162,26 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         }
 
         return $this;
+    }
+
+    public function watermark()
+    {
+        if(count($this->cues) === 0) {
+            return $this;
+        }
+
+        $this->sortCues();
+
+        $sampleSize = (10 < count($this->cues)) ? 10 : count($this->cues);
+
+        for($i = 0; $i < $sampleSize; $i++) {
+            if(stripos((string)$this->cues[$i], 'subtitletools.com') !== false) {
+                return $this;
+            }
+        }
+
+        $cue = (new SrtCue())->setTiming(0, 0)->addLine('Edited at https://subtitletools.com');
+
+        return $this->addCue($cue);
     }
 }

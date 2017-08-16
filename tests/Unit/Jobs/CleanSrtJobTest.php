@@ -53,7 +53,8 @@ class CleanSrtJobTest extends TestCase
         $this->assertTrue($subtitle instanceof Srt);
 
         // it removes the duplicate cue
-        $this->assertSame(3, count($subtitle->getCues()));
+        // an extra cue is added as a watermark
+        $this->assertSame(4, count($subtitle->getCues()));
 
         $this->assertNotContains('<i>', $subtitle->getContent());
         $this->assertNotContains('</i>', $subtitle->getContent());
@@ -88,7 +89,8 @@ class CleanSrtJobTest extends TestCase
         $this->assertTrue($subtitle instanceof Srt);
 
         // it still removes the duplicate cue
-        $this->assertSame(3, count($subtitle->getCues()));
+        // an extra cue is added as a watermark
+        $this->assertSame(4, count($subtitle->getCues()));
 
         $this->assertContains('<i>', $subtitle->getContent());
         $this->assertContains('</i>', $subtitle->getContent());

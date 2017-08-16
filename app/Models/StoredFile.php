@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\FileHash;
 use App\Subtitles\TextFile;
+use App\Subtitles\Watermarkable;
 use App\Utils\TempFile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
@@ -65,6 +66,10 @@ class StoredFile extends Model
 
     public static function createFromTextFile(TextFile $textFile)
     {
+        if($textFile instanceof Watermarkable) {
+            $textFile->watermark();
+        }
+
         $filePath = (new TempFile())->make($textFile->getContent());
 
         return self::getOrCreate($filePath);

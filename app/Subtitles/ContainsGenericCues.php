@@ -97,13 +97,20 @@ trait ContainsGenericCues
      */
     public function getCues($sortCues = true)
     {
-        //TODO: sortCues was added because smi parsing uses this function a lot, this should be fixes
+        //TODO: sortCues was added because smi parsing uses this function a lot, this should be fixed more neatly
         if($sortCues) {
-            usort($this->cues, function (GenericSubtitleCue $a, GenericSubtitleCue $b) {
-                return $a->getStartMs() <=> $b->getStartMs();
-            });
+            $this->sortCues();
         }
 
         return $this->cues;
+    }
+
+    public function sortCues()
+    {
+        usort($this->cues, function (GenericSubtitleCue $a, GenericSubtitleCue $b) {
+            return $a->getStartMs() <=> $b->getStartMs();
+        });
+
+        return $this;
     }
 }

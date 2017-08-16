@@ -34,7 +34,8 @@ class ConvertToSrtJobTest extends TestCase
 
         $this->assertTrue($subtitle instanceof Srt);
 
-        $this->assertSame(3, count($subtitle->getCues()));
+        // an extra cue is added as a watermark
+        $this->assertSame(4, count($subtitle->getCues()));
     }
 
     /** @test */
@@ -129,6 +130,7 @@ class ConvertToSrtJobTest extends TestCase
 
         $this->assertTrue($subtitle instanceof Srt);
 
-        $this->assertSame(3, count($subtitle->getCues()));
+        // an extra cue is added as a watermark
+        $this->assertSame(4, count($subtitle->getCues()));
     }
 }
