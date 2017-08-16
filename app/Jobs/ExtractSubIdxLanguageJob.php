@@ -19,7 +19,7 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public $timeout = 300;
 
-    private $subIdxLanguage;
+    protected $subIdxLanguage;
 
     public function __construct(SubIdxLanguage $subIdxLanguage)
     {
@@ -28,12 +28,9 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public function handle()
     {
-        // TODO: can events fire on model change?
         // TODO: shell_exec should timeout instead of the worker
 
         $this->subIdxLanguage->update(['started_at' => Carbon::now()]);
-
-        event(new ExtractingSubIdxLanguageChanged($this->subIdxLanguage));
 
         $VobSub2Srt = $this->subIdxLanguage->subIdx->getVobSub2Srt();
 
@@ -70,7 +67,7 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
             ]);
         }
 
-        event(new ExtractingSubIdxLanguageChanged($this->subIdxLanguage));
+
     }
 
     public function failed()
@@ -79,8 +76,6 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
             'has_error' => true,
             'finished_at' => Carbon::now(),
         ]);
-
-        event(new ExtractingSubIdxLanguageChanged($this->subIdxLanguage));
     }
 
 }

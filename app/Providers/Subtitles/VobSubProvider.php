@@ -2,7 +2,9 @@
 
 namespace App\Providers\Subtitles;
 
+use App\Events\ExtractingSubIdxLanguageChanged;
 use App\Models\SubIdx;
+use App\Models\SubIdxLanguage;
 use App\Subtitles\VobSub\VobSub2Srt;
 use App\Subtitles\VobSub\VobSub2SrtInterface;
 use App\Subtitles\VobSub\VobSub2SrtMock;
@@ -12,7 +14,9 @@ class VobSubProvider extends ServiceProvider
 {
     public function boot()
     {
-
+        SubIdxLanguage::updated(function ($subIdxLanguage) {
+            event(new ExtractingSubIdxLanguageChanged($subIdxLanguage));
+        });
     }
 
     public function register()
