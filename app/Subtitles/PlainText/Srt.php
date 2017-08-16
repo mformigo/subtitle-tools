@@ -4,12 +4,13 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\LoadsGenericSubtitles;
+use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Srt extends TextFile implements LoadsGenericSubtitles
+class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues
 {
     use WithFileLines, ContainsGenericCues;
 
@@ -139,5 +140,29 @@ class Srt extends TextFile implements LoadsGenericSubtitles
         }
 
         return $this;
+    }
+
+    public function shift($ms)
+    {
+        if(!preg_match('/^(-\d+|\d+)$/', $ms)) {
+            throw new \Exception("Invalid shift amount ({$ms})");
+        }
+
+        foreach($this->cues as $cue) {
+            $cue->shift($ms);
+        }
+    }
+
+    public function shiftPartial($fromMs, $toMs, $ms)
+    {
+        if($fromMs > $toMs || $ms == 0) {
+            return;
+        }
+
+        foreach($this->cues as $cue) {
+            if($cue->getStartMs() >= $fromMs && $cue->getStartMs() <= $toMs) {
+                $cue->shift($ms);
+            }
+        }
     }
 }

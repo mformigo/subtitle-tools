@@ -89,4 +89,78 @@ class SrtTest extends TestCase
         $this->assertEquals($cues[4]->getLines()[0], "They both, of course,");
         $this->assertEquals(false, isset($cues[4]->getLines()[1]));
     }
+
+    /** @test */
+    function it_shifts_cues()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+
+        $this->assertSame(1266, $srt->getCues()[0]->getStartMs());
+        $this->assertSame(3366, $srt->getCues()[0]->getEndMs());
+
+        $this->assertSame(3400, $srt->getCues()[1]->getStartMs());
+        $this->assertSame(6366, $srt->getCues()[1]->getEndMs());
+
+        $this->assertSame(6400, $srt->getCues()[2]->getStartMs());
+        $this->assertSame(8233, $srt->getCues()[2]->getEndMs());
+
+        $srt->shift(1000);
+
+        $this->assertSame(2266, $srt->getCues()[0]->getStartMs());
+        $this->assertSame(4366, $srt->getCues()[0]->getEndMs());
+
+        $this->assertSame(4400, $srt->getCues()[1]->getStartMs());
+        $this->assertSame(7366, $srt->getCues()[1]->getEndMs());
+
+        $this->assertSame(7400, $srt->getCues()[2]->getStartMs());
+        $this->assertSame(9233, $srt->getCues()[2]->getEndMs());
+
+        $srt->shift("-1000");
+
+        $this->assertSame(1266, $srt->getCues()[0]->getStartMs());
+        $this->assertSame(3366, $srt->getCues()[0]->getEndMs());
+
+        $this->assertSame(3400, $srt->getCues()[1]->getStartMs());
+        $this->assertSame(6366, $srt->getCues()[1]->getEndMs());
+
+        $this->assertSame(6400, $srt->getCues()[2]->getStartMs());
+        $this->assertSame(8233, $srt->getCues()[2]->getEndMs());
+    }
+
+    /** @test */
+    function it_partial_shifts_cues()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+
+        $this->assertSame(1266, $srt->getCues()[0]->getStartMs());
+        $this->assertSame(3366, $srt->getCues()[0]->getEndMs());
+
+        $this->assertSame(3400, $srt->getCues()[1]->getStartMs());
+        $this->assertSame(6366, $srt->getCues()[1]->getEndMs());
+
+        $this->assertSame(6400, $srt->getCues()[2]->getStartMs());
+        $this->assertSame(8233, $srt->getCues()[2]->getEndMs());
+
+        $srt->shiftPartial(0, 3500, 1000);
+
+        $this->assertSame(2266, $srt->getCues()[0]->getStartMs());
+        $this->assertSame(4366, $srt->getCues()[0]->getEndMs());
+
+        $this->assertSame(4400, $srt->getCues()[1]->getStartMs());
+        $this->assertSame(7366, $srt->getCues()[1]->getEndMs());
+
+        $this->assertSame(6400, $srt->getCues()[2]->getStartMs());
+        $this->assertSame(8233, $srt->getCues()[2]->getEndMs());
+
+        $srt->shiftPartial(4400, 6500, "-1000");
+
+        $this->assertSame(2266, $srt->getCues()[0]->getStartMs());
+        $this->assertSame(4366, $srt->getCues()[0]->getEndMs());
+
+        $this->assertSame(3400, $srt->getCues()[1]->getStartMs());
+        $this->assertSame(6366, $srt->getCues()[1]->getEndMs());
+
+        $this->assertSame(5400, $srt->getCues()[2]->getStartMs());
+        $this->assertSame(7233, $srt->getCues()[2]->getEndMs());
+    }
 }
