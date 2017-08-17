@@ -107,6 +107,8 @@ class SubIdxTest extends TestCase
 
         $this->assertSame(1, count($languages));
 
+        $this->assertTrue(ends_with($languages[0]->fileName, '.srt'));
+
         $this->assertSame(1, StoredFile::count());
 
         foreach($languages->all() as $lang) {

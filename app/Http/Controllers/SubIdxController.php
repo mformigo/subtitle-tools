@@ -55,13 +55,15 @@ class SubIdxController extends Controller
             ->firstOrFail()
             ->languages()
             ->where('index', $languageIndex)
-            ->where('has_error', false)
+            ->whereNull('error_message')
             ->whereNotNull('finished_at')
             ->firstOrFail();
 
-        // todo: download
+        $filePath = $subIdxLanguage->filePath;
 
-        // return response()->download($fileJob->outputStoredFile->filePath, $fileJob->original_name);
+        $fileName = $subIdxLanguage->fileName;
+
+        return response()->download($filePath, $fileName);
     }
 
 }

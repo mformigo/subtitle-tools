@@ -56,6 +56,11 @@ class SubIdxLanguage extends Model
         return $this->outputStoredFile()->firstOrFail()->filePath;
     }
 
+    public function getFileNameAttribute()
+    {
+        return $this->subIdx->original_name . '-' . $this->language . '.srt';
+    }
+
     public function getHasStartedAttribute()
     {
         return $this->started_at !== null;
@@ -68,18 +73,24 @@ class SubIdxLanguage extends Model
 
     public function getHasErrorAttribute()
     {
-        return $this->error_message !== false;
+        return $this->error_message !== null;
     }
 
     public function getStatusMessageAttribute()
     {
-        switch(false)
-        {
-            case $this->hasStarted:  return __('messages.status.queued');
-            case $this->hasFinished: return __('messages.status.processing');
-            case $this->hasError:    return __('messages.status.failed');
-            default:                 return __('messages.status.finished');
+        if(!$this->hasStarted) {
+            return __('messages.status.queued');
         }
+
+        if(!$this->hasFinished) {
+            return __('messages.status.processing');
+        }
+
+        if($this->hasError) {
+            return __('messages.status.failed');
+        }
+
+        return __('messages.status.finished');
     }
 
     public function getDownloadUrlAttribute()

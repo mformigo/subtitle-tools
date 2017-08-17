@@ -14,6 +14,7 @@ class CreateSubIdxesTable extends Migration
             $table->string("page_id")->nullable();
             $table->string("store_directory");
             $table->string("filename");
+            // name of the uploaded sub file without extension
             $table->string("original_name");
             // We can't use StoredFiles for this because they need to be in
             // the same directory, with .sub/.idx extensions
