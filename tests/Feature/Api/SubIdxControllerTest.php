@@ -40,8 +40,8 @@ class SubIdxControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                ['index' => 0, 'downloadUrl' => route('sub-idx-dl', ['pageId' => $subIdx->page_id, 'index' => 0])],
-                ['index' => 1, 'downloadUrl' => route('sub-idx-dl', ['pageId' => $subIdx->page_id, 'index' => 1])],
+                ['index' => 0, 'downloadUrl' => route('sub-idx-download', ['pageId' => $subIdx->page_id, 'index' => 0])],
+                ['index' => 1, 'downloadUrl' => route('sub-idx-download', ['pageId' => $subIdx->page_id, 'index' => 1])],
                 ['index' => 2, 'downloadUrl' => false],
                 ['index' => 3, 'downloadUrl' => false],
             ]);

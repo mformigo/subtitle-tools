@@ -67,9 +67,13 @@ class VobSub2Srt implements VobSub2SrtInterface
             throw new \Exception("Argument can't be empty");
         }
 
-        $command = "vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1";
+        $command = "timeout 300 /usr/local/bin/vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1";
 
         $output = trim(shell_exec($command));
+
+        if(empty($output)) {
+            $output = "error: timeout (empty output)";
+        }
 
         if($this->logToSubIdx !== null) {
             $this->logToSubIdx->vobsub2srtOutputs()->create([

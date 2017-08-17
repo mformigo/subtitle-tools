@@ -17,7 +17,8 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public $tries = 1;
 
-    public $timeout = 300;
+    // the shell_exec in VobSub2Srt times out after 300 seconds
+    public $timeout = 330;
 
     protected $subIdxLanguage;
 
@@ -28,8 +29,6 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public function handle()
     {
-        // TODO: shell_exec should timeout instead of the worker
-
         $this->subIdxLanguage->update(['started_at' => Carbon::now()]);
 
         $VobSub2Srt = $this->subIdxLanguage->subIdx->getVobSub2Srt();

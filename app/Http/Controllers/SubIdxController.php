@@ -50,7 +50,18 @@ class SubIdxController extends Controller
 
     public function downloadSrt($pageId, $languageIndex)
     {
-        throw new \Exception("not implemented yet");
+        $subIdxLanguage = SubIdx::query()
+            ->where('page_id', $pageId)
+            ->firstOrFail()
+            ->languages()
+            ->where('index', $languageIndex)
+            ->where('has_error', false)
+            ->whereNotNull('finished_at')
+            ->firstOrFail();
+
+        // todo: download
+
+        // return response()->download($fileJob->outputStoredFile->filePath, $fileJob->original_name);
     }
 
 }

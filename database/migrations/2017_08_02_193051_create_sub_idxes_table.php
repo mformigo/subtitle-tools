@@ -15,6 +15,8 @@ class CreateSubIdxesTable extends Migration
             $table->string("store_directory");
             $table->string("filename");
             $table->string("original_name");
+            // We can't use StoredFiles for this because they need to be in
+            // the same directory, with .sub/.idx extensions
             $table->string("sub_hash");
             $table->string("idx_hash");
             $table->boolean("is_readable")->nullable();
