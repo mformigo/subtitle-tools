@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\StoredFile;
 use Illuminate\Http\UploadedFile;
 use Tests\CreatesUploadedFiles;
 use Tests\MocksVobSub2Srt;
@@ -99,12 +100,14 @@ class SubIdxTest extends TestCase
         $subIdx = $this->postVobSub();
 
         $languages = $subIdx->languages()
-            ->where('has_error', false)
+            ->whereNull('error_message')
             ->whereNotNull('started_at')
             ->whereNotNull('finished_at')
             ->get();
 
-        $this->assertSame(2, count($languages));
+        $this->assertSame(1, count($languages));
+
+        $this->assertSame(1, StoredFile::count());
 
         foreach($languages->all() as $lang) {
             $this->assertTrue(file_exists($lang->filePath), "Extracted file does not exist ({$lang->filePath})");

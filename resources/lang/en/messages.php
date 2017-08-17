@@ -15,4 +15,8 @@ return [
     'file_has_no_dialogue' => 'This file has no dialogue',
     'file_is_not_srt' => 'This file is not an srt file',
 
+    'subidx_no_vobsub2srt_output_file' => 'No output file after trying to extract the language',
+    'subidx_empty_vobsub2srt_output_file' => 'The vobsub2srt output file was empty',
+    'subidx_vobsub2srt_output_file_only_empty_cues' => 'The vobsub2srt output file only had empty cues',
+    'subidx_job_failed' => 'SubIdx extract job failed',
 ];

@@ -3,7 +3,9 @@
 namespace App\Jobs;
 
 use App\Events\ExtractingSubIdxLanguageChanged;
+use App\Models\StoredFile;
 use App\Models\SubIdxLanguage;
+use App\Subtitles\PlainText\Srt;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -36,45 +38,46 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
         // See the readme for more information about vobsub2srt behavior
         $outputFilePath = $VobSub2Srt->extractLanguage($this->subIdxLanguage->index);
 
-        $newName = null;
-
-        if(file_exists($outputFilePath)) {
-            if(filesize($outputFilePath) === 0) {
-                unlink($outputFilePath);
-            }
-            else {
-                // todo: parse it as srt and save it again
-
-                $newName = substr($outputFilePath, 0, strlen($outputFilePath) - 4) . '-' . $this->subIdxLanguage->index . '-' . $this->subIdxLanguage->language . '.srt';
-
-                rename($outputFilePath, $newName);
-            }
-
+        if(!file_exists($outputFilePath)) {
+            return $this->abortWithError('subidx_no_vobsub2srt_output_file');
         }
 
-        if($newName !== null) {
-            $this->subIdxLanguage->update([
-                'filename' => $this->subIdxLanguage->subIdx->filename . '-' . $this->subIdxLanguage->index . '-' . $this->subIdxLanguage->language . '.srt',
-                'has_error' => false,
-                'finished_at' => Carbon::now(),
-            ]);
-        }
-        else {
-            $this->subIdxLanguage->update([
-                'has_error' => true,
-                'finished_at' => Carbon::now(),
-            ]);
+        if(filesize($outputFilePath) === 0) {
+            unlink($outputFilePath);
+
+            return $this->abortWithError('subidx_empty_vobsub2srt_output_file');
         }
 
+        $srt = new Srt($outputFilePath);
 
+        if(count($srt->getCues()) === 0) {
+            unlink($outputFilePath);
+
+            return $this->abortWithError('subidx_vobsub2srt_output_file_only_empty_cues');
+        }
+
+        $storedFile = StoredFile::createFromTextFile($srt);
+
+        $this->subIdxLanguage->update([
+            'output_stored_file_id' => $storedFile->id,
+            'finished_at' => Carbon::now(),
+        ]);
+
+        return $this->subIdxLanguage;
     }
 
     public function failed()
     {
-        $this->subIdxLanguage->update([
-            'has_error' => true,
-            'finished_at' => Carbon::now(),
-        ]);
+        return $this->abortWithError('subidx_job_failed');
     }
 
+    protected function abortWithError($errorMessage)
+    {
+        $this->subIdxLanguage->update([
+            'error_message' => $errorMessage,
+            'finished_at' => Carbon::now(),
+        ]);
+
+        return $this->subIdxLanguage;
+    }
 }

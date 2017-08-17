@@ -215,4 +215,25 @@ class SrtTest extends TestCase
 
         $this->assertSame(2, count($srt->getCues()));
     }
+
+    /** @test */
+    function load_file_removes_empty_and_duplicate_cues()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/Problematic/empty-and-duplicate-cues.srt");
+
+        $this->assertSame(1, count($srt->getCues()));
+
+        $srt2 = new Srt();
+        $srt2->loadFile("{$this->testFilesStoragePath}TextFiles/Problematic/empty-and-duplicate-cues.srt");
+
+        $this->assertSame(1, count($srt2->getCues()));
+    }
+
+    /** @test */
+    function load_file_does_not_watermark()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/empty.srt");
+
+        $this->assertSame(0, count($srt->getCues()));
+    }
 }

@@ -39,16 +39,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SubIdxLanguage extends Model
 {
-    protected $fillable = ['index', 'language', 'filename', 'has_error', 'started_at', 'finished_at'];
+    protected $fillable = ['index', 'language', 'output_stored_file_id', 'error_message', 'started_at', 'finished_at'];
 
     public function subIdx()
     {
-        return $this->belongsTo('App\Models\SubIdx');
+        return $this->belongsTo(\App\Models\SubIdx::class);
+    }
+
+    public function outputStoredFile()
+    {
+        return $this->hasOne(\App\Models\StoredFile::class, 'id', 'output_stored_file_id');
     }
 
     public function getFilePathAttribute()
     {
-        return storage_disk_file_path($this->subIdx->store_directory . $this->filename);
+        return $this->outputStoredFile()->firstOrFail()->filePath;
     }
 
     public function getHasStartedAttribute()
@@ -61,20 +66,25 @@ class SubIdxLanguage extends Model
         return $this->finished_at !== null;
     }
 
+    public function getHasErrorAttribute()
+    {
+        return $this->error_message !== false;
+    }
+
     public function getStatusMessageAttribute()
     {
         switch(false)
         {
             case $this->hasStarted:  return __('messages.status.queued');
             case $this->hasFinished: return __('messages.status.processing');
-            case !$this->has_error:  return __('messages.status.failed');
+            case $this->hasError:    return __('messages.status.failed');
             default:                 return __('messages.status.finished');
         }
     }
 
     public function getDownloadUrlAttribute()
     {
-        if($this->statusMessage !== __('messages.status.finished')) {
+        if($this->output_stored_file_id === null) {
             return false;
         }
 
