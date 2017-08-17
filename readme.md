@@ -18,7 +18,7 @@ todo
 
 ## Queues and Workers
 * sub-idx language extract jobs run on the **sub-idx** queue. These jobs are extremely cpu intensive.
-* broadcasting happens on the **default** queue
+* broadcasting happens on the **broadcast** queue
 * file jobs happen on the **default** queue
 
 ## Adding a FileGroup + FileJob tool

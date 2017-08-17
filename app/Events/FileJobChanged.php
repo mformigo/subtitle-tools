@@ -15,6 +15,8 @@ class FileJobChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $broadcastQueue = 'broadcast';
+
     protected $fileJob;
 
     public function __construct(FileJob $fileJob)
