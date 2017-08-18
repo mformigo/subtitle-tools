@@ -87,6 +87,7 @@ return [
     |
     */
 
+    'no_files_after_extracting_archives' => 'No files found in uploaded archives',
     'too_many_files_including_archives' => 'You can only upload 100 files at once (including files inside archives)',
     'unknown_error' => 'Something went wrong',
     'file_not_empty' => 'The :attribute file is empty',

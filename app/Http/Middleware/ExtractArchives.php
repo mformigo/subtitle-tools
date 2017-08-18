@@ -27,10 +27,6 @@ class ExtractArchives
 
             $compressedFiles = $archive->getFiles();
 
-            if(count($compressedFiles) === 0) {
-                continue;
-            }
-
             $extractedArchives[] = $file;
 
             foreach($compressedFiles as $compressedFile) {
@@ -55,7 +51,11 @@ class ExtractArchives
                 array_diff($uploadedFiles, $extractedArchives)
             );
 
-            $request->files->add(['subtitles' => $uploadedFiles]);
+            if(count($uploadedFiles) === 0) {
+                return back()->withErrors([$fieldName => __('validation.no_files_after_extracting_archives')]);
+            }
+
+            $request->files->add([$fieldName => $uploadedFiles]);
 
             register_shutdown_function(function() use ($extractedTempFiles) {
                 foreach($extractedTempFiles as $filePath) {
