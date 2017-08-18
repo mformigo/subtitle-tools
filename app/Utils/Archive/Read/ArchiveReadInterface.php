@@ -10,7 +10,7 @@ interface ArchiveReadInterface
 
     public function isSuccessfullyOpened();
 
-    public function getFileCount();
+    public function getEntriesCount();
 
     /**
      * @return CompressedFile[]
@@ -23,5 +23,7 @@ interface ArchiveReadInterface
      * @param $destinationDirectory
      * @return string File path of the extracted file
      */
-    public function extractFile(CompressedFile $file, $destinationDirectory);
+    public function extractFile(CompressedFile $file, $destinationDirectory = null);
+
+    public static function isThisFormat($filePath, $strict = true);
 }

@@ -2,31 +2,42 @@
 
 namespace App\Utils\Archive;
 
+use App\Utils\Archive\Read\ArchiveReadInterface;
 use App\Utils\Archive\Read\ZipArchiveRead;
 
 class Archive
 {
+    protected static $archiveReadClasses = [
+        ZipArchiveRead::class,
+    ];
+
     private function __construct()
     {
     }
 
+    /**
+     * @param $filePath
+     * @return null|ArchiveReadInterface
+     */
     public static function read($filePath)
     {
-        $mime = file_mime($filePath);
-
-        $archiveRead = null;
-
-        switch($mime)
-        {
-            case 'application/zip':
-                $archiveRead = new ZipArchiveRead($filePath);
-                break;
+        foreach(static::$archiveReadClasses as $archiveClass) {
+            if($archiveClass::isThisFormat($filePath)) {
+                return new $archiveClass($filePath);
+            }
         }
 
-        if($archiveRead === null || !$archiveRead->isSuccessfullyOpened()) {
-            return null;
+        return null;
+    }
+
+    public static function isArchive($filePath, $strict = true)
+    {
+        foreach(static::$archiveReadClasses as $archiveClass) {
+            if($archiveClass::isThisFormat($filePath, $strict)) {
+                return true;
+            }
         }
 
-        return $archiveRead;
+        return false;
     }
 }
