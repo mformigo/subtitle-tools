@@ -87,6 +87,7 @@ return [
     |
     */
 
+    'too_many_files_including_archives' => 'You can only upload 100 files at once (including files inside archives)',
     'unknown_error' => 'Something went wrong',
     'file_not_empty' => 'The :attribute file is empty',
     'textfile' => 'The :attribute file must be a text file',
