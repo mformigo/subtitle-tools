@@ -42,7 +42,7 @@ abstract class FileJobController extends Controller
 
     public function validateFileJob(array $rules = [])
     {
-        $rules['subtitles'] = 'required|array|max:100|uploaded_files|no_archives_left';
+        $rules['subtitles'] = 'required|array|max:100|uploaded_files';
 
         $this->validate(request(), $rules);
     }

@@ -95,7 +95,7 @@ return [
     'subidx_invalid_sub_mime' => 'The :attribute file is invalid',
     'subidx_cant_be_read' => 'The sub/idx file can\'t be read',
     'uploaded_files' => 'One more more files failed to upload, please try again',
-    'no_archives_left' => 'There is a problem with one or more uploaded archive files (are they empty?)',
+    // 'no_archives_left' => 'There is a problem with one or more uploaded archive files (are they empty?)',
 
 
     /*

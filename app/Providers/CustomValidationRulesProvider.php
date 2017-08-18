@@ -47,19 +47,19 @@ class CustomValidationRulesProvider extends ServiceProvider
             return true;
         });
 
-        \Validator::extend('no_archives_left', function ($attribute, $valuesArray, $parameters, $validator) {
-            $uploadedFiles = request()->files->get($attribute);
-
-            foreach(array_wrap($uploadedFiles) as $file) {
-                if($file instanceof UploadedFile && $file->isValid()) {
-                    if(Archive::isArchive($file->getRealPath())) {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        });
+//        \Validator::extend('no_archives_left', function ($attribute, $valuesArray, $parameters, $validator) {
+//            $uploadedFiles = request()->files->get($attribute);
+//
+//            foreach(array_wrap($uploadedFiles) as $file) {
+//                if($file instanceof UploadedFile && $file->isValid()) {
+//                    if(Archive::isArchive($file->getRealPath())) {
+//                        return false;
+//                    }
+//                }
+//            }
+//
+//            return true;
+//        });
     }
 
     public function register()
