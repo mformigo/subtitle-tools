@@ -40,7 +40,7 @@ abstract class FileJobJob implements ShouldQueue
 
         $this->inputStoredFile = StoredFile::getOrCreate($file);
 
-        $this->originalName = ($file instanceof UploadedFile) ? $file->getClientOriginalName() : basename($file);
+        $this->originalName = ($file instanceof UploadedFile) ? $file->_originalName : basename($file);
 
         $this->fileJob = FileJob::create([
             'input_stored_file_id' => $this->inputStoredFile->id,

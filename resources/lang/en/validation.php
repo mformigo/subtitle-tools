@@ -87,11 +87,13 @@ return [
     |
     */
 
+    'unknown_error' => 'Something went wrong',
     'file_not_empty' => 'The :attribute file is empty',
     'textfile' => 'The :attribute file must be a text file',
     'subidx_invalid_sub_mime' => 'The :attribute file is invalid',
     'subidx_cant_be_read' => 'The sub/idx file can\'t be read',
     'uploaded_files' => 'One more more files failed to upload, please try again',
+    'no_archives_left' => 'There is a problem with one or more uploaded archive files (are they empty?)',
 
 
     /*

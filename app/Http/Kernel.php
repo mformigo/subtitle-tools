@@ -24,6 +24,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+            \App\Http\Middleware\EnhanceUploadedFiles::class,
         ],
 
         'api' => [
@@ -43,6 +45,7 @@ class Kernel extends HttpKernel
 
         'swap-sub-and-idx' => \App\Http\Middleware\SwapSubAndIdx::class,
         'convert-text-files-to-utf8' => \App\Http\Middleware\ConvertTextFilesToUtf8::class,
+        'extract-archives' => \App\Http\Middleware\ExtractArchives::class,
     ];
 
 }

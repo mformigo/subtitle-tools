@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class ConvertToSrtController extends FileJobController
 {
+    public function __construct()
+    {
+        $this->middleware([
+            'extract-archives',
+        ])->only('post');
+    }
+
     public function index()
     {
         return view('convert-to-srt');

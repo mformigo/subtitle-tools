@@ -36,18 +36,27 @@ abstract class FileJobController extends Controller
             ->whereNull('error_message')
             ->findOrFail($id);
 
-        return response()->download($fileJob->outputStoredFile->filePath, $fileJob->original_name);
+        // basename because it can contain the path if it came from a zip file
+        return response()->download($fileJob->outputStoredFile->filePath, basename($fileJob->original_name));
     }
 
     public function validateFileJob(array $rules = [])
     {
-        $rules['subtitles'] = 'required|array|max:100|uploaded_files';
+        $rules['subtitles'] = 'required|array|max:100|uploaded_files|no_archives_left';
 
         $this->validate(request(), $rules);
     }
 
     protected function doFileJobs($jobClass, array $jobOptions = [], $alwaysQueue = false)
     {
+        // request()->file('subtitles'); // this returns the originally uploaded file (zip), this makes no sense
+        $files = request()->files->get('subtitles');
+
+        // this should never be true
+        if(count($files) === 0) {
+            return back()->withErrors(["subtitles" => __('validation.unknown_error')]);
+        }
+
         $fileGroup = FileGroup::create([
             'original_name' => $request->_archiveName ?? null,
             'tool_route' => $this->getIndexRouteName(),
@@ -55,7 +64,7 @@ abstract class FileJobController extends Controller
             'job_options' => $jobOptions,
         ]);
 
-        $files = request()->file('subtitles');
+
 
         if($alwaysQueue || count($files) > 1) {
             foreach($files as $file) {
@@ -63,7 +72,12 @@ abstract class FileJobController extends Controller
             }
         }
         else {
-            $fileJob = $this->dispatchNow(new $jobClass($fileGroup, $files[0]));
+            // need to use array_values because we mess up the keys somewhere
+            $fileJob = $this->dispatchNow(new $jobClass($fileGroup, array_values($files)[0]));
+
+            if($fileJob === null) {
+                return back(); // fileJob is null when testing with ->withoutJobs();
+            }
 
             if($fileJob->hasError) {
                 return back()->withErrors(["subtitles" => __($fileJob->error_message)]);
