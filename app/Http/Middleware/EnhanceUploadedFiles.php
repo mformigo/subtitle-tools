@@ -14,7 +14,7 @@ class EnhanceUploadedFiles
 
         foreach($request->files->keys() as $key) {
             foreach(array_wrap($request->file($key)) as $file) {
-                if($file instanceof UploadedFile) {
+                if($file instanceof UploadedFile && $file->isValid()) {
                     $file->_originalName = $file->getClientOriginalName();
                 }
             }

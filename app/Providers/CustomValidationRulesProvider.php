@@ -35,7 +35,7 @@ class CustomValidationRulesProvider extends ServiceProvider
                     return false;
                 }
 
-                if($file->getError() !== UPLOAD_ERR_OK) {
+                if(!$file->isValid()) {
                     return false;
                 }
 
@@ -48,21 +48,11 @@ class CustomValidationRulesProvider extends ServiceProvider
         });
 
         \Validator::extend('no_archives_left', function ($attribute, $valuesArray, $parameters, $validator) {
-
             $uploadedFiles = request()->files->get($attribute);
 
-            // Empty archives return an application/octet-stream mime, they have to matches by hash
-            $emptyArchivesHashes = [
-                'b04f3ee8f5e43fa3b162981b50bb72fe1acabb33',
-            ];
-
             foreach(array_wrap($uploadedFiles) as $file) {
-                if($file instanceof UploadedFile && $file->getError() === UPLOAD_ERR_OK) {
-                    if(in_array(FileHash::make($file->getRealPath()), $emptyArchivesHashes)) {
-                        return false;
-                    }
-
-                    if(Archive::read($file->getRealPath()) !== null) {
+                if($file instanceof UploadedFile && $file->isValid()) {
+                    if(Archive::isArchive($file->getRealPath())) {
                         return false;
                     }
                 }
