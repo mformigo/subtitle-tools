@@ -76,16 +76,8 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
-    */
+
+    //Custom Validation Language Lines
 
     'no_files_after_extracting_archives' => 'No files found in uploaded archives',
     'too_many_files_including_archives' => 'You can only upload 100 files at once (including files inside archives)',
@@ -95,8 +87,6 @@ return [
     'subidx_invalid_sub_mime' => 'The :attribute file is invalid',
     'subidx_cant_be_read' => 'The sub/idx file can\'t be read',
     'uploaded_files' => 'One more more files failed to upload, please try again',
-    // 'no_archives_left' => 'There is a problem with one or more uploaded archive files (are they empty?)',
-
 
     /*
     |--------------------------------------------------------------------------
