@@ -51,7 +51,7 @@ class ExtractsArchivesTest extends TestCase
         ]);
 
         $response->assertStatus(302)
-            ->assertSessionHasErrors(['subtitles' => __('validation.no_archives_left')]);
+            ->assertSessionHasErrors(['subtitles' => __('validation.no_files_after_extracting_archives')]);
 
         $this->assertSame(0, StoredFile::count());
     }
@@ -64,7 +64,7 @@ class ExtractsArchivesTest extends TestCase
         ]);
 
         $response->assertStatus(302)
-            ->assertSessionHasErrors(['subtitles' => __('validation.no_archives_left')]);
+            ->assertSessionHasErrors(['subtitles' => __('validation.no_files_after_extracting_archives')]);
 
         $this->assertSame(0, StoredFile::count());
     }

@@ -47,6 +47,7 @@ class Kernel extends HttpKernel
         'swap-sub-and-idx' => \App\Http\Middleware\SwapSubAndIdx::class,
         'convert-text-files-to-utf8' => \App\Http\Middleware\ConvertTextFilesToUtf8::class,
         'extract-archives' => \App\Http\Middleware\ExtractArchives::class,
+        'check-file-size' => \App\Http\Middleware\CheckFileSize::class,
     ];
 
 }

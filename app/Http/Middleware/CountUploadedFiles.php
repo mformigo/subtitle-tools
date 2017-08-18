@@ -15,7 +15,7 @@ class CountUploadedFiles
 
         foreach($request->files->keys() as $key) {
             foreach(array_wrap($request->file($key)) as $file) {
-                if($file instanceof UploadedFile && $file->getError() === UPLOAD_ERR_OK) {
+                if($file instanceof UploadedFile && $file->isValid()) {
                     $fileCount++;
 
                     if(Archive::isArchive($file->getRealPath())) {

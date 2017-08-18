@@ -88,6 +88,9 @@ return [
     'subidx_cant_be_read' => 'The sub/idx file can\'t be read',
     'uploaded_files' => 'One more more files failed to upload, please try again',
 
+    'a_file_in_archive_too_big_when_extracted' => 'Files inside archives can\'t be bigger than 3mb when extracted',
+    'a_file_is_too_big' => 'Files can\'t be bigger than 3 mb',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

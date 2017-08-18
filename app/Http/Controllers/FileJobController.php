@@ -11,6 +11,16 @@ abstract class FileJobController extends Controller
 
     public abstract function post(Request $request);
 
+    protected abstract function getIndexRouteName();
+
+    public function __construct()
+    {
+        $this->middleware([
+            'check-file-size',
+            'extract-archives',
+        ])->only('post');
+    }
+
     public function result($urlKey)
     {
         $fileGroup = FileGroup::query()
@@ -86,6 +96,4 @@ abstract class FileJobController extends Controller
 
         return redirect($fileGroup->resultRoute);
     }
-
-    protected abstract function getIndexRouteName();
 }
