@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\FileName;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -69,14 +70,18 @@ class FileJob extends Model
         return $this->finished_at !== null;
     }
 
+    public function getOriginalNameWithNewExtensionAttribute()
+    {
+        return FileName::changeExtension($this->original_name, $this->new_extension);
+    }
+
     public function getApiValues()
     {
         return [
-            'newExtension' => $this->new_extension,
-            'originalName' => $this->original_name,
+            'id' => $this->id,
+            'originalName' => $this->originalNameWithNewExtension,
             'isFinished' => $this->has_finished,
             'errorMessage' => $this->has_error ? __($this->error_message) : false,
-            'id' => $this->id,
         ];
     }
 }

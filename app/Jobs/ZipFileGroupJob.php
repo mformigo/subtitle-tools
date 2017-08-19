@@ -2,10 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Facades\FileName;
+use App\Facades\TempFile;
 use App\Models\FileGroup;
 use App\Models\StoredFile;
-use App\Utils\TempFile;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,31 +36,38 @@ class ZipFileGroupJob implements ShouldQueue
     {
         $newZip = new ZipArchive();
 
-        $zipTempFilePath = (new TempFile())->makeFilePath('zip');
+        $zipTempFilePath = TempFile::makeFilePath('zip');
 
-        $createSuccess = $newZip->open($zipTempFilePath, ZipArchive::CREATE);
-
-        if($createSuccess !== true) {
-            return $this->failed('messages.zip-job.create_failed');
+        if($newZip->open($zipTempFilePath, ZipArchive::CREATE) !== true) {
+            return $this->abort('messages.zip-job.create_failed');
         }
 
-        $fileJobs = $this->fileGroup->fileJobs;
+        $fileJobs = $this->fileGroup->fileJobs->filter(function($fileJob) {
+            return $fileJob->output_stored_file_id !== null;
+        })->all();
+
+        $alreadyAddedNames = [];
 
         foreach($fileJobs as $fileJob) {
-            if($fileJob->output_stored_file_id !== null) {
-                // TODO: make sure it doesnt add the same name twice
-                $newZip->addFile($fileJob->outputStoredFile->filePath, $fileJob->original_name);
+            $nameInZip = $fileJob->originalNameWithNewExtension;
+
+            while(in_array(strtolower($nameInZip), $alreadyAddedNames)) {
+                $nameInZip = FileName::appendName($nameInZip, '-st');
             }
+
+            $alreadyAddedNames[] = strtolower($nameInZip);
+
+            $newZip->addFile($fileJob->outputStoredFile->filePath, $nameInZip);
         }
 
         if($newZip->numFiles === 0) {
-            return $this->failed('messages.zip-job.no_files_added');
+            return $this->abort('messages.zip-job.no_files_added');
         }
 
-        $closeSuccess = $newZip->close();
+        $newZip->setArchiveComment('Edited at https://subtitletools.com');
 
-        if($closeSuccess !== true) {
-            return $this->failed('messages.zip-job.close_failed');
+        if($newZip->close() !== true) {
+            return $this->abort('messages.zip-job.close_failed');
         }
 
         $storedFile = StoredFile::getOrCreate($zipTempFilePath);
@@ -73,7 +82,7 @@ class ZipFileGroupJob implements ShouldQueue
         return $this->fileGroup;
     }
 
-    public function failed($errorMessage = 'messages.zip-job.unknown_error')
+    public function abort($errorMessage)
     {
         $this->fileGroup->update([
             'archive_error' => $errorMessage,
@@ -81,5 +90,10 @@ class ZipFileGroupJob implements ShouldQueue
         ]);
 
         return $this->fileGroup;
+    }
+
+    public function failed(Exception $exception)
+    {
+        $this->abort('messages.zip-job.unknown_error');
     }
 }
