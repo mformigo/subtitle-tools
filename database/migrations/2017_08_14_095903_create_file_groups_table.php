@@ -11,10 +11,13 @@ class CreateFileGroupsTable extends Migration
         Schema::create('file_groups', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('original_name')->nullable();
             $table->string('tool_route');
             $table->string('url_key');
             $table->string('job_options')->default('{}');
+            $table->dateTime("file_jobs_finished_at")->nullable();
+            $table->dateTime("archive_requested_at")->nullable();
+            $table->dateTime("archive_finished_at")->nullable();
+            $table->integer('archive_stored_file_id')->nullable();
         });
     }
 

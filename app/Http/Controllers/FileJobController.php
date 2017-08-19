@@ -68,7 +68,6 @@ abstract class FileJobController extends Controller
         }
 
         $fileGroup = FileGroup::create([
-            'original_name' => $request->_archiveName ?? null,
             'tool_route' => $this->getIndexRouteName(),
             'url_key' => str_random(16),
             'job_options' => $jobOptions,

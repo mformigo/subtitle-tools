@@ -144,4 +144,17 @@ class ConvertToSrtTest extends TestCase
         $response->assertStatus(302)
             ->assertRedirect($fileGroup->resultRoute);
     }
+
+    /** @test */
+    function it_updates_the_file_group_when_all_jobs_finish()
+    {
+        $response = $this->post(route('convert-to-srt'), [
+            'subtitles' => [
+                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
+            ],
+        ]);
+
+        $this->assertNotNull(FileGroup::findOrFail(1)->file_jobs_finished_at);
+    }
 }

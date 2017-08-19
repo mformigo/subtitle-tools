@@ -79,6 +79,16 @@ abstract class FileJobJob implements ShouldQueue
     {
         $this->fileJob->save();
 
+        $unfinishedJobsCount = $this->fileJob
+            ->fileGroup
+            ->fileJobs()
+            ->whereNull('finished_at')
+            ->count();
+
+        if($unfinishedJobsCount === 0) {
+            $this->fileGroup->update(['file_jobs_finished_at' => Carbon::now()]);
+        }
+
         event(new FileJobChanged($this->fileJob));
 
         return $this->fileJob;
