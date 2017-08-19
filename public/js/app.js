@@ -882,7 +882,8 @@ __webpack_require__(11);
 window.Vue = __webpack_require__(38);
 
 Vue.component('sub-idx-languages', __webpack_require__(39));
-Vue.component('file-group-result', __webpack_require__(42));
+Vue.component('file-group-jobs', __webpack_require__(53));
+Vue.component('file-group-archive', __webpack_require__(50));
 
 var app = new Vue({
     el: '#app'
@@ -46922,15 +46923,28 @@ if (false) {
 }
 
 /***/ }),
-/* 42 */
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(8)(
   /* script */
-  __webpack_require__(43),
+  __webpack_require__(51),
   /* template */
-  __webpack_require__(44),
+  __webpack_require__(52),
   /* styles */
   null,
   /* scopeId */
@@ -46938,9 +46952,9 @@ var Component = __webpack_require__(8)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "C:\\Users\\Sjors\\code\\st\\resources\\assets\\js\\components\\FileGroupResult.vue"
+Component.options.__file = "C:\\Users\\Sjors\\code\\st\\resources\\assets\\js\\components\\FileGroupArchive.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] FileGroupResult.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] FileGroupArchive.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -46949,9 +46963,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6df8dd3b", Component.options)
+    hotAPI.createRecord("data-v-9ad66bd8", Component.options)
   } else {
-    hotAPI.reload("data-v-6df8dd3b", Component.options)
+    hotAPI.reload("data-v-9ad66bd8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -46962,11 +46976,190 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    data: function data() {
+        return {
+            archiveStatus: '',
+            requestArchiveUrl: false,
+            downloadArchiveUrl: false
+        };
+    },
+
+    props: ['urlKey'],
+
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/v1/file-group/archive/' + this.urlKey).then(function (response) {
+            _this.archiveStatus = response.data.archiveStatus;
+            _this.requestArchiveUrl = response.data.requestArchiveUrl;
+            _this.downloadArchiveUrl = response.data.downloadArchiveUrl;
+        });
+
+        //            Echo.channel(`file-group.${this.urlKey}.jobs`).listen('FileJobChanged', (newFileJob) => {
+        //                let arrayIndex = _.findIndex(this.fileJobs, ['id', newFileJob.id]);
+        //
+        //                if(arrayIndex !== -1) {
+        //                    Vue.set(this.fileJobs, arrayIndex, newFileJob);
+        //                }
+        //            });
+    },
+
+
+    methods: {
+
+        requestArchive: function requestArchive(requestUrl) {
+            console.log(requestUrl);
+            axios.post(requestUrl);
+        }
+
+    },
+
+    computed: {
+        csrfToken: function csrfToken() {
+            return window.Laravel.csrf_token;
+        }
+    }
+
+});
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "GroupArchive"
+    }
+  }, [_c('img', {
+    attrs: {
+      "src": "/images/archive-icon.png",
+      "alt": "Archive"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "status"
+  }, [(this.requestArchiveUrl) ? _c('div', [_c('a', {
+    attrs: {
+      "href": "javascript:"
+    },
+    on: {
+      "click": function($event) {
+        _vm.requestArchive(_vm.requestArchiveUrl)
+      }
+    }
+  }, [_vm._v(_vm._s(this.archiveStatus))])]) : (this.downloadArchiveUrl) ? _c('div', [_c('form', {
+    attrs: {
+      "action": this.downloadArchiveUrl,
+      "method": "post",
+      "enctype": "multipart/form-data",
+      "target": "_blank"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "hidden",
+      "name": "_token"
+    },
+    domProps: {
+      "value": this.csrfToken
+    }
+  }), _vm._v(" "), _c('button', {
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v(_vm._s(this.archiveStatus))])])]) : _c('div', [_vm._v("\n            " + _vm._s(this.archiveStatus) + "\n        ")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-9ad66bd8", module.exports)
+  }
+}
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(8)(
+  /* script */
+  __webpack_require__(54),
+  /* template */
+  __webpack_require__(55),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\Users\\Sjors\\code\\st\\resources\\assets\\js\\components\\FileGroupJobs.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] FileGroupJobs.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7d469318", Component.options)
+  } else {
+    hotAPI.reload("data-v-7d469318", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -47003,6 +47196,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         axios.get('/api/v1/file-group/result/' + this.urlKey).then(function (response) {
+            console.log(response);
             _this.fileJobs = response.data;
         });
 
@@ -47017,21 +47211,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 44 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     class: this.fileJobs.length == 1 ? 'single-file' : 'multi-file',
     attrs: {
-      "id": "FileGroupResult"
+      "id": "FileJobs"
     }
   }, _vm._l((_vm.fileJobs), function(fileJob) {
     return _c('div', {
       staticClass: "file-job"
-    }, [_c('div', {
-      staticClass: "original-name"
-    }, [_vm._v(_vm._s(fileJob.originalName))]), _vm._v(" "), (fileJob.errorMessage) ? _c('div', {
+    }, [(fileJob.errorMessage) ? _c('div', {
       staticClass: "status"
     }, [_vm._v("\n            " + _vm._s(fileJob.errorMessage) + "\n        ")]) : (fileJob.isFinished) ? _c('div', {
       staticClass: "status"
@@ -47042,22 +47234,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v("Download")])]) : _c('div', {
       staticClass: "status"
-    }, [_vm._v("\n            Processing...\n        ")])])
+    }, [_vm._v("\n            Processing...\n        ")]), _vm._v(" "), _c('div', {
+      staticClass: "original-name"
+    }, [_vm._v(_vm._s(fileJob.originalName))])])
   }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6df8dd3b", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-7d469318", module.exports)
   }
 }
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

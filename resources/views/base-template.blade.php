@@ -8,6 +8,7 @@
         <script>
             <?php
                 echo 'window.Laravel = ' . json_encode([
+                    'csrf_token' => csrf_token(),
                     'pusherKey' => env('PUSHER_APP_KEY'),
                     'pusherCluster' => env('PUSHER_APP_CLUSTER'),
                     'pusherEncrypted' => env('APP_HTTPS'),

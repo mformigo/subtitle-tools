@@ -2,6 +2,8 @@
 
 Route::get('/')->uses('HomeController@index')->name('home');
 
+Route::post('/file-group-archive/{urlKey}')->uses('DownloadController@fileGroupArchive')->name('file-group-archive-download');
+
 Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
     Route::get('/')->uses('SubIdxController@index')->name('sub-idx-index');
     Route::post('/')->uses('SubIdxController@post');

@@ -1,0 +1,43 @@
+#GroupResult
+{
+  display: flex;
+
+  #FileJobs
+  {
+    width: 500px;
+    max-width: 500px;
+
+
+    .file-job
+    {
+      display: flex;
+      margin: 0.25rem 0;
+
+      .status
+      {
+        padding-right: 2rem;
+      }
+
+      .original-name
+      {
+        flex-grow: 1;
+      }
+    }
+
+  }
+
+  #GroupArchive
+  {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+    margin-left: 4rem;
+
+    img { margin-bottom: 0.75rem; }
+  }
+
+}
+
+

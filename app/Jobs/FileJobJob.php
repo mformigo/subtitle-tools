@@ -12,7 +12,8 @@ use App\Models\FileGroup;
 use App\Models\FileJob;
 use App\Models\StoredFile;
 use Carbon\Carbon;
-use Illuminate\Http\UploadedFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 abstract class FileJobJob implements ShouldQueue
 {

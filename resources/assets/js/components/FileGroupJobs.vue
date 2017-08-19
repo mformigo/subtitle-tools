@@ -1,8 +1,7 @@
 <template>
-    <div id="FileGroupResult" :class="this.fileJobs.length == 1 ? 'single-file' : 'multi-file'">
+    <div id="FileJobs" :class="this.fileJobs.length == 1 ? 'single-file' : 'multi-file'">
 
         <div v-for="fileJob in fileJobs" class="file-job">
-            <div class="original-name">{{ fileJob.originalName }}</div>
 
             <div v-if="fileJob.errorMessage" class="status">
                 {{ fileJob.errorMessage }}
@@ -13,6 +12,8 @@
             <div v-else class="status">
                 Processing...
             </div>
+
+            <div class="original-name">{{ fileJob.originalName }}</div>
 
         </div>
 
@@ -32,6 +33,7 @@
 
         mounted() {
             axios.get(`/api/v1/file-group/result/${this.urlKey}`).then(response => {
+                console.log(response);
                 this.fileJobs = response.data;
             });
 

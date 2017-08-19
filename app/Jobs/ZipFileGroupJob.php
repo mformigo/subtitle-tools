@@ -26,6 +26,8 @@ class ZipFileGroupJob implements ShouldQueue
     public function __construct(FileGroup $fileGroup)
     {
         $this->fileGroup = $fileGroup;
+
+        $fileGroup->update(['archive_requested_at' => Carbon::now()]);
     }
 
     public function handle()
@@ -37,7 +39,7 @@ class ZipFileGroupJob implements ShouldQueue
         $createSuccess = $newZip->open($zipTempFilePath, ZipArchive::CREATE);
 
         if($createSuccess !== true) {
-            return $this->failed('messages.zip.create_failed');
+            return $this->failed('messages.zip-job.create_failed');
         }
 
         $fileJobs = $this->fileGroup->fileJobs;
@@ -50,13 +52,13 @@ class ZipFileGroupJob implements ShouldQueue
         }
 
         if($newZip->numFiles === 0) {
-            return $this->failed('messages.zip.no_files_added');
+            return $this->failed('messages.zip-job.no_files_added');
         }
 
         $closeSuccess = $newZip->close();
 
         if($closeSuccess !== true) {
-            return $this->failed('messages.zip.close_failed');
+            return $this->failed('messages.zip-job.close_failed');
         }
 
         $storedFile = StoredFile::getOrCreate($zipTempFilePath);
@@ -71,7 +73,7 @@ class ZipFileGroupJob implements ShouldQueue
         return $this->fileGroup;
     }
 
-    public function failed($errorMessage = 'messages.zip.unknown_error')
+    public function failed($errorMessage = 'messages.zip-job.unknown_error')
     {
         $this->fileGroup->update([
             'archive_error' => $errorMessage,

@@ -32,6 +32,11 @@ class FileGroup extends Model
         return $this->hasMany(\App\Models\FileJob::class);
     }
 
+    public function archiveStoredFile()
+    {
+        return $this->hasOne(\App\Models\StoredFile::class, 'id', 'archive_stored_file_id');
+    }
+
     public function getResultRouteAttribute()
     {
         return route("{$this->tool_route}-result", ['urlKey' => $this->url_key]);
@@ -45,5 +50,47 @@ class FileGroup extends Model
     public function getJobOptionsAttribute()
     {
         return json_decode($this->attributes['job_options']);
+    }
+
+    public function getArchiveStatusAttribute()
+    {
+        if($this->file_jobs_finished_at === null) {
+            return __('messages.archive.not_available_yet');
+        }
+        else if($this->archive_requested_at === null) {
+            return __('messages.archive.request');
+        }
+        else if($this->archive_stored_file_id === null) {
+            return __('messages.archive.failed');
+        }
+
+        return __('messages.archive.download');
+    }
+
+    public function getRequestArchiveUrlAttribute()
+    {
+        if($this->file_jobs_finished_at === null || $this->archive_requested_at !== null) {
+            return false;
+        }
+
+        return route('file-group-request-archive', ['urlKey' => $this->url_key]);
+    }
+
+    public function getDownloadArchiveUrlAttribute()
+    {
+        if($this->archive_stored_file_id === null) {
+            return false;
+        }
+
+        return route('file-group-archive-download', ['urlKey' => $this->url_key]);
+    }
+
+    public function getApiValues()
+    {
+        return [
+            'archiveStatus' => $this->archiveStatus,
+            'requestArchiveUrl' => $this->requestArchiveUrl,
+            'downloadArchiveUrl' => $this->downloadArchiveUrl,
+        ];
     }
 }

@@ -9,7 +9,13 @@
     <br/>
     <br/>
 
-    <file-group-result url-key="{{ $urlKey }}"></file-group-result>
+    <div id="GroupResult">
+
+        <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
+
+        <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
+
+    </div>
 
     <br/>
     <br/>
