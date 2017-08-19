@@ -19,4 +19,9 @@ return [
     'subidx_empty_vobsub2srt_output_file' => 'The vobsub2srt output file was empty',
     'subidx_vobsub2srt_output_file_only_empty_cues' => 'The vobsub2srt output file only had empty cues',
     'subidx_job_failed' => 'SubIdx extract job failed',
+
+    'zip.unknown_error' => 'Unknown error in zip job',
+    'zip.create_failed' => 'Failed to create archive',
+    'zip.no_files_added' => 'No files added to zip',
+    'zip.close_failed' => 'Failed to close/save archive',
 ];

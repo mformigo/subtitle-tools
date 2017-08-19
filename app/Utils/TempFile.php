@@ -2,11 +2,13 @@
 
 namespace App\Utils;
 
+use Illuminate\Support\Facades\Storage;
+
 class TempFile
 {
     public function make($content)
     {
-        $tempFilePath = storage_disk_file_path('temporary-files/' . date('Y-z') . '-temp-' . str_random(16));
+        $tempFilePath = $this->makeFilePath();
 
         file_put_contents($tempFilePath, $content);
 
@@ -17,5 +19,16 @@ class TempFile
         });
 
         return $tempFilePath;
+    }
+
+    public function makeFilePath($identifier = 'temp')
+    {
+        $directory = storage_disk_file_path('temporary-files/');
+
+        if(!file_exists($directory)) {
+            Storage::makeDirectory('temporary-files/');
+        }
+
+        return $directory . date('Y-z') . '-' . $identifier . '-' . str_random(16);
     }
 }

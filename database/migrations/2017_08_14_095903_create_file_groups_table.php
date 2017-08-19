@@ -17,6 +17,7 @@ class CreateFileGroupsTable extends Migration
             $table->dateTime("file_jobs_finished_at")->nullable();
             $table->dateTime("archive_requested_at")->nullable();
             $table->dateTime("archive_finished_at")->nullable();
+            $table->string('archive_error')->nullable();
             $table->integer('archive_stored_file_id')->nullable();
         });
     }
