@@ -2,18 +2,18 @@
 
 namespace App\Providers\Subtitles;
 
-use App\Models\SubIdx;
+use App\Events\FileGroupChanged;
+use App\Models\FileGroup;
 use App\Subtitles\TextFileFormat;
-use App\Subtitles\VobSub\VobSub2Srt;
-use App\Subtitles\VobSub\VobSub2SrtInterface;
-use App\Subtitles\VobSub\VobSub2SrtMock;
 use Illuminate\Support\ServiceProvider;
 
 class PlainTextProvider extends ServiceProvider
 {
     public function boot()
     {
-
+        FileGroup::updated(function ($fileGroup) {
+            event(new FileGroupChanged($fileGroup));
+        });
     }
 
     public function register()

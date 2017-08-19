@@ -27,6 +27,7 @@ return [
 
     'archive.not_available_yet' => 'Not available yet',
     'archive.request' => 'Generate archive',
+    'archive.processing' => 'Generating archive...',
     'archive.failed' => 'Failed',
     'archive.download' => 'Download archive',
 

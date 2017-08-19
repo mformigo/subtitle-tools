@@ -54,20 +54,17 @@ class FileGroup extends Model
 
     public function getArchiveStatusAttribute()
     {
-        if($this->file_jobs_finished_at === null) {
-            return __('messages.archive.not_available_yet');
+        switch(null)
+        {
+            case $this->file_jobs_finished_at:  return __('messages.archive.not_available_yet');
+            case $this->archive_requested_at:   return __('messages.archive.request');
+            case $this->archive_finished_at:    return __('messages.archive.processing');
+            case $this->archive_stored_file_id: return __('messages.archive.failed');
+            default:                            return __('messages.archive.download');
         }
-        else if($this->archive_requested_at === null) {
-            return __('messages.archive.request');
-        }
-        else if($this->archive_stored_file_id === null) {
-            return __('messages.archive.failed');
-        }
-
-        return __('messages.archive.download');
     }
 
-    public function getRequestArchiveUrlAttribute()
+    public function getArchiveRequestUrlAttribute()
     {
         if($this->file_jobs_finished_at === null || $this->archive_requested_at !== null) {
             return false;
@@ -76,7 +73,7 @@ class FileGroup extends Model
         return route('file-group-request-archive', ['urlKey' => $this->url_key]);
     }
 
-    public function getDownloadArchiveUrlAttribute()
+    public function getArchiveDownloadUrlAttribute()
     {
         if($this->archive_stored_file_id === null) {
             return false;
@@ -89,8 +86,8 @@ class FileGroup extends Model
     {
         return [
             'archiveStatus' => $this->archiveStatus,
-            'requestArchiveUrl' => $this->requestArchiveUrl,
-            'downloadArchiveUrl' => $this->downloadArchiveUrl,
+            'archiveRequestUrl' => $this->archiveRequestUrl,
+            'archiveDownloadUrl' => $this->archiveDownloadUrl,
         ];
     }
 }

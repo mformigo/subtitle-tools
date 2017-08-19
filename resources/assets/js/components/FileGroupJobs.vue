@@ -33,7 +33,6 @@
 
         mounted() {
             axios.get(`/api/v1/file-group/result/${this.urlKey}`).then(response => {
-                console.log(response);
                 this.fileJobs = response.data;
             });
 

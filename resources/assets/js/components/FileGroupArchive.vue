@@ -3,14 +3,15 @@
 
         <img src="/images/archive-icon.png" alt="Archive">
 
-
-
         <span class="status">
-            <div v-if="this.requestArchiveUrl">
-                <a href="javascript:" @click="requestArchive(requestArchiveUrl)">{{ this.archiveStatus }}</a>
+            <div v-if="this.archiveStatus === false">
+                Loading...
             </div>
-            <div v-else-if="this.downloadArchiveUrl">
-                <form :action="this.downloadArchiveUrl"
+            <div v-else-if="this.archiveRequestUrl">
+                <a href="javascript:" @click="requestArchive(archiveRequestUrl);archiveStatus = false;">{{ this.archiveStatus }}</a>
+            </div>
+            <div v-else-if="this.archiveDownloadUrl">
+                <form :action="this.archiveDownloadUrl"
                       method="post"
                       enctype="multipart/form-data"
                       target="_blank">
@@ -31,9 +32,9 @@
     export default {
 
         data: () => ({
-            archiveStatus: '',
-            requestArchiveUrl: false,
-            downloadArchiveUrl: false,
+            archiveStatus: false,
+            archiveRequestUrl: false,
+            archiveDownloadUrl: false,
         }),
 
         props: [
@@ -42,35 +43,25 @@
 
         mounted() {
             axios.get(`/api/v1/file-group/archive/${this.urlKey}`).then(response => {
+                this.archiveRequestUrl = response.data.archiveRequestUrl;
+                this.archiveDownloadUrl = response.data.archiveDownloadUrl;
                 this.archiveStatus = response.data.archiveStatus;
-                this.requestArchiveUrl = response.data.requestArchiveUrl;
-                this.downloadArchiveUrl = response.data.downloadArchiveUrl;
             });
 
-//            Echo.channel(`file-group.${this.urlKey}.jobs`).listen('FileJobChanged', (newFileJob) => {
-//                let arrayIndex = _.findIndex(this.fileJobs, ['id', newFileJob.id]);
-//
-//                if(arrayIndex !== -1) {
-//                    Vue.set(this.fileJobs, arrayIndex, newFileJob);
-//                }
-//            });
+            Echo.channel(`file-group.${this.urlKey}`).listen('FileGroupChanged', (newFileGroup) => {
+                this.archiveRequestUrl = newFileGroup.archiveRequestUrl;
+                this.archiveDownloadUrl = newFileGroup.archiveDownloadUrl;
+                this.archiveStatus = newFileGroup.archiveStatus;
+            });
         },
 
         methods: {
-
-            requestArchive: (requestUrl) => {
-              console.log(requestUrl);
-                axios.post(requestUrl);
-            },
-
-
+            requestArchive: (requestUrl) => axios.post(requestUrl)
         },
 
         computed: {
-            csrfToken: () => { return window.Laravel.csrf_token; }
-        }
-
-
+            csrfToken: () => window.Laravel.csrf_token
+        },
 
     }
 </script>
