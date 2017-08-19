@@ -4,68 +4,56 @@ namespace App\Http\Middleware;
 
 use App\Utils\Archive\Archive;
 use Closure;
-use Illuminate\Http\UploadedFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ExtractArchives
+class ExtractArchives extends TransformsRequestFiles
 {
-    public function handle($request, Closure $next, $fieldName = 'subtitles')
+    public function handle($request, Closure $next)
     {
-        $uploadedFiles = array_wrap(request()->file($fieldName));
-        $extractedArchives = [];
-        $extractedTempFiles = [];
+        if($request->files->has('subtitles')) {
+            $this->cleanFileBag($request->files);
 
-        foreach($uploadedFiles as $file) {
-            if(!$file instanceof UploadedFile || !$file->isValid()) {
-                continue;
-            }
-
-            $archive = Archive::read($file->getRealPath());
-
-            if($archive === null) {
-                continue;
-            }
-
-            $compressedFiles = $archive->getFiles();
-
-            $extractedArchives[] = $file;
-
-            foreach($compressedFiles as $compressedFile) {
-                $filePath = $archive->extractFile($compressedFile);
-                $extractedTempFiles[] = $filePath;
-
-                $newUploadedFile = new UploadedFile(
-                    $filePath,
-                    $compressedFile->getName(),
-                    null, null, null,
-                    true
-                );
-
-                $newUploadedFile->_originalName = $compressedFile->getName();
-
-                $uploadedFiles[] = $newUploadedFile;
+            if(count($request->files->get('subtitles')) === 0) {
+                return back()->withErrors(['subtitles' => __('validation.no_files_after_extracting_archives')]);
             }
         }
 
-        if(count($extractedArchives) !== 0) {
-            $uploadedFiles = array_values(
-                array_diff($uploadedFiles, $extractedArchives)
-            );
+        return $next($request);
+    }
 
-            if(count($uploadedFiles) === 0) {
-                return back()->withErrors([$fieldName => __('validation.no_files_after_extracting_archives')]);
-            }
+    protected function cleanArray(array $data)
+    {
+        return collect($data)->map(function ($value, $key) {
+            return collect([$this->cleanValue($key, $value)])->flatten()->all();
+        })->all();
+    }
 
-            $request->files->add([$fieldName => $uploadedFiles]);
+    protected function transform($key, UploadedFile $file)
+    {
+        $archive = Archive::read($file->getRealPath());
 
-            register_shutdown_function(function() use ($extractedTempFiles) {
-                foreach($extractedTempFiles as $filePath) {
-                    if(file_exists($filePath)) {
-                        unlink($filePath);
-                    }
+        if($archive === null) {
+            return $file;
+        }
+
+        $newUploadedFiles = [];
+
+        foreach($archive->getFiles() as $compressedFile) {
+            $filePath = $archive->extractFile($compressedFile);
+
+            $newUploadedFile = new UploadedFile($filePath, $compressedFile->getName(), null, null, null, true);
+
+            $newUploadedFile->_originalName = $compressedFile->getName();
+
+            $newUploadedFiles[] = $newUploadedFile;
+
+            register_shutdown_function(function() use ($filePath) {
+                if(file_exists($filePath)) {
+                    unlink($filePath);
                 }
             });
         }
 
-        return $next($request);
+        return $newUploadedFiles;
     }
 }

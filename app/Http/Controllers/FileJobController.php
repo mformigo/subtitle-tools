@@ -59,7 +59,6 @@ abstract class FileJobController extends Controller
 
     protected function doFileJobs($jobClass, array $jobOptions = [], $alwaysQueue = false)
     {
-        // request()->file('subtitles'); // this returns the originally uploaded file (zip), this makes no sense
         $files = request()->files->get('subtitles');
 
         // this should never be true
@@ -72,8 +71,6 @@ abstract class FileJobController extends Controller
             'url_key' => str_random(16),
             'job_options' => $jobOptions,
         ]);
-
-
 
         if($alwaysQueue || count($files) > 1) {
             foreach($files as $file) {

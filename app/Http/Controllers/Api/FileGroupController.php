@@ -34,6 +34,6 @@ class FileGroupController extends Controller
 
         $this->dispatch(new ZipFileGroupJob($fileGroup));
 
-        return true;
+        return '1';
     }
 }

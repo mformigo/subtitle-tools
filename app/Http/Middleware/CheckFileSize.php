@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Utils\Archive\Archive;
 use Closure;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Http\UploadedFile;
 
 class CheckFileSize
 {
