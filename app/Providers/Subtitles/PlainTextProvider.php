@@ -19,7 +19,7 @@ class PlainTextProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('TextFileFormat', function($app, $args) {
-                return new TextFileFormat();
+            return new TextFileFormat();
         });
     }
 }

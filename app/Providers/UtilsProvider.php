@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Utils\FileName;
 use Illuminate\Support\ServiceProvider;
 
 class UtilsProvider extends ServiceProvider
@@ -28,6 +29,10 @@ class UtilsProvider extends ServiceProvider
                 app('TextFileIdentifier'),
                 app('TextEncoding')
             );
+        });
+
+        $this->app->bind('FileName', function($app, $args) {
+            return new FileName();
         });
     }
 
