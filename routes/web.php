@@ -26,3 +26,11 @@ Route::prefix('srt-cleaner')->group(function() {
     Route::get('/{urlKey}')->uses('CleanSrtController@result')->name('clean-srt-result');
     Route::get('/{urlKey}/{id}')->uses('CleanSrtController@download')->name('clean-srt-download');
 });
+
+
+Route::prefix('subtitle-sync-shifter')->group(function() {
+    Route::get('/')->uses('ShiftController@index')->name('shift');
+    Route::post('/')->uses('ShiftController@post');
+    Route::get('/{urlKey}')->uses('ShiftController@result')->name('shift-result');
+    Route::get('/{urlKey}/{id}')->uses('ShiftController@download')->name('shift-download');
+});

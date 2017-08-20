@@ -14,6 +14,7 @@ return [
     'file_has_no_dialogue_to_convert' => 'This file has no dialogue',
     'file_has_no_dialogue' => 'This file has no dialogue',
     'file_is_not_srt' => 'This file is not an srt file',
+    'file_can_not_be_shifted' => 'Files of this type can\'t be shifted',
 
     'subidx_no_vobsub2srt_output_file' => 'No output file after trying to extract the language',
     'subidx_empty_vobsub2srt_output_file' => 'The vobsub2srt output file was empty',
