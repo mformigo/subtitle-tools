@@ -13,5 +13,7 @@
     <a href="{{ route('sub-idx-index') }}">Sub/Idx to Srt</a>
     <br/>
     <a href="{{ route('shift') }}">Shift</a>
+    <br/>
+    <a href="{{ route('shift-partial') }}">Shift Partial</a>
 
 @endsection

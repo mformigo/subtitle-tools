@@ -27,5 +27,8 @@
         </div>
 
         <script src="{{ mix('js/app.js') }}"></script>
+
+        @stack('inline-footer-scripts')
+
     </body>
 </html>

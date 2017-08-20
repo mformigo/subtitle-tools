@@ -34,3 +34,6 @@ window.Echo = new Echo({
     cluster: Laravel.pusherCluster,
     encrypted: Laravel.pusherEncrypted,
 });
+
+
+require('./libs/jquery.maskedinput.min');

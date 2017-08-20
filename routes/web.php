@@ -14,3 +14,4 @@ Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
 Route::fileGroupTool('convert-to-srt', 'ConvertToSrtController', 'convert-to-srt-online');
 Route::fileGroupTool('clean-srt',      'CleanSrtController',     'srt-cleaner');
 Route::fileGroupTool('shift',          'ShiftController',        'subtitle-sync-shifter');
+Route::fileGroupTool('shift-partial',  'ShiftPartialController', 'partial-subtitle-sync-shifter');
