@@ -24,8 +24,6 @@ abstract class FileJobJob implements ShouldQueue
 
     protected $inputStoredFile;
 
-    protected $originalName;
-
     protected $fileJob;
 
     public abstract function getNewExtension();
@@ -40,11 +38,11 @@ abstract class FileJobJob implements ShouldQueue
 
         $this->inputStoredFile = StoredFile::getOrCreate($file);
 
-        $this->originalName = ($file instanceof UploadedFile) ? $file->_originalName : basename($file);
+        $originalName = ($file instanceof UploadedFile) ? $file->_originalName : basename($file);
 
         $this->fileJob = FileJob::create([
             'input_stored_file_id' => $this->inputStoredFile->id,
-            'original_name'   => $this->originalName,
+            'original_name'   => $originalName,
             'file_group_id' => $this->fileGroup->id,
         ]);
     }

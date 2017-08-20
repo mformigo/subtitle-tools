@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\PlainText\GenericSubtitle;
 use App\Subtitles\PlainText\GenericSubtitleCue;
 use Tests\TestCase;
@@ -12,6 +13,8 @@ class GenericSubtitleTest extends TestCase
     function it_strips_angle_brackets()
     {
         $genericSubtitle = new GenericSubtitle();
+
+        $this->assertTrue($genericSubtitle instanceof ContainsGenericCues);
 
         $genericCue = new GenericSubtitleCue();
 

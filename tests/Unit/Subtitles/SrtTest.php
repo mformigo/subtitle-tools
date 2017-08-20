@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;
@@ -220,6 +221,8 @@ class SrtTest extends TestCase
     function load_file_removes_empty_and_duplicate_cues()
     {
         $srt = new Srt("{$this->testFilesStoragePath}TextFiles/Problematic/empty-and-duplicate-cues.srt");
+
+        $this->assertTrue($srt instanceof ContainsGenericCues);
 
         $this->assertSame(1, count($srt->getCues()));
 

@@ -10,11 +10,12 @@ use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\Watermarkable;
 use App\Subtitles\WithFileLines;
+use App\Subtitles\WithGenericCues;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues, Watermarkable
+class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues, Watermarkable, ContainsGenericCues
 {
-    use WithFileLines, ContainsGenericCues;
+    use WithFileLines, WithGenericCues;
 
     protected $extension = "srt";
 

@@ -3,10 +3,11 @@
 namespace App\Subtitles\PlainText;
 
 use App\Subtitles\ContainsGenericCues;
+use App\Subtitles\WithGenericCues;
 
-class GenericSubtitle
+class GenericSubtitle implements ContainsGenericCues
 {
-    use ContainsGenericCues;
+    use WithGenericCues;
 
     protected $originalFileNameWithoutExtension = "";
 

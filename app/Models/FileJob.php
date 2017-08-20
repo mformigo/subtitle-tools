@@ -72,6 +72,11 @@ class FileJob extends Model
 
     public function getOriginalNameWithNewExtensionAttribute()
     {
+        // new_extension is only set after the job has successfully finished
+        if(empty($this->new_extension)) {
+            return $this->original_name;
+        }
+
         return FileName::changeExtension($this->original_name, $this->new_extension);
     }
 

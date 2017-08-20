@@ -13,7 +13,13 @@ class FileName
 
     public function changeExtension($fileName, $newExtension)
     {
-        return $this->getWithoutExtension($fileName) . '.' . trim($newExtension, '. ');
+        $newExtension = trim($newExtension, '. ');
+
+        if(empty($newExtension)) {
+            return $this->getWithoutExtension($fileName);
+        }
+
+        return $this->getWithoutExtension($fileName) . '.' . $newExtension;
     }
 
     public function getWithoutExtension($fileName)

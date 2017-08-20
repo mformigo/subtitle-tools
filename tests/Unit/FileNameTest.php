@@ -37,6 +37,10 @@ class FileNameTest extends TestCase
         $this->assertSame('/home/file.test.ass', $fileName->changeExtension('/home/file.test.srt', 'ass'));
 
         $this->assertSame('/home/file.ass', $fileName->changeExtension('/home/file', 'ass'));
+
+        $this->assertSame('/home/file', $fileName->changeExtension('/home/file.ass', ''));
+
+        $this->assertSame('/home/file', $fileName->changeExtension('/home/file.ass', '.'));
     }
 
     /** @test */

@@ -15,5 +15,7 @@
     <a href="{{ route('shift') }}">Shift</a>
     <br/>
     <a href="{{ route('shift-partial') }}">Shift Partial</a>
+    <br/>
+    <a href="{{ route('convert-to-utf8') }}">Convert to Utf8</a>
 
 @endsection
