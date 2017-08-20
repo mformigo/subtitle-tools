@@ -16,9 +16,23 @@ class RouteServiceProvider extends ServiceProvider
 
     public function map()
     {
+        $this->registerRouteMacros();
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+    }
+
+    protected function registerRouteMacros()
+    {
+        Route::macro('fileGroupTool', function($routeName, $controller, $slug) {
+            Route::prefix($slug)->group(function() use ($controller, $routeName) {
+                Route::get('/')->uses($controller.'@index')->name($routeName);
+                Route::post('/')->uses($controller.'@post');
+                Route::get('/{urlKey}')->uses($controller.'@result')->name($routeName.'-result');
+                Route::get('/{urlKey}/{id}')->uses($controller.'@download')->name($routeName.'-download');
+            });
+        });
     }
 
     protected function mapWebRoutes()
@@ -34,5 +48,7 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace . '\Api')
              ->group(base_path('routes/api.php'));
     }
+
+
 
 }
