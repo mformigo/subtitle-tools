@@ -17,5 +17,7 @@
     <a href="{{ route('shift-partial') }}">Shift Partial</a>
     <br/>
     <a href="{{ route('convert-to-utf8') }}">Convert to Utf8</a>
+    <br/>
+    <a href="{{ route('pinyin') }}">Pinyin subs</a>
 
 @endsection

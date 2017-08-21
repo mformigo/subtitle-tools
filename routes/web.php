@@ -16,3 +16,4 @@ Route::fileGroupTool('clean-srt',       'CleanSrtController',      'srt-cleaner'
 Route::fileGroupTool('shift',           'ShiftController',         'subtitle-sync-shifter');
 Route::fileGroupTool('shift-partial',   'ShiftPartialController',  'partial-subtitle-sync-shifter');
 Route::fileGroupTool('convert-to-utf8', 'ConvertToUtf8Controller', 'convert-to-utf8');
+Route::fileGroupTool('pinyin',          'PinyinController',        'make-chinese-pinyin-subtitles');

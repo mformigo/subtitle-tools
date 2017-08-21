@@ -33,5 +33,8 @@ return [
     'archive.failed' => 'Failed',
     'archive.download' => 'Download archive',
 
+    'pinyin.can_not_make_pinyin_subtitles_from_this_file_type' => 'This file type can not be made in to pinyin subtitles',
+    'pinyin.unknown_mode' => 'Unknown error',
+    'pinyin.subtitles_have_no_chinese' => 'The subtitle file has no Chinese to change to pinyin',
 
 ];
