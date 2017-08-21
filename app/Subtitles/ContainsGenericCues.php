@@ -11,6 +11,18 @@ interface ContainsGenericCues
     public function hasCues();
 
     /**
+     * @param bool $sortCues
+     * @return GenericSubtitleCue[]
+     */
+    public function getCues($sortCues = true);
+
+    /**
+     * Sort cues based on start time
+     * @return $this
+     */
+    public function sortCues();
+
+    /**
      * Remove all cues that do not have text lines
      * @return $this
      */
@@ -21,6 +33,7 @@ interface ContainsGenericCues
      * @return $this
      */
     public function removeDuplicateCues();
+
     /**
      * Removes all angle brackets from the text lines, then removes empty cues
      * @return $this
@@ -32,12 +45,4 @@ interface ContainsGenericCues
      * @return $this
      */
     public function stripCurlyBracketsFromCues();
-
-    /**
-     * @param bool $sortCues
-     * @return GenericSubtitleCue[]
-     */
-    public function getCues($sortCues = true);
-
-    public function sortCues();
 }
