@@ -37,5 +37,4 @@ class TextFileReader
     {
         return preg_split("/\r\n|\n|\r/", $this->getContents($filePath));
     }
-
 }

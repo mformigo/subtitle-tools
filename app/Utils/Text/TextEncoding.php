@@ -2,8 +2,7 @@
 
 namespace App\Utils\Text;
 
-use App\Utils\TempFile;
-use Illuminate\Support\Facades\Storage;
+use App\Facades\TempFile;
 
 class TextEncoding
 {
@@ -53,15 +52,9 @@ class TextEncoding
 
     public function detect($string)
     {
-        $tempFilePath = (new TempFile())->make($string);
+        $tempFilePath = TempFile::make($string);
 
-        $resultBool = $this->detectFromFile($tempFilePath);
-
-        if(file_exists($tempFilePath)) {
-            unlink($tempFilePath);
-        }
-
-        return $resultBool;
+        return $this->detectFromFile($tempFilePath);
     }
 
     private function to($string, $outputEncoding, $inputEncoding = null)
@@ -97,11 +90,4 @@ class TextEncoding
     {
         return in_array($encoding, $this->iconvEncodings);
     }
-
-//    public function getAvailableOutputEncodings()
-//    {
-//        // ascii/unknown is a fallback, and is removed from the array
-//        return array_diff(array_keys($this->allowedEncodings), ["ascii/unknown"]);
-//    }
-
 }

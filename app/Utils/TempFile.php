@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 
 class TempFile
 {
+    protected $createdFilePaths = [];
+
     public function make($content)
     {
         $tempFilePath = $this->makeFilePath();
@@ -17,6 +19,8 @@ class TempFile
                 unlink($tempFilePath);
             }
         });
+
+        $this->createdFilePaths[] = $tempFilePath;
 
         return $tempFilePath;
     }
@@ -30,5 +34,17 @@ class TempFile
         }
 
         return $directory . date('Y-z') . '-' . $identifier . '-' . str_random(16);
+    }
+
+    public function cleanUp()
+    {
+        // this function is necessary because the queue worker doesn't run my shutdown functions
+        foreach($this->createdFilePaths as $filePath) {
+            if(file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        $this->createdFilePaths = [];
     }
 }

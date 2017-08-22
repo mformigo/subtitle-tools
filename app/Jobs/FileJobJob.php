@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Facades\TempFile;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -88,6 +89,8 @@ abstract class FileJobJob implements ShouldQueue
         }
 
         event(new FileJobChanged($this->fileJob));
+
+        TempFile::cleanUp();
 
         return $this->fileJob;
     }

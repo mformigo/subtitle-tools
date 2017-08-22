@@ -36,5 +36,4 @@ class FileHash
     {
         return $this->fileHashCache[$filePath];
     }
-
 }
