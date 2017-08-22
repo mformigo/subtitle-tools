@@ -12,6 +12,8 @@
 
         <title>@yield('title')</title>
 
+        @stack('head')
+
         <script>
             <?php
                 echo 'window.Laravel = ' . json_encode([

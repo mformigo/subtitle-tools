@@ -1,5 +1,7 @@
 @extends('base-template')
 
+@include('helpers.robots-no-index')
+
 @section('title',       __('seo.title.'))
 @section('description', __('seo.description.'))
 @section('keywords',    __('seo.keywords.'))
