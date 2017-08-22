@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Facades\FileHash;
+use App\Facades\TempFile;
 use App\Subtitles\TextFile;
 use App\Subtitles\Watermarkable;
-use App\Utils\TempFile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
@@ -70,7 +70,7 @@ class StoredFile extends Model
             $textFile->watermark();
         }
 
-        $filePath = (new TempFile())->make($textFile->getContent());
+        $filePath = TempFile::make("\xEF\xBB\xBF" . $textFile->getContent());
 
         return self::getOrCreate($filePath);
     }

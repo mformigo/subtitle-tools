@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Events\ExtractingSubIdxLanguageChanged;
 use App\Models\StoredFile;
 use App\Models\SubIdxLanguage;
 use App\Subtitles\PlainText\Srt;
@@ -39,13 +38,13 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
         $outputFilePath = $VobSub2Srt->extractLanguage($this->subIdxLanguage->index);
 
         if(!file_exists($outputFilePath)) {
-            return $this->abortWithError('subidx_no_vobsub2srt_output_file');
+            return $this->abortWithError('messages.subidx_no_vobsub2srt_output_file');
         }
 
         if(filesize($outputFilePath) === 0) {
             unlink($outputFilePath);
 
-            return $this->abortWithError('subidx_empty_vobsub2srt_output_file');
+            return $this->abortWithError('messages.subidx_empty_vobsub2srt_output_file');
         }
 
         $srt = new Srt($outputFilePath);
@@ -53,7 +52,7 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
         if(count($srt->getCues()) === 0) {
             unlink($outputFilePath);
 
-            return $this->abortWithError('subidx_vobsub2srt_output_file_only_empty_cues');
+            return $this->abortWithError('messages.subidx_vobsub2srt_output_file_only_empty_cues');
         }
 
         $storedFile = StoredFile::createFromTextFile($srt);
@@ -68,7 +67,7 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public function failed()
     {
-        return $this->abortWithError('subidx_job_failed');
+        return $this->abortWithError('messages.subidx_job_failed');
     }
 
     protected function abortWithError($errorMessage)
