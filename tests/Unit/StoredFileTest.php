@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Facades\TextFileFormat;
 use App\Models\StoredFile;
+use App\Subtitles\PlainText\Srt;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -46,5 +48,22 @@ class StoredFileTest extends TestCase
         $second = StoredFile::getOrCreate($originalFilePath);
 
         $this->assertTrue(StoredFile::count() === 1);
+    }
+
+    /** @test */
+    function it_stores_text_files_with_utf8_bom()
+    {
+        $originalFilePath = "{$this->testFilesStoragePath}TextEncodings/big5.txt";
+
+        $srt = TextFileFormat::getMatchingFormat($originalFilePath);
+
+        $this->assertTrue($srt instanceof Srt);
+
+        $storedFile = StoredFile::createFromTextFile($srt);
+
+        $content = file_get_contents($storedFile->filePath);
+
+        // check that file starts with Utf8-BOM
+        $this->assertTrue(strpos($content, "\xEF\xBB\xBF") === 0);
     }
 }
