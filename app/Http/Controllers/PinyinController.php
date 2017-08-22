@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CleanSrtJob;
 use App\Jobs\PinyinSubtitlesJob;
 use Illuminate\Http\Request;
 
@@ -20,11 +19,12 @@ class PinyinController extends FileJobController
         ]);
 
         $jobOptions = [
+            // mode name is only set because it makes debugging/diagnostics easier
             'mode_name' => __('tools.pinyin.mode.' . $request->get('mode')),
             'mode' => $request->get('mode'),
         ];
 
-        return $this->doFileJobs(PinyinSubtitlesJob::class, $jobOptions);
+        return $this->doFileJobs(PinyinSubtitlesJob::class, $jobOptions, true);
     }
 
     protected function getIndexRouteName()
