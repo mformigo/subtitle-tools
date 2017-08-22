@@ -1,5 +1,9 @@
 @extends('base-template')
 
+@section('title',       __('seo.title.'))
+@section('description', __('seo.description.'))
+@section('keywords',    __('seo.keywords.'))
+
 @section('content')
 
     <h1>Subtitle Tools</h1>

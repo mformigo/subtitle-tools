@@ -1,5 +1,9 @@
 @extends('base-template')
 
+@section('title',       __('seo.title.convert_to_srt'))
+@section('description', __('seo.description.convert_to_srt'))
+@section('keywords',    __('seo.keywords.convert_to_srt'))
+
 @section('content')
 
     <h1>Convert Subtitles to Srt</h1>
