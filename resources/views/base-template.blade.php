@@ -25,6 +25,8 @@
             ?>
         </script>
 
+        <link rel="icon" type="image/png" href="/images/favicon.png" />
+
         <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
         <link href="/css/flags.css" rel="stylesheet" />
 
