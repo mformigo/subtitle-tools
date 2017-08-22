@@ -34,4 +34,4 @@ window.Echo = new Echo({
 });
 
 
-require('./libs/jquery.maskedinput.min');
+require('./vendor/jquery.maskedinput.min');

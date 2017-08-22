@@ -27,8 +27,11 @@
 
         <link rel="icon" type="image/png" href="/images/favicon.png" />
 
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
-        <link href="/css/flags.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/materialize.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}" />
+        <link rel="stylesheet" type="text/css" href="/css/flags.css" />
 
         @if(App::environment('production'))
             <script>
@@ -48,8 +51,8 @@
             @yield('content')
         </div>
 
-        <script src="{{ mix('js/app.js') }}"></script>
-
+        <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
         @stack('inline-footer-scripts')
 
     </body>
