@@ -1,0 +1,29 @@
+section.text-content
+{
+  margin-top: 6rem;
+
+  .container > *
+  {
+    max-width: 900px;
+  }
+
+  h2
+  {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h3
+  {
+    font-size: 1.5rem;
+    margin-bottom: 0.875rem;
+  }
+
+  p
+  {
+    font-weight: 300;
+    font-size: 18px;
+    margin: 0;
+  }
+
+}

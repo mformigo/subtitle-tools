@@ -1,10 +1,20 @@
-@import "variables";
-@import "mixins";
+@import "other/variables";
+@import "other/mixins";
+@import "other/helpers";
 
-@import "other/layout";
-@import "other/flags-custom";
+@import "layout/footer";
+@import "layout/header";
+@import "layout/layout";
 
 @import "components/file-group";
+@import "components/flags-custom";
+@import "components/input-file";
+@import "components/options-group";
+@import "components/tool-card";
 
+@import "sections/section-intro";
+@import "sections/section-text-content";
+
+@import "pages/pinyin-subtitles";
+@import "pages/shifter-partial";
 @import "pages/sub-idx";
-

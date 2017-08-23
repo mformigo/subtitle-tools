@@ -1,0 +1,46 @@
+div.options-group
+{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+
+  &.checkboxes
+  {
+    max-width: 300px;
+  }
+
+  &.radios
+  {
+    label { margin-left: 0; }
+
+  }
+
+  strong
+  {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+  }
+
+  label
+  {
+    margin-left: 1.25rem;
+    margin-bottom: 1rem;
+    color: black;
+    display: inline-block;
+  }
+
+}
+
+@include media-w600
+{
+  div.options-group
+  {
+    &.radios
+    {
+      label { line-height: 1.1 !important; }
+    }
+  }
+
+
+}

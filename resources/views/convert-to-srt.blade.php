@@ -1,8 +1,8 @@
 @extends('base-template')
 
-@section('title',       __('seo.title.convert_to_srt'))
-@section('description', __('seo.description.convert_to_srt'))
-@section('keywords',    __('seo.keywords.convert_to_srt'))
+@section('title',       __('seo.title.convert-to-srt'))
+@section('description', __('seo.description.convert-to-srt'))
+@section('keywords',    __('seo.keywords.convert-to-srt'))
 
 @section('content')
 

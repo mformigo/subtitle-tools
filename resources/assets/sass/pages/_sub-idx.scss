@@ -16,3 +16,20 @@
   }
 
 }
+
+.loader-content
+{
+  &.hidden {display: none;}
+
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  p
+  {
+    padding-top: 2rem;
+    text-align: center;
+  }
+}

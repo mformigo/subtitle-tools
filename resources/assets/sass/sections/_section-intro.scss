@@ -1,0 +1,38 @@
+section.intro
+{
+  padding-bottom: 1rem;
+
+  h1
+  {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p
+  {
+    font-weight: 300;
+    font-size: 22px;
+  }
+
+}
+
+
+@include media-w1200
+{
+  section.intro
+  {
+    h1
+    {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p
+    {
+      font-size: 18px;
+    }
+
+  }
+
+
+}

@@ -21,3 +21,10 @@ function storage_disk_file_path($path, $disk = null)
 
     return rtrim($storagePath, '/') . "/" . ltrim($path, '/');
 }
+
+function nav_item($routeName)
+{
+    $active = Request::is('convert-to-srt') ? ' class="active"' : '';
+
+    return "<li{$active}><a href='" . route('convert-to-srt') . "'>" . __('nav.item.convert-to-srt') . "</a></li>\r\n";
+}
