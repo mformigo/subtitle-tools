@@ -54,6 +54,8 @@
             @yield('content')
         </div>
 
+        @include('partials.footer')
+
         <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         @stack('inline-footer-scripts')
