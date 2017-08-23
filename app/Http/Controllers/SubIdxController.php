@@ -35,7 +35,7 @@ class SubIdxController extends Controller
             return back()->withErrors(__("validation.subidx_cant_be_read"));
         }
 
-        return redirect()->route('sub-idx-detail', ['pageId' => $subIdx->page_id]);
+        return redirect()->route('subIdxDetail', ['pageId' => $subIdx->page_id]);
     }
 
     public function detail($pageId)

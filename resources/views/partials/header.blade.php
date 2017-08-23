@@ -11,13 +11,13 @@
 
             <ul id="dropdown1" class="dropdown-content">
                 {!! nav_item('shift') !!}
-                {!! nav_item('shift-partial') !!}
+                {!! nav_item('shiftPartial') !!}
             </ul>
 
-            {!! nav_item('convert-to-srt') !!}
-            {!! nav_item('sub-idx-index') !!}
-            {!! nav_item('clean-srt') !!}
-            {!! nav_item('convert-to-utf8') !!}
+            {!! nav_item('convertToSrt') !!}
+            {!! nav_item('subIdx') !!}
+            {!! nav_item('cleanSrt') !!}
+            {!! nav_item('convertToUtf8') !!}
             {!! nav_item('pinyin') !!}
 
         </ul>
@@ -25,11 +25,11 @@
             <li class="hamburger-brand">Subtitle Tools</li>
             <li class="divider"></li>
             {!! nav_item('shift') !!}
-            {!! nav_item('shift-partial') !!}
-            {!! nav_item('convert-to-srt') !!}
-            {!! nav_item('sub-idx-index') !!}
-            {!! nav_item('clean-srt') !!}
-            {!! nav_item('convert-to-utf8') !!}
+            {!! nav_item('shiftPartial') !!}
+            {!! nav_item('convertToSrt') !!}
+            {!! nav_item('subIdx') !!}
+            {!! nav_item('cleanSrt') !!}
+            {!! nav_item('convertToUtf8') !!}
             {!! nav_item('pinyin') !!}
             <li class="divider"></li>
             {!! nav_item('contact') !!}

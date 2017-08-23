@@ -10,17 +10,17 @@
 
     <br/>
 
-    <a href="{{ route('convert-to-srt') }}">Convert to Srt</a>
+    <a href="{{ route('convertToSrt') }}">Convert to Srt</a>
     <br/>
-    <a href="{{ route('clean-srt') }}">Clean Srt</a>
+    <a href="{{ route('cleanSrt') }}">Clean Srt</a>
     <br/>
-    <a href="{{ route('sub-idx-index') }}">Sub/Idx to Srt</a>
+    <a href="{{ route('subIdx') }}">Sub/Idx to Srt</a>
     <br/>
     <a href="{{ route('shift') }}">Shift</a>
     <br/>
-    <a href="{{ route('shift-partial') }}">Shift Partial</a>
+    <a href="{{ route('shiftPartial') }}">Shift Partial</a>
     <br/>
-    <a href="{{ route('convert-to-utf8') }}">Convert to Utf8</a>
+    <a href="{{ route('convertToUtf8') }}">Convert to Utf8</a>
     <br/>
     <a href="{{ route('pinyin') }}">Pinyin subs</a>
 

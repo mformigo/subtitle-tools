@@ -21,6 +21,6 @@ class ConvertToUtf8Controller extends FileJobController
 
     protected function getIndexRouteName()
     {
-        return 'convert-to-utf8';
+        return 'convertToUtf8';
     }
 }

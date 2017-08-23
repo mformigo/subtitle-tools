@@ -10,9 +10,9 @@ class RedirectsProvider extends ServiceProvider
     public function boot()
     {
         $redirects = [
-            'format-converter' => 'convert-to-srt',
-            'convert-to-srt'   => 'convert-to-srt',
-            'fo...'            => 'convert-to-srt',
+            'format-converter' => 'convertToSrt',
+            'convert-to-srt'   => 'convertToSrt',
+            'fo...'            => 'convertToSrt',
             'tools'            => 'home',
             //'chinese-to-pinyin'        => 'make-chinese-pinyin-subtitles',
             //'subtitle-shift'           => 'subtitle-sync-shifter',

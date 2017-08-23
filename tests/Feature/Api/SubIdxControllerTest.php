@@ -20,7 +20,7 @@ class SubIdxControllerTest extends TestCase
 
         $subIdx = $this->postVobSub();
 
-        $response = $this->get(route('api-sub-idx-languages', ['pageId' => $subIdx->page_id]));
+        $response = $this->get(route('apiSubIdxLanguages', ['pageId' => $subIdx->page_id]));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -36,11 +36,11 @@ class SubIdxControllerTest extends TestCase
 
         $subIdx = $this->postVobSub();
 
-        $response = $this->get(route('api-sub-idx-languages', ['pageId' => $subIdx->page_id]));
+        $response = $this->get(route('apiSubIdxLanguages', ['pageId' => $subIdx->page_id]));
 
         $response->assertStatus(200)
             ->assertJson([
-                ['index' => 0, 'downloadUrl' => route('sub-idx-download', ['pageId' => $subIdx->page_id, 'index' => 0])],
+                ['index' => 0, 'downloadUrl' => route('subIdxDownload', ['pageId' => $subIdx->page_id, 'index' => 0])],
                 ['index' => 1, 'downloadUrl' => false],
                 ['index' => 2, 'downloadUrl' => false],
                 ['index' => 3, 'downloadUrl' => false],

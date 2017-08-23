@@ -26,6 +26,6 @@ class CleanSrtController extends FileJobController
 
     protected function getIndexRouteName()
     {
-        return 'clean-srt';
+        return 'cleanSrt';
     }
 }

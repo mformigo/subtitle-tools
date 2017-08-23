@@ -24,7 +24,7 @@ function storage_disk_file_path($path, $disk = null)
 
 function nav_item($routeName)
 {
-    $active = Request::is('convert-to-srt') ? ' class="active"' : '';
+    $active = Request::is($routeName) ? ' class="active"' : '';
 
-    return "<li{$active}><a href='" . route('convert-to-srt') . "'>" . __('nav.item.convert-to-srt') . "</a></li>\r\n";
+    return "<li{$active}><a href='" . route($routeName) . "'>" . __("nav.item.{$routeName}") . "</a></li>";
 }

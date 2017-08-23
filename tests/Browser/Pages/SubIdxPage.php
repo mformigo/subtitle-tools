@@ -8,7 +8,7 @@ class SubIdxPage extends Page
 {
     public function url()
     {
-        return '/convert-sub-idx-to-srt-online';
+        return route('subIdx');
     }
 
     public function assert(Browser $browser)

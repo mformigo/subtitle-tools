@@ -39,7 +39,7 @@ class FileGroup extends Model
 
     public function getResultRouteAttribute()
     {
-        return route("{$this->tool_route}-result", ['urlKey' => $this->url_key]);
+        return route("{$this->tool_route}Result", ['urlKey' => $this->url_key]);
     }
 
     public function setJobOptionsAttribute(array $options)
@@ -70,7 +70,7 @@ class FileGroup extends Model
             return false;
         }
 
-        return route('file-group-request-archive', ['urlKey' => $this->url_key]);
+        return route('fileGroupRequestArchive', ['urlKey' => $this->url_key]);
     }
 
     public function getArchiveDownloadUrlAttribute()
@@ -79,7 +79,7 @@ class FileGroup extends Model
             return false;
         }
 
-        return route('file-group-archive-download', ['urlKey' => $this->url_key]);
+        return route('fileGroupArchiveDownload', ['urlKey' => $this->url_key]);
     }
 
     public function getApiValues()

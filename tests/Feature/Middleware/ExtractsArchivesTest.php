@@ -17,7 +17,7 @@ class ExtractsArchivesTest extends TestCase
     {
         $this->withoutJobs();
 
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/5-text-files-4-good.zip")],
         ]);
 
@@ -31,7 +31,7 @@ class ExtractsArchivesTest extends TestCase
     {
         $this->withoutJobs();
 
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}Archives/5-text-files-4-good.zip"),
                 $this->createUploadedFile("{$this->testFilesStoragePath}Archives/dirs-with-ass.zip"),
@@ -46,7 +46,7 @@ class ExtractsArchivesTest extends TestCase
     /** @test */
     function it_rejects_empty_zips()
     {
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/empty.zip")],
         ]);
 
@@ -59,7 +59,7 @@ class ExtractsArchivesTest extends TestCase
     /** @test */
     function it_rejects_zips_with_only_directories_inside()
     {
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/one-empty-dir.zip")],
         ]);
 
@@ -74,7 +74,7 @@ class ExtractsArchivesTest extends TestCase
     {
         $this->withoutJobs();
 
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/one-srt.zip")],
         ]);
 

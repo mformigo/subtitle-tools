@@ -14,7 +14,7 @@ class CheckFileSizeTest extends TestCase
     /** @test */
     function it_rejects_files_that_are_too_big()
     {
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/too-big.ass")],
         ]);
 
@@ -27,7 +27,7 @@ class CheckFileSizeTest extends TestCase
     /** @test */
     function it_rejects_if_files_inside_archives_are_too_big()
     {
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/one-file-too-big-when-extracted.zip")],
         ]);
 

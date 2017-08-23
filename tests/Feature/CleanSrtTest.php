@@ -16,7 +16,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function the_subtitles_field_is_server_side_required()
     {
-        $response = $this->post(route('clean-srt'));
+        $response = $this->post(route('cleanSrt'));
 
         $response->assertStatus(302)
             ->assertSessionHasErrors([
@@ -27,7 +27,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function the_subtitles_field_must_be_an_array()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => 'not an array',
         ]);
 
@@ -40,7 +40,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function the_subtitles_field_array_cant_be_empty()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => [],
         ]);
 
@@ -53,7 +53,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function the_subtitles_field_array_cant_exceed_a_maximum_number_of_items()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => array_fill(0, 101, null),
         ]);
 
@@ -66,7 +66,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function the_subtitles_field_array_must_contain_only_valid_uploaded_files()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => array_fill(0, 10, null),
         ]);
 
@@ -77,7 +77,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function it_shows_errors_on_same_page_if_single_file_cant_be_cleaned()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt"),
             ],
@@ -90,7 +90,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function it_can_handle_files_that_are_not_text_files()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/Fake/exe.srt"),
             ],
@@ -103,7 +103,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function it_redirects_to_results_page_if_single_uploads_is_valid()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.srt"),
             ],
@@ -120,7 +120,7 @@ class CleanSrtTest extends TestCase
     {
         $this->expectsJobs(\App\Jobs\CleanSrtJob::class);
 
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => [
                 UploadedFile::fake()->create('test'),
                 UploadedFile::fake()->create('test-two'),
@@ -136,7 +136,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function it_uses_job_options()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues-cleanable.srt"),
             ],
@@ -158,7 +158,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function it_uses_job_options_when_present()
     {
-        $response = $this->post(route('clean-srt'), [
+        $response = $this->post(route('cleanSrt'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues-cleanable.srt"),
             ],

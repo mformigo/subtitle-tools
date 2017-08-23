@@ -15,7 +15,7 @@ class ConvertToUtf8Test extends TestCase
     /** @test */
     function the_subtitles_field_is_server_side_required()
     {
-        $response = $this->post(route('convert-to-utf8'));
+        $response = $this->post(route('convertToUtf8'));
 
         $response->assertStatus(302)
             ->assertSessionHasErrors([
@@ -26,7 +26,7 @@ class ConvertToUtf8Test extends TestCase
     /** @test */
     function the_subtitles_field_must_be_an_array()
     {
-        $response = $this->post(route('convert-to-utf8'), [
+        $response = $this->post(route('convertToUtf8'), [
             'subtitles' => 'not an array',
         ]);
 
@@ -39,7 +39,7 @@ class ConvertToUtf8Test extends TestCase
     /** @test */
     function the_subtitles_field_array_cant_be_empty()
     {
-        $response = $this->post(route('convert-to-utf8'), [
+        $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [],
         ]);
 
@@ -52,7 +52,7 @@ class ConvertToUtf8Test extends TestCase
     /** @test */
     function it_shows_errors_on_same_page_if_single_file_cant_be_converted()
     {
-        $response = $this->post(route('convert-to-utf8'), [
+        $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/Fake/exe.srt"),
             ],
@@ -65,7 +65,7 @@ class ConvertToUtf8Test extends TestCase
     /** @test */
     function it_redirects_to_results_page_if_single_uploads_is_valid()
     {
-        $response = $this->post(route('convert-to-utf8'), [
+        $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
             ],
@@ -82,7 +82,7 @@ class ConvertToUtf8Test extends TestCase
     {
         $this->expectsJobs(\App\Jobs\ConvertToUtf8Job::class);
 
-        $response = $this->post(route('convert-to-utf8'), [
+        $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [
                 UploadedFile::fake()->create('test'),
                 UploadedFile::fake()->create('test-two'),
@@ -98,7 +98,7 @@ class ConvertToUtf8Test extends TestCase
     /** @test */
     function it_updates_the_file_group_when_all_jobs_finish()
     {
-        $response = $this->post(route('convert-to-utf8'), [
+        $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
                 $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),

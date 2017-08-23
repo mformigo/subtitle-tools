@@ -29,8 +29,8 @@ class RouteServiceProvider extends ServiceProvider
             Route::prefix($slug)->group(function() use ($controller, $routeName) {
                 Route::get('/')->uses($controller.'@index')->name($routeName);
                 Route::post('/')->uses($controller.'@post');
-                Route::get('/{urlKey}')->uses($controller.'@result')->name($routeName.'-result');
-                Route::get('/{urlKey}/{id}')->uses($controller.'@download')->name($routeName.'-download');
+                Route::get('/{urlKey}')->uses($controller.'@result')->name($routeName.'Result');
+                Route::get('/{urlKey}/{id}')->uses($controller.'@download')->name($routeName.'Download');
             });
         });
     }

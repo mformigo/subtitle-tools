@@ -21,6 +21,6 @@ class ConvertToSrtController extends FileJobController
 
     protected function getIndexRouteName()
     {
-        return 'convert-to-srt';
+        return 'convertToSrt';
     }
 }

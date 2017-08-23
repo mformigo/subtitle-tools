@@ -49,6 +49,6 @@ class ShiftPartialController extends FileJobController
 
     protected function getIndexRouteName()
     {
-        return 'shift-partial';
+        return 'shiftPartial';
     }
 }

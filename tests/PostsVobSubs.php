@@ -44,12 +44,12 @@ trait PostsVobSubs
      */
     private function postVobSub()
     {
-        $response = $this->post(route('sub-idx-index'), $this->getSubIdxPostData());
+        $response = $this->post(route('subIdx'), $this->getSubIdxPostData());
 
         $subIdx = SubIdx::where('original_name', $this->defaultSubIdxName)->firstOrFail();
 
         $response->assertStatus(302)
-            ->assertRedirect(route('sub-idx-detail', ['pageId' => $subIdx->page_id]));
+            ->assertRedirect(route('subIdxDetail', ['pageId' => $subIdx->page_id]));
 
         return $subIdx;
     }

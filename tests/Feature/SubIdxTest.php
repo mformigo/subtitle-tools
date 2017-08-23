@@ -17,7 +17,7 @@ class SubIdxTest extends TestCase
     /** @test */
     function the_sub_and_idx_file_are_server_side_required()
     {
-        $response = $this->post(route('sub-idx-index'));
+        $response = $this->post(route('subIdx'));
 
         $response->assertStatus(302)
             ->assertSessionHasErrors([
@@ -29,7 +29,7 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_rejects_empty_files()
     {
-        $response = $this->post(route('sub-idx-index'), [
+        $response = $this->post(route('subIdx'), [
             'sub' => $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt", "empty.sub"),
             'idx' => $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt", "empty.idx"),
         ]);
@@ -44,7 +44,7 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_validates_uploaded_files()
     {
-        $response = $this->post(route('sub-idx-index'), [
+        $response = $this->post(route('subIdx'), [
             'sub' => UploadedFile::fake()->image('movie.sub'),
             'idx' => UploadedFile::fake()->image('text.idx'),
         ]);

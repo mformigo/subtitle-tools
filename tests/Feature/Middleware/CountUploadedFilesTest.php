@@ -14,7 +14,7 @@ class CountUploadedFilesTest extends TestCase
     /** @test */
     function it_redirects_if_there_are_too_many_uploaded_files_inside_archives()
     {
-        $response = $this->post(route('convert-to-srt'), [
+        $response = $this->post(route('convertToSrt'), [
             'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/more-than-100-files.zip")],
         ]);
 
