@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/')->uses('HomeController@index')->name('home');
+Route::get('/contact')->uses('HomeController@index')->name('contact');
 
 Route::post('/file-group-archive/{urlKey}')->uses('DownloadController@fileGroupArchive')->name('fileGroupArchiveDownload');
 
