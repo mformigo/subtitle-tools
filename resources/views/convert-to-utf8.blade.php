@@ -1,39 +1,29 @@
 @extends('base-template')
 
-@section('title',       __('seo.title.'))
-@section('description', __('seo.description.'))
-@section('keywords',    __('seo.keywords.'))
+@section('title',       __('seo.title.convertToUtf8'))
+@section('description', __('seo.description.convertToUtf8'))
+@section('keywords',    __('seo.keywords.convertToUtf8'))
 
 @section('content')
 
-    <h1>Convert to Utf8</h1>
+    @component('components.page-intro')
 
-    <form method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        @slot('title') Convert files to UTF-8 @endslot
 
+        This tool converts any text or subtitle file to UTF-8 encoding.
+        If your subtitle file displays as random, unreadable characters, this tool will probably fix them.
+        The other tools on this website convert the files to UTF-8 by default.
 
-        <label>
-            Subtitle file
-            <input type="file" name="subtitles[]" multiple>
-        </label>
+    @endcomponent
 
-        <br/>
+    @component('components.tool-form')
 
-        <button type="submit">Convert</button>
+        @slot('title') Select files to convert to UTF-8 @endslot
 
-    </form>
+        @slot('formats') Supported formats: any text file @endslot
 
-    <br/>
-    <br/>
+        @slot('buttonText') Convert to UTF-8 @endslot
 
-    @if ($errors->any())
-        <div class="alert alert-danger" id="Errors">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @endcomponent
 
 @endsection

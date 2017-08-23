@@ -9,6 +9,7 @@ return [
     'title.convertToUtf8' => '',
     'title.pinyin' => '',
     'title.subIdx' => '',
+    'title.home' => '',
     'title.contact' => '',
 
     'description.convertToSrt' => 'Convert subtitles to srt online for free. This tool can convert ass to srt, ssa to srt and smi to srt. Upload zip file to convert a batch to srt. Works on Windows, Mac and Linux',

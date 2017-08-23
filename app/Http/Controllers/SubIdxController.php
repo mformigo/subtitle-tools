@@ -29,7 +29,7 @@ class SubIdxController extends Controller
             'sub.mimetypes' => __('validation.subidx_invalid_sub_mime'),
         ]);
 
-        $subIdx = SubIdx::getOrCreateFromUpload($request->file('sub'), $request->file('idx'));
+        $subIdx = SubIdx::getOrCreateFromUpload($request->files->get('sub'), $request->files->get('idx'));
 
         if(!$subIdx->is_readable) {
             return back()->withErrors(__("validation.subidx_cant_be_read"));

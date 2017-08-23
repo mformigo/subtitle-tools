@@ -62,23 +62,19 @@ li.hamburger-brand {
   font-size: 1.25rem;
 }
 
-body {
-  background-color: rgba(245, 245, 245, 0.4);
-}
-
-input[type="number"] {
+section.tool input[type="number"] {
   width: 80px;
   margin-bottom: 1.5rem;
   height: 2rem;
 }
 
-label.for-number {
+section.tool label.for-number {
   font-size: 1rem;
   color: black;
   margin-right: 8px;
 }
 
-input[type=file] {
+section.tool input[type=file] {
   cursor: pointer;
 }
 

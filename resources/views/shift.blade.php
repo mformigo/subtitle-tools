@@ -1,39 +1,31 @@
 @extends('base-template')
 
-@section('title',       __('seo.title.'))
-@section('description', __('seo.description.'))
-@section('keywords',    __('seo.keywords.'))
+@section('title',       __('seo.title.shift'))
+@section('description', __('seo.description.shift'))
+@section('keywords',    __('seo.keywords.shift'))
 
 @section('content')
 
-    <h1>Shift</h1>
+    @component('components.page-intro')
+        @slot('title') Resync Subtitles @endslot
 
-    <form method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        Online tool for resyncing subtitles by shifting all timestamps to make them appear earlier or later.
+        If you want to resync multiple parts of a subtitle file, use the <a href="{{ route('shiftPartial') }}">Partial Shifter Tool</a>
+    @endcomponent
 
-        <label>
-            Subtitle file
-            <input type="file" name="subtitles[]" multiple>
-        </label>
+    @component('components.tool-form')
 
-        <label for="ms-input" class="for-number">Shift (in milliseconds):</label>
-        <input id="ms-input" placeholder="1000" type="number" name="milliseconds" value="{{ old('milliseconds') }}" required>
+        @slot('title') Select a file to shift @endslot
 
-        <button type="submit">Convert</button>
+        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, zip @endslot
 
-    </form>
+        @slot('extraAfter')
+            <label for="ms-input" class="for-number">Shift (in milliseconds):</label>
+            <input id="ms-input" placeholder="1000" type="number" name="milliseconds" value="{{ old('milliseconds') }}" required>
+        @endslot
 
-    <br/>
-    <br/>
+        @slot('buttonText') Shift @endslot
 
-    @if ($errors->any())
-        <div class="alert alert-danger" id="Errors">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @endcomponent
 
 @endsection

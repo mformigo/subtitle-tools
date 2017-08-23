@@ -1,39 +1,72 @@
 @extends('base-template')
 
-@section('title',       __('seo.title.convert-to-srt'))
-@section('description', __('seo.description.convert-to-srt'))
-@section('keywords',    __('seo.keywords.convert-to-srt'))
+@section('title',       __('seo.title.convertToSrt'))
+@section('description', __('seo.description.convertToSrt'))
+@section('keywords',    __('seo.keywords.convertToSrt'))
 
 @section('content')
 
-    <h1>Convert Subtitles to Srt</h1>
+    @component('components.page-intro')
 
-    <form method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        @slot('title') Convert Subtitles to Srt @endslot
+
+        Online tool for changing subtitles to srt.
+        It automatically detects file encoding and encodes the output in UTF-8.
+        Supports the following conversions: <strong>ass to srt</strong>, <strong>ssa to srt</strong> and <strong>smi to srt</strong>.
+        You can select multiple files or upload a zip file to convert a batch of subtitles to srt.
+
+    @endcomponent
 
 
-        <label>
-            Subtitle file
-            <input type="file" name="subtitles[]" multiple>
-        </label>
+    @component('components.tool-form')
 
-        <br/>
+        @slot('title') Select subtitles to convert to srt @endslot
 
-        <button type="submit">Convert</button>
+        @slot('formats') Supported subtitle formats: ass, ssa, smi, zip @endslot
 
-    </form>
+        @slot('buttonText') Convert to Srt @endslot
 
-    <br/>
-    <br/>
+    @endcomponent
 
-    @if ($errors->any())
-        <div class="alert alert-danger" id="Errors">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
+    @component('components.text-section')
+
+        @component('components.text-section-content', ['h2' => true])
+            @slot('title') About converting to subrip @endslot
+
+            Subrip (srt) is a very basic subtitle format, because of this you will almost always lose some functionality or effects when converting to srt.
+            This online format converter tool works with Windows, Mac (Apple) and Linux and doesn't require you to install freeware on your computer.
+            The paragraphs below describe what you can expect when converting your subtitles to srt.
+            You can learn more about the subrip format <a href="https://matroska.org/technical/specs/subtitles/srt.html" rel="nofollow" target="_blank">here</a>.
+        @endcomponent
+
+        @component('components.text-section-content')
+            @slot('title') Converting ass to srt @endslot
+
+            Advanced Substation Alpha (ass) is, as the name says, a more advanced version of the Substation Alpha (ssa) format.
+            It supports many effects, a few examples are custom fonts, pictures, positioned text, colors, moving text and karaoke text.
+            Srt doesn't support any of these things, and when converting ass to srt, all these effects are either removed or changed to normal text.
+            Changing ass files to srt files usually works pretty well, except for the occasional overlapping text as a result of removing text position effects.
+            You can learn more about the ssa and ass format on the <a href="https://en.wikipedia.org/wiki/SubStation_Alpha" rel="nofollow" target="_blank">Wikipedia page</a>.
+        @endcomponent
+
+        @component('components.text-section-content')
+            @slot('title') Converting smi to srt @endslot
+
+            Synchronized Accessible Media Interchange (sami or smi) is an old subtitle format originally <a href="https://msdn.microsoft.com/en-us/library/ms971327.aspx" rel="nofollow" target="_blank">created by Microsoft</a>.
+            Smi files are barely ever used these days because there are far superior alternatives like srt or ass.
+            Korea used to use the smi format to create subtitles for movies, most old Korean movies that come with subtitles use the smi format.
+            Smi files support multiple languages in the same subtitle file, which should work fine when converting to srt.
+        @endcomponent
+
+        @component('components.text-section-content')
+            @slot('title') Converting a batch of subtitles using zip @endslot
+
+            You can convert up to a hundred files at the same time with this tool by uploading a zip file, or by simply selecting multiple files.
+            The tool will attempt to convert all the files inside the zip file.
+            After uploading you will be redirected to the download page, where you can individually download the converted files, or generate a zip file and download them all at once.
+        @endcomponent
+
+    @endcomponent
 
 @endsection
