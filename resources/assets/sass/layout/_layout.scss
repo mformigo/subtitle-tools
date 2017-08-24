@@ -27,3 +27,12 @@ section.tool
   width: 14px;
   height: 14px;
 }
+
+button.plain
+{
+  border: 0;
+  background: 0;
+  color: #039be5;
+
+  &:hover { text-decoration: underline; }
+}

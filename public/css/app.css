@@ -89,6 +89,16 @@ section.tool input[type=file] {
   height: 14px;
 }
 
+button.plain {
+  border: 0;
+  background: 0;
+  color: #039be5;
+}
+
+button.plain:hover {
+  text-decoration: underline;
+}
+
 #FileJobs {
   width: 800px;
   max-width: 800px;

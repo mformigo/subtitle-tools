@@ -7,7 +7,9 @@
                 <strong>Failed</strong>
             </div>
             <div v-else-if="fileJob.isFinished" class="status">
-                <strong><a :href="urlKey + '/' + fileJob.id" target="_blank">Download</a></strong>
+                <strong>
+                    <download-link :url="urlKey + '/' + fileJob.id" text="Download"></download-link>
+                </strong>
             </div>
             <div v-else class="status">
 

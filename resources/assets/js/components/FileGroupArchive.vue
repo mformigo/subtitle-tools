@@ -11,14 +11,9 @@
                 <a href="javascript:" @click="requestArchive(archiveRequestUrl);archiveStatus = false;">{{ this.archiveStatus }}</a>
             </div>
             <div v-else-if="this.archiveDownloadUrl">
-                <form :action="this.archiveDownloadUrl"
-                      method="post"
-                      enctype="multipart/form-data"
-                      target="_blank">
-                    <input type="hidden" name="_token" :value="this.csrfToken">
 
-                    <button type="submit">{{ this.archiveStatus }}</button>
-                </form>
+                <download-link :url="this.archiveDownloadUrl" :text="this.archiveStatus"></download-link>
+
             </div>
             <div v-else>
                 {{ this.archiveStatus }}
@@ -57,10 +52,6 @@
 
         methods: {
             requestArchive: (requestUrl) => axios.post(requestUrl)
-        },
-
-        computed: {
-            csrfToken: () => window.Laravel.csrf_token
         },
 
     }
