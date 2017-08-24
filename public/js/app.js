@@ -11144,6 +11144,7 @@ window.Vue = __webpack_require__(38);
 Vue.component('sub-idx-languages', __webpack_require__(39));
 Vue.component('file-group-jobs', __webpack_require__(42));
 Vue.component('file-group-archive', __webpack_require__(45));
+Vue.component('spinner', __webpack_require__(56));
 
 var app = new Vue({
     el: '#app'
@@ -44753,6 +44754,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -44778,7 +44789,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 Vue.set(_this.fileJobs, arrayIndex, newFileJob);
             }
         });
+    },
+
+
+    methods: {
+        shorten: function shorten(string) {
+            var maxLength = 80;
+
+            if (string.length < maxLength) {
+                return string;
+            }
+
+            return string.substring(0, maxLength / 2) + '...' + string.substring(string.length - maxLength / 2);
+        }
     }
+
 });
 
 /***/ }),
@@ -44796,18 +44821,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "file-job"
     }, [(fileJob.errorMessage) ? _c('div', {
       staticClass: "status"
-    }, [_vm._v("\n            " + _vm._s(fileJob.errorMessage) + "\n        ")]) : (fileJob.isFinished) ? _c('div', {
+    }, [_c('strong', [_vm._v("Failed")])]) : (fileJob.isFinished) ? _c('div', {
       staticClass: "status"
-    }, [_c('a', {
+    }, [_c('strong', [_c('a', {
       attrs: {
         "href": _vm.urlKey + '/' + fileJob.id,
         "target": "_blank"
       }
-    }, [_vm._v("Download")])]) : _c('div', {
+    }, [_vm._v("Download")])])]) : _c('div', {
       staticClass: "status"
-    }, [_vm._v("\n            Processing...\n        ")]), _vm._v(" "), _c('div', {
+    }, [_c('spinner', {
+      attrs: {
+        "size": "extra-small"
+      }
+    }), _vm._v(" "), _c('strong', [_vm._v("Processing...")])], 1), _vm._v(" "), _c('div', {
       staticClass: "original-name"
-    }, [_vm._v(_vm._s(fileJob.originalName))])])
+    }, [_c('img', {
+      attrs: {
+        "src": "/images/file-icon.png",
+        "alt": "file",
+        "title": fileJob.originalName
+      }
+    }), _vm._v("\n            " + _vm._s(_vm.shorten(fileJob.originalName)) + "\n        ")]), _vm._v(" "), (fileJob.errorMessage) ? _c('div', {
+      staticClass: "error-message"
+    }, [_vm._v("\n            Error: " + _vm._s(fileJob.errorMessage) + "\n        ")]) : _vm._e()])
   }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -44998,6 +45035,113 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(57),
+  /* template */
+  __webpack_require__(58),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\Users\\Sjors\\code\\st\\resources\\assets\\js\\components\\helpers\\Spinner.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Spinner.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-12cb51ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-12cb51ea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['size']
+
+});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    class: ("preloader-wrapper small " + (this.size) + " active")
+  }, [_vm._m(0)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "spinner-layer spinner-red-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-12cb51ea", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

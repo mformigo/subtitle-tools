@@ -23,3 +23,15 @@ li.hamburger-brand
 }
 
 
+@include media-w450
+{
+  nav
+  {
+    .brand-logo
+    {
+      margin-left: 0;
+    }
+  }
+
+}
+

@@ -4,16 +4,26 @@
         <div v-for="fileJob in fileJobs" class="file-job">
 
             <div v-if="fileJob.errorMessage" class="status">
-                {{ fileJob.errorMessage }}
+                <strong>Failed</strong>
             </div>
             <div v-else-if="fileJob.isFinished" class="status">
-                <a :href="urlKey + '/' + fileJob.id" target="_blank">Download</a>
+                <strong><a :href="urlKey + '/' + fileJob.id" target="_blank">Download</a></strong>
             </div>
             <div v-else class="status">
-                Processing...
+
+                <spinner size="extra-small"></spinner>
+
+                <strong>Processing...</strong>
             </div>
 
-            <div class="original-name">{{ fileJob.originalName }}</div>
+            <div class="original-name">
+                <img src="/images/file-icon.png" alt="file" :title="fileJob.originalName" />
+                {{ shorten(fileJob.originalName) }}
+            </div>
+
+            <div v-if="fileJob.errorMessage" class="error-message">
+                Error: {{ fileJob.errorMessage }}
+            </div>
 
         </div>
 
@@ -43,6 +53,19 @@
                     Vue.set(this.fileJobs, arrayIndex, newFileJob);
                 }
             });
+        },
+
+        methods: {
+            shorten: function(string) {
+                let maxLength = 80;
+
+                if(string.length < maxLength ) {
+                    return string;
+                }
+
+                return string.substring(0, maxLength/2) + '...' + string.substring(string.length - maxLength/2);
+
+            }
         }
 
     }

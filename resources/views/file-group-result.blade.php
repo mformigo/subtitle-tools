@@ -2,30 +2,34 @@
 
 @include('helpers.robots-no-index')
 
-@section('title',       __('seo.title.'))
-@section('description', __('seo.description.'))
-@section('keywords',    __('seo.keywords.'))
+@section('title',       __('seo.title.fileGroupResult'))
+@section('description', __('seo.description.fileGroupResult'))
+@section('keywords',    __('seo.keywords.fileGroupResult'))
 
 @section('content')
 
-    <h1>Single Download</h1>
+    @component('components.page-intro')
 
-    Group has: {{ $fileCount }} FileJobs
+        @slot('title') Download @endslot
 
-    <br/>
-    <br/>
+        Your files are being processed.
+        Once they are done the page will update automatically.
 
-    <div id="GroupResult">
+    @endcomponent
 
-        <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
+    <div class="container">
+
 
         <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
 
+        <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
+
+
+        <br/>
+        <br/>
+
+        <a class="btn" href="{{ $returnUrl }}">Back to tool</a>
+
     </div>
-
-    <br/>
-    <br/>
-
-    <a href="{{ $returnUrl }}">{{ $returnUrl }}</a>
 
 @endsection

@@ -1,43 +1,107 @@
-#GroupResult
+#FileJobs
 {
-  display: flex;
+  width: 800px;
+  max-width: 800px;
 
-  #FileJobs
+
+  .file-job
   {
-    width: 500px;
-    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.25rem 0;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid lightgray;
 
-
-    .file-job
+    .status
     {
       display: flex;
-      margin: 0.25rem 0;
+      align-items: center;
+      width: 130px;
 
-      .status
+      .preloader-wrapper
       {
-        padding-right: 2rem;
+        margin-right: 8px;
       }
+    }
 
-      .original-name
+    .original-name
+    {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+
+      > img
       {
-        flex-grow: 1;
+        margin-right: 8px;
+        max-width: 16px;
       }
+    }
+
+    .error-message
+    {
+      margin: 0.5rem 0;
+      width: 100%;
     }
 
   }
 
-  #GroupArchive
-  {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-
-    margin-left: 4rem;
-
-    img { margin-bottom: 0.75rem; }
-  }
-
 }
 
+#GroupArchive
+{
+  display: flex;
+  align-content: center;
+  align-items: center;
+
+  margin-bottom: 2rem;
+
+  img { margin-right: 0.75rem; }
+}
+
+
+@include media-w1000
+{
+  #FileJobs
+  {
+    width: 100%;
+
+    .status
+    {
+      width: 110px;
+    }
+  }
+}
+
+@include media-w900
+{
+  #FileJobs
+  {
+    .file-job
+    {
+
+      .status
+      {
+        width: 100%;
+        margin-bottom: 4px;
+      }
+
+      .original-name
+      {
+
+      }
+
+      .error-message
+      {
+        margin: 0.25rem 0;
+      }
+
+    }
+
+  }
+}
 
