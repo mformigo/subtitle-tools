@@ -44767,6 +44767,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -44826,7 +44830,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "status"
     }, [_c('strong', [_vm._v("Failed")])]) : (fileJob.isFinished) ? _c('div', {
       staticClass: "status"
-    }, [_c('strong', [_c('download-link', {
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.fileJobs.length == 1),
+        expression: "fileJobs.length == 1"
+      }],
+      staticClass: "material-icons"
+    }, [_vm._v("file_download")]), _vm._v(" "), _c('strong', [_c('download-link', {
       attrs: {
         "url": _vm.urlKey + '/' + fileJob.id,
         "text": "Download"

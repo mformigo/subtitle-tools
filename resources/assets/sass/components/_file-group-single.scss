@@ -1,16 +1,9 @@
-#FileJobs
+.single-file .file-job
 {
-  width: 800px;
-  max-width: 800px;
-}
-
-.file-job
-{
-  display: flex;
-  flex-wrap: wrap;
   margin: 0.25rem 0;
   padding: 0.25rem 0;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 0;
+
 
   > div
   {
@@ -20,17 +13,21 @@
 
   .status
   {
+    order: 1;
     width: 130px;
+    margin-top: 2rem;
+    font-size: 1.25rem;
 
-    .preloader-wrapper
+    i
     {
-      margin-right: 8px;
+      font-size: 32px;
     }
   }
 
   .original-name
   {
-    flex-grow: 1;
+    order: 0;
+    width: 100%;
 
     white-space: nowrap;
     overflow: hidden;
@@ -38,7 +35,7 @@
     > img
     {
       margin-right: 8px;
-      max-width: 16px;
+      max-width: 32px;
     }
   }
 

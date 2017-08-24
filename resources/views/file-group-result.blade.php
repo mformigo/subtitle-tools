@@ -19,8 +19,9 @@
 
     <div class="container">
 
-
-        <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
+        @if($fileCount > 5)
+            <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
+        @endif
 
         <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
 

@@ -7,6 +7,10 @@
                 <strong>Failed</strong>
             </div>
             <div v-else-if="fileJob.isFinished" class="status">
+
+
+                <i v-show="fileJobs.length == 1" class='material-icons'>file_download</i>
+
                 <strong>
                     <download-link :url="urlKey + '/' + fileJob.id" text="Download"></download-link>
                 </strong>

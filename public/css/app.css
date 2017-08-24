@@ -104,7 +104,7 @@ button.plain:hover {
   max-width: 800px;
 }
 
-#FileJobs .file-job {
+.file-job {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,43 +115,128 @@ button.plain:hover {
   border-bottom: 1px solid lightgray;
 }
 
-#FileJobs .file-job .status {
+.file-job > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.file-job .status {
   width: 130px;
 }
 
-#FileJobs .file-job .status .preloader-wrapper {
+.file-job .status .preloader-wrapper {
   margin-right: 8px;
 }
 
-#FileJobs .file-job .original-name {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.file-job .original-name {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-#FileJobs .file-job .original-name > img {
+.file-job .original-name > img {
   margin-right: 8px;
   max-width: 16px;
 }
 
-#FileJobs .file-job .error-message {
+.file-job .error-message {
   margin: 0.5rem 0;
   width: 100%;
+}
+
+@media (max-width: 1000px) {
+  #FileJobs {
+    width: 100%;
+  }
+
+  .file-jobs .status {
+    width: 110px;
+  }
+}
+
+@media (max-width: 900px) {
+  .file-job .status {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .file-job .error-message {
+    margin: 0.25rem 0;
+  }
+}
+
+.single-file .file-job {
+  margin: 0.25rem 0;
+  padding: 0.25rem 0;
+  border-bottom: 0;
+}
+
+.single-file .file-job > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.single-file .file-job .status {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  width: 130px;
+  margin-top: 2rem;
+  font-size: 1.25rem;
+}
+
+.single-file .file-job .status i {
+  font-size: 32px;
+}
+
+.single-file .file-job .original-name {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.single-file .file-job .original-name > img {
+  margin-right: 8px;
+  max-width: 32px;
+}
+
+.single-file .file-job .error-message {
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  #FileJobs {
+    width: 100%;
+  }
+
+  .file-jobs .status {
+    width: 110px;
+  }
+}
+
+@media (max-width: 900px) {
+  .file-job .status {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .file-job .error-message {
+    margin: 0.25rem 0;
+  }
 }
 
 #GroupArchive {
@@ -168,27 +253,6 @@ button.plain:hover {
 
 #GroupArchive img {
   margin-right: 0.75rem;
-}
-
-@media (max-width: 1000px) {
-  #FileJobs {
-    width: 100%;
-  }
-
-  #FileJobs .status {
-    width: 110px;
-  }
-}
-
-@media (max-width: 900px) {
-  #FileJobs .file-job .status {
-    width: 100%;
-    margin-bottom: 4px;
-  }
-
-  #FileJobs .file-job .error-message {
-    margin: 0.25rem 0;
-  }
 }
 
 .flag.flag-en {
