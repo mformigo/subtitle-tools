@@ -18,6 +18,7 @@ return [
     'title.shiftPartial'    => 'Partial Subtitle Shifter: Sync Multiple Parts | Subtitle Tools',
     'title.subIdx'          => 'Convert Sub/Idx to Srt: Online Conversion Tool | Subtitle Tools',
     'title.subIdxDetail'    => 'Download Sub/Idx | Subtitle Tools',
+    'title.404'             => '404 - Page not Found | Subtitle Tools',
 
 //--------------160-characters-------'################################################################################################################################################################'---------------------------
     'description.cleanSrt'        => 'Removes formatting, brackets (curly, parentheses or angle brackets), html and other effects from subrip files. Easy online tool for cleaning srt subtitles',
@@ -31,6 +32,7 @@ return [
     'description.shiftPartial'    => 'This tools allows you to shift multiple points in a subtitle file. Resync specific parts of subtitles online. Supports srt, ass, ssa and smi files',
     'description.subIdx'          => 'Convert sub/idx to srt online for free. Convert sub to srt without having to install freeware. Fast and free conversion of DVD subtitles. Works on Windows, Mac and Linux.',
     'description.subIdxDetail'    => 'Download languages from sub/idx files',
+    'description.404'             => 'This page could not be found',
 
 
     'keywords.cleanSrt'        => 'subtitle, subtitles, srt, clean, bracket, html, braces, angle, effects, colors, font, b, i',
@@ -44,5 +46,6 @@ return [
     'keywords.shiftPartial'    => 'sync, resync, shift, shifter, online, free, tool, srt, ass, ssa, smi, fix subtitle, synchronizer, multi, partial,',
     'keywords.subIdx'          => 'sub, idx, sub/idx, sub to srt, idx to srt, sub/idx to srt, freeware, mac, linux, windows, online, free, fast, easy, convert, converter, dvd, subtitles, format, subrip, vobsub',
     'keywords.subIdxDetail'    => 'download, processed, files, subtitles, subtitle, sub, idx, sub/idx',
+    'keywords.404'             => '404, not, found',
 
 ];
