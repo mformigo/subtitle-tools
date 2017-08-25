@@ -26,8 +26,26 @@
 
         @slot('buttonText') Convert to Srt @endslot
 
+        @slot('extraBefore')
+            <div class="alert-danger sub-idx-popup hidden">
+                It looks like you're trying to convert a sub/idx file.
+                You need to use the <a href="{{ route('subIdx') }}">sub/idx converter</a> for that.
+            </div>
+        @endslot
+
     @endcomponent
 
+    @push('inline-footer-scripts')
+        <script>
+            $('#SubtitlesInput').on("change", function() {
+                var selectedFileName = $('#SubtitlesInput').val().split('\\').pop();
+
+                var isSubIdxFile = selectedFileName.match(/\.(sub|idx)$/i);
+
+                $(".sub-idx-popup").toggleClass("hidden", !isSubIdxFile);
+            });
+        </script>
+    @endpush
 
     @component('components.text-section')
 

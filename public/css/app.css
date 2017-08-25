@@ -347,6 +347,10 @@ div.options-group label {
   text-align: center;
 }
 
+.alert-danger.sub-idx-popup {
+  max-width: 400px;
+}
+
 .card-content.spinner-content {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -16,7 +16,7 @@
                         <div class="file-field input-field mw420">
                             <div class="btn">
                                 <span>Files</span>
-                                <input type="file" name="subtitles[]" multiple required>
+                                <input type="file" name="subtitles[]" id="SubtitlesInput" multiple required>
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="{{ isset($filePlaceholder) ? $filePlaceholder : 'Select files...' }}">
