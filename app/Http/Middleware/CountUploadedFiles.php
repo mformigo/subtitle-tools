@@ -14,7 +14,7 @@ class CountUploadedFiles
         $fileLimit = 100;
 
         foreach($request->files->keys() as $key) {
-            foreach(array_wrap($request->file($key)) as $file) {
+            foreach(array_wrap($request->files->get($key)) as $file) {
                 if($file instanceof UploadedFile && $file->isValid()) {
                     $fileCount++;
 
