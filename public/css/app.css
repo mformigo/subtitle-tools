@@ -4,7 +4,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .mw700 {
@@ -345,6 +345,30 @@ div.options-group label {
   margin: 2rem auto 0;
   max-width: 320px;
   text-align: center;
+}
+
+.card-content.spinner-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card-content.spinner-content .preloader-wrapper {
+  margin: 2rem 0;
+}
+
+.card-content.spinner-content p {
+  margin: 2rem 0;
 }
 
 section.intro {

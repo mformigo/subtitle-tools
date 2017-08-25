@@ -1,11 +1,11 @@
 <section class="tool">
     <div class="container">
-        <form method="post" enctype="multipart/form-data">
+        <form id="ToolForm" method="post" enctype="multipart/form-data">
 
             {{ csrf_field() }}
 
             <div class="card card-tool">
-                <div class="card-content">
+                <div class="card-content form-content">
                     <h2 class="card-title">{{ $title }}</h2>
 
                     @if(isset($extraBefore))
@@ -33,7 +33,7 @@
                     @endif
 
                     <div class="form-group right-align">
-                        <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
+                        <button type="submit" class="btn">{{ $buttonText }}</button>
                     </div>
 
 
@@ -49,8 +49,24 @@
 
 
                 </div>
+                <div class="card-content spinner-content hidden">
+                    <spinner size="big"></spinner>
+                    <p>
+                        {{ __('messages.files_are_being_uploaded') }}
+                    </p>
+                </div>
             </div>
 
         </form>
     </div>
 </section>
+
+@push('inline-footer-scripts')
+    <script>
+        $("#ToolForm").bind("submit", function() {
+            $("div.card-content.form-content").addClass("hidden");
+
+            $("div.card-content.spinner-content").removeClass("hidden");
+        });
+    </script>
+@endpush

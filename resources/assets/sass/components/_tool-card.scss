@@ -24,3 +24,25 @@
   max-width: 320px;
   text-align: center;
 }
+
+
+
+
+.card-content.spinner-content
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .preloader-wrapper
+  {
+    margin: 2rem 0;
+  }
+
+  p
+  {
+    margin: 2rem 0;
+  }
+}
+

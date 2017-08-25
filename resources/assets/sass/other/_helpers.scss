@@ -4,7 +4,7 @@
 }
 
 
-.hidden { display: none; }
+.hidden { display: none !important; }
 
 .mw700 { max-width: 700px; }
 .mw620 { max-width: 620px; }
