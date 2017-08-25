@@ -2,6 +2,7 @@
 
 namespace App\Utils\Text;
 
+use App\Exceptions\TextEncodingException;
 use App\Facades\TempFile;
 
 class TextEncoding
@@ -40,7 +41,7 @@ class TextEncoding
         $encoding = trim(shell_exec("uchardet \"{$filePath}\""));
 
         if(!$this->isAllowedEncoding($encoding)) {
-            throw new \Exception("Unable to detect file encoding of {$filePath}");
+            throw new TextEncodingException($filePath, $encoding);
         }
 
         $encodingName = $this->allowedEncodings[$encoding];

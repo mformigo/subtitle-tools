@@ -32,6 +32,23 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if($exception instanceof TextEncodingException) {
+            $message = [
+                'datetime: ' . \Carbon\Carbon::now(),
+                'filepath: ' . $exception->getFilePath(),
+                'detected encoding: ' . $exception->getDetectedEncoding(),
+                'stored file id: ' . $exception->getStoredFileId(),
+            ];
+
+            file_put_contents(
+                storage_path('/logs/text-encoding.log'),
+                implode('|', $message) . "\r\n",
+                FILE_APPEND
+            );
+
+            return;
+        }
+
         parent::report($exception);
     }
 
@@ -44,6 +61,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof TextEncodingException) {
+            return response()->view('errors.text-encoding-exception', [], 500);
+        }
+
         return parent::render($request, $exception);
     }
 
