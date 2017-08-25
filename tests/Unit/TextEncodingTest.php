@@ -3,8 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TextEncodingTest extends TestCase
 {
@@ -12,7 +10,6 @@ class TextEncodingTest extends TestCase
         "big5.txt" => "Big5",
         "euc-kr.txt" => "EUC-KR",
         "gb18030.txt" => "gb18030",
-        // "gb2312.txt" => "gb2312",
         "iso-8859-7.txt" => "ISO-8859-7",
         "shift-jis.txt" => "Shift_JIS",
         "tis-620.txt" => "TIS-620",
@@ -22,6 +19,7 @@ class TextEncodingTest extends TestCase
         "windows-1251.txt" => "windows-1251",
         "windows-1252-ansi.txt" => "windows-1252",
         "x-mac-cyrillic.txt" => "MacCyrillic",
+        "KOI8-R.txt" => "KOI8-R",
     ];
 
     /** @test */
@@ -30,7 +28,7 @@ class TextEncodingTest extends TestCase
         $textEncoding = app('TextEncoding');
 
         foreach($this->fileNamesEncodings as $fileName => $expectedEncoding) {
-            $filePath = base_path("tests/Storage/TextEncodings/{$fileName}");
+            $filePath = "{$this->testFilesStoragePath}TextEncodings/{$fileName}";
 
             $this->assertSame($expectedEncoding, $textEncoding->detectFromFile($filePath));
         }
@@ -42,27 +40,11 @@ class TextEncodingTest extends TestCase
         $textEncoding = app('TextEncoding');
 
         foreach($this->fileNamesEncodings as $fileName => $expectedEncoding) {
-            $filePath = base_path("tests/Storage/TextEncodings/{$fileName}");
+            $filePath = "{$this->testFilesStoragePath}TextEncodings/{$fileName}";
+
             $string = file_get_contents($filePath);
 
             $this->assertSame($expectedEncoding, $textEncoding->detect($string));
         }
     }
-
-//    /** @test */
-//    function available_encodings()
-//    {
-//        $textEncoding = app(TextEncoding::class);
-//
-//        $availableEncodings = $textEncoding->getAvailableEncodings();
-//
-//        $this->assertContains("UTF-8", $availableEncodings);
-//        $this->assertContains("Big5", $availableEncodings);
-//
-//        // internally used utf-8 bom
-//        $this->assertContains("UTF-8 BOM", $availableEncodings);
-//
-//        // ascii/unknown encoding should not exist
-//        $this->assertNotContains("ascii/unknown", $availableEncodings);
-//    }
 }

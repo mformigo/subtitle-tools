@@ -9,19 +9,20 @@ class TextEncoding
 {
     private $allowedEncodings = [
     //  uchardet name       php encoding name
-        "UTF-8"          => "UTF-8",
-        "ascii/unknown"  => "UTF-8", // We assume UTF-8 here
-        "UTF-16"         => "UTF-16",
-        "windows-1252"   => "windows-1252", // ANSI
-        "Shift_JIS"      => "Shift_JIS", // Japanese
-        "Big5"           => "Big5", // Traditional Chinese
-        "gb18030"        => "gb18030", // Simplified Chinese
-        "gb2312"         => "gb2312", // Simplified Chinese
-        "TIS-620"        => "TIS-620", // Thai
-        "EUC-KR"         => "EUC-KR", // Korean
-        "windows-1251"   => "windows-1251", // Russian
-        "x-mac-cyrillic" => "MacCyrillic",
-        "ISO-8859-7"     => "ISO-8859-7",
+        'UTF-8'          => 'UTF-8',
+        'ascii/unknown'  => 'UTF-8', // We assume UTF-8 here
+        'UTF-16'         => 'UTF-16',
+        'windows-1252'   => 'windows-1252', // ANSI
+        'Shift_JIS'      => 'Shift_JIS', // Japanese
+        'Big5'           => 'Big5', // Traditional Chinese
+        'gb18030'        => 'gb18030', // Simplified Chinese
+        'gb2312'         => 'gb2312', // Simplified Chinese
+        'TIS-620'        => 'TIS-620', // Thai
+        'EUC-KR'         => 'EUC-KR', // Korean
+        'windows-1251'   => 'windows-1251', // Russian
+        'x-mac-cyrillic' => 'MacCyrillic',
+        'ISO-8859-7'     => 'ISO-8859-7',
+        'KOI8-R'         => 'KOI8-R',
     ];
 
     private $iconvEncodings = [
