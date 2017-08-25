@@ -15,6 +15,8 @@ class ExtractingSubIdxLanguageChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $broadcastQueue = 'broadcast';
+
     protected $subIdxLanguage;
 
     public function __construct(SubIdxLanguage $subIdxLanguage)

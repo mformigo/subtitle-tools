@@ -44612,6 +44612,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -44660,13 +44664,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "name"
     }, [_vm._v(_vm._s(lang.language))]), _vm._v(" "), (lang.downloadUrl) ? _c('div', {
       staticClass: "status"
-    }, [_c('a', {
+    }, [_c('div'), _vm._v(" "), _c('download-link', {
       attrs: {
-        "href": lang.downloadUrl
+        "url": lang.downloadUrl,
+        "text": "Download"
       }
-    }, [_vm._v("Download")])]) : _c('div', {
+    })], 1) : _c('div', {
       staticClass: "status"
-    }, [_vm._v("\n            " + _vm._s(lang.status) + "\n        ")])])
+    }, [_c('div', [_c('spinner', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!lang.hasError),
+        expression: "!lang.hasError"
+      }],
+      attrs: {
+        "size": "extra-small"
+      }
+    })], 1), _vm._v("\n            " + _vm._s(lang.status) + "\n        ")])])
   })], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -44677,7 +44692,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "name"
   }, [_vm._v("Language")]), _vm._v(" "), _c('div', {
     staticClass: "status"
-  }, [_vm._v("Status")])])
+  }, [_c('div'), _vm._v("Status")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

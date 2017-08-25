@@ -2,19 +2,32 @@
 
 @include('helpers.robots-no-index')
 
-@section('title',       __('seo.title.'))
-@section('description', __('seo.description.'))
-@section('keywords',    __('seo.keywords.'))
+@section('title',       __('seo.title.subIdxDetail'))
+@section('description', __('seo.description.subIdxDetail'))
+@section('keywords',    __('seo.keywords.subIdxDetail'))
 
 @section('content')
 
-    <h1>Sub Idx Detail</h1>
+    @component('components.page-intro')
+        @slot('title') Sub/Idx Download @endslot
 
-    <p>
-        Extracting srt files from <strong>{{ $originalName }}</strong>
-    </p>
+        The srt files are being extracted from the sub/idx file.
+        This page will update automatically.
+        Extracting a language can take a few minutes, please be patient.
+    @endcomponent
 
+    <div class="container">
 
-    <sub-idx-languages page-id="{{ $pageId }}"></sub-idx-languages>
+        <p>
+            Extracting srt files from <strong>{{ $originalName }}</strong>
+        </p>
+
+        <sub-idx-languages page-id="{{ $pageId }}"></sub-idx-languages>
+
+        <br/>
+        <br/>
+        <a class="btn" href="{{ route('subIdx') }}">Back to tool</a>
+
+    </div>
 
 @endsection

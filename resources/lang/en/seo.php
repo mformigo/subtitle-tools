@@ -9,6 +9,7 @@ return [
     'title.convertToUtf8' => '',
     'title.pinyin' => '',
     'title.subIdx' => '',
+    'title.subIdxDetail' => '',
     'title.home' => '',
     'title.contact' => '',
     'title.fileGroupResult' => '',

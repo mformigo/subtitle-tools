@@ -4,7 +4,7 @@
         <div class="language header">
             <div class="country"></div>
             <div class="name">Language</div>
-            <div class="status">Status</div>
+            <div class="status"><div></div>Status</div>
         </div>
 
         <div v-for="lang in languages" class="language">
@@ -14,9 +14,13 @@
             <div class="name">{{ lang.language }}</div>
 
             <div v-if="lang.downloadUrl" class="status">
-                <a :href="lang.downloadUrl">Download</a>
+                <div></div>
+                <download-link :url="lang.downloadUrl" text="Download"></download-link>
             </div>
             <div v-else class="status">
+                <div>
+                    <spinner v-show="!lang.hasError" size="extra-small"></spinner>
+                </div>
                 {{ lang.status }}
             </div>
 

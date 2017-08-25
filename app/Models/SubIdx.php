@@ -6,8 +6,8 @@ use App\Facades\FileHash;
 use App\Jobs\ExtractSubIdxLanguageJob;
 use App\Subtitles\VobSub\VobSub2SrtInterface;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * App\Models\SubIdx

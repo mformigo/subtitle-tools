@@ -3,7 +3,7 @@
 return [
 
     'status.queued'     => 'Queued',
-    'status.processing' => 'Processing',
+    'status.processing' => 'Processing...',
     'status.finished'   => 'Finished',
     'status.failed'     => 'Failed',
 

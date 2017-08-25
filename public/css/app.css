@@ -92,6 +92,7 @@ section.tool input[type=file] {
 button.plain {
   border: 0;
   background: 0;
+  padding: 0;
   color: #039be5;
 }
 
@@ -256,11 +257,15 @@ button.plain:hover {
 }
 
 .flag.flag-en {
-  background-position: -100px -210px;
+  background-position: -100px -210px !important;
+}
+
+.flag.flag-sv {
+  background-position: -50px -180px !important;
 }
 
 .flag.flag-unknown {
-  background-position: -999px -999px;
+  background-position: -999px -999px !important;
 }
 
 div.file-field {
@@ -441,13 +446,17 @@ ul.pinyin-tabs li.tab {
 }
 
 #SubIdxLanguages {
-  width: 300px;
+  width: 450px;
 }
 
 #SubIdxLanguages .language {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid lightgray;
 }
 
 #SubIdxLanguages .language.header {
@@ -455,7 +464,9 @@ ul.pinyin-tabs li.tab {
 }
 
 #SubIdxLanguages .language .country {
+  line-height: 0;
   width: 25px;
+  margin-right: 1rem;
 }
 
 #SubIdxLanguages .language .name {
@@ -465,37 +476,29 @@ ul.pinyin-tabs li.tab {
 }
 
 #SubIdxLanguages .language .status {
-  width: 75px;
-  text-align: center;
-}
-
-#SubIdxLanguages .language > * {
-  padding: 0.5rem;
-}
-
-.loader-content {
-  padding: 2rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 130px;
 }
 
-.loader-content.hidden {
-  display: none;
+#SubIdxLanguages .language .status .preloader-wrapper {
+  margin-right: 8px;
 }
 
-.loader-content p {
-  padding-top: 2rem;
-  text-align: center;
+#SubIdxLanguages .language > * {
+  padding: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  #SubIdxLanguages {
+    width: 95%;
+  }
 }
 

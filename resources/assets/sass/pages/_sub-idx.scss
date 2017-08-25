@@ -1,37 +1,40 @@
 #SubIdxLanguages
 {
-  width: 300px;
+  width: 450px;
 
   .language
   {
     &.header { font-weight: 700; }
 
-    .country { width: 25px; }
-    .name { flex-grow: 1;}
-    .status { width: 75px; text-align: center; }
-
     display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+
+    .country { line-height: 0; width: 25px; margin-right: 1rem; }
+    .name { flex-grow: 1;}
+    .status
+    {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 130px;
+
+
+      .preloader-wrapper
+      {
+        margin-right: 8px;
+      }
+    }
 
     > * { padding: 0.5rem; }
   }
 
 }
 
-
-
-.loader-content
+@include media-w600
 {
-  &.hidden {display: none;}
-
-  padding: 2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  p
+  #SubIdxLanguages
   {
-    padding-top: 2rem;
-    text-align: center;
+    width: 95%;
   }
 }

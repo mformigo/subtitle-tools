@@ -112,6 +112,7 @@ class SubIdxLanguage extends Model
             'countryCode' => $this->language,
             'language'    => __("languages.{$this->language}"),
             'status'      => $this->statusMessage,
+            'hasError'    => $this->hasError,
             'downloadUrl' => $this->downloadUrl,
         ];
     }
