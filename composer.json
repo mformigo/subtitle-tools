@@ -8,7 +8,8 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "pusher/pusher-php-server": "~2.6"
+        "pusher/pusher-php-server": "~2.6",
+        "spatie/laravel-sitemap": "^2.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.4",

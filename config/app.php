@@ -56,6 +56,7 @@ return [
 
         // Package Service Providers...
         Laravel\Tinker\TinkerServiceProvider::class,
+        Spatie\Sitemap\SitemapServiceProvider::class,
 
         // Framework Providers...
         App\Providers\Framework\AuthServiceProvider::class,
