@@ -92,7 +92,7 @@ class SubIdx extends Model
 
         $baseFileName = substr($subHash, 0, 6) . substr($idxHash, 0, 6);
 
-        $storagePath = "sub-idx/" . time() . "-{$baseFileName}/";
+        $storagePath = "sub-idx/" . date('Y-W') . '/' . time() . "-{$baseFileName}/";
 
         Storage::makeDirectory($storagePath);
         // copy instead of moving to prevent from moving test files
