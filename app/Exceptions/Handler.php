@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 
 class Handler extends ExceptionHandler
 {
@@ -63,6 +64,10 @@ class Handler extends ExceptionHandler
     {
         if($exception instanceof TextEncodingException) {
             return response()->view('errors.text-encoding-exception', [], 500);
+        }
+
+        if($exception instanceof PostTooLargeException) {
+            return back()->withErrors(['subtitles' => __('validation.a_file_is_too_big')]);
         }
 
         return parent::render($request, $exception);
