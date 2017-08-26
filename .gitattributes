@@ -4,8 +4,6 @@
 *.js linguist-vendored
 CHANGELOG.md export-ignore
 
-* text eol=lf
-
 *.tar.bz2 binary
 *.tar.gz binary
 *.tar binary
