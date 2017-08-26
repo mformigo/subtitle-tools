@@ -12,3 +12,7 @@ CHANGELOG.md export-ignore
 *.tgz binary
 *.zip binary
 
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
