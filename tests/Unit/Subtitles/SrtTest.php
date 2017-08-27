@@ -239,4 +239,12 @@ class SrtTest extends TestCase
 
         $this->assertSame(0, count($srt->getCues()));
     }
+
+    /** @test */
+    function content_ends_with_empty_line()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+
+        $this->assertTrue(ends_with($srt->getContent(), "\r\n"));
+    }
 }
