@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\FileName;
 use App\Models\FileGroup;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 abstract class FileJobController extends Controller
 {
@@ -47,7 +49,12 @@ abstract class FileJobController extends Controller
             ->findOrFail($id);
 
         // basename because it can contain the path if it came from a zip file
-        return response()->download($fileJob->outputStoredFile->filePath, basename($fileJob->original_name));
+        $name = basename($fileJob->originalNameWithNewExtension);
+
+        // the name needs to have some ascii chars, else the download response could strip the whole name
+        $name = FileName::watermark($name);
+
+        return response()->download($fileJob->outputStoredFile->filePath, $name);
     }
 
     public function validateFileJob(array $rules = [])
