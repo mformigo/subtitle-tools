@@ -305,4 +305,22 @@ class SmiTest extends TestCase
         $this->assertEquals(164343, $genericCues[2]->getEndMs());
         $this->assertEquals(["Misa Amane 300, your life", "has been extended."], $genericCues[2]->getLines());
     }
+
+    /** @test */
+    function it_transforms_to_generic_subtitle_and_handles_start_and_end_times()
+    {
+        $smi = new Smi();
+
+        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi-04-regression-start-and-end-time.smi");
+
+        $genericSub = $smi->toGenericSubtitle();
+
+        $this->assertTrue($genericSub instanceof GenericSubtitle);
+
+        $this->assertFalse($genericSub instanceof Smi);
+
+        $genericCues = $genericSub->getCues();
+
+        $this->assertSame(571, count($genericCues));
+    }
 }

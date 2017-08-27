@@ -60,7 +60,9 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
                     $previousCue = $genericSubtitle->getCues(false)[count($genericSubtitle->getCues(false)) - 1];
 
                     if($previousCue->getStartMs() === $previousCue->getEndMs()) {
-                        $previousCue->setTiming($previousCue->getStartMs(), $startMs);
+                        if($previousCue->getStartMs() <= $startMs) {
+                            $previousCue->setTiming($previousCue->getStartMs(), $startMs);
+                        }
                     }
                 }
 
