@@ -26,7 +26,7 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
             throw new \Exception("Not a valid timing string ({$string})");
         }
 
-        list($startTimecode, $endTimecode) = explode(" --> ", $string);
+        list($startTimecode, $endTimecode) = explode(" --> ", trim($string));
 
         $this->setTiming(
             $this->timecodeToMs($startTimecode),

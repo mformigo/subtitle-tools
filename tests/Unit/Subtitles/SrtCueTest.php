@@ -110,4 +110,19 @@ class SrtCueTest extends TestCase
             '',
         ], $cue->toArray());
     }
+
+    /** @test */
+    function it_trims_timing_lines()
+    {
+        // regression test for a timing line that had a tab at the end.
+        // ::isTimingString trimmed the line, but setTimingFromString didn't
+
+        $cue = new SrtCue();
+
+        $this->assertTrue(SrtCue::isTimingString("\t00:01:01,266 --> 00:01:03,366"));
+        $this->assertTrue(SrtCue::isTimingString("00:01:01,266 --> 00:01:03,366\t"));
+
+        $cue->setTimingFromString("\t00:01:01,266 --> 00:01:03,366");
+        $cue->setTimingFromString("00:01:01,266 --> 00:01:03,366\t");
+    }
 }

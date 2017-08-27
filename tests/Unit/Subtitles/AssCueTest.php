@@ -161,4 +161,19 @@ class AssCueTest extends TestCase
 
         $this->assertSame(['好啊, 朋友', 'Crazy'], $genericCue->getLines());
     }
+
+    /** @test */
+    function it_trims_timing_lines()
+    {
+        // regression test for a timing line that had a tab at the end.
+        // ::isTimingString trimmed the line, but setTimingFromString didn't
+
+        $cue = new AssCue();
+
+        $this->assertTrue(AssCue::isTimingString("\tDialogue: 1,0:03:26.73,0:03:27.59,*Default,NTP,0000,0000,0000,,THE SUMMER OR GEORGE"));
+        $this->assertTrue(AssCue::isTimingString("Dialogue: 1,0:03:26.73,0:03:27.59,*Default,NTP,0000,0000,0000,,THE SUMMER OR GEORGE\t"));
+
+        $cue->setTimingFromString("\tDialogue: 1,0:03:26.73,0:03:27.59,*Default,NTP,0000,0000,0000,,THE SUMMER OR GEORGE");
+        $cue->setTimingFromString("Dialogue: 1,0:03:26.73,0:03:27.59,*Default,NTP,0000,0000,0000,,THE SUMMER OR GEORGE\t");
+    }
 }

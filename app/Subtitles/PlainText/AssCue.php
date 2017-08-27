@@ -48,7 +48,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
             throw new \Exception("Not a valid " . get_class($this) . " cue string ({$string})");
         }
 
-        $parts = explode(',', $string);
+        $parts = explode(',', trim($string));
 
         $this->setTiming(
           $this->timecodeToMs($parts[1]),
