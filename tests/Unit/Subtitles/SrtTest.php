@@ -247,4 +247,13 @@ class SrtTest extends TestCase
 
         $this->assertTrue(ends_with($srt->getContent(), "\r\n"));
     }
+
+    /** @test */
+    function empty_file_content_is_empty()
+    {
+        $srt = new Srt();
+
+        $this->assertSame('', $srt->getContent());
+    }
+
 }

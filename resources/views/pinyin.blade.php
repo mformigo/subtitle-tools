@@ -29,14 +29,14 @@
         @slot('extraAfter')
             <div class="options-group radios">
 
-                <input id="pinyinMode1" type="radio" name="mode" value="1" {{ old('mode', '1') === '1' ? 'checked' : '' }}>
-                <label for="pinyinMode1">{{ __('tools.pinyin.mode.1') }}</label>
-
-                <input id="pinyinMode2" type="radio" name="mode" value="2" {{ old('mode') === '2' ? 'checked' : '' }}>
+                <input id="pinyinMode2" type="radio" name="mode" value="2" {{ old('mode', '2') === '2' ? 'checked' : '' }}>
                 <label for="pinyinMode2">{{ __('tools.pinyin.mode.2') }}</label>
 
                 <input id="pinyinMode3" type="radio" name="mode" value="3" {{ old('mode') === '3' ? 'checked' : '' }}>
                 <label for="pinyinMode3">{{ __('tools.pinyin.mode.3') }}</label>
+
+                <input id="pinyinMode1" type="radio" name="mode" value="1" {{ old('mode') === '1' ? 'checked' : '' }}>
+                <label for="pinyinMode1">{{ __('tools.pinyin.mode.1') }}</label>
 
             </div>
         @endslot
