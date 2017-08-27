@@ -40,7 +40,7 @@ class VobSub2SrtMock implements VobSub2SrtInterface
         ];
     }
 
-    public function extractLanguage($index)
+    public function extractLanguage($index, $language)
     {
         // sleep(2);
 

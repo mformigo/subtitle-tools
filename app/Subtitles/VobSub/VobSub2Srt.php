@@ -44,10 +44,25 @@ class VobSub2Srt implements VobSub2SrtInterface
             }
         }
 
-        return $languages;
+        $traditionalChinese = [];
+
+        for($i = 0; $i < count($languages); $i++) {
+            if($languages[$i]['language'] !== 'zh') {
+                continue;
+            }
+
+            $traditionalChinese[] = [
+                'index' => $languages[$i]['index'],
+                'language' => $languages[$i]['language'] . '-Hant',
+            ];
+
+            $languages[$i]['language'] = $languages[$i]['language'] . '-Hans';
+        }
+
+        return array_merge($languages, $traditionalChinese);
     }
 
-    public function extractLanguage($index)
+    public function extractLanguage($index, $language)
     {
         $outputFilePath = "{$this->filePathWithoutExtension}.srt";
 
@@ -55,7 +70,16 @@ class VobSub2Srt implements VobSub2SrtInterface
             unlink($outputFilePath);
         }
 
-        $this->execVobsub2srt("--index {$index}");
+        $extra = '';
+
+        if($language === 'zh-Hans') {
+            $extra = ' --tesseract-lang chi_sim';
+        }
+        else if($language === 'zh-Hant') {
+            $extra = ' --tesseract-lang chi_tra';
+        }
+
+        $this->execVobsub2srt("--index {$index}{$extra}");
 
         // It is not guaranteed that this file exists after trying to extract it
         return $outputFilePath;
@@ -67,18 +91,24 @@ class VobSub2Srt implements VobSub2SrtInterface
             throw new \Exception("Argument can't be empty");
         }
 
-        $command = "timeout 300 /usr/local/bin/vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1";
+        $timeoutSeconds = 300;
+
+        $startedAtSeconds = time();
+
+        $command = "timeout {$timeoutSeconds} /usr/local/bin/vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1";
+
+        $commandTimeSeconds = time() - $startedAtSeconds;
 
         $output = trim(shell_exec($command));
 
-        if(empty($output)) {
-            $output = "error: timeout (empty output)";
+        if($commandTimeSeconds >= ($timeoutSeconds - 1)) {
+            $output = "error: timeout (timeout: {$timeoutSeconds}, command took: {$commandTimeSeconds})";
         }
 
         if($this->logToSubIdx !== null) {
             $this->logToSubIdx->vobsub2srtOutputs()->create([
                 'argument' => $argument,
-                'index'    => explode("--index ", $argument)[1] ?? null,
+                'index'    => explode(" ", $argument)[1] ?? null,
                 'output'   => $output,
             ]);
         }

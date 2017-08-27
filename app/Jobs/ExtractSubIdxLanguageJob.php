@@ -35,7 +35,7 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
         $VobSub2Srt = $this->subIdxLanguage->subIdx->getVobSub2Srt();
 
         // See the readme for more information about vobsub2srt behavior
-        $outputFilePath = $VobSub2Srt->extractLanguage($this->subIdxLanguage->index);
+        $outputFilePath = $VobSub2Srt->extractLanguage($this->subIdxLanguage->index, $this->subIdxLanguage->language);
 
         if(!file_exists($outputFilePath)) {
             return $this->abortWithError('messages.subidx_no_vobsub2srt_output_file');
