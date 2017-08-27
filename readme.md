@@ -1,9 +1,14 @@
 # Subtitle Tools
 
 ## Updating code
-```
-todo
-```
+* Compile production assets `yarn run prod`
+* Push to Master
+* SSH into server
+* `php artisan down`
+* `git pull`
+* `php artisan view:clear`
+* `php artisan queue:restart`
+* `php artisan up`
 
 ## Possible improvements
 * Smi parsing uses `->getCues` a lot, the sorting is slow
