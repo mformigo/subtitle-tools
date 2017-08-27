@@ -186,6 +186,8 @@ return [
     'yo' => 'Yoruba',
     'za' => 'Zhuang',
     'zh' => 'Chinese',
+    'zh-Hans' => 'Chinese (simplified, 简体字)',
+    'zh-Hant' => 'Chinese (traditional, 繁体字)',
     'zu' => 'Zulu',
 
 ];

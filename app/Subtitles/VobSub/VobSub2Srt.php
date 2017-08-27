@@ -44,22 +44,28 @@ class VobSub2Srt implements VobSub2SrtInterface
             }
         }
 
-        $traditionalChinese = [];
+//        $traditionalChinese = [];
+//
+//        for($i = 0; $i < count($languages); $i++) {
+//            if($languages[$i]['language'] !== 'zh') {
+//                continue;
+//            }
+//
+//            $traditionalChinese[] = [
+//                'index' => $languages[$i]['index'],
+//                'language' => $languages[$i]['language'] . '-Hant',
+//            ];
+//
+//            $languages[$i]['language'] = $languages[$i]['language'] . '-Hans';
+//        }
+//
+//        $languages = array_merge($languages, $traditionalChinese);
+//
+//        usort($languages, function($a, $b){
+//            return $a['index'] <=> $b['index'];
+//        });
 
-        for($i = 0; $i < count($languages); $i++) {
-            if($languages[$i]['language'] !== 'zh') {
-                continue;
-            }
-
-            $traditionalChinese[] = [
-                'index' => $languages[$i]['index'],
-                'language' => $languages[$i]['language'] . '-Hant',
-            ];
-
-            $languages[$i]['language'] = $languages[$i]['language'] . '-Hans';
-        }
-
-        return array_merge($languages, $traditionalChinese);
+        return $languages;
     }
 
     public function extractLanguage($index, $language)
@@ -72,12 +78,12 @@ class VobSub2Srt implements VobSub2SrtInterface
 
         $extra = '';
 
-        if($language === 'zh-Hans') {
+        if($language === 'zh') {
             $extra = ' --tesseract-lang chi_sim';
         }
-        else if($language === 'zh-Hant') {
-            $extra = ' --tesseract-lang chi_tra';
-        }
+      //  else if($language === 'zh-Hant') {
+      //      $extra = ' --tesseract-lang chi_tra';
+      //  }
 
         $this->execVobsub2srt("--index {$index}{$extra}");
 
@@ -97,12 +103,14 @@ class VobSub2Srt implements VobSub2SrtInterface
 
         $command = "timeout {$timeoutSeconds} /usr/local/bin/vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1";
 
-        $commandTimeSeconds = time() - $startedAtSeconds;
-
         $output = trim(shell_exec($command));
 
+        $commandTimeSeconds = time() - $startedAtSeconds;
+
+        $output .= "\n__timeout limit: {$timeoutSeconds}, command took: {$commandTimeSeconds}";
+
         if($commandTimeSeconds >= ($timeoutSeconds - 1)) {
-            $output = "error: timeout (timeout: {$timeoutSeconds}, command took: {$commandTimeSeconds})";
+            $output .= "\n__error: timeout";
         }
 
         if($this->logToSubIdx !== null) {
