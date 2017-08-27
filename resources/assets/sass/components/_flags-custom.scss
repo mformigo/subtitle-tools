@@ -10,3 +10,8 @@
 .flag.flag-unknown {
   background-position: -999px -999px !important;
 }
+
+// Fix Chinese flag
+.flag.flag-zh, .flag.flag-zh-Hans, .flag.flag-zh-Hant {
+  background-position: -325px -30px !important;
+}
