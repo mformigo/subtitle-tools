@@ -21,6 +21,7 @@ class TextEncodingTest extends TestCase
         'x-mac-cyrillic.txt'    => 'MacCyrillic',
         'KOI8-R.txt'     => 'KOI8-R',
         'iso-8859-5.txt' => 'ISO-8859-5',
+        'euc-jp.txt'     => 'EUC-JP',
     ];
 
     /** @test */

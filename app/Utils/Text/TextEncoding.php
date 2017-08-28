@@ -24,6 +24,7 @@ class TextEncoding
         'ISO-8859-7'     => 'ISO-8859-7',
         'KOI8-R'         => 'KOI8-R',
         'ISO-8859-5'     => 'ISO-8859-5',
+        'EUC-JP'         => 'EUC-JP',
     ];
 
     private $iconvEncodings = [
