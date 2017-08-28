@@ -25,6 +25,8 @@ class TextEncoding
         'KOI8-R'         => 'KOI8-R',
         'ISO-8859-5'     => 'ISO-8859-5',
         'EUC-JP'         => 'EUC-JP',
+        'IBM866'         => 'IBM866',
+        'windows-1253'   => 'windows-1253',
     ];
 
     private $iconvEncodings = [

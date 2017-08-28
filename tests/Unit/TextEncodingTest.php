@@ -22,6 +22,7 @@ class TextEncodingTest extends TestCase
         'KOI8-R.txt'     => 'KOI8-R',
         'iso-8859-5.txt' => 'ISO-8859-5',
         'euc-jp.txt'     => 'EUC-JP',
+        'ibm866.txt'     => 'IBM866',
     ];
 
     /** @test */
@@ -47,6 +48,29 @@ class TextEncodingTest extends TestCase
             $string = file_get_contents($filePath);
 
             $this->assertSame($expectedEncoding, $textEncoding->detect($string));
+        }
+    }
+
+    /** @test */
+    function it_can_convert_the_encoding_to_utf8()
+    {
+        $textEncoding = app('TextEncoding');
+
+        foreach($this->fileNamesEncodings as $fileName => $expectedEncoding) {
+            $filePath = "{$this->testFilesStoragePath}TextEncodings/{$fileName}";
+
+            $string = file_get_contents($filePath);
+
+            try {
+                $output = $textEncoding->toUtf8($string);
+            }
+            catch(\Exception $exception) {
+                $this->assertTrue(false, "Could not convert '{$expectedEncoding}' to utf8.\n{$exception->getMessage()}");
+
+                return;
+            }
+
+            $this->assertNotEmpty($output);
         }
     }
 }
