@@ -23,18 +23,24 @@ class TextEncodingException extends \Exception
         parent::__construct("Unable to detect file encoding of {$filePath}. Detected: '{$detectedEncoding}', but this was not on the whitelist");
     }
 
-    public function getFilePath()
+    public function report()
     {
-        return $this->filePath;
+        $message = [
+            'datetime: ' . \Carbon\Carbon::now(),
+            'filepath: ' . $this->filePath,
+            'detected encoding: ' . $this->detectedEncoding,
+            'stored file id: ' . $this->storedFileId,
+        ];
+
+        file_put_contents(
+            storage_path('/logs/text-encoding.log'),
+            implode('|', $message) . "\r\n",
+            FILE_APPEND
+        );
     }
 
-    public function getDetectedEncoding()
+    public function render($request)
     {
-        return $this->detectedEncoding;
-    }
-
-    public function getStoredFileId()
-    {
-        return $this->storedFileId;
+        return response()->view('errors.text-encoding-exception', [], 500);
     }
 }

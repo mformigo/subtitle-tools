@@ -9,11 +9,6 @@ use Illuminate\Http\Exceptions\PostTooLargeException;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * A list of the exception types that should not be reported.
-     *
-     * @var array
-     */
     protected $dontReport = [
         \Illuminate\Auth\AuthenticationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
@@ -23,49 +18,13 @@ class Handler extends ExceptionHandler
         \Illuminate\Validation\ValidationException::class,
     ];
 
-    /**
-     * Report or log an exception.
-     *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception  $exception
-     * @return void
-     */
     public function report(Exception $exception)
     {
-        if($exception instanceof TextEncodingException) {
-            $message = [
-                'datetime: ' . \Carbon\Carbon::now(),
-                'filepath: ' . $exception->getFilePath(),
-                'detected encoding: ' . $exception->getDetectedEncoding(),
-                'stored file id: ' . $exception->getStoredFileId(),
-            ];
-
-            file_put_contents(
-                storage_path('/logs/text-encoding.log'),
-                implode('|', $message) . "\r\n",
-                FILE_APPEND
-            );
-
-            return;
-        }
-
         parent::report($exception);
     }
 
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
-     */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof TextEncodingException) {
-            return response()->view('errors.text-encoding-exception', [], 500);
-        }
-
         if($exception instanceof PostTooLargeException) {
             return back()->withErrors(__('validation.file_larger_than_max_post_size'));
         }
@@ -75,10 +34,6 @@ class Handler extends ExceptionHandler
 
     /**
      * Convert an authentication exception into an unauthenticated response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
-     * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
