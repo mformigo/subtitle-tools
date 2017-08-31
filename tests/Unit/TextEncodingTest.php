@@ -73,4 +73,14 @@ class TextEncodingTest extends TestCase
             $this->assertNotEmpty($output);
         }
     }
+
+    /** @test */
+    function it_ignores_illegal_characters_when_using_iconv()
+    {
+        $textEncoding = app('TextEncoding');
+
+        $output = $textEncoding->toUtf8(file_get_contents("{$this->testFilesStoragePath}TextEncodings/Other/iconv-illegal-chars.txt"));
+
+        $this->assertTrue(strlen($output) > 10);
+    }
 }

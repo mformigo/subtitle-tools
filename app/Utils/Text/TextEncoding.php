@@ -76,7 +76,7 @@ class TextEncoding
         }
 
         if($this->isIconvEncoding($inputEncoding)) {
-            return iconv($inputEncoding, $outputEncoding, $string);
+            return iconv($inputEncoding, "{$outputEncoding}//IGNORE", $string);
         }
 
         return mb_convert_encoding($string, $outputEncoding, $inputEncoding);
