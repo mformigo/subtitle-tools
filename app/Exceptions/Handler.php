@@ -33,7 +33,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if($exception instanceof PostTooLargeException) {
-            return back()->withErrors(__('validation.file_larger_than_max_post_size'));
+            return back()->withErrors(['subtitles' => __('validation.file_larger_than_max_post_size')]);
         }
 
         return parent::render($request, $exception);
