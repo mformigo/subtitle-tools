@@ -5,11 +5,11 @@ namespace Tests\Feature;
 use App\Models\StoredFile;
 use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CheckFileSizeTest extends TestCase
 {
-    use DatabaseMigrations, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles;
 
     /** @test */
     function it_rejects_files_that_are_too_big()

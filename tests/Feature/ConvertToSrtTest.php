@@ -6,11 +6,11 @@ use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;
 use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ConvertToSrtTest extends TestCase
 {
-    use DatabaseMigrations, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles;
 
     /** @test */
     function the_subtitles_field_is_server_side_required()

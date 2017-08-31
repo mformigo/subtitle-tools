@@ -5,7 +5,7 @@ namespace Tests\Browser;
 use Tests\Browser\Pages\SubIdxPage;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubIdxTest extends DuskTestCase
 {

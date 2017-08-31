@@ -7,13 +7,13 @@ use App\Jobs\CleanSrtJob;
 use App\Models\FileJob;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class CleanSrtJobTest extends TestCase
 {
-    use DatabaseMigrations, CreatesFileGroups;
+    use RefreshDatabase, CreatesFileGroups;
 
     /** @test */
     function it_only_accepts_srt_files()

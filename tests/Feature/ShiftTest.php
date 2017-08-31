@@ -6,11 +6,11 @@ use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;
 use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShiftTest extends TestCase
 {
-    use DatabaseMigrations, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles;
 
     /** @test */
     function the_fields_are_server_side_required()

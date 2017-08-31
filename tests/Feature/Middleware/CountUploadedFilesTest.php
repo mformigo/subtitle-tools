@@ -5,11 +5,11 @@ namespace Tests\Feature;
 use App\Models\StoredFile;
 use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CountUploadedFilesTest extends TestCase
 {
-    use DatabaseMigrations, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles;
 
     /** @test */
     function it_redirects_if_there_are_too_many_uploaded_files_inside_archives()

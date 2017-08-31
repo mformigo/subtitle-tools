@@ -6,11 +6,11 @@ use App\Models\FileJob;
 use App\Models\StoredFile;
 use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExtractsArchivesTest extends TestCase
 {
-    use DatabaseMigrations, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles;
 
     /** @test */
     function it_extracts_zips_in_request()

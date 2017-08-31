@@ -5,13 +5,13 @@ namespace Tests\Unit;
 use App\Facades\TextFileFormat;
 use App\Jobs\PinyinSubtitlesJob;
 use App\Subtitles\PlainText\Srt;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class PinyinSubtitlesJobTest extends TestCase
 {
-    use DatabaseMigrations, CreatesFileGroups;
+    use RefreshDatabase, CreatesFileGroups;
 
     /** @test */
     function it_makes_pinyin_subtitles()

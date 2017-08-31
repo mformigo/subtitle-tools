@@ -7,11 +7,11 @@ use Tests\CreatesUploadedFiles;
 use Tests\MocksVobSub2Srt;
 use Tests\PostsVobSubs;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SwapSubAndIdxTest extends TestCase
 {
-    use DatabaseMigrations, MocksVobSub2Srt, PostsVobSubs, CreatesUploadedFiles;
+    use RefreshDatabase, MocksVobSub2Srt, PostsVobSubs, CreatesUploadedFiles;
 
     /** @test */
     function it_swaps_sub_and_idx()

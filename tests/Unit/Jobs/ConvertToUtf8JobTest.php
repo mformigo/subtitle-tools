@@ -3,13 +3,13 @@
 namespace Tests\Unit;
 
 use App\Jobs\ConvertToUtf8Job;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class ConvertToUtf8JobTest extends TestCase
 {
-    use DatabaseMigrations, CreatesFileGroups;
+    use RefreshDatabase, CreatesFileGroups;
 
     /** @test */
     function it_converts_a_file_to_utf8()

@@ -8,11 +8,11 @@ use Tests\CreatesUploadedFiles;
 use Tests\MocksVobSub2Srt;
 use Tests\PostsVobSubs;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubIdxTest extends TestCase
 {
-    use DatabaseMigrations, MocksVobSub2Srt, PostsVobSubs, CreatesUploadedFiles;
+    use RefreshDatabase, MocksVobSub2Srt, PostsVobSubs, CreatesUploadedFiles;
 
     /** @test */
     function the_sub_and_idx_file_are_server_side_required()

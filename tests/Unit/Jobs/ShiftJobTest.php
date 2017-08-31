@@ -6,13 +6,13 @@ use App\Facades\TextFileFormat;
 use App\Jobs\ShiftJob;
 use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\PlainText\Srt;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class ShiftJobTest extends TestCase
 {
-    use DatabaseMigrations, CreatesFileGroups;
+    use RefreshDatabase, CreatesFileGroups;
 
     /** @test */
     function it_shifts_a_subtitle_file()

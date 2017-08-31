@@ -5,13 +5,13 @@ namespace Tests\Unit;
 use App\Jobs\ConvertToSrtJob;
 use App\Jobs\ZipFileGroupJob;
 use App\Models\FileGroup;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class ZipFileGroupJobTest extends TestCase
 {
-    use DatabaseMigrations, CreatesFileGroups;
+    use RefreshDatabase, CreatesFileGroups;
 
     /** @test */
     function it_zips_files_from_a_file_group()

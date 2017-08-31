@@ -5,11 +5,11 @@ namespace Tests\Feature;
 use Tests\MocksVobSub2Srt;
 use Tests\PostsVobSubs;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubIdxControllerTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
     use MocksVobSub2Srt;
     use PostsVobSubs;
 
