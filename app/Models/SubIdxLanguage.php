@@ -36,6 +36,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $has_finished
  * @property-read mixed $has_started
  * @property-read mixed $status_message
+ * @property int|null $output_stored_file_id
+ * @property string|null $error_message
+ * @property-read mixed $file_name
+ * @property-read \App\Models\StoredFile $outputStoredFile
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereErrorMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereOutputStoredFileId($value)
  */
 class SubIdxLanguage extends Model
 {

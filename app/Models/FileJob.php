@@ -35,6 +35,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileJob whereStartedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileJob whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\FileGroup $fileGroup
+ * @property-read mixed $has_finished
+ * @property-read mixed $original_name_with_new_extension
  */
 class FileJob extends Model
 {

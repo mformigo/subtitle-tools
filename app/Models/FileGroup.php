@@ -22,6 +22,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereUrlKey($value)
  * @mixin \Eloquent
+ * @property string $job_options
+ * @property string|null $file_jobs_finished_at
+ * @property string|null $archive_requested_at
+ * @property string|null $archive_finished_at
+ * @property string|null $archive_error
+ * @property int|null $archive_stored_file_id
+ * @property-read \App\Models\StoredFile $archiveStoredFile
+ * @property-read mixed $archive_download_url
+ * @property-read mixed $archive_request_url
+ * @property-read mixed $archive_status
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveError($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveFinishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveRequestedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveStoredFileId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereFileJobsFinishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereJobOptions($value)
  */
 class FileGroup extends Model
 {
