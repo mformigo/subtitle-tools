@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Rules\FileNotEmptyRule;
+use App\Http\Rules\SubMimeRule;
+use App\Http\Rules\TextFileRule;
 use App\Models\SubIdx;
 use Illuminate\Http\Request;
 
@@ -22,11 +25,9 @@ class SubIdxController extends Controller
 
     public function post(Request $request)
     {
-        $this->validate($request, [
-            'sub' => 'required|file|file_not_empty|mimetypes:video/mpeg',
-            'idx' => 'required|file|file_not_empty|textfile',
-        ], [
-            'sub.mimetypes' => __('validation.subidx_invalid_sub_mime'),
+        $request->validate([
+            'sub' => ['required', 'file', new FileNotEmptyRule, new SubMimeRule ],
+            'idx' => ['required', 'file', new FileNotEmptyRule, new TextFileRule],
         ]);
 
         $subIdx = SubIdx::getOrCreateFromUpload($request->files->get('sub'), $request->files->get('idx'));

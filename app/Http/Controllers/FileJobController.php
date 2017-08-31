@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\FileName;
+use App\Http\Rules\AreUploadedFilesRule;
 use App\Models\FileGroup;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -59,9 +60,9 @@ abstract class FileJobController extends Controller
 
     public function validateFileJob(array $rules = [])
     {
-        $rules['subtitles'] = 'required|array|max:100|uploaded_files';
+        $rules['subtitles'] = ['required', 'array', 'max:100', new AreUploadedFilesRule];
 
-        $this->validate(request(), $rules);
+        request()->validate($rules);
     }
 
     protected function doFileJobs($jobClass, array $jobOptions = [], $alwaysQueue = false)

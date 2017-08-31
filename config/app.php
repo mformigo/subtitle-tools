@@ -69,7 +69,6 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\UtilsProvider::class,
         App\Providers\RedirectsProvider::class,
-        App\Providers\CustomValidationRulesProvider::class,
 
     ],
 

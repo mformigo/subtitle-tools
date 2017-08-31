@@ -36,8 +36,8 @@ class SubIdxTest extends TestCase
 
         $response->assertStatus(302)
             ->assertSessionHasErrors([
-                'sub' => __('validation.file_not_empty', ['attribute' => 'sub']),
-                'idx' => __('validation.file_not_empty', ['attribute' => 'idx']),
+                'sub' => __('validation.file_is_empty', ['attribute' => 'sub']),
+                'idx' => __('validation.file_is_empty', ['attribute' => 'idx']),
             ]);
     }
 
@@ -52,7 +52,7 @@ class SubIdxTest extends TestCase
         $response->assertStatus(302)
             ->assertSessionHasErrors([
                 'sub' => __('validation.subidx_invalid_sub_mime', ['attribute' => 'sub']),
-                'idx' => __('validation.textfile',                ['attribute' => 'idx']),
+                'idx' => __('validation.file_is_not_a_textfile',  ['attribute' => 'idx']),
             ]);
     }
 
