@@ -6,7 +6,6 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\PostTooLargeException;
-use Illuminate\Support\Facades\Route;
 
 class Handler extends ExceptionHandler
 {
@@ -22,18 +21,25 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         if($exception instanceof PostTooLargeException) {
-            file_put_contents(storage_path('/logs/post-size.log'), Route::current() . '|PostTooLargeException', FILE_APPEND);
-
-            return;
+            file_put_contents(
+                storage_path('/logs/post-size.log'),
+                request()->path() . '|PostTooLargeException',
+                FILE_APPEND
+            );
         }
-
-        parent::report($exception);
+        else {
+            parent::report($exception);
+        }
     }
 
     public function render($request, Exception $exception)
     {
         if($exception instanceof PostTooLargeException) {
-            return back()->withErrors(['subtitles' => __('validation.file_larger_than_max_post_size')]);
+            // Somehow, using back()->withErrors doesn't work on the live server,
+            // so this hack is used instead
+            return response()->json([
+                __('validation.file_larger_than_max_post_size'),
+            ])->setStatusCode(500);
         }
 
         return parent::render($request, $exception);

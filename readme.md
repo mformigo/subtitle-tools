@@ -6,9 +6,11 @@
 * SSH into server
 * `php artisan down`
 * `git pull`
-* `php artisan view:clear`
+* `composer update --no-dev`
+* `php artisan clear-compiled`
 * `php artisan queue:restart`
 * `php artisan up`
+* Check if queues are still running: `sudo supervisorctl`
 
 ## Possible improvements
 * Smi parsing uses `->getCues` a lot, the sorting is slow
