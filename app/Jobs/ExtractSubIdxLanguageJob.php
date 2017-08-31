@@ -62,6 +62,8 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
             'finished_at' => Carbon::now(),
         ]);
 
+        unlink($outputFilePath);
+
         return $this->subIdxLanguage;
     }
 
