@@ -24,7 +24,7 @@ function storage_disk_file_path($path, $disk = null)
 
 function nav_item($routeName)
 {
-    $active = Request::routeIs($routeName) ? ' class="active"' : '';
+    $active = Request::routeIs($routeName . '*') ? ' class="active"' : '';
 
     return "<li{$active}><a href='" . route($routeName) . "'>" . __("nav.item.{$routeName}") . "</a></li>";
 }

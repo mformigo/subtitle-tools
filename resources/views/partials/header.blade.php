@@ -3,7 +3,7 @@
         <a href="/" class="brand-logo">Subtitle Tools</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li class="{{ Request::routeIs('shift') || Request::routeIs('shiftPartial') ? "active" : '' }}">
+            <li class="{{ Request::routeIs('shift*') ? "active" : '' }}">
                 <a class="dropdown-button" href="#!" data-activates="dropdown1">
                     {{ __('nav.shifters_title') }}<i class="material-icons right">arrow_drop_down</i>
                 </a>
