@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/')->uses('AdminController@index')->name('admin');
+Route::get('/')->uses('DashboardController@index')->name('admin');
