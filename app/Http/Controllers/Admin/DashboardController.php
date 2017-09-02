@@ -70,10 +70,10 @@ class DashboardController extends Controller
             return (object)[
                 'worker'    => str_before($parts[0], ':'),
                 'name'      => str_after($parts[0], ':'),
-                'status'    => strtolower($parts[1]),
-                'isRunning' => $parts[1] === 'RUNNING',
-                'pid'       => str_after($parts[2], 'pid '),
-                'uptime'    => str_after($parts[3], 'uptime '),
+                'status'    => strtolower($parts[1] ?? 'UNKNOWN'),
+                'isRunning' => $parts[1] ?? 'UNKNOWN' === 'RUNNING',
+                'pid'       => str_after($parts[2] ?? '?', 'pid '),
+                'uptime'    => str_after($parts[3] ?? '?:??:??', 'uptime '),
             ];
         })->all();
     }
