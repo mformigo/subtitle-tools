@@ -28,5 +28,4 @@ class CreateSubIdxesTable extends Migration
     {
         Schema::dropIfExists('sub_idxes');
     }
-
 }

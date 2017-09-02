@@ -22,5 +22,4 @@ class CreateVobsub2srtOutputsTable extends Migration
     {
         Schema::dropIfExists('vobsub2srt_outputs');
     }
-
 }

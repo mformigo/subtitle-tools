@@ -25,5 +25,4 @@ class CreateSubIdxLanguagesTable extends Migration
     {
         Schema::dropIfExists('sub_idx_languages');
     }
-
 }
