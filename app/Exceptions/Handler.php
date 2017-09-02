@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -23,7 +24,7 @@ class Handler extends ExceptionHandler
         if($exception instanceof PostTooLargeException) {
             file_put_contents(
                 storage_path('/logs/post-size.log'),
-                request()->path() . '|PostTooLargeException',
+                Carbon::now() . '|' . request()->path() . '|PostTooLargeException' . PHP_EOL,
                 FILE_APPEND
             );
         }
