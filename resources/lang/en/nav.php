@@ -15,6 +15,6 @@ return [
     'item.contact' => 'Contact',
 
     // Admin Nav
-    'item.admin' => 'Overview',
+    'item.admin' => 'Dashboard',
 
 ];

@@ -1,4 +1,18 @@
 body
 {
-  background-color: rgba(245, 245, 245, .4);
+  background-color: lightgray;
+}
+
+div.st-panel
+{
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  border-radius: 4px;
+
+  h2
+  {
+    font-size: 22px;
+    margin-bottom: 2rem;
+  }
 }
