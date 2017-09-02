@@ -62,7 +62,9 @@ class DashboardController extends Controller
             $lines = explode("\n", shell_exec('supervisorctl status'));
         }
 
-        return collect($lines)->map(function($line) {
+        return collect($lines)->filter(function($line) {
+            return !empty($line);
+        })->map(function($line) {
            return preg_split('/ {3,}|, /', $line);
         })->map(function($parts) {
             return (object)[
