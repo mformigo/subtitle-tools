@@ -1,6 +1,7 @@
 <nav>
     <ul>
         {!! nav_item('admin') !!}
+        {!! nav_item('adminFileJobs') !!}
 
         <form action="{{ route('logout') }}" method="POST" id="LogoutForm">
             {{ csrf_field() }}

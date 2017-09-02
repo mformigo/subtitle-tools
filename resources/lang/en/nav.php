@@ -16,5 +16,6 @@ return [
 
     // Admin Nav
     'item.admin' => 'Dashboard',
+    'item.adminFileJobs' => 'File Jobs',
 
 ];
