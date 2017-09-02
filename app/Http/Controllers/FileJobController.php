@@ -6,7 +6,6 @@ use App\Facades\FileName;
 use App\Http\Rules\AreUploadedFilesRule;
 use App\Models\FileGroup;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 abstract class FileJobController extends Controller
 {
@@ -31,7 +30,7 @@ abstract class FileJobController extends Controller
             ->where('tool_route', $this->getIndexRouteName())
             ->firstOrFail();
 
-        return view('file-group-result', [
+        return view('guest.file-group-result', [
             'urlKey' => $urlKey,
             'returnUrl' => route($this->getIndexRouteName()),
             'fileCount' => $fileGroup->fileJobs()->count(),

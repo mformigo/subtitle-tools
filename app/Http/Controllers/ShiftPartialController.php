@@ -9,7 +9,7 @@ class ShiftPartialController extends FileJobController
 {
     public function index()
     {
-        return view('shift-partial');
+        return view('guest.shift-partial');
     }
 
     public function post(Request $request)

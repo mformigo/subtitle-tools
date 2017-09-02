@@ -9,7 +9,7 @@ class ConvertToUtf8Controller extends FileJobController
 {
     public function index()
     {
-        return view('convert-to-utf8');
+        return view('guest.convert-to-utf8');
     }
 
     public function post(Request $request)

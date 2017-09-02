@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       __('seo.title.convertToSrt'))
 @section('description', __('seo.description.convertToSrt'))
@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
 
         @slot('title') Convert Subtitles to Srt @endslot
 
@@ -18,7 +18,7 @@
     @endcomponent
 
 
-    @component('components.tool-form')
+    @component('guest.components.tool-form')
 
         @slot('title') Select subtitles to convert to srt @endslot
 
@@ -47,9 +47,9 @@
         </script>
     @endpush
 
-    @component('components.text-section')
+    @component('guest.components.text-section')
 
-        @component('components.text-section-content', ['h2' => true])
+        @component('guest.components.text-section-content', ['h2' => true])
             @slot('title') About converting to subrip @endslot
 
             Subrip (srt) is a very basic subtitle format, because of this you will almost always lose some functionality or effects when converting to srt.
@@ -58,7 +58,7 @@
             You can learn more about the subrip format <a href="https://matroska.org/technical/specs/subtitles/srt.html" rel="nofollow" target="_blank">here</a>.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Converting ass to srt @endslot
 
             Advanced Substation Alpha (ass) is, as the name says, a more advanced version of the Substation Alpha (ssa) format.
@@ -68,7 +68,7 @@
             You can learn more about the ssa and ass format on the <a href="https://en.wikipedia.org/wiki/SubStation_Alpha" rel="nofollow" target="_blank">Wikipedia page</a>.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Converting smi to srt @endslot
 
             Synchronized Accessible Media Interchange (sami or smi) is an old subtitle format originally <a href="https://msdn.microsoft.com/en-us/library/ms971327.aspx" rel="nofollow" target="_blank">created by Microsoft</a>.
@@ -77,7 +77,7 @@
             Smi files support multiple languages in the same subtitle file, which should work fine when converting to srt.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Converting a batch of subtitles using zip @endslot
 
             You can convert up to a hundred files at the same time with this tool by uploading a zip file, or by simply selecting multiple files.

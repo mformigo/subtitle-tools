@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       'Login | Subtitle Tools')
 @section('description', '')
@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
 
         @slot('title') Login @endslot
 

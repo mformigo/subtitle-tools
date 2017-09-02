@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       __('seo.title.shiftPartial'))
 @section('description', __('seo.description.shiftPartial'))
@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
 
         @slot('title') Partial Subtitle Resync @endslot
 
@@ -17,7 +17,7 @@
     @endcomponent
 
 
-    @component('components.tool-form')
+    @component('guest.components.tool-form')
 
         @slot('title') Select a file to resync @endslot
 

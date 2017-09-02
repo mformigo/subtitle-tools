@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       __('seo.title.subIdx'))
 @section('description', __('seo.description.subIdx'))
@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
 
         @slot('title') Convert Sub/Idx to Srt @endslot
 
@@ -22,7 +22,7 @@
 
 
 
-    @component('components.tool-form', ['bare' => true])
+    @component('guest.components.tool-form', ['bare' => true])
 
         @slot('title') Select sub/idx to convert to srt @endslot
 
@@ -61,9 +61,9 @@
     @endcomponent
 
 
-    @component('components.text-section')
+    @component('guest.components.text-section')
 
-        @component('components.text-section-content', ['h2' => true])
+        @component('guest.components.text-section-content', ['h2' => true])
             @slot('title') Converting sub/idx to srt online @endslot
 
             Sub/Idx or VobSub format subtitles are usually extracted from DVDs.
@@ -75,7 +75,7 @@
             Because it takes a long time to convert a VobSub file, they can only be uploaded one by one, and not inside an archive file.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Sub format @endslot
 
             Sub/idx type subtitles use pictures of text to display subtitles on the screen.
@@ -86,7 +86,7 @@
             This converter tool can be used to convert VobSub subtitles to srt so you can use them on any device.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Multiple languages @endslot
 
             Sub/Idx files can contain multiple languages.

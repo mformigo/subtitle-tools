@@ -20,7 +20,7 @@ class SubIdxController extends Controller
 
     public function index()
     {
-        return view('sub-idx');
+        return view('guest.sub-idx');
     }
 
     public function post(Request $request)
@@ -43,7 +43,7 @@ class SubIdxController extends Controller
     {
         $subIdx = SubIdx::where('page_id', $pageId)->firstOrFail();
 
-        return view('sub-idx-detail', [
+        return view('guest.sub-idx-detail', [
             'originalName' => $subIdx->original_name,
             'pageId' => $pageId,
         ]);

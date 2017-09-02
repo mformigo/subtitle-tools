@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       __('seo.title.convertToUtf8'))
 @section('description', __('seo.description.convertToUtf8'))
@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
 
         @slot('title') Convert files to UTF-8 @endslot
 
@@ -16,7 +16,7 @@
 
     @endcomponent
 
-    @component('components.tool-form')
+    @component('guest.components.tool-form')
 
         @slot('title') Select files to convert to UTF-8 @endslot
 

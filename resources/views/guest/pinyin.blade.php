@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       __('seo.title.pinyin'))
 @section('description', __('seo.description.pinyin'))
@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
 
         @slot('title') Make Pinyin Subtitles @endslot
 
@@ -18,7 +18,7 @@
     @endcomponent
 
 
-    @component('components.tool-form')
+    @component('guest.components.tool-form')
 
         @slot('title') Select a file to convert to pinyin @endslot
 
@@ -44,9 +44,9 @@
     @endcomponent
 
 
-    @component('components.text-section')
+    @component('guest.components.text-section')
 
-        @component('components.text-section-content', ['h2' => true])
+        @component('guest.components.text-section-content', ['h2' => true])
             @slot('title') About pinyin subtitles @endslot
 
             Watching Chinese movies or tv shows with pinyin subtitles is a great way to practice your Chinese.
@@ -55,13 +55,13 @@
             This tool changes normal srt or ass subtitles in to pinyin subtitles.
         @endcomponent
 
-        @component('components.text-section-content', ['h2' => true])
+        @component('guest.components.text-section-content', ['h2' => true])
             @slot('title') Convert modes @endslot
 
             This tool offers three modes for converting Chinese subtitles to pinyin subtitles, they are described below.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Add pinyin underneath Chinese @endslot
 
             This mode adds a line of pinyin underneath each line that contains a Chinese character.
@@ -105,7 +105,7 @@
 
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Add pinyin underneath Chinese and remove non-Chinese lines @endslot
 
             This mode does the same as the mode described above, except it also removes lines that do not contain any Chinese characters.
@@ -148,7 +148,7 @@
 
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Replace all Chinese with pinyin @endslot
 
             Like the name says, this mode replaces all Chinese characters with pinyin.

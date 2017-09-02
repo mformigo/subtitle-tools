@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @include('helpers.robots-no-index')
 
@@ -8,7 +8,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
         @slot('title') Sub/Idx Download @endslot
 
         The srt files are being extracted from the sub/idx file.

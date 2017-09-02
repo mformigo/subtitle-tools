@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       __('seo.title.shift'))
 @section('description', __('seo.description.shift'))
@@ -6,14 +6,14 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
         @slot('title') Resync Subtitles @endslot
 
         Online tool for resyncing subtitles by shifting all timestamps to make them appear earlier or later.
         If you want to resync multiple parts of a subtitle file, use the <a href="{{ route('shiftPartial') }}">Partial Shifter Tool</a>
     @endcomponent
 
-    @component('components.tool-form')
+    @component('guest.components.tool-form')
 
         @slot('title') Select a file to shift @endslot
 

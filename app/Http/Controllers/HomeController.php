@@ -6,11 +6,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('guest.home');
     }
 
     public function contact()
     {
-        return view('contact');
+        return view('guest.contact');
     }
 }

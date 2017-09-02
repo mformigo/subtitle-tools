@@ -1,4 +1,4 @@
-@extends('layout.base-template')
+@extends('guest.layout.base-template')
 
 @section('title',       __('seo.title.home'))
 @section('description', __('seo.description.home'))
@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.page-intro')
+    @component('guest.components.page-intro')
 
         @slot('title') Subtitle Tools @endslot
 
@@ -18,9 +18,9 @@
     @endcomponent
 
 
-    @component('components.text-section')
+    @component('guest.components.text-section')
 
-        @component('components.text-section-content', ['h2' => true])
+        @component('guest.components.text-section-content', ['h2' => true])
             @slot('title') About @endslot
 
             The goal of this website is to offer most tools that a common user would need, for free and in a user-friendly way.
@@ -30,7 +30,7 @@
             please don't hesitate to <a href="{{ route('contact') }}">send us a message</a>
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Resyncing Subtitles @endslot
 
             There are two tools available for syncing subtitles.
@@ -42,7 +42,7 @@
             The difference is that with the partial shifter, you can shift multiple parts of the subtitles by entering a start timestamp and an end timestamp for each shift.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Converting Subtitles to Srt @endslot
 
             The <a href="{{ route('convertToSrt') }}">srt converter tool</a> is a simple conversion tool for changing different subtitle formats to srt.
@@ -50,21 +50,21 @@
             If you want to convert sub/idx subtitles to srt, you have to use the <a href="{{ route('subIdx') }}">sub/idx converter</a>.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Cleaning Srt Files @endslot
 
             Srt files can display incorrectly when they aren't formatted properly.
             The <a href="{{ route('cleanSrt') }}">srt cleaner tool</a> cleans and fixes most problems subrip files can have.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Converting text files to UTF-8 @endslot
 
             Text encoding is a tricky subject. If subtitles (or other text files) are not correctly encoded, they will display gibberish.
             The <a href="{{ route('convertToUtf8') }}">UTF-8 converter tool</a> automatically detects the uploaded files encoding, and re-encodes it in a way that works on nearly all devices.
         @endcomponent
 
-        @component('components.text-section-content')
+        @component('guest.components.text-section-content')
             @slot('title') Chinese Subtitles to Pinyin Subtitles @endslot
 
             The <a href="{{ route('pinyin') }}">Pinyin Subtitles tool</a> is made especially for people studying Chinese.
