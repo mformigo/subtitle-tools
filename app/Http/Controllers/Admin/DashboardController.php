@@ -51,16 +51,11 @@ class DashboardController extends Controller
 
     private function getSupervisorInfo()
     {
-        if(app()->environment('local')) {
-            $lines = [
-                "st-worker-broadcast:st-worker-broadcast_00   RUNNING   pid 27243, uptime 0:04:36",
-                "st-worker-default:st-worker-default_00       RUNNING   pid 27245, uptime 0:13:51",
-                "st-worker-subidx:st-worker-subidx_00         RUNNING   pid 27244, uptime 2:23:40",
-            ];
-        }
-        else {
-            $lines = explode("\n", shell_exec('supervisorctl status'));
-        }
+        $lines = app()->environment('local') ? [
+            "st-worker-broadcast:st-worker-broadcast_00   RUNNING   pid 27243, uptime 0:04:36",
+            "st-worker-default:st-worker-default_00       RUNNING   pid 27245, uptime 0:13:51",
+            "st-worker-subidx:st-worker-subidx_00         RUNNING   pid 27244, uptime 2:23:40",
+        ] : explode("\n", shell_exec('supervisorctl status'));
 
         return collect($lines)->filter(function($line) {
             return !empty($line);
