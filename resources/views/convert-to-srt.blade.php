@@ -1,4 +1,4 @@
-@extends('base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.convertToSrt'))
 @section('description', __('seo.description.convertToSrt'))

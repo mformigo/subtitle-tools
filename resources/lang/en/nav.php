@@ -14,5 +14,7 @@ return [
     'item.subIdx' => 'Sub/Idx to Srt',
     'item.contact' => 'Contact',
 
+    // Admin Nav
+    'item.admin' => 'Overview',
 
 ];

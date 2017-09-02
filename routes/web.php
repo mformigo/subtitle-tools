@@ -1,5 +1,9 @@
 <?php
 
+Route::get('st-login',   'Auth\LoginController@showLoginForm')->name('login');
+Route::post('st-login',  'Auth\LoginController@login');
+Route::post('st-logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('/')->uses('HomeController@index')->name('home');
 Route::get('/contact')->uses('HomeController@contact')->name('contact');
 

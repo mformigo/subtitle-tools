@@ -1,4 +1,4 @@
-@extends('base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.shift'))
 @section('description', __('seo.description.shift'))

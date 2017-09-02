@@ -21,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+
+        $this->mapWebAdminRoutes();
     }
 
     protected function registerRouteMacros()
@@ -35,6 +37,13 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
+    protected function mapApiRoutes()
+    {
+        Route::middleware('api')
+            ->namespace($this->namespace . '\Api')
+            ->group(base_path('routes/api.php'));
+    }
+
     protected function mapWebRoutes()
     {
         Route::middleware('web')
@@ -42,13 +51,11 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/web.php'));
     }
 
-    protected function mapApiRoutes()
+    protected function mapWebAdminRoutes()
     {
-        Route::middleware('api')
-             ->namespace($this->namespace . '\Api')
-             ->group(base_path('routes/api.php'));
+        Route::middleware(['web', 'auth'])
+             ->namespace($this->namespace . '\Admin')
+             ->prefix('st-admin')
+             ->group(base_path('routes/web-admin.php'));
     }
-
-
-
 }

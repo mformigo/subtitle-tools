@@ -48,13 +48,13 @@
     </head>
     <body>
 
-        @include('partials.header')
+        @include('layout.header')
 
         <div id="app">
             @yield('content')
         </div>
 
-        @include('partials.footer')
+        @include('layout.footer')
 
         <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
         <script type="text/javascript" src="/js/materialize.min.js"></script>

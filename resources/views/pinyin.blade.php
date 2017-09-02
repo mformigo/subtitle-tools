@@ -1,4 +1,4 @@
-@extends('base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.pinyin'))
 @section('description', __('seo.description.pinyin'))
