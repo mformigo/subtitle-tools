@@ -23,7 +23,24 @@
                         @endforelse
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-4">
+                    <div class="supervisor st-panel">
+                        <h2>Supervisor</h2>
+                        @if(!$goodSupervisor)
+                            <div class="alert alert-danger">
+                                Only {{ count($supervisor) }} queues are running!
+                            </div>
+                        @endif
+
+                        @foreach($supervisor as $superInfo)
+                            <div class="alert alert-{{ $superInfo->isRunning ? 'success' : 'danger' }}">
+                                <strong>{{ $superInfo->worker }}</strong> uptime: {{ $superInfo->uptime }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="col-4">
 
                 </div>
             </div>
