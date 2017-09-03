@@ -108,4 +108,16 @@ class TextFileFormatTest extends TestCase
 
         $this->assertTrue($subtitle instanceof PlainText);
     }
+
+    /** @test */
+    function loading_is_optional()
+    {
+        $textFileFormat = new TextFileFormat();
+
+        $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}TextFiles/Normal/normal01.srt", false);
+
+        $this->assertTrue($subtitle instanceof Srt, "Not an instance of Srt");
+
+        $this->assertTrue($subtitle->getCues() === []);
+    }
 }

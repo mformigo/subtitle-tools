@@ -12,11 +12,11 @@ class TextFileFormat
         \App\Subtitles\PlainText\PlainText::class,
     ];
 
-    public function getMatchingFormat($file)
+    public function getMatchingFormat($file, $loadFile = true)
     {
         foreach($this->formats as $class) {
             if($class::isThisFormat($file)) {
-                return (new $class)->loadFile($file);
+                return $loadFile ? (new $class)->loadFile($file) : (new $class);
             }
         }
 
