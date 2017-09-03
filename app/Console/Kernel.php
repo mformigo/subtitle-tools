@@ -9,11 +9,14 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         \App\Console\Commands\GenerateSitemap::class,
+        \App\Console\Commands\QueueCollectStoredFileMetaJobs::class,
     ];
 
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('sitemap:generate')->dailyAt('2:00');
+
+        $schedule->command('st:collect-stored-file-meta')->everyTenMinutes();
     }
 
     /**

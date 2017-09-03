@@ -30,6 +30,11 @@ class StoredFile extends Model
 {
     protected $fillable = ['hash', 'storage_file_path'];
 
+    public function meta()
+    {
+        return $this->hasOne(\App\Models\StoredFileMeta::class);
+    }
+
     protected function getFilePathAttribute()
     {
         return storage_disk_file_path($this->storage_file_path);

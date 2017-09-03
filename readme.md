@@ -27,6 +27,7 @@
 * sub-idx language extract jobs run on the **sub-idx** queue. These jobs are extremely cpu intensive.
 * broadcasting happens on the **broadcast** queue
 * file jobs happen on the **default** queue
+* fast low prio jobs happen on **low-fast**, when the default queue is idle
 
 ## Adding a FileGroup + FileJob tool
 * make a new controller that extends `FileJobController`, add routes and views
