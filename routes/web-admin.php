@@ -7,3 +7,4 @@ Route::get('/log/{name}/delete')->uses('DashboardController@deleteLog')->name('a
 Route::get('/file-jobs')->uses('FileJobsController@index')->name('adminFileJobs');
 
 Route::get('/stored-file/{id}')->uses('StoredFilesController@detail')->name('adminStoredFileDetail');
+Route::post('/stored-file/download')->uses('StoredFilesController@download')->name('adminStoredFileDownload');

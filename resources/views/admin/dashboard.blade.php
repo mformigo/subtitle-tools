@@ -23,6 +23,7 @@
                         @endforelse
                     </div>
                 </div>
+
                 <div class="col-4">
                     <div class="supervisor st-panel">
                         <h2>Supervisor</h2>
@@ -41,7 +42,20 @@
                 </div>
 
                 <div class="col-4">
+                    <div class="stored-file-download st-panel">
+                        <h2>Stored Files</h2>
 
+                        <form id="ToolForm" target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+
+                            <div class="form-group">
+                            <label for="StoredFileId">Download ids:</label>
+                            <input class="form-control" id="StoredFileId" type="text" name="id" autocomplete="off" required />
+                            </div>
+
+                            <button type="submit" class="float-right">Download</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
