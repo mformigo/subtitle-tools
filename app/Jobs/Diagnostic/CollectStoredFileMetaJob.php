@@ -8,6 +8,7 @@ use App\Facades\TextFileIdentifier;
 use App\Facades\TextFileReader;
 use App\Models\StoredFile;
 use App\Models\StoredFileMeta;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -86,8 +87,9 @@ class CollectStoredFileMetaJob implements ShouldQueue
         $meta->save();
     }
 
-    public function failed()
+    public function failed(Exception $exception)
     {
         \Log::error("Failed collecting stored file meta for {$this->storedFile->id}");
+        \Log::error($exception->getMessage());
     }
 }
