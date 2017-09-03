@@ -33,6 +33,7 @@ class TextEncoding
     //  php encoding name
         "TIS-620",
         "MacCyrillic",
+        "windows-1253",
     ];
 
     public function detectFromFile($filePath)

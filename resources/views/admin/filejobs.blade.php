@@ -8,7 +8,6 @@
         <table class="table table-bordered table-sm table-hover table-inverse">
             <thead>
             <tr>
-                <th>id</th>
                 <th>Original Name</th>
                 <th>Error Message</th>
                 <th>Input</th>
@@ -20,7 +19,6 @@
 
             @foreach($fileJobs as $fileJob)
                 <tr>
-                    <td>{{ $fileJob->id }}</td>
                     <td>{{ $fileJob->original_name }}</td>
                     <td>{{ __($fileJob->error_message) }}</td>
                     <td><a target="_blank" href="{{ route('adminStoredFileDetail', ['id' => $fileJob->input_stored_file_id]) }}">{{ $fileJob->input_stored_file_id }}</a></td>

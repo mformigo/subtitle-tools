@@ -10,7 +10,7 @@ class FileJobsController extends Controller
     {
         $fileJobs = FileJob::query()
             ->orderBy('id', 'DESC')
-            ->take(200)
+            ->take(500)
             ->get();
 
         return view('admin.filejobs')->with('fileJobs', $fileJobs);
