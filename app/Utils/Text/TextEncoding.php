@@ -27,6 +27,7 @@ class TextEncoding
         'EUC-JP'         => 'EUC-JP',
         'IBM866'         => 'IBM866',
         'windows-1253'   => 'windows-1253',
+        'windows-1255'   => 'windows-1255',
     ];
 
     private $iconvEncodings = [
@@ -34,6 +35,7 @@ class TextEncoding
         "TIS-620",
         "MacCyrillic",
         "windows-1253",
+        "windows-1255",
     ];
 
     public function detectFromFile($filePath)

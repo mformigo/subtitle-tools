@@ -24,6 +24,7 @@ class TextEncodingTest extends TestCase
         'euc-jp.txt'     => 'EUC-JP',
         'ibm866.txt'     => 'IBM866',
         'windows-1253.txt' => 'windows-1253',
+        'windows-1255.txt' => 'windows-1255',
     ];
 
     /** @test */
