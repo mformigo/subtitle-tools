@@ -47,44 +47,42 @@
         </script>
     @endpush
 
-    @component('guest.components.text-section')
+    <section class="text-content">
+        <div class="container">
 
-        @component('guest.components.text-section-content', ['h2' => true])
-            @slot('title') About converting to subrip @endslot
+            <h2>About converting to subrip</h2>
+            <p>
+                Subrip (srt) is a very basic subtitle format, because of this you will almost always lose some functionality or effects when converting to srt.
+                This online format converter tool works with Windows, Mac (Apple) and Linux and doesn't require you to install freeware on your computer.
+                The paragraphs below describe what you can expect when converting your subtitles to srt.
+                You can learn more about the subrip format <a href="https://matroska.org/technical/specs/subtitles/srt.html" rel="nofollow" target="_blank">here</a>.
+            </p>
 
-            Subrip (srt) is a very basic subtitle format, because of this you will almost always lose some functionality or effects when converting to srt.
-            This online format converter tool works with Windows, Mac (Apple) and Linux and doesn't require you to install freeware on your computer.
-            The paragraphs below describe what you can expect when converting your subtitles to srt.
-            You can learn more about the subrip format <a href="https://matroska.org/technical/specs/subtitles/srt.html" rel="nofollow" target="_blank">here</a>.
-        @endcomponent
+            <h3>Converting ass to srt</h3>
+            <p>
+                Advanced Substation Alpha (ass) is, as the name says, a more advanced version of the Substation Alpha (ssa) format.
+                It supports many effects, a few examples are custom fonts, pictures, positioned text, colors, moving text and karaoke text.
+                Srt doesn't support any of these things, and when converting ass to srt, all these effects are either removed or changed to normal text.
+                Changing ass files to srt files usually works pretty well, except for the occasional overlapping text as a result of removing text position effects.
+                You can learn more about the ssa and ass format on the <a href="https://en.wikipedia.org/wiki/SubStation_Alpha" rel="nofollow" target="_blank">Wikipedia page</a>.
+            </p>
 
-        @component('guest.components.text-section-content')
-            @slot('title') Converting ass to srt @endslot
+            <h3>Converting smi to srt</h3>
+            <p>
+                Synchronized Accessible Media Interchange (sami or smi) is an old subtitle format originally <a href="https://msdn.microsoft.com/en-us/library/ms971327.aspx" rel="nofollow" target="_blank">created by Microsoft</a>.
+                Smi files are barely ever used these days because there are far superior alternatives like srt or ass.
+                Korea used to use the smi format to create subtitles for movies, most old Korean movies that come with subtitles use the smi format.
+                Smi files support multiple languages in the same subtitle file, which should work fine when converting to srt.
+            </p>
 
-            Advanced Substation Alpha (ass) is, as the name says, a more advanced version of the Substation Alpha (ssa) format.
-            It supports many effects, a few examples are custom fonts, pictures, positioned text, colors, moving text and karaoke text.
-            Srt doesn't support any of these things, and when converting ass to srt, all these effects are either removed or changed to normal text.
-            Changing ass files to srt files usually works pretty well, except for the occasional overlapping text as a result of removing text position effects.
-            You can learn more about the ssa and ass format on the <a href="https://en.wikipedia.org/wiki/SubStation_Alpha" rel="nofollow" target="_blank">Wikipedia page</a>.
-        @endcomponent
+            <h3>Converting a batch of subtitles using zip</h3>
+            <p>
+                You can convert up to a hundred files at the same time with this tool by uploading a zip file, or by simply selecting multiple files.
+                The tool will attempt to convert all the files inside the zip file.
+                After uploading you will be redirected to the download page, where you can individually download the converted files, or generate a zip file and download them all at once.
+            </p>
 
-        @component('guest.components.text-section-content')
-            @slot('title') Converting smi to srt @endslot
-
-            Synchronized Accessible Media Interchange (sami or smi) is an old subtitle format originally <a href="https://msdn.microsoft.com/en-us/library/ms971327.aspx" rel="nofollow" target="_blank">created by Microsoft</a>.
-            Smi files are barely ever used these days because there are far superior alternatives like srt or ass.
-            Korea used to use the smi format to create subtitles for movies, most old Korean movies that come with subtitles use the smi format.
-            Smi files support multiple languages in the same subtitle file, which should work fine when converting to srt.
-        @endcomponent
-
-        @component('guest.components.text-section-content')
-            @slot('title') Converting a batch of subtitles using zip @endslot
-
-            You can convert up to a hundred files at the same time with this tool by uploading a zip file, or by simply selecting multiple files.
-            The tool will attempt to convert all the files inside the zip file.
-            After uploading you will be redirected to the download page, where you can individually download the converted files, or generate a zip file and download them all at once.
-        @endcomponent
-
-    @endcomponent
+        </div>
+    </section>
 
 @endsection

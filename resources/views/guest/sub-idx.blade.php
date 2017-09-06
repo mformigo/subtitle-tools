@@ -61,39 +61,38 @@
     @endcomponent
 
 
-    @component('guest.components.text-section')
+    <section class="text-content">
+        <div class="container">
 
-        @component('guest.components.text-section-content', ['h2' => true])
-            @slot('title') Converting sub/idx to srt online @endslot
+            <h2>Converting sub/idx to srt online</h2>
+            <p>
+                Sub/Idx or VobSub format subtitles are usually extracted from DVDs.
+                These subtitles always come in a pair, a sub file that contains picture of the subtitle text, and an idx file that contains information of when to show each picture of text.
+                You need both the sub file and the idx file to use them, the subtitles are unusable if you only have one or the other.
+                This online tool uses OCR to read the text in each picture, and then matches each line of text with the correct timestamp.
+                Converting idx/sub to srt online can take a few minutes, possibly longer if the site is busy.
+                The page will update automatically when the file is done processing.
+                Because it takes a long time to convert a VobSub file, they can only be uploaded one by one, and not inside an archive file.
+            </p>
 
-            Sub/Idx or VobSub format subtitles are usually extracted from DVDs.
-            These subtitles always come in a pair, a sub file that contains picture of the subtitle text, and an idx file that contains information of when to show each picture of text.
-            You need both the sub file and the idx file to use them, the subtitles are unusable if you only have one or the other.
-            This online tool uses OCR to read the text in each picture, and then matches each line of text with the correct timestamp.
-            Converting idx/sub to srt online can take a few minutes, possibly longer if the site is busy.
-            The page will update automatically when the file is done processing.
-            Because it takes a long time to convert a VobSub file, they can only be uploaded one by one, and not inside an archive file.
-        @endcomponent
+            <h3>Sub format</h3>
+            <p>
+                Sub/idx type subtitles use pictures of text to display subtitles on the screen.
+                This works great if you want your subtitles to work on every tv in the world, regardless of what font or text encoding the tv uses.
+                Using pictures to display the text also has downsides: editing the text is very hard, the files are relatively big, and the display quality can be low (especially on big screens).
+                Nowadays the VobSub format isn't used that much anymore.
+                A lot of newer devices such as smartphones and some smart TVs don't support sub/idx subtitles at all.
+                This converter tool can be used to convert VobSub subtitles to srt so you can use them on any device.
+            </p>
 
-        @component('guest.components.text-section-content')
-            @slot('title') Sub format @endslot
+            <h3>Multiple languages</h3>
+            <p>
+                Sub/Idx files can contain multiple languages.
+                This tool will extract every language that is inside the file.
+                It is not possible to only select the specific language you want, so you'll have to wait until all the languages that come before the one you want are done processing.
+            </p>
 
-            Sub/idx type subtitles use pictures of text to display subtitles on the screen.
-            This works great if you want your subtitles to work on every tv in the world, regardless of what font or text encoding the tv uses.
-            Using pictures to display the text also has downsides: editing the text is very hard, the files are relatively big, and the display quality can be low (especially on big screens).
-            Nowadays the VobSub format isn't used that much anymore.
-            A lot of newer devices such as smartphones and some smart TVs don't support sub/idx subtitles at all.
-            This converter tool can be used to convert VobSub subtitles to srt so you can use them on any device.
-        @endcomponent
-
-        @component('guest.components.text-section-content')
-            @slot('title') Multiple languages @endslot
-
-            Sub/Idx files can contain multiple languages.
-            This tool will extract every language that is inside the file.
-            It is not possible to only select the specific language you want, so you'll have to wait until all the languages that come before the one you want are done processing.
-        @endcomponent
-
-    @endcomponent
+        </div>
+    </section>
 
 @endsection
