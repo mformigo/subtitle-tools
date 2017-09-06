@@ -10,9 +10,9 @@
 
         @slot('title') Partial Subtitle Resync @endslot
 
-        This tools allows you to shift multiple points in a subtitle file.
-        The <a href="{{ route('shift') }}">Shifter Tool</a> resyncs the whole file, this tool only resyncs specific parts it.
-        The 'to' field has to be later than the 'from' field, shift can be any number except zero. Shift values are in milliseconds.
+        Shift multiple parts of a subtitle file.
+        <br/><br/>
+        The <a href="{{ route('shift') }}">Shifter Tool</a> adjusts the whole file, this tool only adjusts specific parts it.
 
     @endcomponent
 
@@ -80,13 +80,11 @@
 
     @push('inline-footer-scripts')
         <script>
-
-            var formInt = {{ count($shifts)  }};
+            {{ 'var formInt = ' .  count($shifts) . ';'  }}
 
             $("input[type=text]").mask("99:99:99", {placeholder:"-"});
 
-            $("#multi-shift-table a.cloner").on("click", function()
-            {
+            $("#multi-shift-table a.cloner").on("click", function() {
                 var newRow = $(".cloneable").last().clone();
 
                 newRow.removeClass("table-danger");
@@ -112,30 +110,59 @@
                 $("#multi-shift-table tr.cloner-row").before(newRow);
 
                 timeFields.last().focus();
-
             });
-
 
             function deleteRow(el)
             {
                 var parent = $(el).closest("tr");
 
-                if($(".cloneable").length > 1)
-                {
+                if($(".cloneable").length > 1) {
                     parent.remove();
                 }
-                else
-                {
+                else {
                     parent.find("input").val("");
                 }
             }
 
-            $("tr.table-danger input").on("focus", function()
-            {
+            $("tr.table-danger input").on("focus", function() {
                 $(this).closest("tr").removeClass("table-danger");
             });
         </script>
     @endpush
 
+
+    <section class="text-content">
+        <div class="container">
+
+            <h2>How to sync subtitles with this tool</h2>
+            <p>
+                This tool can be used to permanently sync subtitles with movies if the subtitles are off by a different amount of seconds in multiple parts of the video.
+                If the subtitles have the same delay the whole video, use the <a href="{{ route('shift') }}">shifter tool</a> instead.
+                <br/><br/>
+                This is an example of when this tool will work: if you have a 20 minute long movie with subtitles,
+                and in the first 10 minutes of the movie the subtitles have a delay of 2 seconds, and the last 10 minutes have a delay of 4 seconds,
+                you can fill in the following values to fix the subtitles:
+            </p>
+            <ul>
+                <li>From: 00:00:00, To: 00:10:00, Ms: 2000</li>
+                <li>From: 00:10:00, To: 00:20:00, Ms: 4000</li>
+            </ul>
+            <p>
+                Entering these values will apply a 2 second shift for the first 10 minutes, and a 4 second shift the last 10 minutes.
+                <br/><br/>
+                This tool will only work if the subtitles get more out of sync at specific points.
+                It will not work if the subtitles gradually get more ouf of sync.
+                <br/><br/>
+                The following subtitle formats can be resynced: srt, ssa and ass.
+                Multiple files can be uploaded at the same time, you can also upload a zip file.
+            </p>
+
+            <h3>Learning more about shifting</h3>
+            <p>
+                To learn more about syncing subtitles, read the information on the <a href="{{ route('shift') }}">shifter tool</a> page.
+            </p>
+
+        </div>
+    </section>
 
 @endsection
