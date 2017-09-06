@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Subtitles\PlainText\Ass;
+use App\Subtitles\PlainText\MicroDVD;
 use App\Subtitles\PlainText\PlainText;
 use App\Subtitles\PlainText\Smi;
 use App\Subtitles\PlainText\Srt;
@@ -86,6 +87,27 @@ class TextFileFormatTest extends TestCase
             $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
 
             $this->assertTrue($subtitle instanceof Smi, "'{$fileName}' is not an instance of Smi");
+        }
+    }
+
+    /** @test */
+    function it_matches_microdvd_files()
+    {
+        $textFileFormat = new TextFileFormat();
+
+        $MicroDVDFiles = [
+            'TextFiles/Normal/normal01.sub',
+            'TextFiles/FormatDetection/microdvd01.sub',
+            'TextFiles/FormatDetection/microdvd02.sub',
+            'TextFiles/FormatDetection/microdvd03.sub',
+            'TextFiles/FormatDetection/microdvd04.sub',
+            'TextFiles/FormatDetection/microdvd05.sub',
+        ];
+
+        foreach($MicroDVDFiles as $fileName) {
+            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
+
+            $this->assertTrue($subtitle instanceof MicroDVD, "'{$fileName}' is not an instance of MicroDVD");
         }
     }
 

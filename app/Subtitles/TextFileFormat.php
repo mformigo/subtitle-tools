@@ -9,6 +9,7 @@ class TextFileFormat
         \App\Subtitles\PlainText\Ass::class,
         \App\Subtitles\PlainText\Ssa::class,
         \App\Subtitles\PlainText\Smi::class,
+        \App\Subtitles\PlainText\MicroDVD::class,
         \App\Subtitles\PlainText\PlainText::class,
     ];
 
