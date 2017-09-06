@@ -18,6 +18,7 @@ class TextEncodingTest extends TestCase
         'utf-8.txt'             => 'UTF-8',
         'windows-1251.txt'      => 'windows-1251',
         'windows-1252-ansi.txt' => 'windows-1252',
+        'windows-1250.txt'      => 'windows-1250',
         'x-mac-cyrillic.txt'    => 'MacCyrillic',
         'KOI8-R.txt'     => 'KOI8-R',
         'iso-8859-5.txt' => 'ISO-8859-5',
@@ -84,5 +85,21 @@ class TextEncodingTest extends TestCase
         $output = $textEncoding->toUtf8(file_get_contents("{$this->testFilesStoragePath}TextEncodings/Other/iconv-illegal-chars.txt"));
 
         $this->assertTrue(strlen($output) > 10);
+    }
+
+    /** @test */
+    function it_detects_windows_1250_for_polish_text()
+    {
+        $textEncoding = app('TextEncoding');
+
+        $this->assertSame('windows-1250', $textEncoding->detectFromFile("{$this->testFilesStoragePath}TextEncodings/Problematic/windows-1250--with-polish.txt"));
+    }
+
+    /** @test */
+    function it_detects_windows_1252_for_danish_text()
+    {
+        $textEncoding = app('TextEncoding');
+
+        $this->assertSame('windows-1252', $textEncoding->detectFromFile("{$this->testFilesStoragePath}TextEncodings/Problematic/windows-1252--with-danish.txt"));
     }
 }

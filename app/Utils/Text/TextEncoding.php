@@ -12,7 +12,8 @@ class TextEncoding
         'UTF-8'          => 'UTF-8',
         'ascii/unknown'  => 'UTF-8', // We assume UTF-8 here
         'UTF-16'         => 'UTF-16',
-        'windows-1252'   => 'windows-1252', // ANSI
+        'windows-1252'   => 'windows-1252', // ANSI (for Scandinavian, doesn't work for Polish)
+        'windows-1250'   => 'windows-1250', // ANSI (for Polish, doesn't work for Scandinavian)
         'Shift_JIS'      => 'Shift_JIS', // Japanese
         'Big5'           => 'Big5', // Traditional Chinese
         'gb18030'        => 'gb18030', // Simplified Chinese
@@ -32,10 +33,11 @@ class TextEncoding
 
     private $iconvEncodings = [
     //  php encoding name
-        "TIS-620",
-        "MacCyrillic",
-        "windows-1253",
-        "windows-1255",
+        'TIS-620',
+        'MacCyrillic',
+        'windows-1253',
+        'windows-1255',
+        'windows-1250',
     ];
 
     public function detectFromFile($filePath)
@@ -54,7 +56,15 @@ class TextEncoding
 
         $encodingName = $this->allowedEncodings[$encoding];
 
-        // TODO: set cache
+        if($encodingName === 'windows-1252') {
+            $content = file_get_contents($filePath);
+
+            // B3 hex in windows-1252 === ³ (cube)
+            // B3 hex in windows-1250 === ł (polish letter)
+            if(strpos($content, "\xB3") !== false) {
+                $encodingName = 'windows-1250';
+            }
+        }
 
         return $encodingName;
     }
