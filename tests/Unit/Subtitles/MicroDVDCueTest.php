@@ -68,7 +68,7 @@ class MicroDVDCueTest extends TestCase
     {
         $microDvdCue = new MicroDVDCue();
 
-        $microDvdCue->loadString("{20170}{20256}Nigdy wczeœniej nie widzieli|czarnego na koniu.");
+        $microDvdCue->loadString("{20170}{20256}Nigdy wczeœniej nie widzieli|/czarnego na koniu.");
 
         $this->assertSame(23.976, $microDvdCue->getFps());
 
@@ -81,7 +81,7 @@ class MicroDVDCueTest extends TestCase
         $this->assertSame(841258, $genericCue->getStartMs());
         $this->assertSame(844845, $genericCue->getEndMs());
 
-        $this->assertSame(['Nigdy wczeœniej nie widzieli', 'czarnego na koniu.'], $genericCue->getLines());
+        $this->assertSame(['Nigdy wczeœniej nie widzieli', '<i>czarnego na koniu.</i>'], $genericCue->getLines());
     }
 
     /** @test */

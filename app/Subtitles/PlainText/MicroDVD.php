@@ -99,7 +99,9 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle
 
                 $microDvdCue->setFps($this->getFps());
 
-                $generic->addCue($microDvdCue);
+                $genericCue = $microDvdCue->toGenericCue();
+
+                $generic->addCue($genericCue);
             }
         }
 

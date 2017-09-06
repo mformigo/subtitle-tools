@@ -79,7 +79,16 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
     {
         $genericCue = new GenericSubtitleCue();
 
-        $genericCue->setLines($this->lines);
+        // This shouldn't be necessary for MicroDVD cues, but i see it happen a lot
+        // Italic lines start with a slash
+        $italicLines = array_map(function($line) {
+            if(strpos($line, '/') === 0) {
+                return '<i>' . substr($line, 1) . '</i>';
+            }
+            return $line;
+        }, $this->lines);
+
+        $genericCue->setLines($italicLines);
 
         $genericCue->setTiming($this->getStartMs(), $this->getEndMs());
 
