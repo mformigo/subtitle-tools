@@ -70,7 +70,12 @@ Possible errors when extracting a language:
 * missing the language training data
 * bad alloc exception (if the server doesn't have enough memory)
 
-### MicroDVD
+#### MicroDVD
 The numbers are the start frame and end frame. The first cue can contain an fps hint, if present we use that fps, otherwise we assume 23.976fps.
-<br/>
-Format: `{10}{25}line one|linetwo`
+<br/><br/>
+Format: `{10}{25}line one|line two`
+
+#### Mpl2
+Mpl2 is a weird format used by the Polish. It is much like the MicroDVD format, except the numbers are decaseconds (0.1) seconds. Also, a line starting with a slash is an italic line.
+<br/><br/>
+Format: `[10][25]line one|/line two italic`

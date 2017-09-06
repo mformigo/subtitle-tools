@@ -75,6 +75,13 @@
                 Because it takes a long time to convert a VobSub file, they can only be uploaded one by one, and not inside an archive file.
             </p>
 
+            <h3>No idx file</h3>
+            <p>
+                If you have a .sub file, but no .idx file, this tool will not work.
+                But there is a chance that your .sub file is a MicroDVD file because they share the same file extension.
+                To find out if it is a MicroDVD file, you can try converting it using the <a href="{{ route('convertToSrt') }}">convert to srt</a> tool.
+            </p>
+
             <h3>Sub format</h3>
             <p>
                 Sub/idx type subtitles use pictures of text to display subtitles on the screen.

@@ -11,8 +11,6 @@
         @slot('title') Convert Subtitles to Srt @endslot
 
         Online tool for changing subtitles to srt.
-        It automatically detects file encoding and encodes the output in UTF-8.
-        Supports the following conversions: <strong>ass to srt</strong>, <strong>ssa to srt</strong> and <strong>smi to srt</strong>.
         You can select multiple files or upload a zip file to convert a batch of subtitles to srt.
 
     @endcomponent
@@ -22,13 +20,13 @@
 
         @slot('title') Select subtitles to convert to srt @endslot
 
-        @slot('formats') Supported subtitle formats: ass, ssa, smi, zip @endslot
+        @slot('formats') Supported subtitle formats: ass, ssa, smi, microdvd, zip @endslot
 
         @slot('buttonText') Convert to Srt @endslot
 
         @slot('extraBefore')
             <div class="alert-danger sub-idx-popup hidden">
-                If you have a .sub file and a .idx file then you need to use the <a href="{{ route('subIdx') }}">sub/idx converter</a>.
+                If you have a .sub file and an .idx file then you need to use the <a href="{{ route('subIdx') }}">sub/idx converter</a>.
             </div>
         @endslot
 
@@ -76,7 +74,18 @@
 
             <h3>Converting MicroDVD (sub) to srt</h3>
             <p>
-                <a href="https://en.wikipedia.org/wiki/MicroDVD" target="_blank" rel="nofollow">MicroDVD</a> subtitle files
+                <a href="https://en.wikipedia.org/wiki/MicroDVD" target="_blank" rel="nofollow">MicroDVD</a> subtitle files are weird, but for some reason still common.
+                The dialogue inside a MicroDVD file is timed based on the frame rate of the video.
+                When converting sub to srt, we need to know the frame rate.
+                Some sub files have a fps hint as the first cue, if this hint is present we use this fps to determine the timing of the dialogue.
+                If no hint is present, we assume 23.976 fps.
+                <strong>If your .sub file is accompanied by an .idx file, you need to use the <a href="{{ route('subIdx') }}">sub/idx converter</a>.</strong>
+            </p>
+
+            <h3>Polish MPL2 to srt</h3>
+            <p>
+                The subtitle format MPL2 is also supported, it is commonly used to make Polish subtitles.
+                The program SubEdit is used to make these mpl subtitles.
             </p>
 
             <h3>Converting a batch of subtitles using zip</h3>
