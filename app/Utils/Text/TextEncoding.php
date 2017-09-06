@@ -14,6 +14,7 @@ class TextEncoding
         'UTF-16'         => 'UTF-16',
         'windows-1252'   => 'windows-1252', // ANSI (for Scandinavian, doesn't work for Polish)
         'windows-1250'   => 'windows-1250', // ANSI (for Polish, doesn't work for Scandinavian)
+        'ISO-8859-2'     => 'ISO-8859-2', // Romanian (gets detected as windows-1252)
         'Shift_JIS'      => 'Shift_JIS', // Japanese
         'Big5'           => 'Big5', // Traditional Chinese
         'gb18030'        => 'gb18030', // Simplified Chinese
@@ -59,10 +60,16 @@ class TextEncoding
         if($encodingName === 'windows-1252') {
             $content = file_get_contents($filePath);
 
-            // B3 hex in windows-1252 === ³ (cube)
-            // B3 hex in windows-1250 === ł (polish letter)
+
             if(strpos($content, "\xB3") !== false) {
+                // B3 hex in windows-1252 === ³ (cube)
+                // B3 hex in windows-1250 === ł (polish letter)
                 $encodingName = 'windows-1250';
+            }
+            else if(strpos($content, "\xBA") !== false) {
+                // B3 hex in windows-1252 === º (degree sign)
+                // B3 hex in   ISO-8859-2 === ş (romanian letter)
+                $encodingName = 'ISO-8859-2';
             }
         }
 

@@ -26,6 +26,7 @@ class TextEncodingTest extends TestCase
         'ibm866.txt'     => 'IBM866',
         'windows-1253.txt' => 'windows-1253',
         'windows-1255.txt' => 'windows-1255',
+        'iso-8859-2.txt'   => 'ISO-8859-2',
     ];
 
     /** @test */
@@ -92,7 +93,7 @@ class TextEncodingTest extends TestCase
     {
         $textEncoding = app('TextEncoding');
 
-        $this->assertSame('windows-1250', $textEncoding->detectFromFile("{$this->testFilesStoragePath}TextEncodings/Problematic/windows-1250--with-polish.txt"));
+        $this->assertSame('windows-1250', $textEncoding->detectFromFile("{$this->testFilesStoragePath}TextEncodings/Problematic-Windows-1252/windows-1250--with-polish.txt"));
     }
 
     /** @test */
@@ -100,6 +101,14 @@ class TextEncodingTest extends TestCase
     {
         $textEncoding = app('TextEncoding');
 
-        $this->assertSame('windows-1252', $textEncoding->detectFromFile("{$this->testFilesStoragePath}TextEncodings/Problematic/windows-1252--with-danish.txt"));
+        $this->assertSame('windows-1252', $textEncoding->detectFromFile("{$this->testFilesStoragePath}TextEncodings/Problematic-Windows-1252/windows-1252--with-danish.txt"));
+    }
+
+    /** @test */
+    function it_detects_encoding_for_romanian_text()
+    {
+        $textEncoding = app('TextEncoding');
+
+        $this->assertSame('ISO-8859-2', $textEncoding->detectFromFile("{$this->testFilesStoragePath}TextEncodings/Problematic-Windows-1252/iso-8859-2--with-romanian.txt"));
     }
 }
