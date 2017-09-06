@@ -7,7 +7,7 @@ return [
 //    Description max length: 160 characters
 
 //---------------60-characters-'############################################################'---------------------------
-    'title.cleanSrt'        => 'Srt Cleaner: Online Srt Clean and Fix Tool | Subtitle Tools',
+    'title.cleanSrt'        => 'Srt cleaner: easily remove formatting online | Subtitle Tools',
     'title.contact'         => 'Contact: Send us Feedback | Subtitle Tools',
     'title.convertToSrt'    => 'Convert Subtitles to Srt: Online Conversion Tool | Subtitle Tools',
     'title.convertToUtf8'   => 'Convert to UTF-8: Online Text File Encoding Fix | Subtitle Tools',
@@ -22,7 +22,7 @@ return [
     'title.error'           => 'Whoops | Subtitle Tools',
 
 //--------------160-characters-------'################################################################################################################################################################'---------------------------
-    'description.cleanSrt'        => 'Removes formatting, brackets (curly, parentheses or angle brackets), html and other effects from subrip files. Easy online tool for cleaning srt subtitles',
+    'description.cleanSrt'        => 'Removes formatting, brackets (curly, parentheses or angle brackets), html and other effects from subrip files. Easy online tool for cleaning and fixing srt subtitles',
     'description.contact'         => 'We appreciate all feedback! Contact us if you have any suggestions, or if you want to report a bug',
     'description.convertToSrt'    => 'Convert subtitles to srt online for free. This tool can convert ass to srt, ssa to srt and smi to srt. Upload zip file to convert a batch to srt. Works on Windows, Mac and Linux',
     'description.convertToUtf8'   => 'Easily convert text or subtitle files to UTF-8. Supports all text files (txt, srt, ascii). This tool automatically detects the encoding and converts it to UTF-8',
@@ -37,7 +37,7 @@ return [
     'description.error'           => 'Whoops!',
 
 
-    'keywords.cleanSrt'        => 'subtitle, subtitles, srt, clean, bracket, html, braces, angle, effects, colors, font, b, i',
+    'keywords.cleanSrt'        => 'subtitle, subtitles, srt, clean, bracket, html, braces, angle, effects, colors, font, b, i, formatting, strip, stripping',
     'keywords.contact'         => 'contact, email, support, feedback',
     'keywords.convertToSrt'    => 'convert to srt, subtitles to srt, ass to srt, ssa to srt, smi to srt, ass2srt, ssa2srt, smi2srt, online, free, converter, conversion, subtitles, windows, mac, linux, freeware',
     'keywords.convertToUtf8'   => 'subtitle, subtitles, srt, ass, txt, utf-8, encoding, file, files, text, textfile, convert',

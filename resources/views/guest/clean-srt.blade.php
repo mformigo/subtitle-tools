@@ -8,11 +8,9 @@
 
     @component('guest.components.page-intro')
 
-        @slot('title') Srt Cleaner @endslot
+        @slot('title') Remove formatting from Srt subtitles @endslot
 
-        This tool cleans up srt files, removing html effects contained in angle brackets/chevrons, such as &lt;b&gt;&lt;/b&gt;.
-        It also removes effects left over when poorly converted from the different subtitle formats, like {\f4}, contained in curly brackets/braces.
-        The file will be converted to UTF-8, and the cues will be sorted based on their start time, and duplicate or empty cues will be removed.
+        This tool cleans srt files, removing html tags and other formatting.
 
     @endcomponent
 
@@ -43,5 +41,27 @@
 
     @endcomponent
 
+
+    <section class="text-content">
+        <div class="container">
+
+            <h2>Cleaning srt files</h2>
+            <p>
+                Srt subtitles sometimes contain style formatting tags. Unfortunately, many video players don't support formatting and display them as plain text.
+                Examples of formatting are italic {{ '<i></i>' }}, bold {{ '<b></b>' }} or colored text {{ '<font></font>' }}.
+                This tool strips all html formatting that is contained in angle brackets.
+                <br/><br/>
+                The cleaner also converts the file to UTF-8 text encoding, the cues will be sorted based on their start time, and duplicate or empty cues will be removed.
+            </p>
+
+            <h3>Other formatting tags</h3>
+            <p>
+                This tool also removes all effects that are leftover when converting a subtitle format to srt.
+                Most notably, it removes formatting effects contained in curly brackets (eg: {\f4}) which come from substation alpha subtitles.
+                The <a href="{{ route('convertToSrt') }}">srt converter</a> tool will properly remove these effects when converting to srt, but many other tools available online do not.
+            </p>
+
+        </div>
+    </section>
 
 @endsection
