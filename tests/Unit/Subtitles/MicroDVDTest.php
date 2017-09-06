@@ -27,7 +27,7 @@ class MicroDVDTest extends TestCase
     }
 
     /** @test */
-    function it_reads_framerate_hints()
+    function it_reads_frame_rate_hints()
     {
         $microDVD = new MicroDVD("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/microdvd-fps-hint.sub");
 
