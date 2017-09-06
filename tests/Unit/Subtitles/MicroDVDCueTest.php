@@ -14,8 +14,6 @@ class MicroDVDCueTest extends TestCase
         $this->assertTrue(MicroDVDCue::isTimingString('{1164}{1237}{y:i}¿ycie iœæ musi naprzód.'));
         $this->assertTrue(MicroDVDCue::isTimingString('{1440}{1489}DJANGO'));
         $this->assertTrue(MicroDVDCue::isTimingString('{0}{0}ZERO'));
-        $this->assertTrue(MicroDVDCue::isTimingString('[170][195]- I have a wife.|- She\'s shut away in a tower.'));
-        $this->assertTrue(MicroDVDCue::isTimingString('[0][6]{c:$0000ff}Subtitles downloaded by MiniSubDownloader:|{c:$ff7070}{y:u}http://minisubdownloader.org'));
     }
 
     /** @test */
@@ -23,15 +21,13 @@ class MicroDVDCueTest extends TestCase
     {
         $this->assertFalse(MicroDVDCue::isTimingString(""));
         $this->assertFalse(MicroDVDCue::isTimingString(" "));
-        $this->assertFalse(MicroDVDCue::isTimingString("{123}[456]Both brackets is wrong|man"));
-        $this->assertFalse(MicroDVDCue::isTimingString("[123]{456}Both brackets is wrong|man"));
+        $this->assertFalse(MicroDVDCue::isTimingString("[123][456]not curly brackets|man"));
         $this->assertFalse(MicroDVDCue::isTimingString("{1164}{1237}")); // it needs at least 1 character of dialogue
     }
 
     /** @test */
     function it_rejects_timing_strings_that_end_before_they_start()
     {
-        $this->assertFalse(MicroDVDCue::isTimingString("[100][50]好啊  朋友"));
         $this->assertFalse(MicroDVDCue::isTimingString("{100}{50}好啊  朋友"));
     }
 
@@ -40,10 +36,10 @@ class MicroDVDCueTest extends TestCase
     {
         $cue = new MicroDVDCue();
 
-        $cue->loadString("[521][551]- Based on whose information?|- Varys: <i>Ser Jorah Mormont.</i>");
+        $cue->loadString("{521}{551}- Based on whose information?|- Varys: <i>Ser Jorah Mormont.</i>");
 
-        $this->assertSame(521, $cue->getStartMs());
-        $this->assertSame(551, $cue->getEndMs());
+        $this->assertSame(21730, $cue->getStartMs());
+        $this->assertSame(22981, $cue->getEndMs());
 
         $this->assertSame([
             '- Based on whose information?',
@@ -55,9 +51,9 @@ class MicroDVDCueTest extends TestCase
     function it_preserves_cues()
     {
         $valuesShouldNotChange = [
-            '[521][551]- Based on whose information?|- Varys: <i>Ser Jorah Mormont.</i>',
-            '[551][574]He is serving as advisor|to the Targaryens.',
-            '[574][597]You bring us the whispers|of a traitor.',
+            '{521}{551}- Based on whose information?|- Varys: <i>Ser Jorah Mormont.</i>',
+            '{551}{574}He is serving as advisor|to the Targaryens.',
+            '{574}{597}You bring us the whispers|of a traitor.',
             '{11465}{11544}Za godzinê przes³uchaj¹ mnie|osobisty sekretarz króla,',
             '{11544}{11683}trzej adwokaci i kilku urzêdników.|Bêd¹ chcieli mieæ to na piœmie.',
         ];
@@ -68,55 +64,44 @@ class MicroDVDCueTest extends TestCase
     }
 
     /** @test */
-    function it_can_positive_shift_and_preserves_cues()
-    {
-        $cue = new MicroDVDCue();
-
-        $cue->loadString("[3526][3553]( men chanting )|Guilty. Guilty. Guilty.")
-            ->shift(1000);
-
-        $this->assertSame("[4526][4553]( men chanting )|Guilty. Guilty. Guilty.", $cue->toString());
-    }
-
-    /** @test */
-    function it_can_negative_shift_and_preserves_cues()
-    {
-        $cue = new MicroDVDCue();
-
-        $cue->loadString("[4068][4087]Beric:|<i>He will.</i>")
-            ->shift(-1000);
-
-        $this->assertSame("[3068][3087]Beric:|<i>He will.</i>", $cue->toString());
-    }
-
-    /** @test */
-    function timings_do_not_exceed_minimum_value()
-    {
-        $cue = new MicroDVDCue();
-
-        $cue->loadString("[6804][6833]is that what lords do to|their ladies in the South?")
-            ->shift(-99999999999999999);
-
-        $this->assertSame("[0][0]is that what lords do to|their ladies in the South?", $cue->toString());
-    }
-
-    /** @test */
     function it_transforms_to_generic_cue()
     {
-        $assCue = new MicroDVDCue();
+        $microDvdCue = new MicroDVDCue();
 
-        $assCue->loadString("{20170}{20256}Nigdy wczeœniej nie widzieli|czarnego na koniu.");
+        $microDvdCue->loadString("{20170}{20256}Nigdy wczeœniej nie widzieli|czarnego na koniu.");
 
-        $genericCue = $assCue->toGenericCue();
+        $this->assertSame(23.976, $microDvdCue->getFps());
+
+        $genericCue = $microDvdCue->toGenericCue();
 
         $this->assertTrue($genericCue instanceof GenericSubtitleCue);
 
         $this->assertFalse($genericCue instanceof MicroDVDCue);
 
-        $this->assertSame(20170, $genericCue->getStartMs());
-        $this->assertSame(20256, $genericCue->getEndMs());
+        $this->assertSame(841258, $genericCue->getStartMs());
+        $this->assertSame(844845, $genericCue->getEndMs());
 
         $this->assertSame(['Nigdy wczeœniej nie widzieli', 'czarnego na koniu.'], $genericCue->getLines());
+    }
+
+    /** @test */
+    function it_calculates_start_ms_with_frame_rate()
+    {
+        $microDvdCue = new MicroDVDCue();
+
+        $microDvdCue->loadString("{1050}{1250}Nigdy wczeœniej nie widzieli|czarnego na koniu.");
+
+        $this->assertSame(23.976, $microDvdCue->getFps());
+
+        $this->assertSame(43794, $microDvdCue->getStartMs());
+        $this->assertSame(52135, $microDvdCue->getEndMs());
+
+        $microDvdCue->setFps("25.0");
+
+        $this->assertSame(25.0, $microDvdCue->getFps());
+
+        $this->assertSame(42000, $microDvdCue->getStartMs());
+        $this->assertSame(50000, $microDvdCue->getEndMs());
     }
 
     /** @test */

@@ -99,9 +99,6 @@ class TextFileFormatTest extends TestCase
             'TextFiles/Normal/normal01.sub',
             'TextFiles/FormatDetection/microdvd01.sub',
             'TextFiles/FormatDetection/microdvd02.sub',
-            'TextFiles/FormatDetection/microdvd03.sub',
-            'TextFiles/FormatDetection/microdvd04.sub',
-            'TextFiles/FormatDetection/microdvd05.sub',
         ];
 
         foreach($MicroDVDFiles as $fileName) {

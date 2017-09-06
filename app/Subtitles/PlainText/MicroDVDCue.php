@@ -4,11 +4,11 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\TimingStrings;
 use App\Subtitles\TransformsToGenericCue;
+use Exception;
 
 class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, TransformsToGenericCue
 {
-    // MicroDVD cues can either use {0}{1} or [0][1]
-    protected $usesCurlyBrackets = true;
+    protected $frameRate = 23.976;
 
     public function __construct($timingLine = null)
     {
@@ -17,11 +17,25 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
         }
     }
 
+    public function setFps($fps)
+    {
+        if(!is_float($fps) && !preg_match('/\d\d\.\d+/', $fps)) {
+            throw new Exception("Invalid framerate ({$fps})");
+        }
+
+        $this->frameRate = (float)$fps;
+    }
+
+    public function getFps()
+    {
+        return $this->frameRate;
+    }
+
     public function loadString($string)
     {
         $this->setTimingFromString($string);
 
-        $timingOffset = strlen($this->getStartMs()) + strlen($this->getEndMs()) + 4;
+        $timingOffset = strlen($this->startMs) + strlen($this->endMs) + 4;
 
         $this->setLines(
             explode('|', substr($string, $timingOffset))
@@ -38,12 +52,10 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
 
         $string = trim($string);
 
-        $this->usesCurlyBrackets = $string[0] === '{';
-
-        preg_match('/^(?:\{(\d+)\}\{(\d+)\}|\[(\d+)\]\[(\d+)\]).+/', $string, $matches);
+        preg_match('/^\{(\d+)\}\{(\d+)\}.+/', $string, $matches);
 
         list($line, $startMs, $endMs) = collect($matches)->filter(function($str) {
-            return !empty($str);
+            return strlen($str) !== 0;
         })->values()->all();
 
         $this->setTiming($startMs, $endMs);
@@ -58,12 +70,10 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
     {
         $textPart = implode('|', $this->lines);
 
-        if($this->usesCurlyBrackets) {
-            return "{{$this->getStartMs()}}{{$this->getEndMs()}}{$textPart}";
-        }
-        else {
-            return "[{$this->getStartMs()}][{$this->getEndMs()}]{$textPart}";
-        }
+        $startFrame = $this->startMs;
+        $endFrame = $this->endMs;
+
+        return "{{$startFrame}}{{$endFrame}}{$textPart}";
     }
 
     public function toGenericCue()
@@ -77,12 +87,26 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
         return $genericCue;
     }
 
+    public function getStartMs()
+    {
+        $frameNumber = $this->startMs;
+
+        return (int)round(($frameNumber / $this->frameRate) * 1000);
+    }
+
+    public function getEndMs()
+    {
+        $frameNumber = $this->endMs;
+
+        return (int)round(($frameNumber / $this->frameRate) * 1000);
+    }
+
     public static function isTimingString($string)
     {
         $string = trim($string);
 
-        // Match either ^{0}{0}.+ or ^[0][0].+
-        if(!preg_match('/^(?:\{(\d+)\}\{(\d+)\}|\[(\d+)\]\[(\d+)\]).+/', $string, $matches)) {
+        // Match ^{0}{0}.+
+        if(!preg_match('/^\{(\d+)\}\{(\d+)\}.+/', $string, $matches)) {
             return false;
         }
 

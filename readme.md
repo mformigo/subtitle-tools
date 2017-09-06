@@ -68,4 +68,9 @@ Extracting a language using `vobsub2srt filename --index 0` can have the followi
 
 Possible errors when extracting a language:
 * missing the language training data
-* bad alloc exception (server related?)
+* bad alloc exception (if the server doesn't have enough memory)
+
+### MicroDVD
+The numbers are the start frame and end frame. The first cue can contain an fps hint, if present we use that fps, otherwise we assume 23.976fps.
+<br/>
+Format: `{10}{25}line one|linetwo`

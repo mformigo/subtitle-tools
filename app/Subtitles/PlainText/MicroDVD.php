@@ -3,24 +3,58 @@
 namespace App\Subtitles\PlainText;
 
 use App\Facades\TextFileReader;
-use App\Subtitles\PartialShiftsCues;
-use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
+use Mockery\Exception;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class MicroDVD extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, PartialShiftsCues
+class MicroDVD extends TextFile implements TransformsToGenericSubtitle
 {
     use WithFileLines;
 
     protected $extension = "sub";
+
+    protected $frameRate = 23.976;
 
     public function __construct($source = null)
     {
         if($source !== null) {
             $this->loadFile($source);
         }
+    }
+
+    public function loadFile($file)
+    {
+        parent::loadFile($file);
+
+        if(count($this->lines) > 0 && MicroDVDCue::isTimingString($this->lines[0])) {
+            $firstCue = new MicroDVDCue($this->lines[0]);
+
+            $maybeFpsHint = $firstCue->getLines()[0] ?? "NO HINT";
+
+            if(preg_match('/^(?<fps>\d\d(\.|,)\d+)$/', $maybeFpsHint, $matches)) {
+                $hintedFps = str_replace(',', '.', $matches['fps']);
+
+                $this->setFps($hintedFps);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setFps($fps)
+    {
+        if(!is_float($fps) && !preg_match('/\d\d\.\d+/', $fps)) {
+            throw new Exception("Invalid framerate ({$fps})");
+        }
+
+        $this->frameRate = (float)$fps;
+    }
+
+    public function getFps()
+    {
+        return $this->frameRate;
     }
 
     /**
@@ -62,36 +96,14 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle, ShiftsCu
 
         foreach($this->lines as $line) {
             if(MicroDVDCue::isTimingString($line)) {
-                $generic->addCue(new MicroDVDCue($line));
+                $microDvdCue = new MicroDVDCue($line);
+
+                $microDvdCue->setFps($this->getFps());
+
+                $generic->addCue($microDvdCue);
             }
         }
 
         return $generic;
-    }
-
-    public function shift($ms)
-    {
-        return $this->shiftPartial(0, PHP_INT_MAX, $ms);
-    }
-
-    public function shiftPartial($fromMs, $toMs, $ms)
-    {
-        if($fromMs > $toMs || $ms == 0) {
-            return $this;
-        }
-
-        for($i = 0; $i < count($this->lines); $i++) {
-            if(MicroDVDCue::isTimingString($this->lines[$i])) {
-                $microDvdCue = new MicroDVDCue($this->lines[$i]);
-
-                if($microDvdCue->getStartMs() >= $fromMs && $microDvdCue->getEndMs() <= $toMs) {
-                    $microDvdCue->shift($ms);
-
-                    $this->lines[$i] = $microDvdCue->toString();
-                }
-            }
-        }
-
-        return $this;
     }
 }

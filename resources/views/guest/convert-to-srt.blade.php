@@ -28,8 +28,7 @@
 
         @slot('extraBefore')
             <div class="alert-danger sub-idx-popup hidden">
-                It looks like you're trying to convert a sub/idx file.
-                You need to use the <a href="{{ route('subIdx') }}">sub/idx converter</a> for that.
+                If you have a .sub file and a .idx file then you need to use the <a href="{{ route('subIdx') }}">sub/idx converter</a>.
             </div>
         @endslot
 
@@ -73,6 +72,11 @@
                 Smi files are barely ever used these days because there are far superior alternatives like srt or ass.
                 Korea used to use the smi format to create subtitles for movies, most old Korean movies that come with subtitles use the smi format.
                 Smi files support multiple languages in the same subtitle file, which should work fine when converting to srt.
+            </p>
+
+            <h3>Converting MicroDVD (sub) to srt</h3>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/MicroDVD" target="_blank" rel="nofollow">MicroDVD</a> subtitle files
             </p>
 
             <h3>Converting a batch of subtitles using zip</h3>
