@@ -10,6 +10,8 @@
             <tr>
                 <th>Original Name</th>
                 <th>Error Message</th>
+                <th>Encoding</th>
+                <th>Type</th>
                 <th>Input</th>
                 <th>Output</th>
                 <th>Finished at</th>
@@ -19,8 +21,10 @@
 
             @foreach($fileJobs as $fileJob)
                 <tr>
-                    <td>{{ $fileJob->original_name }}</td>
+                    <td style="word-wrap:break-word;">{{ $fileJob->original_name }}</td>
                     <td>{{ __($fileJob->error_message) }}</td>
+                    <td>{{ optional($fileJob->inputStoredFile->meta)->encoding }}</td>
+                    <td>{{ substr(optional($fileJob->inputStoredFile->meta)->identified_as, strlen('App\Subtitles\PlainText\\')) }}</td>
                     <td><a target="_blank" href="{{ route('adminStoredFileDetail', ['id' => $fileJob->input_stored_file_id]) }}">{{ $fileJob->input_stored_file_id }}</a></td>
                     <td>
                         @if($fileJob->output_stored_file_id)
@@ -34,7 +38,5 @@
             </tbody>
         </table>
     </div>
-
-
 
 @endsection
