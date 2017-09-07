@@ -21,7 +21,7 @@ class QueueCollectStoredFileMetaJobs extends Command
     {
         $storedFilesWithoutMeta = StoredFile::query()
             ->doesntHave('meta')
-            ->take(500)
+            ->take(1500)
             ->get();
 
         foreach($storedFilesWithoutMeta as $storedFile) {
