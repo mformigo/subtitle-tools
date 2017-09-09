@@ -1,5 +1,10 @@
 # Subtitle Tools
 
+## Required mods
+* uchardet
+* vobsub2srt
+* PHP Rar (PECL)
+
 ## Updating code
 * Compile production assets `yarn run prod`
 * Push to Master

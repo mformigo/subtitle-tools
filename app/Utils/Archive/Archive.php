@@ -3,12 +3,14 @@
 namespace App\Utils\Archive;
 
 use App\Utils\Archive\Read\ArchiveReadInterface;
+use App\Utils\Archive\Read\RarArchiveRead;
 use App\Utils\Archive\Read\ZipArchiveRead;
 
 class Archive
 {
     protected static $archiveReadClasses = [
         ZipArchiveRead::class,
+        RarArchiveRead::class,
     ];
 
     private function __construct()

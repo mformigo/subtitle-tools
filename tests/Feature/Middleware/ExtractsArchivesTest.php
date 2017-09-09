@@ -27,6 +27,20 @@ class ExtractsArchivesTest extends TestCase
     }
 
     /** @test */
+    function it_extracts_rars_in_request()
+    {
+        $this->withoutJobs();
+
+        $response = $this->post(route('convertToSrt'), [
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/Rar/zimuku-10-ass.rar")],
+        ]);
+
+        $response->assertStatus(302);
+
+        $this->assertSame(10, StoredFile::count());
+    }
+
+    /** @test */
     function it_extracts_multiple_zips_in_request()
     {
         $this->withoutJobs();

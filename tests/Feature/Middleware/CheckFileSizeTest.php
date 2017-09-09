@@ -36,4 +36,17 @@ class CheckFileSizeTest extends TestCase
 
         $this->assertSame(0, StoredFile::count());
     }
+
+    /** @test */
+    function it_rejects_if_files_inside_rars_are_too_big()
+    {
+        $response = $this->post(route('convertToSrt'), [
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}Archives/Rar/dir-with-invalid-files.rar")],
+        ]);
+
+        $response->assertStatus(302)
+            ->assertSessionHasErrors(['subtitles' => __('validation.a_file_in_archive_too_big_when_extracted')]);
+
+        $this->assertSame(0, StoredFile::count());
+    }
 }
