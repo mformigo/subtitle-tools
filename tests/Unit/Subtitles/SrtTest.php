@@ -256,4 +256,35 @@ class SrtTest extends TestCase
         $this->assertSame('', $srt->getContent());
     }
 
+    /** @test */
+    function it_transforms_to_generic_subtitle()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+
+        $generic = $srt->toGenericSubtitle();
+
+        $this->assertFalse($generic instanceof Srt);
+
+        $this->assertSame('three-cues', $generic->getFileNameWithoutExtension());
+
+        $cues = $generic->getCues();
+
+        $this->assertSame(3, count($cues));
+
+        $this->assertSame(1266, $cues[0]->getStartMs());
+        $this->assertSame(3366, $cues[0]->getEndMs());
+        $this->assertSame(['Do you know what this is all', 'about? Why we\'re here?'], $cues[0]->getLines());
+        $this->assertFalse($cues[0] instanceof SrtCue);
+
+        $this->assertSame(3400, $cues[1]->getStartMs());
+        $this->assertSame(6366, $cues[1]->getEndMs());
+        $this->assertSame(['To be out. This is out.', '[AUDIENCE LAUGHS]'], $cues[1]->getLines());
+        $this->assertFalse($cues[1] instanceof SrtCue);
+
+        $this->assertSame(6400, $cues[2]->getStartMs());
+        $this->assertSame(8233, $cues[2]->getEndMs());
+        $this->assertSame(['And out is one of', 'the single most'], $cues[2]->getLines());
+        $this->assertFalse($cues[2] instanceof SrtCue);
+    }
+
 }

@@ -12,6 +12,13 @@ class PlainText extends TextFile
 
     protected $extension = "txt";
 
+    public function setContent($string)
+    {
+        $this->content = $string;
+
+        return $this;
+    }
+
     public static function isThisFormat($file)
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;

@@ -3,6 +3,7 @@
 return [
 
     'shifters_title' => '&nbsp; Resync &nbsp;',
+    'other_title' => '&nbsp; Other Tools &nbsp;',
 
 
     'item.convertToSrt' => 'Convert to Srt',
@@ -13,6 +14,7 @@ return [
     'item.pinyin' => 'Make Pinyin Subtitles',
     'item.subIdx' => 'Sub/Idx to Srt',
     'item.contact' => 'Contact',
+    'item.convertToPlainText' => 'Convert to Plain Text',
 
     // Admin Nav
     'item.admin' => 'Dashboard',

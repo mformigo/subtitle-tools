@@ -13,7 +13,7 @@ use App\Subtitles\WithFileLines;
 use App\Subtitles\WithGenericCues;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues, Watermarkable, ContainsGenericCues
+class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues, Watermarkable, ContainsGenericCues, TransformsToGenericSubtitle
 {
     use WithFileLines, WithGenericCues;
 
@@ -184,5 +184,29 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         $cue = (new SrtCue())->setTiming(0, 0)->addLine('Edited at https://subtitletools.com');
 
         return $this->addCue($cue);
+    }
+
+    /**
+     * @return GenericSubtitle
+     */
+    public function toGenericSubtitle()
+    {
+        $generic = new GenericSubtitle();
+
+        $generic->setFilePath($this->filePath);
+
+        $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
+
+        foreach($this->getCues(false) as $cue) {
+            $newGenericCue = new GenericSubtitleCue();
+
+            $newGenericCue->setTiming($cue->getStartMs(), $cue->getEndMs());
+
+            $newGenericCue->setLines($cue->getLines());
+
+            $generic->addCue($newGenericCue);
+        }
+
+        return $generic;
     }
 }

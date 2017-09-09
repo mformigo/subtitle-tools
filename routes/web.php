@@ -22,3 +22,4 @@ Route::fileGroupTool('shift',         'ShiftController',         'subtitle-sync-
 Route::fileGroupTool('shiftPartial',  'ShiftPartialController',  'partial-subtitle-sync-shifter');
 Route::fileGroupTool('convertToUtf8', 'ConvertToUtf8Controller', 'convert-to-utf8');
 Route::fileGroupTool('pinyin',        'PinyinController',        'make-chinese-pinyin-subtitles');
+Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
