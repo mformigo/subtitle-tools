@@ -17,6 +17,7 @@ class RedirectsProvider extends ServiceProvider
         'subtitle-shift'           => 'shift',
         'partial-subtitle-shifter' => 'shiftPartial',
         'multi-subtitle-shift'     => 'shiftPartial',
+        'convert-to-utf8'          => 'convertToUtf8',
     ];
 
     public function boot()

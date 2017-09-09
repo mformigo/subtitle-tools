@@ -20,6 +20,6 @@ Route::fileGroupTool('convertToSrt',  'ConvertToSrtController',  'convert-to-srt
 Route::fileGroupTool('cleanSrt',      'CleanSrtController',      'srt-cleaner');
 Route::fileGroupTool('shift',         'ShiftController',         'subtitle-sync-shifter');
 Route::fileGroupTool('shiftPartial',  'ShiftPartialController',  'partial-subtitle-sync-shifter');
-Route::fileGroupTool('convertToUtf8', 'ConvertToUtf8Controller', 'convert-to-utf8');
+Route::fileGroupTool('convertToUtf8', 'ConvertToUtf8Controller', 'convert-text-files-to-utf8-online');
 Route::fileGroupTool('pinyin',        'PinyinController',        'make-chinese-pinyin-subtitles');
 Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
