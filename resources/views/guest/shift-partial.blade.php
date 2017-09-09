@@ -21,7 +21,7 @@
 
         @slot('title') Select a file to resync @endslot
 
-        @slot('formats') Supported subtitle formats: srt, ass, ssa, zip @endslot
+        @slot('formats') Supported subtitle formats: srt, ass, ssa @endslot
 
         @slot('buttonText') Shift @endslot
 
@@ -154,7 +154,7 @@
                 It will not work if the subtitles gradually get more ouf of sync.
                 <br/><br/>
                 The following subtitle formats can be resynced: srt, ssa and ass.
-                Multiple files can be uploaded at the same time, you can also upload a zip file.
+                Multiple files can be uploaded at the same time, you can also upload a zip or a rar file.
             </p>
 
             <h3>Learning more about shifting</h3>

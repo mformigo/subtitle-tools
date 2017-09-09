@@ -24,7 +24,7 @@ return [
 //--------------160-characters-------'################################################################################################################################################################'---------------------------
     'description.cleanSrt'        => 'Removes formatting, brackets (curly, parentheses or angle brackets), html and other effects from subrip files. Easy online tool for cleaning and fixing srt subtitles',
     'description.contact'         => 'We appreciate all feedback! Contact us if you have any suggestions, or if you want to report a bug',
-    'description.convertToSrt'    => 'Convert subtitles to srt online for free. This tool can convert ass, ssa, smi, MicroDVD and MPL2 to srt. Upload zip file to convert a batch to srt. Works on Windows, Mac and Linux',
+    'description.convertToSrt'    => 'Convert subtitles to srt online for free. This tool can convert ass, ssa, smi, MicroDVD and MPL2 to srt. Accepts zip and rar files. Works on Windows, Mac and Linux',
     'description.convertToUtf8'   => 'Easily convert text or subtitle files to UTF-8. Supports all text files (txt, srt, ascii). This tool automatically detects the encoding and converts it to UTF-8',
     'description.fileGroupResult' => 'Download processed files',
     'description.home'            => 'Online tools for fixing subtitle files. Fast, easy, and no installation of freeware required. Tools for resyncing, cleaning and converting subtitle files. Supports most formats: srt, ass, sub/idx and smi',

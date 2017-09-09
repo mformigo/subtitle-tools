@@ -22,7 +22,7 @@
 
         @slot('title') Select a file to convert to pinyin @endslot
 
-        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, zip @endslot
+        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, sub, zip, rar @endslot
 
         @slot('buttonText') Make pinyin subtitles @endslot
 

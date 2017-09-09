@@ -11,7 +11,7 @@
         @slot('title') Convert Subtitles to Srt @endslot
 
         Online tool for changing subtitles to srt.
-        You can select multiple files or upload a zip file to convert a batch of subtitles to srt.
+        You can select multiple files or upload a zip or rar file to convert a batch of subtitles to srt.
 
     @endcomponent
 
@@ -20,7 +20,7 @@
 
         @slot('title') Select subtitles to convert to srt @endslot
 
-        @slot('formats') Supported subtitle formats: ass, ssa, smi, microdvd, zip @endslot
+        @slot('formats') Supported subtitle formats: ass, ssa, smi, microdvd, zip, rar @endslot
 
         @slot('buttonText') Convert to Srt @endslot
 
@@ -88,10 +88,11 @@
                 The program SubEdit is used to make these mpl subtitles.
             </p>
 
-            <h3>Converting a batch of subtitles using zip</h3>
+            <h3>Converting a batch of subtitles</h3>
             <p>
-                You can convert up to a hundred files at the same time with this tool by uploading a zip file, or by simply selecting multiple files.
-                The tool will attempt to convert all the files inside the zip file.
+                You can convert up to a hundred files at the same time by uploading multiple files.
+                You can also upload a zip files or rar (winrar) files.
+                The tool will attempt to convert all the files inside the archive file.
                 After uploading you will be redirected to the download page, where you can individually download the converted files, or generate a zip file and download them all at once.
             </p>
 

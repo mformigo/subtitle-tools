@@ -17,7 +17,7 @@
 
         @slot('title') Select a file to shift @endslot
 
-        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, zip @endslot
+        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, zip, rar @endslot
 
         @slot('extraAfter')
             <label for="ms-input" class="for-number">Shift (in milliseconds):</label>
