@@ -10,7 +10,7 @@
 
         @slot('title') Convert files to UTF-8 @endslot
 
-        This tool converts any text or subtitle file to UTF-8 encoding.
+        This tool converts any text or subtitle file to unicode UTF-8 encoding.
 
     @endcomponent
 
@@ -31,11 +31,17 @@
             <h2>Fixing text encoding</h2>
             <p>
                 Text encoding is a tricky thing. Years ago, there were hundreds of different text encodings in an attempt to support all languages and character sets.
-                Nowadays all these different languages can be encoded in UTF-8, but unfortunately all the files from years ago are still around, and some stubborn countries still use old text encodings.
-                Many devices have trouble displaying text encodings that are not UTF-8, they will display the text are random, unreadable characters.
+                Nowadays all these different languages can be encoded in unicode UTF-8, but unfortunately all the files from years ago still exist, and some stubborn countries still use old text encodings.
+                Many devices have trouble displaying text encodings that are not UTF-8, they will display the text as random, unreadable characters.
                 <br/><br/>
                 This tool converts the uploaded text files to UTF-8 so modern devices can properly read them.
                 You can uploaded multiple files at the same time, or upload a zip or rar file.
+            </p>
+
+            <h2>VLC showing weird symbols or boxes</h2>
+            <p>
+                If VLC media player doesn't show subtitles correctly even after using this tool, then you have to change the font VLC uses.
+                <strong>Here is <a href="{{ route('blogVlcSubtitleBoxes') }}">a simple guide</a> to fixing subtitles in VLC.</strong>
             </p>
 
             <h3>Other tools</h3>

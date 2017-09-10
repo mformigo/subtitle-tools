@@ -55,6 +55,13 @@
                 This tool changes normal srt or ass subtitles in to pinyin subtitles.
             </p>
 
+            <h2>VLC not displaying Chinese srt subtitles correctly</h2>
+            <p>
+                If VLC media player shows Chinese subtitles as weird symbols or as squares, then you either your subtitles are not in unicode UTF-8, or you are using the wrong font in VLC.
+                All tools on this website encode files in UTF-8, so if you use this website you can be sure encoding is not the problem.
+                <strong>Here is <a href="{{ route('blogVlcSubtitleBoxes') }}">a simple guide</a> for getting Chinese subtitles to work in VLC.</strong>
+            </p>
+
             <h2>Convert modes</h2>
             <p>
                 This tool offers three modes for converting Chinese subtitles to pinyin subtitles, they are described below.
