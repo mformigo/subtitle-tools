@@ -23,3 +23,5 @@ Route::fileGroupTool('shiftPartial',  'ShiftPartialController',  'partial-subtit
 Route::fileGroupTool('convertToUtf8', 'ConvertToUtf8Controller', 'convert-text-files-to-utf8-online');
 Route::fileGroupTool('pinyin',        'PinyinController',        'make-chinese-pinyin-subtitles');
 Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
+
+Route::get('/how-to-fix-vlc-subtitles-displaying-as-boxes')->uses('HomeController@blogVlcSubtitleBoxes')->name('blogVlcSubtitleBoxes');
