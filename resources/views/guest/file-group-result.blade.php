@@ -19,7 +19,7 @@
 
     <div class="container">
 
-        @if($fileCount > 5)
+        @if($fileCount > 8)
             <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
 
 

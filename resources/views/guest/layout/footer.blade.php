@@ -1,4 +1,4 @@
-@if(!isset($hideFooterAd))
+@if(!isset($hideFooterAd) || $hideFooterAd !== true)
     <div class="container">
         <div class="above-footer-ad">
             @if(App::environment('production'))

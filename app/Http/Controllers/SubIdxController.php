@@ -46,6 +46,7 @@ class SubIdxController extends Controller
         return view('guest.sub-idx-detail', [
             'originalName' => $subIdx->original_name,
             'pageId' => $pageId,
+            'hideFooterAd' => true,
         ]);
     }
 

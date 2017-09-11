@@ -6,8 +6,6 @@
 @section('description', __('seo.description.subIdxDetail'))
 @section('keywords',    __('seo.keywords.subIdxDetail'))
 
-@php($hideFooterAd = true)
-
 @section('content')
 
     @component('guest.components.page-intro')
