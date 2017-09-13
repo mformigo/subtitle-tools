@@ -45,7 +45,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SubIdxLanguage extends Model
 {
-    protected $fillable = ['index', 'language', 'output_stored_file_id', 'error_message', 'started_at', 'finished_at'];
+    protected $guarded = [];
 
     public function subIdx()
     {
@@ -55,6 +55,14 @@ class SubIdxLanguage extends Model
     public function outputStoredFile()
     {
         return $this->hasOne(\App\Models\StoredFile::class, 'id', 'output_stored_file_id');
+    }
+
+    public function vobsubOutput()
+    {
+        return Vobsub2srtOutput::query()
+            ->where('sub_idx_id', $this->sub_idx_id)
+            ->where('index', $this->index)
+            ->first();
     }
 
     public function getFilePathAttribute()

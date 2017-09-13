@@ -30,7 +30,13 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public function handle()
     {
-        $this->subIdxLanguage->update(['started_at' => Carbon::now()]);
+        $created = new Carbon($this->subIdxLanguage->created_at);
+        $start = Carbon::now();
+
+        $this->subIdxLanguage->update([
+            'started_at' => $start,
+            'queue_time' => $start->diffInSeconds($created),
+        ]);
 
         $VobSub2Srt = $this->subIdxLanguage->subIdx->getVobSub2Srt();
 
@@ -57,9 +63,13 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
         $storedFile = StoredFile::createFromTextFile($srt);
 
+        $finishedAt = Carbon::now();
+
         $this->subIdxLanguage->update([
             'output_stored_file_id' => $storedFile->id,
             'finished_at' => Carbon::now(),
+            'extract_time' => $finishedAt->diffInSeconds($this->subIdxLanguage->started_at),
+            'timed_out' => $this->timedOut(),
         ]);
 
         unlink($outputFilePath);
@@ -74,11 +84,22 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     protected function abortWithError($errorMessage)
     {
+        $finishedAt = Carbon::now();
+
         $this->subIdxLanguage->update([
             'error_message' => $errorMessage,
-            'finished_at' => Carbon::now(),
+            'finished_at' => $finishedAt,
+            'extract_time' => $finishedAt->diffInSeconds($this->subIdxLanguage->started_at),
+            'timed_out' => $this->timedOut(),
         ]);
 
         return $this->subIdxLanguage;
+    }
+
+    protected function timedOut()
+    {
+        $output = $this->subIdxLanguage->vobsubOutput()->output ?? 'NO OUTPUT';
+
+        return stripos($output, '__error: timeout') !== false;
     }
 }

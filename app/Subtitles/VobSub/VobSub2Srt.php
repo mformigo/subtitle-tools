@@ -110,6 +110,7 @@ class VobSub2Srt implements VobSub2SrtInterface
         $output .= "\n__timeout limit: {$timeoutSeconds}, command took: {$commandTimeSeconds}";
 
         if($commandTimeSeconds >= ($timeoutSeconds - 1)) {
+            // This string is used in a stripos to detect timeouts
             $output .= "\n__error: timeout";
         }
 
