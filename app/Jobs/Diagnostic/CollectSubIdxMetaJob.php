@@ -73,8 +73,10 @@ class CollectSubIdxMetaJob implements ShouldQueue
             unlink($subFilePath);
             unlink($idxFilePath);
 
-            if(file_exists("{$dirPath}.srt")) {
-                unlink("{$dirPath}.srt");
+            $maybeLeftOverSrtFilePath = $this->subIdx->filePathWithoutExtension . '.srt';
+
+            if(file_exists($maybeLeftOverSrtFilePath)) {
+                unlink($maybeLeftOverSrtFilePath);
             }
 
             rmdir($dirPath);
