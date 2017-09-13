@@ -58,6 +58,11 @@ class SubIdx extends Model
         return $this->hasMany('App\Models\Vobsub2srtOutput');
     }
 
+    public function meta()
+    {
+        return $this->hasOne(\App\Models\SubIdxMeta::class);
+    }
+
     /**
      * @return VobSub2SrtInterface
      */
