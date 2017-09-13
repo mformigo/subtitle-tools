@@ -34,7 +34,6 @@ abstract class FileJobController extends Controller
             'urlKey' => $urlKey,
             'returnUrl' => route($this->getIndexRouteName()),
             'fileCount' => $fileGroup->fileJobs()->count(),
-            //'hideFooterAd' => true,
         ]);
     }
 

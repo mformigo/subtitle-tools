@@ -6,19 +6,39 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
+    <section class="intro homepage">
+        <div class="container">
 
-        @slot('title') Subtitle Tools @endslot
+            <div class="home-intro">
+                <h1>Subtitle Tools</h1>
+                <p>
+                    Online tools for syncing, fixing and converting subtitle files
+                    <br/>
+                    <br/>
+                    Choose the tool you need from the main menu
+                </p>
+            </div>
 
-        Online tools for syncing, fixing and converting subtitle files
-        <br/>
-        <br/>
-        Choose the tool you need from the main menu
+            <div class="home-ad">
+                @if(App::environment('production'))
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-8027891891391991"
+                         data-ad-slot="2796437708"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                @else
+                    <ins style="display:inline-block;width:300px;height:250px;border:1px solid black;"></ins>
+                @endif
+            </div>
 
-    @endcomponent
+        </div>
+    </section>
 
 
-    <section class="text-content">
+    <section class="text-content homepage">
         <div class="container">
 
             <h2>About</h2>

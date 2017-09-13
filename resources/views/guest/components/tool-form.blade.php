@@ -62,16 +62,15 @@
         <div class="tool-form-ad">
             @if(App::environment('production'))
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                {{--ST-next-to-tool-form--}}
                 <ins class="adsbygoogle"
-                     style="display:inline-block;width:300px;height:250px"
+                     style="display:inline-block;width:300px;height:600px"
                      data-ad-client="ca-pub-8027891891391991"
-                     data-ad-slot="2796437708"></ins>
+                     data-ad-slot="3516538722"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             @else
-                <ins style="display:inline-block;width:300px;height:250px;border:1px solid black;"></ins>
+                <ins style="display:inline-block;width:300px;height:600px;border:1px solid black;"></ins>
             @endif
         </div>
 

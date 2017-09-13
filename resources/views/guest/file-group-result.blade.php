@@ -17,39 +17,43 @@
 
     @endcomponent
 
-    <div class="container">
+    <section class="file-group-result {{ $fileCount === 1 ? 'single-file' : '' }}">
+        <div class="container">
 
-        @if($fileCount > 8)
-            <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
+            <div class="archive-and-ad">
 
-
-            <div class="above-file-job-result-ad">
-                @if(App::environment('production'))
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    {{--ST-file-job-download-top--}}
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:728px;height:90px"
-                         data-ad-client="ca-pub-8027891891391991"
-                         data-ad-slot="9398339224"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                @else
-                    <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px;border: 1px solid black"></ins>
+                @if($fileCount > 5)
+                    <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
                 @endif
+
+                <div class="above-file-job-result-ad">
+                    @if(App::environment('production'))
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-8027891891391991"
+                             data-ad-slot="3208706526"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    @else
+                        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px;border: 1px solid black"></ins>
+                    @endif
+                </div>
+
             </div>
 
+            <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
 
-        @endif
+        </div>
+    </section>
 
-        <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
-
-
+    <div class="container">
         <br/>
         <br/>
 
         <a class="btn" href="{{ $returnUrl }}">Back to tool</a>
-
     </div>
+
 
 @endsection
