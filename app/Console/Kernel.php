@@ -10,11 +10,14 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\GenerateSitemap::class,
         \App\Console\Commands\CollectMeta::class,
+        \App\Console\Commands\CleanTemporaryFiles::class,
     ];
 
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('sitemap:generate')->dailyAt('2:00');
+
+        $schedule->command('st:clean-temporary-files')->dailyAt('2:30');
 
         $schedule->command('st:collect-meta')->everyTenMinutes();
     }
