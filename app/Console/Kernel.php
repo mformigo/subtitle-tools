@@ -11,6 +11,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\GenerateSitemap::class,
         \App\Console\Commands\CollectMeta::class,
         \App\Console\Commands\CleanTemporaryFiles::class,
+        \App\Console\Commands\CalculateDiskUsage::class,
     ];
 
     protected function schedule(Schedule $schedule)
@@ -20,6 +21,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('st:clean-temporary-files')->dailyAt('2:30');
 
         $schedule->command('st:collect-meta')->everyTenMinutes();
+
+        $schedule->command('st:calculate-disk-usage')->hourly();
     }
 
     /**

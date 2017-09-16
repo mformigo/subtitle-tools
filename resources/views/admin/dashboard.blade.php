@@ -59,6 +59,33 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-4">
+                    <div class="st-panel">
+                        <h2>Disk Usage</h2>
+
+                        <div class="alert alert-{{ $diskUsageWarning ? 'danger' : 'success' }}">
+                            {{ $diskUsage }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="stored-file-download st-panel">
+
+
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="stored-file-download st-panel">
+
+
+                    </div>
+                </div>
+
+            </div>
+
 
         </div>
     </div>
