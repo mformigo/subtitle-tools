@@ -3,4 +3,19 @@ footer
   margin: 4rem 0;
   border-top: 1px solid #d0d0d0;
   padding-top: 1rem;
+
+  a.feedback {
+    margin-top: 0.75rem;
+    font-size: 1.25rem;
+    color: $color_text;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    i {
+      margin-top: -32px;
+      margin-left: 8px;
+    }
+  }
+
 }

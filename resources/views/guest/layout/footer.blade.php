@@ -1,5 +1,10 @@
-<footer id="Footer" class="right-align">
+<footer id="Footer">
     <div class="container">
-        <a href="{{ route('contact') }}">{{ __('nav.item.contact') }}</a> me for suggestions, questions or bug reports
+
+        <a class="feedback" title="{{ __('nav.item.contact') }}" href="{{ route('contact') }}">
+            Feedback
+            <i class="material-icons">message</i>
+        </a>
+
     </div>
 </footer>
