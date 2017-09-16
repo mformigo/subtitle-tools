@@ -29,6 +29,10 @@
   .pres {
     display: flex;
 
+    pre:first-child {
+      width: 80px;
+    }
+
     pre:last-child {
       border-left: 0;
       flex-grow: 1;
