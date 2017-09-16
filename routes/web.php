@@ -5,7 +5,8 @@ Route::post('st-login',  'Auth\LoginController@login');
 Route::post('st-logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/')->uses('HomeController@index')->name('home');
-Route::get('/contact')->uses('HomeController@contact')->name('contact');
+Route::get('/contact')->uses('ContactController@index')->name('contact');
+Route::post('/contact')->uses('ContactController@post')->name('contact.post');
 
 Route::post('/file-group-archive/{urlKey}')->uses('DownloadController@fileGroupArchive')->name('fileGroupArchiveDownload');
 

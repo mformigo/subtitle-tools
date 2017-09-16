@@ -1,0 +1,47 @@
+section.quick-message {
+  max-width: 600px;
+
+  h2 {
+    font-size: 24px;
+  }
+
+  textarea {
+    height: 16px * 6;
+  }
+
+  button {
+    display: block;
+    margin-left: auto;
+  }
+
+  .alert-danger
+  {
+    border: 2px solid #ee6e73;
+    border-radius: 2px;
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.5rem;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .alert-success
+  {
+    background-color: lightgreen;
+    border-radius: 2px;
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.5rem;
+    max-width: 320px;
+    text-align: center;
+  }
+
+}
+
+
+section.contact-email {
+  margin: 4rem 0;
+
+  h2 {
+    font-size: 24px;
+  }
+
+}
