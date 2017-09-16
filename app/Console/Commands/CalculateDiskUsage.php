@@ -33,6 +33,8 @@ class CalculateDiskUsage extends Command
             // Filesystem      Size  Used Avail Use% Mounted on
             // /dev/vda1        30G   11G   19G  36% /
 
+            $output = str_ireplace('g', 'gb', $output);
+
             list($size, $used, $available, $usedPercentage) = preg_split('/ +/',
                 trim(
                     str_after($output, $diskName)
