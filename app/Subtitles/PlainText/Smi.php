@@ -108,7 +108,7 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
             return stripos($content, '<sync ') !== false;
         }
 
-        return (boolean)preg_match('/^<sync .*?start=(?:"?|\'?)(\d+).*?>/i', $content);
+        return preg_match('/<sync .*?start=(?:"?|\'?)(\d+).*?>/i', $content);
     }
 
     public function shift($ms)

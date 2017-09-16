@@ -70,6 +70,7 @@ class TextFileFormatTest extends TestCase
         $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi03.smi");
         $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi04.smi");
         $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi05--no-sami-tag.smi");
+        $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi06--no-sami-tag.smi");
     }
 
     /** @test */
