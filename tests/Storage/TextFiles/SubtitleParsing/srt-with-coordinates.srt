@@ -1,0 +1,23 @@
+1
+00:00:06,012 --> 00:00:08,321  X1:273 X2:442 Y1:450 Y2:524
+- I'm ready.
+- You sure?
+
+2
+00:00:08,612 --> 00:00:11,172  X1:176 X2:542 Y1:446 Y2:524
+Let me just straighten out
+your helmet there.
+
+3
+00:00:11,372 --> 00:00:14,887  X1:106 X2:609 Y1:446 Y2:524
+- Thanks, Daddy.
+- No, no. One daddy, two mommies.
+
+4
+00:00:16,532 --> 00:00:19,410  X1:192 X2:523 Y1:444 Y2:524
+- All right, it's all yours.
+- Okay, okay.
+
+5
+00:00:19,612 --> 00:00:21,330  X1:160 X2:555 Y1:484 Y2:524
+There you go, there you go.

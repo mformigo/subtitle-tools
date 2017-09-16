@@ -37,6 +37,9 @@ class TextFileFormatTest extends TestCase
     function it_matches_srt_files()
     {
         $this->assertTextFileFormat(Srt::class, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.srt");
+        $this->assertTextFileFormat(Srt::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/srt01--with-coordinates.srt");
+        $this->assertTextFileFormat(Srt::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/srt02--spaces-after-colons-and-single-dash-arrow.srt");
+        $this->assertTextFileFormat(Srt::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/srt03--with-dots.srt");
     }
 
     /** @test */

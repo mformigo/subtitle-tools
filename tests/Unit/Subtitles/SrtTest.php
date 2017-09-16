@@ -287,4 +287,37 @@ class SrtTest extends TestCase
         $this->assertFalse($cues[2] instanceof SrtCue);
     }
 
+    /** @test */
+    function it_parses_files_with_coordinates()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/srt-with-coordinates.srt");
+
+        $cues = $srt->getCues();
+
+        $this->assertSame(5, count($cues));
+
+        $this->assertSame([
+            '00:00:06,012 --> 00:00:08,321',
+            '- I\'m ready.',
+            '- You sure?',
+            '',
+        ], $cues[0]->toArray());
+    }
+
+    /** @test */
+    function it_parses_files_with_common_mistakes()
+    {
+        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/srt-spaces-after-colon-and-single-dash-arrow.srt");
+
+        $cues = $srt->getCues();
+
+        $this->assertSame(4, count($cues));
+
+        $this->assertSame([
+            '00:02:50,399 --> 00:02:53,334',
+            'Go there, take the weapon.',
+            '',
+        ], $cues[2]->toArray());
+    }
+
 }

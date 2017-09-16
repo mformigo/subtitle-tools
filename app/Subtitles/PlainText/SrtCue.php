@@ -26,7 +26,14 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
             throw new \Exception("Not a valid timing string ({$string})");
         }
 
-        list($startTimecode, $endTimecode) = explode(" --> ", trim($string));
+        $timingString = trim(
+            str_before( strtolower($string), 'x' )
+        );
+
+        $timingString = str_replace([' ', '-'], '',  $timingString);
+        $timingString = str_replace(['.'],      ',', $timingString);
+
+        list($startTimecode, $endTimecode) = explode('>', $timingString);
 
         $this->setTiming(
             $this->timecodeToMs($startTimecode),
@@ -100,13 +107,19 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     public static function isTimingString($string)
     {
-        $string = trim($string);
+        $string = strtolower(
+            trim($string)
+        );
 
-        if(!preg_match("/^\d{2}:[0-5]\d:[0-5]\d,\d{3} --> \d{2}:[0-5]\d:[0-5]\d,\d{3}$/", $string)) {
+        if(!preg_match("/^\d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3} -?-> \d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3}( ? x1: ?\d+ x2: ?\d+ y1: ?\d+ y2: ?\d+|)$/", $string)) {
             return false;
         }
 
-        list($startInt, $endInt) = explode(" --> ", str_replace([':', ','], '', $string));
+        $string = trim(
+            str_before($string, 'x')
+        );
+
+        list($startInt, $endInt) = explode('>', str_replace([':', ' ', ',', '.', '-'], '', $string));
 
         if($startInt > $endInt) {
             return false;

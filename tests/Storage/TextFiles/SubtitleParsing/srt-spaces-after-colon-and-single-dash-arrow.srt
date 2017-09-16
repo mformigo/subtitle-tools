@@ -1,0 +1,16 @@
+﻿1
+00: 00: 49,412 -> 00: 00: 52,404
+You.
+We surrounded you.
+
+2
+00: 02: 33,382 -> 00: 02: 36,351
+I'm English. Do not shoot.
+
+3
+00: 02: 50,399 -> 00: 02: 53,334
+Go there, take the weapon.
+
+4
+00: 05: 38.300 -> 00: 05: 39.460
+Do not be here.
