@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Facades\TempFile;
+use App\Facades\TextFileIdentifier;
 use App\Facades\TextFileReader;
 use App\Models\StoredFile;
 use Illuminate\Http\Request;
@@ -11,11 +12,21 @@ class StoredFilesController extends Controller
 {
     public function detail($id)
     {
-        $file = StoredFile::findOrFail($id);
+        $storedFile = StoredFile::findOrFail($id);
 
-        $lines = TextFileReader::getLines($file->filePath);
+        $isTextFile = TextFileIdentifier::isTextFile($storedFile->filePath);
 
-        return implode('<br />', $lines);
+        $lines = $isTextFile ?
+            TextFileReader::getLines($storedFile->filePath) :
+            ['Not identified as a text file'];
+
+        $meta = $storedFile->meta;
+
+        return view('admin.stored-file-detail', [
+            'storedFileId' => $storedFile->id,
+            'lines' => $lines,
+            'meta' => $meta,
+        ]);
     }
 
     public function download(Request $request)
