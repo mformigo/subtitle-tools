@@ -2,6 +2,7 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Facades\TextFileReader;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
@@ -98,9 +99,16 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        $content = app('TextFileReader')->getContents($filePath);
+        $content = TextFileReader::getContents($filePath);
 
-        return stripos($content, '<sami>') !== false && stripos($content, '<sync ') !== false;
+        $hasSamiTag = stripos($content, '<sami>') !== false;
+
+        if($hasSamiTag) {
+            // If there is a <sami> tag, anything resembling a cue is good enough
+            return stripos($content, '<sync ') !== false;
+        }
+
+        return (boolean)preg_match('/^<sync .*?start=(?:"?|\'?)(\d+).*?>/i', $content);
     }
 
     public function shift($ms)

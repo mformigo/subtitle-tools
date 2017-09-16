@@ -14,117 +14,75 @@ use Tests\TestCase;
 
 class TextFileFormatTest extends TestCase
 {
-    /** @test */
-    function it_matches_srt_files()
+    private function assertTextFileFormat($expectedClass, $filePath, $notThisClass = [])
     {
         $textFileFormat = new TextFileFormat();
 
-        $srtFiles = [
-            "TextFiles/Normal/normal01.srt",
-        ];
-
-        foreach($srtFiles as $fileName) {
-            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
-
-            $this->assertTrue($subtitle instanceof Srt, "'{$fileName}' is not an instance of Srt");
+        if(!file_exists($filePath)) {
+            $this->fail("File does not exist ({$filePath})");
         }
+
+        $fileName = basename($filePath);
+
+        $format = $textFileFormat->getMatchingFormat($filePath, false);
+
+        $this->assertTrue($format instanceof $expectedClass, "'{$fileName}' is not an instance of " . class_basename($expectedClass));
+
+        foreach(array_wrap($notThisClass) as $notThis) {
+            $this->assertFalse($format instanceof $notThis, "'{$fileName}' should not be an instanceof " . class_basename($notThis));
+        }
+    }
+
+    /** @test */
+    function it_matches_srt_files()
+    {
+        $this->assertTextFileFormat(Srt::class, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.srt");
     }
 
     /** @test */
     function it_matches_ass_files()
     {
-        $textFileFormat = new TextFileFormat();
-
-        $assFiles = [
-            "TextFiles/Normal/normal01.ass",
-            "TextFiles/FormatDetection/ass01.ass",
-            "TextFiles/FormatDetection/ass02.ass",
-            "TextFiles/FormatDetection/ass03.ass",
-            "TextFiles/FormatDetection/ass04.ass",
-        ];
-
-        foreach($assFiles as $fileName) {
-            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
-
-            $this->assertTrue($subtitle instanceof Ass, "'{$fileName}' is not an instance of Ass");
-
-            $this->assertFalse($subtitle instanceof Ssa, "'{$fileName}' was Ssa, should be Ass");
-        }
+        $this->assertTextFileFormat(Ass::class, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.ass", Ssa::class);
+        $this->assertTextFileFormat(Ass::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ass01.ass", Ssa::class);
+        $this->assertTextFileFormat(Ass::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ass02.ass", Ssa::class);
+        $this->assertTextFileFormat(Ass::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ass03.ass", Ssa::class);
+        $this->assertTextFileFormat(Ass::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ass04.ass", Ssa::class);
     }
 
     /** @test */
     function it_matches_ssa_files()
     {
-        $textFileFormat = new TextFileFormat();
-
-        $assFiles = [
-            "TextFiles/Normal/normal01.ssa",
-            "TextFiles/FormatDetection/ssa01.ssa",
-            "TextFiles/FormatDetection/ssa02.ssa",
-            "TextFiles/FormatDetection/ssa03.ssa",
-        ];
-
-        foreach($assFiles as $fileName) {
-            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
-
-            $this->assertTrue($subtitle instanceof Ssa, "'{$fileName}' is not an instance of Ssa");
-        }
+        $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.ssa");
+        $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ssa01.ssa");
+        $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ssa02.ssa");
+        $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ssa03.ssa");
     }
 
     /** @test */
     function it_matches_smi_files()
     {
-        $textFileFormat = new TextFileFormat();
-
-        $smiFiles = [
-            "TextFiles/Normal/normal01.smi",
-            "TextFiles/FormatDetection/smi01.smi",
-            "TextFiles/FormatDetection/smi02.smi",
-            "TextFiles/FormatDetection/smi03.smi",
-            "TextFiles/FormatDetection/smi04.smi",
-        ];
-
-        foreach($smiFiles as $fileName) {
-            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
-
-            $this->assertTrue($subtitle instanceof Smi, "'{$fileName}' is not an instance of Smi");
-        }
+        $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.smi");
+        $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi01.smi");
+        $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi02.smi");
+        $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi03.smi");
+        $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi04.smi");
+        $this->assertTextFileFormat(Smi::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/smi05--no-sami-tag.smi");
     }
 
     /** @test */
     function it_matches_microdvd_files()
     {
-        $textFileFormat = new TextFileFormat();
-
-        $microDVDFiles = [
-            'TextFiles/Normal/normal01.sub',
-            'TextFiles/FormatDetection/microdvd01.sub',
-            'TextFiles/FormatDetection/microdvd02.sub',
-        ];
-
-        foreach($microDVDFiles as $fileName) {
-            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
-
-            $this->assertTrue($subtitle instanceof MicroDVD, "'{$fileName}' is not an instance of MicroDVD");
-        }
+        $this->assertTextFileFormat(MicroDVD::class, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.sub");
+        $this->assertTextFileFormat(MicroDVD::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/microdvd01.sub");
+        $this->assertTextFileFormat(MicroDVD::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/microdvd02.sub");
     }
 
     /** @test */
     function it_matches_mpl2_files()
     {
-        $textFileFormat = new TextFileFormat();
-
-        $mpl2Files = [
-            'TextFiles/FormatDetection/mpl2-01.mpl',
-            'TextFiles/FormatDetection/mpl2-02.mpl',
-            'TextFiles/FormatDetection/mpl2-03.mpl',
-        ];
-
-        foreach($mpl2Files as $fileName) {
-            $subtitle = $textFileFormat->getMatchingFormat("{$this->testFilesStoragePath}$fileName");
-
-            $this->assertTrue($subtitle instanceof Mpl2, "'{$fileName}' is not an instance of Mpl2");
-        }
+        $this->assertTextFileFormat(Mpl2::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/mpl2-01.mpl");
+        $this->assertTextFileFormat(Mpl2::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/mpl2-02.mpl");
+        $this->assertTextFileFormat(Mpl2::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/mpl2-03.mpl");
     }
 
     /** @test */

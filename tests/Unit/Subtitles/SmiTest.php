@@ -323,4 +323,16 @@ class SmiTest extends TestCase
 
         $this->assertSame(571, count($genericCues));
     }
+
+    /** @test */
+    function it_can_parse_a_smi_file_without_sami_tag()
+    {
+        $smi = new Smi();
+
+        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/FormatDetection/smi05--no-sami-tag.smi");
+
+        $genericSub = $smi->toGenericSubtitle();
+
+        $this->assertSame(362, count($genericSub->getCues()));
+    }
 }
