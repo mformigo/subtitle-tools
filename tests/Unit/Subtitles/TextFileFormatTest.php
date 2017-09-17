@@ -9,6 +9,7 @@ use App\Subtitles\PlainText\PlainText;
 use App\Subtitles\PlainText\Smi;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\Ssa;
+use App\Subtitles\PlainText\WebVtt;
 use App\Subtitles\TextFileFormat;
 use Tests\TestCase;
 
@@ -31,6 +32,14 @@ class TextFileFormatTest extends TestCase
         foreach(array_wrap($notThisClass) as $notThis) {
             $this->assertFalse($format instanceof $notThis, "'{$fileName}' should not be an instanceof " . class_basename($notThis));
         }
+    }
+
+    /** @test */
+    function it_matches_webvtt_files()
+    {
+        $this->assertTextFileFormat(WebVtt::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/webvtt01.vtt");
+        $this->assertTextFileFormat(WebVtt::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/webvtt02--with-cue-numbers.vtt");
+        $this->assertTextFileFormat(WebVtt::class, "{$this->testFilesStoragePath}TextFiles/SubtitleParsing/webvtt-no-dialogue.vtt");
     }
 
     /** @test */

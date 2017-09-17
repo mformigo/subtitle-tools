@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:05.160 --> 00:00:10.100
+Hello everyone and welcome to an introduction to linear regression and this lecture we're going to get
+
+2
+00:00:10.100 --> 00:00:15.600
+a light theoretical background history behind the idea of linear regression before we actually tackle
+
+3
+00:00:15.600 --> 00:00:19.270
+the concept with Python and the sikat learn library.
+
+4
+00:00:19.840 --> 00:00:23.020
+If you want a deeper mathematical understanding of linear regression.
+
+5
+00:00:23.070 --> 00:00:28.460
+You can go ahead and check out chapters 2 and 3 of an introduction to statistical learning.
+
+6
+00:00:29.610 --> 00:00:32.820
+Let's discuss the history behind literary aggression.
+
+7
+00:00:32.820 --> 00:00:40.110
+This entire idea all started back in the 1800s a man named Francis gult in Colten was studying the relationship
+
+8
+00:00:40.170 --> 00:00:45.780
+between parents and their children and in particular he investigated the relationship between the heights
+
+9
+00:00:45.870 --> 00:00:49.260
+of fathers and the heights of their sons.
