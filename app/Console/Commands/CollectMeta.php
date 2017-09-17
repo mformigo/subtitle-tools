@@ -10,7 +10,9 @@ use Illuminate\Console\Command;
 
 class CollectMeta extends Command
 {
-    protected $signature = 'st:collect-meta';
+    protected $signature = 'st:collect-meta
+                            {--m|many : queue more jobs than normal}
+                            {--a|all : queue all the jobs}';
 
     protected $description = 'Create jobs for collecting meta';
 
@@ -21,16 +23,18 @@ class CollectMeta extends Command
 
     public function handle()
     {
-        $this->collectStoredFileMeta();
+        $multiplier = $this->option('all') ? 9999 : ($this->option('many') ? 5 : 1);
 
-        $this->collectSubIdxMeta();
+        $this->collectStoredFileMeta($multiplier);
+
+        $this->collectSubIdxMeta($multiplier);
     }
 
-    protected function collectStoredFileMeta()
+    protected function collectStoredFileMeta($multiplier)
     {
         $storedFilesWithoutMeta = StoredFile::query()
             ->doesntHave('meta')
-            ->take(1000)
+            ->take(1000 * $multiplier)
             ->get();
 
         foreach($storedFilesWithoutMeta as $storedFile) {
@@ -40,11 +44,11 @@ class CollectMeta extends Command
         }
     }
 
-    protected function collectSubIdxMeta()
+    protected function collectSubIdxMeta($multiplier)
     {
         $subIdxesWithoutMeta = SubIdx::query()
             ->doesntHave('meta')
-            ->take(50)
+            ->take(50 * $multiplier)
             ->get();
 
         foreach($subIdxesWithoutMeta as $subIdx) {
