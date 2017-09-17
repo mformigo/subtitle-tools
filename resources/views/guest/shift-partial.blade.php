@@ -12,7 +12,7 @@
 
         Shift multiple parts of a subtitle file.
         <br/><br/>
-        The <a href="{{ route('shift') }}">Shifter Tool</a> adjusts the whole file, this tool only adjusts specific parts it.
+        The <a href="{{ route('shift') }}">shifter tool</a> adjusts the whole file, this tool only adjusts specific parts it.
 
     @endcomponent
 
@@ -21,7 +21,7 @@
 
         @slot('title') Select a file to resync @endslot
 
-        @slot('formats') Supported subtitle formats: srt, ass, ssa @endslot
+        @slot('formats') Supported subtitle formats: srt, ass, ssa, webvtt @endslot
 
         @slot('buttonText') Shift @endslot
 
@@ -153,7 +153,7 @@
                 This tool will only work if the subtitles get more out of sync at specific points.
                 It will not work if the subtitles gradually get more ouf of sync.
                 <br/><br/>
-                The following subtitle formats can be resynced: srt, ssa and ass.
+                The following subtitle formats can be resynced: srt, ssa, ass, webvtt.
                 Multiple files can be uploaded at the same time, you can also upload a zip or a rar file.
             </p>
 

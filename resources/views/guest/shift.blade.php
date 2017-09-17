@@ -10,14 +10,14 @@
         @slot('title') Resync Subtitles @endslot
 
         Online tool for permanently syncing subtitle files.
-        If you want to resync multiple parts of a subtitle file separately, use the <a href="{{ route('shiftPartial') }}">Partial Shifter Tool</a>
+        If you want to resync multiple parts of a subtitle file separately, use the <a href="{{ route('shiftPartial') }}">partial shifter tool</a>
     @endcomponent
 
     @component('guest.components.tool-form')
 
         @slot('title') Select a file to shift @endslot
 
-        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, zip, rar @endslot
+        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, webvtt @endslot
 
         @slot('extraAfter')
             <label for="ms-input" class="for-number">Shift (in milliseconds):</label>
@@ -38,7 +38,7 @@
                 After shifting the file, all the movie dialogue will appear earlier (if you entered a negative amount) or later (if you entered a positive amount).
                 The resulting file is permanently synced up with the video.
                 <br/><br/>
-                The following subtitle formats can be resynced: srt, ssa, ass and smi.
+                The following subtitle formats can be resynced: srt, ssa, ass, smi and vtt.
                 Multiple files can be uploaded at the same time, you can also upload a zip file.
             </p>
 

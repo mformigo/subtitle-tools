@@ -19,7 +19,7 @@
 
         @slot('title') Select subtitles to convert to plain text @endslot
 
-        @slot('formats') Supported subtitle formats: ass, ssa, smi, microdvd, zip, rar @endslot
+        @slot('formats') Supported subtitle formats: ass, ssa, smi, sub, webvtt @endslot
 
         @slot('buttonText') Extract text @endslot
 

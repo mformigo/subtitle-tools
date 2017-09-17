@@ -10,8 +10,9 @@
 
         @slot('title') Convert Subtitles to Srt @endslot
 
-        Online tool for changing subtitles to srt.
-        You can select multiple files or upload a zip or rar file to convert a batch of subtitles to srt.
+        Online tool for changing subtitles to srt
+        <br/><br/>
+        You can select multiple files or upload a zip or rar file to convert a batch of subtitles to srt
 
     @endcomponent
 
@@ -20,7 +21,7 @@
 
         @slot('title') Select subtitles to convert to srt @endslot
 
-        @slot('formats') Supported subtitle formats: ass, ssa, smi, microdvd, zip, rar @endslot
+        @slot('formats') Supported subtitle formats: ass, ssa, smi, sub, vtt @endslot
 
         @slot('buttonText') Convert to Srt @endslot
 
@@ -50,18 +51,31 @@
             <h2>About converting to subrip</h2>
             <p>
                 Subrip (srt) is a very basic subtitle format, because of this you will almost always lose some functionality or effects when converting to srt.
-                This online format converter tool works with Windows, Mac (Apple) and Linux and doesn't require you to install freeware on your computer.
+                This free online format converter works with Windows, Mac (Apple) and Linux and doesn't require you to install freeware on your computer.
                 The paragraphs below describe what you can expect when converting your subtitles to srt.
                 You can learn more about the subrip format <a href="https://matroska.org/technical/specs/subtitles/srt.html" rel="nofollow" target="_blank">here</a>.
             </p>
 
-            <h3>Converting ass to srt</h3>
+            <h3>Converting ssa/ass to srt</h3>
             <p>
                 Advanced Substation Alpha (ass) is, as the name says, a more advanced version of the Substation Alpha (ssa) format.
                 It supports many effects, a few examples are custom fonts, pictures, positioned text, colors, moving text and karaoke text.
                 Srt doesn't support any of these things, and when converting ass to srt, all these effects are either removed or changed to normal text.
                 Changing ass files to srt files usually works pretty well, except for the occasional overlapping text as a result of removing text position effects.
                 You can learn more about the ssa and ass format on the <a href="https://en.wikipedia.org/wiki/SubStation_Alpha" rel="nofollow" target="_blank">Wikipedia page</a>.
+            </p>
+
+            <h3>Converting WebVTT to srt</h3>
+            <p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API" rel="nofollow" target="_blank">Web Video Text Tracks Format (WebVTT)</a> is a modern subtitle format used to online video subtitles
+                It is similar to the srt format in many ways. It differs in being more customizable.
+                WebVTT supports styling on text, positioning and karaoke effects.
+                Since these effects are not supported by srt, they are stripped when converting vtt to srt.
+                <br/><br/>
+                WebVTT files use the .vtt file extension and are a plain text subtitle format.
+                The first line of a WebVTT file should start with WEBVTT.
+                This is how the format is identified.
+                If the file does not start with this tag, converting it will probably fail, or result in incorrect output.
             </p>
 
             <h3>Converting smi to srt</h3>

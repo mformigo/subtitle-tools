@@ -11,9 +11,6 @@
         @slot('title') Make Pinyin Subtitles @endslot
 
         This tool makes pinyin subtitles by converting Chinese to pinyin.
-        It is excellent for learners who want to practice Chinese by watching movies and tv shows.
-        Both simplified and traditional Chinese are supported.
-        Subtitles are always converted to srt first.
 
     @endcomponent
 
@@ -22,7 +19,7 @@
 
         @slot('title') Select a file to convert to pinyin @endslot
 
-        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, sub, zip, rar @endslot
+        @slot('formats') Supported subtitle formats: srt, ass, ssa, smi, sub, webvtt @endslot
 
         @slot('buttonText') Make pinyin subtitles @endslot
 
@@ -52,7 +49,10 @@
                 Watching Chinese movies or tv shows with pinyin subtitles is a great way to practice your Chinese.
                 Pinyin (拼音) is the official romanization system for Mandarin Chinese in China and Taiwan.
                 In other words, pinyin is a system of phonetic transcriptions of Mandarin Chinese that helps you pronounce the characters.
-                This tool changes normal srt or ass subtitles in to pinyin subtitles.
+                <br/><br/>
+                This tool changes normal srt or ass subtitles to pinyin subtitles.
+                Both simplified and traditional Chinese are supported.
+                Subtitles are always converted to srt first.
             </p>
 
             <h2>VLC not displaying Chinese srt subtitles correctly</h2>
