@@ -14,7 +14,6 @@ class SubIdxController extends Controller
     {
         $this->middleware([
             'swap-sub-and-idx',
-            //'convert-text-files-to-utf8:idx',
         ])->only('post');
     }
 
