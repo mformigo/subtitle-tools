@@ -15,6 +15,7 @@ abstract class TestCase extends BaseTestCase
         'sub-idx',
         'temporary-files',
         'stored-files',
+        'diagnostic',
     ];
 
     public function setUp()

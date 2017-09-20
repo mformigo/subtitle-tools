@@ -15,12 +15,12 @@ class DashboardController extends Controller
     public function index()
     {
         $logsWithErrors = collect(scandir(storage_path('logs')))->filter(function($name) {
-            return !starts_with($name, '.') && !ends_with($name, '--st.txt') && filesize(storage_path("logs/{$name}")) > 0;
+            return !starts_with($name, '.') && filesize(storage_path("logs/{$name}")) > 0;
         })->values()->all();
 
         $supervisorInfo = $this->getSupervisorInfo();
 
-        $diskUsageFilePath = storage_path('/logs/disk-usage--st.txt');
+        $diskUsageFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
         $diskUsage = file_exists($diskUsageFilePath) ? file_get_contents($diskUsageFilePath) : 'NONE (100%)';
         $diskUsageWarning = str_before(str_after($diskUsage, '('), ')') > 60;
 

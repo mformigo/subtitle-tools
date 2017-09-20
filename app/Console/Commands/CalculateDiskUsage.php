@@ -20,7 +20,7 @@ class CalculateDiskUsage extends Command
     {
         $diskName = App::environment('local') ? '/dev/sda1' : '/dev/vda1';
 
-        $outputFilePath = storage_path('logs/disk-usage--st.txt');
+        $outputFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
 
         $output = trim(
             shell_exec("df {$diskName} --human-readable 2>&1")

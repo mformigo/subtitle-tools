@@ -26,3 +26,5 @@ Route::fileGroupTool('pinyin',        'PinyinController',        'make-chinese-p
 Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
 
 Route::get('/how-to-fix-vlc-subtitles-displaying-as-boxes')->uses('HomeController@blogVlcSubtitleBoxes')->name('blogVlcSubtitleBoxes');
+
+Route::fallback('NotFoundController@index');
