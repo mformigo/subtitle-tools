@@ -68,6 +68,7 @@ class TextFileFormatTest extends TestCase
         $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ssa01.ssa");
         $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ssa02.ssa");
         $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ssa03.ssa");
+        $this->assertTextFileFormat(Ssa::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/ssa04--with-ass-header.ssa");
     }
 
     /** @test */
