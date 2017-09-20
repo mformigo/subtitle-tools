@@ -2,7 +2,7 @@
 
 namespace App\Subtitles\PlainText;
 
-use App\Facades\TextFileReader;
+use SjorsO\TextFile\Facades\TextFileReader;
 use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;

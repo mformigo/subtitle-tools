@@ -2,10 +2,10 @@
 
 namespace App\Jobs\Diagnostic;
 
-use App\Facades\TextEncoding;
 use App\Facades\TextFileFormat;
-use App\Facades\TextFileIdentifier;
-use App\Facades\TextFileReader;
+use SjorsO\TextFile\Facades\TextEncoding;
+use SjorsO\TextFile\Facades\TextFileIdentifier;
+use SjorsO\TextFile\Facades\TextFileReader;
 use App\Models\StoredFile;
 use App\Models\StoredFileMeta;
 use Exception;
@@ -61,7 +61,7 @@ class CollectStoredFileMetaJob implements ShouldQueue
 
             $meta->line_count = count(TextFileReader::getLines($filePath));
 
-            $string = TextFileReader::getContents($filePath);
+            $string = TextFileReader::getContent($filePath);
 
             $lineEndings = [
                 "\r\n" => 'CRLF',

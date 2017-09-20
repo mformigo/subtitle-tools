@@ -8,7 +8,7 @@ class IdxFile
 
     public function __construct($idxFilePath)
     {
-        $idxLines = app('TextFileReader')->getLines($idxFilePath);
+        $idxLines = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($idxFilePath);
 
         foreach($idxLines as $line) {
             if(preg_match('/^id: (?<lang>[a-z]+), index: (?<id>\d+)$/', $line, $match)) {

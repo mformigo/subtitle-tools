@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Facades\TextFileReader;
+use SjorsO\TextFile\Facades\TextFileReader;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller

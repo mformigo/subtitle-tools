@@ -145,7 +145,7 @@ class CleanSrtTest extends TestCase
 
         $fileGroup = FileGroup::findOrFail(1);
 
-        $outputContent = app('TextFileReader')->getContents(StoredFile::findOrFail(2)->filePath);
+        $outputContent = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getContent(StoredFile::findOrFail(2)->filePath);
 
         // assert angle brackets and curly brackets were not cleaned
         $this->assertContains('<i>', $outputContent);
@@ -168,7 +168,7 @@ class CleanSrtTest extends TestCase
 
         $fileGroup = FileGroup::findOrFail(1);
 
-        $outputContent = app('TextFileReader')->getContents(StoredFile::findOrFail(2)->filePath);
+        $outputContent = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getContent(StoredFile::findOrFail(2)->filePath);
 
         $this->assertNotContains('<i>', $outputContent);
         $this->assertNotContains('{', $outputContent);

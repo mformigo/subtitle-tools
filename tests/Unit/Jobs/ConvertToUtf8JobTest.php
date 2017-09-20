@@ -28,7 +28,7 @@ class ConvertToUtf8JobTest extends TestCase
 
         $newFilePath = $fileJob->outputStoredFile->filePath;
 
-        $encoding = app('TextEncoding')->detectFromFile($newFilePath);
+        $encoding = app(\SjorsO\TextFile\Contracts\TextEncodingInterface::class)->detectFromFile($newFilePath);
 
         $this->assertSame('UTF-8', $encoding);
     }

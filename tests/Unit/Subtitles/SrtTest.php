@@ -43,7 +43,7 @@ class SrtTest extends TestCase
 
         $srt = new Srt($filePath);
 
-        $content = app('TextFileReader')->getLines($filePath);
+        $content = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
 
         $this->assertSame($content, $srt->getContentLines());
     }

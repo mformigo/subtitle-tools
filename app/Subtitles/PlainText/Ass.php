@@ -45,7 +45,7 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        $lines = app('TextFileReader')->getLines($filePath);
+        $lines = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
 
         foreach($lines as $line) {
             if(AssCue::isTimingString($line)) {

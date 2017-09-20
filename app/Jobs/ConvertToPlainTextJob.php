@@ -13,7 +13,7 @@ class ConvertToPlainTextJob extends FileJobJob
     {
         $this->startFileJob();
 
-        if(!app('TextFileIdentifier')->isTextFile($this->inputStoredFile->filePath)) {
+        if(!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 

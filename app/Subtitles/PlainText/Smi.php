@@ -2,7 +2,7 @@
 
 namespace App\Subtitles\PlainText;
 
-use App\Facades\TextFileReader;
+use SjorsO\TextFile\Facades\TextFileReader;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
@@ -99,7 +99,7 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        $content = TextFileReader::getContents($filePath);
+        $content = TextFileReader::getContent($filePath);
 
         $hasSamiTag = stripos($content, '<sami>') !== false;
 

@@ -66,10 +66,10 @@ abstract class TextFile
 
         // These properties come from the WithFileContent/WithFileLines trait
         if(property_exists($this, 'lines')) {
-            $this->lines = array_map('trim', app('TextFileReader')->getLines($this->filePath));
+            $this->lines = array_map('trim', app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($this->filePath));
         }
         else {
-            $this->content = app('TextFileReader')->getContents($this->filePath);
+            $this->content = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getContent($this->filePath);
         }
 
         return $this;

@@ -23,6 +23,6 @@ class PlainText extends TextFile
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        return app('TextFileIdentifier')->isTextFile($filePath);
+        return app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($filePath);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\TextFileReader;
+use SjorsO\TextFile\Facades\TextFileReader;
 use Illuminate\Http\Request;
 
 class NotFoundController extends Controller

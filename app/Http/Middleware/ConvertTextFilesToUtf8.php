@@ -9,8 +9,8 @@ class ConvertTextFilesToUtf8
     public function handle($request, Closure $next, ...$names)
     {
         $fileBag = $request->files;
-        $textFileIdentifier = app('TextFileIdentifier');
-        $textFileReader = app('TextFileReader');
+        $textFileIdentifier = app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class);
+        $textFileReader = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class);
 
         foreach($names as $name) {
             if(!$fileBag->has($name) || !$fileBag->get($name)->isValid()) {
@@ -19,7 +19,7 @@ class ConvertTextFilesToUtf8
 
             $filePath = $fileBag->get($name)->getRealPath();
 
-            $utf8Content = $textFileReader->getContents($filePath);
+            $utf8Content = $textFileReader->getContent($filePath);
 
             file_put_contents($filePath, $utf8Content);
         }

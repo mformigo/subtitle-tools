@@ -2,11 +2,6 @@
 
 namespace App\Jobs\Diagnostic;
 
-use App\Facades\TextEncoding;
-use App\Facades\TextFileFormat;
-use App\Facades\TextFileIdentifier;
-use App\Facades\TextFileReader;
-use App\Models\StoredFileMeta;
 use App\Models\SubIdx;
 use App\Models\SubIdxMeta;
 use Exception;

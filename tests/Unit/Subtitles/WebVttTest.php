@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Facades\TextFileReader;
+use SjorsO\TextFile\Facades\TextFileReader;
 use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\WebVtt;
 use App\Subtitles\PlainText\WebVttCue;

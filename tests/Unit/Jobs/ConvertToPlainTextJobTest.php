@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Facades\TextFileReader;
+use SjorsO\TextFile\Facades\TextFileReader;
 use App\Jobs\ConvertToPlainTextJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;

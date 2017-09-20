@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3509b5f8dd60e45f1552818a1e26c0f5",
+    "content-hash": "eba8a87f502a25406a47defc071ec178",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -529,16 +529,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.7",
+            "version": "v5.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "7a7b7c92ac6feae474cfe036a06643f5052d2e40"
+                "reference": "a0fdfd2c90318c107b6a8d69189ec9a6607379e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/7a7b7c92ac6feae474cfe036a06643f5052d2e40",
-                "reference": "7a7b7c92ac6feae474cfe036a06643f5052d2e40",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a0fdfd2c90318c107b6a8d69189ec9a6607379e3",
+                "reference": "a0fdfd2c90318c107b6a8d69189ec9a6607379e3",
                 "shasum": ""
             },
             "require": {
@@ -657,7 +657,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-09-19T17:46:51+00:00"
+            "time": "2017-09-20T13:45:36+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1479,6 +1479,64 @@
                 "uuid"
             ],
             "time": "2017-08-04T13:39:04+00:00"
+        },
+        {
+            "name": "sjorso/text-file",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SjorsO/text-file-package.git",
+                "reference": "77a596143263e654dc04e25d162ea30df998d709"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SjorsO/text-file-package/zipball/77a596143263e654dc04e25d162ea30df998d709",
+                "reference": "77a596143263e654dc04e25d162ea30df998d709",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SjorsO\\TextFile\\Providers\\TextFileProvider"
+                    ],
+                    "aliases": {
+                        "TextEncoding": "SjorsO\\TextFile\\Facades\\TextEncoding",
+                        "TextFileReader": "SjorsO\\TextFile\\Facades\\TextFileReader",
+                        "TextFileIdentifier": "SjorsO\\TextFile\\Facades\\TextFileIdentifier"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SjorsO\\TextFile\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjors Ottjes",
+                    "email": "sjorsottjes@gmail.com"
+                }
+            ],
+            "description": "Utilities for identifying and reading text files of different text encodings",
+            "homepage": "https://github.com/SjorsO/text-file-package",
+            "keywords": [
+                "text",
+                "text encoding",
+                "text file",
+                "uchardet"
+            ],
+            "time": "2017-09-20T18:08:26+00:00"
         },
         {
             "name": "spatie/crawler",
