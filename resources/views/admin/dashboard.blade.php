@@ -71,14 +71,43 @@
                 </div>
 
                 <div class="col-4">
-                    <div class="stored-file-download st-panel">
+                    <div class="not-found-panel st-panel">
+                        <h2>404</h2>
 
+                        @if(count($notFoundRequests) > 0)
+                            <div class="log-controls">
+                                @include('admin.components.form-url', ['route' => 'admin.dashboard.open404Log', 'text' => 'Open log'])
+                                @include('admin.components.form-url', ['route' => 'admin.dashboard.delete404Log', 'text' => 'Delete log'])
+                            </div>
+
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($notFoundRequests as $notFound)
+                                        <li>
+                                            <span><strong>{{ $notFound['path'] }}</strong> {{ $notFound['count'] > 1 ? "({$notFound['count']}x)" : "" }}</span>
+                                            <span>
+                                                <form method="post" action="{{ route('admin.dashboard.append404Blacklist') }}" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="path" value="{{ $notFound['path'] }}">
+                                                    <button type="submit" class="plain">Blacklist</button>
+                                                </form>
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                        @else
+                            <div class="alert alert-success">
+                                All good
+                            </div>
+                        @endif
 
                     </div>
                 </div>
 
                 <div class="col-4">
-                    <div class="stored-file-download st-panel">
+                    <div class="st-panel">
 
 
                     </div>

@@ -2,6 +2,8 @@
 {
   h1 { margin-bottom: 2rem; }
 
+  form button[type=submit] { cursor: pointer; }
+
   div.logs
   {
 
@@ -21,6 +23,43 @@
       justify-content: space-between;
     }
   }
+
+
+
+  div.not-found-panel
+  {
+    .log-controls {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.25rem;
+      word-break: break-all;
+
+      span {
+        max-width: 200px;
+      }
+
+      span:last-child {
+        font-size: 1rem;
+      }
+    }
+
+  }
+
+
+
 
 
 }
