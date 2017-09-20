@@ -38,6 +38,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereIsReadable($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SubIdxLanguage[] $languages
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vobsub2srtOutput[] $vobsub2srtOutputs
+ * @property-read \App\Models\SubIdxMeta $meta
  */
 class SubIdx extends Model
 {

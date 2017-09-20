@@ -42,6 +42,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\StoredFile $outputStoredFile
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereErrorMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereOutputStoredFileId($value)
+ * @property int|null $queue_time
+ * @property int|null $extract_time
+ * @property int|null $timed_out
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereExtractTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereQueueTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdxLanguage whereTimedOut($value)
  */
 class SubIdxLanguage extends Model
 {

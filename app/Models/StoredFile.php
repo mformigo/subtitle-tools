@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Storage;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StoredFile whereStorageFilePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StoredFile whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\StoredFileMeta $meta
  */
 class StoredFile extends Model
 {
