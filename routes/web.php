@@ -15,6 +15,9 @@ Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
     Route::post('/')->uses('SubIdxController@post');
     Route::get('/{pageId}')->uses('SubIdxController@detail')->name('subIdxDetail');
     Route::post('/{pageId}/{index}')->uses('SubIdxController@downloadSrt')->name('subIdxDownload');
+    Route::get('/{pageId}/{index}', function($pageId, $index) {
+        return redirect()->route('subIdxDetail', ['pageId' => $pageId]);
+    });
 });
 
 Route::fileGroupTool('convertToSrt',  'ConvertToSrtController',  'convert-to-srt-online');

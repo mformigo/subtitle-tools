@@ -33,6 +33,9 @@ class RouteServiceProvider extends ServiceProvider
                 Route::post('/')->uses($controller.'@post');
                 Route::get('/{urlKey}')->uses($controller.'@result')->name($routeName.'.result');
                 Route::post('/{urlKey}/{id}')->uses($controller.'@download')->name($routeName.'.download');
+                Route::get('/{urlKey}/{id}', function($urlKey, $id) use ($routeName) {
+                    return redirect()->route($routeName . '.result', ['urlKey' => $urlKey]);
+                });
             });
         });
     }
