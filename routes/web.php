@@ -9,6 +9,11 @@ Route::get('/contact')->uses('ContactController@index')->name('contact');
 Route::post('/contact')->uses('ContactController@post')->name('contact.post');
 
 Route::post('/file-group-archive/{urlKey}')->uses('DownloadController@fileGroupArchive')->name('fileGroupArchiveDownload');
+Route::get('/file-group-archive/{urlKey}', function($urlKey) {
+    $fileGroup = \App\Models\FileGroup::where('url_key', $urlKey)->firstOrFail();
+
+    return redirect($fileGroup->resultRoute);
+});
 
 Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
     Route::get('/')->uses('SubIdxController@index')->name('subIdx');
