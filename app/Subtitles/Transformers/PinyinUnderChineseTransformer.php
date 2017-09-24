@@ -3,7 +3,7 @@
 namespace App\Subtitles\Transformers;
 
 use App\Subtitles\ContainsGenericCues;
-use App\Utils\Pinyin\Pinyin;
+use SjorsO\Pinyin\Pinyin;
 
 class PinyinUnderChineseTransformer implements CueTransformer
 {

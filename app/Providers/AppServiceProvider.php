@@ -21,11 +21,6 @@ class AppServiceProvider extends ServiceProvider
             return new \App\Utils\FileHash();
         });
 
-        $this->app->singleton('Pinyin', function () {
-            return new \App\Utils\Pinyin\Pinyin();
-        });
-
-
         if ($this->app->environment('local', 'testing')) {
             $this->app->register(\Laravel\Dusk\DuskServiceProvider::class);
         }
