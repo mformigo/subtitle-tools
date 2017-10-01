@@ -18,5 +18,7 @@ class RedirectsTest extends TestCase
         $this->get('/partial-subtitle-shifter')->assertStatus(301)->assertRedirect(route('shiftPartial'));
         $this->get('/multi-subtitle-shift')->assertStatus(301)->assertRedirect(route('shiftPartial'));
         $this->get('/convert-to-utf8')->assertStatus(301)->assertRedirect(route('convertToUtf8'));
+        $this->get('/c...')->assertStatus(301)->assertRedirect(route('convertToSrt'));
+        $this->get('/convert-to-srt-on...')->assertStatus(301)->assertRedirect(route('convertToSrt'));
     }
 }

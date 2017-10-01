@@ -12,6 +12,8 @@ class RedirectsProvider extends ServiceProvider
         'format-converter'         => 'convertToSrt',
         'convert-to-srt'           => 'convertToSrt',
         'fo...'                    => 'convertToSrt',
+        'convert-to-srt-on...'     => 'convertToSrt',
+        'c...'                     => 'convertToSrt',
         'tools'                    => 'home',
         'chinese-to-pinyin'        => 'pinyin',
         'subtitle-shift'           => 'shift',
