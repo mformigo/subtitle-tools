@@ -14,6 +14,7 @@ abstract class TestCase extends BaseTestCase
     private $testingStorageDirectories = [
         'sub-idx',
         'temporary-files',
+        'temporary-dirs',
         'stored-files',
         'diagnostic',
     ];

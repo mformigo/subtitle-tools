@@ -24,6 +24,9 @@ return [
     'subidx_vobsub2srt_output_file_only_empty_cues' => 'The vobsub2srt output file only had empty cues',
     'subidx_job_failed' => 'SubIdx extract job failed',
 
+    'sup.exception_when_reading' => 'This sup file could not be read',
+    'sup.not_a_sup_file' => 'This file is not a valid sup file',
+
     'zip_job.unknown_error' => 'Unknown error in zip job',
     'zip_job.create_failed' => 'Failed to create archive',
     'zip_job.no_files_added' => 'No files added to zip',
