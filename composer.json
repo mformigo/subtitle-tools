@@ -11,6 +11,7 @@
         "laravel/tinker": "~1.0",
         "pusher/pusher-php-server": "^3.0",
         "sjorso/pinyin": "^1.0",
+        "sjorso/sup": "^0.0.1",
         "sjorso/text-file": "^1.0",
         "spatie/laravel-sitemap": "^3.0"
     },
