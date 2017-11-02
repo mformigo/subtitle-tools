@@ -32,3 +32,18 @@ button.plain
 
   &:hover { text-decoration: underline; }
 }
+
+
+.alert
+{
+  display: inline-block;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.alert-warning
+{
+  background-color: yellow;
+}

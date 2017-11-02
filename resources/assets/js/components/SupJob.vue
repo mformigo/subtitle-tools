@@ -25,6 +25,13 @@
             <div class="original-name">
                 <img src="/images/file-icon.png" alt="file" :title="supJob.originalName" />
                 {{ shorten(supJob.originalName) }}
+
+            </div>
+
+            <div class="ocr-language original-name">
+                <br/>
+                <br/>
+                <strong>OCR language:</strong> {{ ocrLanguage }}
             </div>
 
             <div v-if="supJob.errorMessage" class="error-message">
@@ -50,7 +57,8 @@
         }),
 
         props: [
-            'urlKey'
+            'urlKey',
+            'ocrLanguage'
         ],
 
         mounted() {

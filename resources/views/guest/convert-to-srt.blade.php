@@ -29,6 +29,10 @@
             <div class="alert-danger sub-idx-popup hidden">
                 If you have a .sub file and an .idx file then you need to use the <a href="{{ route('subIdx') }}">sub/idx converter</a>.
             </div>
+
+            <div class="alert-danger sup-popup hidden">
+                If you have a .sup file then you need to use the <a href="{{ route('sup') }}">sup converter</a>.
+            </div>
         @endslot
 
     @endcomponent
@@ -39,8 +43,11 @@
                 var selectedFileName = $('#SubtitlesInput').val().split('\\').pop();
 
                 var isSubIdxFile = selectedFileName.match(/\.(sub|idx)$/i);
+                var isSupFile    = selectedFileName.match(/\.sup$/i);
 
                 $(".sub-idx-popup").toggleClass("hidden", !isSubIdxFile);
+
+                $(".sup-popup").toggleClass("hidden", !isSupFile);
             });
         </script>
     @endpush

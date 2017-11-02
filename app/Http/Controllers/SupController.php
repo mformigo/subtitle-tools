@@ -43,7 +43,7 @@ class SupController extends Controller
             ]);
 
             dispatch(
-                (new SupToSrtJob($supJob))->onQueue('sub-idx')
+                (new SupToSrtJob($supJob))->onQueue('slow-high')
             );
         }
 

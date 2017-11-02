@@ -2,9 +2,9 @@
 
 @include('helpers.robots-no-index')
 
-@section('title',       __('seo.title.'))
-@section('description', __('seo.description.'))
-@section('keywords',    __('seo.keywords.'))
+@section('title',       'Download sup to srt file | Subtitle Tools')
+@section('description', 'Download your srt file when it is done processing')
+@section('keywords',    'sup, download')
 
 @section('content')
 
@@ -16,6 +16,14 @@
         Once it is done the page will update automatically.
 
     @endcomponent
+
+    <div class="container">
+        <div class="alert alert-warning" role="alert">
+            <strong>This tool is still in beta!</strong>
+            It might not work correctly, please send me <a class="feedback" title="{{ __('nav.item.contact') }}" href="{{ route('contact') }}">feedback</a>.
+        </div>
+    </div>
+
 
     <section class="file-group-result single-file">
         <div class="container">
@@ -37,7 +45,7 @@
                 </div>
             </div>
 
-            <sup-job url-key="{{ $urlKey }}"></sup-job>
+            <sup-job url-key="{{ $urlKey }}" ocr-language="{{ __('languages.tesseract.'.$ocrLanguage) }}"></sup-job>
 
         </div>
     </section>

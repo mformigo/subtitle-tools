@@ -29,7 +29,8 @@
 * **Laravel Dusk** runs from inside vagrant homestead following [this guide](https://medium.com/@splatEric/laravel-dusk-on-homestead-dc5711987595)
 
 ## Queues and Workers
-* sub-idx language extract jobs run on the **sub-idx** queue. These jobs are extremely cpu intensive.
+* sup to srt jobs are run on the **slow-high** queue.
+* sub-idx language extract jobs run on the **sub-idx** queuem when the slow-high queue is idle
 * broadcasting happens on the **broadcast** queue
 * file jobs happen on the **default** queue
 * fast low prio jobs happen on **low-fast**, when the default queue is idle

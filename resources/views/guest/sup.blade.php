@@ -10,10 +10,16 @@
 
         @slot('title') Sup to Srt @endslot
 
-        This tool converts subpicture files to srt
+        Online sup to srt converter
 
     @endcomponent
 
+    <div class="container">
+        <div class="alert alert-warning" role="alert">
+            <strong>This tool is still in beta!</strong>
+            It might not work correctly, please send me <a class="feedback" title="{{ __('nav.item.contact') }}" href="{{ route('contact') }}">feedback</a>.
+        </div>
+    </div>
 
     @component('guest.components.tool-form', ['singleFile' => true])
 
@@ -44,14 +50,25 @@
     <section class="text-content">
         <div class="container">
 
-            <h2>Cleaning srt files</h2>
+            <h2>About sup files</h2>
             <p>
-
+                Sup files are subtitle files that contain pictures of text.
+                Televisions can show these pictures and not have to worry about text encoding or fonts.
+                The downside to this is that the text in the pictures can't be changed, and that computers usually can't display the subtitles.
             </p>
 
-            <h3>Other formatting tags</h3>
+            <h3>Subtitle language for OCR</h3>
             <p>
+                This tool uses <a href="https://en.wikipedia.org/wiki/Tesseract_(software)" rel="nofollow" target="_blank">Tesseract OCR</a> to read the text in the pictures, and converts the file to srt.
+                You need to select the language of your sup file for Tesseract to work correctly.
+                The auto detect option is <strong>not recommended</strong>, it usually doesn't work.
+                Only select auto detect if you are feeling lucky.
+            </p>
 
+            <h3>Sup formats</h3>
+            <p>
+                This tool supports three different sup formats: bluray, hddvd and normal dvd.
+                The code for reading these formats is <a href="https://github.com/SjorsO/sup">open source</a>, you can help improve it.
             </p>
 
         </div>
