@@ -1424,7 +1424,7 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
@@ -3514,16 +3514,16 @@
         },
         {
             "name": "sjorso/text-file",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/text-file-package.git",
-                "reference": "ac2856b0929d29983ef9a50f82016a223f77a12b"
+                "reference": "c684225b8345fe4cd1806f2a726fb66f187c9fcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/text-file-package/zipball/ac2856b0929d29983ef9a50f82016a223f77a12b",
-                "reference": "ac2856b0929d29983ef9a50f82016a223f77a12b",
+                "url": "https://api.github.com/repos/SjorsO/text-file-package/zipball/c684225b8345fe4cd1806f2a726fb66f187c9fcc",
+                "reference": "c684225b8345fe4cd1806f2a726fb66f187c9fcc",
                 "shasum": ""
             },
             "require": {
@@ -3568,7 +3568,7 @@
                 "text file",
                 "uchardet"
             ],
-            "time": "2017-10-01T09:22:42+00:00"
+            "time": "2017-11-02T12:38:52+00:00"
         },
         {
             "name": "spatie/browsershot",
