@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\CollectMeta::class,
         \App\Console\Commands\CleanTemporaryFiles::class,
         \App\Console\Commands\CalculateDiskUsage::class,
+        \App\Console\Commands\CleanDisk::class,
     ];
 
     protected function schedule(Schedule $schedule)
