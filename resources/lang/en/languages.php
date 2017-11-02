@@ -192,11 +192,10 @@ return [
 
 
     'tesseract' => [
-        'auto_detect' => 'Auto detect (not recommended)',
+        'eng' => 'English',
         'ara' => 'Arabic',
         'chinese' => 'Chinese (简体字 / 繁体字)',
         'deu' => 'German',
-        'eng' => 'English',
         'fas' => 'Persian',
         'fin' => 'Finnish',
         'fra' => 'French',

@@ -6,7 +6,7 @@ return [
 
         // these languages have a .traineddata file
         'languages' => [
-            'auto_detect',
+            'eng', // default language, should be on top
 //            'afr',
 //            'amh',
             'ara',
@@ -27,7 +27,7 @@ return [
             'deu',
 //            'dzo',
 //            'ell',
-            'eng',
+
 //            'enm',
 //            'epo',
 //            'equ',

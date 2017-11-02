@@ -61,8 +61,7 @@
             <p>
                 This tool uses <a href="https://en.wikipedia.org/wiki/Tesseract_(software)" rel="nofollow" target="_blank">Tesseract OCR</a> to read the text in the pictures, and converts the file to srt.
                 You need to select the language of your sup file for Tesseract to work correctly.
-                The auto detect option is <strong>not recommended</strong>, it usually doesn't work.
-                Only select auto detect if you are feeling lucky.
+                If you're not sure what language your sup file is, just give English a try and see if it works.
             </p>
 
             <h3>Sup formats</h3>

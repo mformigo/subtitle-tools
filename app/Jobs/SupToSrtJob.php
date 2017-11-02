@@ -66,21 +66,18 @@ class SupToSrtJob implements ShouldQueue
 
             $tesseract = (new \TesseractOCR($outputFilePaths[$i]))
                 ->quietMode()
-                ->suppressErrors();
-
-            if($ocrLanguage !== 'auto_detect') {
-                $tesseract->lang($ocrLanguage);
-            }
+                ->suppressErrors()
+                ->lang($ocrLanguage);
 
             $text = $tesseract->run();
 
+            // sanitize tesseract output, this is a quick hack
             $text = str_replace([
                 '(', ')',
                 '[', ']',
                 '〈', '〉',
                 '〝', '〞',
                 '“', '”',
-
             ], '', $text);
 
             $cue = (new SrtCue())
