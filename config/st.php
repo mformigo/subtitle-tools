@@ -85,7 +85,7 @@ return [
 //            'sin',
 //            'slk',
 //            'slv',
-//            'spa',
+            'spa',
 //            'sqi',
 //            'srp',
 //            'swa',

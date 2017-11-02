@@ -205,8 +205,10 @@ return [
         'nld' => 'Dutch',
         'nor' => 'Norwegian',
         'rus' => 'Russian',
+        'spa' => 'Spanish',
         'swe' => 'Swedish',
         'tha' => 'Thai',
+
 
 
 //
@@ -643,7 +645,7 @@ return [
 //        'som' => 'Somali',
 //        'son' => 'Songhai languages',
 //        'sot' => 'Sotho, Southern',
-//        'spa' => 'Spanish; Castilian',
+
 //        'alb' => 'Albanian',
 //        'srd' => 'Sardinian',
 //        'srn' => 'Sranan Tongo',

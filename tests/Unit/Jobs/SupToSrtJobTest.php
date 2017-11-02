@@ -7,12 +7,11 @@ use App\Models\StoredFile;
 use App\Models\SupJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use SjorsO\TextFile\Facades\TextFileReader;
-use Spatie\Snapshots\MatchesSnapshots;
 use Tests\TestCase;
 
 class SupToSrtJobTest extends TestCase
 {
-    use RefreshDatabase, MatchesSnapshots;
+    use RefreshDatabase;
 
     private function makeSupJob($inputFilePath, $ocrLanguage = 'auto_detect')
     {
@@ -35,7 +34,7 @@ class SupToSrtJobTest extends TestCase
     /** @test */
     function it_measures_queue_times()
     {
-        $supJob = $this->makeSupJob('Sup/hddvd01-mini.sup');
+        $supJob = $this->makeSupJob('Sup/hddvd-japanese-3-vertical-cues.sup');
 
         dispatch(
             new SupToSrtJob($supJob)
@@ -52,7 +51,7 @@ class SupToSrtJobTest extends TestCase
     /** @test */
     function it_converts_a_sup_to_srt()
     {
-        $supJob = $this->makeSupJob('Sup/hddvd01-mini.sup', 'jpn');
+        $supJob = $this->makeSupJob('Sup/hddvd-japanese-3-vertical-cues.sup', 'jpn');
 
         dispatch(
             new SupToSrtJob($supJob)

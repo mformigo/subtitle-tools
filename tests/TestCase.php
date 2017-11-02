@@ -4,10 +4,11 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Snapshots\MatchesSnapshots;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, MatchesSnapshots;
 
     public $testFilesStoragePath;
 
@@ -57,4 +58,8 @@ abstract class TestCase extends BaseTestCase
         dd(app('session.store'));
     }
 
+    protected function getSnapshotDirectory(): string
+    {
+        return $this->testFilesStoragePath.'__snapshots__';
+    }
 }

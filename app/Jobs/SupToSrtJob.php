@@ -74,6 +74,15 @@ class SupToSrtJob implements ShouldQueue
 
             $text = $tesseract->run();
 
+            $text = str_replace([
+                '(', ')',
+                '[', ']',
+                '〈', '〉',
+                '〝', '〞',
+                '“', '”',
+
+            ], '', $text);
+
             $cue = (new SrtCue())
                 ->setLines(explode("\n", $text))
                 ->setTiming($cueManifest[$i]['startTime'], $cueManifest[$i]['endTime']);
@@ -100,7 +109,7 @@ class SupToSrtJob implements ShouldQueue
 
     public function failed()
     {
-        return $this->abortWithError('sup.job_failed');
+        return $this->abortWithError('messages.sup.job_failed');
     }
 
     protected function abortWithError($errorMessage, $internalErrorMessage = null)
