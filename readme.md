@@ -4,6 +4,8 @@
 * uchardet
 * vobsub2srt
 * PHP Rar (PECL)
+* PHP gd (sjorso/sup)
+* Tesseract (all the traineddata, and the `tesseract` command from PATH (for PATH, install with apt-get))
 
 ## Updating code
 * Compile production assets `yarn run prod`
