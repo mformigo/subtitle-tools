@@ -99,6 +99,6 @@ abstract class FileJobJob implements ShouldQueue
     {
         $this->abortFileJob('messages.cant_convert_file_to_srt');
 
-        \Log::error("FileJob (id: {$this->fileJob->id}) failed! (possibly TextEncodingException)");
+        \Log::error("FileJob (filejob id: {$this->fileJob->id}) failed! (possibly TextEncodingException)");
     }
 }

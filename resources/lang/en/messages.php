@@ -26,6 +26,8 @@ return [
 
     'sup.exception_when_reading' => 'This sup file could not be read',
     'sup.not_a_sup_file' => 'This file is not a valid sup file',
+    'sup.no_cues_with_dialogue' => 'Failed converting this sup to srt',
+    'sup.job_failed' => 'Failed converting this sup to srt',
 
     'zip_job.unknown_error' => 'Unknown error in zip job',
     'zip_job.create_failed' => 'Failed to create archive',

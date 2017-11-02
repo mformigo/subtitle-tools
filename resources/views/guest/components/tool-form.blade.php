@@ -1,3 +1,5 @@
+@php($singleFile = $singleFile ?? false)
+
 <section class="tool">
     <div class="container">
         <form id="ToolForm" method="post" enctype="multipart/form-data">
@@ -15,8 +17,14 @@
                     @if(!isset($bare))
                         <div class="file-field input-field mw420">
                             <div class="btn">
-                                <span>Files</span>
-                                <input type="file" name="subtitles[]" id="SubtitlesInput" multiple required>
+                                <span>File{{ $singleFile ? '' : 's' }}</span>
+                                @if($singleFile)
+                                    <input type="file" name="subtitle" id="SubtitlesInput" required>
+                                @else
+                                    <input type="file" name="subtitles[]" id="SubtitlesInput" multiple required>
+                                @endif
+
+
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="{{ isset($filePlaceholder) ? $filePlaceholder : 'Select files...' }}">

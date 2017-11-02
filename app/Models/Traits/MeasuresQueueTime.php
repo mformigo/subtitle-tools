@@ -12,10 +12,8 @@ trait MeasuresQueueTime
 
         $start = Carbon::now();
 
-        $this->update([
-            'started_at' => $start,
-            'queue_time' => $start->diffInSeconds($createdAt),
-        ]);
+        $this->started_at = $start;
+        $this->queue_time = $start->diffInSeconds($createdAt);
     }
 
     public function measureEnd()
@@ -24,9 +22,7 @@ trait MeasuresQueueTime
 
         $startedAt = new Carbon($this->started_at);
 
-        $this->update([
-            'finished_at' => $finishedAt,
-            'work_time'   => $finishedAt->diffInSeconds($startedAt),
-        ]);
+        $this->finished_at = $finishedAt;
+        $this->work_time   = $finishedAt->diffInSeconds($startedAt);
     }
 }

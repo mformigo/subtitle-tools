@@ -4,21 +4,15 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupGroupsTable extends Migration
+class CreateSupJobsTable extends Migration
 {
     public function up()
     {
-        Schema::create('sup_groups', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('url_key')->unique();
-            $table->timestamps();
-        });
-
-
         Schema::create('sup_jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sup_group_id')->unsigned();
+            $table->string('url_key')->unique();
             $table->string('original_name');
+            $table->string('ocr_language');
             $table->integer('input_stored_file_id')->unsigned();
             $table->integer('output_stored_file_id')->unsigned()->nullable();
             $table->string('error_message')->nullable();
@@ -32,14 +26,11 @@ class CreateSupGroupsTable extends Migration
             $table->dateTime("finished_at")->nullable();
             $table->integer('queue_time')->nullable();
             $table->integer('work_time')->nullable();
-
-            $table->foreign('sup_group_id')->references('id')->on('sup_groups')->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('sup_groups');
         Schema::dropIfExists('sup_jobs');
     }
 }

@@ -2,8 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Events\SupJobChanged;
 use App\Facades\TempDir;
+use App\Models\StoredFile;
 use App\Models\SupJob;
+use App\Subtitles\PlainText\Srt;
+use App\Subtitles\PlainText\SrtCue;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -48,24 +52,85 @@ class SupToSrtJob implements ShouldQueue
 
         $outputFilePaths = $sup->extractImages($this->supJob->temp_dir);
 
+        $cueManifest = $sup->getCueManifest();
+
+        $srt = new Srt();
+
+        for($i = 0; $i < count($outputFilePaths); $i++) {
+
+            $ocrLanguage = $this->supJob->ocr_language;
+
+            if($ocrLanguage === 'chinese'){
+                $ocrLanguage = 'chi_sim+chi_tra';
+            }
+
+            $tesseract = (new \TesseractOCR($outputFilePaths[$i]))
+                ->quietMode()
+                ->suppressErrors();
+
+            if($ocrLanguage !== 'auto_detect') {
+                $tesseract->lang($ocrLanguage);
+            }
+
+            $text = $tesseract->run();
+
+            $cue = (new SrtCue())
+                ->setLines(explode("\n", $text))
+                ->setTiming($cueManifest[$i]['startTime'], $cueManifest[$i]['endTime']);
+
+            $srt->addCue($cue);
+        }
+
+        $srt->removeEmptyCues();
+
+        if(! $srt->hasCues()) {
+            return $this->abortWithError('messages.sup.no_cues_with_dialogue');
+        }
+
+        $outputFile = StoredFile::createFromTextFile($srt);
+
+        $this->supJob->output_stored_file_id = $outputFile->id;
+
         $this->supJob->measureEnd();
 
-        return $this->supJob;
+        $this->supJob->save();
+
+        return $this->endJob();
     }
 
     public function failed()
     {
-        $this->supJob->measureEnd();
+        return $this->abortWithError('sup.job_failed');
     }
 
     protected function abortWithError($errorMessage, $internalErrorMessage = null)
     {
-        $this->supJob->update([
-            'error_message' => $errorMessage,
-            'internal_error_message' => $internalErrorMessage,
-        ]);
+        $this->supJob->error_message = $errorMessage;
+
+        $this->supJob->internal_error_message = $internalErrorMessage;
 
         $this->supJob->measureEnd();
+
+        $this->supJob->save();
+
+        return $this->endJob();
+    }
+
+    protected function endJob()
+    {
+        event(
+            new SupJobChanged($this->supJob)
+        );
+
+        if(is_dir($this->supJob->temp_dir)) {
+            $globPattern = str_finish($this->supJob->temp_dir, '/').'*';
+
+            foreach(glob($globPattern) as $filePath) {
+                unlink($filePath);
+            }
+
+            rmdir($this->supJob->temp_dir);
+        }
 
         return $this->supJob;
     }

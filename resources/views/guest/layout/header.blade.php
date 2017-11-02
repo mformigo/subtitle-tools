@@ -16,8 +16,8 @@
 
             {!! nav_item('convertToSrt') !!}
             {!! nav_item('subIdx') !!}
+            {!! nav_item('sup') !!}
             {!! nav_item('cleanSrt') !!}
-            {!! nav_item('convertToUtf8') !!}
 
             <li class="{{ Request::routeIs('pinyin*') || Request::routeIs('convertToPlainText*') ? "active" : '' }}">
                 <a class="dropdown-button" href="#!" data-activates="dropdown2">
@@ -27,6 +27,7 @@
             <ul id="dropdown2" class="dropdown-content">
                 {!! nav_item('pinyin') !!}
                 {!! nav_item('convertToPlainText') !!}
+                {!! nav_item('convertToUtf8') !!}
             </ul>
 
         </ul>
@@ -38,6 +39,7 @@
             {!! nav_item('shiftPartial') !!}
             {!! nav_item('convertToSrt') !!}
             {!! nav_item('subIdx') !!}
+            {!! nav_item('sup') !!}
             {!! nav_item('cleanSrt') !!}
             {!! nav_item('convertToUtf8') !!}
             {!! nav_item('pinyin') !!}

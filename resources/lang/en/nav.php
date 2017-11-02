@@ -15,6 +15,7 @@ return [
     'item.subIdx' => 'Sub/Idx to Srt',
     'item.contact' => 'Contact',
     'item.convertToPlainText' => 'Convert to Plain Text',
+    'item.sup' => 'Sup to Srt',
 
     // Admin Nav
     'item.admin' => 'Dashboard',

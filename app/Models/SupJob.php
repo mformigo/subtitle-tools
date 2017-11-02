@@ -11,11 +11,6 @@ class SupJob extends Model
 
     protected $guarded = [];
 
-    public function supGroup()
-    {
-        return $this->belongsTo(\App\Models\SupGroup::class);
-    }
-
     public function inputStoredFile()
     {
         return $this->hasOne(\App\Models\StoredFile::class, 'id', 'input_stored_file_id');
@@ -24,5 +19,15 @@ class SupJob extends Model
     public function outputStoredFile()
     {
         return $this->hasOne(\App\Models\StoredFile::class, 'id', 'output_stored_file_id');
+    }
+
+    public function getIsFinishedAttribute()
+    {
+        return $this->finished_at !== null;
+    }
+
+    public function getHasErrorAttribute()
+    {
+        return $this->error_message !== null;
     }
 }

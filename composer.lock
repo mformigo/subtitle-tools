@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbdc09b662d98ac149e6791ec545dc31",
+    "content-hash": "e98596d4be1db985cb75a7ac6f0e21fa",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1008,16 +1008,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.18",
+            "version": "v5.5.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1cc21baac11551377734b8c17ead17db4c34fe21"
+                "reference": "c678100e84934ec85c9f8bc26bd0a60222682719"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1cc21baac11551377734b8c17ead17db4c34fe21",
-                "reference": "1cc21baac11551377734b8c17ead17db4c34fe21",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c678100e84934ec85c9f8bc26bd0a60222682719",
+                "reference": "c678100e84934ec85c9f8bc26bd0a60222682719",
                 "shasum": ""
             },
             "require": {
@@ -1135,7 +1135,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-10-19T12:50:26+00:00"
+            "time": "2017-10-25T19:10:45+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3467,16 +3467,16 @@
         },
         {
             "name": "sjorso/sup",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/sup.git",
-                "reference": "0c2ff9ba113ea30e3dc6b2c5261bd7e7f1dff6b4"
+                "reference": "9c5bab1cd43b21b366bdeb23f7a04408767c41a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/sup/zipball/0c2ff9ba113ea30e3dc6b2c5261bd7e7f1dff6b4",
-                "reference": "0c2ff9ba113ea30e3dc6b2c5261bd7e7f1dff6b4",
+                "url": "https://api.github.com/repos/SjorsO/sup/zipball/9c5bab1cd43b21b366bdeb23f7a04408767c41a3",
+                "reference": "9c5bab1cd43b21b366bdeb23f7a04408767c41a3",
                 "shasum": ""
             },
             "require": {
@@ -3488,13 +3488,6 @@
                 "spatie/phpunit-snapshot-assertions": "^1.1"
             },
             "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Sup": "SjorsO\\Sup\\Facades\\Sup"
-                    }
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "SjorsO\\Sup\\": "src/"
@@ -3517,7 +3510,7 @@
                 "subtitles",
                 "sup"
             ],
-            "time": "2017-10-18T07:52:41+00:00"
+            "time": "2017-10-22T08:53:27+00:00"
         },
         {
             "name": "sjorso/text-file",
@@ -4843,6 +4836,49 @@
             "time": "2017-04-07T12:08:54+00:00"
         },
         {
+            "name": "thiagoalessio/tesseract_ocr",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thiagoalessio/tesseract-ocr-for-php.git",
+                "reference": "161ae110a206096dbae99d26640411728f8fd68e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thiagoalessio/tesseract-ocr-for-php/zipball/161ae110a206096dbae99d26640411728f8fd68e",
+                "reference": "161ae110a206096dbae99d26640411728f8fd68e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Thiago Alessio Pereira",
+                    "email": "thiagoalessio@me.com",
+                    "homepage": "http://thiagoalessio.me"
+                }
+            ],
+            "description": "A wrapper to work with Tesseract OCR inside PHP.",
+            "keywords": [
+                "OCR",
+                "Tesseract",
+                "text recognition"
+            ],
+            "time": "2017-10-29T12:37:51+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.0",
             "source": {
@@ -5445,7 +5481,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "thiagoalessio/tesseract_ocr": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

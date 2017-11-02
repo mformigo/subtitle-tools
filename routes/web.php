@@ -35,4 +35,17 @@ Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'conv
 
 Route::get('/how-to-fix-vlc-subtitles-displaying-as-boxes')->uses('HomeController@blogVlcSubtitleBoxes')->name('blogVlcSubtitleBoxes');
 
+
+Route::prefix('convert-sup-to-srt-online')->group(function() {
+    Route::get('/',                   ['uses' => 'SupController@index',    'as' => 'sup']);
+    Route::post('/',                  ['uses' => 'SupController@post',     'as' => 'sup.post']);
+    Route::get('/{urlKey}',           ['uses' => 'SupController@show',     'as' => 'sup.show']);
+    Route::post('/{urlKey}/download', ['uses' => 'SupController@download', 'as' => 'sup.show.download']);
+
+    Route::get('/{urlKey}/download', function($urlKey) {
+        return redirect()->route('sup.show', $urlKey);
+    });
+});
+
+
 Route::fallback('NotFoundController@index');
