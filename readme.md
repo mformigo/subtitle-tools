@@ -7,6 +7,21 @@
 * PHP gd (sjorso/sup)
 * Tesseract (all the traineddata, and the `tesseract` command from PATH (for PATH, install with apt-get))
 
+## Installation
+From a clean homestead installation:
+```bash
+fill in the .env
+ 
+composer install
+
+artisan migrate:fresh --seed
+ 
+
+
+
+```
+
+
 ## Updating code
 * Compile production assets `yarn run prod`
 * Push to Master

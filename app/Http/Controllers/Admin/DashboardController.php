@@ -27,6 +27,8 @@ class DashboardController extends Controller
 
         $notFoundRequests = $this->get404Info();
 
+        $dependencies = $this->getDependenciesInfo();
+
         return view('admin.dashboard', [
             'logs'       => $logsWithErrors,
             'supervisor' => $supervisorInfo,
@@ -34,6 +36,7 @@ class DashboardController extends Controller
             'diskUsage' => strtolower($diskUsage),
             'diskUsageWarning' => $diskUsageWarning,
             'notFoundRequests' => $notFoundRequests,
+            'dependencies' => $dependencies,
         ]);
     }
 
@@ -62,9 +65,9 @@ class DashboardController extends Controller
     private function getSupervisorInfo()
     {
         $lines = app()->environment('local') ? [
-            "st-worker-broadcast:st-worker-broadcast_00   RUNNING   pid 27243, uptime 0:04:36",
-            "st-worker-default:st-worker-default_00       RUNNING   pid 27245, uptime 0:13:51",
-            "st-worker-subidx:st-worker-subidx_00         RUNNING   pid 27244, uptime 2:23:40",
+            'st-worker-broadcast:st-worker-broadcast_00   RUNNING   pid 27243, uptime 0:04:20',
+            'st-worker-default:st-worker-default_00       RUNNING   pid 27245, uptime 0:13:37',
+            'st-worker-subidx:st-worker-subidx_00         RUNNING   pid 27244, uptime 2:22:22',
         ] : explode("\n", shell_exec('supervisorctl status'));
 
         return collect($lines)->filter(function($line) {
@@ -156,5 +159,24 @@ class DashboardController extends Controller
         );
 
         return back();
+    }
+
+    private function getDependenciesInfo()
+    {
+        $dependencies = [];
+
+        $dependencies['PHP Rar archives (PECL)'] = class_exists(\RarArchive::class);
+
+        $dependencies['PHP GD (image library)'] = function_exists('imagecreatetruecolor');
+
+        $dependencies['uchardet binary'] = (shell_exec('uchardet') !== null);
+
+        $dependencies['Vobsub2srt binary'] = (shell_exec('vobsub2srt') !== null);
+
+        $dependencies['Tesseract binary'] = (shell_exec('tesseract') !== null);
+
+        $dependencies['Tesseract traineddata'] = file_exists('/usr/share/tesseract-ocr/tessdata/nld.traineddata');
+
+        return $dependencies;
     }
 }

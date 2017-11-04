@@ -108,7 +108,11 @@
 
                 <div class="col-4">
                     <div class="st-panel">
+                        <h2>Dependencies</h2>
 
+                        @foreach($dependencies as $name => $isLoaded)
+                            {{ $isLoaded ? 'Yes' : 'No' }} - {{ $name }} <br/>
+                        @endforeach
 
                     </div>
                 </div>
