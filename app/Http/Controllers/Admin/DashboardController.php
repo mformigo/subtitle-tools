@@ -171,9 +171,9 @@ class DashboardController extends Controller
 
         $dependencies['uchardet binary'] = (shell_exec('uchardet') !== null);
 
-        $dependencies['Vobsub2srt binary'] = (shell_exec('vobsub2srt') !== null);
+        $dependencies['Vobsub2srt binary'] = (shell_exec('vobsub2srt --help') !== null);
 
-        $dependencies['Tesseract binary'] = (shell_exec('tesseract') !== null);
+        $dependencies['Tesseract binary'] = (shell_exec('tesseract --help') !== null);
 
         $dependencies['Tesseract traineddata'] = file_exists('/usr/share/tesseract-ocr/tessdata/nld.traineddata');
 
