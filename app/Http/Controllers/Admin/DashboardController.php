@@ -169,11 +169,11 @@ class DashboardController extends Controller
 
         $dependencies['PHP GD (image library)'] = function_exists('imagecreatetruecolor');
 
-        $dependencies['uchardet binary'] = (shell_exec('uchardet') !== null);
+        $dependencies['uchardet binary'] = ! empty(shell_exec('command -v uchardet'));
 
-        $dependencies['Vobsub2srt binary'] = (shell_exec('vobsub2srt --help') !== null);
+        $dependencies['Vobsub2srt binary'] = ! empty(shell_exec('command -v vobsub2srt'));
 
-        $dependencies['Tesseract binary'] = (shell_exec('tesseract --help') !== null);
+        $dependencies['Tesseract binary'] = ! empty(shell_exec('command -v tesseract'));
 
         $dependencies['Tesseract traineddata'] = file_exists('/usr/share/tesseract-ocr/tessdata/nld.traineddata');
 
