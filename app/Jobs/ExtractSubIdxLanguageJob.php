@@ -65,10 +65,12 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
         $finishedAt = Carbon::now();
 
+        $startedAt = new Carbon($this->subIdxLanguage->started_at);
+
         $this->subIdxLanguage->update([
             'output_stored_file_id' => $storedFile->id,
             'finished_at' => Carbon::now(),
-            'extract_time' => $finishedAt->diffInSeconds($this->subIdxLanguage->started_at),
+            'extract_time' => $finishedAt->diffInSeconds($startedAt),
             'timed_out' => $this->timedOut(),
         ]);
 
@@ -86,10 +88,12 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
     {
         $finishedAt = Carbon::now();
 
+        $startedAt = new Carbon($this->subIdxLanguage->started_at);
+
         $this->subIdxLanguage->update([
             'error_message' => $errorMessage,
             'finished_at' => $finishedAt,
-            'extract_time' => $finishedAt->diffInSeconds($this->subIdxLanguage->started_at),
+            'extract_time' => $finishedAt->diffInSeconds($startedAt),
             'timed_out' => $this->timedOut(),
         ]);
 
