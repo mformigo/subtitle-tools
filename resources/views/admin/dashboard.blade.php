@@ -110,8 +110,18 @@
                     <div class="st-panel">
                         <h2>Dependencies</h2>
 
+                        <a href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
+
+                        <hr>
+
                         @foreach($dependencies as $name => $isLoaded)
-                            {{ $isLoaded ? 'Yes' : 'No' }} - {{ $name }} <br/>
+                            @if($isLoaded)
+                                {{ $name }} <br/>
+                            @else
+                                <div class="alert alert-danger">
+                                    {{ $name }}
+                                </div>
+                            @endif
                         @endforeach
 
                     </div>
