@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 
 class CalculateDiskUsage extends Command
 {
@@ -21,6 +22,10 @@ class CalculateDiskUsage extends Command
         $diskName = App::environment('local') ? '/dev/sda1' : '/dev/vda1';
 
         $outputFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
+
+        if(! Storage::exists('diagnostic/')) {
+            Storage::makeDirectory('diagnostic/');
+        }
 
         $output = trim(
             shell_exec("df {$diskName} --human-readable 2>&1")
