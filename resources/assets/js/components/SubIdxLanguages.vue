@@ -41,17 +41,31 @@
         ],
 
         mounted() {
-            axios.get(`/api/v1/sub-idx/languages/${this.pageId}`).then(response => {
-                this.languages = response.data;
-            });
-
             Echo.channel(`sub-idx.${this.pageId}`).listen('ExtractingSubIdxLanguageChanged', (newLanguage) => {
                 let arrayIndex = _.findIndex(this.languages, ['index', newLanguage.index]);
 
                 if(arrayIndex !== -1) {
                     Vue.set(this.languages, arrayIndex, newLanguage);
                 }
+
+                this.maybeDisconnectFromChannels();
             });
+
+            axios.get(`/api/v1/sub-idx/languages/${this.pageId}`).then(response => {
+                this.languages = response.data;
+
+                this.maybeDisconnectFromChannels();
+            });
+        },
+
+        methods: {
+            maybeDisconnectFromChannels: function() {
+                let allFinished = this.languages.every((element, index, array) => element.isFinished);
+
+                if(allFinished) {
+                    Echo.disconnect();
+                }
+            },
         }
     }
 </script>

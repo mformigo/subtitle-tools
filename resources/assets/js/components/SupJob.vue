@@ -62,12 +62,16 @@
         ],
 
         mounted() {
-            axios.get(`/api/v1/sup-job/${this.urlKey}`).then(response => {
-                this.supJob = response.data.data;
-            });
-
             Echo.channel(`sup-job.${this.urlKey}`).listen('SupJobChanged', (changedSupJob) => {
                 this.supJob = changedSupJob;
+
+                this.maybeDisconnectFromChannels();
+            });
+
+            axios.get(`/api/v1/sup-job/${this.urlKey}`).then(response => {
+                this.supJob = response.data.data;
+
+                this.maybeDisconnectFromChannels();
             });
         },
 
@@ -81,7 +85,14 @@
 
                 return string.substring(0, maxLength/2) + '...' + string.substring(string.length - maxLength/2);
 
-            }
+            },
+
+            maybeDisconnectFromChannels: function() {
+                if(this.supJob.isFinished) {
+                    Echo.disconnect();
+                }
+            },
+
         }
 
     }

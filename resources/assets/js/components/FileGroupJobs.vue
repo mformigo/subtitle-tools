@@ -48,16 +48,20 @@
         ],
 
         mounted() {
-            axios.get(`/api/v1/file-group/result/${this.urlKey}`).then(response => {
-                this.fileJobs = response.data;
-            });
-
             Echo.channel(`file-group.${this.urlKey}.jobs`).listen('FileJobChanged', (newFileJob) => {
                 let arrayIndex = _.findIndex(this.fileJobs, ['id', newFileJob.id]);
 
                 if(arrayIndex !== -1) {
                     Vue.set(this.fileJobs, arrayIndex, newFileJob);
                 }
+
+                this.maybeDisconnectFromChannels();
+            });
+
+            axios.get(`/api/v1/file-group/result/${this.urlKey}`).then(response => {
+                this.fileJobs = response.data;
+
+                this.maybeDisconnectFromChannels();
             });
         },
 
@@ -71,7 +75,15 @@
 
                 return string.substring(0, maxLength/2) + '...' + string.substring(string.length - maxLength/2);
 
-            }
+            },
+            
+            maybeDisconnectFromChannels: function() {
+                let allFinished = this.fileJobs.every((element, index, array) => element.isFinished);
+                
+                if(allFinished) {
+                    Echo.leave(`file-group.${this.urlKey}.jobs`);
+                }
+            },
         }
 
     }

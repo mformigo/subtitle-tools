@@ -41,17 +41,31 @@
                 this.archiveRequestUrl = response.data.archiveRequestUrl;
                 this.archiveDownloadUrl = response.data.archiveDownloadUrl;
                 this.archiveStatus = response.data.archiveStatus;
-            });
 
-            Echo.channel(`file-group.${this.urlKey}`).listen('FileGroupChanged', (newFileGroup) => {
-                this.archiveRequestUrl = newFileGroup.archiveRequestUrl;
-                this.archiveDownloadUrl = newFileGroup.archiveDownloadUrl;
-                this.archiveStatus = newFileGroup.archiveStatus;
+                if(this.archiveRequestUrl === false && this.archiveDownloadUrl === false) {
+                    this.joinPusherChannel();
+                }
             });
         },
 
         methods: {
-            requestArchive: (requestUrl) => axios.post(requestUrl)
+            requestArchive: function(requestUrl) {
+                this.joinPusherChannel();
+
+                return axios.post(requestUrl);
+            },
+
+            joinPusherChannel: function() {
+                Echo.channel(`file-group.${this.urlKey}`).listen('FileGroupChanged', (newFileGroup) => {
+                    this.archiveRequestUrl = newFileGroup.archiveRequestUrl;
+                    this.archiveDownloadUrl = newFileGroup.archiveDownloadUrl;
+                    this.archiveStatus = newFileGroup.archiveStatus;
+                    
+                    if(this.archiveRequestUrl !== false || this.archiveDownloadUrl !== false) {
+                        Echo.leave(`file-group.${this.urlKey}`);
+                    }
+                });
+            }
         },
 
     }

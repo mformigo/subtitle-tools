@@ -33,6 +33,7 @@ The status of the mods can be checked in the admin dashboard
 * **Laravel Dusk** runs from inside vagrant homestead following [this guide](https://medium.com/@splatEric/laravel-dusk-on-homestead-dc5711987595)
 
 ## Queues and Workers
+`php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast`
 * sup to srt jobs are run on the **slow-high** queue.
 * sub-idx language extract jobs run on the **sub-idx** queuem when the slow-high queue is idle
 * broadcasting happens on the **broadcast** queue

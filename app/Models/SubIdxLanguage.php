@@ -134,6 +134,7 @@ class SubIdxLanguage extends Model
             'status'      => $this->statusMessage,
             'hasError'    => $this->hasError,
             'downloadUrl' => $this->downloadUrl,
+            'isFinished'  => $this->has_finished,
         ];
     }
 }
