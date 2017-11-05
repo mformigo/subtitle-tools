@@ -8,6 +8,7 @@ use App\Models\StoredFile;
 use App\Models\SupJob;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -33,6 +34,8 @@ class SupToSrtJob implements ShouldQueue
 
     public function handle()
     {
+        $jobStartedAt = Carbon::now();
+
         $this->supJob->measureStart();
 
         $this->supJob->temp_dir = TempDir::make('sup');
@@ -52,24 +55,33 @@ class SupToSrtJob implements ShouldQueue
 
         $outputFilePaths = $sup->extractImages($this->supJob->temp_dir);
 
+        $extractingImagesFinishedAt = Carbon::now();
+
         $cueManifest = $sup->getCueManifest();
 
         $srt = new Srt();
 
-        for($i = 0; $i < count($outputFilePaths); $i++) {
+        $ocrLanguage = $this->supJob->ocr_language;
 
-            $ocrLanguage = $this->supJob->ocr_language;
+        if($ocrLanguage === 'chinese'){
+            $ocrLanguage = 'chi_sim+chi_tra';
+        }
 
-            if($ocrLanguage === 'chinese'){
-                $ocrLanguage = 'chi_sim+chi_tra';
+        $imageCount = count($outputFilePaths);
+
+        for($i = 0; $i < $imageCount; $i++) {
+
+            if(Carbon::now()->diffInSeconds($jobStartedAt) > ($this->timeout - 30)) {
+                $extractingImagesTime = $extractingImagesFinishedAt->diffInSeconds($jobStartedAt);
+
+                return $this->abortWithError('messages.sup.job_timed_out', "extracting images took {$extractingImagesTime} seconds. Stopped at frame {$i}/{$imageCount}");
             }
 
-            $tesseract = (new \TesseractOCR($outputFilePaths[$i]))
+            $text = (new \TesseractOCR($outputFilePaths[$i]))
                 ->quietMode()
                 ->suppressErrors()
-                ->lang($ocrLanguage);
-
-            $text = $tesseract->run();
+                ->lang($ocrLanguage)
+                ->run();
 
             // sanitize tesseract output, this is a quick hack
             $text = str_replace([
