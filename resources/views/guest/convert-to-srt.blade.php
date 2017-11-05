@@ -4,6 +4,8 @@
 @section('description', __('seo.description.convertToSrt'))
 @section('keywords',    __('seo.keywords.convertToSrt'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

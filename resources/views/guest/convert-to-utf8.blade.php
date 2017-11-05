@@ -4,6 +4,8 @@
 @section('description', __('seo.description.convertToUtf8'))
 @section('keywords',    __('seo.keywords.convertToUtf8'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

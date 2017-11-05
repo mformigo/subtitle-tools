@@ -4,6 +4,8 @@
 @section('description', __('seo.description.cleanSrt'))
 @section('keywords',    __('seo.keywords.cleanSrt'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

@@ -4,6 +4,8 @@
 @section('description', __('seo.description.home'))
 @section('keywords',    __('seo.keywords.home'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     <section class="intro homepage">

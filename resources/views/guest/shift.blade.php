@@ -4,6 +4,8 @@
 @section('description', __('seo.description.shift'))
 @section('keywords',    __('seo.keywords.shift'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

@@ -4,6 +4,8 @@
 @section('description', '')
 @section('keywords',    'login, yo')
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

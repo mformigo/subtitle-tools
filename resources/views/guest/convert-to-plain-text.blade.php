@@ -4,6 +4,8 @@
 @section('description', __('seo.description.convertToPlainText'))
 @section('keywords',    __('seo.keywords.convertToPlainText'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

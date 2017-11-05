@@ -4,6 +4,8 @@
 @section('description', __('seo.description.blogVlcSubtitleBoxes'))
 @section('keywords',    __('seo.keywords.blogVlcSubtitleBoxes'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     <section class="blog-intro">

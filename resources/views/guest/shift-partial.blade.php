@@ -4,6 +4,8 @@
 @section('description', __('seo.description.shiftPartial'))
 @section('keywords',    __('seo.keywords.shiftPartial'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

@@ -4,6 +4,8 @@
 @section('description', __('seo.description.pinyin'))
 @section('keywords',    __('seo.keywords.pinyin'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')

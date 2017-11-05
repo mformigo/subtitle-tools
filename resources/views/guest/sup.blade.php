@@ -4,6 +4,8 @@
 @section('description', __('seo.description.sup'))
 @section('keywords',    __('seo.keywords.sup'))
 
+@include('helpers.disconnect-echo')
+
 @section('content')
 
     @component('guest.components.page-intro')
