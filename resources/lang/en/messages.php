@@ -24,11 +24,12 @@ return [
     'subidx_vobsub2srt_output_file_only_empty_cues' => 'The vobsub2srt output file only had empty cues',
     'subidx_job_failed' => 'SubIdx extract job failed',
 
-    'sup.exception_when_reading' => 'This sup file could not be read',
-    'sup.not_a_sup_file' => 'This file is not a valid sup file',
-    'sup.no_cues_with_dialogue' => 'Failed converting this sup to srt (did you select the correct language?)',
-    'sup.job_timed_out' => 'Failed converting this sup to srt (converting took too long)',
-    'sup.job_failed' => 'Failed converting this sup to srt',
+    'sup.exception_when_reading'           => 'This sup file could not be read',
+    'sup.not_a_sup_file'                   => 'This file is not a valid sup file',
+    'sup.no_cues_with_dialogue'            => 'Failed converting this sup to srt (did you select the correct language?)',
+    'sup.job_timed_out'                    => 'Failed converting this sup to srt (converting took too long)',
+    'sup.job_failed'                       => 'Failed converting this sup to srt',
+    'sup.exception_when_extracting_images' => 'Failed converting this sup to srt',
 
     'zip_job.unknown_error' => 'Unknown error in zip job',
     'zip_job.create_failed' => 'Failed to create archive',

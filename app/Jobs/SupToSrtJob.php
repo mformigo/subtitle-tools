@@ -53,7 +53,12 @@ class SupToSrtJob implements ShouldQueue
             return $this->abortWithError('messages.sup.not_a_sup_file');
         }
 
-        $outputFilePaths = $sup->extractImages($this->supJob->temp_dir);
+        try {
+            $outputFilePaths = $sup->extractImages($this->supJob->temp_dir);
+        }
+        catch(Exception $exception) {
+            return $this->abortWithError('messages.sup.exception_when_extracting_images', $exception->getMessage());
+        }
 
         $extractingImagesFinishedAt = Carbon::now();
 
