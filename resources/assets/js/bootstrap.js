@@ -38,3 +38,5 @@ window.Echo = new Echo({
 
 
 require('./vendor/jquery.maskedinput.min');
+
+require('./vendor/blockadblock');

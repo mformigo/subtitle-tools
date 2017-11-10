@@ -56,6 +56,8 @@
 
         @include('guest.layout.header')
 
+        @include('helpers.anti-adblock-banner')
+
         <div id="app">
             @yield('content')
         </div>
