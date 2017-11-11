@@ -97,9 +97,16 @@ class SupToSrtJob implements ShouldQueue
                 '“', '”',
             ], '', $text);
 
+            $startMs = $cueManifest[$i]['startTime'];
+            $endMs   = $cueManifest[$i]['endTime'];
+
+            if($endMs < $startMs) {
+                $endMs = $startMs;
+            }
+
             $cue = (new SrtCue())
                 ->setLines(explode("\n", $text))
-                ->setTiming($cueManifest[$i]['startTime'], $cueManifest[$i]['endTime']);
+                ->setTiming($startMs, $endMs);
 
             $srt->addCue($cue);
         }

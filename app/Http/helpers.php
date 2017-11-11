@@ -45,3 +45,18 @@ function interval(int $interval, $closure)
 
     $calls[$caller] = $callCount + 1;
 }
+
+function once($closure)
+{
+    static $calls = [];
+
+    $caller = sha1(debug_backtrace()[0]['file'] . '|' . debug_backtrace()[0]['line']);
+
+    if(isset($calls[$caller])) {
+        return;
+    }
+
+    $calls[$caller] = true;
+
+    $closure();
+}
