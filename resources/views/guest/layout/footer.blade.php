@@ -3,7 +3,7 @@
 
         <div class="feedback-wrapper">
             <a class="feedback" title="{{ __('nav.item.contact') }}" href="{{ route('contact') }}">
-                Feedback
+                Feedback / Requests
                 <i class="material-icons">message</i>
             </a>
         </div>
