@@ -1,0 +1,15 @@
+#showLog {
+
+  font-size: 14px;
+
+  .log-stacktrace {
+    font-family: Consolas;
+    overflow: scroll;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .toggle-stacktrace-button {
+    cursor: pointer;
+  }
+}

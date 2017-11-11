@@ -44,8 +44,15 @@ class DashboardController extends Controller
     {
         $filePath = storage_path("logs/{$name}");
 
-        if(!file_exists($filePath)) {
+        if(! file_exists($filePath)) {
             return back();
+        }
+
+        if($name === 'laravel.log') {
+            return view('admin.log', [
+                'name' => $name,
+                'lines' => TextFileReader::getLines($filePath),
+            ]);
         }
 
         return implode('<br />', TextFileReader::getLines($filePath));
