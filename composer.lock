@@ -3514,16 +3514,16 @@
         },
         {
             "name": "sjorso/text-file",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/text-file-package.git",
-                "reference": "8a118fe6d98abd6bafb2e3392a6da214f6325492"
+                "reference": "706e63c261017ec9a222ce4a675d18f99e90b8c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/text-file-package/zipball/8a118fe6d98abd6bafb2e3392a6da214f6325492",
-                "reference": "8a118fe6d98abd6bafb2e3392a6da214f6325492",
+                "url": "https://api.github.com/repos/SjorsO/text-file-package/zipball/706e63c261017ec9a222ce4a675d18f99e90b8c2",
+                "reference": "706e63c261017ec9a222ce4a675d18f99e90b8c2",
                 "shasum": ""
             },
             "require": {
@@ -3568,7 +3568,7 @@
                 "text file",
                 "uchardet"
             ],
-            "time": "2017-11-11T08:35:38+00:00"
+            "time": "2017-11-11T09:12:24+00:00"
         },
         {
             "name": "spatie/browsershot",
