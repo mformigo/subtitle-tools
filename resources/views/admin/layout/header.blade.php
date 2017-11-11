@@ -1,5 +1,8 @@
 <nav>
     <ul>
+        <li>
+            <a href="/">Subtitle Tools</a>
+        </li>
         {!! nav_item('admin') !!}
         {!! nav_item('adminFileJobs') !!}
 
