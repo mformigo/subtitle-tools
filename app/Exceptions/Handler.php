@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -17,20 +16,12 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        PostTooLargeException::class,
     ];
 
     public function report(Exception $exception)
     {
-        if($exception instanceof PostTooLargeException) {
-            file_put_contents(
-                storage_path('/logs/post-size.log'),
-                Carbon::now() . '|' . request()->path() . '|PostTooLargeException' . PHP_EOL,
-                FILE_APPEND
-            );
-        }
-        else {
-            parent::report($exception);
-        }
+        parent::report($exception);
     }
 
     public function render($request, Exception $exception)
