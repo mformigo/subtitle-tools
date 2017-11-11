@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Events\SupJobChanged;
+use App\Events\SupJobProgressChanged;
 use App\Facades\TempDir;
 use App\Models\StoredFile;
 use App\Models\SupJob;
@@ -23,7 +24,7 @@ class SupToSrtJob implements ShouldQueue
 
     public $tries = 1;
 
-    public $timeout = 400;
+    public $timeout = 700;
 
     protected $supJob;
 
@@ -109,6 +110,13 @@ class SupToSrtJob implements ShouldQueue
                 ->setTiming($startMs, $endMs);
 
             $srt->addCue($cue);
+
+            event(
+                new SupJobProgressChanged(
+                    $this->supJob,
+                    (int)floor($i / $imageCount * 100)
+                )
+            );
         }
 
         $srt->removeEmptyCues();

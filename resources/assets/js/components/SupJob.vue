@@ -19,7 +19,7 @@
 
                 <spinner size="extra-small"></spinner>
 
-                <strong>Processing...</strong>
+                <strong>Processing... {{ progress }}%</strong>
             </div>
 
             <div class="original-name">
@@ -54,6 +54,7 @@
 
         data: () => ({
             supJob: null,
+            progress: 0,
         }),
 
         props: [
@@ -66,6 +67,10 @@
                 this.supJob = changedSupJob;
 
                 this.maybeDisconnectFromChannels();
+            });
+
+            Echo.channel(`sup-job.${this.urlKey}.progress`).listen('SupJobProgressChanged', (newProgress) => {
+                this.progress = newProgress.progress;
             });
 
             axios.get(`/api/v1/sup-job/${this.urlKey}`).then(response => {
