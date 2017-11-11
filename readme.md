@@ -35,7 +35,7 @@ The status of the mods can be checked in the admin dashboard
 ## Queues and Workers
 `php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast`
 * sup to srt jobs are run on the **slow-high** queue.
-* sub-idx language extract jobs run on the **sub-idx** queuem when the slow-high queue is idle
+* sub-idx language extract jobs run on the **sub-idx** queue when the slow-high queue is idle
 * broadcasting happens on the **broadcast** queue
 * file jobs happen on the **default** queue
 * fast low prio jobs happen on **low-fast**, when the default queue is idle

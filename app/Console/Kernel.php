@@ -23,7 +23,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('st:collect-meta')->everyTenMinutes();
 
-        $schedule->command('st:calculate-disk-usage')->hourly();
+        $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
+
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
     /**
