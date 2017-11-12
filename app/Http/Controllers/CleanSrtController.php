@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CleanSrtJob;
+use App\Jobs\FileJobs\CleanSrtJob;
 use Illuminate\Http\Request;
 
 class CleanSrtController extends FileJobController

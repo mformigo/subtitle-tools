@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ConvertToSrtJob;
+use App\Jobs\FileJobs\ConvertToSrtJob;
 use Illuminate\Http\Request;
 
 class ConvertToSrtController extends FileJobController

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\FileJobs;
 
 use App\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\TransformsToGenericSubtitle;
 
-class ConvertToSrtJob extends FileJobJob
+class ConvertToSrtJob extends FileJob
 {
     public function handle()
     {

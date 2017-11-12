@@ -118,7 +118,7 @@ class CleanSrtTest extends TestCase
     /** @test */
     function it_redirects_to_results_page_if_multiple_uploads_are_valid()
     {
-        $this->expectsJobs(\App\Jobs\CleanSrtJob::class);
+        $this->expectsJobs(\App\Jobs\FileJobs\CleanSrtJob::class);
 
         $response = $this->post(route('cleanSrt'), [
             'subtitles' => [

@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Facades\TextFileFormat;
-use App\Jobs\PinyinSubtitlesJob;
+use App\Jobs\FileJobs\PinyinSubtitlesJob;
 use App\Subtitles\PlainText\Srt;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;

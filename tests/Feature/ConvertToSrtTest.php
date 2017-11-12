@@ -130,7 +130,7 @@ class ConvertToSrtTest extends TestCase
     /** @test */
     function it_redirects_to_results_page_if_multiple_uploads_are_valid()
     {
-        $this->expectsJobs(\App\Jobs\ConvertToSrtJob::class);
+        $this->expectsJobs(\App\Jobs\FileJobs\ConvertToSrtJob::class);
 
         $response = $this->post(route('convertToSrt'), [
             'subtitles' => [

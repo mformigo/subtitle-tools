@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ConvertToPlainTextJob;
+use App\Jobs\FileJobs\ConvertToPlainTextJob;
 use Illuminate\Http\Request;
 
 class ConvertToPlainTextController extends FileJobController

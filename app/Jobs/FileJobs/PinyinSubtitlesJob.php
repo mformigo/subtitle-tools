@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\FileJobs;
 
 use App\Facades\TextFileFormat;
 use App\Models\StoredFile;
@@ -10,7 +10,7 @@ use App\Subtitles\Transformers\OnlyPinyinAndChineseTransformer;
 use App\Subtitles\Transformers\PinyinUnderChineseTransformer;
 use App\Subtitles\TransformsToGenericSubtitle;
 
-class PinyinSubtitlesJob extends FileJobJob
+class PinyinSubtitlesJob extends FileJob
 {
     public function handle()
     {

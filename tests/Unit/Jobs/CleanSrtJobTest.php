@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Facades\TextFileFormat;
-use App\Jobs\CleanSrtJob;
+use App\Jobs\FileJobs\CleanSrtJob;
 use App\Models\FileJob;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;

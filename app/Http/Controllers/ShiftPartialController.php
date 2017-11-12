@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ShiftPartialJob;
+use App\Jobs\FileJobs\ShiftPartialJob;
 use Illuminate\Http\Request;
 
 class ShiftPartialController extends FileJobController

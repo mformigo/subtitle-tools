@@ -127,7 +127,7 @@ class PinyinTest extends TestCase
     /** @test */
     function it_redirects_to_results_page_if_multiple_uploads_are_valid()
     {
-        $this->expectsJobs(\App\Jobs\PinyinSubtitlesJob::class);
+        $this->expectsJobs(\App\Jobs\FileJobs\PinyinSubtitlesJob::class);
 
         $response = $this->post(route('pinyin'), [
             'subtitles' => [

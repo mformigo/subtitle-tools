@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Jobs\ConvertToSrtJob;
+use App\Jobs\FileJobs\ConvertToSrtJob;
 use App\Jobs\ZipFileGroupJob;
 use App\Models\FileGroup;
 use Illuminate\Foundation\Testing\RefreshDatabase;

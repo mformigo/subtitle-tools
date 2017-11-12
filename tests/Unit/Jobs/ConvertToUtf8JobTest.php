@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Jobs\ConvertToUtf8Job;
+use App\Jobs\FileJobs\ConvertToUtf8Job;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;

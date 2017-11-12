@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\FileJobs;
 
 use App\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 
-class ShiftJob extends FileJobJob
+class ShiftJob extends FileJob
 {
     protected $newExtension = '';
 

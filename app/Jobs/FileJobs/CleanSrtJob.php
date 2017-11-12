@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\FileJobs;
 
 use App\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
 
-class CleanSrtJob extends FileJobJob
+class CleanSrtJob extends FileJob
 {
     public function handle()
     {

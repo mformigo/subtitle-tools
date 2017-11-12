@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use App\Facades\TextFileFormat;
-use App\Jobs\ShiftJob;
-use App\Jobs\ShiftPartialJob;
+use App\Jobs\FileJobs\ShiftJob;
+use App\Jobs\FileJobs\ShiftPartialJob;
 use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\PlainText\Srt;
 use Illuminate\Foundation\Testing\RefreshDatabase;

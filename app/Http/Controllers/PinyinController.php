@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\PinyinSubtitlesJob;
+use App\Jobs\FileJobs\PinyinSubtitlesJob;
 use Illuminate\Http\Request;
 
 class PinyinController extends FileJobController

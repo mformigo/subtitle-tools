@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\FileJobs;
 
 use App\Facades\TempFile;
 use Illuminate\Bus\Queueable;
@@ -10,12 +10,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Events\FileJobChanged;
 use App\Models\FileGroup;
-use App\Models\FileJob;
+use App\Models\FileJob as FileJobModel;
 use App\Models\StoredFile;
 use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-abstract class FileJobJob implements ShouldQueue
+abstract class FileJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -41,7 +41,7 @@ abstract class FileJobJob implements ShouldQueue
 
         $originalName = ($file instanceof UploadedFile) ? $file->_originalName : basename($file);
 
-        $this->fileJob = FileJob::create([
+        $this->fileJob = FileJobModel::create([
             'input_stored_file_id' => $this->inputStoredFile->id,
             'original_name'   => $originalName,
             'file_group_id' => $this->fileGroup->id,

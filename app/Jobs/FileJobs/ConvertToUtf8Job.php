@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\FileJobs;
 
 use App\Facades\FileName;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\PlainText;
 
-class ConvertToUtf8Job extends FileJobJob
+class ConvertToUtf8Job extends FileJob
 {
     protected $newExtension = '';
 

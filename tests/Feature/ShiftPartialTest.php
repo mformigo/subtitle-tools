@@ -58,7 +58,7 @@ class ShiftPartialTest extends TestCase
     /** @test */
     function it_redirects_to_results_page_if_multiple_uploads_are_valid()
     {
-        $this->expectsJobs(\App\Jobs\ShiftPartialJob::class);
+        $this->expectsJobs(\App\Jobs\FileJobs\ShiftPartialJob::class);
 
         $response = $this->post(route('shiftPartial'), [
             'subtitles' => [
