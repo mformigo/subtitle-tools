@@ -10,7 +10,7 @@ use App\Subtitles\VobSub\VobSub2SrtInterface;
 use App\Subtitles\VobSub\VobSub2SrtMock;
 use Illuminate\Support\ServiceProvider;
 
-class VobSubProvider extends ServiceProvider
+class VobSubServiceProvider extends ServiceProvider
 {
     public function boot()
     {

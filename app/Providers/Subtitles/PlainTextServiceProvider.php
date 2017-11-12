@@ -7,7 +7,7 @@ use App\Models\FileGroup;
 use App\Subtitles\TextFileFormat;
 use Illuminate\Support\ServiceProvider;
 
-class PlainTextProvider extends ServiceProvider
+class PlainTextServiceProvider extends ServiceProvider
 {
     public function boot()
     {

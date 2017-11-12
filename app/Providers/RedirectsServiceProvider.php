@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class RedirectsProvider extends ServiceProvider
+class RedirectsServiceProvider extends ServiceProvider
 {
     protected $redirects = [
         // (old) url               // destination route name

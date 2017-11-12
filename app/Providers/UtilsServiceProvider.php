@@ -7,7 +7,7 @@ use App\Utils\Support\TempDir;
 use App\Utils\Support\TempFile;
 use Illuminate\Support\ServiceProvider;
 
-class UtilsProvider extends ServiceProvider
+class UtilsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
