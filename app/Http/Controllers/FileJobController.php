@@ -75,7 +75,7 @@ abstract class FileJobController extends Controller
 
         $fileGroup = FileGroup::create([
             'tool_route' => $this->getIndexRouteName(),
-            'url_key' => str_random(16),
+            'url_key' => generate_url_key(),
             'job_options' => $jobOptions,
         ]);
 

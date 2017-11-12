@@ -37,7 +37,7 @@ class SupController extends Controller
 
         if($supJob === null) {
             $supJob = SupJob::create([
-                'url_key'              => str_random(16),
+                'url_key'              => generate_url_key(),
                 'input_stored_file_id' => $inputFile->id,
                 'ocr_language'         => $ocrLanguage,
                 'original_name'        => basename($supFile->getClientOriginalName()),

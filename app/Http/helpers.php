@@ -1,5 +1,10 @@
 <?php
 
+function generate_url_key()
+{
+    return str_random(16);
+}
+
 function file_mime($filePath)
 {
     if(!file_exists($filePath)) {

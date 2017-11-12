@@ -12,9 +12,7 @@ class SubIdxController extends Controller
 {
     public function __construct()
     {
-        $this->middleware([
-            'swap-sub-and-idx',
-        ])->only('post');
+        $this->middleware('swap-sub-and-idx')->only('post');
     }
 
     public function index()

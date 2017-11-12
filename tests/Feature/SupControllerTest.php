@@ -20,7 +20,7 @@ class SupControllerTest extends TestCase
             'ocrLanguage' => 'eng',
         ])
         ->assertStatus(302)
-        ->assertSessionHasErrors('subtitle');
+        ->assertSessionHasErrors(['subtitle' => __('validation.not_a_valid_sup_file')]);
     }
 
     /** @test */

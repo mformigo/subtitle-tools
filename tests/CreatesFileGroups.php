@@ -17,7 +17,7 @@ trait CreatesFileGroups
 
         $fileGroup->fill([
             'tool_route' => $toolRoute,
-            'url_key' => $urlKey ?? str_random(16),
+            'url_key' => $urlKey ?? generate_url_key(),
         ])->save();
 
         return $fileGroup;

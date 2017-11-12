@@ -20,16 +20,14 @@ class SwapSubAndIdxTest extends TestCase
 
         $postData = $this->getSubIdxPostData();
 
-        $swappedPostData = [
+        $response = $this->post(route('subIdx'), [
             'sub' => $postData['idx'],
             'idx' => $postData['sub'],
-        ];
-
-        $response = $this->post(route('subIdx'), $swappedPostData);
+        ]);
 
         $this->assertSame(1, SubIdx::count(), 'Sub/Idx not found, the fields didn\'t get swapped');
 
         $response->assertStatus(302)
-            ->assertRedirect(route('subIdxDetail', ['pageId' => SubIdx::findOrFail(1)->page_id]));
+            ->assertRedirect(route('subIdxDetail', SubIdx::findOrFail(1)->page_id));
     }
 }
