@@ -25,13 +25,6 @@ The status of the mods can be checked in the admin dashboard
 * Smi parsing uses `->getCues` a lot, the sorting is slow
 * `\App\Subtitles\VobSub\VobSub2Srt` needs the `SubIdx` model purely for diagnostic logging, it should only require the path. The logging should happen in a different, easier to test way
 
-
-## General configuration
-* `phpunit.xml` sets the database to 'subtitle-tools-testing'
-* `phpunit.xml` sets the filesystem disk to 'local-testing'
-* `TestCase.php` deletes all files from the 'local-testing' directories before each test
-* **Laravel Dusk** runs from inside vagrant homestead following [this guide](https://medium.com/@splatEric/laravel-dusk-on-homestead-dc5711987595)
-
 ## Queues and Workers
 `php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast`
 * sup to srt jobs are run on the **slow-high** queue.
@@ -42,17 +35,7 @@ The status of the mods can be checked in the admin dashboard
 
 ## Adding a FileGroup + FileJob tool
 * make a new controller that extends `FileJobController`, add routes and views
-* make a new job that extends `FileJobJob`
-
-## Adding a new Text Encoding
-* Add the name of the encoding to `App\Utils\Support\Text\TextEncoding.php`
-* Add a file using the encoding to `tests/Storage/TextEncoding/`
-* Add the file to `tests\Unit\TextEncodingTest.php` 
-
-## Format information
-The format of each subtitle file is identified by `\App\Subtitles\TextFileFormat`. 
-It identifies based on file content, and ignores the file extension.
-File extensions can't be trusted because users regularly upload files where the content does not match the extension.
+* make a new job that extends `FileJob`
 
 ### Adding a new plain-text format
 * Create a `NewFormat` class that extends the abstract `TextFile`
