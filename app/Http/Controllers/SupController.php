@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\FileName;
 use App\Http\Rules\FileNotEmptyRule;
+use App\Http\Rules\SupRule;
 use App\Jobs\SupToSrtJob;
 use App\Models\StoredFile;
 use App\Models\SupJob;
@@ -19,7 +20,7 @@ class SupController extends Controller
     public function post(Request $request)
     {
         $request->validate([
-            'subtitle'    => ['required', 'file', new FileNotEmptyRule],
+            'subtitle'    => ['bail', 'required', 'file', new FileNotEmptyRule, new SupRule],
             'ocrLanguage' => 'required|in:'.implode(',', config('st.tesseract.languages')),
         ]);
 
