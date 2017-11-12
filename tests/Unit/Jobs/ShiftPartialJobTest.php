@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Facades\TextFileFormat;
+use App\Support\Facades\TextFileFormat;
 use App\Jobs\FileJobs\ShiftJob;
 use App\Jobs\FileJobs\ShiftPartialJob;
 use App\Subtitles\ContainsGenericCues;

@@ -2,7 +2,7 @@
 
 namespace App\Jobs\FileJobs;
 
-use App\Facades\FileName;
+use App\Support\Facades\FileName;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\PlainText;
 

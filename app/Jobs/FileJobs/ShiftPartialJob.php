@@ -2,7 +2,7 @@
 
 namespace App\Jobs\FileJobs;
 
-use App\Facades\TextFileFormat;
+use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\TextFile;

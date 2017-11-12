@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Facades\FileName;
-use App\Facades\TempFile;
+use App\Support\Facades\FileName;
+use App\Support\Facades\TempFile;
 use App\Models\FileGroup;
 use App\Models\StoredFile;
 use Carbon\Carbon;

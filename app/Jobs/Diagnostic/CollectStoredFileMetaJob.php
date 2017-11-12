@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Diagnostic;
 
-use App\Facades\TextFileFormat;
+use App\Support\Facades\TextFileFormat;
 use SjorsO\TextFile\Facades\TextEncoding;
 use SjorsO\TextFile\Facades\TextFileIdentifier;
 use SjorsO\TextFile\Facades\TextFileReader;

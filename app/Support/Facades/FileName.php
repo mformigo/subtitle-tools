@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Facades;
+namespace App\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class FileHash extends Facade
+class FileName extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'FileHash';
+        return 'FileName';
     }
 }

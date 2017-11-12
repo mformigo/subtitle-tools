@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Facades\TextFileFormat;
+use App\Support\Facades\TextFileFormat;
 use App\Jobs\FileJobs\CleanSrtJob;
 use App\Models\FileJob;
 use App\Models\StoredFile;

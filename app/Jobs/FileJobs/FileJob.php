@@ -2,7 +2,7 @@
 
 namespace App\Jobs\FileJobs;
 
-use App\Facades\TempFile;
+use App\Support\Facades\TempFile;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

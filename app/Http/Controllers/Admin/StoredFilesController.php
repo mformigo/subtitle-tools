@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Facades\TempFile;
+use App\Support\Facades\TempFile;
 use SjorsO\TextFile\Facades\TextFileIdentifier;
 use SjorsO\TextFile\Facades\TextFileReader;
 use App\Models\StoredFile;

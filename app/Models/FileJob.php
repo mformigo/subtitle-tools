@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Facades\FileName;
+use App\Support\Facades\FileName;
 use Illuminate\Database\Eloquent\Model;
 
 /**

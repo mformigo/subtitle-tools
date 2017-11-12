@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\FileHash;
-use App\Facades\TempFile;
+use App\Support\Facades\FileHash;
+use App\Support\Facades\TempFile;
 use App\Subtitles\TextFile;
 use App\Subtitles\Watermarkable;
 use Illuminate\Database\Eloquent\Model;

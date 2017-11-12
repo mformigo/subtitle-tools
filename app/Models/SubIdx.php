@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Facades\FileHash;
+use App\Support\Facades\FileHash;
 use App\Jobs\ExtractSubIdxLanguageJob;
 use App\Subtitles\VobSub\VobSub2SrtInterface;
 use Illuminate\Database\Eloquent\Model;

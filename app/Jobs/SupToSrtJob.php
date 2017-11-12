@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Events\SupJobChanged;
 use App\Events\SupJobProgressChanged;
-use App\Facades\TempDir;
+use App\Support\Facades\TempDir;
 use App\Models\StoredFile;
 use App\Models\SupJob;
 use App\Subtitles\PlainText\Srt;

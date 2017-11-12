@@ -2,7 +2,7 @@
 
 namespace App\Utils\Archive\Read;
 
-use App\Facades\FileHash;
+use App\Support\Facades\FileHash;
 use App\Utils\Archive\CompressedFile;
 use Illuminate\Support\Facades\App;
 

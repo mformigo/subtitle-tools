@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\FileName;
+use App\Support\Facades\FileName;
 use App\Http\Rules\AreUploadedFilesRule;
 use App\Models\FileGroup;
 use Illuminate\Http\Request;
