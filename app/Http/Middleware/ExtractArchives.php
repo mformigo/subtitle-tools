@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Utils\Archive\Archive;
 use Closure;
+use SjorsO\Archive\Archive;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ExtractArchives extends TransformsRequestFiles
@@ -30,7 +30,7 @@ class ExtractArchives extends TransformsRequestFiles
 
     protected function transform($key, UploadedFile $file)
     {
-        $archive = Archive::read($file->getRealPath());
+        $archive = Archive::open($file->getRealPath());
 
         if($archive === null) {
             return $file;
@@ -38,8 +38,8 @@ class ExtractArchives extends TransformsRequestFiles
 
         $newUploadedFiles = [];
 
-        foreach($archive->getFiles() as $compressedFile) {
-            $filePath = $archive->extractFile($compressedFile);
+        foreach($archive->getCompressedFiles() as $compressedFile) {
+            $filePath = $archive->extractFile($compressedFile, storage_disk_file_path('temporary-files/'));
 
             $newUploadedFile = new UploadedFile($filePath, $compressedFile->getName(), null, null, null, true);
 

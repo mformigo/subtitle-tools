@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Utils\Archive\Archive;
 use Closure;
 use Illuminate\Http\UploadedFile;
+use SjorsO\Archive\Archive;
 
 class CheckFileSize
 {
@@ -16,8 +16,8 @@ class CheckFileSize
             foreach(array_wrap($request->file($key)) as $file) {
                 if($file instanceof UploadedFile && $file->isValid()) {
 
-                    if(Archive::isArchive($file->getRealPath())) {
-                        $compressedFiles = Archive::read($file->getRealPath())->getFiles();
+                    if(Archive::isReadable($file->getRealPath())) {
+                        $compressedFiles = Archive::open($file->getRealPath())->getCompressedFiles();
 
                         foreach($compressedFiles as $compressedFile) {
                             if($compressedFile->getRealSize() > $maxFileSizeBytes) {

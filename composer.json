@@ -11,6 +11,7 @@
         "laravel/horizon": "^1.0",
         "laravel/tinker": "~1.0",
         "pusher/pusher-php-server": "^3.0",
+        "sjorso/archive": "^1.0",
         "sjorso/pinyin": "^1.0",
         "sjorso/sup": "^0.0",
         "sjorso/text-file": "^1.0",

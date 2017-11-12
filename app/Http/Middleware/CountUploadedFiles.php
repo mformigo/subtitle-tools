@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Utils\Archive\Archive;
 use Closure;
+use SjorsO\Archive\Archive;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CountUploadedFiles
@@ -18,8 +18,8 @@ class CountUploadedFiles
                 if($file instanceof UploadedFile && $file->isValid()) {
                     $fileCount++;
 
-                    if(Archive::isArchive($file->getRealPath())) {
-                        $fileCount += Archive::read($file->getRealPath())->getEntriesCount() - 1;
+                    if(Archive::isReadable($file->getRealPath())) {
+                        $fileCount += Archive::open($file->getRealPath())->getEntriesCount() - 1;
                     }
 
                     if($fileCount > $fileLimit) {

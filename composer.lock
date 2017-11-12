@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "04c1daa03ba2f0d7ef577d03fb738e09",
+    "content-hash": "75550832415335240dc4e98226d461c2",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -3537,6 +3537,52 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03T07:35:21+00:00"
+        },
+        {
+            "name": "sjorso/archive",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SjorsO/archive.git",
+                "reference": "89d323ef16127a9e3e85e2813be1ee2b438b468c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SjorsO/archive/zipball/89d323ef16127a9e3e85e2813be1ee2b438b468c",
+                "reference": "89d323ef16127a9e3e85e2813be1ee2b438b468c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SjorsO\\Archive\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjors Ottjes",
+                    "email": "sjorsottjes@gmail.com"
+                }
+            ],
+            "description": "Easily read and extract from archive files",
+            "homepage": "https://github.com/SjorsO/archive",
+            "keywords": [
+                "archive",
+                "extract",
+                "rar",
+                "zip"
+            ],
+            "time": "2017-11-12T16:14:09+00:00"
         },
         {
             "name": "sjorso/bitstream",
