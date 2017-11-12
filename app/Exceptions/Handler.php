@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\PostTooLargeException;
+use SjorsO\TextFile\Exceptions\TextEncodingException;
 
 class Handler extends ExceptionHandler
 {
@@ -32,6 +33,10 @@ class Handler extends ExceptionHandler
             return response()->json([
                 __('validation.file_larger_than_max_post_size'),
             ])->setStatusCode(500);
+        }
+
+        if($exception instanceof TextEncodingException) {
+            return response()->view('errors.text-encoding-exception', [], 500);
         }
 
         return parent::render($request, $exception);
