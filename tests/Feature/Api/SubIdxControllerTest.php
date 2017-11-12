@@ -9,9 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubIdxControllerTest extends TestCase
 {
-    use RefreshDatabase;
-    use MocksVobSub2Srt;
-    use PostsVobSubs;
+    use RefreshDatabase, MocksVobSub2Srt, PostsVobSubs;
 
     /** @test */
     function it_returns_queued_language_extract_information()
@@ -20,7 +18,7 @@ class SubIdxControllerTest extends TestCase
 
         $subIdx = $this->postVobSub();
 
-        $response = $this->get(route('apiSubIdxLanguages', ['pageId' => $subIdx->page_id]));
+        $response = $this->get(route('apiSubIdxLanguages', $subIdx->page_id));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -36,7 +34,7 @@ class SubIdxControllerTest extends TestCase
 
         $subIdx = $this->postVobSub();
 
-        $response = $this->get(route('apiSubIdxLanguages', ['pageId' => $subIdx->page_id]));
+        $response = $this->get(route('apiSubIdxLanguages', $subIdx->page_id));
 
         $response->assertStatus(200)
             ->assertJson([

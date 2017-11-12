@@ -13,10 +13,21 @@ class SupControllerTest extends TestCase
     use RefreshDatabase, CreatesUploadedFiles;
 
     /** @test */
+    function it_rejects_files_that_are_not_sup()
+    {
+        $this->post(route('sup'), [
+            'subtitle'    => $this->createUploadedFile($this->testFilesStoragePath.'/TextFiles/three-cues.ass'),
+            'ocrLanguage' => 'eng',
+        ])
+        ->assertStatus(302)
+        ->assertSessionHasErrors('subtitle');
+    }
+
+    /** @test */
     function it_converts_sup_to_srt()
     {
         $this->post(route('sup'), [
-            'subtitle' => $this->createUploadedFile($this->testFilesStoragePath.'/Sup/three-english-cues.sup'),
+            'subtitle'    => $this->createUploadedFile($this->testFilesStoragePath.'/Sup/three-english-cues.sup'),
             'ocrLanguage' => 'eng',
         ])
         ->assertStatus(302);
