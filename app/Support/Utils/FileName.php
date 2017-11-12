@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Utils\Support;
 
 class FileName
 {

@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Utils\FileName;
-use App\Utils\TempDir;
-use App\Utils\TempFile;
+use App\Utils\Support\FileName;
+use App\Utils\Support\TempDir;
+use App\Utils\Support\TempFile;
 use Illuminate\Support\ServiceProvider;
 
 class UtilsProvider extends ServiceProvider

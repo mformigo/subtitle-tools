@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $this->app->singleton('FileHash', function () {
-            return new \App\Utils\FileHash();
+            return new \App\Utils\Support\FileHash();
         });
 
         if ($this->app->environment('local', 'testing')) {

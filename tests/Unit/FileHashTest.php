@@ -11,7 +11,7 @@ class FileHashTest extends TestCase
     /** @test */
     function it_makes_a_unique_hash_from_a_file()
     {
-        $fileHasher = new \App\Utils\FileHash();
+        $fileHasher = new \App\Utils\Support\FileHash();
 
         $a1 = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/empty.srt");
         $b1 = $fileHasher->make("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.sub");
@@ -26,7 +26,7 @@ class FileHashTest extends TestCase
     {
         // Hashes should be reasonably long because they are used internally to make ids
 
-        $fileHasher = new \App\Utils\FileHash();
+        $fileHasher = new \App\Utils\Support\FileHash();
 
         $b = $fileHasher->make("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.sub");
 
@@ -36,7 +36,7 @@ class FileHashTest extends TestCase
     /** @test */
     function it_can_hash_empty_files()
     {
-        $fileHasher = new \App\Utils\FileHash();
+        $fileHasher = new \App\Utils\Support\FileHash();
 
         $a = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/empty.srt");
 
@@ -46,7 +46,7 @@ class FileHashTest extends TestCase
     /** @test */
     function hashes_are_made_from_file_content_not_from_file_name()
     {
-        $fileHasher = new \App\Utils\FileHash();
+        $fileHasher = new \App\Utils\Support\FileHash();
 
         $a = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/Fake/torrent.srt");
         $b = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/Fake/torrent-srt-copy.dat");

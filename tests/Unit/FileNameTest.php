@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Utils\FileName;
+use App\Utils\Support\FileName;
 use Tests\TestCase;
 
 class FileNameTest extends TestCase

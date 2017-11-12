@@ -45,7 +45,7 @@ The status of the mods can be checked in the admin dashboard
 * make a new job that extends `FileJobJob`
 
 ## Adding a new Text Encoding
-* Add the name of the encoding to `App\Utils\Text\TextEncoding.php`
+* Add the name of the encoding to `App\Utils\Support\Text\TextEncoding.php`
 * Add a file using the encoding to `tests/Storage/TextEncoding/`
 * Add the file to `tests\Unit\TextEncodingTest.php` 
 
