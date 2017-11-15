@@ -83,9 +83,11 @@ class PruneStoredFiles extends Command
     {
         $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
 
-        if($lastMigration === '2017_11_15_074617_drop_jobs_table') {
+        if($lastMigration === '2017_11_15_180104_add_stored_file_meta_foreign_key') {
             return true;
         }
+
+        $this->error('Not on a checked migration, not deleting records');
 
         info('PruneStoredFiles did not delete any database records because it is not on a checked migration');
 
