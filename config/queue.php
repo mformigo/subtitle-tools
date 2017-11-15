@@ -30,12 +30,12 @@ return [
 
     'connections' => [
 
-        'database' => [
-            'driver'      => 'database',
-            'table'       => 'jobs',
-            'queue'       => 'default',
-            'retry_after' => 90,
-        ],
+//        'database' => [
+//            'driver'      => 'database',
+//            'table'       => 'jobs',
+//            'queue'       => 'default',
+//            'retry_after' => 90,
+//        ],
 
         'redis' => [
             'driver'      => 'redis',
