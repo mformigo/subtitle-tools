@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('st:clean-temporary-stuff')->dailyAt('2:20');
 
-        $schedule->command('cache:clear')->dailyAt('2:30');
+        $schedule->command('st:delete-orphaned-files')->dailyAt('2:30');
+
+        $schedule->command('cache:clear')->dailyAt('2:40');
 
         $schedule->command('st:collect-meta')->everyTenMinutes();
 
