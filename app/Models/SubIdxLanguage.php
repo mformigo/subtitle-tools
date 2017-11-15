@@ -119,7 +119,7 @@ class SubIdxLanguage extends Model
             return false;
         }
 
-        return route('subIdxDownload', [
+        return route('subIdx.download', [
             'urlKey' => $this->subIdx->page_id,
             'index'  => $this->index,
         ]);

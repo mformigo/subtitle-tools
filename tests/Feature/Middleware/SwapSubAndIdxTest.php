@@ -28,6 +28,6 @@ class SwapSubAndIdxTest extends TestCase
         $this->assertSame(1, SubIdx::count(), 'Sub/Idx not found, the fields didn\'t get swapped');
 
         $response->assertStatus(302)
-            ->assertRedirect(route('subIdxDetail', SubIdx::findOrFail(1)->page_id));
+            ->assertRedirect(route('subIdx.show', SubIdx::findOrFail(1)->page_id));
     }
 }

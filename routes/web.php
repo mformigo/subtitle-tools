@@ -16,24 +16,25 @@ Route::get('/file-group-archive/{urlKey}', function($urlKey) {
 });
 
 Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
-    Route::get('/')->uses('SubIdxController@index')->name('subIdx');
-    Route::post('/')->uses('SubIdxController@post');
-    Route::get('/{pageId}')->uses('SubIdxController@detail')->name('subIdxDetail');
-    Route::post('/{pageId}/{index}')->uses('SubIdxController@downloadSrt')->name('subIdxDownload');
+    Route::get('/',                  ['uses' => 'SubIdxController@index',       'as' => 'subIdx']);
+    Route::post('/',                 ['uses' => 'SubIdxController@post']);
+    Route::get('/{pageId}',          ['uses' => 'SubIdxController@detail',      'as' => 'subIdx.show']);
+    Route::post('/{pageId}/{index}', ['uses' => 'SubIdxController@downloadSrt', 'as' => 'subIdx.download']);
+
     Route::get('/{pageId}/{index}', function($pageId, $index) {
-        return redirect()->route('subIdxDetail', ['pageId' => $pageId]);
+        return redirect()->route('subIdx.show', $pageId);
     });
 });
 
-Route::fileGroupTool('convertToSrt',  'ConvertToSrtController',  'convert-to-srt-online');
-Route::fileGroupTool('cleanSrt',      'CleanSrtController',      'srt-cleaner');
-Route::fileGroupTool('shift',         'ShiftController',         'subtitle-sync-shifter');
-Route::fileGroupTool('shiftPartial',  'ShiftPartialController',  'partial-subtitle-sync-shifter');
-Route::fileGroupTool('convertToUtf8', 'ConvertToUtf8Controller', 'convert-text-files-to-utf8-online');
-Route::fileGroupTool('pinyin',        'PinyinController',        'make-chinese-pinyin-subtitles');
+Route::fileGroupTool('convertToSrt',       'ConvertToSrtController',       'convert-to-srt-online');
+Route::fileGroupTool('cleanSrt',           'CleanSrtController',           'srt-cleaner');
+Route::fileGroupTool('shift',              'ShiftController',              'subtitle-sync-shifter');
+Route::fileGroupTool('shiftPartial',       'ShiftPartialController',       'partial-subtitle-sync-shifter');
+Route::fileGroupTool('convertToUtf8',      'ConvertToUtf8Controller',      'convert-text-files-to-utf8-online');
+Route::fileGroupTool('pinyin',             'PinyinController',             'make-chinese-pinyin-subtitles');
 Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
 
-Route::get('/how-to-fix-vlc-subtitles-displaying-as-boxes')->uses('HomeController@blogVlcSubtitleBoxes')->name('blogVlcSubtitleBoxes');
+Route::get('/how-to-fix-vlc-subtitles-displaying-as-boxes', ['uses' => 'HomeController@blogVlcSubtitleBoxes', 'as' => 'blogVlcSubtitleBoxes']);
 
 
 Route::prefix('convert-sup-to-srt-online')->group(function() {

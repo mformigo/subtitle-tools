@@ -49,7 +49,7 @@ trait PostsVobSubs
         $subIdx = SubIdx::where('original_name', $this->defaultSubIdxName)->firstOrFail();
 
         $response->assertStatus(302)
-            ->assertRedirect(route('subIdxDetail', ['pageId' => $subIdx->page_id]));
+            ->assertRedirect(route('subIdx.show', ['pageId' => $subIdx->page_id]));
 
         return $subIdx;
     }
