@@ -8,11 +8,11 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
-        \App\Console\Commands\GenerateSitemap::class,
-        \App\Console\Commands\CollectMeta::class,
-        \App\Console\Commands\CleanTemporaryStuff::class,
-        \App\Console\Commands\CalculateDiskUsage::class,
-        \App\Console\Commands\CleanDisk::class,
+        Commands\GenerateSitemap::class,
+        Commands\CollectMeta::class,
+        Commands\CleanTemporaryStuff::class,
+        Commands\CalculateDiskUsage::class,
+        Commands\CleanDisk::class,
     ];
 
     protected function schedule(Schedule $schedule)
@@ -24,8 +24,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('st:collect-meta')->everyTenMinutes();
 
         $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
-
-        $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
     /**
