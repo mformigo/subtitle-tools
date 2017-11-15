@@ -41,10 +41,6 @@ class SupToSrtJob implements ShouldQueue
 
         $this->supJob->temp_dir = TempDir::make('sup');
 
-        $formatNamespace = SupFile::getFormat($this->supJob->inputStoredFile->file_path) ?? 'Error';
-
-        $this->supJob->format = array_values(array_slice(explode('\\', $formatNamespace), -1))[0];
-
         $this->supJob->save();
 
         $sup = null;
