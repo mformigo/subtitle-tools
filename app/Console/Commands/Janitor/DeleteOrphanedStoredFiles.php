@@ -26,12 +26,13 @@ class DeleteOrphanedStoredFiles extends Command
 
     protected function deleteOrphanedStoredFiles()
     {
-        $databaseStoredFiles = StoredFile::pluck('storage_file_path')->all();
-
         $existingStoredFiles = array_filter(Storage::allFiles('stored-files/'), function ($fileName) {
             // Remove .gitignore
             return ! starts_with($fileName, 'stored-files/.');
         });
+
+        // Check the database after the disk to not accidentally delete a newly uploaded file
+        $databaseStoredFiles = StoredFile::pluck('storage_file_path')->all();
 
         $orphanedStoredFiles = array_diff($existingStoredFiles, $databaseStoredFiles);
 
