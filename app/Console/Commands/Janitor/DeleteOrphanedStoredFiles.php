@@ -4,6 +4,7 @@ namespace App\Console\Commands\Janitor;
 
 use App\Models\StoredFile;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
 
@@ -17,11 +18,76 @@ class DeleteOrphanedStoredFiles extends Command
     {
         $this->info('Removing orphaned stored files...');
 
+        if($this->isOnCheckedMigration()) {
+            $this->deleteUnreferencedStoredFileRecords();
+        }
+
         $this->deleteOrphanedStoredFiles();
 
         $this->deleteEmptyStoredFileDirectories();
 
         $this->info('Done!');
+    }
+
+    /**
+     * Delete stored files from the database that are not referenced by any other record
+     */
+    protected function deleteUnreferencedStoredFileRecords()
+    {
+        $storedFileColumns = [
+            'file_groups'       => ['archive_stored_file_id'],
+            'file_jobs'         => ['input_stored_file_id', 'output_stored_file_id'],
+            'sub_idx_languages' => ['output_stored_file_id'],
+            'sup_jobs'          => ['input_stored_file_id', 'output_stored_file_id'],
+        ];
+
+        $referencedStoredFileIds = [];
+
+        foreach($storedFileColumns as $table => $columns) {
+            $ids = DB::table($table)
+                ->select($columns)
+                ->get()
+                ->map(function ($record) {
+                    return array_values((array)$record);
+                })
+                ->flatten()
+                ->filter()
+                ->unique()
+                ->all();
+
+            $referencedStoredFileIds = array_merge($referencedStoredFileIds, $ids);
+        }
+
+        $referencedStoredFileIds = array_unique($referencedStoredFileIds);
+
+        $allStoredFileIds = StoredFile::pluck('id')->all();
+
+        $unreferencedIds = array_diff($allStoredFileIds, $referencedStoredFileIds);
+
+        $this->comment('Database has '.count($allStoredFileIds).' stored files, '.count($referencedStoredFileIds).' are referenced');
+
+        $this->comment('Deleting '.count($unreferencedIds).' unreferenced stored file records...');
+
+        StoredFile::whereIn('id', $unreferencedIds)->delete();
+    }
+
+    /**
+     * If a new table is added that uses stored files, and we forget to update this command,
+     * it will take me ages to figure out stuff is broken. Therefor we only delete records
+     * from the database if the database is on a migration we specified
+     * @return bool
+     */
+    protected function isOnCheckedMigration()
+    {
+        $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
+
+        if($lastMigration === '2017_11_15_074617_drop_jobs_table') {
+            return true;
+        }
+
+        info('DeleteOrphanedStoredFiles did not delete any database records because it is not on a checked migration');
+
+        return false;
     }
 
     protected function deleteOrphanedStoredFiles()
@@ -36,7 +102,7 @@ class DeleteOrphanedStoredFiles extends Command
 
         $orphanedStoredFiles = array_diff($existingStoredFiles, $databaseStoredFiles);
 
-        $this->comment('Database has '.count($databaseStoredFiles).' stored files, disk has '.count($existingStoredFiles).' stored files');
+        $this->comment('Disk has '.count($existingStoredFiles).' stored files');
 
         $this->comment('Deleting '.count($orphanedStoredFiles).' orphaned stored files...');
 
