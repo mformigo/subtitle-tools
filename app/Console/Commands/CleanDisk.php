@@ -34,6 +34,12 @@ class CleanDisk extends Command
         $this->deleteFileGroupArchives();
 
         FileGroup::truncate();
+
+        $this->call('st:calculate-disk-usage');
+
+        $this->info('Don\'t forget to run php artisan up!');
+        $this->info('Don\'t forget to run php artisan up!!');
+        $this->info('Don\'t forget to run php artisan up!!!');
     }
 
     protected function deleteFileJobs()

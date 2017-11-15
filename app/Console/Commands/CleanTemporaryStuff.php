@@ -17,6 +17,8 @@ class CleanTemporaryStuff extends Command
         $this->cleanTemporaryFiles($prefixOfToday);
 
         $this->cleanTemporaryDirectories($prefixOfToday);
+
+        $this->call('st:calculate-disk-usage');
     }
 
     protected function cleanTemporaryFiles($prefixOfToday)

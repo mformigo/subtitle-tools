@@ -12,13 +12,10 @@ class CalculateDiskUsage extends Command
 
     protected $description = 'Calculates the disk usage and writes it to a file';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle()
     {
+        $this->info('Calculating disk usage...');
+
         $diskName = App::environment('local') ? '/dev/sda1' : '/dev/vda1';
 
         $outputFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
@@ -48,5 +45,7 @@ class CalculateDiskUsage extends Command
 
             file_put_contents($outputFilePath, "{$used} / {$size} ({$usedPercentage})");
         }
+
+        $this->comment('Done!');
     }
 }

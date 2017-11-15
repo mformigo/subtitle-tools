@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\PruneSubIdxFiles;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -19,6 +20,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('sitemap:generate')->dailyAt('2:00');
+
+        $schedule->command('st:prune-sub-idx-files')->dailyAt('2:15');
 
         $schedule->command('st:clean-temporary-stuff')->dailyAt('2:30');
 

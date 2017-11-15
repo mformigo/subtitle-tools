@@ -31,5 +31,7 @@ class PruneSubIdxFiles extends Command
             });
 
         $this->info('Done!');
+
+        $this->call('st:calculate-disk-usage');
     }
 }
