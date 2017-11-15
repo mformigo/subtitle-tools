@@ -180,6 +180,8 @@ class DashboardController extends Controller
 
         $dependencies['Vobsub2srt binary'] = ! empty(shell_exec('command -v vobsub2srt'));
 
+        $dependencies['Redis'] = ! empty(shell_exec('command -v redis-cli'));
+
         $dependencies['Tesseract binary'] = ! empty(shell_exec('command -v tesseract'));
 
         $dependencies['Tesseract traineddata'] = file_exists('/usr/share/tesseract-ocr/tessdata/nld.traineddata');

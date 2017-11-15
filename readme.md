@@ -5,6 +5,7 @@ The status of the mods can be checked in the admin dashboard
 
 * uchardet
 * vobsub2srt
+* Redis
 * PHP Rar (PECL)
 * PHP gd (sjorso/sup)
 * Tesseract (all the traineddata, and the `tesseract` command from PATH (for PATH, install with apt-get))
