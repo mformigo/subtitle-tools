@@ -11,16 +11,14 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('st:generate-sitemap')->dailyAt('2:00');
 
-        $schedule->command('st:prune-sub-idx-files')->dailyAt('2:10');
+        // Janitor commands
+        $schedule->command('st:prune-sub-idx-files')->dailyAt('2:17');
+        $schedule->command('st:prune-temporary-files')->dailyAt('2:27');
+        $schedule->command('st:prune-stored-files')->dailyAt('2:37');
+        $schedule->command('cache:clear')->dailyAt('2:47');
 
-        $schedule->command('st:clean-temporary-stuff')->dailyAt('2:20');
-
-        $schedule->command('st:delete-orphaned-files')->dailyAt('2:30');
-
-        $schedule->command('cache:clear')->dailyAt('2:40');
-
+        // Diagnostic commands
         $schedule->command('st:collect-meta')->everyTenMinutes();
-
         $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
     }
 

@@ -33,7 +33,7 @@ class TempFile
             Storage::makeDirectory('temporary-files/');
         }
 
-        // This name is used in the CleanTemporaryStuff command
+        // This name is used in the PruneTemporaryFiles command
         return $directory . date('Y-z') . '-' . $identifier . '-' . str_random(16);
     }
 

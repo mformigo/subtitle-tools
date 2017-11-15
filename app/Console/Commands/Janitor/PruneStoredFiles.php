@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
 
-class DeleteOrphanedStoredFiles extends Command
+class PruneStoredFiles extends Command
 {
-    protected $signature = 'st:delete-orphaned-files';
+    protected $signature = 'st:prune-stored-files';
 
-    protected $description = 'Deletes stored files with no database reference';
+    protected $description = 'Deletes unreferenced stored files from database and disk';
 
     public function handle()
     {
-        $this->info('Removing orphaned stored files...');
+        $this->info('Pruning stored files...');
 
         if($this->isOnCheckedMigration()) {
             $this->deleteUnreferencedStoredFileRecords();
@@ -27,6 +27,8 @@ class DeleteOrphanedStoredFiles extends Command
         $this->deleteEmptyStoredFileDirectories();
 
         $this->info('Done!');
+
+        $this->call('st:calculate-disk-usage');
     }
 
     /**
@@ -85,7 +87,7 @@ class DeleteOrphanedStoredFiles extends Command
             return true;
         }
 
-        info('DeleteOrphanedStoredFiles did not delete any database records because it is not on a checked migration');
+        info('PruneStoredFiles did not delete any database records because it is not on a checked migration');
 
         return false;
     }

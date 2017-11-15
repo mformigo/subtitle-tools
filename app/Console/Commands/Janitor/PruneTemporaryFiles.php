@@ -4,14 +4,16 @@ namespace App\Console\Commands\Janitor;
 
 use Illuminate\Console\Command;
 
-class CleanTemporaryStuff extends Command
+class PruneTemporaryFiles extends Command
 {
-    protected $signature = 'st:clean-temporary-stuff';
+    protected $signature = 'st:prune-temporary-files';
 
-    protected $description = 'Delete all temporary files and directories older than one day';
+    protected $description = 'Prune temporary files and directories older than one day';
 
     public function handle()
     {
+        $this->info('Deleting temporary files and directories older than one day...');
+
         $prefixOfToday = date('Y-z') . '-';
 
         $this->cleanTemporaryFiles($prefixOfToday);
