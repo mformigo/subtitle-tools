@@ -81,7 +81,7 @@ class PruneStoredFiles extends Command
     {
         $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
 
-        if($lastMigration === '2017_11_15_180104_add_stored_file_meta_foreign_key') {
+        if($lastMigration === '2017_11_15_195328_add_sub_idx_meta_foreign_key') {
             return true;
         }
 
