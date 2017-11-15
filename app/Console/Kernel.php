@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
         Commands\CleanTemporaryStuff::class,
         Commands\CalculateDiskUsage::class,
         Commands\CleanDisk::class,
+        Commands\PruneSubIdxFiles::class,
     ];
 
     protected function schedule(Schedule $schedule)
