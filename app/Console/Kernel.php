@@ -7,18 +7,9 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    protected $commands = [
-        Commands\GenerateSitemap::class,
-        Commands\CollectMeta::class,
-        Commands\CleanTemporaryStuff::class,
-        Commands\CalculateDiskUsage::class,
-        Commands\CleanDisk::class,
-        Commands\PruneSubIdxFiles::class,
-    ];
-
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('sitemap:generate')->dailyAt('2:00');
+        $schedule->command('st:generate-sitemap')->dailyAt('2:00');
 
         $schedule->command('st:prune-sub-idx-files')->dailyAt('2:10');
 
@@ -31,11 +22,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
     }
 
-    /**
-     * Register the Closure based commands for the application.
-     */
     protected function commands()
     {
-        require base_path('routes/console.php');
+        $this->load([
+            __DIR__.'/Commands',
+            __DIR__.'/Commands/Diagnostic',
+            __DIR__.'/Commands/Janitor',
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Diagnostic;
 
 use App\Jobs\Diagnostic\CollectStoredFileMetaJob;
 use App\Jobs\Diagnostic\CollectSubIdxMetaJob;
@@ -16,11 +16,6 @@ class CollectMeta extends Command
 
     protected $description = 'Create jobs for collecting meta';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle()
     {
         $multiplier = $this->option('all') ? 9999 : ($this->option('many') ? 5 : 1);
@@ -30,21 +25,18 @@ class CollectMeta extends Command
         $this->collectSubIdxMeta($multiplier);
     }
 
-    protected function collectStoredFileMeta($multiplier)
+    protected function collectStoredFileMeta(int $multiplier)
     {
-        $storedFilesWithoutMeta = StoredFile::query()
+        StoredFile::query()
             ->doesntHave('meta')
             ->take(1000 * $multiplier)
-            ->get();
-
-        foreach($storedFilesWithoutMeta as $storedFile) {
-            dispatch(
-                (new CollectStoredFileMetaJob($storedFile))->onQueue('low-fast')
-            );
-        }
+            ->get()
+            ->each(function ($storedFile) {
+                CollectStoredFileMetaJob::dispatch($storedFile)->onQueue('low-fast');
+            });
     }
 
-    protected function collectSubIdxMeta($multiplier)
+    protected function collectSubIdxMeta(int $multiplier)
     {
         $subIdxesWithoutMeta = SubIdx::query()
             ->doesntHave('meta')
@@ -62,9 +54,7 @@ class CollectMeta extends Command
             }
 
             if($allFinished) {
-                dispatch(
-                    (new CollectSubIdxMetaJob($subIdx))->onQueue('low-fast')
-                );
+                CollectSubIdxMetaJob::dispatch($subIdx)->onQueue('low-fast');
             }
         }
     }

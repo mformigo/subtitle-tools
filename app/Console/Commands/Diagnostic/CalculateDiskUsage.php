@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Diagnostic;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class CalculateDiskUsage extends Command
 {
     protected $signature = 'st:calculate-disk-usage';
 
-    protected $description = 'Calculates the disk usage and writes it to a file';
+    protected $description = 'Calculate current disk usage for displaying in the admin dashboard';
 
     public function handle()
     {
         $this->info('Calculating disk usage...');
 
-        $diskName = App::environment('local') ? '/dev/sda1' : '/dev/vda1';
+        $diskName = app()->environment('local') ? '/dev/sda1' : '/dev/vda1';
 
         $outputFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
 

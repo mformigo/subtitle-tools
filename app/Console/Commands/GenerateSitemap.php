@@ -7,29 +7,16 @@ use Spatie\Sitemap\SitemapGenerator;
 
 class GenerateSitemap extends Command
 {
-    protected $signature = 'sitemap:generate';
+    protected $signature = 'st:generate-sitemap';
 
     protected $description = 'Crawl the site and generate a sitemap.xml';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle()
     {
-        $filePath = public_path('sitemap.xml');
+        $applicationUrl = config('app.url');
 
-        SitemapGenerator::create(config('app.url'))->writeToFile($filePath);
+        $sitemapFilePath = public_path('sitemap.xml');
 
-        // remove empty lines manually
-
-        $lines = preg_split("/\r\n|\n|\r/", file_get_contents($filePath));
-
-        $lines = array_filter($lines, function($line) {
-           return !empty(trim($line));
-        });
-
-        file_put_contents($filePath, implode("\r\n", $lines));
+        SitemapGenerator::create($applicationUrl)->writeToFile($sitemapFilePath);
     }
 }

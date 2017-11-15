@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Janitor;
 
 use App\Models\FileGroup;
 use App\Models\FileJob;
@@ -14,7 +14,7 @@ class CleanDisk extends Command
 {
     protected $signature = 'st:clean-disk';
 
-    protected $description = 'Deletes all file groups, file jobs and stored files. Does not delete sub/idx stored files';
+    protected $description = 'Deletes all file groups, file jobs their stored files';
 
     protected $dontDeleteIds = [];
 
@@ -27,6 +27,7 @@ class CleanDisk extends Command
 
         StoredFileMeta::truncate();
 
+        // We want to keep stored files that are part of sub/idx and sup jobs
         $this->dontDeleteIds = $this->findStoredFileIdsToKeep();
 
         $this->deleteFileJobs();
