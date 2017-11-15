@@ -24,7 +24,7 @@ class SupToSrtJob implements ShouldQueue
 
     public $tries = 1;
 
-    public $timeout = 700;
+    public $timeout = 360;
 
     protected $supJob;
 
