@@ -47,7 +47,7 @@ class CollectMeta extends Command
             $allFinished = true;
 
             foreach($subIdx->languages as $language) {
-                if(!$language->hasFinished) {
+                if(! $language->hasFinished) {
                     $allFinished = false;
                     break;
                 }

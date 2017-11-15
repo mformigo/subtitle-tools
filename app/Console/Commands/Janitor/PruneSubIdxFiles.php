@@ -30,8 +30,6 @@ class PruneSubIdxFiles extends Command
                 Storage::deleteDirectory($directoryName);
             });
 
-        $this->info('Done!');
-
         $this->call('st:calculate-disk-usage');
     }
 }

@@ -113,7 +113,7 @@
                         @if($failedJobCount > 0)
                             <div class="alert alert-danger">{{ $failedJobCount }} failed jobs</div>
                         @endif
-                        
+
                     </div>
                 </div>
 

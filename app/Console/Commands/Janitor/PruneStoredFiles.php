@@ -26,8 +26,6 @@ class PruneStoredFiles extends Command
 
         $this->deleteEmptyStoredFileDirectories();
 
-        $this->info('Done!');
-
         $this->call('st:calculate-disk-usage');
     }
 

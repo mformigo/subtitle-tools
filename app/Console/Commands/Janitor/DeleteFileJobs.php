@@ -14,21 +14,19 @@ class DeleteFileJobs extends Command
 
     public function handle()
     {
+        $this->info('Truncating file jobs and file groups...');
+
         if(! app()->isDownForMaintenance()) {
-            $this->error('Can only clean disk in maintenance mode');
+            $this->error('This command can only be run in maintenance mode');
 
             return;
         }
 
         // The left-over stored files are deleted daily by the PruneStoredFiles command
 
-        $this->info('Truncating file jobs and file groups...');
-
         FileJob::truncate();
 
         FileGroup::truncate();
-
-        $this->call('st:calculate-disk-usage');
 
         $this->info('Don\'t forget to run php artisan up!');
         $this->info('Don\'t forget to run php artisan up!!');
