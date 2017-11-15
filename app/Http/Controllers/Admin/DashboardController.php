@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\DB;
 use SjorsO\TextFile\Facades\TextFileReader;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,8 @@ class DashboardController extends Controller
         $diskUsage = file_exists($diskUsageFilePath) ? file_get_contents($diskUsageFilePath) : 'NONE (100%)';
         $diskUsageWarning = str_before(str_after($diskUsage, '('), ')') > 60;
 
+        $failedJobCount = DB::table('failed_jobs')->count();
+
         $notFoundRequests = $this->get404Info();
 
         $dependencies = $this->getDependenciesInfo();
@@ -37,6 +40,7 @@ class DashboardController extends Controller
             'diskUsageWarning' => $diskUsageWarning,
             'notFoundRequests' => $notFoundRequests,
             'dependencies' => $dependencies,
+            'failedJobCount' => $failedJobCount,
         ]);
     }
 

@@ -108,6 +108,35 @@
 
                 <div class="col-4">
                     <div class="st-panel">
+                        <h2>Queues</h2>
+
+                        @if($failedJobCount > 0)
+                            <div class="alert alert-danger">{{ $failedJobCount }} failed jobs</div>
+                        @endif
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="st-panel">
+
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="st-panel">
+
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="st-panel">
+
                         <h2>Dependencies</h2>
 
                         <a href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
