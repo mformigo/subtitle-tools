@@ -20,9 +20,11 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('sitemap:generate')->dailyAt('2:00');
 
-        $schedule->command('st:prune-sub-idx-files')->dailyAt('2:15');
+        $schedule->command('st:prune-sub-idx-files')->dailyAt('2:10');
 
-        $schedule->command('st:clean-temporary-stuff')->dailyAt('2:30');
+        $schedule->command('st:clean-temporary-stuff')->dailyAt('2:20');
+
+        $schedule->command('cache:clear')->dailyAt('2:30');
 
         $schedule->command('st:collect-meta')->everyTenMinutes();
 
