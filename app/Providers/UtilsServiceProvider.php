@@ -16,15 +16,15 @@ class UtilsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('FileName', function($app, $args) {
+        $this->app->bind('FileName', function ($app, $args) {
             return new FileName();
         });
 
-        $this->app->bind('TempFile', function($app, $args) {
+        $this->app->bind('TempFile', function ($app, $args) {
             return new TempFile();
         });
 
-        $this->app->bind('TempDir', function($app, $args) {
+        $this->app->bind('TempDir', function ($app, $args) {
             return new TempDir();
         });
     }

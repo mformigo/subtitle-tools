@@ -12,13 +12,13 @@ class PlainTextServiceProvider extends ServiceProvider
     public function boot()
     {
         FileGroup::updated(function ($fileGroup) {
-            event(new FileGroupChanged($fileGroup));
+            FileGroupChanged::dispatch($fileGroup);
         });
     }
 
     public function register()
     {
-        $this->app->bind('TextFileFormat', function($app, $args) {
+        $this->app->bind('TextFileFormat', function ($app, $args) {
             return new TextFileFormat();
         });
     }

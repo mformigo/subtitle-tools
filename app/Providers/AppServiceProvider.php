@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Horizon\Horizon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +21,4 @@ class AppServiceProvider extends ServiceProvider
             return new \App\Utils\Support\FileHash();
         });
     }
-
 }

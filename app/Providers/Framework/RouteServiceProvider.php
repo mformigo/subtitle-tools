@@ -28,13 +28,13 @@ class RouteServiceProvider extends ServiceProvider
     protected function registerRouteMacros()
     {
         Route::macro('fileGroupTool', function($routeName, $controller, $slug) {
-            Route::prefix($slug)->namespace('FileJobs')->group(function() use ($controller, $routeName) {
+            Route::prefix($slug)->namespace('FileJobs')->group(function () use ($controller, $routeName) {
                 Route::get('/',               ['uses' => $controller.'@index',    'as' => $routeName]);
                 Route::post('/',              ['uses' => $controller.'@post']);
                 Route::get('/{urlKey}',       ['uses' => $controller.'@result',   'as' => $routeName.'.result']);
                 Route::post('/{urlKey}/{id}', ['uses' => $controller.'@download', 'as' => $routeName.'.download']);
 
-                Route::get('/{urlKey}/{id}', function($urlKey, $id) use ($routeName) {
+                Route::get('/{urlKey}/{id}', function ($urlKey, $id) use ($routeName) {
                     return redirect()->route($routeName.'.result', $urlKey);
                 });
             });

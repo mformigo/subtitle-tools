@@ -15,13 +15,13 @@ class VobSubServiceProvider extends ServiceProvider
     public function boot()
     {
         SubIdxLanguage::updated(function ($subIdxLanguage) {
-            event(new ExtractingSubIdxLanguageChanged($subIdxLanguage));
+            ExtractingSubIdxLanguageChanged::dispatch($subIdxLanguage);
         });
     }
 
     public function register()
     {
-        $this->app->bind(VobSub2SrtInterface::class, function($app, $args) {
+        $this->app->bind(VobSub2SrtInterface::class, function ($app, $args) {
                 return new VobSub2Srt(
                 //return new VobSub2SrtMock(
                     $args['path'],
