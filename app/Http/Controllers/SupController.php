@@ -43,9 +43,7 @@ class SupController extends Controller
                 'original_name'        => basename($supFile->getClientOriginalName()),
             ]);
 
-            dispatch(
-                (new SupToSrtJob($supJob))->onQueue('slow-high')
-            );
+            SupToSrtJob::dispatch($supJob)->onQueue('slow-high');
         }
 
         return redirect()->route('sup.show', $supJob->url_key);

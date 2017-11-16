@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FileJobs;
 
+use App\Http\Controllers\Controller;
 use App\Support\Facades\FileName;
 use App\Http\Rules\AreUploadedFilesRule;
 use App\Models\FileGroup;
