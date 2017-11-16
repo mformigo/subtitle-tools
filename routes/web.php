@@ -4,7 +4,10 @@ Route::get('st-login',   'Auth\LoginController@showLoginForm')->name('login');
 Route::post('st-login',  'Auth\LoginController@login');
 Route::post('st-logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/')->uses('HomeController@index')->name('home');
+Route::view('/', 'guest.home')->name('home');
+
+Route::view('/how-to-fix-vlc-subtitles-displaying-as-boxes', 'guest.blog.fix-vlc-subtitle-boxes')->name('blog.vlcSubtitleBoxes');
+
 Route::get('/contact')->uses('ContactController@index')->name('contact');
 Route::post('/contact')->uses('ContactController@post')->name('contact.post');
 
@@ -33,8 +36,6 @@ Route::fileGroupTool('shiftPartial',       'ShiftPartialController',       'part
 Route::fileGroupTool('convertToUtf8',      'ConvertToUtf8Controller',      'convert-text-files-to-utf8-online');
 Route::fileGroupTool('pinyin',             'PinyinController',             'make-chinese-pinyin-subtitles');
 Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
-
-Route::get('/how-to-fix-vlc-subtitles-displaying-as-boxes', ['uses' => 'HomeController@blogVlcSubtitleBoxes', 'as' => 'blogVlcSubtitleBoxes']);
 
 
 Route::prefix('convert-sup-to-srt-online')->group(function() {

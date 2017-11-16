@@ -43,7 +43,7 @@
             <h2>VLC showing weird symbols or boxes</h2>
             <p>
                 If VLC media player doesn't show subtitles correctly even after using this tool, then you have to change the font VLC uses.
-                <strong>Here is <a href="{{ route('blogVlcSubtitleBoxes') }}">a simple guide</a> to fixing subtitles in VLC.</strong>
+                <strong>Here is <a href="{{ route('blog.vlcSubtitleBoxes') }}">a simple guide</a> to fixing subtitles in VLC.</strong>
             </p>
 
             <h3>Other tools</h3>

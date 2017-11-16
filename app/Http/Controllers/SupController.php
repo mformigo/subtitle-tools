@@ -14,7 +14,9 @@ class SupController extends Controller
 {
     public function index()
     {
-        return view('guest.sup')->with('languages', config('st.tesseract.languages'));
+        $languages = config('st.tesseract.languages');
+
+        return view('guest.sup')->with('languages', $languages);
     }
 
     public function post(Request $request)
@@ -75,5 +77,4 @@ class SupController extends Controller
 
         return response()->download($filePath, $fileName);
     }
-
 }

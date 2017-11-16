@@ -1,6 +1,6 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Subtitle Tools</a>
+        <a href="{{ route('home') }}" class="brand-logo">Subtitle Tools</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
 
