@@ -17,6 +17,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('st:prune-stored-files'   )->dailyAt('2:25');
         $schedule->command('cache:clear'             )->dailyAt('2:35');
 
+        // sort of fix a memory leak
+        $schedule->command('queue:restart')->everyThirtyMinutes();
+
         // Diagnostic commands
         $schedule->command('st:collect-meta'        )->everyTenMinutes();
         $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
