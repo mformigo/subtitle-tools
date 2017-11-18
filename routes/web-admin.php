@@ -8,6 +8,10 @@ Route::get('/phpinfo')->uses('ShowPhpInfo')->name('admin.dashboard.phpinfo');
 
 Route::get('/file-jobs')->uses('FileJobsController@index')->name('adminFileJobs');
 
+Route::get('/sub-idx')->uses('SubIdxController@index')->name('admin.subIdx');
+
+
+
 Route::get('/stored-file/{id}')->uses('StoredFilesController@detail')->name('adminStoredFileDetail');
 
 Route::post('/stored-file/download')->uses('StoredFilesController@download')->name('adminStoredFileDownload');

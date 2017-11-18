@@ -1,0 +1,32 @@
+#SubIdxes
+{
+  h1 { margin-bottom: 2rem; }
+
+  .st-row
+  {
+    &.header { font-weight: 700; }
+
+    &:not(.st-sub-row) {
+      background-color: slategray;
+      color: white;
+      a { color: white; }
+    }
+
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .st-row.st-sub-row
+  {
+    margin-left: 1rem;
+  }
+
+  .st-grow { flex-grow: 1; }
+}
+
+.minw-150 { min-width: 150px; }
+.minw-125 { min-width: 125px; }
+.minw-100 { min-width: 100px; }
+.minw-75  { min-width: 75px; }
+.minw-50  { min-width: 50px; }
