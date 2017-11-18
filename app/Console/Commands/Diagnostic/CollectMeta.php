@@ -66,6 +66,7 @@ class CollectMeta extends Command
     protected function collectSupMeta(int $multiplier)
     {
         SupJob::query()
+            ->whereNotNull('finished_at')
             ->doesntHave('meta')
             ->take(50 * $multiplier)
             ->get()

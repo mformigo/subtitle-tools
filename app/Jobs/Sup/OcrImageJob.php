@@ -2,7 +2,9 @@
 
 namespace App\Jobs\Sup;
 
+use App\Events\SupJobChanged;
 use App\Events\SupJobProgressChanged;
+use App\Models\SupJob;
 use App\Utils\Support\FileName;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -85,5 +87,20 @@ class OcrImageJob implements ShouldQueue
             (int)$match[1],
             (int)$match[2],
         ];
+    }
+
+    public function failed($e)
+    {
+        $supJob = SupJob::findOrFail($this->supJobId);
+
+        $supJob->error_message = 'messages.sup.job_failed';
+
+        $supJob->internal_error_message = ($e instanceof Exception) ? $e->getMessage() : $e;
+
+        $supJob->measureEnd();
+
+        $supJob->save();
+
+        SupJobChanged::dispatch($supJob);
     }
 }
