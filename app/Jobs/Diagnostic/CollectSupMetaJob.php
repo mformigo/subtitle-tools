@@ -21,15 +21,12 @@ class CollectSupMetaJob extends BaseJob
     {
         list($openedCorrectly, $sup) = $this->openSup();
 
-        $meta = new SupJobMeta();
+        $meta = new SupJobMeta([
+            'format'    => class_basename($sup),
+            'cue_count' => $openedCorrectly ? count($sup->getCues()) : null,
+        ]);
 
-        $meta->sup_job_id = $this->supJob->id;
-
-        $meta->format = class_basename($sup);
-
-        $meta->cue_count = $openedCorrectly ? count($sup->getCues()) : null;
-
-        $meta->save();
+        $this->supJob->meta()->save($meta);
     }
 
     protected function openSup()
