@@ -19,29 +19,23 @@ class CollectSupMetaJob extends BaseJob
 
     public function handle()
     {
-        list($openedCorrectly, $sup) = $this->openSup();
-
-        $meta = new SupJobMeta([
-            'format'    => class_basename($sup),
-            'cue_count' => $openedCorrectly ? count($sup->getCues()) : null,
-        ]);
-
-        $this->supJob->meta()->save($meta);
-    }
-
-    protected function openSup()
-    {
         try {
             $sup = SupFile::open($this->supJob->inputStoredFile->file_path);
+
+            $cueCount = count($sup->getCues());
+
+            $supFormat = class_basename($sup);
         }
         catch(Exception $exception) {
             $sup = false;
         }
 
-        if($sup === false) {
-            return [false, 'Failed to open'];
-        }
+        info($this->supJob->id);
 
-        return [true, $sup];
+        SupJobMeta::create([
+            'sup_job_id' => $this->supJob->id,
+            'format'     => ($sup === false) ? 'Failed to open' : $supFormat,
+            'cue_count'  => ($sup === false) ? null : $cueCount,
+        ]);
     }
 }
