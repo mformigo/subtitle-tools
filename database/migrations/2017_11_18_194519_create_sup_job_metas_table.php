@@ -13,6 +13,7 @@ class CreateSupJobMetasTable extends Migration
             $table->integer('sup_job_id')->unsigned();
             $table->string('format')->nullable();
             $table->integer('cue_count')->nullable();
+            $table->boolean('failed_to_open')->nullable();
             $table->timestamps();
 
             $table->foreign('sup_job_id')->references('id')->on('sup_jobs')->onDelete('cascade');
