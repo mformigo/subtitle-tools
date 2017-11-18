@@ -11,8 +11,8 @@ class CreateSupJobMetasTable extends Migration
         Schema::create('sup_job_metas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sup_job_id')->unsigned()->unique();
-            $table->string('format');
-            $table->integer('cue_count');
+            $table->string('format')->nullable();
+            $table->integer('cue_count')->nullable();
             $table->timestamps();
 
             $table->foreign('sup_job_id')->references('id')->on('sup_jobs')->onDelete('cascade');
