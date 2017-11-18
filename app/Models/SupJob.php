@@ -11,6 +11,11 @@ class SupJob extends Model
 
     protected $guarded = [];
 
+    public function meta()
+    {
+        return $this->hasOne(\App\Models\Diagnostic\SupJobMeta::class);
+    }
+
     public function inputStoredFile()
     {
         return $this->hasOne(\App\Models\StoredFile::class, 'id', 'input_stored_file_id');

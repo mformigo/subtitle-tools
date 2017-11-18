@@ -4,8 +4,10 @@ namespace App\Console\Commands\Diagnostic;
 
 use App\Jobs\Diagnostic\CollectStoredFileMetaJob;
 use App\Jobs\Diagnostic\CollectSubIdxMetaJob;
+use App\Jobs\Diagnostic\CollectSupMetaJob;
 use App\Models\StoredFile;
 use App\Models\SubIdx;
+use App\Models\SupJob;
 use Illuminate\Console\Command;
 
 class CollectMeta extends Command
@@ -23,6 +25,8 @@ class CollectMeta extends Command
         $this->collectStoredFileMeta($multiplier);
 
         $this->collectSubIdxMeta($multiplier);
+
+        $this->collectSupMeta($multiplier);
     }
 
     protected function collectStoredFileMeta(int $multiplier)
@@ -57,5 +61,16 @@ class CollectMeta extends Command
                 CollectSubIdxMetaJob::dispatch($subIdx)->onQueue('low-fast');
             }
         }
+    }
+
+    protected function collectSupMeta(int $multiplier)
+    {
+        SupJob::query()
+            ->doesntHave('meta')
+            ->take(50 * $multiplier)
+            ->get()
+            ->each(function ($supJob) {
+                CollectSupMetaJob::dispatch($supJob)->onQueue('low-fast');
+            });
     }
 }
