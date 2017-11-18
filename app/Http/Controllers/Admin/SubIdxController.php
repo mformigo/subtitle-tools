@@ -15,6 +15,6 @@ class SubIdxController extends Controller
             ->take(200)
             ->get();
 
-        return view('admin.subIdx')->with('subIdxes', $subIdxes);
+        return view('admin.sub-idx')->with('subIdxes', $subIdxes);
     }
 }
