@@ -18,6 +18,11 @@
     margin-top: 2rem;
     font-size: 1.25rem;
 
+    &.sup-job {
+      flex-direction: column;
+      width: 320px;
+    }
+
     i
     {
       font-size: 32px;

@@ -15,11 +15,14 @@
                     <download-link :url="urlKey + '/download'" text="Download"></download-link>
                 </strong>
             </div>
-            <div v-else class="status">
+            <div v-else class="sup-job status">
 
                 <spinner size="extra-small"></spinner>
 
-                <strong>Processing... {{ progress }}%</strong>
+                <strong>Processing...</strong>
+
+                <span>{{ statusMessage }}</span>
+
             </div>
 
             <div class="original-name">
@@ -31,7 +34,7 @@
             <div class="ocr-language original-name">
                 <br/>
                 <br/>
-                <strong>OCR language:</strong> {{ ocrLanguage }}
+                <strong>OCR language: </strong> {{ ocrLanguage }}
             </div>
 
             <div v-if="supJob.errorMessage" class="error-message">
@@ -54,7 +57,7 @@
 
         data: () => ({
             supJob: null,
-            progress: 0,
+            statusMessage: '',
         }),
 
         props: [
@@ -70,7 +73,7 @@
             });
 
             Echo.channel(`sup-job.${this.urlKey}.progress`).listen('SupJobProgressChanged', (newProgress) => {
-                this.progress = newProgress.progress;
+                this.statusMessage = newProgress.statusMessage;
             });
 
             axios.get(`/api/v1/sup-job/${this.urlKey}`).then(response => {

@@ -36,7 +36,7 @@ class SupJobProgressChanged implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'progress' => $this->statusMessage,
+            'statusMessage' => $this->statusMessage,
         ];
     }
 }
