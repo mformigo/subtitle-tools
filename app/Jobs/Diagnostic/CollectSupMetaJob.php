@@ -22,15 +22,15 @@ class CollectSupMetaJob extends BaseJob
         try {
             $sup = SupFile::open($this->supJob->inputStoredFile->file_path);
 
-            $cueCount = count($sup->getCues());
+            if($sup !== false) {
+                $cueCount = count($sup->getCues());
 
-            $supFormat = class_basename($sup);
+                $supFormat = class_basename($sup);
+            }
         }
         catch(Exception $exception) {
             $sup = false;
         }
-
-        info($this->supJob->id);
 
         SupJobMeta::create([
             'sup_job_id' => $this->supJob->id,
