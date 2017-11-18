@@ -20,11 +20,10 @@ class CollectSupMetaJob extends BaseJob
     {
         $sup = SupFile::open($this->supJob->inputStoredFile->file_path);
 
-        $meta = SupJobMeta::make([
-            'format'    => class_basename($sup),
-            'cue_count' => count($sup->getCues()),
+        SupJobMeta::create([
+            'sup_job_id' => $this->supJob->id,
+            'format'     => class_basename($sup),
+            'cue_count'  => count($sup->getCues()),
         ]);
-
-        $this->supJob->meta()->save($meta);
     }
 }
