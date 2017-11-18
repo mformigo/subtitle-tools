@@ -17,13 +17,15 @@ class SupJobProgressChanged implements ShouldBroadcast
 
     protected $supJob;
 
-    protected $progress;
+    protected $statusMessage;
 
-    public function __construct(SupJob $supJob, int $progress)
+    public function __construct($supJob, $statusMessage)
     {
-        $this->supJob = $supJob;
+        $this->supJob = ($supJob instanceof SupJob)
+            ? $supJob
+            : SupJob::findOrFail($supJob);
 
-        $this->progress = $progress;
+        $this->statusMessage = $statusMessage;
     }
 
     public function broadcastOn()
@@ -34,7 +36,7 @@ class SupJobProgressChanged implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'progress' => $this->progress,
+            'progress' => $this->statusMessage,
         ];
     }
 }

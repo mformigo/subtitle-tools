@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Sup\ExtractSupImagesJob;
 use App\Support\Facades\FileName;
 use App\Http\Rules\FileNotEmptyRule;
 use App\Http\Rules\SupRule;
-use App\Jobs\SupToSrtJob;
 use App\Models\StoredFile;
 use App\Models\SupJob;
 use Illuminate\Http\Request;
@@ -45,7 +45,7 @@ class SupController extends Controller
                 'original_name'        => basename($supFile->getClientOriginalName()),
             ]);
 
-            SupToSrtJob::dispatch($supJob)->onQueue('slow-high');
+            ExtractSupImagesJob::dispatch($supJob)->onQueue('slow-high');
         }
 
         return redirect()->route('sup.show', $supJob->url_key);

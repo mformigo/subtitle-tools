@@ -81,7 +81,7 @@ class PruneStoredFiles extends Command
     {
         $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
 
-        if($lastMigration === '2017_11_15_201436_drop_sub_idx_meta_deleted_column') {
+        if($lastMigration === '2017_11_18_102550_add_extract_time_column_to_sup_jobs') {
             return true;
         }
 

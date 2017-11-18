@@ -3568,16 +3568,16 @@
         },
         {
             "name": "sjorso/sup",
-            "version": "0.0.5",
+            "version": "0.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/sup.git",
-                "reference": "0a4f9021150ae440e0da774fd11ab458b482843a"
+                "reference": "ee0a5da5d5b6329bc90a0a5f5404dd3fd2214516"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/sup/zipball/0a4f9021150ae440e0da774fd11ab458b482843a",
-                "reference": "0a4f9021150ae440e0da774fd11ab458b482843a",
+                "url": "https://api.github.com/repos/SjorsO/sup/zipball/ee0a5da5d5b6329bc90a0a5f5404dd3fd2214516",
+                "reference": "ee0a5da5d5b6329bc90a0a5f5404dd3fd2214516",
                 "shasum": ""
             },
             "require": {
@@ -3611,7 +3611,7 @@
                 "subtitles",
                 "sup"
             ],
-            "time": "2017-11-17T19:13:23+00:00"
+            "time": "2017-11-18T11:06:15+00:00"
         },
         {
             "name": "sjorso/text-file",
