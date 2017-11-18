@@ -47,7 +47,7 @@ class ExtractSupImagesJob implements ShouldQueue
             $sup = SupFile::open($this->supJob->inputStoredFile->file_path);
         }
         catch(Exception $exception) {
-            return $this->abortWithError('messages.sup.exception_when_reading', $exception->getMessage());
+            return $this->failed($exception, 'messages.sup.exception_when_reading');
         }
 
         if($sup === false) {
