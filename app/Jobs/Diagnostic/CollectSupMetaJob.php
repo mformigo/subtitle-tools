@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Diagnostic;
 
+use App\Jobs\BaseJob;
 use App\Models\Diagnostic\SupJobMeta;
 use App\Models\SupJob;
 use SjorsO\Sup\SupFile;
