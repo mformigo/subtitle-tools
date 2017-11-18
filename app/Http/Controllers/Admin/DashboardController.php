@@ -12,6 +12,7 @@ class DashboardController extends Controller
         'st-worker-default',
         'st-worker-broadcast',
         'st-worker-subidx',
+        'st-worker-imageocr',
     ];
 
     public function index()
@@ -77,8 +78,9 @@ class DashboardController extends Controller
     {
         $lines = app()->environment('local') ? [
             'st-worker-broadcast:st-worker-broadcast_00   RUNNING   pid 27243, uptime 0:04:20',
-            'st-worker-default:st-worker-default_00       RUNNING   pid 27245, uptime 0:13:37',
-            'st-worker-subidx:st-worker-subidx_00         RUNNING   pid 27244, uptime 2:22:22',
+            'st-worker-default:st-worker-default_00       RUNNING   pid 27244, uptime 0:13:37',
+            'st-worker-subidx:st-worker-subidx_00         RUNNING   pid 27245, uptime 2:22:22',
+            'st-worker-imageocr:st-worker-imageocr_00     RUNNING   pid 27246, uptime 2:22:22',
         ] : explode("\n", shell_exec('supervisorctl status'));
 
         return collect($lines)->filter(function($line) {
