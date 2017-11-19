@@ -14,6 +14,8 @@ class OcrImageJob extends BaseJob
 {
     public $timeout = 10;
 
+    public $tries = 3;
+
     protected $supJobId;
 
     protected $imageFilePath;
