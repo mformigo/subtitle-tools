@@ -16,15 +16,15 @@ class OcrImageJob extends BaseJob
 
     protected $supJobId;
 
-    protected $imageFilePath;
+    protected $imageFilePaths;
 
     protected $ocrLanguage;
 
-    public function __construct($supJobId, $imageFilePath, $ocrLanguage)
+    public function __construct($supJobId, $imageFilePaths, $ocrLanguage)
     {
         $this->supJobId = $supJobId;
 
-        $this->imageFilePath = $imageFilePath;
+        $this->imageFilePaths = array_wrap($imageFilePaths);
 
         $this->ocrLanguage = $ocrLanguage;
     }
@@ -35,11 +35,26 @@ class OcrImageJob extends BaseJob
             return;
         }
 
-        if(! file_exists($this->imageFilePath)) {
-            throw new Exception('File does not exist: '.$this->imageFilePath);
+        foreach($this->imageFilePaths as $filePath) {
+            $this->ocrImage($filePath);
         }
 
-        $text = (new TesseractOCR($this->imageFilePath))
+        $lastFilePath = $this->imageFilePaths[count($this->imageFilePaths) - 1];
+
+        list($index, $total) = $this->parseFileName($lastFilePath);
+
+        SupJobProgressChanged::dispatch($this->supJobId, "Reading image $index / $total");
+
+        $this->fireBuildJobIfAllComplete();
+    }
+
+    protected function ocrImage($filePath)
+    {
+        if(! file_exists($filePath)) {
+            throw new Exception('File does not exist: '.$filePath);
+        }
+
+        $text = (new TesseractOCR($filePath))
             ->executable('/usr/bin/tesseract')
             ->quietMode()
             ->suppressErrors()
@@ -50,24 +65,16 @@ class OcrImageJob extends BaseJob
 
         $nameChanger = new FileName();
 
-        $filePath = $nameChanger->appendName($this->imageFilePath, '--ocr');
+        $filePath = $nameChanger->appendName($filePath, '--ocr');
 
         $filePath = $nameChanger->changeExtension($filePath, 'txt');
 
         file_put_contents($filePath, $text);
-
-        list($index, $total) = $this->parseFileName($this->imageFilePath);
-
-        if($index % 5 === 0 || $index === $total) {
-            SupJobProgressChanged::dispatch($this->supJobId, "Reading image $index / $total");
-        }
-
-        $this->fireBuildJobIfAllComplete();
     }
 
     protected function getDirectory()
     {
-        return $directory = str_finish(dirname($this->imageFilePath), DIRECTORY_SEPARATOR);
+        return str_finish(dirname($this->imageFilePaths[0]), DIRECTORY_SEPARATOR);
     }
 
     protected function sanitizeText($text)

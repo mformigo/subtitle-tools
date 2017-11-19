@@ -70,15 +70,15 @@ class ExtractSupImagesJob implements ShouldQueue
 
         $ocrLanguage = $this->getOcrLanguage();
 
-        foreach($imageFilePaths as $imageFilePath) {
+        foreach(array_chunk($imageFilePaths, 10) as $filePathsChunk) {
             OcrImageJob::dispatch(
                 $this->supJob->id,
-                $imageFilePath,
+                $filePathsChunk,
                 $ocrLanguage
             )->onQueue('larry-low');
         }
 
-        // Jobs after a huge extract job somehow can't shell_exec tesseract, restarting the worker hopefully helps
+        // fix a memory leak this job causes
         Artisan::call('queue:restart');
     }
 
