@@ -12,7 +12,7 @@ use TesseractOCR;
 
 class OcrImageJob extends BaseJob
 {
-    public $timeout = 10;
+    public $timeout = 20;
 
     protected $supJobId;
 
