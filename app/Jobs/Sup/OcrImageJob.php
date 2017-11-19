@@ -40,6 +40,7 @@ class OcrImageJob extends BaseJob
         }
 
         $text = (new TesseractOCR($this->imageFilePath))
+            ->executable('/usr/bin/tesseract')
             ->quietMode()
             ->suppressErrors()
             ->lang($this->ocrLanguage)
