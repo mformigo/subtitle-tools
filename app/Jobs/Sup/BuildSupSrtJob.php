@@ -3,24 +3,16 @@
 namespace App\Jobs\Sup;
 
 use App\Events\SupJobChanged;
+use App\Jobs\BaseJob;
 use App\Models\StoredFile;
 use App\Models\SupJob;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;
 use Exception;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use SjorsO\Sup\SupFile;
 
-class BuildSupSrtJob implements ShouldQueue
+class BuildSupSrtJob extends BaseJob
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $tries = 1;
-
     public $timeout = 30;
 
     protected $supJob;

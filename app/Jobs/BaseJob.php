@@ -17,9 +17,4 @@ abstract class BaseJob implements ShouldQueue
     public $timeout = 60;
 
     public abstract function handle();
-
-    public function failed($exception)
-    {
-
-    }
 }

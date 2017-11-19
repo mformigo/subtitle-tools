@@ -4,23 +4,15 @@ namespace App\Jobs\Sup;
 
 use App\Events\SupJobChanged;
 use App\Events\SupJobProgressChanged;
+use App\Jobs\BaseJob;
 use App\Models\SupJob;
 use App\Utils\Support\FileName;
 use Exception;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use TesseractOCR;
 
-class OcrImageJob implements ShouldQueue
+class OcrImageJob extends BaseJob
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $tries = 1;
-
-    public $timeout = 12;
+    public $timeout = 10;
 
     protected $supJobId;
 
@@ -39,6 +31,10 @@ class OcrImageJob implements ShouldQueue
 
     public function handle()
     {
+        if(file_exists($this->getDirectory().'FAILED')) {
+            return;
+        }
+
         if(! file_exists($this->imageFilePath)) {
             throw new Exception('File does not exist: '.$this->imageFilePath);
         }
@@ -64,6 +60,13 @@ class OcrImageJob implements ShouldQueue
         if($index % 5 === 0 || $index === $total) {
             SupJobProgressChanged::dispatch($this->supJobId, "Reading image $index / $total");
         }
+
+        $this->fireBuildJobIfAllComplete();
+    }
+
+    protected function getDirectory()
+    {
+        return $directory = str_finish(dirname($this->imageFilePath), DIRECTORY_SEPARATOR);
     }
 
     protected function sanitizeText($text)
@@ -89,8 +92,36 @@ class OcrImageJob implements ShouldQueue
         ];
     }
 
+    /**
+     * If all images for this sup have been OCR'd, we need to fire a job to build the srt file.
+     */
+    protected function fireBuildJobIfAllComplete()
+    {
+        $directory = $this->getDirectory();
+
+        $allFileNames = scandir($directory);
+
+        $imageCount = collect($allFileNames)->filter(function ($name) {
+            return ends_with($name, '.png');
+        })->count();
+
+        $textFilesCount = collect($allFileNames)->filter(function ($name) {
+            return ends_with($name, '.txt');
+        })->count();
+
+        if($imageCount === $textFilesCount && ! file_exists($directory.'BUILDING')) {
+            touch($directory.'BUILDING');
+
+            $supJob = SupJob::findOrFail($this->supJobId);
+
+            BuildSupSrtJob::dispatch($supJob)->onQueue('larry-high');
+        }
+    }
+
     public function failed($e)
     {
+        touch($this->getDirectory().'FAILED');
+
         $supJob = SupJob::findOrFail($this->supJobId);
 
         $supJob->error_message = 'messages.sup.job_failed';

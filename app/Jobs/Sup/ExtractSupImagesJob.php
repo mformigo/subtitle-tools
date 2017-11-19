@@ -67,25 +67,15 @@ class ExtractSupImagesJob implements ShouldQueue
 
         SupJobProgressChanged::dispatch($this->supJob, 'Finished extracting '.count($imageFilePaths).' images');
 
-        $chainJobs = [];
-
         $ocrLanguage = $this->getOcrLanguage();
 
-        $firstFilePath = array_shift($imageFilePaths);
-
         foreach($imageFilePaths as $imageFilePath) {
-            $chainJobs[] = new OcrImageJob(
+            OcrImageJob::dispatch(
                 $this->supJob->id,
                 $imageFilePath,
                 $ocrLanguage
-            );
+            )->onQueue('larry-low');
         }
-
-        $chainJobs[] = new BuildSupSrtJob($this->supJob);
-
-        OcrImageJob::withChain($chainJobs)
-            ->dispatch($this->supJob->id, $firstFilePath, $ocrLanguage)
-            ->allOnQueue('image-ocr');
     }
 
     public function failed($e, $errorMessage = null)

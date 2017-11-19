@@ -33,6 +33,10 @@ The status of the mods can be checked in the admin dashboard
 * broadcasting happens on the **broadcast** queue
 * file jobs happen on the **default** queue
 * fast low prio jobs happen on **low-fast**, when the default queue is idle
+ 
+* **larry-high**: BuildSupSrtJob
+* **larry-default**: ExtractSupImagesJob
+* **larry-low**: OcrImageJob
 
 ## Adding a FileGroup + FileJob tool
 * make a new controller that extends `FileJobController`, add routes and views
