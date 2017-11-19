@@ -7,8 +7,8 @@ Route::get('/log/{name}/delete')->uses('DashboardController@deleteLog')->name('a
 Route::get('/phpinfo')->uses('ShowPhpInfo')->name('admin.dashboard.phpinfo');
 
 Route::get('/file-jobs')->uses('FileJobsController@index')->name('adminFileJobs');
-
 Route::get('/sub-idx')->uses('SubIdxController@index')->name('admin.subIdx');
+Route::get('/sup')->uses('SupController@index')->name('admin.sup');
 
 
 

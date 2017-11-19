@@ -6,6 +6,7 @@
         {!! nav_item('admin') !!}
         {!! nav_item('adminFileJobs') !!}
         {!! nav_item('admin.subIdx') !!}
+        {!! nav_item('admin.sup') !!}
 
         <form action="{{ route('logout') }}" method="POST" id="LogoutForm">
             {{ csrf_field() }}

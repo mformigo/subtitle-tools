@@ -18,7 +18,9 @@ return [
     'item.sup' => 'Sup to Srt',
 
     // Admin Nav
-    'item.admin' => 'Dashboard',
+    'item.admin'         => 'Dashboard',
     'item.adminFileJobs' => 'File Jobs',
+    'item.admin.subIdx'  => 'Sub/Idx',
+    'item.admin.sup'     => 'Sup',
 
 ];

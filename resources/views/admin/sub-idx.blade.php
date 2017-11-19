@@ -50,45 +50,6 @@
 
         @endforeach
 
-
-
-
-
-
-    {{--<table class="table table-bordered table-sm table-hover table-inverse">--}}
-        {{--<thead>--}}
-        {{--<tr>--}}
-            {{--<th>Page</th>--}}
-            {{--<th>Original Name</th>--}}
-            {{--<th>Error Message</th>--}}
-            {{--<th>Encoding</th>--}}
-            {{--<th>Type</th>--}}
-            {{--<th>Input</th>--}}
-            {{--<th>Output</th>--}}
-            {{--<th>Finished at</th>--}}
-        {{--</tr>--}}
-        {{--</thead>--}}
-        {{--<tbody>--}}
-
-        {{--@foreach($subIdxes as $subIdx)--}}
-            {{--<tr>--}}
-                {{--<td>{{ $subIdx->page_id }}</td>--}}
-                {{--<td style="word-wrap:break-word;">{{ $subIdx->original_name }}</td>--}}
-                {{--<td>{{ __($subIdx->error_message) }}</td>--}}
-                {{--<td>{{ optional($subIdx->inputStoredFile->meta)->encoding }}</td>--}}
-                {{--<td>{{ substr(optional($subIdx->inputStoredFile->meta)->identified_as, strlen('App\Subtitles\PlainText\\')) }}</td>--}}
-                {{--<td><a target="_blank" href="{{ route('adminStoredFileDetail', ['id' => $subIdx->input_stored_file_id]) }}">{{ $subIdx->input_stored_file_id }}</a></td>--}}
-                {{--<td>--}}
-                    {{--@if($subIdx->output_stored_file_id)--}}
-                        {{--<a target="_blank" href="{{ route('adminStoredFileDetail', ['id' => $subIdx->output_stored_file_id]) }}">{{ $subIdx->output_stored_file_id }}</a>--}}
-                    {{--@endif--}}
-                {{--</td>--}}
-                {{--<td>{{ $subIdx->finished_at }}</td>--}}
-            {{--</tr>--}}
-        {{--@endforeach--}}
-
-        {{--</tbody>--}}
-    {{--</table>--}}
 </div>
 
 @endsection
