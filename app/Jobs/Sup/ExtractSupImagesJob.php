@@ -12,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Artisan;
 use SjorsO\Sup\SupFile;
 
 class ExtractSupImagesJob implements ShouldQueue
@@ -76,6 +77,9 @@ class ExtractSupImagesJob implements ShouldQueue
                 $ocrLanguage
             )->onQueue('larry-low');
         }
+
+        // Jobs after a huge extract job somehow can't shell_exec tesseract, restarting the worker hopefully helps
+        Artisan::call('queue:restart');
     }
 
     public function failed($e, $errorMessage = null)
