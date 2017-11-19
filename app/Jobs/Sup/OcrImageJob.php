@@ -150,9 +150,9 @@ class OcrImageJob extends BaseJob
 
         $supJob = SupJob::findOrFail($this->supJobId);
 
-        $supJob->error_message = 'messages.sup.job_failed';
+        $supJob->error_message = ($errorMessage === null) ? 'messages.sup.job_failed' : 'messages.sup.job_timed_out';
 
-        $supJob->internal_error_message = $errorMessage ?: ($e instanceof Exception) ? $e->getMessage() : $e;
+        $supJob->internal_error_message = $errorMessage ?: (($e instanceof Exception) ? $e->getMessage() : $e);
 
         $supJob->measureEnd();
 
