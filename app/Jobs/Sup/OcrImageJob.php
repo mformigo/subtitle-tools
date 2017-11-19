@@ -12,7 +12,7 @@ use TesseractOCR;
 
 class OcrImageJob extends BaseJob
 {
-    public $timeout = 20;
+    public $timeout = 30;
 
     protected $supJobId;
 
@@ -121,7 +121,11 @@ class OcrImageJob extends BaseJob
 
     public function failed($e)
     {
-        touch($this->getDirectory().'FAILED');
+        $madeFile = touch($this->getDirectory().'FAILED');
+
+        if($madeFile === false) {
+            info('OcrImageJob: failed to create a FAILED file in '.$this->getDirectory());
+        }
 
         $supJob = SupJob::findOrFail($this->supJobId);
 
