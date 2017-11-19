@@ -7,12 +7,18 @@ use App\Events\SupJobProgressChanged;
 use App\Jobs\BaseJob;
 use App\Models\SupJob;
 use App\Utils\Support\FileName;
+use Carbon\Carbon;
 use Exception;
 use TesseractOCR;
 
 class OcrImageJob extends BaseJob
 {
-    public $timeout = 30;
+    /**
+     * Manually stop the job after this many seconds
+     */
+    public $manualTimeout = 30;
+
+    public $timeout = 60;
 
     protected $supJobId;
 
@@ -35,13 +41,19 @@ class OcrImageJob extends BaseJob
             return;
         }
 
+        $jobStartedAt = now();
+
         foreach($this->imageFilePaths as $filePath) {
+            if(Carbon::now()->diffInSeconds($jobStartedAt) > $this->manualTimeout) {
+                list($index, $total) = $this->parseFileName();
+
+                return $this->failed('messages.sup.job_timed_out', "Stopped at frame {$index}/{$total}. Extracting ".count($this->imageFilePaths)." images took longer than {$this->manualTimeout} seconds");
+            }
+
             $this->ocrImage($filePath);
         }
 
-        $lastFilePath = $this->imageFilePaths[count($this->imageFilePaths) - 1];
-
-        list($index, $total) = $this->parseFileName($lastFilePath);
+        list($index, $total) = $this->parseFileName();
 
         SupJobProgressChanged::dispatch($this->supJobId, "Reading image $index / $total");
 
@@ -89,10 +101,12 @@ class OcrImageJob extends BaseJob
         ], '', $text);
     }
 
-    protected function parseFileName($imageFilePath)
+    protected function parseFileName()
     {
+        $lastFilePath = $this->imageFilePaths[count($this->imageFilePaths) - 1];
+
         // Files have this name: frame-[00001-00032].png
-        preg_match('/\[(\d+)-(\d+)\]/', $imageFilePath, $match);
+        preg_match('/\[(\d+)-(\d+)\]/', $lastFilePath, $match);
 
         return [
             (int)$match[1],
@@ -126,7 +140,7 @@ class OcrImageJob extends BaseJob
         }
     }
 
-    public function failed($e)
+    public function failed($e, $errorMessage = null)
     {
         $madeFile = touch($this->getDirectory().'FAILED');
 
@@ -138,7 +152,7 @@ class OcrImageJob extends BaseJob
 
         $supJob->error_message = 'messages.sup.job_failed';
 
-        $supJob->internal_error_message = ($e instanceof Exception) ? $e->getMessage() : $e;
+        $supJob->internal_error_message = $errorMessage ?: ($e instanceof Exception) ? $e->getMessage() : $e;
 
         $supJob->measureEnd();
 
