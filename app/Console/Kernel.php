@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('cache:clear'             )->dailyAt('2:35');
 
         // sort of fix a memory leak
-        // $schedule->command('queue:restart')->everyThirtyMinutes();
+        $schedule->command('queue:restart')->hourly();
 
         // Diagnostic commands
         $schedule->command('st:collect-meta'        )->everyTenMinutes();
