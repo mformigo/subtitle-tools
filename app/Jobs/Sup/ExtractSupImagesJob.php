@@ -8,12 +8,14 @@ use App\Support\Facades\TempDir;
 use App\Models\SupJob;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Artisan;
 use SjorsO\Sup\SupFile;
 
 class ExtractSupImagesJob extends BaseJob
 {
     public $timeout = 300;
+
+    public $tries = 2;
 
     protected $supJob;
 
@@ -24,6 +26,12 @@ class ExtractSupImagesJob extends BaseJob
 
     public function handle()
     {
+        if($this->attempts() === 2) {
+            info('ExtractSupImagesJob is being attempted twice for some reason');
+
+            return true;
+        }
+
         SupJobProgressChanged::dispatch($this->supJob, 'Extracting images');
 
         $extractingStartedAt = Carbon::now();
@@ -69,6 +77,9 @@ class ExtractSupImagesJob extends BaseJob
                 $ocrLanguage
             )->onQueue('larry-low');
         }
+
+        // fix a memory leak this job causes
+        Artisan::call('queue:restart');
     }
 
     public function failed($e, $errorMessage = null)
