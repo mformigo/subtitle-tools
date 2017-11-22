@@ -79,9 +79,7 @@ class SubIdx extends Model
         foreach($languages as $language) {
             $subIdxLanguage = $this->languages()->create($language);
 
-            $extractJob = ExtractSubIdxLanguageJob::dispatch($subIdxLanguage)->onQueue('sub-idx');
-
-            dispatch($extractJob);
+            ExtractSubIdxLanguageJob::dispatch($subIdxLanguage)->onQueue('sub-idx');
         }
     }
 
