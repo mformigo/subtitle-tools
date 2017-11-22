@@ -29,7 +29,7 @@
                         <h2>Supervisor</h2>
                         @if(!$goodSupervisor)
                             <div class="alert alert-danger">
-                                Only {{ count($supervisor) }} queues are running!
+                                Queues running: {{ count($supervisor) }}. That ain't right!
                             </div>
                         @endif
 
@@ -107,11 +107,15 @@
                 </div>
 
                 <div class="col-4">
-                    <div class="st-panel">
+                    <div class="logs st-panel">
                         <h2>Queues</h2>
 
                         @if($failedJobCount > 0)
-                            <div class="alert alert-danger">{{ $failedJobCount }} failed jobs</div>
+                            <div class="alert alert-danger">
+                                <a href="{{ route('admin.failedJobs') }}">{{ $failedJobCount }} failed jobs</a>
+
+                                <a href="{{ route('admin.failedJobs.truncate') }}">X</a>
+                            </div>
                         @endif
 
                     </div>

@@ -9,6 +9,8 @@ Route::get('/phpinfo')->uses('ShowPhpInfo')->name('admin.dashboard.phpinfo');
 Route::get('/file-jobs')->uses('FileJobsController@index')->name('adminFileJobs');
 Route::get('/sub-idx')->uses('SubIdxController@index')->name('admin.subIdx');
 Route::get('/sup')->uses('SupController@index')->name('admin.sup');
+Route::get('/failed-jobs')->uses('FailedJobsController@index')->name('admin.failedJobs');
+Route::get('/failed-jobs/truncate')->uses('FailedJobsController@truncate')->name('admin.failedJobs.truncate');
 
 
 
