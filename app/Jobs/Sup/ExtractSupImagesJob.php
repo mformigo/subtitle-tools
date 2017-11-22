@@ -15,8 +15,6 @@ class ExtractSupImagesJob extends BaseJob
 {
     public $timeout = 300;
 
-    public $tries = 2;
-
     protected $supJob;
 
     public function __construct(SupJob $supJob)
@@ -26,12 +24,6 @@ class ExtractSupImagesJob extends BaseJob
 
     public function handle()
     {
-        if($this->attempts() === 2) {
-            info('ExtractSupImagesJob is being attempted twice for some reason');
-
-            return true;
-        }
-
         SupJobProgressChanged::dispatch($this->supJob, 'Extracting images');
 
         $extractingStartedAt = Carbon::now();
