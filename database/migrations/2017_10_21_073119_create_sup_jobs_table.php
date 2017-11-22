@@ -22,8 +22,8 @@ class CreateSupJobsTable extends Migration
             $table->timestamps();
 
             // MeasuresQueueTime trait
-            $table->dateTime("started_at")->nullable();
-            $table->dateTime("finished_at")->nullable();
+            $table->dateTime('started_at')->nullable();
+            $table->dateTime('finished_at')->nullable();
             $table->integer('queue_time')->nullable();
             $table->integer('work_time')->nullable();
         });
