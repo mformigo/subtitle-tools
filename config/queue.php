@@ -41,7 +41,7 @@ return [
             'driver'      => 'redis',
             'connection'  => 'default',
             'queue'       => 'default',
-            'retry_after' => 330,
+            'retry_after' => 360,
         ],
 
         'sync' => [
