@@ -60,6 +60,12 @@
                 The cleaner also converts the file to UTF-8 text encoding, the cues will be sorted based on their start time, and duplicate or empty cues will be removed.
             </p>
 
+            <h3>Cleaning hearing-impaired subtitles</h3>
+            <p>
+                The <i>strip text between parentheses</i> option can be used to turn subtitles for the deaf and hard-of-hearing (SDH subtitles) into regular subtitles.
+                This option will remove any SDH text (which should be between parentheses), leaving only dialogue cues.
+            </p>
+
             <h3>Other formatting tags</h3>
             <p>
                 This tool also removes all effects that are leftover when converting a subtitle format to srt.
