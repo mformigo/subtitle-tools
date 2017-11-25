@@ -4,6 +4,21 @@ footer
   border-top: 1px solid #d0d0d0;
   padding-top: 1rem;
 
+  .footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .paypal-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    form {
+      margin: 0.5rem auto 0;
+    }
+  }
+
   div.feedback-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -22,5 +37,30 @@ footer
       margin-left: 8px;
     }
   }
+
+}
+
+@include media-w550
+{
+  footer
+  {
+    .footer-wrapper
+    {
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: row;
+
+      > div
+      {
+        margin-top: 1rem;
+      }
+
+      .paypal-wrapper {
+        text-align: center;
+        flex-basis: 95%;
+      }
+    }
+  }
+
 
 }
