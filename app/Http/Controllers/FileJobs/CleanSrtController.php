@@ -17,8 +17,9 @@ class CleanSrtController extends FileJobController
         $this->validateFileJob();
 
         $jobOptions = [
-            'stripCurly' => $request->get('stripCurly') !== null,
-            'stripAngle' => $request->get('stripAngle') !== null,
+            'stripCurly'       => $request->get('stripCurly') !== null,
+            'stripAngle'       => $request->get('stripAngle') !== null,
+            'stripParentheses' => $request->get('stripParentheses') !== null,
         ];
 
         return $this->doFileJobs(CleanSrtJob::class, $jobOptions);

@@ -29,13 +29,17 @@
 
             <div class="options-group checkboxes">
 
+                <input type="hidden"   name="stripParentheses" value="" />
+                <input type="checkbox" name="stripParentheses" value="checked" id="stripParentheses" class="filled-in" {{ old('stripParentheses', 'checked') }}>
+                <label for="stripParentheses">Strip text between parentheses ( )</label>
+
                 <input type="hidden"   name="stripCurly" value="" />
                 <input type="checkbox" name="stripCurly" value="checked" id="stripCurly" class="filled-in" {{ old('stripCurly', 'checked') }}>
-                <label for="stripCurly">Strip curly brackets { }</label>
+                <label for="stripCurly">Strip text between curly brackets { }</label>
 
                 <input type="hidden"   name="stripAngle" value="" />
                 <input type="checkbox" name="stripAngle" value="checked" id="stripAngle" class="filled-in" {{ old('stripAngle', 'checked') }}>
-                <label for="stripAngle">Strip angle brackets &lt; &gt;</label>
+                <label for="stripAngle">Strip text between angle brackets &lt; &gt;</label>
 
             </div>
 

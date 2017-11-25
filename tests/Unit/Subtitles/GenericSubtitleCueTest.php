@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Subtitles\PlainText\GenericSubtitleCue;
 use Tests\TestCase;
 
 class GenericSubtitleCueTest extends TestCase
@@ -9,7 +10,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function cues_are_buildable()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setTiming(0, 100)
             ->addLine('First line')
@@ -24,7 +25,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function cue_lines_can_be_set_from_an_array()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
         $this->assertSame([], $cue->getLines());
 
         $cue->setLines(['First line', 'Second line']);
@@ -37,7 +38,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function it_trims_lines()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->addLine("  First line  \r\n");
 
@@ -47,22 +48,37 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function it_does_not_add_empty_lines()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
-        $cue->addLine("");
-        $cue->addLine(" ");
+        $cue->addLine('');
+        $cue->addLine(' ');
 
         $this->assertSame([], $cue->getLines());
     }
 
     /** @test */
+    function it_does_not_add_lines_containing_only_asterisks_or_spaces_or_dashes()
+    {
+        $cue = new GenericSubtitleCue();
+
+        $cue->addLine('*');
+        $cue->addLine('**');
+        $cue->addLine('-');
+        $cue->addLine('- -');
+        $cue->addLine('- *');
+        $cue->addLine('-Crazy *');
+
+        $this->assertSame(['-Crazy *'], $cue->getLines());
+    }
+
+    /** @test */
     function it_replaces_no_break_spaces()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
-        $cue->addLine("Smi&nbsp;files&nbspare dumb");
-        $cue->addLine("&nbsp;");
-        $cue->addLine("&nbsp");
+        $cue->addLine('Smi&nbsp;files&nbspare dumb');
+        $cue->addLine('&nbsp;');
+        $cue->addLine('&nbsp');
 
         $this->assertSame(['Smi files are dumb'], $cue->getLines());
     }
@@ -70,7 +86,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function start_ms_and_end_ms_can_be_the_same()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setTiming(100, 100);
 
@@ -83,7 +99,7 @@ class GenericSubtitleCueTest extends TestCase
     {
         $this->expectException(\Exception::class);
 
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setTiming(100, 50);
     }
@@ -91,7 +107,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function it_can_do_positive_shifts()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setTiming(10, 20)
             ->shift(100);
@@ -103,7 +119,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function it_can_do_negative_shifts()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setTiming(10, 20)
             ->shift(-5);
@@ -115,7 +131,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function timings_wont_go_below_zero()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setTiming(10, 20)
             ->shift(-15);
@@ -137,7 +153,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function it_can_alter_lines()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setLines(['Line #', 'Line #']);
 
@@ -153,7 +169,7 @@ class GenericSubtitleCueTest extends TestCase
     /** @test */
     function it_splits_altered_lines()
     {
-        $cue = new \App\Subtitles\PlainText\GenericSubtitleCue();
+        $cue = new GenericSubtitleCue();
 
         $cue->setLines(['Line 1', 'Line 2']);
 

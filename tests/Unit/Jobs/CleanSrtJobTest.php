@@ -97,4 +97,24 @@ class CleanSrtJobTest extends TestCase
         $this->assertContains('{', $subtitle->getContent());
         $this->assertContains('}', $subtitle->getContent());
     }
+
+    /** @test */
+    function it_cleans_hearing_impaired_subtitles()
+    {
+        $fileGroup = $this->createFileGroup();
+
+        $fileGroup->update([
+            'job_options' => [
+                'stripCurly'       => false,
+                'stripAngle'       => false,
+                'stripParentheses' => true,
+            ],
+        ]);
+
+        CleanSrtJob::dispatch($fileGroup, "{$this->testFilesStoragePath}TextFiles/cleanable-hearing-impaired.srt");
+
+        $this->assertMatchesFileSnapshot(
+            StoredFile::findOrFail(2)
+        );
+    }
 }

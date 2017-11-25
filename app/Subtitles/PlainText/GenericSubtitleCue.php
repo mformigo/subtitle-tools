@@ -31,11 +31,19 @@ class GenericSubtitleCue
     public function addLine($line)
     {
         // Smi files commonly use nbsp (with and without a semicolon) to make blank lines
-        $line = trim(
-            str_ireplace(['&nbsp;', '&nbsp'], " ", $line)
-        );
+        $line = str_ireplace(['&nbsp;', '&nbsp'], ' ', $line);
 
-        if(!empty($line)) {
+        $line = trim($line);
+
+        // Don't add a line if it only contains these characters.
+        //   A line with only a dash is often a left-over when stripping brackets from hearing-impaired subtitles, eg: '- [men screaming]'
+        //   Hearing-impaired subtitles often include lines with only asterisks
+        //   Stripping brackets from hearing-impaired subtitles can leave lines like this: '- -'
+        if(! str_replace(['-', ' ', '*'], '', $line)) {
+            return $this;
+        }
+
+        if(! empty($line)) {
             $this->lines[] = $line;
         }
 
@@ -97,6 +105,12 @@ class GenericSubtitleCue
         return $lines;
     }
 
+    /**
+     * Pass all lines from this cue one by one into a closure. The closure must return
+     * a string. The returned string can contain new lines.
+     * @param Closure $closure
+     * @return $this
+     */
     public function alterLines(Closure $closure)
     {
         $alteredLines = [];
@@ -108,9 +122,20 @@ class GenericSubtitleCue
             );
         }
 
-        $this->setLines($alteredLines);
+        return $this->setLines($alteredLines);
+    }
 
-        return $this;
+    /**
+     * Pass all lines from this cue as an array into a closure. The closure must return
+     * an array
+     * @param Closure $closure
+     * @return $this
+     */
+    public function alterAllLines(Closure $closure)
+    {
+        $alteredLines = $closure($this->lines);
+
+        return $this->setLines($alteredLines);
     }
 
     /**

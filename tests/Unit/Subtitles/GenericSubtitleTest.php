@@ -9,44 +9,87 @@ use Tests\TestCase;
 
 class GenericSubtitleTest extends TestCase
 {
-    /** @test */
-    function it_strips_angle_brackets()
+    protected function makeSingleCueGenericSubtitle($lines)
     {
         $genericSubtitle = new GenericSubtitle();
 
-        $this->assertTrue($genericSubtitle instanceof ContainsGenericCues);
-
         $genericCue = new GenericSubtitleCue();
 
-        $genericCue->setLines([
+        $genericCue->setLines($lines);
+
+        return $genericSubtitle->addCue($genericCue);
+    }
+
+    /** @test */
+    function it_strips_angle_brackets()
+    {
+        $genericSub = $this->makeSingleCueGenericSubtitle([
             '<h1>wow</H1>',
             '<p class="KOREAN">',
         ]);
 
-        $genericSubtitle->addCue($genericCue);
+        $this->assertTrue($genericSub instanceof ContainsGenericCues);
 
-        $genericSubtitle->stripAngleBracketsFromCues();
-
-        $this->assertSame(['wow'], $genericSubtitle->getCues()[0]->getLines());
+        $this->assertSame(
+            ['wow'],
+            $genericSub->stripAngleBracketsFromCues()->getCues()[0]->getLines()
+        );
     }
 
     /** @test */
     function it_strips_curly_brackets()
     {
-        $genericSubtitle = new GenericSubtitle();
-
-        $genericCue = new GenericSubtitleCue();
-
-        $genericCue->setLines([
+        $genericSub = $this->makeSingleCueGenericSubtitle([
             '{h1}wow{}',
             '{123}',
         ]);
 
-        $genericSubtitle->addCue($genericCue);
+        $this->assertSame(
+            ['wow'],
+            $genericSub->stripCurlyBracketsFromCues()->getCues()[0]->getLines()
+        );
+    }
 
-        $genericSubtitle->stripCurlyBracketsFromCues();
+    /** @test */
+    function it_strips_parentheses()
+    {
+        $sub = $this->makeSingleCueGenericSubtitle([
+            'No!',
+            '( screaming )',
+        ]);
 
-        $this->assertSame(['wow'], $genericSubtitle->getCues()[0]->getLines());
+        $this->assertSame(
+            ['No!'],
+            $sub->stripParenthesesFromCues()->getCues()[0]->getLines()
+        );
+    }
+
+    /** @test */
+    function it_strips_parentheses_and_leftover_dashes()
+    {
+        $sub = $this->makeSingleCueGenericSubtitle([
+            '- ( clattering continues )',
+            '- ( floorboards creaking )',
+        ]);
+
+        $this->assertFalse(
+            $sub->stripParenthesesFromCues()->hasCues(),
+            'Generic subtitle still has cues, it should have removed everything, including the left-over dashes'
+        );
+    }
+
+    /** @test */
+    function it_strips_parentheses_across_lines()
+    {
+        $sub = $this->makeSingleCueGenericSubtitle([
+            '( man singing in Spanish',
+            'echoing )',
+        ]);
+
+        $this->assertFalse(
+            $sub->stripParenthesesFromCues()->hasCues(),
+            'Generic subtitle still has cues, it should have removed everything'
+        );
     }
 
     /** @test */

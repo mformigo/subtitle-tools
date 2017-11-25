@@ -35,6 +35,12 @@ interface ContainsGenericCues
     public function removeDuplicateCues();
 
     /**
+     * Removes all parentheses from the text lines, then removes empty cues
+     * @return $this
+     */
+    public function stripParenthesesFromCues();
+
+    /**
      * Removes all angle brackets from the text lines, then removes empty cues
      * @return $this
      */

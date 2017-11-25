@@ -14,6 +14,8 @@ trait WithGenericCues
     public function addCue($cue)
     {
         $this->cues[] = $cue;
+
+        return $this;
     }
 
     public function hasCues()
@@ -49,6 +51,25 @@ trait WithGenericCues
         );
 
         return $this;
+    }
+
+    /**
+     * Removes parentheses from the text lines, then removes empty cues
+     * @return $this
+     */
+    public function stripParenthesesFromCues()
+    {
+        foreach($this->cues as $cue) {
+            $cue->alterAllLines(function ($lines) {
+                $singleLine = implode("\n", $lines);
+
+                $strippedLines = preg_replace('/\(.*?\)/s', '', $singleLine);
+
+                return explode("\n", $strippedLines);
+            });
+        }
+
+        return $this->removeEmptyCues();
     }
 
     /**

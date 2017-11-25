@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\Models\StoredFile;
+use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Snapshots\MatchesSnapshots;
@@ -61,5 +63,18 @@ abstract class TestCase extends BaseTestCase
     protected function getSnapshotDirectory(): string
     {
         return $this->testFilesStoragePath.'__snapshots__';
+    }
+
+    public function assertMatchesFileSnapshot($file)
+    {
+        if($file instanceof StoredFile) {
+            $temporaryFilePath = TempFile::makeFilePath().'.txt';
+
+            copy($file->file_path, $temporaryFilePath);
+
+            $file = $temporaryFilePath;
+        }
+
+        $this->doFileSnapshotAssertion($file);
     }
 }
