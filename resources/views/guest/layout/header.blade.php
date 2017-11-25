@@ -17,7 +17,6 @@
             {!! nav_item('convertToSrt') !!}
             {!! nav_item('subIdx') !!}
             {!! nav_item('sup') !!}
-            {!! nav_item('cleanSrt') !!}
 
             <li class="{{ Request::routeIs('pinyin*') || Request::routeIs('convertToPlainText*') ? "active" : '' }}">
                 <a class="dropdown-button" href="#!" data-activates="dropdown2">
@@ -28,7 +27,13 @@
                 {!! nav_item('pinyin') !!}
                 {!! nav_item('convertToPlainText') !!}
                 {!! nav_item('convertToUtf8') !!}
+                {!! nav_item('cleanSrt') !!}
             </ul>
+            <li>
+                <a class="patreon-header-link" target="_blank" href="https://www.patreon.com/subtitletools">
+                    Become a Patron!
+                </a>
+            </li>
 
         </ul>
 
@@ -44,6 +49,12 @@
             {!! nav_item('convertToUtf8') !!}
             {!! nav_item('pinyin') !!}
             {!! nav_item('convertToPlainText') !!}
+            <li class="divider"></li>
+            <li>
+                <a target="_blank" href="https://www.patreon.com/subtitletools">
+                    Become a Patron!
+                </a>
+            </li>
             <li class="divider"></li>
             {!! nav_item('contact') !!}
         </ul>
