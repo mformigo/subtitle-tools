@@ -12,7 +12,7 @@ class SupController extends Controller
             ->with('meta')
             ->with('inputStoredFile')
             ->with('inputStoredFile.meta')
-            ->orderBy('id', 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->take(1000)
             ->get();
 
