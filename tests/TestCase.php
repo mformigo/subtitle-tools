@@ -6,6 +6,7 @@ use App\Models\StoredFile;
 use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Storage;
+use SjorsO\TextFile\Facades\TextFileReader;
 use Spatie\Snapshots\MatchesSnapshots;
 
 abstract class TestCase extends BaseTestCase
@@ -70,7 +71,12 @@ abstract class TestCase extends BaseTestCase
         if($file instanceof StoredFile) {
             $temporaryFilePath = TempFile::makeFilePath().'.txt';
 
-            copy($file->file_path, $temporaryFilePath);
+            // Git changes line endings to \n, but we save files with \r\n, so we have to change them
+            $lines = preg_split("/\r\n|\n|\r/",
+                file_get_contents($file->file_path)
+            );
+
+            file_put_contents($temporaryFilePath, implode("\n", $lines));
 
             $file = $temporaryFilePath;
         }
