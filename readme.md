@@ -37,6 +37,7 @@ The status of the mods can be checked in the admin dashboard
 * **larry-high**: BuildSupSrtJob
 * **larry-default**: ExtractSupImagesJob
 * **larry-low**: OcrImageJob
+* **larry-lowest**: OcrImageJob (slow)
 
 ## Adding a FileGroup + FileJob tool
 * make a new controller that extends `FileJobController`, add routes and views

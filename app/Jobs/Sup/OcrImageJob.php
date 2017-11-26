@@ -37,17 +37,28 @@ class OcrImageJob extends BaseJob
 
     public function handle()
     {
-        if(file_exists($this->getDirectory().'FAILED')) {
+        if($this->isMarkedAsFailed()) {
             return;
+        }
+
+        if($this->isMarkedAsSlow() && count($this->imageFilePaths) > 1) {
+            return $this->dispatchAsSlowJob();
         }
 
         $jobStartedAt = now();
 
         foreach($this->imageFilePaths as $filePath) {
             if(Carbon::now()->diffInSeconds($jobStartedAt) > $this->manualTimeout) {
-                list($index, $total) = $this->parseFileName();
+                $this->markAsSlow();
 
-                return $this->failed('messages.sup.job_timed_out', "Stopped at frame {$index}/{$total}. Extracting ".count($this->imageFilePaths)." images took longer than {$this->manualTimeout} seconds");
+                return $this->dispatchAsSlowJob();
+
+//                list($index, $total) = $this->parseFileName();
+//
+//                return $this->failed(
+//                    'messages.sup.job_timed_out',
+//                    "Stopped at frame {$index}/{$total}. Extracting ".count($this->imageFilePaths)." images took longer than {$this->manualTimeout} seconds"
+//                );
             }
 
             $this->ocrImage($filePath);
@@ -142,11 +153,7 @@ class OcrImageJob extends BaseJob
 
     public function failed($e, $errorMessage = null)
     {
-        $madeFile = touch($this->getDirectory().'FAILED');
-
-        if($madeFile === false) {
-            info('OcrImageJob: failed to create a FAILED file in '.$this->getDirectory());
-        }
+        $this->markAsFailed();
 
         $supJob = SupJob::findOrFail($this->supJobId);
 
@@ -159,5 +166,44 @@ class OcrImageJob extends BaseJob
         $supJob->save();
 
         SupJobChanged::dispatch($supJob);
+    }
+
+    protected function isMarkedAsFailed()
+    {
+        return file_exists($this->getDirectory().'FAILED');
+    }
+
+    protected function markAsFailed()
+    {
+        $madeFile = touch($this->getDirectory().'FAILED');
+
+        if($madeFile === false) {
+            info('OcrImageJob: failed to create a FAILED file in '.$this->getDirectory());
+        }
+    }
+
+    protected function isMarkedAsSlow()
+    {
+        return file_exists($this->getDirectory().'SLOW');
+    }
+
+    protected function markAsSlow()
+    {
+        $madeFile = touch($this->getDirectory().'SLOW');
+
+        if($madeFile === false) {
+            info('OcrImageJob: failed to create a SLOW file in '.$this->getDirectory());
+        }
+    }
+
+    protected function dispatchAsSlowJob()
+    {
+        foreach($this->imageFilePaths as $filePath) {
+            OcrImageJob::dispatch(
+                $this->supJobId,
+                $filePath,
+                $this->ocrLanguage
+            )->onQueue('larry-lowest');
+        }
     }
 }
