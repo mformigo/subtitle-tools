@@ -18,4 +18,11 @@ class SupController extends Controller
 
         return view('admin.sup')->with('sups', $sups);
     }
+
+    public function retry(SupJob $supJob)
+    {
+        $supJob->retry();
+
+        return back();
+    }
 }

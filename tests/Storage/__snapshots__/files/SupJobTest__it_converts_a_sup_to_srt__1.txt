@@ -1,0 +1,15 @@
+﻿1
+00:00:00,000 --> 00:00:00,000
+Edited at https://subtitletools.com
+
+2
+00:10:40,240 --> 00:10:42,520
+You are a leader now.
+
+3
+00:10:43,040 --> 00:10:45,920
+Do you trust him?
+
+4
+00:10:49,120 --> 00:10:51,880
+I trust him.

@@ -76,8 +76,8 @@
 
                         @if(count($notFoundRequests) > 0)
                             <div class="log-controls">
-                                @include('admin.components.form-url', ['route' => 'admin.dashboard.open404Log', 'text' => 'Open log'])
-                                @include('admin.components.form-url', ['route' => 'admin.dashboard.delete404Log', 'text' => 'Delete log'])
+                                @include('admin.components.form-url', ['route' => route('admin.dashboard.open404Log'),   'text' => 'Open log'])
+                                @include('admin.components.form-url', ['route' => route('admin.dashboard.delete404Log'), 'text' => 'Delete log'])
                             </div>
 
                             <div class="alert alert-danger">

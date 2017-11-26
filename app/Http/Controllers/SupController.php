@@ -45,7 +45,7 @@ class SupController extends Controller
                 'original_name'        => basename($supFile->getClientOriginalName()),
             ]);
 
-            ExtractSupImagesJob::dispatch($supJob)->onQueue('larry-default');
+            $supJob->dispatchJob();
         }
 
         return redirect()->route('sup.show', $supJob->url_key);
