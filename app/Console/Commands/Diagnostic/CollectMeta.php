@@ -35,6 +35,9 @@ class CollectMeta extends Command
             ->doesntHave('meta')
             ->take(1000 * $multiplier)
             ->get()
+            ->tap(function ($collection) {
+                $this->info('Dispatching '.count($collection).' stored file meta jobs');
+            })
             ->each(function ($storedFile) {
                 CollectStoredFileMetaJob::dispatch($storedFile)->onQueue('low-fast');
             });
@@ -42,26 +45,22 @@ class CollectMeta extends Command
 
     protected function collectSubIdxMeta(int $multiplier)
     {
-        $subIdxesWithoutMeta = SubIdx::query()
+        SubIdx::query()
             ->doesntHave('meta')
             ->with('languages')
             ->take(50 * $multiplier)
-            ->get();
-
-        foreach($subIdxesWithoutMeta as $subIdx) {
-            $allFinished = true;
-
-            foreach($subIdx->languages as $language) {
-                if(! $language->hasFinished) {
-                    $allFinished = false;
-                    break;
-                }
-            }
-
-            if($allFinished) {
+            ->get()
+            ->filter(function ($subIdx) {
+                return $subIdx->languages->every(function ($language) {
+                    return $language->hasFinished;
+                });
+            })
+            ->tap(function ($collection) {
+                $this->info('Dispatching '.count($collection).' sub/idx meta jobs');
+            })
+            ->each(function ($subIdx) {
                 CollectSubIdxMetaJob::dispatch($subIdx)->onQueue('low-fast');
-            }
-        }
+            });
     }
 
     protected function collectSupMeta(int $multiplier)
@@ -71,6 +70,9 @@ class CollectMeta extends Command
             ->doesntHave('meta')
             ->take(50 * $multiplier)
             ->get()
+            ->tap(function ($collection) {
+                $this->info('Dispatching '.count($collection).' sup meta jobs');
+            })
             ->each(function ($supJob) {
                 CollectSupMetaJob::dispatch($supJob)->onQueue('low-fast');
             });
