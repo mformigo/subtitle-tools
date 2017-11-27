@@ -21,10 +21,9 @@ class CollectSupMetaJob extends BaseJob
     {
         $supFilePath = $this->supJob->inputStoredFile->file_path;
 
-        $failedToOpen = false;
-
         $supFormat = class_basename(SupFile::getFormat($supFilePath));
 
+        $failedToOpen = false;
         $cueCount = null;
 
         try {

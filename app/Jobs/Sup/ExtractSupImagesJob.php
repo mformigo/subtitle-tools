@@ -76,11 +76,11 @@ class ExtractSupImagesJob extends BaseJob
 
     public function failed($e, $errorMessage = null)
     {
-        $this->supJob->error_message = $errorMessage ?: 'messages.sup.job_failed';
-
-        $this->supJob->internal_error_message = ($e instanceof Exception) ? $e->getMessage() : $e;
-
-        $this->supJob->save();
+        $this->supJob->update([
+            'finished_at'            => now(),
+            'error_message'          => $errorMessage ?: 'messages.sup.job_failed',
+            'internal_error_message' => ($e instanceof Exception) ? $e->getMessage() : $e,
+        ]);
     }
 
     protected function getOcrLanguage()

@@ -44,6 +44,7 @@ class CollectMeta extends Command
     {
         $subIdxesWithoutMeta = SubIdx::query()
             ->doesntHave('meta')
+            ->with('languages')
             ->take(50 * $multiplier)
             ->get();
 
