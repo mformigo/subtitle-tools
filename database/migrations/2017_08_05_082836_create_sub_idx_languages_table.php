@@ -11,7 +11,7 @@ class CreateSubIdxLanguagesTable extends Migration
         Schema::create('sub_idx_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('sub_idx_id')->unsigned();
+            $table->integer('sub_idx_id')->unsigned();
             $table->string('index');
             $table->string('language');
             $table->integer('output_stored_file_id')->nullable();
