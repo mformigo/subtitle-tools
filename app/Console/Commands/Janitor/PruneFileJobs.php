@@ -5,7 +5,7 @@ namespace App\Console\Commands\Janitor;
 use App\Models\FileGroup;
 use Illuminate\Console\Command;
 
-class DeleteFileJobs extends Command
+class PruneFileJobs extends Command
 {
     protected $signature = 'st:prune-file-jobs';
 
