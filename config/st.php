@@ -2,6 +2,13 @@
 
 return [
 
+    /**
+     * Checked migration is used in:
+     *   PruneStoredFiles command
+     *
+     */
+    'checked-migration' => '2017_11_18_194519_create_sup_job_metas_table',
+
     'tesseract' => [
 
         // these languages have a .traineddata file

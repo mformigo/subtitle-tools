@@ -11,13 +11,18 @@ class CreateSubIdxLanguagesTable extends Migration
         Schema::create('sub_idx_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('sub_idx_id');
+            $table->string('sub_idx_id')->unsigned();
             $table->string('index');
             $table->string('language');
             $table->integer('output_stored_file_id')->nullable();
             $table->string('error_message')->nullable();
-            $table->dateTime("started_at")->nullable();
-            $table->dateTime("finished_at")->nullable();
+            $table->dateTime('started_at')->nullable();
+            $table->dateTime('finished_at')->nullable();
+            $table->integer('queue_time')->nullable();
+            $table->integer('extract_time')->nullable();
+            $table->boolean('timed_out')->nullable();
+
+            $table->foreign('sub_idx_id')->references('id')->on('sub_idxes')->onDelete('cascade');
         });
     }
 

@@ -13,7 +13,7 @@ class CreateFileGroupsTable extends Migration
             $table->timestamps();
             $table->string('tool_route');
             $table->string('url_key');
-            $table->string('job_options')->default('{}');
+            $table->text('job_options')->nullable()->default('{}');
             $table->dateTime("file_jobs_finished_at")->nullable();
             $table->dateTime("archive_requested_at")->nullable();
             $table->dateTime("archive_finished_at")->nullable();
