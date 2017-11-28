@@ -14,8 +14,9 @@ class Kernel extends ConsoleKernel
         // Janitor commands
         $schedule->command('st:prune-sub-idx-files'  )->dailyAt('2:05');
         $schedule->command('st:prune-temporary-files')->dailyAt('2:15');
-        $schedule->command('st:prune-stored-files'   )->dailyAt('2:25');
-        $schedule->command('cache:clear'             )->dailyAt('2:35');
+        $schedule->command('st:prune-file-jobs'      )->dailyAt('2:25');
+        $schedule->command('st:prune-stored-files'   )->dailyAt('2:35');
+        $schedule->command('cache:clear'             )->dailyAt('2:45');
 
         // sort of fix a memory leak
         $schedule->command('queue:restart')->hourly();
