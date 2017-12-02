@@ -9,7 +9,8 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('st:generate-sitemap')->dailyAt('2:00');
+        $schedule->command('st:randomize-url-keys')->dailyAt('1:55');
+        $schedule->command('st:generate-sitemap'  )->dailyAt('2:00');
 
         // Janitor commands
         $schedule->command('st:prune-sub-idx-files'  )->dailyAt('2:05');

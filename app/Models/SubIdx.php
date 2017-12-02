@@ -42,7 +42,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class SubIdx extends Model
 {
-    protected $fillable = ['page_id', 'store_directory', 'filename', 'original_name', 'sub_hash', 'idx_hash', 'is_readable'];
+    protected $guarded = [];
 
     protected function getFilePathWithoutExtensionAttribute()
     {
@@ -116,7 +116,7 @@ class SubIdx extends Model
 
         if($subIdx->languages->count() > 0) {
             $subIdx->is_readable = true;
-            $subIdx->page_id = $baseFileName;
+            $subIdx->page_id = generate_url_key();
             $subIdx->save();
         }
 
