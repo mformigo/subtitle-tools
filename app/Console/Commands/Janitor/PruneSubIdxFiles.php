@@ -9,20 +9,22 @@ class PruneSubIdxFiles extends Command
 {
     protected $signature = 'st:prune-sub-idx-files';
 
-    protected $description = 'Deletes sub/idx files older than two weeks';
+    protected $description = 'Deletes sub/idx files older than a few days';
 
     public function handle()
     {
-        $notEndWith = [
-            DIRECTORY_SEPARATOR.date('Y-W'),
-            DIRECTORY_SEPARATOR.date('Y-W', strtotime('-7 days')),
+        $deleteDirectoryIfNotEndsWith = [
+            DIRECTORY_SEPARATOR.now()->format('Y-z'),
+            DIRECTORY_SEPARATOR.now()->subDays(1)->format('Y-z'),
+            DIRECTORY_SEPARATOR.now()->subDays(2)->format('Y-z'),
+            DIRECTORY_SEPARATOR.now()->subDays(3)->format('Y-z'),
         ];
 
         $subIdxDirectory = Storage::directories('sub-idx/');
 
         collect($subIdxDirectory)
-            ->filter(function ($name) use ($notEndWith) {
-                return ! ends_with($name, $notEndWith);
+            ->filter(function ($name) use ($deleteDirectoryIfNotEndsWith) {
+                return ! ends_with($name, $deleteDirectoryIfNotEndsWith);
             })
             ->tap(function ($directoryNames) {
                 $this->info('Found '.count($directoryNames).' old sub/idx directories');
