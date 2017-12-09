@@ -9,13 +9,13 @@ class PruneFileJobs extends Command
 {
     protected $signature = 'st:prune-file-jobs';
 
-    protected $description = 'Prune all file groups and file jobs older than one week';
+    protected $description = 'Prune all file groups and file jobs older than a few days';
 
     public function handle()
     {
-        $this->comment('Deleting file groups older than one week...');
+        $this->comment('Deleting file groups older than a few days...');
 
-        $deleteOlderThan = now()->subDays(7);
+        $deleteOlderThan = now()->subDays(3);
 
         // The left-over stored files are deleted daily by the PruneStoredFiles command
         $rowsAffected = FileGroup::query()
