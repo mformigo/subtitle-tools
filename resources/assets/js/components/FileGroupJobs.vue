@@ -41,6 +41,7 @@
 
         data: () => ({
             fileJobs: [],
+            apiUpdateInterval: null,
         }),
 
         props: [
@@ -51,37 +52,49 @@
             Echo.channel(`file-group.${this.urlKey}.jobs`).listen('FileJobChanged', (newFileJob) => {
                 let arrayIndex = _.findIndex(this.fileJobs, ['id', newFileJob.id]);
 
-                if(arrayIndex !== -1) {
+                if (arrayIndex !== -1) {
                     Vue.set(this.fileJobs, arrayIndex, newFileJob);
                 }
 
-                this.maybeDisconnectFromChannels();
+                this.maybeClearUpdateInterval();
             });
 
-            axios.get(`/api/v1/file-group/result/${this.urlKey}`).then(response => {
-                this.fileJobs = response.data;
+            let updateFromApi = () => {
+                axios.get(`/api/v1/file-group/result/${this.urlKey}`).then(response => {
+                    this.fileJobs = response.data;
 
-                this.maybeDisconnectFromChannels();
-            });
+                    this.maybeClearUpdateInterval();
+                });
+            };
+
+            // Sometimes we don't properly receive the pusher message when
+            // all files are done. So we manually check with an interval
+            this.apiUpdateInterval = setInterval(updateFromApi, 3000);
+            
+            updateFromApi();
         },
 
         methods: {
             shorten: function(string) {
                 let maxLength = 80;
 
-                if(string.length < maxLength ) {
+                if (string.length < maxLength ) {
                     return string;
                 }
 
                 return string.substring(0, maxLength/2) + '...' + string.substring(string.length - maxLength/2);
-
             },
             
-            maybeDisconnectFromChannels: function() {
+            maybeClearUpdateInterval: function() {
                 let allFinished = this.fileJobs.every((element, index, array) => element.isFinished);
                 
-                if(allFinished) {
-                    Echo.leave(`file-group.${this.urlKey}.jobs`);
+                if (allFinished) {
+                    // We can't disconnect Pusher/Echo here because the archive Vue Component
+                    // still needs it
+
+                    if (this.apiUpdateInterval !== null) {
+                        clearInterval(this.apiUpdateInterval);
+                    }
                 }
             },
         }

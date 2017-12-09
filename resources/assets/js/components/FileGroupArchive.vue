@@ -60,10 +60,10 @@
                     this.archiveRequestUrl = newFileGroup.archiveRequestUrl;
                     this.archiveDownloadUrl = newFileGroup.archiveDownloadUrl;
                     this.archiveStatus = newFileGroup.archiveStatus;
-                    
-                    if(this.archiveRequestUrl !== false || this.archiveDownloadUrl !== false) {
-                        Echo.leave(`file-group.${this.urlKey}`);
-                    }
+
+                    // if(this.archiveRequestUrl !== false || this.archiveDownloadUrl !== false) {
+                    //     Echo.leave(`file-group.${this.urlKey}`);
+                    // }
                 });
             }
         },
