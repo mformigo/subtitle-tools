@@ -13,7 +13,8 @@ class CreateSupJobsTable extends Migration
             $table->string('url_key')->unique();
             $table->string('original_name');
             $table->string('ocr_language');
-            $table->integer('input_stored_file_id')->unsigned();
+            $table->integer('input_stored_file_id')->unsigned()->nullable();
+            $table->string('input_file_hash');
             $table->integer('output_stored_file_id')->unsigned()->nullable();
             $table->string('error_message')->nullable();
             $table->string('internal_error_message')->nullable();
