@@ -2,45 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\Sup\ExtractSupImagesJob;
+use App\Http\Requests\SupRequest;
+use App\Support\Facades\FileHash;
 use App\Support\Facades\FileName;
-use App\Http\Rules\FileNotEmptyRule;
-use App\Http\Rules\SupRule;
 use App\Models\StoredFile;
 use App\Models\SupJob;
-use Illuminate\Http\Request;
 
 class SupController extends Controller
 {
     public function index()
     {
-        $languages = config('st.tesseract.languages');
-
-        return view('guest.sup')->with('languages', $languages);
+        return view('guest.sup', [
+            'languages' => config('st.tesseract.languages'),
+        ]);
     }
 
-    public function post(Request $request)
+    public function post(SupRequest $request)
     {
-        $request->validate([
-            'subtitle'    => ['bail', 'required', 'file', new FileNotEmptyRule, new SupRule],
-            'ocrLanguage' => 'required|in:'.implode(',', config('st.tesseract.languages')),
-        ]);
+        $supFile = $request->getSupFile();
 
-        $supFile = $request->file('subtitle');
+        $ocrLanguage = $request->getOcrLanguage();
 
-        $ocrLanguage = $request->get('ocrLanguage');
-
-        $inputFile = StoredFile::getOrCreate($supFile);
+        $hash = FileHash::make($supFile);
 
         $supJob = SupJob::query()
-            ->where('input_stored_file_id', $inputFile->id)
+            ->where('input_file_hash', $hash)
             ->where('ocr_language', $ocrLanguage)
             ->first();
 
-        if($supJob === null) {
+        if ($supJob === null) {
+            $inputFile = StoredFile::getOrCreate($supFile);
+
             $supJob = SupJob::create([
                 'url_key'              => generate_url_key(),
                 'input_stored_file_id' => $inputFile->id,
+                'input_file_hash'      => $hash,
                 'ocr_language'         => $ocrLanguage,
                 'original_name'        => basename($supFile->getClientOriginalName()),
             ]);
