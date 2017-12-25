@@ -1,4 +1,4 @@
-@push('inline-footer-scripts')
+@push('footer')
     <script>
         Echo.disconnect();
     </script>

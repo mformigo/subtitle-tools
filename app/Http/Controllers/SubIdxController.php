@@ -27,22 +27,28 @@ class SubIdxController extends Controller
             'idx' => ['required', 'file', new FileNotEmptyRule, new TextFileRule],
         ]);
 
-        $subIdx = SubIdx::getOrCreateFromUpload($request->files->get('sub'), $request->files->get('idx'));
+        $subIdx = SubIdx::getOrCreateFromUpload(
+            $request->files->get('sub'),
+            $request->files->get('idx')
+        );
 
-        if(!$subIdx->is_readable) {
+        if (! $subIdx->is_readable) {
             return back()->withErrors(__("validation.subidx_cant_be_read"));
         }
 
-        return redirect()->route('subIdx.show', ['pageId' => $subIdx->page_id]);
+        return redirect()->route('subIdx.show', $subIdx->page_id);
     }
 
     public function detail($pageId)
     {
         $subIdx = SubIdx::where('page_id', $pageId)->firstOrFail();
 
+        $languageCount = $subIdx->languages()->count();
+
         return view('guest.sub-idx-detail', [
-            'originalName' => $subIdx->original_name,
-            'pageId' => $pageId,
+            'originalName'  => $subIdx->original_name,
+            'languageCount' => $languageCount,
+            'pageId'        => $pageId,
         ]);
     }
 

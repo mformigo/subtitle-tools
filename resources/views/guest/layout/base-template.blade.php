@@ -27,11 +27,7 @@
 
         <link rel="icon" type="image/png" href="/images/favicon.png" />
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/css/materialize.min.css" />
-
-        <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}" />
-        <link rel="stylesheet" type="text/css" href="/css/flags.css" />
+        <link rel="stylesheet" type="text/css" href="{{ mix('css/main.css') }}" />
 
         @if(App::environment('production'))
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -52,21 +48,20 @@
         @endif
 
     </head>
-    <body>
+    <body class="font-sans relative overflow-hidden overflow-y-scroll">
 
         @include('guest.layout.header')
 
         @include('helpers.anti-adblock-banner')
 
-        <div id="app">
+        <div id="app" class="container mx-auto px-4">
             @yield('content')
         </div>
 
         @include('guest.layout.footer')
 
-        <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
-        <script type="text/javascript" src="/js/materialize.min.js"></script>
-        @stack('inline-footer-scripts')
+        <script src="{{ mix('js/app.js') }}"></script>
+        @stack('footer')
 
     </body>
 </html>

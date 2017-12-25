@@ -1,24 +1,19 @@
 <template>
-    <div id="GroupArchive">
+    <div class="flex items-center mb-8">
+        <img class="mr-4" src="/images/archive-icon.png" alt="Archive">
 
-        <img src="/images/archive-icon.png" alt="Archive">
-
-        <span class="status">
-            <div v-if="this.archiveStatus === false">
-                Loading...
-            </div>
-            <div v-else-if="this.archiveRequestUrl">
-                <a href="javascript:" @click="requestArchive(archiveRequestUrl);archiveStatus = false;">{{ this.archiveStatus }}</a>
-            </div>
-            <div v-else-if="this.archiveDownloadUrl">
-
-                <download-link :url="this.archiveDownloadUrl" :text="this.archiveStatus"></download-link>
-
-            </div>
-            <div v-else>
-                {{ this.archiveStatus }}
-            </div>
-        </span>
+        <div v-if="this.archiveStatus === false">
+            Loading...
+        </div>
+        <div v-else-if="this.archiveRequestUrl">
+            <a href="javascript:" @click="requestArchive(archiveRequestUrl);archiveStatus = false;">{{ archiveStatus }}</a>
+        </div>
+        <div v-else-if="this.archiveDownloadUrl">
+            <download-link :url="this.archiveDownloadUrl" :text="archiveStatus"></download-link>
+        </div>
+        <div v-else>
+            {{ archiveStatus }}
+        </div>
 
     </div>
 </template>
@@ -41,31 +36,19 @@
                 this.archiveRequestUrl = response.data.archiveRequestUrl;
                 this.archiveDownloadUrl = response.data.archiveDownloadUrl;
                 this.archiveStatus = response.data.archiveStatus;
+            });
 
-                if(this.archiveRequestUrl === false && this.archiveDownloadUrl === false) {
-                    this.joinPusherChannel();
-                }
+            Echo.channel(`file-group.${this.urlKey}`).listen('FileGroupChanged', (newFileGroup) => {
+                this.archiveRequestUrl = newFileGroup.archiveRequestUrl;
+                this.archiveDownloadUrl = newFileGroup.archiveDownloadUrl;
+                this.archiveStatus = newFileGroup.archiveStatus;
             });
         },
 
         methods: {
             requestArchive: function(requestUrl) {
-                this.joinPusherChannel();
-
                 return axios.post(requestUrl);
             },
-
-            joinPusherChannel: function() {
-                Echo.channel(`file-group.${this.urlKey}`).listen('FileGroupChanged', (newFileGroup) => {
-                    this.archiveRequestUrl = newFileGroup.archiveRequestUrl;
-                    this.archiveDownloadUrl = newFileGroup.archiveDownloadUrl;
-                    this.archiveStatus = newFileGroup.archiveStatus;
-
-                    // if(this.archiveRequestUrl !== false || this.archiveDownloadUrl !== false) {
-                    //     Echo.leave(`file-group.${this.urlKey}`);
-                    // }
-                });
-            }
         },
 
     }

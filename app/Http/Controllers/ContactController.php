@@ -13,7 +13,7 @@ class ContactController extends Controller
 
     public function post(Request $request)
     {
-        $fields = $request->validate([
+        $request->validate([
            'message' => 'required',
         ]);
 
@@ -21,10 +21,10 @@ class ContactController extends Controller
 
         file_put_contents(
             $outputFilePath,
-            "<h4>" . now() . " -- " . $request->ip() . "</h4><pre>" . htmlspecialchars($fields['message']) . "</pre>\r\n\r\n<hr>",
+            '<h4>'.now().' -- '.$request->ip().'</h4><pre>'.htmlspecialchars($request->get('message'))."</pre>\r\n\r\n<hr>",
             FILE_APPEND
         );
 
-        return back()->with('sentMessage', true);
+        return view('guest.contact')->with('sentMessage', true);
     }
 }

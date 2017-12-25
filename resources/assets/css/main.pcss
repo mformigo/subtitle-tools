@@ -1,0 +1,104 @@
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, you should import this line from it's own file:
+ *
+ * @import "./tailwind-preflight.css";
+ *
+ * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
+ */
+@tailwind preflight;
+
+/**
+ * Here you would add any of your custom component classes; stuff that you'd
+ * want loaded *before* the utilities so that the utilities could still
+ * override them.
+ */
+
+h1 {
+    @apply .mb-2
+}
+
+h2, h3, h4 {
+    @apply .mt-6
+}
+
+a {
+    @apply .no-underline
+}
+
+
+.tool-btn {
+    @apply .bg-blue .rounded .text-white .p-2 .my-4 .float-right;
+
+    min-width: 6rem;
+}
+
+.tool-btn:hover {
+    @apply .bg-blue-dark
+}
+
+.field {
+    @apply .shadow .appearance-none .border .rounded .py-2 .px-3
+}
+
+
+.min-w-24 {
+    min-width: 6rem;
+}
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ * If using `postcss-import`, you should import this line from it's own file:
+ *
+ * @import "./tailwind-utilities.css";
+ *
+ * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
+ */
+@tailwind utilities;
+
+/**
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
+ */
+
+
+#hamburger-menu {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+
+    top: 0;
+    right: -300px;
+
+    transition: all 0.2s linear;
+}
+
+#hamburger-menu.hamburger-visible {
+    right: 0;
+}
+
+/*
+ * Button in the header for opening the hamburger
+ */
+#hamburger-opener {
+    @apply .cursor-pointer .select-none;
+}
+
+/*
+ * Button in the hamburger for closing the hamburger
+ */
+#hamburger-closer {
+    @apply .cursor-pointer .select-none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    padding: 8px;
+}

@@ -1,19 +1,19 @@
-<div class="container">
-    <div id="please-im-begging-you" class="hidden" aria-hidden="true">
-        <img src="/images/adblock-logo.png" alt="Please disable your adblocker for this website">
+<div id="AntiAdblock" class="container mx-auto px-2 mb-8 hidden">
+    <div class="flex max-w-lg" aria-hidden="true">
+        <img class="h-10 mr-4" src="/images/adblock-logo.png" alt="Please disable your adblocker for this website">
         <span>
             <strong>Could you whitelist this website in your adblocker?</strong>
-            I would appreciate it if you could support me by disabling your adblocker, I've put a lot of hours into making these tools
+            I would appreciate it if you could support me by disabling your adblocker, the ads help pay for the server costs
         </span>
     </div>
 </div>
 
-@push('inline-footer-scripts')
+@push('footer')
     <script>
         function adBlockDetected() {
-            document.getElementById('please-im-begging-you').classList.remove("hidden");
+            document.getElementById("AntiAdblock").classList.remove("hidden");
         }
 
-        (typeof blockAdBlock === 'undefined') ? adBlockDetected() : blockAdBlock.onDetected(adBlockDetected);
+        (typeof blockAdBlock === "undefined") ? adBlockDetected() : blockAdBlock.onDetected(adBlockDetected);
     </script>
 @endpush

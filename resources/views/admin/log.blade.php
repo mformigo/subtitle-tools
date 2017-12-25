@@ -53,7 +53,7 @@
 
 @endsection
 
-@push('inline-footer-scripts')
+@push('footer')
     <script>
         function toggleStacktrace(entryNumber)
         {

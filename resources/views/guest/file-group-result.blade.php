@@ -8,52 +8,37 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
-
-        @slot('title') Download @endslot
-
+    <h1>Download</h1>
+    <p>
         Your files are being processed.
         Once they are done the page will update automatically.
+    </p>
 
-    @endcomponent
 
-    <section class="file-group-result {{ $fileCount === 1 ? 'single-file' : '' }}">
-        <div class="container">
+    @if($fileCount > 1)
+        <h3 class="mb-2">Download zip file</h3>
+        <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
+    @endif
 
-            <div class="archive-and-ad">
 
-                @if($fileCount > 5)
-                    <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
-                @endif
-
-                <div class="above-file-job-result-ad">
-                    @if(App::environment('production'))
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:300px;height:250px"
-                             data-ad-client="ca-pub-8027891891391991"
-                             data-ad-slot="3208706526"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                    @else
-                        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px;border: 1px solid black"></ins>
-                    @endif
-                </div>
-
-            </div>
-
-            <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
-
-        </div>
-    </section>
-
-    <div class="container">
-        <br/>
-        <br/>
-
-        <a class="btn" href="{{ $returnUrl }}">Back to tool</a>
+    <div class="block lg:hidden my-8">
+        @include('helpers.ads.result-page-large-mobile-banner')
     </div>
+
+
+    <div class="flex my-8">
+        <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
+
+        <div class="mx-auto lg:block hidden">
+            @if($fileCount > 15)
+                @include('helpers.ads.result-page-large-skyscraper')
+            @else
+                @include('helpers.ads.result-page-large-rectangle')
+            @endif
+        </div>
+    </div>
+
+    <a class="tool-btn float-none" href="{{ $returnUrl }}">Back to tool</a>
 
 
 @endsection

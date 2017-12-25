@@ -6,16 +6,9 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
-
-        @slot('title') 404 - Page not Found @endslot
-
-    @endcomponent
-
-    <div class="container">
-
+    <h1>404 - Page not Found</h1>
+    <p>
         <a href="{{ route('home') }}" class="btn">Back to homepage</a>
-
-    </div>
+    </p>
 
 @endsection

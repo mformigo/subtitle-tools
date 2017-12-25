@@ -8,13 +8,10 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
-
-        @slot('title') Convert Subtitles to plain text @endslot
-
+    <h1>Convert Subtitles to plain text</h1>
+    <p>
         Online tool for extracting all text from subtitle files.
-
-    @endcomponent
+    </p>
 
 
     @component('guest.components.tool-form')
@@ -27,21 +24,16 @@
 
     @endcomponent
 
-    <section class="text-content">
-        <div class="container">
 
-            <h2>Extracting text from subtitles</h2>
-            <p>
-                This tool extracts all text from subtitle files, it removes all timestamps and other effects.
-                The output is saved as a text (.txt) file, this file can be opened by any text editor, such as Notepad or Microsoft Word.
-                <br/><br/>
-                This tool is especially useful for language learners, who can easily print out a transcript of a movie or video for studying.
-                For Chinese students, it can be used together with the <a href="{{ route('pinyin') }}">pinyin subtitles tool</a> to create a plain text file with Chinese and pinyin.
-                <br/><br/>
-                You can upload multiple files at once. You can also upload a zip or rar file to convert a batch of subtitles.
-            </p>
-
-        </div>
-    </section>
+    <h2>Extracting text from subtitles</h2>
+    <p>
+        This tool extracts all text from subtitle files, it removes all timestamps and other effects.
+        The output is saved as a text (.txt) file, this file can be opened by any text editor, such as Notepad or Microsoft Word.
+        <br/><br/>
+        This tool is especially useful for language learners, who can easily print out a transcript of a movie or video for studying.
+        For Chinese students, it can be used together with the <a href="{{ route('pinyin') }}">pinyin subtitles tool</a> to create a plain text file with Chinese and pinyin.
+        <br/><br/>
+        You can upload multiple files at once. You can also upload a zip or rar file to convert a batch of subtitles.
+    </p>
 
 @endsection

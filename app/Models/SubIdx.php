@@ -46,7 +46,7 @@ class SubIdx extends Model
 
     protected function getFilePathWithoutExtensionAttribute()
     {
-        return storage_disk_file_path($this->store_directory . $this->filename);
+        return storage_disk_file_path($this->store_directory.$this->filename);
     }
 
     public function languages()
@@ -72,7 +72,7 @@ class SubIdx extends Model
         return app(VobSub2SrtInterface::class, ['path' => $this->filePathWithoutExtension, 'subIdx' => $this]);
     }
 
-    private function makeLanguageExtractJobs()
+    public function makeLanguageExtractJobs()
     {
         $languages = $this->getVobSub2Srt()->getLanguages();
 

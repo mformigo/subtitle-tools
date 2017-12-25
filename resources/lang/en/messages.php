@@ -3,12 +3,11 @@
 return [
 
     'status.queued'     => 'Queued',
-    'status.processing' => 'Processing...',
+    'status.processing' => 'Processing',
     'status.finished'   => 'Finished',
     'status.failed'     => 'Failed',
 
     'download' => 'Download',
-    'files_are_being_uploaded' => 'Your files are being uploaded...',
 
     'not_a_text_file' => 'This file is not a text file',
     'cant_convert_file_to_srt' => 'This file can\'t be converted to srt',
@@ -37,10 +36,10 @@ return [
     'zip_job.close_failed' => 'Failed to close/save archive',
 
     'archive.not_available_yet' => 'Not available yet',
-    'archive.request' => 'Generate archive',
-    'archive.processing' => 'Generating archive...',
+    'archive.request' => 'Request zip file',
+    'archive.processing' => 'Generating zip file...',
     'archive.failed' => 'Failed',
-    'archive.download' => 'Download archive',
+    'archive.download' => 'Download zip',
 
     'pinyin.can_not_make_pinyin_subtitles_from_this_file_type' => 'This file type can not be made in to pinyin subtitles',
     'pinyin.unknown_mode' => 'Unknown error',

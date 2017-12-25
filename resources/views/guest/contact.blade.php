@@ -8,63 +8,43 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
-
-        @slot('title') Contact @endslot
-
+    <h1>Contact</h1>
+    <p>
         Your feedback is greatly appreciated!
+    </p>
 
-    @endcomponent
 
-    <div class="container">
-        <section class="quick-message">
+    <h2>Quick message</h2>
+    <p>
+        If you want to send me a quick message, type it here:
+    </p>
 
-            <h2>Quick message</h2>
-            <p>
-                If you want to send me a quick message, type it here:
-            </p>
+    @if(isset($sentMessage))
+        <div class="w-full md:w-1/2 mt-4 p-2 rounded bg-green-lighter border-l-2 border-green">
+            Thank you for your message!
+        </div>
+    @endif
 
-            <form method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+    @foreach ($errors->all() as $error)
+        <div class="w-full md:w-1/2 mt-4 p-2 rounded bg-red-lighter border-l-2 border-red">
+            {{ $error }}
+        </div>
+    @endforeach
 
-                <textarea name="message" placeholder="Your message here..." required></textarea>
+    <form class="mt-4" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
 
-                <button type="submit" class="btn">
-                    <i class="material-icons right">send</i>
-                    Send Message
-                </button>
+        <textarea class="field block w-full md:w-1/2 h-24" name="message" placeholder="Your message here..." required></textarea>
 
-                @if(session('sentMessage'))
-                    <div class="alert alert-success">
-                        <strong>Thank you for your feedback!</strong>
-                    </div>
-                @endif
+        <button class="tool-btn float-none">Send message</button>
+    </form>
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
-            </form>
-
-        </section>
-    </div>
-
-    <div class="container">
-        <section class="contact-email">
-            <h2>Email</h2>
-            <p>
-                If you would like to ask a question, send me an email at: <a class="fw-b" href="mailto:sfottjes@gmail.com">sfottjes@gmail.com</a>
-                <br/><br/>
-                If you have a problem with a subtitle file, please include it as an attachment.
-            </p>
-
-        </section>
-    </div>
+    <h2>Email</h2>
+    <p>
+        If you would like to ask a question, send me an email at: <a class="fw-b" href="mailto:sfottjes@gmail.com">sfottjes@gmail.com</a>
+        <br/><br/>
+        If you have a problem with a subtitle file, please include it as an attachment.
+    </p>
 
 @endsection

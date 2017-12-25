@@ -55,7 +55,6 @@ class SupController extends Controller
             'originalName' => $supJob->original_name,
             'ocrLanguage'  => $supJob->ocr_language,
             'urlKey'       => $urlKey,
-            'returnUrl'    => route('sup'),
         ]);
     }
 

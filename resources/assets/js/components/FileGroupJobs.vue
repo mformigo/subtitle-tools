@@ -1,38 +1,24 @@
 <template>
-    <div id="FileJobs" :class="this.fileJobs.length == 1 ? 'single-file' : 'multi-file'">
+    <div class="w-full max-w-sm">
+        <div v-for="fileJob in fileJobs" class="mb-4">
 
-        <div v-for="fileJob in fileJobs" class="file-job">
-
-            <div v-if="fileJob.errorMessage" class="status">
-                <strong>Failed</strong>
-            </div>
-            <div v-else-if="fileJob.isFinished" class="status">
-
-
-                <i v-show="fileJobs.length == 1" class='material-icons'>file_download</i>
-
-                <strong>
-                    <download-link :url="urlKey + '/' + fileJob.id" text="Download"></download-link>
-                </strong>
-            </div>
-            <div v-else class="status">
-
-                <spinner size="extra-small"></spinner>
-
-                <strong>Processing...</strong>
+        <div class="flex items-center">
+            <div class="w-24 min-w-24 mr-2 text-sm">
+                <strong v-if="fileJob.errorMessage">Failed</strong>
+                <strong v-else-if="fileJob.isFinished"><download-link :url="urlKey+'/'+fileJob.id" text="Download"></download-link></strong>
+                <strong v-else>{{ processingText }}</strong>
             </div>
 
-            <div class="original-name">
-                <img src="/images/file-icon.png" alt="file" :title="fileJob.originalName" />
+            <div class="flex items-center truncate">
+                <img class="w-6 mr-4" src="/images/file-icon.png" alt="file" :title="fileJob.originalName" />
                 {{ shorten(fileJob.originalName) }}
             </div>
-
-            <div v-if="fileJob.errorMessage" class="error-message">
-                Error: {{ fileJob.errorMessage }}
-            </div>
-
+        </div>
+        <div class="mt-2 mb-2" v-if="fileJob.errorMessage">
+            {{ fileJob.errorMessage }}
         </div>
 
+        </div>
     </div>
 </template>
 
@@ -42,6 +28,7 @@
         data: () => ({
             fileJobs: [],
             apiUpdateInterval: null,
+            processingText: 'Processing'
         }),
 
         props: [
@@ -67,16 +54,24 @@
                 });
             };
 
+            setInterval(() => {
+                this.processingText += '.';
+
+                if (this.processingText.endsWith('....')) {
+                    this.processingText = 'Processing';
+                }
+            }, 500);
+
             // Sometimes we don't properly receive the pusher message when
             // all files are done. So we manually check with an interval
             this.apiUpdateInterval = setInterval(updateFromApi, 3000);
-            
+
             updateFromApi();
         },
 
         methods: {
             shorten: function(string) {
-                let maxLength = 80;
+                let maxLength = 36;
 
                 if (string.length < maxLength ) {
                     return string;
@@ -88,13 +83,10 @@
             maybeClearUpdateInterval: function() {
                 let allFinished = this.fileJobs.every((element, index, array) => element.isFinished);
                 
-                if (allFinished) {
-                    // We can't disconnect Pusher/Echo here because the archive Vue Component
-                    // still needs it
-
-                    if (this.apiUpdateInterval !== null) {
-                        clearInterval(this.apiUpdateInterval);
-                    }
+                if (allFinished && this.apiUpdateInterval !== null) {
+                    // We can't disconnect Pusher/Echo here because the
+                    // archive Vue Component still needs it
+                    clearInterval(this.apiUpdateInterval);
                 }
             },
         }

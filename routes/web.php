@@ -12,19 +12,19 @@ Route::get('/contact')->uses('ContactController@index')->name('contact');
 Route::post('/contact')->uses('ContactController@post')->name('contact.post');
 
 Route::post('/file-group-archive/{urlKey}')->uses('DownloadController@fileGroupArchive')->name('fileGroupArchiveDownload');
-Route::get('/file-group-archive/{urlKey}', function($urlKey) {
+Route::get('/file-group-archive/{urlKey}', function ($urlKey) {
     $fileGroup = \App\Models\FileGroup::where('url_key', $urlKey)->firstOrFail();
 
     return redirect($fileGroup->resultRoute);
 });
 
-Route::prefix('convert-sub-idx-to-srt-online')->group(function() {
+Route::prefix('convert-sub-idx-to-srt-online')->group(function () {
     Route::get('/',                  ['uses' => 'SubIdxController@index',       'as' => 'subIdx']);
     Route::post('/',                 ['uses' => 'SubIdxController@post']);
     Route::get('/{pageId}',          ['uses' => 'SubIdxController@detail',      'as' => 'subIdx.show']);
     Route::post('/{pageId}/{index}', ['uses' => 'SubIdxController@downloadSrt', 'as' => 'subIdx.download']);
 
-    Route::get('/{pageId}/{index}', function($pageId, $index) {
+    Route::get('/{pageId}/{index}', function ($pageId, $index) {
         return redirect()->route('subIdx.show', $pageId);
     });
 });
@@ -38,13 +38,13 @@ Route::fileGroupTool('pinyin',             'PinyinController',             'make
 Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
 
 
-Route::prefix('convert-sup-to-srt-online')->group(function() {
+Route::prefix('convert-sup-to-srt-online')->group(function () {
     Route::get('/',                   ['uses' => 'SupController@index',    'as' => 'sup']);
     Route::post('/',                  ['uses' => 'SupController@post',     'as' => 'sup.post']);
     Route::get('/{urlKey}',           ['uses' => 'SupController@show',     'as' => 'sup.show']);
     Route::post('/{urlKey}/download', ['uses' => 'SupController@download', 'as' => 'sup.show.download']);
 
-    Route::get('/{urlKey}/download', function($urlKey) {
+    Route::get('/{urlKey}/download', function ($urlKey) {
         return redirect()->route('sup.show', $urlKey);
     });
 });

@@ -20,7 +20,7 @@ class SupJobTest extends TestCase
     {
         $inputFilePath = $this->testFilesStoragePath . ltrim($inputFilePath, '/');
 
-        if(! file_exists($inputFilePath)) {
+        if (! file_exists($inputFilePath)) {
             $this->fail('File does not exist: '.$inputFilePath);
         }
 
@@ -28,6 +28,7 @@ class SupJobTest extends TestCase
 
         return SupJob::create([
             'url_key'              => generate_url_key(),
+            'input_file_hash'      => '123',
             'ocr_language'         => $ocrLanguage,
             'input_stored_file_id' => $storedFile->id,
             'original_name'        => basename($inputFilePath),

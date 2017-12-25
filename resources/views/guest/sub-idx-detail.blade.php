@@ -8,49 +8,37 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
-        @slot('title') Sub/Idx Download @endslot
-
+    <h1>Sub/Idx Download</h1>
+    <p>
         The srt files are being extracted from the sub/idx file.
         This page will update automatically.
         Extracting a language can take a few minutes, please be patient.
-    @endcomponent
-
-    <div class="container">
-
-        <p>
-            Extracting srt files from <strong>{{ $originalName }}</strong>
-        </p>
-
-        <div class="result-and-ad">
-
-            <sub-idx-languages page-id="{{ $pageId }}"></sub-idx-languages>
+    </p>
 
 
-            <div class="sub-idx-detail-ad">
-                @if(App::environment('production'))
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    {{--ST-sub-idx-detail--}}
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:300px;height:250px"
-                         data-ad-client="ca-pub-8027891891391991"
-                         data-ad-slot="7553762758"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                @else
-                    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px;border: 1px solid black"></ins>
-                @endif
-            </div>
+    <p class="mt-4">
+        Extracting srt files from <strong>{{ $originalName }}</strong>
+    </p>
 
-        </div>
-
-
-
-        <br/>
-        <br/>
-        <a class="btn" href="{{ route('subIdx') }}">Back to tool</a>
-
+    <div class="block lg:hidden my-8">
+        @include('helpers.ads.result-page-large-mobile-banner')
     </div>
+
+
+    <div class="flex my-8">
+        <sub-idx-languages page-id="{{ $pageId }}"></sub-idx-languages>
+
+        <div class="mx-auto lg:block hidden">
+            @if($languageCount > 10)
+                @include('helpers.ads.result-page-large-skyscraper')
+            @else
+                @include('helpers.ads.result-page-large-rectangle')
+            @endif
+        </div>
+    </div>
+
+
+    <a class="tool-btn float-none" href="{{ route('subIdx') }}">Back to tool</a>
+
 
 @endsection

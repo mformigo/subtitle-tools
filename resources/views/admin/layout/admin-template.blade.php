@@ -26,7 +26,7 @@
         @yield('content')
     </div>
 
-    @stack('inline-footer-scripts')
+    @stack('footer')
 
 </body>
 </html>

@@ -1,57 +1,29 @@
 <template>
-    <div id="FileJobs" class="single-file">
+    <div class="w-full max-w-sm">
+        <div v-if="this.supJob != null">
 
-        <div v-if="supJob !== null">
-        <div class="file-job">
-
-            <div v-if="supJob.errorMessage" class="status">
-                <strong>Failed</strong>
+            <div class="flex items-center truncate">
+                <img class="w-8 mr-4" src="/images/file-icon.png" alt="file" :title="supJob.originalName" />
+                {{ shorten(supJob.originalName) }}
             </div>
-            <div v-else-if="supJob.isFinished" class="status">
 
-                <i class='material-icons'>file_download</i>
-
-                <strong>
-                    <download-link :url="urlKey + '/download'" text="Download"></download-link>
+            <div class="w-full mt-4">
+                <strong v-if="supJob.errorMessage">
+                    {{ supJob.errorMessage }}
+                </strong>
+                <strong v-else-if="supJob.isFinished">
+                    <download-link :url="urlKey+'/download'" text="Download"></download-link>
+                </strong>
+                <strong v-else>
+                    Processing... {{ statusMessage }}
                 </strong>
             </div>
-            <div v-else class="sup-job status">
-
-                <spinner size="extra-small"></spinner>
-
-                <strong>Processing...</strong>
-
-                <span>{{ statusMessage }}</span>
-
-            </div>
-
-            <div class="original-name">
-                <img src="/images/file-icon.png" alt="file" :title="supJob.originalName" />
-                {{ shorten(supJob.originalName) }}
-
-            </div>
-
-            <div class="ocr-language original-name">
-                <br/>
-                <br/>
-                <strong>OCR language: </strong> {{ ocrLanguage }}
-            </div>
-
-            <div v-if="supJob.errorMessage" class="error-message">
-                Error: {{ supJob.errorMessage }}
-            </div>
 
         </div>
-        </div>
-
     </div>
 </template>
 
 <script>
-
-    /*
-     * This component is a copy of FileGroupJobs.vue
-     */
 
     export default {
 
@@ -62,10 +34,15 @@
 
         props: [
             'urlKey',
-            'ocrLanguage'
         ],
 
         mounted() {
+            axios.get(`/api/v1/sup-job/${this.urlKey}`).then(response => {
+                this.supJob = response.data.data;
+
+                this.maybeDisconnectFromChannels();
+            });
+
             Echo.channel(`sup-job.${this.urlKey}`).listen('SupJobChanged', (changedSupJob) => {
                 this.supJob = changedSupJob;
 
@@ -75,17 +52,11 @@
             Echo.channel(`sup-job.${this.urlKey}.progress`).listen('SupJobProgressChanged', (newProgress) => {
                 this.statusMessage = newProgress.statusMessage;
             });
-
-            axios.get(`/api/v1/sup-job/${this.urlKey}`).then(response => {
-                this.supJob = response.data.data;
-
-                this.maybeDisconnectFromChannels();
-            });
         },
 
         methods: {
             shorten: function(string) {
-                let maxLength = 80;
+                let maxLength = 40;
 
                 if(string.length < maxLength ) {
                     return string;

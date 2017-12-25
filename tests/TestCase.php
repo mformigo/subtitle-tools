@@ -5,13 +5,14 @@ namespace Tests;
 use App\Models\StoredFile;
 use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use SjorsO\TextFile\Facades\TextFileReader;
 use Spatie\Snapshots\MatchesSnapshots;
+use Illuminate\Contracts\Console\Kernel;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, MatchesSnapshots;
+    use MatchesSnapshots;
 
     public $testFilesStoragePath;
 
@@ -82,5 +83,17 @@ abstract class TestCase extends BaseTestCase
         }
 
         $this->doFileSnapshotAssertion($file);
+    }
+
+    public function createApplication()
+    {
+        $app = require __DIR__.'/../bootstrap/app.php';
+
+        $app->make(Kernel::class)->bootstrap();
+
+        // Reduce bcrypt strength to speed up the tests
+        Hash::setRounds(4);
+
+        return $app;
     }
 }

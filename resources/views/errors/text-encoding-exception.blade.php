@@ -6,29 +6,21 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
-
-        @slot('title') Whoops @endslot
-
-    @endcomponent
-
-    <div class="container">
-
-        <p>
-            You uploaded one or more files that use a text encoding we don't support yet.
-            <br/>
-            <br/>
-            The encoding you uploaded has been logged, we will try to support this encoding as soon as possible.
-            <br/>
-            <br/>
-            Unfortunately, we can't process your file right now.
-        </p>
-
+    <h1>Whoops</h1>
+    <p>
+        You uploaded one or more files that use a text encoding we don't support yet.
         <br/>
         <br/>
+        The encoding you uploaded has been logged, we will try to support this encoding as soon as possible.
+        <br/>
+        <br/>
+        Unfortunately, we can't process your file right now.
+    </p>
 
-        <a href="{{ route('home') }}" class="btn">Back to homepage</a>
+    <br/>
+    <br/>
 
-    </div>
+    <a href="{{ route('home') }}" class="btn">Back to homepage</a>
+
 
 @endsection

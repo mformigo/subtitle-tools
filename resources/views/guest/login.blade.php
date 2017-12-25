@@ -8,28 +8,26 @@
 
 @section('content')
 
-    @component('guest.components.page-intro')
 
-        @slot('title') Login @endslot
+    <h1>Login</h1>
 
-    @endcomponent
+    <form id="login" method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
 
+        <label class="block my-2 font-bold">
+            Username
+            <input class="block field" type="text" name="username" value="{{ old('username') }}" required autofocus>
+        </label>
 
-    <div class="container">
-        <form id="login" method="POST" action="{{ route('login') }}">
-            {{ csrf_field() }}
+        <label class="block my-2 font-bold">
+            Password
+            <input class="block field" type="password" name="password" required>
+        </label>
 
-            <label for="username">Username</label>
-            <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus>
+        <input id="remember" class="hidden" type="checkbox" name="remember" checked>
 
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" required>
+        <button type="submit" class="tool-btn float-none">Login</button>
 
-            <input id="remember" class="hidden" type="checkbox" name="remember" checked>
-
-            <button type="submit" class="btn">Login</button>
-
-        </form>
-    </div>
+    </form>
 
 @endsection
