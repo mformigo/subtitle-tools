@@ -207,6 +207,28 @@ return [
         'spa' => 'Spanish',
         'swe' => 'Swedish',
         'tha' => 'Thai',
+        'slv' => 'Slovenian',
+        'hrv' => 'Croatian',
+        'srp' => 'Serbian',
+        'por' => 'Portuguese',
+        'dan' => 'Danish',
+        'bel' => 'Belarusian',
+        'bul' => 'Bulgarian',
+        'epo' => 'Esperanto',
+        'est' => 'Estonian',
+        'gle' => 'Irish',
+        'heb' => 'Hebrew',
+        'hun' => 'Hungarian',
+        'ind' => 'Indonesian',
+        'ita' => 'Italian',
+        'kor' => 'Korean',
+        'lav' => 'Latvian',
+        'lit' => 'Lithuanian',
+        'mal' => 'Malayalam',
+        'tur' => 'Turkish',
+        'ukr' => 'Ukrainian',
+        'vie' => 'Vietnamese',
+        'yid' => 'Yiddish',
 
 
 
@@ -259,7 +281,7 @@ return [
 //        'bas' => 'Basa',
 //        'bat' => 'Baltic languages',
 //        'bej' => 'Beja; Bedawiyet',
-//        'bel' => 'Belarusian',
+
 //        'bem' => 'Bemba',
 //        'ben' => 'Bengali',
 //        'ber' => 'Berber languages',
@@ -278,7 +300,7 @@ return [
 //        'btk' => 'Batak languages',
 //        'bua' => 'Buriat',
 //        'bug' => 'Buginese',
-//        'bul' => 'Bulgarian',
+
 //        'bur (B)' => 'Burmese',
 //        'mya (T)' => '',
 //        'byn' => 'Blin; Bilin',
@@ -323,7 +345,7 @@ return [
 //        'cze (B)' => 'Czech',
 //        'ces (T)' => '',
 //        'dak' => 'Dakota',
-//        'dan' => 'Danish',
+
 //        'dar' => 'Dargwa',
 //        'day' => 'Land Dayak languages',
 //        'del' => 'Delaware',
@@ -349,7 +371,7 @@ return [
 //        'eng' => 'English',
 //        'enm' => 'English, Middle (1100-1500)',
 //        'epo' => 'Esperanto',
-//        'est' => 'Estonian',
+
 //        'baq (B)' => 'Basque',
 //        'eus (T)' => '',
 //        'ewe' => 'Ewe',
@@ -359,7 +381,7 @@ return [
 //        'fat' => 'Fanti',
 //        'fij' => 'Fijian',
 //        'fil' => 'Filipino; Pilipino',
-//        'fin' => 'Finnish',
+
 //        'fiu' => 'Finno-Ugrian languages',
 //        'fon' => 'Fon',
 //        'frm' => 'French, Middle (ca.1400-1600)',
@@ -380,7 +402,7 @@ return [
 //        'gez' => 'Geez',
 //        'gil' => 'Gilbertese',
 //        'gla' => 'Gaelic; Scottish Gaelic',
-//        'gle' => 'Irish',
+
 //        'glg' => 'Galician',
 //        'glv' => 'Manx',
 //        'gmh' => 'German, Middle High (ca.1050-1500)',
@@ -400,7 +422,7 @@ return [
 //        'hat' => 'Haitian; Haitian Creole',
 //        'hau' => 'Hausa',
 //        'haw' => 'Hawaiian',
-//        'heb' => 'Hebrew',
+
 //        'her' => 'Herero',
 //        'hil' => 'Hiligaynon',
 //        'him' => 'Himachali languages; Western Pahari languages',
@@ -408,9 +430,9 @@ return [
 //        'hit' => 'Hittite',
 //        'hmn' => 'Hmong; Mong',
 //        'hmo' => 'Hiri Motu',
-//        'hrv' => 'Croatian',
+
 //        'hsb' => 'Upper Sorbian',
-//        'hun' => 'Hungarian',
+
 //        'hup' => 'Hupa',
 //        'arm (B)' => 'Armenian',
 //        'hye (T)' => '',
@@ -426,7 +448,7 @@ return [
 //        'ilo' => 'Iloko',
 //        'ina' => 'Interlingua (International Auxiliary Language Association)',
 //        'inc' => 'Indic languages',
-//        'ind' => 'Indonesian',
+
 //        'ine' => 'Indo-European languages',
 //        'inh' => 'Ingush',
 //        'ipk' => 'Inupiaq',
@@ -434,7 +456,7 @@ return [
 //        'iro' => 'Iroquoian languages',
 //        'ice (B)' => 'Icelandic',
 //        'isl (T)' => '',
-//        'ita' => 'Italian',
+
 //        'jav' => 'Javanese',
 //        'jbo' => 'Lojban',
 //        'jpn' => 'Japanese',
@@ -465,7 +487,7 @@ return [
 //        'kok' => 'Konkani',
 //        'kom' => 'Komi',
 //        'kon' => 'Kongo',
-//        'kor' => 'Korean',
+
 //        'kos' => 'Kosraean',
 //        'kpe' => 'Kpelle',
 //        'krc' => 'Karachay-Balkar',
@@ -481,11 +503,11 @@ return [
 //        'lam' => 'Lamba',
 //        'lao' => 'Lao',
 //        'lat' => 'Latin',
-//        'lav' => 'Latvian',
+
 //        'lez' => 'Lezghian',
 //        'lim' => 'Limburgan; Limburger; Limburgish',
 //        'lin' => 'Lingala',
-//        'lit' => 'Lithuanian',
+
 //        'lol' => 'Mongo',
 //        'loz' => 'Lozi',
 //        'ltz' => 'Luxembourgish; Letzeburgesch',
@@ -503,7 +525,7 @@ return [
 //        'mah' => 'Marshallese',
 //        'mai' => 'Maithili',
 //        'mak' => 'Makasar',
-//        'mal' => 'Malayalam',
+
 //        'man' => 'Mandingo',
 //        'mao (B)' => 'Maori',
 //        'mri (T)' => '',
@@ -590,7 +612,7 @@ return [
 //        'pli' => 'Pali',
 //        'pol' => 'Polish',
 //        'pon' => 'Pohnpeian',
-//        'por' => 'Portuguese',
+
 //        'pra' => 'Prakrit languages',
 //        'pro' => 'Provençal, Old (to 1500);Occitan, Old (to 1500)',
 //        'pus' => 'Pushto; Pashto',
@@ -605,7 +627,7 @@ return [
 //        'rum' => 'Romanian; Moldavian; Moldovan',
 //        'run' => 'Rundi',
 //        'rup' => 'Aromanian; Arumanian; Macedo-Romanian',
-//        'rus' => 'Russian',
+
 //        'sad' => 'Sandawe',
 //        'sag' => 'Sango',
 //        'sah' => 'Yakut',
@@ -629,7 +651,7 @@ return [
 //        'sla' => 'Slavic languages',
 //        'slo' => 'Slovak',
 //        'slo' => 'Slovak',
-//        'slv' => 'Slovenian',
+
 //        'sma' => 'Southern Sami',
 //        'sme' => 'Northern Sami',
 //        'smi' => 'Sami languages',
@@ -648,7 +670,7 @@ return [
 //        'alb' => 'Albanian',
 //        'srd' => 'Sardinian',
 //        'srn' => 'Sranan Tongo',
-//        'srp' => 'Serbian',
+
 //        'srr' => 'Serer',
 //        'ssa' => 'Nilo-Saharan languages',
 //        'ssw' => 'Swati',
@@ -657,7 +679,7 @@ return [
 //        'sus' => 'Susu',
 //        'sux' => 'Sumerian',
 //        'swa' => 'Swahili',
-//        'swe' => 'Swedish',
+
 //        'syc' => 'Classical Syriac',
 //        'syr' => 'Syriac',
 //        'tah' => 'Tahitian',
@@ -687,7 +709,7 @@ return [
 //        'tuk' => 'Turkmen',
 //        'tum' => 'Tumbuka',
 //        'tup' => 'Tupi languages',
-//        'tur' => 'Turkish',
+
 //        'tut' => 'Altaic languages',
 //        'tvl' => 'Tuvalu',
 //        'twi' => 'Twi',
@@ -695,14 +717,14 @@ return [
 //        'udm' => 'Udmurt',
 //        'uga' => 'Ugaritic',
 //        'uig' => 'Uighur; Uyghur',
-//        'ukr' => 'Ukrainian',
+
 //        'umb' => 'Umbundu',
 //        'und' => 'Undetermined',
 //        'urd' => 'Urdu',
 //        'uzb' => 'Uzbek',
 //        'vai' => 'Vai',
 //        'ven' => 'Venda',
-//        'vie' => 'Vietnamese',
+
 //        'vol' => 'Volapük',
 //        'vot' => 'Votic',
 //        'wak' => 'Wakashan languages',
@@ -717,7 +739,7 @@ return [
 //        'xho' => 'Xhosa',
 //        'yao' => 'Yao',
 //        'yap' => 'Yapese',
-//        'yid' => 'Yiddish',
+
 //        'yor' => 'Yoruba',
 //        'ypk' => 'Yupik languages',
 //        'zap' => 'Zapotec',

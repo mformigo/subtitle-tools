@@ -25,7 +25,7 @@
 
 
 
-        <div id="hamburger-menu" class="bg-grey-lighter">
+        <div id="hamburger-menu" class="bg-grey-lighter z-50">
             <div id="hamburger-closer" onclick="closeHamburgerMenu()">
                 ✖
             </div>
