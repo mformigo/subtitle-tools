@@ -20,6 +20,7 @@ class RedirectsServiceProvider extends ServiceProvider
         'partial-subtitle-shifter' => 'shiftPartial',
         'multi-subtitle-shift'     => 'shiftPartial',
         'convert-to-utf8'          => 'convertToUtf8',
+        'convert-sub-idx-to-srt'   => 'subIdx',
     ];
 
     public function boot()
