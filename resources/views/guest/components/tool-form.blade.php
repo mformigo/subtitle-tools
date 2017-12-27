@@ -29,16 +29,14 @@
             {{ $extraAfter }}
         @endif
 
-        <button type="submit" class="tool-btn">{{ $buttonText }}</button>
+        <button type="submit" class="tool-btn ml-auto">{{ $buttonText }}</button>
 
 
         @if ($errors->any())
-            <div class="alert alert-danger" id="Errors">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+            <div class="inline-block mt-8 p-3 bg-red-lighter">
+                @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                @endforeach
             </div>
         @endif
 

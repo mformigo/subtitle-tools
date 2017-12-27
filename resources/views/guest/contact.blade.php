@@ -36,7 +36,7 @@
 
         <textarea class="field block w-full md:w-1/2 h-24" name="message" placeholder="Your message here..." required></textarea>
 
-        <button class="tool-btn float-none">Send message</button>
+        <button class="tool-btn">Send message</button>
     </form>
 
 

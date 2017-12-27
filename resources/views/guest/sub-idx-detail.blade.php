@@ -38,7 +38,7 @@
     </div>
 
 
-    <a class="tool-btn float-none" href="{{ route('subIdx') }}">Back to tool</a>
+    <button type="button" class="tool-btn" href="{{ route('subIdx') }}">Back to tool</button>
 
 
 @endsection

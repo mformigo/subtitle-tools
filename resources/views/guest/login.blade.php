@@ -26,7 +26,7 @@
 
         <input id="remember" class="hidden" type="checkbox" name="remember" checked>
 
-        <button type="submit" class="tool-btn float-none">Login</button>
+        <button type="submit" class="tool-btn">Login</button>
 
     </form>
 
