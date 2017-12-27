@@ -11,6 +11,7 @@
 
             <div class="w-24">
                 <span v-if="lang.downloadUrl"><download-link :url="lang.downloadUrl" text="Download"></download-link></span>
+                <span v-else-if="lang.hasError">{{ lang.status }}</span>
                 <span v-else>{{ lang.status }}{{ loadingDots }}</span>
             </div>
         </div>
