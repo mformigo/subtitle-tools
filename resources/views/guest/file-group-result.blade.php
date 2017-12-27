@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <button type="button" class="tool-btn" href="{{ $returnUrl }}">Back to tool</button>
+    <a class="tool-btn inline-block" href="{{ $returnUrl }}">Back to tool</a>
 
 
 @endsection

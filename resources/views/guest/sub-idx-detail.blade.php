@@ -38,7 +38,7 @@
     </div>
 
 
-    <button type="button" class="tool-btn" href="{{ route('subIdx') }}">Back to tool</button>
+    <a class="tool-btn inline-block" href="{{ route('subIdx') }}">Back to tool</a>
 
 
 @endsection
