@@ -8,7 +8,7 @@
 
     <h1>404 - Page not Found</h1>
     <p>
-        <a href="{{ route('home') }}" class="btn">Back to homepage</a>
+        <a href="{{ route('home') }}">Back to homepage</a>
     </p>
 
 @endsection

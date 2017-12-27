@@ -20,7 +20,7 @@
     <br/>
     <br/>
 
-    <a href="{{ route('home') }}" class="btn">Back to homepage</a>
+    <a href="{{ route('home') }}">Back to homepage</a>
 
 
 @endsection
