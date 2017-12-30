@@ -34,7 +34,7 @@
                 <div class="st-col minw-100">{{ optional($sup->meta)->format }}</div>
                 <div class="st-col minw-100">{{ optional($sup->meta)->cue_count }} cues</div>
                 <div class="st-col minw-75">{{ $sup->ocr_language }}</div>
-                <div class="st-col st-grow">{{ $sup->inputStoredFile->meta ? round($sup->inputStoredFile->meta->size / 1024, 0) : '' }}kb</div>
+                <div class="st-col st-grow">{{ ($sup->inputStoredFile->meta ?? null) ? round($sup->inputStoredFile->meta->size / 1024, 0).'kb' : '' }}</div>
                 <div class="st-col minw-75">{{ $sup->queue_time }} s</div>
                 <div class="st-col minw-75">{{ $sup->extract_time }} s</div>
                 <div class="st-col minw-75">{{ $sup->work_time }} s</div>
