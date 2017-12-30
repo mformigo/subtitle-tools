@@ -2660,16 +2660,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.16",
+            "version": "v0.8.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "d4c8eab0683dc056f2ca54ca67f5388527c068b1"
+                "reference": "5069b70e8c4ea492c2b5939b6eddc78bfe41cfec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/d4c8eab0683dc056f2ca54ca67f5388527c068b1",
-                "reference": "d4c8eab0683dc056f2ca54ca67f5388527c068b1",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/5069b70e8c4ea492c2b5939b6eddc78bfe41cfec",
+                "reference": "5069b70e8c4ea492c2b5939b6eddc78bfe41cfec",
                 "shasum": ""
             },
             "require": {
@@ -2728,7 +2728,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-12-10T21:49:27+00:00"
+            "time": "2017-12-28T16:14:16+00:00"
         },
         {
             "name": "pusher/pusher-php-server",
@@ -3517,16 +3517,16 @@
         },
         {
             "name": "sjorso/pinyin",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/pinyin-package.git",
-                "reference": "0f6c477b31bed54be1f5f640abf276ba7bc1993d"
+                "reference": "f2959ccb2646d52f77e5b72f5484f74778a44106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/pinyin-package/zipball/0f6c477b31bed54be1f5f640abf276ba7bc1993d",
-                "reference": "0f6c477b31bed54be1f5f640abf276ba7bc1993d",
+                "url": "https://api.github.com/repos/SjorsO/pinyin-package/zipball/f2959ccb2646d52f77e5b72f5484f74778a44106",
+                "reference": "f2959ccb2646d52f77e5b72f5484f74778a44106",
                 "shasum": ""
             },
             "require": {
@@ -3569,7 +3569,7 @@
                 "convert",
                 "romanization"
             ],
-            "time": "2017-09-24T07:43:21+00:00"
+            "time": "2017-12-27T15:22:47+00:00"
         },
         {
             "name": "sjorso/sup",

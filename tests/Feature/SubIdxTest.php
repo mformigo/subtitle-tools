@@ -79,20 +79,6 @@ class SubIdxTest extends TestCase
     }
 
     /** @test */
-    function it_logs_vobsub2srt_output()
-    {
-        $this->withoutJobs();
-
-        $subIdx = $this->postVobSub();
-
-        $this->assertDatabaseHas('vobsub2srt_outputs', ['sub_idx_id' => 1, 'argument' => '--langlist']);
-
-        $outputs = $subIdx->vobsub2srtOutputs()->firstOrFail();
-
-        $this->assertTrue(strlen($outputs->output) > 20, "Logged output is too short, expecting at least 20 characters");
-    }
-
-    /** @test */
     function it_extracts_languages()
     {
         $this->useMockVobSub2Srt();

@@ -9,37 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * App\Models\SubIdx
- *
- * @mixin \Eloquent
- * @mixin \Illuminate\Database\Eloquent\Builder
- * @mixin \Illuminate\Database\Query\Builder
- * @property int $id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property string $page_id
- * @property string $store_directory
- * @property string $filename
- * @property string $original_name
- * @property string $sub_hash
- * @property string $idx_hash
- * @property string $filePathWithoutExtension
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereFilename($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereIdxHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereOriginalName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx wherePageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereStoreDirectory($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereSubHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereUpdatedAt($value)
- * @property int|null $is_readable
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SubIdx whereIsReadable($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SubIdxLanguage[] $languages
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vobsub2srtOutput[] $vobsub2srtOutputs
- * @property-read \App\Models\SubIdxMeta $meta
- */
 class SubIdx extends Model
 {
     protected $guarded = [];
@@ -51,12 +20,12 @@ class SubIdx extends Model
 
     public function languages()
     {
-        return $this->hasMany('App\Models\SubIdxLanguage');
+        return $this->hasMany(\App\Models\SubIdxLanguage::class);
     }
 
     public function vobsub2srtOutputs()
     {
-        return $this->hasMany('App\Models\Vobsub2srtOutput');
+        return $this->hasMany(\App\Models\Vobsub2srtOutput::class);
     }
 
     public function meta()
@@ -69,14 +38,17 @@ class SubIdx extends Model
      */
     public function getVobSub2Srt()
     {
-        return app(VobSub2SrtInterface::class, ['path' => $this->filePathWithoutExtension, 'subIdx' => $this]);
+        return app(VobSub2SrtInterface::class, [
+            'path'   => $this->file_path_without_extension,
+            'subIdx' => $this,
+        ]);
     }
 
     public function makeLanguageExtractJobs()
     {
         $languages = $this->getVobSub2Srt()->getLanguages();
 
-        foreach($languages as $language) {
+        foreach ($languages as $language) {
             $subIdxLanguage = $this->languages()->create($language);
 
             ExtractSubIdxLanguageJob::dispatch($subIdxLanguage)->onQueue('sub-idx');
@@ -88,40 +60,43 @@ class SubIdx extends Model
         $subHash = FileHash::make($subFile);
         $idxHash = FileHash::make($idxFile);
 
-        $fromCache = SubIdx::where(['sub_hash' => $subHash, 'idx_hash' => $idxHash]);
+        $fromCache = SubIdx::query()
+            ->where('sub_hash', $subHash)
+            ->where('idx_hash', $idxHash);
 
         if($fromCache->count() > 0) {
             return $fromCache->first();
         }
 
-        $baseFileName = substr($subHash, 0, 6) . substr($idxHash, 0, 6);
+        $baseFileName = substr($subHash, 0, 6).substr($idxHash, 0, 6);
 
-        // The date in this path is used in the PruneSubIdxFiles command
+        // The date in this path is used in the "PruneSubIdxFiles" command
         $storagePath = 'sub-idx/'.date('Y-z').'/'.time()."-{$baseFileName}/";
 
         Storage::makeDirectory($storagePath);
+
         // copy instead of moving to prevent from moving test files
-        copy($subFile->getRealPath(), storage_disk_file_path("{$storagePath}{$baseFileName}.sub"));
-        copy($idxFile->getRealPath(), storage_disk_file_path("{$storagePath}{$baseFileName}.idx"));
+        copy($subFile->getRealPath(), storage_disk_file_path($storagePath.$baseFileName.'.sub'));
+        copy($idxFile->getRealPath(), storage_disk_file_path($storagePath.$baseFileName.'.idx'));
 
         $subIdx = SubIdx::create([
             'original_name'   => pathinfo($subFile->getClientOriginalName(), PATHINFO_FILENAME),
             'store_directory' => $storagePath,
-            'filename' => $baseFileName,
-            'sub_hash' => $subHash,
-            'idx_hash' => $idxHash,
-            'is_readable' => false,
+            'filename'        => $baseFileName,
+            'sub_hash'        => $subHash,
+            'idx_hash'        => $idxHash,
+            'is_readable'     => false,
         ]);
 
         $subIdx->makeLanguageExtractJobs();
 
-        if($subIdx->languages->count() > 0) {
-            $subIdx->is_readable = true;
-            $subIdx->page_id = generate_url_key();
-            $subIdx->save();
+        if ($subIdx->languages->count() > 0) {
+            $subIdx->update([
+                'is_readable' => true,
+                'page_id'     => generate_url_key(),
+            ]);
         }
 
         return $subIdx;
     }
-
 }
