@@ -55,6 +55,10 @@ class SupJob extends Model
      */
     public function retry()
     {
+        if ($this->inputStoredFile === null) {
+            abort(422, 'Can not retry sup job, input file has been deleted');
+        }
+
         $this->update([
             'created_at'             => now(),
             'updated_at'             => now(),

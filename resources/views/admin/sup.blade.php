@@ -40,7 +40,9 @@
                 <div class="st-col minw-75">{{ $sup->work_time }} s</div>
                 <div class="st-col minw-125">{{ \Carbon\Carbon::parse($sup->created_at)->diffForHumans() }}</div>
                 <div class="st-col minw-50">
-                    @include('admin.components.form-url', ['route' => route('admin.sup.retry', $sup->id), 'text' => 'Retry'])
+                    @if($sup->inputStoredFile !== null)
+                        @include('admin.components.form-url', ['route' => route('admin.sup.retry', $sup->id), 'text' => 'Retry'])
+                    @endif
                 </div>
             </div>
 
