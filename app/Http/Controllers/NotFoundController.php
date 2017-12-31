@@ -11,7 +11,7 @@ class NotFoundController extends Controller
     {
         $requestedPath = $request->getPathInfo();
 
-        if(!$this->isBlacklisted($requestedPath)) {
+        if (! $this->isBlacklisted($requestedPath)) {
             $timestamp = now();
 
             $userIp = $request->ip();
@@ -26,11 +26,11 @@ class NotFoundController extends Controller
         return response()->view('errors.404')->setStatusCode(404);
     }
 
-    private function isBlacklisted($requestedPath)
+    protected function isBlacklisted($requestedPath)
     {
         $blacklistFilePath = storage_disk_file_path('diagnostic/404-blacklist.txt');
 
-        if(!file_exists($blacklistFilePath)) {
+        if (! file_exists($blacklistFilePath)) {
             touch($blacklistFilePath);
         }
 

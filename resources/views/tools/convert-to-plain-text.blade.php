@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.convertToPlainText'))
 @section('description', __('seo.description.convertToPlainText'))
@@ -14,7 +14,7 @@
     </p>
 
 
-    @component('guest.components.tool-form')
+    @component('components.tool-form')
 
         @slot('title') Select subtitles to convert to plain text @endslot
 

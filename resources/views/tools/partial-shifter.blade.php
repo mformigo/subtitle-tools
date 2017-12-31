@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.shiftPartial'))
 @section('description', __('seo.description.shiftPartial'))
@@ -15,7 +15,7 @@
         The <a href="{{ route('shift') }}">shifter tool</a> adjusts the whole file, this tool only adjusts specific parts it.
     </p>
 
-    @component('guest.components.tool-form')
+    @component('components.tool-form')
 
         @slot('title') Select a file to resync @endslot
 

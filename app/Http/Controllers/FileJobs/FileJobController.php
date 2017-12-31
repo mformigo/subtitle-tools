@@ -31,7 +31,7 @@ abstract class FileJobController extends Controller
             ->where('tool_route', $this->getIndexRouteName())
             ->firstOrFail();
 
-        return view('guest.file-group-result', [
+        return view('tool-results.file-group-result', [
             'urlKey' => $urlKey,
             'returnUrl' => route($this->getIndexRouteName()),
             'fileCount' => $fileGroup->fileJobs()->count(),
@@ -70,7 +70,7 @@ abstract class FileJobController extends Controller
         $files = request()->files->get('subtitles');
 
         // this should never be true
-        if(count($files) === 0) {
+        if (count($files) === 0) {
             return back()->withErrors(["subtitles" => __('validation.unknown_error')]);
         }
 
@@ -80,20 +80,19 @@ abstract class FileJobController extends Controller
             'job_options' => $jobOptions,
         ]);
 
-        if($alwaysQueue || count($files) > 1) {
-            foreach($files as $file) {
+        if ($alwaysQueue || count($files) > 1) {
+            foreach ($files as $file) {
                 $this->dispatch(new $jobClass($fileGroup, $file));
             }
-        }
-        else {
+        } else {
             // need to use array_values because we mess up the keys somewhere
             $fileJob = $this->dispatchNow(new $jobClass($fileGroup, array_values($files)[0]));
 
-            if($fileJob === null) {
+            if ($fileJob === null) {
                 return back(); // fileJob is null when testing with ->withoutJobs();
             }
 
-            if($fileJob->hasError) {
+            if ($fileJob->hasError) {
                 return back()->withErrors(["subtitles" => __($fileJob->error_message)]);
             }
         }

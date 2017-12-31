@@ -17,7 +17,7 @@ class SubIdxController extends Controller
 
     public function index()
     {
-        return view('guest.sub-idx');
+        return view('tools.convert-sub-idx-to-srt');
     }
 
     public function post(Request $request)
@@ -45,7 +45,7 @@ class SubIdxController extends Controller
 
         $languageCount = $subIdx->languages()->count();
 
-        return view('guest.sub-idx-detail', [
+        return view('tool-results.sub-idx-result', [
             'originalName'  => $subIdx->original_name,
             'languageCount' => $languageCount,
             'pageId'        => $pageId,

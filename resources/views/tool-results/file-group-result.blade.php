@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @include('helpers.robots-no-index')
 

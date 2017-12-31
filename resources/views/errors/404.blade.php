@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.404'))
 @section('description', __('seo.description.404'))

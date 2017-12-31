@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.subIdx'))
 @section('description', __('seo.description.subIdx'))
@@ -20,7 +20,7 @@
     </p>
 
 
-    @component('guest.components.tool-form', ['bare' => true])
+    @component('components.tool-form', ['bare' => true])
 
         @slot('title') Select sub/idx to convert to srt @endslot
 

@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.pinyin'))
 @section('description', __('seo.description.pinyin'))
@@ -14,7 +14,7 @@
     </p>
 
 
-    @component('guest.components.tool-form')
+    @component('components.tool-form')
 
         @slot('title') Select a file to convert to pinyin @endslot
 

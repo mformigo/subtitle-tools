@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.sup'))
 @section('description', __('seo.description.sup'))
@@ -18,7 +18,7 @@
         It might not work correctly yet
     </div>
 
-    @component('guest.components.tool-form', ['singleFile' => true])
+    @component('components.tool-form', ['singleFile' => true])
 
         @slot('title') Select sup to convert to srt @endslot
 

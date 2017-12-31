@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.cleanSrt'))
 @section('description', __('seo.description.cleanSrt'))
@@ -14,7 +14,7 @@
     </p>
 
 
-    @component('guest.components.tool-form')
+    @component('components.tool-form')
 
         @slot('title') Select files to clean @endslot
 

@@ -50,7 +50,7 @@
     </head>
     <body class="font-sans relative overflow-hidden overflow-y-scroll">
 
-        @include('guest.layout.header')
+        @include('layout.header')
 
         @include('helpers.anti-adblock-banner')
 
@@ -58,7 +58,7 @@
             @yield('content')
         </div>
 
-        @include('guest.layout.footer')
+        @include('layout.footer')
 
         <script src="{{ mix('js/app.js') }}"></script>
         @stack('footer')

@@ -9,7 +9,7 @@ class CleanSrtController extends FileJobController
 {
     public function index()
     {
-        return view('guest.clean-srt');
+        return view('tools.srt-cleaner');
     }
 
     public function post(Request $request)

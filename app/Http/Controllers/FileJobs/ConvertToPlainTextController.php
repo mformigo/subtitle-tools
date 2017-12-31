@@ -9,7 +9,7 @@ class ConvertToPlainTextController extends FileJobController
 {
     public function index()
     {
-        return view('guest.convert-to-plain-text');
+        return view('tools.convert-to-plain-text');
     }
 
     public function post(Request $request)

@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       'Login | Subtitle Tools')
 @section('description', '')
@@ -8,10 +8,9 @@
 
 @section('content')
 
-
     <h1>Login</h1>
 
-    <form id="login" method="POST" action="{{ route('login') }}">
+    <form method="post" action="{{ route('login') }}">
         {{ csrf_field() }}
 
         <label class="block my-2 font-bold">
@@ -24,7 +23,7 @@
             <input class="block field" type="password" name="password" required>
         </label>
 
-        <input id="remember" class="hidden" type="checkbox" name="remember" checked>
+        <input class="hidden" type="checkbox" name="remember" checked>
 
         <button type="submit" class="tool-btn">Login</button>
 

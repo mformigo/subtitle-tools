@@ -8,7 +8,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('guest.contact');
+        return view('contact');
     }
 
     public function post(Request $request)
@@ -25,6 +25,6 @@ class ContactController extends Controller
             FILE_APPEND
         );
 
-        return view('guest.contact')->with('sentMessage', true);
+        return view('contact')->with('sentMessage', true);
     }
 }

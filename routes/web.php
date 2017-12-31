@@ -4,9 +4,9 @@ Route::get('st-login',   'Auth\LoginController@showLoginForm')->name('login');
 Route::post('st-login',  'Auth\LoginController@login');
 Route::post('st-logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::view('/', 'guest.home')->name('home');
+Route::view('/', 'home')->name('home');
 
-Route::view('/how-to-fix-vlc-subtitles-displaying-as-boxes', 'guest.blog.fix-vlc-subtitle-boxes')->name('blog.vlcSubtitleBoxes');
+Route::view('/how-to-fix-vlc-subtitles-displaying-as-boxes', 'blogs.fix-vlc-subtitle-boxes')->name('blog.vlcSubtitleBoxes');
 
 Route::get('/contact')->uses('ContactController@index')->name('contact');
 Route::post('/contact')->uses('ContactController@post')->name('contact.post');

@@ -12,7 +12,7 @@ class SupController extends Controller
 {
     public function index()
     {
-        return view('guest.sup', [
+        return view('tools.convert-sup-to-srt', [
             'languages' => config('st.tesseract.languages'),
         ]);
     }
@@ -51,7 +51,7 @@ class SupController extends Controller
     {
         $supJob = SupJob::where('url_key', $urlKey)->firstOrFail();
 
-        return view('guest.supShow', [
+        return view('tool-results.sup-result', [
             'originalName' => $supJob->original_name,
             'ocrLanguage'  => $supJob->ocr_language,
             'urlKey'       => $urlKey,

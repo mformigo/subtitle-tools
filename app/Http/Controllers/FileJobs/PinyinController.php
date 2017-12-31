@@ -9,7 +9,7 @@ class PinyinController extends FileJobController
 {
     public function index()
     {
-        return view('guest.pinyin');
+        return view('tools.pinyin-subtitles');
     }
 
     public function post(Request $request)

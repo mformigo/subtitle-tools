@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.shift'))
 @section('description', __('seo.description.shift'))
@@ -14,7 +14,7 @@
         If you want to resync multiple parts of a subtitle file separately, use the <a href="{{ route('shiftPartial') }}">partial shifter tool</a>
     </p>
 
-    @component('guest.components.tool-form')
+    @component('components.tool-form')
 
         @slot('title') Select a file to shift @endslot
 

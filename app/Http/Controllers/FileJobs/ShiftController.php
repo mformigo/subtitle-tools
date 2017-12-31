@@ -9,7 +9,7 @@ class ShiftController extends FileJobController
 {
     public function index()
     {
-        return view('guest.shift');
+        return view('tools.shifter');
     }
 
     public function post(Request $request)

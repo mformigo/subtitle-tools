@@ -1,4 +1,4 @@
-@extends('guest.layout.base-template')
+@extends('layout.base-template')
 
 @section('title',       __('seo.title.contact'))
 @section('description', __('seo.description.contact'))
@@ -42,7 +42,7 @@
 
     <h2>Email</h2>
     <p>
-        If you would like to ask a question, send me an email at: <a class="fw-b" href="mailto:sfottjes@gmail.com">sfottjes@gmail.com</a>
+        If you would like to ask a question, send me an email at: <a href="mailto:sfottjes@gmail.com">sfottjes@gmail.com</a>
         <br/><br/>
         If you have a problem with a subtitle file, please include it as an attachment.
     </p>

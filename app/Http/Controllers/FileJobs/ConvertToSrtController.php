@@ -9,7 +9,7 @@ class ConvertToSrtController extends FileJobController
 {
     public function index()
     {
-        return view('guest.convert-to-srt');
+        return view('tools.convert-to-srt');
     }
 
     public function post(Request $request)
