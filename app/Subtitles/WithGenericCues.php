@@ -42,6 +42,7 @@ trait WithGenericCues
 
     /**
      * Removes cues with identical start ms, end ms and lines
+     *
      * @return $this
      */
     public function removeDuplicateCues()
@@ -56,6 +57,7 @@ trait WithGenericCues
 
     /**
      * Removes parentheses from the text lines, then removes empty cues
+     *
      * @return $this
      */
     public function stripParenthesesFromCues()
@@ -75,13 +77,18 @@ trait WithGenericCues
 
     /**
      * Removes all angle brackets from the text lines, then removes empty cues
+     *
      * @return $this
      */
     public function stripAngleBracketsFromCues()
     {
         foreach ($this->cues as $cue) {
-            $cue->alterLines(function ($line, $index) {
-                return preg_replace('/<.*?>/s', '', $line);
+            $cue->alterAllLines(function ($lines) {
+                $singleLine = implode("\n", $lines);
+
+                $strippedLines = preg_replace('/<.*?>/s', '', $singleLine);
+
+                return explode("\n", $strippedLines);
             });
         }
 
@@ -91,20 +98,26 @@ trait WithGenericCues
     }
 
     /**
-     * Removes all curly brackets and lines containing .ass drawings from the text lines, then removes empty cues
+     * Removes all curly brackets and lines containing .ass drawings from the
+     * text lines, then removes empty cues
+     *
      * @return $this
      */
     public function stripCurlyBracketsFromCues()
     {
         foreach ($this->cues as $cue) {
-            $cue->alterLines(function ($line, $index) {
-                // lines containing \p0 or \p1 are drawings from .ass files,
-                // they contain no text and should be removed
-                if (strpos($line, '\p0') !== false || strpos($line, '\p1') !== false) {
-                    return '';
-                }
+            $cue->alterAllLines(function ($lines) {
+                $singleLine = collect($lines)
+                    ->filter(function ($line) {
+                        // lines containing \p0 or \p1 are drawings from .ass files,
+                        // they contain no text and should be removed
+                        return ! str_contains($line, ['\p0', '\p1']);
+                    })
+                    ->implode("\n");
 
-                return preg_replace('/\{.*?\}/s', '', $line);
+                $strippedLines = preg_replace('/\{.*?\}/s', '', $singleLine);
+
+                return explode("\n", $strippedLines);
             });
         }
 
@@ -115,6 +128,7 @@ trait WithGenericCues
 
     /**
      * @param bool $sortCues
+     *
      * @return GenericSubtitleCue[]
      */
     public function getCues($sortCues = true)
