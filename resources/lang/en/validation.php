@@ -91,8 +91,8 @@ return [
 
     'not_a_valid_sup_file' => 'This file is not a valid sup file',
 
-    'a_file_in_archive_too_big_when_extracted' => 'Files inside archives can\'t be bigger than 3mb when extracted',
-    'a_file_is_too_big' => 'Files can\'t be bigger than 3 mb',
+    'a_file_in_archive_too_big_when_extracted' => 'Files inside archives can\'t be bigger than 10mb when extracted',
+    'a_file_is_too_big' => 'Files can\'t be bigger than 10 mb',
 
     'file_larger_than_max_post_size' => 'Files can\'t be larger than 128mb',
 

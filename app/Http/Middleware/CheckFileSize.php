@@ -10,7 +10,7 @@ class CheckFileSize
 {
     public function handle($request, Closure $next)
     {
-        $maxFileSizeBytes = 3 * 1024 * 1024;
+        $maxFileSizeBytes = 10 * 1024 * 1024;
 
         foreach ($request->files->keys() as $key) {
             foreach (array_wrap($request->file($key)) as $file) {
@@ -24,8 +24,7 @@ class CheckFileSize
                                 return back()->withErrors(['subtitles' => __('validation.a_file_in_archive_too_big_when_extracted')]);
                             }
                         }
-                    }
-                    else {
+                    } else {
                         if ($file->getSize() > $maxFileSizeBytes) {
                             return back()->withErrors(['subtitles' => __('validation.a_file_is_too_big')]);
                         }
