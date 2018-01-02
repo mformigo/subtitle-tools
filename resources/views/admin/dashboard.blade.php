@@ -141,7 +141,13 @@
                 <div class="col-4">
                     <div class="st-panel">
 
-                        <h2>Dependencies</h2>
+                        <h2>Server</h2>
+
+                        @foreach($phpVars as $name => $value)
+                            {{ $value }} => {{ $name }} <br/>
+                        @endforeach
+
+                        <hr>
 
                         <a href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
 

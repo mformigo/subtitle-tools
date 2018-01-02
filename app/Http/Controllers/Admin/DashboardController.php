@@ -42,6 +42,10 @@ class DashboardController extends Controller
             'notFoundRequests' => $notFoundRequests,
             'dependencies' => $dependencies,
             'failedJobCount' => $failedJobCount,
+            'phpVars' => [
+                'max_post_size'       => ini_get('post_max_size'),
+                'upload_max_filesize' => ini_get('upload_max_filesize'),
+            ],
         ]);
     }
 
