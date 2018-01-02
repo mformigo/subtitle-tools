@@ -18,7 +18,7 @@ class PruneStoredFiles extends Command
     {
         $this->info('Pruning stored files...');
 
-        if($this->isOnCheckedMigration()) {
+        if ($this->isOnCheckedMigration()) {
             $this->deleteUnreferencedStoredFileRecords();
         }
 
@@ -43,7 +43,7 @@ class PruneStoredFiles extends Command
 
         $referencedStoredFileIds = [];
 
-        foreach($storedFileColumns as $table => $columns) {
+        foreach ($storedFileColumns as $table => $columns) {
             $ids = DB::table($table)
                 ->select($columns)
                 ->get()
@@ -81,7 +81,7 @@ class PruneStoredFiles extends Command
     {
         $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
 
-        if($lastMigration === config('st.checked-migration')) {
+        if ($lastMigration === config('st.checked-migration')) {
             return true;
         }
 
@@ -108,7 +108,7 @@ class PruneStoredFiles extends Command
 
         $this->comment('Deleting '.count($orphanedStoredFiles).' orphaned stored files...');
 
-        foreach($orphanedStoredFiles as $orphanFileName) {
+        foreach ($orphanedStoredFiles as $orphanFileName) {
             Storage::delete($orphanFileName);
         }
     }
@@ -124,7 +124,7 @@ class PruneStoredFiles extends Command
             })
             ->each(function ($directoryPath) {
                 // don't filter the array, directories might become empty when we delete subdirectories
-                if($this->isEmptyStorageDirectory($directoryPath)) {
+                if ($this->isEmptyStorageDirectory($directoryPath)) {
                    Storage::deleteDirectory($directoryPath);
                }
             });
@@ -134,7 +134,7 @@ class PruneStoredFiles extends Command
     {
         $path = storage_disk_file_path($storagePath);
 
-        if(! file_exists($path) || ! is_dir($path)) {
+        if (! file_exists($path) || ! is_dir($path)) {
             throw new Exception('Storage path is not a directory: '.$storagePath);
         }
 

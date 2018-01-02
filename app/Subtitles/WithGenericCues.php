@@ -25,11 +25,12 @@ trait WithGenericCues
 
     /**
      * Remove all cues that do not have text lines
+     *
      * @return $this
      */
     public function removeEmptyCues()
     {
-        $this->cues = array_filter($this->cues, function(GenericSubtitleCue $cue) {
+        $this->cues = array_filter($this->cues, function (GenericSubtitleCue $cue) {
             return $cue->hasLines();
         });
 
@@ -59,7 +60,7 @@ trait WithGenericCues
      */
     public function stripParenthesesFromCues()
     {
-        foreach($this->cues as $cue) {
+        foreach ($this->cues as $cue) {
             $cue->alterAllLines(function ($lines) {
                 $singleLine = implode("\n", $lines);
 
@@ -78,8 +79,8 @@ trait WithGenericCues
      */
     public function stripAngleBracketsFromCues()
     {
-        foreach($this->cues as $cue) {
-            $cue->alterLines(function($line, $index) {
+        foreach ($this->cues as $cue) {
+            $cue->alterLines(function ($line, $index) {
                 return preg_replace('/<.*?>/s', '', $line);
             });
         }
@@ -95,11 +96,11 @@ trait WithGenericCues
      */
     public function stripCurlyBracketsFromCues()
     {
-        foreach($this->cues as $cue) {
-            $cue->alterLines(function($line, $index) {
+        foreach ($this->cues as $cue) {
+            $cue->alterLines(function ($line, $index) {
                 // lines containing \p0 or \p1 are drawings from .ass files,
                 // they contain no text and should be removed
-                if(strpos($line, '\p0') !== false || strpos($line, '\p1') !== false) {
+                if (strpos($line, '\p0') !== false || strpos($line, '\p1') !== false) {
                     return '';
                 }
 
@@ -119,7 +120,7 @@ trait WithGenericCues
     public function getCues($sortCues = true)
     {
         //TODO: sortCues was added because smi parsing uses this function a lot, this should be fixed more neatly
-        if($sortCues) {
+        if ($sortCues) {
             $this->sortCues();
         }
 

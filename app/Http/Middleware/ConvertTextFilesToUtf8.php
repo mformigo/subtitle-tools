@@ -12,8 +12,8 @@ class ConvertTextFilesToUtf8
         $textFileIdentifier = app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class);
         $textFileReader = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class);
 
-        foreach($names as $name) {
-            if(!$fileBag->has($name) || !$fileBag->get($name)->isValid()) {
+        foreach ($names as $name) {
+            if (!$fileBag->has($name) || !$fileBag->get($name)->isValid()) {
                 continue;
             }
 

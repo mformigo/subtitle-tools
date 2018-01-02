@@ -27,7 +27,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Exception $exception)
     {
-        if($exception instanceof PostTooLargeException) {
+        if ($exception instanceof PostTooLargeException) {
             // Somehow, using back()->withErrors doesn't work on the live server,
             // so this hack is used instead
             return response()->json([
@@ -35,7 +35,7 @@ class Handler extends ExceptionHandler
             ])->setStatusCode(500);
         }
 
-        if($exception instanceof TextEncodingException) {
+        if ($exception instanceof TextEncodingException) {
             return response()->view('errors.text-encoding-exception', [], 500);
         }
 

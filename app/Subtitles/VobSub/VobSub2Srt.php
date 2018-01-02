@@ -15,7 +15,7 @@ class VobSub2Srt implements VobSub2SrtInterface
     {
         $this->filePathWithoutExtension = $pathWithoutExtension;
 
-        if(! file_exists("{$this->filePathWithoutExtension}.sub") || ! file_exists("{$this->filePathWithoutExtension}.idx")) {
+        if (! file_exists("{$this->filePathWithoutExtension}.sub") || ! file_exists("{$this->filePathWithoutExtension}.idx")) {
             throw new RuntimeException($this->filePathWithoutExtension.'.sub/.idx does not exist');
         }
 
@@ -26,7 +26,7 @@ class VobSub2Srt implements VobSub2SrtInterface
     {
         $outputLines = $this->execVobsub2srt('--langlist');
 
-        if(! in_array('Languages:', $outputLines)) {
+        if (! in_array('Languages:', $outputLines)) {
             return [];
         }
 
@@ -62,7 +62,7 @@ class VobSub2Srt implements VobSub2SrtInterface
 
     protected function execVobsub2srt($argument)
     {
-        if(empty($argument)) {
+        if (empty($argument)) {
             throw new LogicException('Argument can not be empty');
         }
 

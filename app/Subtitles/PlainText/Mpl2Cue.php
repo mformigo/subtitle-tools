@@ -9,7 +9,7 @@ class Mpl2Cue extends GenericSubtitleCue implements TimingStrings, TransformsToG
 {
     public function __construct($timingLine = null)
     {
-        if($timingLine !== null) {
+        if ($timingLine !== null) {
             $this->loadString($timingLine);
         }
     }
@@ -30,7 +30,7 @@ class Mpl2Cue extends GenericSubtitleCue implements TimingStrings, TransformsToG
 
     public function setTimingFromString($string)
     {
-        if(!static::isTimingString($string)) {
+        if (!static::isTimingString($string)) {
             throw new \Exception("Not a valid " . get_class($this) . " cue string ({$string})");
         }
 
@@ -38,7 +38,7 @@ class Mpl2Cue extends GenericSubtitleCue implements TimingStrings, TransformsToG
 
         preg_match('/^\[(\d+)\]\[(\d+)\].+/', $string, $matches);
 
-        list($line, $startDecaseconds, $endDecaseconds) = collect($matches)->filter(function($str) {
+        list($line, $startDecaseconds, $endDecaseconds) = collect($matches)->filter(function ($str) {
             return strlen($str) !== 0;
         })->values()->all();
 
@@ -68,8 +68,8 @@ class Mpl2Cue extends GenericSubtitleCue implements TimingStrings, TransformsToG
         $genericCue = new GenericSubtitleCue();
 
         // Italic lines start with a slash
-        $italicLines = array_map(function($line) {
-            if(strpos($line, '/') === 0) {
+        $italicLines = array_map(function ($line) {
+            if (strpos($line, '/') === 0) {
                 return '<i>' . substr($line, 1) . '</i>';
             }
             return $line;
@@ -87,15 +87,15 @@ class Mpl2Cue extends GenericSubtitleCue implements TimingStrings, TransformsToG
         $string = trim($string);
 
         // Match ^[0][0].+
-        if(!preg_match('/^\[(\d+)\]\[(\d+)\].+/', $string, $matches)) {
+        if (!preg_match('/^\[(\d+)\]\[(\d+)\].+/', $string, $matches)) {
             return false;
         }
 
-        list($line, $startMs, $endMs) = collect($matches)->filter(function($str) {
+        list($line, $startMs, $endMs) = collect($matches)->filter(function ($str) {
             return strlen($str) !== 0;
         })->values()->all();
 
-        if($startMs > $endMs) {
+        if ($startMs > $endMs) {
             return false;
         }
 

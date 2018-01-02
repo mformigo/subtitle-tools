@@ -13,7 +13,7 @@ class FileGroupController extends Controller
         return FileGroup::where('url_key', $urlKey)
             ->firstOrFail()
             ->fileJobs
-            ->map(function($fileJob) {
+            ->map(function ($fileJob) {
                 return $fileJob->getApiValues();
             });
     }

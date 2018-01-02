@@ -64,7 +64,7 @@ class SubIdx extends Model
             ->where('sub_hash', $subHash)
             ->where('idx_hash', $idxHash);
 
-        if($fromCache->count() > 0) {
+        if ($fromCache->count() > 0) {
             return $fromCache->first();
         }
 

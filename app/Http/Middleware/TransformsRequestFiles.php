@@ -33,7 +33,7 @@ abstract class TransformsRequestFiles
             return $this->cleanArray($value);
         }
 
-        if(!$value instanceof UploadedFile || !$value->isValid()) {
+        if (!$value instanceof UploadedFile || !$value->isValid()) {
             return $value;
         }
 

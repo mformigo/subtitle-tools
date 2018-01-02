@@ -21,7 +21,7 @@ class GenericSubtitleCue
     {
         $this->lines = [];
 
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->addLine($line);
         }
 
@@ -39,11 +39,11 @@ class GenericSubtitleCue
         //   A line with only a dash is often a left-over when stripping brackets from hearing-impaired subtitles, eg: '- [men screaming]'
         //   Hearing-impaired subtitles often include lines with only asterisks
         //   Stripping brackets from hearing-impaired subtitles can leave lines like this: '- -'
-        if(! str_replace(['-', ' ', '*'], '', $line)) {
+        if (! str_replace(['-', ' ', '*'], '', $line)) {
             return $this;
         }
 
-        if(! empty($line)) {
+        if (! empty($line)) {
             $this->lines[] = $line;
         }
 
@@ -57,7 +57,7 @@ class GenericSubtitleCue
 
     public function setTiming($startMs, $endMs)
     {
-        if($startMs > $endMs) {
+        if ($startMs > $endMs) {
             throw new \Exception("Cue can't end before it starts ('{$endMs}' > '{$startMs}')");
         }
 
@@ -80,7 +80,7 @@ class GenericSubtitleCue
 
     public function shift($ms)
     {
-        if(!preg_match('/^(-\d+|\d+)$/', $ms)) {
+        if (!preg_match('/^(-\d+|\d+)$/', $ms)) {
             throw new \Exception("Invalid shift amount ({$ms})");
         }
 
@@ -96,7 +96,7 @@ class GenericSubtitleCue
     {
         $lines = ["# Start={$this->getStartMs()}# End={$this->getStartMs()}"];
 
-        foreach($this->lines as $line) {
+        foreach ($this->lines as $line) {
             $lines[] = $line;
         }
 
@@ -115,7 +115,7 @@ class GenericSubtitleCue
     {
         $alteredLines = [];
 
-        for($i = 0; $i < count($this->lines); $i++) {
+        for ($i = 0; $i < count($this->lines); $i++) {
             $alteredLines = array_merge(
                 $alteredLines,
                 explode("\n", $closure($this->lines[$i], $i))

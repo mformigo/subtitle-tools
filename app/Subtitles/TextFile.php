@@ -3,18 +3,21 @@
 namespace App\Subtitles;
 
 use Illuminate\Http\UploadedFile;
+use SjorsO\TextFile\Facades\TextFileReader;
 
 abstract class TextFile
 {
-    protected $originalFileNameWithoutExtension = "default";
+    protected $originalFileNameWithoutExtension = 'default';
 
-    protected $extension = "txt";
+    protected $extension = 'txt';
 
     protected $filePath = false;
 
     /**
      * Returns true if the $filePath file is a valid format for this class
+     *
      * @param $file
+     *
      * @return bool
      */
     public abstract static function isThisFormat($file);
@@ -54,6 +57,7 @@ abstract class TextFile
 
     /**
      * @param $file string|UploadedFile A file path or UploadedFile
+     *
      * @return $this
      */
     public function loadFile($file)
@@ -65,11 +69,10 @@ abstract class TextFile
         $this->filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
         // These properties come from the WithFileContent/WithFileLines trait
-        if(property_exists($this, 'lines')) {
-            $this->lines = array_map('trim', app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($this->filePath));
-        }
-        else {
-            $this->content = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getContent($this->filePath);
+        if (property_exists($this, 'lines')) {
+            $this->lines = array_map('trim', TextFileReader::getLines($this->filePath));
+        } else {
+            $this->content = TextFileReader::getContent($this->filePath);
         }
 
         return $this;

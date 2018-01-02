@@ -16,13 +16,13 @@ class PinyinSubtitlesJob extends FileJob
     {
         $this->startFileJob();
 
-        if(!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
         $inputSubtitle = TextFileFormat::getMatchingFormat($this->inputStoredFile->filePath);
 
-        if(!$inputSubtitle instanceof TransformsToGenericSubtitle && !$inputSubtitle instanceof Srt) {
+        if (!$inputSubtitle instanceof TransformsToGenericSubtitle && !$inputSubtitle instanceof Srt) {
             return $this->abortFileJob('messages.pinyin.can_not_make_pinyin_subtitles_from_this_file_type');
         }
 
@@ -32,7 +32,7 @@ class PinyinSubtitlesJob extends FileJob
             ->stripAngleBracketsFromCues()
             ->removeDuplicateCues();
 
-        if(!$srt->hasCues()) {
+        if (!$srt->hasCues()) {
             return $this->abortFileJob('messages.file_has_no_dialogue');
         }
 
@@ -48,7 +48,7 @@ class PinyinSubtitlesJob extends FileJob
 
         $hasChangedSomething = $transformer->transformCues($srt);
 
-        if(!$hasChangedSomething) {
+        if (!$hasChangedSomething) {
             return $this->abortFileJob('messages.pinyin.subtitles_have_no_chinese');
         }
 

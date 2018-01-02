@@ -10,7 +10,7 @@ class SupRule implements Rule
 {
     public function passes($attribute, $value)
     {
-        if($value instanceof UploadedFile) {
+        if ($value instanceof UploadedFile) {
             $filePath = $value->getRealPath();
 
             $supType = SupFile::getFormat($filePath);

@@ -29,7 +29,7 @@ class CollectSupMetaJob extends BaseJob
         try {
             $sup = SupFile::open($supFilePath);
 
-            if($sup !== false) {
+            if ($sup !== false) {
                 $cueCount = count($sup->getCues());
             }
         }

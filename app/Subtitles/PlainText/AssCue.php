@@ -19,7 +19,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
 
     public function __construct($timingLine = null)
     {
-        if($timingLine !== null) {
+        if ($timingLine !== null) {
             $this->loadString($timingLine);
         }
     }
@@ -44,7 +44,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
 
     public function setTimingFromString($string)
     {
-        if(!static::isTimingString($string)) {
+        if (!static::isTimingString($string)) {
             throw new \Exception("Not a valid " . get_class($this) . " cue string ({$string})");
         }
 
@@ -63,11 +63,11 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
 
     private function msToTimecode($ms)
     {
-        if($ms < 0) {
+        if ($ms < 0) {
             return '0:00:00.00';
         }
 
-        if($ms >= 36000000) {
+        if ($ms >= 36000000) {
             return '9:59:59.99';
         }
 
@@ -121,24 +121,24 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
     {
         $string = trim($string);
 
-        if(stripos($string, 'Dialogue: ') !== 0) {
+        if (stripos($string, 'Dialogue: ') !== 0) {
             return false;
         }
 
         $parts =  explode(',', $string, 10);
 
-        if(count($parts) !== 10) {
+        if (count($parts) !== 10) {
             return false;
         }
 
-        if(!preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/i", $string)) {
+        if (!preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/i", $string)) {
             return false;
         }
 
         $startInt = str_replace([':', '.'], '', $parts[1]);
         $endInt   = str_replace([':', '.'], '', $parts[2]);
 
-        if($startInt > $endInt) {
+        if ($startInt > $endInt) {
             return false;
         }
 

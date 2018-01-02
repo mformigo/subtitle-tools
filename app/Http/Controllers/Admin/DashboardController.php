@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $logsWithErrors = collect(scandir(storage_path('logs')))->filter(function($name) {
+        $logsWithErrors = collect(scandir(storage_path('logs')))->filter(function ($name) {
             return !starts_with($name, '.') && filesize(storage_path("logs/{$name}")) > 0;
         })->values()->all();
 
@@ -49,11 +49,11 @@ class DashboardController extends Controller
     {
         $filePath = storage_path("logs/{$name}");
 
-        if(! file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             return back();
         }
 
-        if($name === 'laravel.log') {
+        if ($name === 'laravel.log') {
             return view('admin.log', [
                 'name' => $name,
                 'lines' => TextFileReader::getLines($filePath),
@@ -67,7 +67,7 @@ class DashboardController extends Controller
     {
         $filePath = storage_path("logs/{$name}");
 
-        if(file_exists($filePath)) {
+        if (file_exists($filePath)) {
             unlink($filePath);
         }
 
@@ -83,11 +83,11 @@ class DashboardController extends Controller
             'st-worker-larry:st-worker-larry_00           RUNNING   pid 27246, uptime 2:22:22',
         ] : explode("\n", shell_exec('supervisorctl status'));
 
-        return collect($lines)->filter(function($line) {
+        return collect($lines)->filter(function ($line) {
             return !empty($line);
-        })->map(function($line) {
+        })->map(function ($line) {
            return preg_split('/ {3,}|, /', $line);
-        })->map(function($parts) {
+        })->map(function ($parts) {
             return (object)[
                 'worker'    => str_before($parts[0], ':'),
                 'name'      => str_after($parts[0], ':'),
@@ -103,13 +103,13 @@ class DashboardController extends Controller
     {
         $logFilePath = storage_disk_file_path('diagnostic/404.txt');
 
-        if(!file_exists($logFilePath)) {
+        if (!file_exists($logFilePath)) {
             return [];
         }
 
         $blacklistFilePath = storage_disk_file_path('diagnostic/404-blacklist.txt');
 
-        if(!file_exists($blacklistFilePath)) {
+        if (!file_exists($blacklistFilePath)) {
             touch($blacklistFilePath);
         }
 
@@ -118,18 +118,18 @@ class DashboardController extends Controller
 
         $entries = TextFileReader::getLines($logFilePath);
 
-        $paths = collect($entries)->filter()->map(function($line) {
+        $paths = collect($entries)->filter()->map(function ($line) {
             return explode('|', $line)[2];
         })->all();
 
         $uniquePaths = [];
 
-        foreach($paths as $path) {
-            if(in_array($path, $blackList)) {
+        foreach ($paths as $path) {
+            if (in_array($path, $blackList)) {
                 continue;
             }
 
-            if(!isset($uniquePaths[$path])) {
+            if (!isset($uniquePaths[$path])) {
                 $uniquePaths[$path] = ['path' => $path, 'count' => 0];
             }
 
@@ -143,7 +143,7 @@ class DashboardController extends Controller
     {
         $filePath = storage_disk_file_path('diagnostic/404.txt');
 
-        if(!file_exists($filePath)) {
+        if (!file_exists($filePath)) {
             return back();
         }
 
@@ -154,7 +154,7 @@ class DashboardController extends Controller
     {
         $filePath = storage_disk_file_path('diagnostic/404.txt');
 
-        if(file_exists($filePath)) {
+        if (file_exists($filePath)) {
             unlink($filePath);
         }
 

@@ -30,13 +30,13 @@ class BuildSupSrtJob extends BaseJob
 
         $srt = new Srt();
 
-        foreach($cueManifest as $cue) {
+        foreach ($cueManifest as $cue) {
             $textArray = $cuesText[$cue['index']];
 
             $startMs = $cue['startTime'];
             $endMs   = $cue['endTime'];
 
-            if($endMs < $startMs) {
+            if ($endMs < $startMs) {
                 $endMs = $startMs;
             }
 
@@ -49,7 +49,7 @@ class BuildSupSrtJob extends BaseJob
 
         $srt->removeEmptyCues();
 
-        if(! $srt->hasCues()) {
+        if (! $srt->hasCues()) {
             return $this->failed(null, 'messages.sup.no_cues_with_dialogue');
         }
 
@@ -92,10 +92,10 @@ class BuildSupSrtJob extends BaseJob
 
         SupJobChanged::dispatch($this->supJob);
 
-        if(is_dir($this->supJob->temp_dir)) {
+        if (is_dir($this->supJob->temp_dir)) {
             $globPattern = str_finish($this->supJob->temp_dir, '/').'*';
 
-            foreach(glob($globPattern) as $filePath) {
+            foreach (glob($globPattern) as $filePath) {
                 unlink($filePath);
             }
 

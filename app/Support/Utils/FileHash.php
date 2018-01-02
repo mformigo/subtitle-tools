@@ -12,11 +12,11 @@ class FileHash
     {
         $filePath = ($file instanceof UploadedFile) ? $file->getRealPath() : $file;
 
-        if(!file_exists($filePath)) {
+        if (!file_exists($filePath)) {
             throw new \RuntimeException("File does not exist ({$filePath})");
         }
 
-        if($this->isCached($filePath)) {
+        if ($this->isCached($filePath)) {
             return $this->getHashFromCache($filePath);
         }
 

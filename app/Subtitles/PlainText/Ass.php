@@ -28,8 +28,8 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
 
         $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
-        foreach($this->lines as $line) {
-            if($this->cueClass::isTimingString($line)) {
+        foreach ($this->lines as $line) {
+            if ($this->cueClass::isTimingString($line)) {
                 $assCue = new $this->cueClass;
 
                 $assCue->loadString($line);
@@ -47,8 +47,8 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
 
         $lines = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
 
-        foreach($lines as $line) {
-            if(AssCue::isTimingString($line)) {
+        foreach ($lines as $line) {
+            if (AssCue::isTimingString($line)) {
                 return true;
             }
         }
@@ -56,15 +56,15 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
         $maybeAssFile = false;
         $sample = array_map('strtolower', array_slice($lines, 0, 10));
 
-        foreach($sample as $string) {
-            if(trim($string) === '[script info]') {
+        foreach ($sample as $string) {
+            if (trim($string) === '[script info]') {
                 $maybeAssFile = true;
                 break;
             }
         }
 
-        if($maybeAssFile) {
-            if(preg_grep("/^\[v4\+ styles\]/i" , $lines)) {
+        if ($maybeAssFile) {
+            if (preg_grep("/^\[v4\+ styles\]/i" , $lines)) {
                 return true;
             }
         }
@@ -79,15 +79,15 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
 
     public function shiftPartial($fromMs, $toMs, $ms)
     {
-        if($fromMs > $toMs || $ms == 0) {
+        if ($fromMs > $toMs || $ms == 0) {
             return $this;
         }
 
-        for($i = 0; $i < count($this->lines); $i++) {
-            if($this->cueClass::isTimingString($this->lines[$i])) {
+        for ($i = 0; $i < count($this->lines); $i++) {
+            if ($this->cueClass::isTimingString($this->lines[$i])) {
                 $assCue = new $this->cueClass($this->lines[$i]);
 
-                if($assCue->getStartMs() >= $fromMs && $assCue->getEndMs() <= $toMs) {
+                if ($assCue->getStartMs() >= $fromMs && $assCue->getEndMs() <= $toMs) {
                     $assCue->shift($ms);
 
                     $this->lines[$i] = $assCue->toString();

@@ -49,13 +49,13 @@ class StoredFile extends Model
 
         $fromCache = StoredFile::where('hash', $hash);
 
-        if($fromCache->count() > 0) {
+        if ($fromCache->count() > 0) {
             return $fromCache->first();
         }
 
         $storagePath = "stored-files/" . date('Y-W') . '/' . date('z');
 
-        if(!File::isDirectory($storagePath)) {
+        if (!File::isDirectory($storagePath)) {
             Storage::makeDirectory($storagePath);
         }
 
@@ -72,7 +72,7 @@ class StoredFile extends Model
 
     public static function createFromTextFile(TextFile $textFile)
     {
-        if($textFile instanceof Watermarkable) {
+        if ($textFile instanceof Watermarkable) {
             $textFile->watermark();
         }
 

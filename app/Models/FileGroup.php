@@ -82,7 +82,7 @@ class FileGroup extends Model
 
     public function getArchiveRequestUrlAttribute()
     {
-        if($this->file_jobs_finished_at === null || $this->archive_requested_at !== null) {
+        if ($this->file_jobs_finished_at === null || $this->archive_requested_at !== null) {
             return false;
         }
 
@@ -91,7 +91,7 @@ class FileGroup extends Model
 
     public function getArchiveDownloadUrlAttribute()
     {
-        if($this->archive_stored_file_id === null) {
+        if ($this->archive_stored_file_id === null) {
             return false;
         }
 

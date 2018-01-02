@@ -43,7 +43,7 @@ class ExtractSupImagesJob extends BaseJob
             return $this->failed($exception, 'messages.sup.exception_when_reading');
         }
 
-        if($sup === false) {
+        if ($sup === false) {
             return $this->failed(null, 'messages.sup.not_a_sup_file');
         }
 
@@ -62,7 +62,7 @@ class ExtractSupImagesJob extends BaseJob
 
         $ocrLanguage = $this->getOcrLanguage();
 
-        foreach(array_chunk($imageFilePaths, 10) as $filePathsChunk) {
+        foreach (array_chunk($imageFilePaths, 10) as $filePathsChunk) {
             OcrImageJob::dispatch(
                 $this->supJob->id,
                 $filePathsChunk,
@@ -87,7 +87,7 @@ class ExtractSupImagesJob extends BaseJob
     {
         $ocrLanguage = $this->supJob->ocr_language;
 
-        if($ocrLanguage === 'chinese') {
+        if ($ocrLanguage === 'chinese') {
             $ocrLanguage = 'chi_sim+chi_tra';
         }
 

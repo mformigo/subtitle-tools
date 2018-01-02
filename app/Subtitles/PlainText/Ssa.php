@@ -16,8 +16,8 @@ class Ssa extends Ass
 
         $lines = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
 
-        foreach($lines as $line) {
-            if(SsaCue::isTimingString($line)) {
+        foreach ($lines as $line) {
+            if (SsaCue::isTimingString($line)) {
                 return true;
             }
         }
@@ -25,15 +25,15 @@ class Ssa extends Ass
         $maybeSsaFile = false;
         $sample = array_map('strtolower', array_slice($lines, 0, 10));
 
-        foreach($sample as $string) {
-            if(trim($string) === '[script info]') {
+        foreach ($sample as $string) {
+            if (trim($string) === '[script info]') {
                 $maybeSsaFile = true;
                 break;
             }
         }
 
-        if($maybeSsaFile) {
-            if(preg_grep("/^\[v4 styles\]/i" , $lines)) {
+        if ($maybeSsaFile) {
+            if (preg_grep("/^\[v4 styles\]/i" , $lines)) {
                 return true;
             }
         }

@@ -14,7 +14,7 @@ class SubIdxController extends Controller
             ->firstOrFail()
             ->languages()
             ->get()
-            ->map(function($language) {
+            ->map(function ($language) {
                return $language->getApiValues();
             });
     }

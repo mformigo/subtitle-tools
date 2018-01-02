@@ -37,18 +37,18 @@ class OcrImageJob extends BaseJob
 
     public function handle()
     {
-        if($this->isMarkedAsFailed()) {
+        if ($this->isMarkedAsFailed()) {
             return;
         }
 
-        if($this->isMarkedAsSlow() && count($this->imageFilePaths) > 1) {
+        if ($this->isMarkedAsSlow() && count($this->imageFilePaths) > 1) {
             return $this->dispatchAsSlowJob();
         }
 
         $jobStartedAt = now();
 
-        foreach($this->imageFilePaths as $filePath) {
-            if(Carbon::now()->diffInSeconds($jobStartedAt) > $this->manualTimeout) {
+        foreach ($this->imageFilePaths as $filePath) {
+            if (Carbon::now()->diffInSeconds($jobStartedAt) > $this->manualTimeout) {
                 $this->markAsSlow();
 
                 return $this->dispatchAsSlowJob();
@@ -73,7 +73,7 @@ class OcrImageJob extends BaseJob
 
     protected function ocrImage($filePath)
     {
-        if(! file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             throw new Exception('File does not exist: '.$filePath);
         }
 
@@ -142,7 +142,7 @@ class OcrImageJob extends BaseJob
             return ends_with($name, '.txt');
         })->count();
 
-        if($imageCount === $textFilesCount && ! file_exists($directory.'BUILDING')) {
+        if ($imageCount === $textFilesCount && ! file_exists($directory.'BUILDING')) {
             touch($directory.'BUILDING');
 
             $supJob = SupJob::findOrFail($this->supJobId);
@@ -177,7 +177,7 @@ class OcrImageJob extends BaseJob
     {
         $madeFile = touch($this->getDirectory().'FAILED');
 
-        if($madeFile === false) {
+        if ($madeFile === false) {
             info('OcrImageJob: failed to create a FAILED file in '.$this->getDirectory());
         }
     }
@@ -191,14 +191,14 @@ class OcrImageJob extends BaseJob
     {
         $madeFile = touch($this->getDirectory().'SLOW');
 
-        if($madeFile === false) {
+        if ($madeFile === false) {
             info('OcrImageJob: failed to create a SLOW file in '.$this->getDirectory());
         }
     }
 
     protected function dispatchAsSlowJob()
     {
-        foreach($this->imageFilePaths as $filePath) {
+        foreach ($this->imageFilePaths as $filePath) {
             OcrImageJob::dispatch(
                 $this->supJobId,
                 $filePath,

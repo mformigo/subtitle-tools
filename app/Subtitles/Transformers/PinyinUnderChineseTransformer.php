@@ -23,11 +23,11 @@ class PinyinUnderChineseTransformer implements CueTransformer
     {
         $hasChangedSomething = false;
 
-        foreach($subtitle->getCues(false) as $cue) {
-            $cue->alterLines(function($line, $index) use (&$hasChangedSomething) {
+        foreach ($subtitle->getCues(false) as $cue) {
+            $cue->alterLines(function ($line, $index) use (&$hasChangedSomething) {
                 $converted = $this->pinyin->convert($line);
 
-                if($converted !== $line) {
+                if ($converted !== $line) {
                     $hasChangedSomething = true;
 
                     return $line . "\n" . $converted;

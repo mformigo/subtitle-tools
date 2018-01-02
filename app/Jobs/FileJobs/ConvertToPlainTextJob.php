@@ -13,13 +13,13 @@ class ConvertToPlainTextJob extends FileJob
     {
         $this->startFileJob();
 
-        if(!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
         $inputSubtitle = TextFileFormat::getMatchingFormat($this->inputStoredFile->filePath);
 
-        if(!$inputSubtitle instanceof TransformsToGenericSubtitle) {
+        if (!$inputSubtitle instanceof TransformsToGenericSubtitle) {
             return $this->abortFileJob('messages.cant_convert_file_to_plain_text');
         }
 
@@ -29,15 +29,15 @@ class ConvertToPlainTextJob extends FileJob
             ->stripAngleBracketsFromCues()
             ->removeDuplicateCues();
 
-        if(!$genericSubtitle->hasCues()) {
+        if (!$genericSubtitle->hasCues()) {
             return $this->abortFileJob('messages.file_has_no_dialogue_to_convert');
         }
 
         $genericCues = $genericSubtitle->getCues();
         $lines = [];
 
-        foreach($genericCues as $cue) {
-            foreach($cue->getLines() as $line) {
+        foreach ($genericCues as $cue) {
+            foreach ($cue->getLines() as $line) {
                 $lines[] = $line;
             }
 

@@ -26,26 +26,22 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
     public function __construct($source = null)
     {
-        if($source === null) {
+        if ($source === null) {
             return;
-        }
-        else if($source instanceof TransformsToGenericSubtitle) {
+        } elseif ($source instanceof TransformsToGenericSubtitle) {
             $this->loadGenericSubtitle($source->toGenericSubtitle());
-        }
-        else {
+        } else {
             $this->loadFile($source);
         }
     }
 
     public function addCue($cue)
     {
-        if($cue instanceof SrtCue) {
+        if ($cue instanceof SrtCue) {
             $this->cues[] = $cue;
-        }
-        else if($cue instanceof GenericSubtitleCue) {
+        } elseif ($cue instanceof GenericSubtitleCue) {
             $this->cues[] = new SrtCue($cue);
-        }
-        else {
+        } else {
             throw new \InvalidArgumentException("Invalid cue");
         }
 
@@ -57,7 +53,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         $id = 1;
         $lines = [];
 
-        foreach($this->getCues() as $cue) {
+        foreach ($this->getCues() as $cue) {
             $lines[] = (string)$id++;
 
             $lines = array_merge($lines, $cue->toArray());
@@ -72,8 +68,8 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
         $lines = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
 
-        for($i = 1; $i < count($lines); $i++) {
-            if(SrtCue::isTimingString($lines[$i]) && preg_match('/^\d+$/', trim($lines[$i-1]))) {
+        for ($i = 1; $i < count($lines); $i++) {
+            if (SrtCue::isTimingString($lines[$i]) && preg_match('/^\d+$/', trim($lines[$i-1]))) {
                 return true;
             }
         }
@@ -102,20 +98,20 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
         $timingIndexes = [];
 
-        for($i = 0; $i < count($lines); $i++) {
-            if(SrtCue::isTimingString($lines[$i])) {
+        for ($i = 0; $i < count($lines); $i++) {
+            if (SrtCue::isTimingString($lines[$i])) {
                 $timingIndexes[] = $i;
             }
         }
 
         $timingIndexes[] = count($lines);
 
-        for($timingIndex = 0; $timingIndex < count($timingIndexes) - 1; $timingIndex++) {
+        for ($timingIndex = 0; $timingIndex < count($timingIndexes) - 1; $timingIndex++) {
             $newCue = new SrtCue();
 
             $newCue->setTimingFromString($lines[$timingIndexes[$timingIndex]]);
 
-            for($lineIndex = $timingIndexes[$timingIndex] + 1; $lineIndex < $timingIndexes[$timingIndex+1] - 1; $lineIndex++) {
+            for ($lineIndex = $timingIndexes[$timingIndex] + 1; $lineIndex < $timingIndexes[$timingIndex+1] - 1; $lineIndex++) {
                 $newCue->addLine($lines[$lineIndex]);
             }
 
@@ -134,7 +130,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
         $this->setFileNameWithoutExtension($genericSubtitle->getFileNameWithoutExtension());
 
-        foreach($genericSubtitle->getCues() as $genericCue) {
+        foreach ($genericSubtitle->getCues() as $genericCue) {
             $this->addCue($genericCue);
         }
 
@@ -143,7 +139,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
     public function shift($ms)
     {
-        foreach($this->cues as $cue) {
+        foreach ($this->cues as $cue) {
             $cue->shift($ms);
         }
 
@@ -152,12 +148,12 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
     public function shiftPartial($fromMs, $toMs, $ms)
     {
-        if($fromMs > $toMs || $ms == 0) {
+        if ($fromMs > $toMs || $ms == 0) {
             return $this;
         }
 
-        foreach($this->cues as $cue) {
-            if($cue->getStartMs() >= $fromMs && $cue->getStartMs() <= $toMs) {
+        foreach ($this->cues as $cue) {
+            if ($cue->getStartMs() >= $fromMs && $cue->getStartMs() <= $toMs) {
                 $cue->shift($ms);
             }
         }
@@ -167,7 +163,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
     public function watermark()
     {
-        if(count($this->cues) === 0) {
+        if (count($this->cues) === 0) {
             return $this;
         }
 
@@ -175,8 +171,8 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
         $sampleSize = (10 < count($this->cues)) ? 10 : count($this->cues);
 
-        for($i = 0; $i < $sampleSize; $i++) {
-            if(stripos((string)$this->cues[$i], 'subtitletools.com') !== false) {
+        for ($i = 0; $i < $sampleSize; $i++) {
+            if (stripos((string)$this->cues[$i], 'subtitletools.com') !== false) {
                 return $this;
             }
         }
@@ -197,7 +193,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 
         $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
-        foreach($this->getCues(false) as $cue) {
+        foreach ($this->getCues(false) as $cue) {
             $newGenericCue = new GenericSubtitleCue();
 
             $newGenericCue->setTiming($cue->getStartMs(), $cue->getEndMs());

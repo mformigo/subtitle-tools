@@ -98,15 +98,15 @@ class SubIdxLanguage extends Model
 
     public function getStatusMessageAttribute()
     {
-        if(!$this->hasStarted) {
+        if (!$this->hasStarted) {
             return __('messages.status.queued');
         }
 
-        if(!$this->hasFinished) {
+        if (!$this->hasFinished) {
             return __('messages.status.processing');
         }
 
-        if($this->hasError) {
+        if ($this->hasError) {
             return __('messages.status.failed');
         }
 
@@ -115,7 +115,7 @@ class SubIdxLanguage extends Model
 
     public function getDownloadUrlAttribute()
     {
-        if($this->output_stored_file_id === null) {
+        if ($this->output_stored_file_id === null) {
             return false;
         }
 

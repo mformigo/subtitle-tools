@@ -10,7 +10,7 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
 
     public function setTimingFromString($string)
     {
-        if(!self::isTimingString($string)) {
+        if (!self::isTimingString($string)) {
             throw new \Exception("Not a valid timing string ({$string})");
         }
 
@@ -43,7 +43,7 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
 
     private function msToTimecode($ms)
     {
-        if($ms < 0) {
+        if ($ms < 0) {
             return "00:00:00.000";
         }
 
@@ -66,7 +66,7 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
     {
         $parts = preg_split("/(:|\.)/", $timecode);
 
-        if(count($parts) === 4) {
+        if (count($parts) === 4) {
             list($HH, $MM, $SS, $MIL) = $parts;
         }
         else {
@@ -84,7 +84,7 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
     {
         $lines = [$this->getTimingString()];
 
-        foreach($this->lines as $line) {
+        foreach ($this->lines as $line) {
             $lines[] = $line;
         }
 
@@ -97,18 +97,18 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
     {
         $string = trim($string);
 
-        if(!preg_match("/^(?<start>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3}) +--> +(?<end>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3})(?<style>| .+)$/", $string, $matches)) {
+        if (!preg_match("/^(?<start>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3}) +--> +(?<end>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3})(?<style>| .+)$/", $string, $matches)) {
             return false;
         }
 
-        if(strpos($matches['style'], '-->') !== false) {
+        if (strpos($matches['style'], '-->') !== false) {
             return false;
         }
 
         $start = str_replace([':', ',', '.'], '', $matches['start']);
         $end   = str_replace([':', ',', '.'], '', $matches['end']);
 
-        if($start > $end) {
+        if ($start > $end) {
             return false;
         }
 

@@ -15,14 +15,14 @@ class ShiftJob extends FileJob
     {
         $this->startFileJob();
 
-        if(!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
         /** @var $subtitle TextFile */
         $subtitle = TextFileFormat::getMatchingFormat($this->inputStoredFile->filePath);
 
-        if(!$subtitle instanceof ShiftsCues) {
+        if (!$subtitle instanceof ShiftsCues) {
             return $this->abortFileJob('messages.file_can_not_be_shifted');
         }
 

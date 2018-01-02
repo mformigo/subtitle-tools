@@ -15,7 +15,7 @@ class FileName
     {
         $newExtension = trim($newExtension, '. ');
 
-        if(empty($newExtension)) {
+        if (empty($newExtension)) {
             return $this->getWithoutExtension($fileName);
         }
 
@@ -40,7 +40,7 @@ class FileName
 
     public function watermark($fileName)
     {
-        if(stripos($fileName, 'subtitletools') !== false) {
+        if (stripos($fileName, 'subtitletools') !== false) {
             return $fileName;
         }
 

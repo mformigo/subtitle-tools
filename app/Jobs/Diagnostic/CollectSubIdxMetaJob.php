@@ -28,7 +28,7 @@ class CollectSubIdxMetaJob implements ShouldQueue
 
     public function handle()
     {
-        if($this->subIdx->meta !== null) {
+        if ($this->subIdx->meta !== null) {
             \Log::error("Tried running a CollectSubIdxMetaJob for a SubIdx that already has meta info ({$this->subIdx->id})");
             return;
         }

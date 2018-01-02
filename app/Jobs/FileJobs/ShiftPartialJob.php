@@ -15,14 +15,14 @@ class ShiftPartialJob extends FileJob
     {
         $this->startFileJob();
 
-        if(!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
         /** @var $subtitle TextFile */
         $subtitle = TextFileFormat::getMatchingFormat($this->inputStoredFile->filePath);
 
-        if(!$subtitle instanceof PartialShiftsCues) {
+        if (!$subtitle instanceof PartialShiftsCues) {
             return $this->abortFileJob('messages.file_can_not_be_partial_shifted');
         }
 
@@ -30,7 +30,7 @@ class ShiftPartialJob extends FileJob
 
         $shifts = $this->fileGroup->job_options->shifts;
 
-        foreach($shifts as $shift) {
+        foreach ($shifts as $shift) {
             $fromMs = $this->timestampToMilliseconds($shift->from);
 
             $toMs = $this->timestampToMilliseconds($shift->to);

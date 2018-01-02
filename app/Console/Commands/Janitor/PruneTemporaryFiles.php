@@ -54,18 +54,18 @@ class PruneTemporaryFiles extends Command
         $dirPaths = glob($temporaryDirectoriesDirectory.'*', GLOB_ONLYDIR);
 
         $dirPaths = array_filter($dirPaths, function ($name) use ($dontDeletePrefixes) {
-            foreach($dontDeletePrefixes as $prefix) {
-                if(str_contains($name, DIRECTORY_SEPARATOR.$prefix)) {
+            foreach ($dontDeletePrefixes as $prefix) {
+                if (str_contains($name, DIRECTORY_SEPARATOR.$prefix)) {
                     return false;
                 }
             }
             return true;
         });
 
-        foreach($dirPaths as $path) {
+        foreach ($dirPaths as $path) {
             $globPattern = str_finish($path, '/').'*';
 
-            foreach(glob($globPattern) as $filePath) {
+            foreach (glob($globPattern) as $filePath) {
                 unlink($filePath);
             }
 

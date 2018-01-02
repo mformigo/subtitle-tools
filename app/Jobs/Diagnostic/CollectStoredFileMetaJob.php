@@ -34,12 +34,12 @@ class CollectStoredFileMetaJob implements ShouldQueue
     {
         $filePath = $this->storedFile->filePath;
 
-        if(StoredFileMeta::query()->where('stored_file_id', $this->storedFile->id)->count() > 0) {
+        if (StoredFileMeta::query()->where('stored_file_id', $this->storedFile->id)->count() > 0) {
             \Log::error("Tried running a CollectStoredFileMetaJob for a stored file that already has meta info ({$this->storedFile->id})");
             return;
         }
 
-        if(!file_exists($filePath)) {
+        if (!file_exists($filePath)) {
             \Log::error("CollectStoredFileMetaJob: file does not exist ({$this->storedFile->id})");
             return;
         }
@@ -52,7 +52,7 @@ class CollectStoredFileMetaJob implements ShouldQueue
 
         $meta->mime = file_mime($filePath);
 
-        if(TextFileIdentifier::isTextFile($filePath)) {
+        if (TextFileIdentifier::isTextFile($filePath)) {
             $meta->is_text_file = true;
 
             $meta->encoding = TextEncoding::detectFromFile($filePath);
@@ -72,10 +72,10 @@ class CollectStoredFileMetaJob implements ShouldQueue
             $highestCount = 0;
             $detectedEol = 'unknown';
 
-            foreach(array_keys($lineEndings) as $eol) {
+            foreach (array_keys($lineEndings) as $eol) {
                 $count = substr_count($string, $eol);
 
-                if($count > $highestCount) {
+                if ($count > $highestCount) {
                     $highestCount = $count;
                     $detectedEol = $eol;
                 }

@@ -43,11 +43,11 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
         // See the readme for more information about vobsub2srt behavior
         $outputFilePath = $VobSub2Srt->extractLanguage($this->subIdxLanguage->index, $this->subIdxLanguage->language);
 
-        if(!file_exists($outputFilePath)) {
+        if (!file_exists($outputFilePath)) {
             return $this->abortWithError('messages.subidx_no_vobsub2srt_output_file');
         }
 
-        if(filesize($outputFilePath) === 0) {
+        if (filesize($outputFilePath) === 0) {
             unlink($outputFilePath);
 
             return $this->abortWithError('messages.subidx_empty_vobsub2srt_output_file');
@@ -55,7 +55,7 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
         $srt = new Srt($outputFilePath);
 
-        if(count($srt->getCues()) === 0) {
+        if (count($srt->getCues()) === 0) {
             unlink($outputFilePath);
 
             return $this->abortWithError('messages.subidx_vobsub2srt_output_file_only_empty_cues');

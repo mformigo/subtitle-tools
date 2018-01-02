@@ -18,7 +18,7 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
 
     public function __construct($source = null)
     {
-        if($source === null) {
+        if ($source === null) {
             return;
         }
         else {
@@ -32,12 +32,12 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
 
         $lines = TextFileReader::getLines($filePath);
 
-        if(count($lines) === 0) {
+        if (count($lines) === 0) {
             return false;
         }
 
         // First line starting with WEBVTT is always a WebVtt file
-        if(strpos(trim($lines[0]), 'WEBVTT') === 0) {
+        if (strpos(trim($lines[0]), 'WEBVTT') === 0) {
             return true;
         }
 
@@ -51,15 +51,15 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
 
     public function shiftPartial($fromMs, $toMs, $ms)
     {
-        if($fromMs > $toMs || $ms == 0) {
+        if ($fromMs > $toMs || $ms == 0) {
             return $this;
         }
 
-        for($i = 1; $i < count($this->lines); $i++) {
-            if(WebVttCue::isTimingString($this->lines[$i])) {
+        for ($i = 1; $i < count($this->lines); $i++) {
+            if (WebVttCue::isTimingString($this->lines[$i])) {
                 $cue = (new WebVttCue)->setTimingFromString($this->lines[$i]);
 
-                if($cue->getStartMs() >= $fromMs && $cue->getStartMs() <= $toMs) {
+                if ($cue->getStartMs() >= $fromMs && $cue->getStartMs() <= $toMs) {
                     $cue->shift($ms);
 
                     $this->lines[$i] = $cue->getTimingString();
@@ -81,8 +81,8 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
 
         $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
-        for($i = 1; $i < count($this->lines); $i++) {
-            if(WebVttCue::isTimingString($this->lines[$i])) {
+        for ($i = 1; $i < count($this->lines); $i++) {
+            if (WebVttCue::isTimingString($this->lines[$i])) {
                 $newGenericCue = new GenericSubtitleCue();
 
                 $webVttTiming = (new WebVttCue)->setTimingFromString($this->lines[$i]);
@@ -92,7 +92,7 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
                     $webVttTiming->getEndMs()
                 );
 
-                while(++$i < count($this->lines) && !empty(trim($this->lines[$i]))) {
+                while (++$i < count($this->lines) && !empty(trim($this->lines[$i]))) {
                     $newGenericCue->addLine($this->lines[$i]);
                 }
 

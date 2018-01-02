@@ -11,14 +11,14 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
 
     public function __construct($timingLine = null)
     {
-        if($timingLine !== null) {
+        if ($timingLine !== null) {
             $this->loadString($timingLine);
         }
     }
 
     public function setFps($fps)
     {
-        if(!is_float($fps) && !preg_match('/\d\d\.\d+/', $fps)) {
+        if (!is_float($fps) && !preg_match('/\d\d\.\d+/', $fps)) {
             throw new \Exception("Invalid framerate ({$fps})");
         }
 
@@ -45,7 +45,7 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
 
     public function setTimingFromString($string)
     {
-        if(!static::isTimingString($string)) {
+        if (!static::isTimingString($string)) {
             throw new \Exception("Not a valid " . get_class($this) . " cue string ({$string})");
         }
 
@@ -53,7 +53,7 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
 
         preg_match('/^\{(\d+)\}\{(\d+)\}.+/', $string, $matches);
 
-        list($line, $startMs, $endMs) = collect($matches)->filter(function($str) {
+        list($line, $startMs, $endMs) = collect($matches)->filter(function ($str) {
             return strlen($str) !== 0;
         })->values()->all();
 
@@ -81,8 +81,8 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
 
         // This shouldn't be necessary for MicroDVD cues, but i see it happen a lot
         // Italic lines start with a slash
-        $italicLines = array_map(function($line) {
-            if(strpos($line, '/') === 0) {
+        $italicLines = array_map(function ($line) {
+            if (strpos($line, '/') === 0) {
                 return '<i>' . substr($line, 1) . '</i>';
             }
             return $line;
@@ -114,15 +114,15 @@ class MicroDVDCue extends GenericSubtitleCue implements TimingStrings, Transform
         $string = trim($string);
 
         // Match ^{0}{0}.+
-        if(!preg_match('/^\{(\d+)\}\{(\d+)\}.+/', $string, $matches)) {
+        if (!preg_match('/^\{(\d+)\}\{(\d+)\}.+/', $string, $matches)) {
             return false;
         }
 
-        list($line, $startMs, $endMs) = collect($matches)->filter(function($str) {
+        list($line, $startMs, $endMs) = collect($matches)->filter(function ($str) {
             return strlen($str) !== 0;
         })->values()->all();
 
-        if($startMs > $endMs) {
+        if ($startMs > $endMs) {
             return false;
         }
 

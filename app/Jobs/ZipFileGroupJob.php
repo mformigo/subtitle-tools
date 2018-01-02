@@ -38,20 +38,20 @@ class ZipFileGroupJob implements ShouldQueue
 
         $zipTempFilePath = TempFile::makeFilePath('zip');
 
-        if($newZip->open($zipTempFilePath, ZipArchive::CREATE) !== true) {
+        if ($newZip->open($zipTempFilePath, ZipArchive::CREATE) !== true) {
             return $this->abort('messages.zip-job.create_failed');
         }
 
-        $fileJobs = $this->fileGroup->fileJobs->filter(function($fileJob) {
+        $fileJobs = $this->fileGroup->fileJobs->filter(function ($fileJob) {
             return $fileJob->output_stored_file_id !== null;
         })->all();
 
         $alreadyAddedNames = [];
 
-        foreach($fileJobs as $fileJob) {
+        foreach ($fileJobs as $fileJob) {
             $nameInZip = $fileJob->originalNameWithNewExtension;
 
-            while(in_array(strtolower($nameInZip), $alreadyAddedNames)) {
+            while (in_array(strtolower($nameInZip), $alreadyAddedNames)) {
                 $nameInZip = FileName::appendName($nameInZip, '-st');
             }
 
@@ -60,13 +60,13 @@ class ZipFileGroupJob implements ShouldQueue
             $newZip->addFile($fileJob->outputStoredFile->filePath, $nameInZip);
         }
 
-        if($newZip->numFiles === 0) {
+        if ($newZip->numFiles === 0) {
             return $this->abort('messages.zip-job.no_files_added');
         }
 
         $newZip->setArchiveComment('Edited at https://subtitletools.com');
 
-        if($newZip->close() !== true) {
+        if ($newZip->close() !== true) {
             return $this->abort('messages.zip-job.close_failed');
         }
 

@@ -13,18 +13,18 @@ class VobSub2SrtMock implements VobSub2SrtInterface
     {
         $this->filePathWithoutExtension = $pathWithoutExtension;
 
-        if($logToSubIdx !== null) {
+        if ($logToSubIdx !== null) {
             $this->logToSubIdx = ($logToSubIdx instanceof SubIdx) ? $logToSubIdx : SubIdx::findOrFail($logToSubIdx);
         }
 
-        if(!file_exists("{$this->filePathWithoutExtension}.sub") || !file_exists("{$this->filePathWithoutExtension}.idx")) {
+        if (!file_exists("{$this->filePathWithoutExtension}.sub") || !file_exists("{$this->filePathWithoutExtension}.idx")) {
             throw new \Exception("{$this->filePathWithoutExtension}.sub/.idx does not exist");
         }
     }
 
     public function getLanguages()
     {
-        if($this->logToSubIdx !== null) {
+        if ($this->logToSubIdx !== null) {
             $this->logToSubIdx->vobsub2srtOutputs()->create([
                 'argument' => '--langlist',
                 'index'    => null,
@@ -46,7 +46,7 @@ class VobSub2SrtMock implements VobSub2SrtInterface
 
         $outputFilePath = "{$this->filePathWithoutExtension}.srt";
 
-        if(file_exists($outputFilePath)) {
+        if (file_exists($outputFilePath)) {
             unlink($outputFilePath);
         }
 
@@ -65,7 +65,7 @@ class VobSub2SrtMock implements VobSub2SrtInterface
                 break;
         }
 
-        if($this->logToSubIdx !== null) {
+        if ($this->logToSubIdx !== null) {
             $this->logToSubIdx->vobsub2srtOutputs()->create([
                 'argument' => "--index {$index}",
                 'index'    => $index,

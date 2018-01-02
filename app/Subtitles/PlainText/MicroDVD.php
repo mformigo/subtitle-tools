@@ -18,7 +18,7 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle
 
     public function __construct($source = null)
     {
-        if($source !== null) {
+        if ($source !== null) {
             $this->loadFile($source);
         }
     }
@@ -27,12 +27,12 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle
     {
         parent::loadFile($file);
 
-        if(count($this->lines) > 0 && MicroDVDCue::isTimingString($this->lines[0])) {
+        if (count($this->lines) > 0 && MicroDVDCue::isTimingString($this->lines[0])) {
             $firstCue = new MicroDVDCue($this->lines[0]);
 
             $maybeFpsHint = $firstCue->getLines()[0] ?? "NO HINT";
 
-            if(preg_match('/^(?<fps>\d\d(\.|,)\d+)$/', $maybeFpsHint, $matches)) {
+            if (preg_match('/^(?<fps>\d\d(\.|,)\d+)$/', $maybeFpsHint, $matches)) {
                 $hintedFps = str_replace(',', '.', $matches['fps']);
 
                 $this->setFps($hintedFps);
@@ -44,7 +44,7 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle
 
     public function setFps($fps)
     {
-        if(!is_float($fps) && !preg_match('/\d\d\.\d+/', $fps)) {
+        if (!is_float($fps) && !preg_match('/\d\d\.\d+/', $fps)) {
             throw new \Exception("Invalid framerate ({$fps})");
         }
 
@@ -69,11 +69,11 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle
 
         $validCues = 0;
 
-        foreach($lines as $line) {
-            if(MicroDVDCue::isTimingString($line)) {
+        foreach ($lines as $line) {
+            if (MicroDVDCue::isTimingString($line)) {
                 $validCues++;
 
-                if($validCues === 3) {
+                if ($validCues === 3) {
                     return true;
                 }
             }
@@ -93,8 +93,8 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle
 
         $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
-        foreach($this->lines as $line) {
-            if(MicroDVDCue::isTimingString($line)) {
+        foreach ($this->lines as $line) {
+            if (MicroDVDCue::isTimingString($line)) {
                 $microDvdCue = new MicroDVDCue($line);
 
                 $microDvdCue->setFps($this->getFps());

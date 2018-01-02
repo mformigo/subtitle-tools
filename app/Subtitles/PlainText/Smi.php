@@ -31,43 +31,43 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
         // Smi files ignore new lines, the easiest way to parse the file is by removing new lines.
         $cleanContent = implode('', $this->lines);
 
-        if(stripos($cleanContent, "<sync ") === false) {
+        if (stripos($cleanContent, "<sync ") === false) {
             return $genericSubtitle;
         }
 
         $fromIndex = stripos($cleanContent, "<sync ");
 
-        while($fromIndex !== false && $fromIndex < strlen($cleanContent))
+        while ($fromIndex !== false && $fromIndex < strlen($cleanContent))
         {
             $toIndex = stripos($cleanContent, "<sync ", $fromIndex + 1);
 
-            if($toIndex === false) {
+            if ($toIndex === false) {
                 $toIndex = strlen($cleanContent);
             }
 
             $maybeCueText = substr($cleanContent, $fromIndex, $toIndex - $fromIndex);
 
-            if(preg_match('/^<sync .*?start=(?:"?|\'?)(?<startMs>\d+).*?>/i', $maybeCueText, $startTag))
+            if (preg_match('/^<sync .*?start=(?:"?|\'?)(?<startMs>\d+).*?>/i', $maybeCueText, $startTag))
             {
                 $startMs = $startTag['startMs'];
                 $endMs   = $startTag['startMs'];
 
-                if(preg_match('/^<sync .*?end=(?:"?|\'?)(?<endMs>\d+).*?>/i', $maybeCueText, $endTag)) {
+                if (preg_match('/^<sync .*?end=(?:"?|\'?)(?<endMs>\d+).*?>/i', $maybeCueText, $endTag)) {
                     $endMs = $endTag['endMs'];
                 }
 
                 // Smi cues end when the next cue starts, except when they have an end= attribute
-                if($genericSubtitle->hasCues()) {
+                if ($genericSubtitle->hasCues()) {
                     $previousCue = $genericSubtitle->getCues(false)[count($genericSubtitle->getCues(false)) - 1];
 
-                    if($previousCue->getStartMs() === $previousCue->getEndMs()) {
-                        if($previousCue->getStartMs() <= $startMs) {
+                    if ($previousCue->getStartMs() === $previousCue->getEndMs()) {
+                        if ($previousCue->getStartMs() <= $startMs) {
                             $previousCue->setTiming($previousCue->getStartMs(), $startMs);
                         }
                     }
                 }
 
-                if($startMs <= $endMs) {
+                if ($startMs <= $endMs) {
                     $genericCue = new GenericSubtitleCue();
 
                     $genericCue->setTiming($startMs, $endMs);
@@ -82,10 +82,10 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
         }
 
         // The last cue in the file needs to have its end time set manually (if it did not have an end= attribute)
-        if($genericSubtitle->hasCues()) {
+        if ($genericSubtitle->hasCues()) {
             $lastCue = $genericSubtitle->getCues(false)[count($genericSubtitle->getCues(false)) - 1];
 
-            if($lastCue->getStartMs() === $lastCue->getEndMs()) {
+            if ($lastCue->getStartMs() === $lastCue->getEndMs()) {
                 $lastCue->setTiming($lastCue->GetStartMs(), $lastCue->GetStartMs() + 3000);
             }
         }
@@ -103,7 +103,7 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
 
         $hasSamiTag = stripos($content, '<sami>') !== false;
 
-        if($hasSamiTag) {
+        if ($hasSamiTag) {
             // If there is a <sami> tag, anything resembling a cue is good enough
             return stripos($content, '<sync ') !== false;
         }
@@ -116,23 +116,23 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
         // Smi files don't support partial shifts
         // It would be a lot of work because the EndMs is often decided by the next cues StartMs
 
-        if($ms == 0) {
+        if ($ms == 0) {
             return $this;
         }
 
         // a line can contain multiple sync tags
-        $this->lines = array_map(function($line) use ($ms) {
-            if(stripos($line, "<sync ") === false) {
+        $this->lines = array_map(function ($line) use ($ms) {
+            if (stripos($line, "<sync ") === false) {
                 return $line;
             }
 
-            $parts = array_map(function($part) use ($ms) {
-                if(!preg_match('/<sync .*?start=.*$/i', $part)) {
+            $parts = array_map(function ($part) use ($ms) {
+                if (!preg_match('/<sync .*?start=.*$/i', $part)) {
                     return $part;
                 }
 
-                $syncTags = array_map(function($syncTag) use ($ms) {
-                    if(stripos($syncTag, 'sync ') !== 0) {
+                $syncTags = array_map(function ($syncTag) use ($ms) {
+                    if (stripos($syncTag, 'sync ') !== 0) {
                         return $syncTag;
                     }
 

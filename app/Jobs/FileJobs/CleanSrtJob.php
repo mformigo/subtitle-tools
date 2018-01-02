@@ -13,33 +13,33 @@ class CleanSrtJob extends FileJob
     {
         $this->startFileJob();
 
-        if(! TextFileIdentifier::isTextFile($this->inputStoredFile->filePath)) {
+        if (! TextFileIdentifier::isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
         $srt = TextFileFormat::getMatchingFormat($this->inputStoredFile->filePath);
 
-        if(! $srt instanceof Srt) {
+        if (! $srt instanceof Srt) {
             return $this->abortFileJob('messages.file_is_not_srt');
         }
 
         $jobOptions = $this->fileGroup->job_options;
 
-        if($jobOptions->stripParentheses ?? true) {
+        if ($jobOptions->stripParentheses ?? true) {
             $srt->stripParenthesesFromCues();
         }
 
-        if($jobOptions->stripCurly ?? true) {
+        if ($jobOptions->stripCurly ?? true) {
             $srt->stripCurlyBracketsFromCues();
         }
 
-        if($jobOptions->stripAngle ?? true) {
+        if ($jobOptions->stripAngle ?? true) {
             $srt->stripAngleBracketsFromCues();
         }
 
         $srt->removeDuplicateCues();
 
-        if(! $srt->hasCues()) {
+        if (! $srt->hasCues()) {
             return $this->abortFileJob('messages.file_has_no_dialogue');
         }
 

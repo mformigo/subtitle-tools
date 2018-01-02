@@ -7,7 +7,7 @@ function generate_url_key()
 
 function file_mime($filePath)
 {
-    if(!file_exists($filePath)) {
+    if (!file_exists($filePath)) {
         throw new \Exception("File does not exist ({$filePath})");
     }
 
@@ -44,7 +44,7 @@ function interval(int $interval, $closure)
 
     $callCount = $calls[$caller] ?? 1;
 
-    if($callCount % $interval === 0) {
+    if ($callCount % $interval === 0) {
         $closure();
     }
 
@@ -57,7 +57,7 @@ function once($closure)
 
     $caller = sha1(debug_backtrace()[0]['file'] . '|' . debug_backtrace()[0]['line']);
 
-    if(isset($calls[$caller])) {
+    if (isset($calls[$caller])) {
         return;
     }
 

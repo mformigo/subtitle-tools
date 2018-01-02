@@ -33,8 +33,8 @@ class StoredFilesController extends Controller
     {
         $idsString = str_replace(' ', '', trim($request->get('id', '0'), ' ,-'));
 
-        $ids = collect(explode(',', $idsString))->map(function($str) {
-           if(!str_contains($str, '-')) {
+        $ids = collect(explode(',', $idsString))->map(function ($str) {
+           if (!str_contains($str, '-')) {
                return $str;
            }
 
@@ -44,24 +44,23 @@ class StoredFilesController extends Controller
            $to   = max($ids[0], $ids[1]);
 
            return range($from, $to);
-        })->flatten()->map(function($val) {
+        })->flatten()->map(function ($val) {
             return (string)$val;
         })->all();
 
-        if(count($ids) > 50) {
+        if (count($ids) > 50) {
             return 'You can only download 50 files at once';
         }
 
         $storedFiles = [];
 
-        foreach($ids as $id) {
+        foreach ($ids as $id) {
             $storedFiles[] = StoredFile::query()->findOrFail($id);
         }
 
-        if(count($storedFiles) === 0) {
+        if (count($storedFiles) === 0) {
             return 'No stored file found with this id';
-        }
-        else if(count($storedFiles) === 1) {
+        } elseif (count($storedFiles) === 1) {
             return response()->download($storedFiles[0]->filePath, "{$storedFiles[0]->id}.txt");
         }
 
@@ -69,11 +68,11 @@ class StoredFilesController extends Controller
 
         $tempFilePath = TempFile::makeFilePath();
 
-        if($zip->open($tempFilePath, \ZipArchive::CREATE) !== true) {
+        if ($zip->open($tempFilePath, \ZipArchive::CREATE) !== true) {
             return 'Could not save the zip';
         }
 
-        foreach($storedFiles as $storedFile) {
+        foreach ($storedFiles as $storedFile) {
             $zip->addFile($storedFile->filePath, "{$storedFile->id}.txt");
         }
 

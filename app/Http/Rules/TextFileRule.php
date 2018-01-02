@@ -9,7 +9,7 @@ class TextFileRule implements Rule
 {
     public function passes($attribute, $value)
     {
-        if($value instanceof UploadedFile) {
+        if ($value instanceof UploadedFile) {
             return app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($value->getRealPath());
         }
 

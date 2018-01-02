@@ -16,7 +16,7 @@ class Mpl2 extends TextFile implements TransformsToGenericSubtitle
 
     public function __construct($source = null)
     {
-        if($source !== null) {
+        if ($source !== null) {
             $this->loadFile($source);
         }
     }
@@ -34,11 +34,11 @@ class Mpl2 extends TextFile implements TransformsToGenericSubtitle
 
         $validCues = 0;
 
-        foreach($lines as $line) {
-            if(Mpl2Cue::isTimingString($line)) {
+        foreach ($lines as $line) {
+            if (Mpl2Cue::isTimingString($line)) {
                 $validCues++;
 
-                if($validCues === 3) {
+                if ($validCues === 3) {
                     return true;
                 }
             }
@@ -58,8 +58,8 @@ class Mpl2 extends TextFile implements TransformsToGenericSubtitle
 
         $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
-        foreach($this->lines as $line) {
-            if(Mpl2Cue::isTimingString($line)) {
+        foreach ($this->lines as $line) {
+            if (Mpl2Cue::isTimingString($line)) {
                 $genericCue = (new Mpl2Cue($line))->toGenericCue();
 
                 $generic->addCue($genericCue);

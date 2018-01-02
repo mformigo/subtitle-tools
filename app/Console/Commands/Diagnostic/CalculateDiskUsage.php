@@ -19,7 +19,7 @@ class CalculateDiskUsage extends Command
 
         $outputFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
 
-        if(! Storage::exists('diagnostic/')) {
+        if (! Storage::exists('diagnostic/')) {
             Storage::makeDirectory('diagnostic/');
         }
 
@@ -27,7 +27,7 @@ class CalculateDiskUsage extends Command
             shell_exec("df {$diskName} --human-readable 2>&1")
         );
 
-        if(stripos($output, 'No such file or directory') !== false) {
+        if (stripos($output, 'No such file or directory') !== false) {
             file_put_contents($outputFilePath, $output);
         }
         else {

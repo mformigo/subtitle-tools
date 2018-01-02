@@ -14,8 +14,8 @@ class TempFile
 
         file_put_contents($tempFilePath, $content);
 
-        register_shutdown_function(function() use ($tempFilePath) {
-            if(file_exists($tempFilePath)) {
+        register_shutdown_function (function () use ($tempFilePath) {
+            if (file_exists($tempFilePath)) {
                 unlink($tempFilePath);
             }
         });
@@ -29,7 +29,7 @@ class TempFile
     {
         $directory = storage_disk_file_path('temporary-files/');
 
-        if(!file_exists($directory)) {
+        if (!file_exists($directory)) {
             Storage::makeDirectory('temporary-files/');
         }
 
@@ -40,8 +40,8 @@ class TempFile
     public function cleanUp()
     {
         // this function is necessary because the queue worker doesn't run my shutdown functions
-        foreach($this->createdFilePaths as $filePath) {
-            if(file_exists($filePath)) {
+        foreach ($this->createdFilePaths as $filePath) {
+            if (file_exists($filePath)) {
                 unlink($filePath);
             }
         }

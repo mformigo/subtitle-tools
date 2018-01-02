@@ -17,8 +17,8 @@ class TextFileFormat
 
     public function getMatchingFormat($file, $loadFile = true)
     {
-        foreach($this->formats as $class) {
-            if($class::isThisFormat($file)) {
+        foreach ($this->formats as $class) {
+            if ($class::isThisFormat($file)) {
                 return $loadFile ? (new $class)->loadFile($file) : (new $class);
             }
         }

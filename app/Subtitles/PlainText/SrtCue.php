@@ -9,20 +9,18 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 {
     public function __construct($source = null)
     {
-        if($source === null) {
+        if ($source === null) {
             return;
-        }
-        else if($source instanceof GenericSubtitleCue) {
+        } elseif ($source instanceof GenericSubtitleCue) {
             $this->loadGenericCue($source);
-        }
-        else {
+        } else {
             throw new \InvalidArgumentException("Invalid SrtCue source");
         }
     }
 
     public function setTimingFromString($string)
     {
-        if(!self::isTimingString($string)) {
+        if (!self::isTimingString($string)) {
             throw new \Exception("Not a valid timing string ({$string})");
         }
 
@@ -50,11 +48,11 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     private function msToTimecode($ms)
     {
-        if($ms < 0) {
+        if ($ms < 0) {
             return "00:00:00,000";
         }
 
-        if($ms >= 360000000) {
+        if ($ms >= 360000000) {
             return "99:59:59,999";
         }
 
@@ -96,7 +94,7 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
     {
         $lines = [$this->getTimingString()];
 
-        foreach($this->lines as $line) {
+        foreach ($this->lines as $line) {
             $lines[] = $line;
         }
 
@@ -111,7 +109,7 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
             trim($string)
         );
 
-        if(!preg_match("/^\d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3} -?-> \d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3}( ? x1: ?\d+ x2: ?\d+ y1: ?\d+ y2: ?\d+|)$/", $string)) {
+        if (!preg_match("/^\d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3} -?-> \d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3}( ? x1: ?\d+ x2: ?\d+ y1: ?\d+ y2: ?\d+|)$/", $string)) {
             return false;
         }
 
@@ -121,7 +119,7 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
         list($startInt, $endInt) = explode('>', str_replace([':', ' ', ',', '.', '-'], '', $string));
 
-        if($startInt > $endInt) {
+        if ($startInt > $endInt) {
             return false;
         }
 
