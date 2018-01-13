@@ -9,7 +9,7 @@ mix.disableNotifications();
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/admin.scss', 'public/css')
-   .postCss('resources/assets/css/main.pcss', 'public/css', [
+   .postCss('resources/assets/pcss/main.pcss', 'public/css', [
         tailwindcss('tailwind.js')
     ]);
 
