@@ -29,13 +29,17 @@ import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: Laravel.pusherKey,
-    cluster: Laravel.pusherCluster,
-    encrypted: Laravel.pusherEncrypted,
-});
-
+// If a view includes "helpers.dont-connect-echo", then don't connect
+// Echo. This is necessary because the site consistently
+// exceeds the 100 allowed Pusher connections.
+if (typeof dontConnectEcho === 'undefined') {
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: Laravel.pusherKey,
+        cluster: Laravel.pusherCluster,
+        encrypted: Laravel.pusherEncrypted,
+    });
+}
 
 require('./vendor/jquery.maskedinput.min');
 

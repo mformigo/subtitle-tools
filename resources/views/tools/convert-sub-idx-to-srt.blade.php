@@ -4,7 +4,7 @@
 @section('description', __('seo.description.subIdx'))
 @section('keywords',    __('seo.keywords.subIdx'))
 
-@include('helpers.disconnect-echo')
+@include('helpers.dont-connect-echo')
 
 @section('content')
 

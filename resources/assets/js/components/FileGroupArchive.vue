@@ -25,6 +25,7 @@
             archiveStatus: false,
             archiveRequestUrl: false,
             archiveDownloadUrl: false,
+            apiUpdateInterval: null,
         }),
 
         props: [
@@ -32,17 +33,17 @@
         ],
 
         mounted() {
-            axios.get(`/api/v1/file-group/archive/${this.urlKey}`).then(response => {
-                this.archiveRequestUrl = response.data.archiveRequestUrl;
-                this.archiveDownloadUrl = response.data.archiveDownloadUrl;
-                this.archiveStatus = response.data.archiveStatus;
-            });
+            let updateFromApi = () => {
+                axios.get(`/api/v1/file-group/archive/${this.urlKey}`).then(response => {
+                    this.archiveRequestUrl = response.data.archiveRequestUrl;
+                    this.archiveDownloadUrl = response.data.archiveDownloadUrl;
+                    this.archiveStatus = response.data.archiveStatus;
+                });
+            };
 
-            Echo.channel(`file-group.${this.urlKey}`).listen('FileGroupChanged', (newFileGroup) => {
-                this.archiveRequestUrl = newFileGroup.archiveRequestUrl;
-                this.archiveDownloadUrl = newFileGroup.archiveDownloadUrl;
-                this.archiveStatus = newFileGroup.archiveStatus;
-            });
+            this.apiUpdateInterval = setInterval(updateFromApi, 2000);
+
+            updateFromApi();
         },
 
         methods: {

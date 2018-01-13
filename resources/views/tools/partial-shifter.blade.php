@@ -4,7 +4,7 @@
 @section('description', __('seo.description.shiftPartial'))
 @section('keywords',    __('seo.keywords.shiftPartial'))
 
-@include('helpers.disconnect-echo')
+@include('helpers.dont-connect-echo')
 
 @section('content')
 

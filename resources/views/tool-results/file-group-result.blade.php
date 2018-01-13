@@ -1,10 +1,12 @@
 @extends('layout.base-template')
 
-@include('helpers.robots-no-index')
-
 @section('title',       __('seo.title.fileGroupResult'))
 @section('description', __('seo.description.fileGroupResult'))
 @section('keywords',    __('seo.keywords.fileGroupResult'))
+
+@include('helpers.robots-no-index')
+
+@include('helpers.dont-connect-echo')
 
 @section('content')
 

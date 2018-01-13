@@ -4,7 +4,7 @@
 @section('description', __('seo.description.pinyin'))
 @section('keywords',    __('seo.keywords.pinyin'))
 
-@include('helpers.disconnect-echo')
+@include('helpers.dont-connect-echo')
 
 @section('content')
 

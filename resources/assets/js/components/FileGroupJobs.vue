@@ -36,16 +36,6 @@
         ],
 
         mounted() {
-            Echo.channel(`file-group.${this.urlKey}.jobs`).listen('FileJobChanged', (newFileJob) => {
-                let arrayIndex = _.findIndex(this.fileJobs, ['id', newFileJob.id]);
-
-                if (arrayIndex !== -1) {
-                    Vue.set(this.fileJobs, arrayIndex, newFileJob);
-                }
-
-                this.maybeClearUpdateInterval();
-            });
-
             let updateFromApi = () => {
                 axios.get(`/api/v1/file-group/result/${this.urlKey}`).then(response => {
                     this.fileJobs = response.data;
@@ -58,13 +48,13 @@
                 this.processingText += '.';
 
                 if (this.processingText.endsWith('....')) {
-                    this.processingText = 'Processing';
+                    this.processingText = this.processingText.replace(/\./g, '');
                 }
             }, 500);
 
             // Sometimes we don't properly receive the pusher message when
             // all files are done. So we manually check with an interval
-            this.apiUpdateInterval = setInterval(updateFromApi, 3000);
+            this.apiUpdateInterval = setInterval(updateFromApi, 1000);
 
             updateFromApi();
         },
@@ -84,8 +74,6 @@
                 let allFinished = this.fileJobs.every((element, index, array) => element.isFinished);
                 
                 if (allFinished && this.apiUpdateInterval !== null) {
-                    // We can't disconnect Pusher/Echo here because the
-                    // archive Vue Component still needs it
                     clearInterval(this.apiUpdateInterval);
                 }
             },

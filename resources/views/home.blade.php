@@ -4,7 +4,7 @@
 @section('description', __('seo.description.home'))
 @section('keywords',    __('seo.keywords.home'))
 
-@include('helpers.disconnect-echo')
+@include('helpers.dont-connect-echo')
 
 @section('content')
 

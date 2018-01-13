@@ -4,7 +4,7 @@
 @section('description', '')
 @section('keywords',    'login, yo')
 
-@include('helpers.disconnect-echo')
+@include('helpers.dont-connect-echo')
 
 @section('content')
 

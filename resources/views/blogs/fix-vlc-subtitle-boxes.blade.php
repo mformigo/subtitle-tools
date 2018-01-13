@@ -4,7 +4,7 @@
 @section('description', __('seo.description.blogVlcSubtitleBoxes'))
 @section('keywords',    __('seo.keywords.blogVlcSubtitleBoxes'))
 
-@include('helpers.disconnect-echo')
+@include('helpers.dont-connect-echo')
 
 @section('content')
 
