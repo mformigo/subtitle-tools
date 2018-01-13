@@ -10,7 +10,7 @@
             </div>
 
             <div class="flex items-center truncate">
-                <img class="w-6 mr-4" src="/images/file-icon.png" alt="file" :title="fileJob.originalName" />
+                <img class="w-4 mx-2" src="/images/file-icon.png" alt="file" :title="fileJob.originalName" />
                 {{ shorten(fileJob.originalName) }}
             </div>
         </div>
@@ -52,8 +52,6 @@
                 }
             }, 500);
 
-            // Sometimes we don't properly receive the pusher message when
-            // all files are done. So we manually check with an interval
             this.apiUpdateInterval = setInterval(updateFromApi, 1000);
 
             updateFromApi();
