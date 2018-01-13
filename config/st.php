@@ -89,7 +89,7 @@ return [
 //            'ron',
             'rus',
 //            'san',
-//            'sin',
+//            'sin', //  <------------------------ todo: sri lanka
 //            'slk',
             'slv',
             'spa',

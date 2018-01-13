@@ -16,9 +16,9 @@ class StoredFilesController extends Controller
 
         $isTextFile = TextFileIdentifier::isTextFile($storedFile->filePath);
 
-        $lines = $isTextFile ?
-            TextFileReader::getLines($storedFile->filePath) :
-            ['Not identified as a text file'];
+        $lines = $isTextFile
+            ? TextFileReader::getLines($storedFile->filePath)
+            : ['Not identified as a text file'];
 
         $meta = $storedFile->meta;
 
@@ -34,19 +34,22 @@ class StoredFilesController extends Controller
         $idsString = str_replace(' ', '', trim($request->get('id', '0'), ' ,-'));
 
         $ids = collect(explode(',', $idsString))->map(function ($str) {
-           if (!str_contains($str, '-')) {
-               return $str;
-           }
+               if (!str_contains($str, '-')) {
+                   return $str;
+               }
 
-           $ids = explode('-', $str);
+               $ids = explode('-', $str);
 
-           $from = min($ids[0], $ids[1]);
-           $to   = max($ids[0], $ids[1]);
+               $from = min($ids[0], $ids[1]);
+               $to   = max($ids[0], $ids[1]);
 
-           return range($from, $to);
-        })->flatten()->map(function ($val) {
-            return (string)$val;
-        })->all();
+               return range($from, $to);
+            })
+            ->flatten()
+            ->map(function ($val) {
+                return (string) $val;
+            })
+            ->all();
 
         if (count($ids) > 50) {
             return 'You can only download 50 files at once';

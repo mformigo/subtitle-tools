@@ -12,15 +12,15 @@ class AreUploadedFilesRule implements Rule
         $uploadedFiles = request()->files->get($attribute);
 
         foreach (array_wrap($uploadedFiles) as $file) {
-            if (!$file instanceof UploadedFile) {
+            if (! $file instanceof UploadedFile) {
                 return false;
             }
 
-            if (!$file->isValid()) {
+            if (! $file->isValid()) {
                 return false;
             }
 
-            if (!file_exists($file->getRealPath())) {
+            if (! file_exists($file->getRealPath())) {
                 return false;
             }
         }

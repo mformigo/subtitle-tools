@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\SubIdx;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SubIdxController extends Controller

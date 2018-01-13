@@ -29,8 +29,7 @@ class CalculateDiskUsage extends Command
 
         if (stripos($output, 'No such file or directory') !== false) {
             file_put_contents($outputFilePath, $output);
-        }
-        else {
+        } else {
             // Filesystem      Size  Used Avail Use% Mounted on
             // /dev/vda1        30G   11G   19G  36% /
 

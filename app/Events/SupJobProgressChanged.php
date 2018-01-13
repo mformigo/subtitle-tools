@@ -21,7 +21,7 @@ class SupJobProgressChanged implements ShouldBroadcast
 
     public function __construct($supJob, $statusMessage)
     {
-        $this->supJob = ($supJob instanceof SupJob)
+        $this->supJob = $supJob instanceof SupJob
             ? $supJob
             : SupJob::findOrFail($supJob);
 

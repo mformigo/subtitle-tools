@@ -20,7 +20,7 @@ class PinyinController extends FileJobController
 
         $jobOptions = [
             // mode name is only set because it makes debugging/diagnostics easier
-            'mode_name' => __('tools.pinyin.mode.' . $request->get('mode')),
+            'mode_name' => __('tools.pinyin.mode.'.$request->get('mode')),
             'mode' => $request->get('mode'),
         ];
 

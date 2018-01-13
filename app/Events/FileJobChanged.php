@@ -5,8 +5,6 @@ namespace App\Events;
 use App\Models\FileJob;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -26,7 +24,7 @@ class FileJobChanged implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new Channel("file-group.{$this->fileJob->fileGroup->url_key}.jobs");
+        return new Channel('file-group.'.$this->fileJob->fileGroup->url_key.'.jobs');
     }
 
     public function broadcastWith()

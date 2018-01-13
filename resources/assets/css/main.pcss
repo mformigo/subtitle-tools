@@ -51,6 +51,40 @@ a {
     min-width: 6rem;
 }
 
+
+
+/**
+ * Homepage Cards
+ */
+.h-card {
+    @apply .w-64 .m-2 .p-2 .border .rounded-lg .text-black;
+}
+
+.h-card:hover {
+    @apply .bg-grey-lightest;
+}
+
+.h-card svg {
+    display: inline-block;
+    width:  20px;
+    height: 20px;
+}
+
+.h-card-header {
+    @apply .flex .items-center .justify-between .mb-2;
+}
+
+.h-card-title {
+    @apply .m-0;
+}
+
+
+
+
+
+
+
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.

@@ -75,6 +75,7 @@ class PruneStoredFiles extends Command
      * If a new table is added that uses stored files, and we forget to update this command,
      * it will take me ages to figure out stuff is broken. Therefor we only delete records
      * from the database if the database is on a migration we specified
+     *
      * @return bool
      */
     protected function isOnCheckedMigration()
