@@ -31,20 +31,21 @@
         </div>
     @endforeach
 
-    <form class="mt-4" method="post" enctype="multipart/form-data">
+    <form class="mt-4 w-full max-w-sm" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
-        <textarea class="field block w-full md:w-1/2 h-24" name="message" placeholder="Your message here..." required></textarea>
+        <input class="field block w-full mb-2" type="text" name="email" value="{{ old('email') }}" placeholder="Email (optional)">
 
-        <button class="tool-btn">Send message</button>
+        <textarea class="field block w-full h-24" name="message" placeholder="Your message here..." required></textarea>
+
+        <button class="tool-btn block ml-auto">Send message</button>
     </form>
 
 
     <h2>Email</h2>
-    <p>
-        If you would like to ask a question, send me an email at: <a href="mailto:sfottjes@gmail.com">sfottjes@gmail.com</a>
-        <br/><br/>
-        If you have a problem with a subtitle file, please include it as an attachment.
+    <p class="max-w-md">
+        If you would like me to take a look at one of your subtitle files, send me an email at: <a href="mailto:sfottjes@gmail.com">sfottjes@gmail.com</a>.
+        You can include the file as an attachment.
     </p>
 
 @endsection
