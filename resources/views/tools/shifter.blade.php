@@ -10,7 +10,9 @@
 
     <h1>Resync Subtitles</h1>
     <p>
-        Online tool for permanently syncing subtitle files.
+        Online tool for permanently syncing subtitle files
+        <br>
+        <br>
         If you want to resync multiple parts of a subtitle file separately, use the <a href="{{ route('shiftPartial') }}">partial shifter tool</a>
     </p>
 

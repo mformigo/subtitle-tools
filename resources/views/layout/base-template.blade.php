@@ -54,6 +54,8 @@
 
         @include('helpers.anti-adblock-banner')
 
+        @include('layout.global-notification')
+
         <div id="app" class="container mx-auto px-4">
             @yield('content')
         </div>
