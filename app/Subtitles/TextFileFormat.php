@@ -2,6 +2,8 @@
 
 namespace App\Subtitles;
 
+use RuntimeException;
+
 class TextFileFormat
 {
     protected $formats = [
@@ -19,10 +21,12 @@ class TextFileFormat
     {
         foreach ($this->formats as $class) {
             if ($class::isThisFormat($file)) {
-                return $loadFile ? (new $class)->loadFile($file) : (new $class);
+                return $loadFile
+                    ? (new $class)->loadFileFromFormat($file, $class)
+                    : (new $class);
             }
         }
 
-        throw new \Exception('The file is not a text file format');
+        throw new RuntimeException('The file is not a text file format');
     }
 }

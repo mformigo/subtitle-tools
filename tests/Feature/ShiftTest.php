@@ -5,12 +5,13 @@ namespace Tests\Feature;
 use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;
 use Tests\CreatesUploadedFiles;
+use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShiftTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
 
     /** @test */
     function the_fields_are_server_side_required()
@@ -110,5 +111,19 @@ class ShiftTest extends TestCase
         ]);
 
         $this->assertNotNull(FileGroup::findOrFail(1)->file_jobs_finished_at);
+    }
+
+    /** @test */
+    function it_can_shift_vtt_files()
+    {
+        [$response, $fileGroup] = $this->postFileJob('shift', [
+            $this->createUploadedFile('TextFiles/three-cues.vtt'),
+        ], [
+            'milliseconds' => 1000,
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
     }
 }

@@ -26,7 +26,7 @@
 
         @slot('extraBefore')
             <div id="sub-idx-popup" class="block mb-4 p-3 bg-yellow-lighter max-w-sm hidden">
-                For .sub / .idx files, use the <a class="font-bold" href="{{ route('subIdx') }}">sub/idx converter</a>.
+                For .sub + .idx files, use the <a class="font-bold" href="{{ route('subIdx') }}">sub/idx converter</a>.
             </div>
 
             <div id="sup-popup" class="block mb-4 p-3 bg-yellow-lighter max-w-sm hidden">
@@ -72,7 +72,7 @@
 
     <h3>Converting WebVTT to srt</h3>
     <p>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API" rel="nofollow" target="_blank">Web Video Text Tracks Format (WebVTT)</a> is a modern subtitle format used to online video subtitles
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API" rel="nofollow" target="_blank">Web Video Text Tracks Format (WebVTT)</a> is a modern subtitle format used for online video subtitles.
         It is similar to the srt format in many ways. It differs in being more customizable.
         WebVTT supports styling on text, positioning and karaoke effects.
         Since these effects are not supported by srt, they are stripped when converting vtt to srt.

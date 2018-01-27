@@ -39,6 +39,7 @@
 
                 <strong class="my-2 pr-3 border-t pt-2">Converting</strong>
                 {!! hamburger_item('convertToSrt') !!}
+                {!! hamburger_item('convertToVtt') !!}
                 {!! hamburger_item('subIdx') !!}
                 {!! hamburger_item('sup') !!}
                 {!! hamburger_item('convertToPlainText') !!}

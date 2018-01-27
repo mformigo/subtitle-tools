@@ -3,6 +3,7 @@
 namespace App\Subtitles\PlainText;
 
 use Closure;
+use RuntimeException;
 
 class GenericSubtitleCue
 {
@@ -58,12 +59,12 @@ class GenericSubtitleCue
     public function setTiming($startMs, $endMs)
     {
         if ($startMs > $endMs) {
-            throw new \Exception("Cue can't end before it starts ('{$endMs}' > '{$startMs}')");
+            throw new RuntimeException("Cue can't end before it starts ('{$endMs}' > '{$startMs}')");
         }
 
-        $this->startMs = ($startMs < 0) ? 0 : (int)$startMs;
+        $this->startMs = ($startMs < 0) ? 0 : (int) $startMs;
 
-        $this->endMs = ($endMs < 0) ? 0 : (int)$endMs;
+        $this->endMs = ($endMs < 0) ? 0 : (int) $endMs;
 
         return $this;
     }
@@ -80,8 +81,8 @@ class GenericSubtitleCue
 
     public function shift($ms)
     {
-        if (!preg_match('/^(-\d+|\d+)$/', $ms)) {
-            throw new \Exception("Invalid shift amount ({$ms})");
+        if (! preg_match('/^(-\d+|\d+)$/', $ms)) {
+            throw new RuntimeException('Invalid shift amount: '.$ms);
         }
 
         $this->setTiming(

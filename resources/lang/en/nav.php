@@ -2,11 +2,8 @@
 
 return [
 
-    'shifters_title' => '&nbsp; Resync &nbsp;',
-    'other_title' => '&nbsp; Other Tools &nbsp;',
-
-
     'item.convertToSrt' => 'Convert to Srt',
+    'item.convertToVtt' => 'Convert to Vtt',
     'item.cleanSrt' => 'Srt Cleaner',
     'item.shift' => 'Shifter',
     'item.shiftPartial' => 'Partial Shifter',

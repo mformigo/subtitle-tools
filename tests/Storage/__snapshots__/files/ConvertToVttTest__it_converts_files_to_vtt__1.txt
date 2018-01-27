@@ -1,0 +1,11 @@
+﻿WEBVTT - https://subtitletools.com
+
+00:00:00.000 --> 00:00:38.730
+This is the first line, it is crazy
+
+00:00:59.730 --> 00:01:00.000
+Second line starts here
+Also crazy
+
+00:01:00.250 --> 00:10:00.000
+And this is the third line

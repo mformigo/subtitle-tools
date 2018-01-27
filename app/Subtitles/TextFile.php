@@ -14,17 +14,17 @@ abstract class TextFile
     protected $filePath = false;
 
     /**
-     * Returns true if the $filePath file is a valid format for this class
+     * Returns true if the $filePath file is a valid format for this class.
      *
      * @param $file
      *
      * @return bool
      */
-    public abstract static function isThisFormat($file);
+    abstract public static function isThisFormat($file);
 
-    public abstract function getContent();
+    abstract public function getContent();
 
-    public abstract function getContentLines();
+    abstract public function getContentLines();
 
     public function getExtension()
     {
@@ -55,11 +55,6 @@ abstract class TextFile
         return $this->originalFileNameWithoutExtension;
     }
 
-    /**
-     * @param $file string|UploadedFile A file path or UploadedFile
-     *
-     * @return $this
-     */
     public function loadFile($file)
     {
         $name = $file instanceof UploadedFile ? $file->getClientOriginalName() : $file;
@@ -76,5 +71,10 @@ abstract class TextFile
         }
 
         return $this;
+    }
+
+    public function loadFileFromFormat($file, $sourceFormat)
+    {
+        return $this->loadFile($file);
     }
 }

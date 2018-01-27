@@ -2,9 +2,11 @@
 
 namespace Tests;
 
+use App\Models\FileGroup;
 use App\Models\StoredFile;
 use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Snapshots\MatchesSnapshots;
@@ -69,7 +71,7 @@ abstract class TestCase extends BaseTestCase
 
     public function assertMatchesFileSnapshot($file)
     {
-        if($file instanceof StoredFile) {
+        if ($file instanceof StoredFile) {
             $temporaryFilePath = TempFile::makeFilePath().'.txt';
 
             // Git changes line endings to \n, but we save files with \r\n, so we have to change them
@@ -83,6 +85,24 @@ abstract class TestCase extends BaseTestCase
         }
 
         $this->doFileSnapshotAssertion($file);
+    }
+
+    public function assertMatchesStoredFileSnapshot($storedFileId)
+    {
+        $storedFile = StoredFile::findOrFail($storedFileId);
+
+        $this->assertMatchesFileSnapshot($storedFile);
+    }
+
+    /**
+     * Assert that the file job controller redirected to the file group result page.
+     *
+     * @param TestResponse $response
+     * @param FileGroup $fileGroup
+     */
+    protected function assertSuccessfulFileJobRedirect(TestResponse $response, FileGroup $fileGroup)
+    {
+        $response->assertStatus(302)->assertRedirect($fileGroup->resultRoute);
     }
 
     public function createApplication()

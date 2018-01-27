@@ -54,7 +54,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         $lines = [];
 
         foreach ($this->getCues() as $cue) {
-            $lines[] = (string)$id++;
+            $lines[] = (string) $id++;
 
             $lines = array_merge($lines, $cue->toArray());
         }

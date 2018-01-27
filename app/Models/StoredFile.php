@@ -76,7 +76,7 @@ class StoredFile extends Model
             $textFile->watermark();
         }
 
-        $filePath = TempFile::make("\xEF\xBB\xBF" . $textFile->getContent());
+        $filePath = TempFile::make("\xEF\xBB\xBF".$textFile->getContent());
 
         return self::getOrCreate($filePath);
     }

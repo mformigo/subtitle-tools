@@ -83,7 +83,10 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     public function loadGenericCue(GenericSubtitleCue $genericCue)
     {
-        $this->setTiming($genericCue->getStartMs(), $genericCue->getEndMs());
+        $this->setTiming(
+            $genericCue->getStartMs(),
+            $genericCue->getEndMs()
+        );
 
         $this->setLines($genericCue->getLines());
 

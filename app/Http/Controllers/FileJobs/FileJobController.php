@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 
 abstract class FileJobController extends Controller
 {
-    public abstract function index();
+    abstract public function index();
 
-    public abstract function post(Request $request);
+    abstract public function post(Request $request);
 
-    protected abstract function getIndexRouteName();
+    abstract protected function getIndexRouteName();
 
     public function __construct()
     {
@@ -32,7 +32,7 @@ abstract class FileJobController extends Controller
             ->firstOrFail();
 
         return view('tool-results.file-group-result', [
-            'urlKey' => $urlKey,
+            'urlKey'    => $urlKey,
             'returnUrl' => route($this->getIndexRouteName()),
             'fileCount' => $fileGroup->fileJobs()->count(),
         ]);
@@ -69,14 +69,14 @@ abstract class FileJobController extends Controller
     {
         $files = request()->files->get('subtitles');
 
-        // this should never be true
+        // only for safety. middleware should ensure this is never true
         if (count($files) === 0) {
-            return back()->withErrors(["subtitles" => __('validation.unknown_error')]);
+            return back()->withErrors(['subtitles' => __('validation.unknown_error')]);
         }
 
         $fileGroup = FileGroup::create([
-            'tool_route' => $this->getIndexRouteName(),
-            'url_key' => generate_url_key(),
+            'tool_route'  => $this->getIndexRouteName(),
+            'url_key'     => generate_url_key(),
             'job_options' => $jobOptions,
         ]);
 
@@ -93,7 +93,7 @@ abstract class FileJobController extends Controller
             }
 
             if ($fileJob->hasError) {
-                return back()->withErrors(["subtitles" => __($fileJob->error_message)]);
+                return back()->withErrors(['subtitles' => __($fileJob->error_message)]);
             }
         }
 

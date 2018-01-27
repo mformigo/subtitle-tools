@@ -11,12 +11,14 @@ return [
 
     'not_a_text_file' => 'This file is not a text file',
     'cant_convert_file_to_srt' => 'This file can\'t be converted to srt',
+    'cant_convert_file_to_vtt' => 'This file can\'t be converted to vtt',
     'cant_convert_file_to_plain_text' => 'This file can\'t be converted to plain text',
     'file_has_no_dialogue_to_convert' => 'This file has no dialogue',
     'file_has_no_dialogue' => 'This file has no dialogue',
     'file_is_not_srt' => 'This file is not an srt file',
     'file_can_not_be_shifted' => 'Files of this type can\'t be shifted',
     'file_can_not_be_partial_shifted' => 'Files of this type can\'t be partially shifted',
+    'unknown_error' => 'An unknown error occurred',
 
     'subidx_no_vobsub2srt_output_file' => 'No output file after trying to extract the language',
     'subidx_empty_vobsub2srt_output_file' => 'The vobsub2srt output file was empty',

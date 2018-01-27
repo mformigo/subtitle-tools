@@ -47,6 +47,13 @@
         ])
 
         @include('helpers.homepage-card', [
+            'route' => route('convertToVtt'),
+            'icon'  => 'file',
+            'title' => 'Convert to Vtt',
+            'text'  => 'Converts many types of text-based subtitle files to Vtt.',
+        ])
+
+        @include('helpers.homepage-card', [
             'route' => route('subIdx'),
             'icon'  => 'file',
             'title' => 'Sub/Idx to Srt Converter',

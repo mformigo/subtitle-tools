@@ -14,7 +14,7 @@ class WebVttTest extends TestCase
     /** @test */
     function it_preserves_valid_webvtt_files()
     {
-        $filePath = "{$this->testFilesStoragePath}TextFiles/Normal/normal01.vtt";
+        $filePath = $this->testFilesStoragePath.'TextFiles/Normal/normal01.vtt';
 
         $webVtt = new WebVtt($filePath);
 
@@ -26,61 +26,61 @@ class WebVttTest extends TestCase
     /** @test */
     function it_shifts_cues()
     {
-        $webVtt = new WebVtt("{$this->testFilesStoragePath}TextFiles/three-cues.vtt");
+        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/three-cues.vtt');
 
         $this->assertTrue($webVtt instanceof ShiftsCues);
 
         $lines = $webVtt->getContentLines();
-        $this->assertSame('00:05.160 --> 00:10.100', $lines[16]);
-        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[19]);
-        $this->assertSame('00:00:15.600 --> 00:00:19.270', $lines[23]);
+        $this->assertSame('00:00:05.160 --> 00:00:10.100', $lines[2]);
+        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[5]);
+        $this->assertSame('00:00:15.600 --> 00:00:19.270', $lines[8]);
 
         $webVtt->shift(1000);
 
         $lines = $webVtt->getContentLines();
-        $this->assertSame('00:00:06.160 --> 00:00:11.100', $lines[16]);
-        $this->assertSame('00:00:11.100 --> 00:00:16.600 position:10%,line-left align:left size:35%', $lines[19]);
-        $this->assertSame('00:00:16.600 --> 00:00:20.270', $lines[23]);
+        $this->assertSame('00:00:06.160 --> 00:00:11.100', $lines[2]);
+        $this->assertSame('00:00:11.100 --> 00:00:16.600 position:10%,line-left align:left size:35%', $lines[5]);
+        $this->assertSame('00:00:16.600 --> 00:00:20.270', $lines[8]);
 
-        $webVtt->shift("-1000");
+        $webVtt->shift('-1000');
 
         $lines = $webVtt->getContentLines();
-        $this->assertSame('00:00:05.160 --> 00:00:10.100', $lines[16]);
-        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[19]);
-        $this->assertSame('00:00:15.600 --> 00:00:19.270', $lines[23]);
+        $this->assertSame('00:00:05.160 --> 00:00:10.100', $lines[2]);
+        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[5]);
+        $this->assertSame('00:00:15.600 --> 00:00:19.270', $lines[8]);
     }
 
     /** @test */
     function it_partial_shifts_cues()
     {
-        $webVtt = new WebVtt("{$this->testFilesStoragePath}TextFiles/three-cues.vtt");
+        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/three-cues.vtt');
 
         $this->assertTrue($webVtt instanceof PartialShiftsCues);
 
         $lines = $webVtt->getContentLines();
-        $this->assertSame('00:05.160 --> 00:10.100', $lines[16]);
-        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[19]);
-        $this->assertSame('00:00:15.600 --> 00:00:19.270', $lines[23]);
+        $this->assertSame('00:00:05.160 --> 00:00:10.100', $lines[2]);
+        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[5]);
+        $this->assertSame('00:00:15.600 --> 00:00:19.270', $lines[8]);
 
         $webVtt->shiftPartial(12000, 9999999, 1000);
 
         $lines = $webVtt->getContentLines();
-        $this->assertSame('00:05.160 --> 00:10.100', $lines[16]);
-        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[19]);
-        $this->assertSame('00:00:16.600 --> 00:00:20.270', $lines[23]);
+        $this->assertSame('00:00:05.160 --> 00:00:10.100', $lines[2]);
+        $this->assertSame('00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%', $lines[5]);
+        $this->assertSame('00:00:16.600 --> 00:00:20.270', $lines[8]);
 
         $webVtt->shiftPartial(0, 16000, '-1000');
 
         $lines = $webVtt->getContentLines();
-        $this->assertSame('00:00:04.160 --> 00:00:09.100', $lines[16]);
-        $this->assertSame('00:00:09.100 --> 00:00:14.600 position:10%,line-left align:left size:35%', $lines[19]);
-        $this->assertSame('00:00:16.600 --> 00:00:20.270', $lines[23]);
+        $this->assertSame('00:00:04.160 --> 00:00:09.100', $lines[2]);
+        $this->assertSame('00:00:09.100 --> 00:00:14.600 position:10%,line-left align:left size:35%', $lines[5]);
+        $this->assertSame('00:00:16.600 --> 00:00:20.270', $lines[8]);
     }
 
     /** @test */
     function it_transforms_to_generic_subtitle()
     {
-        $webVtt = new WebVtt("{$this->testFilesStoragePath}TextFiles/three-cues.vtt");
+        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/three-cues.vtt');
 
         $generic = $webVtt->toGenericSubtitle();
 
@@ -111,13 +111,13 @@ class WebVttTest extends TestCase
     /** @test */
     function it_can_parse_a_file_that_ends_with_a_cue_without_dialogue()
     {
-        $webVtt = new WebVtt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/webvtt-edge-case-01.vtt");
+        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/SubtitleParsing/webvtt-edge-case-01.vtt');
 
         $generic = $webVtt->toGenericSubtitle();
 
         $cues = $generic->getCues();
 
-        $this->assertSame(3, count($cues));
+        $this->assertSame(2, count($cues));
 
         $this->assertSame(48400, $cues[0]->getStartMs());
         $this->assertSame(52000, $cues[0]->getEndMs());
@@ -128,17 +128,12 @@ class WebVttTest extends TestCase
         $this->assertSame(57200, $cues[1]->getEndMs());
         $this->assertSame(['Last cue has no dialogue'], $cues[1]->getLines());
         $this->assertFalse($cues[1] instanceof WebVttCue);
-
-        $this->assertSame(90319, $cues[2]->getStartMs());
-        $this->assertSame(92319, $cues[2]->getEndMs());
-        $this->assertSame([], $cues[2]->getLines());
-        $this->assertFalse($cues[2] instanceof WebVttCue);
     }
 
     /** @test */
     function it_can_parse_a_file_with_no_dialogue()
     {
-        $webVtt = new WebVtt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/webvtt-no-dialogue.vtt");
+        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/SubtitleParsing/webvtt-no-dialogue.vtt');
 
         $generic = $webVtt->toGenericSubtitle();
 

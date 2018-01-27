@@ -12,7 +12,7 @@ use App\Events\FileJobChanged;
 use App\Models\FileGroup;
 use App\Models\FileJob as FileJobModel;
 use App\Models\StoredFile;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 abstract class FileJob implements ShouldQueue
@@ -27,7 +27,7 @@ abstract class FileJob implements ShouldQueue
 
     protected $fileJob;
 
-    public abstract function getNewExtension();
+    abstract public function getNewExtension();
 
     /**
      * @param FileGroup $fileGroup
@@ -39,26 +39,28 @@ abstract class FileJob implements ShouldQueue
 
         $this->inputStoredFile = StoredFile::getOrCreate($file);
 
-        $originalName = ($file instanceof UploadedFile) ? $file->_originalName : basename($file);
+        $originalName = ($file instanceof UploadedFile)
+            ? $file->_originalName
+            : basename($file);
 
         $this->fileJob = FileJobModel::create([
             'input_stored_file_id' => $this->inputStoredFile->id,
-            'original_name'   => $originalName,
-            'file_group_id' => $this->fileGroup->id,
+            'original_name'        => $originalName,
+            'file_group_id'        => $this->fileGroup->id,
         ]);
     }
 
     public function startFileJob()
     {
-        $this->fileJob->started_at = Carbon::now();
+        $this->fileJob->started_at = now();
     }
 
     public function finishFileJob(StoredFile $outputStoredFile)
     {
         $this->fileJob->fill([
             'output_stored_file_id' => $outputStoredFile->id,
-            'new_extension' => $this->getNewExtension(),
-            'finished_at' => Carbon::now(),
+            'new_extension'         => $this->getNewExtension(),
+            'finished_at'           => now(),
         ]);
 
         return $this->endFileJob();
@@ -68,7 +70,7 @@ abstract class FileJob implements ShouldQueue
     {
         $this->fileJob->fill([
             'error_message' => $errorMessage,
-            'finished_at'   => Carbon::now(),
+            'finished_at'   => now(),
         ]);
 
         return $this->endFileJob();
@@ -85,10 +87,10 @@ abstract class FileJob implements ShouldQueue
             ->count();
 
         if ($unfinishedJobsCount === 0) {
-            $this->fileGroup->update(['file_jobs_finished_at' => Carbon::now()]);
+            $this->fileGroup->update(['file_jobs_finished_at' => now()]);
         }
 
-        event(new FileJobChanged($this->fileJob));
+        FileJobChanged::dispatch($this->fileJob);
 
         TempFile::cleanUp();
 
@@ -97,8 +99,8 @@ abstract class FileJob implements ShouldQueue
 
     public function failed()
     {
-        $this->abortFileJob('messages.cant_convert_file_to_srt');
+        $this->abortFileJob('messages.unknown_error');
 
-        \Log::error("FileJob (filejob id: {$this->fileJob->id}) failed! (possibly TextEncodingException)");
+        Log::error("FileJob (filejob id: {$this->fileJob->id}) failed! (usually because of a TextEncodingException)");
     }
 }

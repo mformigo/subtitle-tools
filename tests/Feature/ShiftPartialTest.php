@@ -4,12 +4,13 @@ namespace Tests\Feature;
 
 use App\Models\FileGroup;
 use Tests\CreatesUploadedFiles;
+use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShiftPartialTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
 
     /** @test */
     function the_fields_are_server_side_required()
@@ -72,5 +73,22 @@ class ShiftPartialTest extends TestCase
 
         $response->assertStatus(302)
             ->assertRedirect($fileGroup->resultRoute);
+    }
+
+    /** @test */
+    function it_can_partial_shift_vtt_files()
+    {
+        [$response, $fileGroup] = $this->postFileJob('shiftPartial', [
+            $this->createUploadedFile('TextFiles/three-cues.vtt'),
+        ], [
+            'shifts' => [
+                ['from' => '00:00:00', 'to' => '00:00:06', 'milliseconds' => -1000],
+                ['from' => '00:00:10', 'to' => '00:59:59', 'milliseconds' => 1000],
+            ],
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
     }
 }

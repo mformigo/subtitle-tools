@@ -2,16 +2,36 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\LoadsGenericCues;
 use App\Subtitles\TimingStrings;
+use RuntimeException;
 
-class WebVttCue extends GenericSubtitleCue implements TimingStrings
+class WebVttCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCues
 {
+    protected $index = '';
+
     protected $timingStyle = '';
+
+    public function __construct($source = null)
+    {
+        if ($source instanceof GenericSubtitleCue) {
+            $this->loadGenericCue($source);
+        } elseif ($source !== null) {
+            throw new RuntimeException('Invalid VttCue source');
+        }
+    }
+
+    public function setIndex($index)
+    {
+        $this->index = $index;
+
+        return $this;
+    }
 
     public function setTimingFromString($string)
     {
-        if (!self::isTimingString($string)) {
-            throw new \Exception("Not a valid timing string ({$string})");
+        if (! self::isTimingString($string)) {
+            throw new RuntimeException('Not a valid timing string: '.$string);
         }
 
         preg_match("/^(?<start>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3}) +--> +(?<end>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3})(?<style>| .+)$/", $string, $matches);
@@ -36,9 +56,11 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
 
     public function getTimingString()
     {
-        $timingStyle = empty($this->timingStyle) ? '' : ' ' . $this->timingStyle;
+        $timingStyle = empty($this->timingStyle)
+            ? ''
+            : ' '.$this->timingStyle;
 
-        return $this->msToTimecode($this->startMs) . ' --> ' . $this->msToTimecode($this->endMs) . $timingStyle;
+        return $this->msToTimecode($this->startMs).' --> '.$this->msToTimecode($this->endMs).$timingStyle;
     }
 
     private function msToTimecode($ms)
@@ -82,13 +104,19 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
 
     public function toArray()
     {
-        $lines = [$this->getTimingString()];
+        $lines = [];
+
+        if (! blank($this->index)) {
+            $lines[] = $this->index;
+        }
+
+        $lines[] = $this->getTimingString();
 
         foreach ($this->lines as $line) {
             $lines[] = $line;
         }
 
-        $lines[] = "";
+        $lines[] = '';
 
         return $lines;
     }
@@ -113,5 +141,17 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings
         }
 
         return true;
+    }
+
+    public function loadGenericCue(GenericSubtitleCue $genericCue)
+    {
+        $this->setTiming(
+            $genericCue->getStartMs(),
+            $genericCue->getEndMs()
+        );
+
+        $this->setLines($genericCue->getLines());
+
+        return $this;
     }
 }
