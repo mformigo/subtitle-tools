@@ -78,6 +78,9 @@
         // The sub/idx tool uses different inputs, and should not have drag and drop enabled.
         var defaultDropInputExists = !! subtitlesInput;
 
+        // Dragging and dropping doesn't work in IE11
+        var isIE11 = !! window.MSInputMethodContext && !! document.documentMode;
+
         var dragLeaveTimeout = null;
 
         function isDraggingFiles(dragEvent) {
@@ -91,7 +94,7 @@
         dropContainer.ondragenter = function (event) {
             event.preventDefault();
 
-            if (isDraggingFiles(event) && defaultDropInputExists) {
+            if (isDraggingFiles(event) && defaultDropInputExists && ! isIE11) {
                 dropContainer.classList.add("dropzone-active");
             }
         };
@@ -107,6 +110,8 @@
         dropContainer.ondragover = function (event) {
             event.preventDefault();
 
+            event.dataTransfer.dropEffect = 'copy';
+
             clearTimeout(dragLeaveTimeout);
         };
 
@@ -115,8 +120,8 @@
             event.stopPropagation();
 
             dropContainer.classList.remove("dropzone-active");
-
-            if (! isDraggingFiles(event) || ! defaultDropInputExists) {
+            
+            if (! isDraggingFiles(event) || ! defaultDropInputExists && ! isIE11) {
                 return;
             }
 
