@@ -136,3 +136,35 @@ a {
     line-height: 1;
     padding: 8px;
 }
+
+
+/*
+ * Element where files can be dragged and dropped.
+ */
+.drop-container {
+
+}
+
+/*
+ * Gets added when files enter the dropzone.
+ */
+.dropzone-active {
+
+}
+
+.dropzone-instructions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(218, 225, 231, 0.7);
+}
+
+/*
+ * Should be hidden when ".dropzone-active" is not present.
+ */
+.dropzone-active .dropzone-instructions {
+    display: flex;
+}

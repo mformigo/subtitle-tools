@@ -38,8 +38,8 @@
 
     @push('footer')
         <script>
-            $('#SubtitlesInput').on("change", function() {
-                var selectedFileName = $('#SubtitlesInput').val().split('\\').pop();
+            $('#subtitles-input').on("change", function() {
+                var selectedFileName = $('#subtitles-input').val().split('\\').pop();
 
                 var isSubIdxFile = selectedFileName.match(/\.(sub|idx)$/i);
                 var isSupFile    = selectedFileName.match(/\.sup$/i);
