@@ -34,6 +34,8 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings, LoadsGeneri
             throw new RuntimeException('Not a valid timing string: '.$string);
         }
 
+        $string = trim($string);
+
         preg_match("/^(?<start>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3}) +--> +(?<end>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3})(?<style>| .+)$/", $string, $matches);
 
         $startTimecode = str_replace(',', '.', $matches['start']);
@@ -125,7 +127,7 @@ class WebVttCue extends GenericSubtitleCue implements TimingStrings, LoadsGeneri
     {
         $string = trim($string);
 
-        if (!preg_match("/^(?<start>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3}) +--> +(?<end>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3})(?<style>| .+)$/", $string, $matches)) {
+        if (! preg_match("/^(?<start>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3}) +--> +(?<end>(\d{2,}:|)[0-5]\d:[0-5]\d(,|\.)\d{3})(?<style>| .+)$/", $string, $matches)) {
             return false;
         }
 
