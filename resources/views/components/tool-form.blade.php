@@ -79,7 +79,7 @@
         var defaultDropInputExists = !! subtitlesInput;
 
         // Dragging and dropping doesn't work in IE11
-        var isIE11 = !! window.MSInputMethodContext && !! document.documentMode;
+        var isIE11 = window.MSInputMethodContext && document.documentMode;
 
         var dragLeaveTimeout = null;
 
