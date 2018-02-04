@@ -2,7 +2,7 @@
 
 function generate_url_key()
 {
-    return str_random(16);
+    return strtolower(str_random(16));
 }
 
 function file_mime($filePath)
