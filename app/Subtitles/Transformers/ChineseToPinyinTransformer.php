@@ -16,7 +16,9 @@ class ChineseToPinyinTransformer implements CueTransformer
 
     /**
      * Converts every line of every cue to pinyin
+     *
      * @param ContainsGenericCues $subtitle
+     *
      * @return bool False if no valid transformations have happened, true otherwise
      */
     public function transformCues(ContainsGenericCues $subtitle)

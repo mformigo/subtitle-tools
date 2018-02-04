@@ -15,8 +15,11 @@ class OnlyPinyinAndChineseTransformer implements CueTransformer
     }
 
     /**
-     * Adds pinyin underneath every line that has Chinese, removes all lines that don't have Chinese
+     * Adds pinyin underneath every line that has Chinese,
+     * removes all lines that don't have Chinese
+     *
      * @param ContainsGenericCues $subtitle
+     *
      * @return bool False if no valid transformations have happened, true otherwise
      */
     public function transformCues(ContainsGenericCues $subtitle)
@@ -33,7 +36,7 @@ class OnlyPinyinAndChineseTransformer implements CueTransformer
 
                 $hasChangedSomething = true;
 
-                return $line . "\n" . $converted;
+                return $line."\n".$converted;
             });
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use SjorsO\TextFile\Facades\TextFileIdentifier;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TextFileRule implements Rule
@@ -10,7 +11,7 @@ class TextFileRule implements Rule
     public function passes($attribute, $value)
     {
         if ($value instanceof UploadedFile) {
-            return app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($value->getRealPath());
+            return TextFileIdentifier::isTextFile($value->getRealPath());
         }
 
         return false;

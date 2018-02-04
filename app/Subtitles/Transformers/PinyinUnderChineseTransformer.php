@@ -16,7 +16,9 @@ class PinyinUnderChineseTransformer implements CueTransformer
 
     /**
      * Adds pinyin underneath every line that has Chinese
+     *
      * @param ContainsGenericCues $subtitle
+     *
      * @return bool False if no valid transformations have happened, true otherwise
      */
     public function transformCues(ContainsGenericCues $subtitle)
@@ -30,7 +32,7 @@ class PinyinUnderChineseTransformer implements CueTransformer
                 if ($converted !== $line) {
                     $hasChangedSomething = true;
 
-                    return $line . "\n" . $converted;
+                    return $line."\n".$converted;
                 }
 
                 return $line;
