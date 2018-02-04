@@ -16,8 +16,16 @@
         <div class="hidden dropzone-instructions items-center justify-center flex-col">
             @include('helpers.svg.file', ['classes' => 'w-12'])
 
-            <span class="text-xl mt-4">
+            <span class="text-xl mt-4 font-bold">
                 {{ $singleFile ? 'Drop a file here' : 'Drop files here' }}
+            </span>
+        </div>
+
+        <div id="dropzone-error" class="hidden items-center justify-center flex-col">
+            @include('helpers.svg.error-circle', ['classes' => 'w-12'])
+
+            <span id="dropzone-error-text" class="text-xl mt-4 w-48 text-center font-bold">
+                Oops
             </span>
         </div>
 

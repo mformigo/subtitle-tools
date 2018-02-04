@@ -22,6 +22,7 @@ if (mix.inProduction()) {
 
                 paths: glob.sync([
                     path.join(__dirname, 'resources/views/**/*.php'),
+                    path.join(__dirname, 'resources/assets/js/**/*.js'),
                     path.join(__dirname, 'resources/assets/js/**/*.vue')
                 ]),
                 extractors: [
