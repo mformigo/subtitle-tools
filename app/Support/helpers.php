@@ -24,14 +24,7 @@ function storage_disk_file_path($path, $disk = null)
 
     $storagePath = Storage::disk($disk)->getDriver()->getAdapter()->getPathPrefix();
 
-    return rtrim($storagePath, '/') . "/" . ltrim($path, '/');
-}
-
-function nav_item($routeName)
-{
-    $active = Request::routeIs($routeName) || Request::routeIs("{$routeName}.*") ? ' class="active"' : '';
-
-    return "<li{$active}><a href='" . route($routeName) . "'>" . __("nav.item.{$routeName}") . "</a></li>";
+    return rtrim($storagePath, '/').'/'.ltrim($path, '/');
 }
 
 function interval(int $interval, $closure)
@@ -40,7 +33,7 @@ function interval(int $interval, $closure)
 
     static $calls = [];
 
-    $caller = sha1(debug_backtrace()[0]['file'] . '|' . debug_backtrace()[0]['line']);
+    $caller = sha1(debug_backtrace()[0]['file'].'|'.debug_backtrace()[0]['line']);
 
     $callCount = $calls[$caller] ?? 1;
 
@@ -55,7 +48,7 @@ function once($closure)
 {
     static $calls = [];
 
-    $caller = sha1(debug_backtrace()[0]['file'] . '|' . debug_backtrace()[0]['line']);
+    $caller = sha1(debug_backtrace()[0]['file'].'|'.debug_backtrace()[0]['line']);
 
     if (isset($calls[$caller])) {
         return;

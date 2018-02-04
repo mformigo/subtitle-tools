@@ -3,10 +3,11 @@
         <li>
             <a href="/">Subtitle Tools</a>
         </li>
-        {!! nav_item('admin') !!}
-        {!! nav_item('adminFileJobs') !!}
-        {!! nav_item('admin.subIdx') !!}
-        {!! nav_item('admin.sup') !!}
+
+        <li><a href="{{ route('admin') }}">{{ __('nav.item.admin') }}</a></li>
+        <li><a href="{{ route('adminFileJobs') }}">{{ __('nav.item.adminFileJobs') }}</a></li>
+        <li><a href="{{ route('admin.subIdx') }}">{{ __('nav.item.admin.subIdx') }}</a></li>
+        <li><a href="{{ route('admin.sup') }}">{{ __('nav.item.admin.sup') }}</a></li>
 
         <form action="{{ route('logout') }}" method="POST" id="LogoutForm">
             {{ csrf_field() }}
