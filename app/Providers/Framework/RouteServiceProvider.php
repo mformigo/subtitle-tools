@@ -44,22 +44,23 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::middleware('api')
-            ->namespace($this->namespace . '\Api')
-            ->group(base_path('routes/api.php'));
+            ->prefix('api/v1/')
+            ->namespace($this->namespace.'\Api')
+            ->group(base_path('routes/api-routes.php'));
     }
 
     protected function mapWebRoutes()
     {
         Route::middleware('web')
              ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+             ->group(base_path('routes/web-routes.php'));
     }
 
     protected function mapWebAdminRoutes()
     {
         Route::middleware(['web', 'auth'])
-             ->namespace($this->namespace . '\Admin')
+             ->namespace($this->namespace.'\Admin')
              ->prefix('st-admin')
-             ->group(base_path('routes/web-admin.php'));
+             ->group(base_path('routes/web-admin-routes.php'));
     }
 }

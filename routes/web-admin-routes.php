@@ -27,6 +27,6 @@ Route::post('/dashboard/404/delete',    ['uses' => 'DashboardController@delete40
 Route::post('/dashboard/404/blacklist', ['uses' => 'DashboardController@append404Blacklist', 'as' => 'admin.dashboard.append404Blacklist']);
 
 
-Route::fallback(function() {
+Route::fallback(function () {
    return '<pre>404, dummy</pre>';
 });
