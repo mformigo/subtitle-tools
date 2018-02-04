@@ -4,53 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\FileGroup
- *
- * @property int $id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property string|null $original_name
- * @property string $tool_route
- * @property string $url_key
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FileJob[] $fileJobs
- * @property-read mixed $result_route
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereOriginalName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereToolRoute($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereUrlKey($value)
- * @mixin \Eloquent
- * @property string $job_options
- * @property string|null $file_jobs_finished_at
- * @property string|null $archive_requested_at
- * @property string|null $archive_finished_at
- * @property string|null $archive_error
- * @property int|null $archive_stored_file_id
- * @property-read \App\Models\StoredFile $archiveStoredFile
- * @property-read mixed $archive_download_url
- * @property-read mixed $archive_request_url
- * @property-read mixed $archive_status
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveError($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveFinishedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveRequestedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereArchiveStoredFileId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereFileJobsFinishedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FileGroup whereJobOptions($value)
- */
 class FileGroup extends Model
 {
     protected $guarded = [];
 
     public function fileJobs()
     {
-        return $this->hasMany(\App\Models\FileJob::class);
+        return $this->hasMany(FileJob::class);
     }
 
     public function archiveStoredFile()
     {
-        return $this->hasOne(\App\Models\StoredFile::class, 'id', 'archive_stored_file_id');
+        return $this->hasOne(StoredFile::class, 'id', 'archive_stored_file_id');
     }
 
     public function getResultRouteAttribute()
@@ -70,8 +35,7 @@ class FileGroup extends Model
 
     public function getArchiveStatusAttribute()
     {
-        switch(null)
-        {
+        switch (null) {
             case $this->file_jobs_finished_at:  return __('messages.archive.not_available_yet');
             case $this->archive_requested_at:   return __('messages.archive.request');
             case $this->archive_finished_at:    return __('messages.archive.processing');
@@ -101,8 +65,8 @@ class FileGroup extends Model
     public function getApiValues()
     {
         return [
-            'archiveStatus' => $this->archiveStatus,
-            'archiveRequestUrl' => $this->archiveRequestUrl,
+            'archiveStatus'      => $this->archiveStatus,
+            'archiveRequestUrl'  => $this->archiveRequestUrl,
             'archiveDownloadUrl' => $this->archiveDownloadUrl,
         ];
     }

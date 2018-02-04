@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Jobs\Sup\ExtractSupImagesJob;
+use App\Models\Diagnostic\SupJobMeta;
 use App\Models\Traits\MeasuresQueueTime;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,17 +20,17 @@ class SupJob extends Model
 
     public function meta()
     {
-        return $this->hasOne(\App\Models\Diagnostic\SupJobMeta::class);
+        return $this->hasOne(SupJobMeta::class);
     }
 
     public function inputStoredFile()
     {
-        return $this->hasOne(\App\Models\StoredFile::class, 'id', 'input_stored_file_id');
+        return $this->hasOne(StoredFile::class, 'id', 'input_stored_file_id');
     }
 
     public function outputStoredFile()
     {
-        return $this->hasOne(\App\Models\StoredFile::class, 'id', 'output_stored_file_id');
+        return $this->hasOne(StoredFile::class, 'id', 'output_stored_file_id');
     }
 
     public function getIsFinishedAttribute()

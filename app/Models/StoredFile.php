@@ -11,29 +11,13 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-/**
- * App\StoredFile
- *
- * @property int $id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property string $hash
- * @property string $storage_file_path
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StoredFile whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StoredFile whereHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StoredFile whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StoredFile whereStorageFilePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StoredFile whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property-read \App\Models\StoredFileMeta $meta
- */
 class StoredFile extends Model
 {
     protected $fillable = ['hash', 'storage_file_path'];
 
     public function meta()
     {
-        return $this->hasOne(\App\Models\StoredFileMeta::class);
+        return $this->hasOne(StoredFileMeta::class);
     }
 
     protected function getFilePathAttribute()
