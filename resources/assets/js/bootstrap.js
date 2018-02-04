@@ -44,3 +44,5 @@ if (typeof dontConnectEcho === 'undefined') {
 require('./vendor/jquery.maskedinput.min');
 
 require('./vendor/blockadblock');
+
+require('./scripts/drag-and-drop');
