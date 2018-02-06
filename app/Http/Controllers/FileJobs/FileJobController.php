@@ -50,11 +50,11 @@ abstract class FileJobController extends Controller
         return [];
     }
 
-    public function validateFileJob(Request $request, array $rules = [])
+    public function validateFileJob(Request $request, array $additionalRules = [])
     {
         $request->validate([
             'subtitles' => ['required', 'array', 'max:100', new AreUploadedFilesRule],
-        ] + $rules);
+        ] + $additionalRules);
     }
 
     protected function options(Request $request)
