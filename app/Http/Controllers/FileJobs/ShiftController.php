@@ -7,26 +7,26 @@ use Illuminate\Http\Request;
 
 class ShiftController extends FileJobController
 {
+    protected $indexRouteName = 'shift';
+
+    protected $job = ShiftJob::class;
+
     public function index()
     {
         return view('tools.shifter');
     }
 
-    public function post(Request $request)
+    protected function rules(): array
     {
-        $this->validateFileJob([
+        return [
             'milliseconds' => 'required|numeric|not_in:0|regex:/^(-?\d+)$/',
-        ]);
-
-        $jobOptions = [
-            'milliseconds' => $request->get('milliseconds'),
         ];
-
-        return $this->doFileJobs(ShiftJob::class, $jobOptions);
     }
 
-    protected function getIndexRouteName()
+    protected function options(Request $request)
     {
-        return 'shift';
+        return [
+            'milliseconds' => $request->get('milliseconds'),
+        ];
     }
 }

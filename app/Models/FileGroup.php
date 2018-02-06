@@ -70,4 +70,12 @@ class FileGroup extends Model
             'archiveDownloadUrl' => $this->archiveDownloadUrl,
         ];
     }
+
+    public static function findForTool($urlKey, $indexRouteName)
+    {
+        return static::query()
+            ->where('url_key', $urlKey)
+            ->where('tool_route', $indexRouteName)
+            ->firstOrFail();
+    }
 }

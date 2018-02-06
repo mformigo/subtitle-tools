@@ -7,28 +7,28 @@ use Illuminate\Http\Request;
 
 class PinyinController extends FileJobController
 {
+    protected $indexRouteName = 'pinyin';
+
+    protected $job = PinyinSubtitlesJob::class;
+
+    protected $shouldAlwaysQueue = true;
+
     public function index()
     {
         return view('tools.pinyin-subtitles');
     }
 
-    public function post(Request $request)
+    protected function rules(): array
     {
-        $this->validateFileJob([
+        return [
             'mode' => 'required|in:1,2,3'
-        ]);
-
-        $jobOptions = [
-            // mode name is only set because it makes debugging/diagnostics easier
-            'mode_name' => __('tools.pinyin.mode.'.$request->get('mode')),
-            'mode' => $request->get('mode'),
         ];
-
-        return $this->doFileJobs(PinyinSubtitlesJob::class, $jobOptions, true);
     }
 
-    protected function getIndexRouteName()
+    protected function options(Request $request)
     {
-        return 'pinyin';
+        return [
+            'mode' => $request->get('mode'),
+        ];
     }
 }

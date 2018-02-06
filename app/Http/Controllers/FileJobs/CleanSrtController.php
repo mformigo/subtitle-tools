@@ -7,26 +7,21 @@ use Illuminate\Http\Request;
 
 class CleanSrtController extends FileJobController
 {
+    protected $indexRouteName = 'cleanSrt';
+
+    protected $job = CleanSrtJob::class;
+
     public function index()
     {
         return view('tools.srt-cleaner');
     }
 
-    public function post(Request $request)
+    protected function options(Request $request)
     {
-        $this->validateFileJob();
-
-        $jobOptions = [
+        return [
             'stripCurly'       => $request->get('stripCurly') !== null,
             'stripAngle'       => $request->get('stripAngle') !== null,
             'stripParentheses' => $request->get('stripParentheses') !== null,
         ];
-
-        return $this->doFileJobs(CleanSrtJob::class, $jobOptions);
-    }
-
-    protected function getIndexRouteName()
-    {
-        return 'cleanSrt';
     }
 }

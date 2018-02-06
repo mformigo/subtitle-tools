@@ -7,20 +7,27 @@ use Illuminate\Http\Request;
 
 class ShiftPartialController extends FileJobController
 {
+    protected $indexRouteName = 'shiftPartial';
+
+    protected $job = ShiftPartialJob::class;
+
     public function index()
     {
         return view('tools.partial-shifter');
     }
 
-    public function post(Request $request)
+    protected function rules(): array
     {
-        $this->validateFileJob([
+        return [
             'shifts'                => 'required|array',
             'shifts.*.from'         => 'required|regex:/\d\d:\d\d:\d\d/',
             'shifts.*.to'           => 'required|regex:/\d\d:\d\d:\d\d/',
             'shifts.*.milliseconds' => 'required|numeric|not_in:0|regex:/^(-?\d+)$/',
-        ]);
+        ];
+    }
 
+    protected function options(Request $request)
+    {
         $shifts = $request->get('shifts');
 
         foreach ($shifts as $shift) {
@@ -40,15 +47,8 @@ class ShiftPartialController extends FileJobController
             })->all();
         }, $shifts);
 
-        $jobOptions = [
+        return [
             'shifts' => $shifts,
         ];
-
-        return $this->doFileJobs(ShiftPartialJob::class, $jobOptions);
-    }
-
-    protected function getIndexRouteName()
-    {
-        return 'shiftPartial';
     }
 }

@@ -6,66 +6,93 @@ use App\Http\Controllers\Controller;
 use App\Support\Facades\FileName;
 use App\Http\Rules\AreUploadedFilesRule;
 use App\Models\FileGroup;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use LogicException;
 
 abstract class FileJobController extends Controller
 {
-    abstract public function index();
+    protected $indexRouteName;
 
-    abstract public function post(Request $request);
+    protected $job;
 
-    abstract protected function getIndexRouteName();
+    protected $shouldAlwaysQueue = false;
 
     public function __construct()
     {
-        $this->middleware([
-            'check-file-size',
-            'extract-archives',
-        ])->only('post');
+        $this->middleware(['check-file-size', 'extract-archives'])->only('post');
+
+        if (! $this->indexRouteName || ! $this->job) {
+            throw new LogicException('You should define both "$indexRouteName" and "$job" on the FileJobController');
+        }
+    }
+
+    abstract public function index();
+
+    public function post(Request $request)
+    {
+        $this->validateFileJob(
+            $request,
+            $this->rules()
+        );
+
+        $options = $this->options($request);
+
+        if ($options instanceof RedirectResponse) {
+            return $options;
+        }
+
+        return $this->doFileJobs($this->job, $options);
+    }
+
+    protected function rules(): array
+    {
+        return [];
+    }
+
+    public function validateFileJob(Request $request, array $rules = [])
+    {
+        $request->validate([
+            'subtitles' => ['required', 'array', 'max:100', new AreUploadedFilesRule],
+        ] + $rules);
+    }
+
+    protected function options(Request $request)
+    {
+        return [];
     }
 
     public function result($urlKey)
     {
-        $fileGroup = FileGroup::query()
-            ->where('url_key', $urlKey)
-            ->where('tool_route', $this->getIndexRouteName())
-            ->firstOrFail();
+        $fileGroup = FileGroup::findForTool($urlKey, $this->indexRouteName);
 
         return view('tool-results.file-group-result', [
             'urlKey'    => $urlKey,
-            'returnUrl' => route($this->getIndexRouteName()),
+            'returnUrl' => route($this->indexRouteName),
             'fileCount' => $fileGroup->fileJobs()->count(),
         ]);
     }
 
     public function download($urlKey, $id)
     {
-        $fileJob = FileGroup::query()
-            ->where('url_key', $urlKey)
-            ->where('tool_route', $this->getIndexRouteName())
-            ->firstOrFail()
+        $fileJob = FileGroup::findForTool($urlKey, $this->indexRouteName)
             ->fileJobs()
             ->whereNotNull('finished_at')
             ->whereNull('error_message')
             ->findOrFail($id);
 
-        // basename because it can contain the path if it came from a zip file
+        // The original name can contain a path if it came from an archive file
         $name = basename($fileJob->originalNameWithNewExtension);
 
-        // the name needs to have some ascii chars, else the download response could strip the whole name
+        // Adding a watermark also helps guarantee that the file name has some
+        // ascii chars. If the name does not contain any ascii chars, the
+        // download response could strip the whole name.
         $name = FileName::watermark($name);
 
-        return response()->download($fileJob->outputStoredFile->filePath, $name);
+        return response()->download($fileJob->outputStoredFile->file_path, $name);
     }
 
-    public function validateFileJob(array $rules = [])
-    {
-        $rules['subtitles'] = ['required', 'array', 'max:100', new AreUploadedFilesRule];
-
-        request()->validate($rules);
-    }
-
-    protected function doFileJobs($jobClass, array $jobOptions = [], $alwaysQueue = false)
+    protected function doFileJobs($jobClass, array $jobOptions = [])
     {
         $files = request()->files->get('subtitles');
 
@@ -75,12 +102,12 @@ abstract class FileJobController extends Controller
         }
 
         $fileGroup = FileGroup::create([
-            'tool_route'  => $this->getIndexRouteName(),
+            'tool_route'  => $this->indexRouteName,
             'url_key'     => generate_url_key(),
             'job_options' => $jobOptions,
         ]);
 
-        if ($alwaysQueue || count($files) > 1) {
+        if ($this->shouldAlwaysQueue || count($files) > 1) {
             foreach ($files as $file) {
                 $this->dispatch(new $jobClass($fileGroup, $file));
             }
