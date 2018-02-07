@@ -27,8 +27,6 @@ abstract class FileJob implements ShouldQueue
 
     protected $fileJob;
 
-    abstract public function getNewExtension();
-
     /**
      * @param FileGroup $fileGroup
      * @param $file string|UploadedFile
@@ -103,4 +101,6 @@ abstract class FileJob implements ShouldQueue
 
         Log::error("FileJob (filejob id: {$this->fileJob->id}) failed! (usually because of a TextEncodingException)");
     }
+
+    abstract public function getNewExtension();
 }

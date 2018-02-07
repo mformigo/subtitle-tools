@@ -37,6 +37,7 @@ Route::fileGroupTool('shiftPartial',       'ShiftPartialController',       'part
 Route::fileGroupTool('convertToUtf8',      'ConvertToUtf8Controller',      'convert-text-files-to-utf8-online');
 Route::fileGroupTool('pinyin',             'PinyinController',             'make-chinese-pinyin-subtitles');
 Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'convert-subtitles-to-plain-text-online');
+Route::fileGroupTool('merge',              'MergeController',              'merge-subtitles-online');
 
 
 Route::prefix('convert-sup-to-srt-online')->group(function () {

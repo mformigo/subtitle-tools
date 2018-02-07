@@ -47,4 +47,5 @@ return [
     'pinyin.unknown_mode' => 'Unknown error',
     'pinyin.subtitles_have_no_chinese' => 'The subtitle file has no Chinese to change to pinyin',
 
+    'cant_merge_these_subtitles' => 'Can not merge these subtitles',
 ];

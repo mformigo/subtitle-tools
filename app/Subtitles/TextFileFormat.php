@@ -2,6 +2,7 @@
 
 namespace App\Subtitles;
 
+use App\Models\StoredFile;
 use RuntimeException;
 
 class TextFileFormat
@@ -19,6 +20,10 @@ class TextFileFormat
 
     public function getMatchingFormat($file, $loadFile = true)
     {
+        if ($file instanceof StoredFile) {
+            $file = $file->file_path;
+        }
+
         foreach ($this->formats as $class) {
             if ($class::isThisFormat($file)) {
                 return $loadFile

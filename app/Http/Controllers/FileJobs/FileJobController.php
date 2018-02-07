@@ -18,9 +18,15 @@ abstract class FileJobController extends Controller
 
     protected $shouldAlwaysQueue = false;
 
+    protected $extractArchives = true;
+
     public function __construct()
     {
-        $this->middleware(['check-file-size', 'extract-archives'])->only('post');
+        $this->middleware('check-file-size')->only('post');
+
+        if ($this->extractArchives) {
+            $this->middleware('extract-archives')->only('post');
+        }
 
         if (! $this->indexRouteName || ! $this->job) {
             throw new LogicException('You should define both "$indexRouteName" and "$job" on the FileJobController');
@@ -50,11 +56,12 @@ abstract class FileJobController extends Controller
         return [];
     }
 
-    public function validateFileJob(Request $request, array $additionalRules = [])
+    protected function validateFileJob(Request $request, array $additionalRules = [])
     {
-        $request->validate([
+        // Allow the additional rules to override the "subtitles" rule.
+        $request->validate($additionalRules + [
             'subtitles' => ['required', 'array', 'max:100', new AreUploadedFilesRule],
-        ] + $additionalRules);
+        ]);
     }
 
     protected function options(Request $request)
@@ -94,7 +101,9 @@ abstract class FileJobController extends Controller
 
     protected function doFileJobs($jobClass, array $jobOptions = [])
     {
-        $files = request()->files->get('subtitles');
+        $files = array_wrap(
+            request()->files->get('subtitles')
+        );
 
         // only for safety. middleware should ensure this is never true
         if (count($files) === 0) {

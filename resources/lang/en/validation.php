@@ -84,6 +84,7 @@ return [
     'unknown_error' => 'Something went wrong',
     'file_is_empty' => 'The :attribute file is empty',
     'file_is_not_a_textfile' => 'The :attribute file must be a text file',
+    'file_is_not_a_subtitle_file' => 'The :attribute file must be a subtitle file',
     'subidx_invalid_sub_mime' => 'The :attribute file is invalid',
     'subidx_cant_be_read' => 'The sub/idx file can\'t be read',
     'uploaded_files' => 'One more more files failed to upload, please try again',

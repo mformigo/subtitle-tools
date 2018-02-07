@@ -12,9 +12,9 @@ trait PostsFileJobs
     {
         $this->withoutEvents();
 
-        $response = $this->post(route($routeName), [
+        $response = $this->post(route($routeName), $extraData + [
             'subtitles' => $subtitles,
-        ] + $extraData);
+        ]);
 
         $fileGroup = FileGroup::findOrFail(++$this->fileJobsPosted);
 
