@@ -193,4 +193,19 @@ class AssCueTest extends TestCase
             $assCue->toString()
         );
     }
+
+    /** @test */
+    function it_strips_angle_brackets_when_loading_cues()
+    {
+        $srtCue = (new SrtCue)
+            ->addLine('Wow!')
+            ->addLine('First <b>line</b>');
+
+        $assCue = new AssCue($srtCue);
+
+        $this->assertSame(
+            ['Wow!', 'First line'],
+            $assCue->getLines()
+        );
+    }
 }

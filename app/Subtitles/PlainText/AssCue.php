@@ -11,12 +11,12 @@ use InvalidArgumentException;
 class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGenericCue, LoadsGenericCues
 {
     /**
-     * @var string Unimportant information before timing
+     * Unimportant information before timing
      */
     protected $cueFirstPart = 'Dialogue: 0,';
 
     /**
-     * @var string Unimportant part between timing string and text
+     * Unimportant part between timing string and text
      */
     protected $cueMiddlePart = ',*Default,NTP,0,0,0,,';
 
@@ -31,6 +31,17 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
         } else {
             throw new InvalidArgumentException('Invalid AssCue source');
         }
+
+        // TODO: use proper cue transformers
+        // Strip angle brackets from this cue. These can be present when
+        // creating AssCues from GenericCues.
+        $this->alterAllLines(function ($lines) {
+            $singleLine = implode("\n", $lines);
+
+            $strippedLines = preg_replace('/<.*?>/s', '', $singleLine);
+
+            return explode("\n", $strippedLines);
+        });
     }
 
     public function loadString($string)
