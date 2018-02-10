@@ -100,10 +100,10 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
 
     public function addCue($cue)
     {
-        if ($cue instanceof AssCue) {
+        if ($cue instanceof $this->cueClass) {
             $this->cues[] = $cue;
         } elseif ($cue instanceof GenericSubtitleCue) {
-            $this->cues[] = new AssCue($cue);
+            $this->cues[] = new $this->cueClass($cue);
         } else {
             throw new \InvalidArgumentException('Invalid cue');
         }

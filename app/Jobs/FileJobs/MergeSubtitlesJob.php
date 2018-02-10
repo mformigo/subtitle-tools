@@ -2,42 +2,61 @@
 
 namespace App\Jobs\FileJobs;
 
+use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\PlainText\Srt;
+use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Models\StoredFile;
 use App\Support\Facades\TextFileFormat;
 
 class MergeSubtitlesJob extends FileJob
 {
+    protected $fileExtension = '';
+
     public function handle()
     {
         $this->startFileJob();
 
-        $firstSrt = $this->getInputSrt();
+        $baseSubtitle = $this->getInputSubtitle();
 
-        $secondSrt = $this->getMergeWithSrt();
+        $this->fileExtension = $baseSubtitle->getExtension();
 
-        if (! $firstSrt || ! $secondSrt) {
+        $mergeSubtitle = $this->getMergeWithSubtitle();
+
+        if (! $baseSubtitle || ! $mergeSubtitle) {
             return $this->abortFileJob('messages.cant_merge_these_subtitles');
         }
 
-        foreach ($secondSrt->getCues() as $srtCue) {
-            $firstSrt->addCue($srtCue);
+        foreach ($mergeSubtitle->getCues() as $srtCue) {
+            $baseSubtitle->addCue($srtCue);
         }
 
-        $outputStoredFile = StoredFile::createFromTextFile($firstSrt);
+        $baseSubtitle->removeEmptyCues()
+            ->removeDuplicateCues();
+
+        $outputStoredFile = StoredFile::createFromTextFile($baseSubtitle);
 
         return $this->finishFileJob($outputStoredFile);
     }
 
-    protected function getInputSrt()
+    /**
+     * @return null|ContainsGenericCues|TextFile
+     */
+    protected function getInputSubtitle()
     {
         $inputSubtitle = TextFileFormat::getMatchingFormat($this->inputStoredFile);
 
-        return $this->convertToSrt($inputSubtitle);
+        if (! $inputSubtitle instanceof ContainsGenericCues) {
+            return null;
+        }
+
+        return $inputSubtitle;
     }
 
-    protected function getMergeWithSrt()
+    /**
+     * @return null|ContainsGenericCues|TextFile
+     */
+    protected function getMergeWithSubtitle()
     {
         $storedFileId = $this->fileGroup->job_options->mergeWithStoredFileId;
 
@@ -45,7 +64,11 @@ class MergeSubtitlesJob extends FileJob
 
         $mergeWithSubtitle = TextFileFormat::getMatchingFormat($mergeWithStoredFile);
 
-        return $this->convertToSrt($mergeWithSubtitle);
+        if (! $mergeWithSubtitle instanceof ContainsGenericCues) {
+            return $this->convertToSrt($mergeWithSubtitle);
+        }
+
+        return $mergeWithSubtitle;
     }
 
     protected function convertToSrt($subtitle)
@@ -71,6 +94,6 @@ class MergeSubtitlesJob extends FileJob
 
     public function getNewExtension()
     {
-        return 'srt';
+        return $this->fileExtension;
     }
 }
