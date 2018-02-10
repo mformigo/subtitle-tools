@@ -7,13 +7,14 @@ use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
+use SjorsO\TextFile\Facades\TextFileReader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, PartialShiftsCues
 {
     use WithFileLines;
 
-    protected $extension = "ass";
+    protected $extension = 'ass';
 
     protected $cueClass = AssCue::class;
 
@@ -22,11 +23,9 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
      */
     public function toGenericSubtitle()
     {
-        $generic = new GenericSubtitle();
-
-        $generic->setFilePath($this->filePath);
-
-        $generic->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
+        $generic = (new GenericSubtitle)
+            ->setFilePath($this->filePath)
+            ->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
         foreach ($this->lines as $line) {
             if ($this->cueClass::isTimingString($line)) {
@@ -45,7 +44,7 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        $lines = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
+        $lines = TextFileReader::getLines($filePath);
 
         foreach ($lines as $line) {
             if (AssCue::isTimingString($line)) {

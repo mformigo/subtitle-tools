@@ -2,15 +2,28 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\FileJobs\ConvertToSrtJob;
 use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;
 use Tests\CreatesUploadedFiles;
+use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ConvertToSrtTest extends TestCase
+class ConvertToSrtControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
+
+    private function convertAndSnapshot($filePath)
+    {
+        [$response, $fileGroup] = $this->postFileJob('convertToSrt', [
+            $this->createUploadedFile($filePath),
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
+    }
 
     /** @test */
     function the_subtitles_field_is_server_side_required()
@@ -130,7 +143,7 @@ class ConvertToSrtTest extends TestCase
     /** @test */
     function it_redirects_to_results_page_if_multiple_uploads_are_valid()
     {
-        $this->expectsJobs(\App\Jobs\FileJobs\ConvertToSrtJob::class);
+        $this->expectsJobs(ConvertToSrtJob::class);
 
         $response = $this->post(route('convertToSrt'), [
             'subtitles' => [
@@ -156,5 +169,35 @@ class ConvertToSrtTest extends TestCase
         ]);
 
         $this->assertNotNull(FileGroup::findOrFail(1)->file_jobs_finished_at);
+    }
+
+    /** @test */
+    function it_can_convert_srt_files_to_srt()
+    {
+        $this->convertAndSnapshot('TextFiles/three-cues.srt');
+    }
+
+    /** @test */
+    function it_can_convert_ass_files_to_srt()
+    {
+        $this->convertAndSnapshot('TextFiles/Normal/normal01.ass');
+    }
+
+    /** @test */
+    function it_can_convert_microdvd_sub_files_to_srt()
+    {
+        $this->convertAndSnapshot('TextFiles/three-cues.sub');
+    }
+
+    /** @test */
+    function it_can_convert_vtt_files_to_srt()
+    {
+        $this->convertAndSnapshot('TextFiles/three-cues.vtt');
+    }
+
+    /** @test */
+    function it_can_convert_ssa_files_to_srt()
+    {
+        $this->convertAndSnapshot('TextFiles/Normal/normal01.ssa');
     }
 }

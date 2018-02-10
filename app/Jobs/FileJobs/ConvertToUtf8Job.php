@@ -14,13 +14,13 @@ class ConvertToUtf8Job extends FileJob
     {
         $this->startFileJob();
 
-        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (! is_text_file($this->inputStoredFile)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
         $this->newExtension = FileName::getExtension($this->fileJob->original_name, false);
 
-        $textFile = (new PlainText())->loadFile($this->inputStoredFile->filePath);
+        $textFile = (new PlainText)->loadFile($this->inputStoredFile->filePath);
 
         $outputStoredFile = StoredFile::createFromTextFile($textFile);
 

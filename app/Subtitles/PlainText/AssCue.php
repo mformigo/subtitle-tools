@@ -31,9 +31,9 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
         // Everything after the 9th comma is treated as the subtitle text, this can include commas
         $parts = explode(',', $string, 10);
 
-        $this->cueFirstPart = "{$parts[0]},";
+        $this->cueFirstPart = $parts[0].',';
 
-        $this->cueMiddlePart = ',' . implode(',', array_slice($parts, 3, 6)) . ',';
+        $this->cueMiddlePart = ','.implode(',', array_slice($parts, 3, 6)).',';
 
         $this->setLines(
             explode("\n", str_replace('\N', "\n", $parts[9]))
@@ -44,7 +44,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
 
     public function setTimingFromString($string)
     {
-        if (!static::isTimingString($string)) {
+        if (! static::isTimingString($string)) {
             throw new \Exception("Not a valid " . get_class($this) . " cue string ({$string})");
         }
 

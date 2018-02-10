@@ -8,7 +8,7 @@ use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ShiftPartialTest extends TestCase
+class ShiftPartialControllerTest extends TestCase
 {
     use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
 
@@ -84,6 +84,40 @@ class ShiftPartialTest extends TestCase
             'shifts' => [
                 ['from' => '00:00:00', 'to' => '00:00:06', 'milliseconds' => -1000],
                 ['from' => '00:00:10', 'to' => '00:59:59', 'milliseconds' => 1000],
+            ],
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
+    }
+
+    /** @test */
+    function it_can_partial_shift_ass_files()
+    {
+        [$response, $fileGroup] = $this->postFileJob('shiftPartial', [
+            $this->createUploadedFile('TextFiles/three-cues.ass'),
+        ], [
+            'shifts' => [
+                ['from' => '00:00:00', 'to' => '00:00:40', 'milliseconds' => -1000],
+                ['from' => '00:00:40', 'to' => '00:59:59', 'milliseconds' => 1000],
+            ],
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
+    }
+
+    /** @test */
+    function it_can_partial_shift_ssa_files()
+    {
+        [$response, $fileGroup] = $this->postFileJob('shiftPartial', [
+            $this->createUploadedFile('TextFiles/three-cues.ssa'),
+        ], [
+            'shifts' => [
+                ['from' => '00:00:00', 'to' => '00:00:40', 'milliseconds' => -1000],
+                ['from' => '00:00:40', 'to' => '00:59:59', 'milliseconds' => 1000],
             ],
         ]);
 

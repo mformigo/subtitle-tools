@@ -1,5 +1,21 @@
 <?php
 
+use App\Models\StoredFile;
+
+/**
+ * @param $file string|StoredFile
+ *
+ * @return bool
+ */
+function is_text_file($file)
+{
+    if ($file instanceof StoredFile) {
+        $file = $file->file_path;
+    }
+
+    return TextFileIdentifier::isTextFile($file);
+}
+
 function generate_url_key()
 {
     return strtolower(str_random(16));

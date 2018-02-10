@@ -9,7 +9,7 @@ use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ShiftTest extends TestCase
+class ShiftControllerTest extends TestCase
 {
     use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
 
@@ -120,6 +120,34 @@ class ShiftTest extends TestCase
             $this->createUploadedFile('TextFiles/three-cues.vtt'),
         ], [
             'milliseconds' => 1000,
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
+    }
+
+    /** @test */
+    function it_can_shift_ass_files()
+    {
+        [$response, $fileGroup] = $this->postFileJob('shift', [
+            $this->createUploadedFile('TextFiles/Normal/normal01.ass'),
+        ], [
+            'milliseconds' => 1000,
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
+    }
+
+    /** @test */
+    function it_can_shift_ssa_files()
+    {
+        [$response, $fileGroup] = $this->postFileJob('shift', [
+            $this->createUploadedFile('TextFiles/Normal/normal01.ssa'),
+        ], [
+            'milliseconds' => -1000,
         ]);
 
         $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
