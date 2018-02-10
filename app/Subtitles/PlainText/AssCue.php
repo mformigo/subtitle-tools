@@ -2,11 +2,13 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\LoadsGenericCues;
 use App\Subtitles\TimingStrings;
 use App\Subtitles\TransformsToGenericCue;
 use Exception;
+use InvalidArgumentException;
 
-class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGenericCue
+class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGenericCue, LoadsGenericCues
 {
     /**
      * @var string Unimportant information before timing
@@ -18,10 +20,16 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
      */
     protected $cueMiddlePart = ',*Default,NTP,0,0,0,,';
 
-    public function __construct($timingLine = null)
+    public function __construct($source = null)
     {
-        if ($timingLine !== null) {
-            $this->loadString($timingLine);
+        if ($source === null) {
+            return;
+        } elseif (is_string($source)) {
+            $this->loadString($source);
+        } elseif ($source instanceof GenericSubtitleCue) {
+            $this->loadGenericCue($source);
+        } else {
+            throw new InvalidArgumentException('Invalid AssCue source');
         }
     }
 
@@ -140,5 +148,17 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
         }
 
         return true;
+    }
+
+    public function loadGenericCue(GenericSubtitleCue $genericCue)
+    {
+        $this->setTiming(
+            $genericCue->getStartMs(),
+            $genericCue->getEndMs()
+        );
+
+        $this->setLines($genericCue->getLines());
+
+        return $this;
     }
 }

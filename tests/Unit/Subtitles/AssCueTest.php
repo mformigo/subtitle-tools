@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Subtitles\PlainText\AssCue;
 use App\Subtitles\PlainText\GenericSubtitleCue;
+use App\Subtitles\PlainText\SrtCue;
 use Tests\TestCase;
 
 class AssCueTest extends TestCase
@@ -175,5 +176,21 @@ class AssCueTest extends TestCase
 
         $cue->setTimingFromString("\tDialogue: 1,0:03:26.73,0:03:27.59,*Default,NTP,0000,0000,0000,,THE SUMMER OR GEORGE");
         $cue->setTimingFromString("Dialogue: 1,0:03:26.73,0:03:27.59,*Default,NTP,0000,0000,0000,,THE SUMMER OR GEORGE\t");
+    }
+
+    /** @test */
+    function it_loads_generic_cues()
+    {
+        $srtCue = (new SrtCue)
+            ->setTimingFromString('00:00:30,123 --> 00:00:35,456')
+            ->addLine('First line')
+            ->addLine('Second line!');
+
+        $assCue = new AssCue($srtCue);
+
+        $this->assertSame(
+            'Dialogue: 0,0:00:30.12,0:00:35.45,*Default,NTP,0,0,0,,First line\NSecond line!',
+            $assCue->toString()
+        );
     }
 }

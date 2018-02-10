@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\GenericSubtitle;
+use App\Subtitles\PlainText\SrtCue;
 use App\Subtitles\ShiftsCues;
 use Tests\TestCase;
 
@@ -178,6 +179,30 @@ class AssTest extends TestCase
         $this->assertSame(
             [
                 'Dialogue: 0,0:00:00.00,0:00:38.73,*Default,NTP,0000,0000,0000,,This is the first line, it is crazy',
+                'Dialogue: 0,0:00:59.73,0:01:00.00,*Default,NTP,,0000,0000,,Second line starts here\NAlso crazy',
+                'Dialogue: 0,0:01:00.25,0:10:00.00,*Default,,0000,0000,0000,,And this is the third line',
+                '',
+            ],
+            $ass->getContentLines()
+        );
+    }
+
+    /** @test */
+    function you_can_add_cues_to_an_ass_file()
+    {
+        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'TextFiles/SubtitleParsing/no-header.ass');
+
+        $srtCue = (new SrtCue)
+            ->setTimingFromString('00:00:30,123 --> 00:00:35,456')
+            ->addLine('First line')
+            ->addLine('Second line!');
+
+        $ass->addCue($srtCue);
+
+        $this->assertSame(
+            [
+                'Dialogue: 0,0:00:00.00,0:00:38.73,*Default,NTP,0000,0000,0000,,This is the first line, it is crazy',
+                'Dialogue: 0,0:00:30.12,0:00:35.45,*Default,NTP,0,0,0,,First line\NSecond line!',
                 'Dialogue: 0,0:00:59.73,0:01:00.00,*Default,NTP,,0000,0000,,Second line starts here\NAlso crazy',
                 'Dialogue: 0,0:01:00.25,0:10:00.00,*Default,,0000,0000,0000,,And this is the third line',
                 '',
