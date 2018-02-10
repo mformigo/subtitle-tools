@@ -2,49 +2,121 @@
 
 namespace App\Subtitles\PlainText;
 
+use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;
-use SjorsO\TextFile\Facades\TextFileReader;
+use App\Subtitles\WithGenericCues;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, PartialShiftsCues
+class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, PartialShiftsCues, ContainsGenericCues
 {
-    use WithFileLines;
+    use WithFileLines, WithGenericCues;
 
     protected $extension = 'ass';
 
+    /**
+     * @var AssCue[]
+     */
+    protected $cues = [];
+
     protected $cueClass = AssCue::class;
+
+    /**
+     * All lines until the first cue.
+     */
+    protected $headerLines = [];
+
+    /**
+     * @param $file string|UploadedFile
+     *
+     * @return $this
+     */
+    public function loadFile($file)
+    {
+        $name = $file instanceof UploadedFile
+            ? $file->getClientOriginalName()
+            : $file;
+
+        $this->originalFileNameWithoutExtension = pathinfo($name, PATHINFO_FILENAME);
+
+        $this->filePath = $file instanceof UploadedFile
+            ? $file->getRealPath()
+            : $file;
+
+        $lines = read_lines($this->filePath);
+
+        $this->cues = [];
+
+        $firstCueIndex = -1;
+
+        for ($i = 0; $i < count($lines); $i++) {
+            if ($this->cueClass::isTimingString($lines[$i])) {
+                $firstCueIndex = $i;
+
+                break;
+            }
+        }
+
+        if ($firstCueIndex === -1) {
+            $this->headerLines = $lines;
+
+            return $this;
+        }
+
+        // Save all lines from the start of the file until the first cue.
+        $this->headerLines = array_slice($lines, 0, $firstCueIndex);
+
+        for ($i = $firstCueIndex; $i < count($lines); $i++) {
+            if ($this->cueClass::isTimingString($lines[$i])) {
+                $this->addCue(
+                    new $this->cueClass($lines[$i])
+                );
+            }
+        }
+
+        $this->removeEmptyCues()
+            ->removeDuplicateCues();
+
+        return $this;
+    }
+
+    public function getContentLines()
+    {
+        $lines = $this->headerLines;
+
+        foreach ($this->getCues() as $cue) {
+            $lines[] = $cue->toString();
+        }
+
+        if (last($lines) !== '') {
+            $lines[] = '';
+        }
+
+        return $lines;
+    }
 
     /**
      * @return GenericSubtitle
      */
     public function toGenericSubtitle()
     {
-        $generic = (new GenericSubtitle)
+        $genericSubtitle = (new GenericSubtitle)
             ->setFilePath($this->filePath)
             ->setFileNameWithoutExtension($this->originalFileNameWithoutExtension);
 
-        foreach ($this->lines as $line) {
-            if ($this->cueClass::isTimingString($line)) {
-                $assCue = new $this->cueClass;
-
-                $assCue->loadString($line);
-
-                $generic->addCue($assCue);
-            }
+        foreach ($this->getCues() as $cue) {
+            $genericSubtitle->addCue($cue);
         }
 
-        return $generic;
+        return $genericSubtitle;
     }
 
     public static function isThisFormat($file)
     {
-        $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
-
-        $lines = TextFileReader::getLines($filePath);
+        $lines = read_lines($file);
 
         foreach ($lines as $line) {
             if (AssCue::isTimingString($line)) {
@@ -53,6 +125,7 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
         }
 
         $maybeAssFile = false;
+
         $sample = array_map('strtolower', array_slice($lines, 0, 10));
 
         foreach ($sample as $string) {
@@ -82,18 +155,42 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
             return $this;
         }
 
-        for ($i = 0; $i < count($this->lines); $i++) {
-            if ($this->cueClass::isTimingString($this->lines[$i])) {
-                $assCue = new $this->cueClass($this->lines[$i]);
-
-                if ($assCue->getStartMs() >= $fromMs && $assCue->getEndMs() <= $toMs) {
-                    $assCue->shift($ms);
-
-                    $this->lines[$i] = $assCue->toString();
-                }
+        foreach ($this->cues as $cue) {
+            if ($cue->getStartMs() >= $fromMs && $cue->getStartMs() <= $toMs) {
+                $cue->shift($ms);
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * Removes all parentheses from the text lines, then removes empty cues
+     *
+     * @return $this
+     */
+    public function stripParenthesesFromCues()
+    {
+        return $this;
+    }
+
+    /**
+     * Removes all angle brackets from the text lines, then removes empty cues
+     *
+     * @return $this
+     */
+    public function stripAngleBracketsFromCues()
+    {
+        return $this;
+    }
+
+    /**
+     * Removes all curly brackets and lines containing .ass drawings from the text lines, then removes empty cues
+     *
+     * @return $this
+     */
+    public function stripCurlyBracketsFromCues()
+    {
         return $this;
     }
 }

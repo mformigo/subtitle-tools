@@ -17,7 +17,7 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
 {
     use WithFileLines, WithGenericCues;
 
-    protected $extension = "srt";
+    protected $extension = 'srt';
 
     /**
      * @var SrtCue[]

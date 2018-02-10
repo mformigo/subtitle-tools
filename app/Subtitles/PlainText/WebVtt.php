@@ -57,6 +57,7 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
             : $file;
 
         $lines = TextFileReader::getLines($this->filePath);
+
         // ensure parsing works properly on files missing the required trailing empty line
         $lines[] = '';
 

@@ -2,8 +2,6 @@
 
 namespace App\Subtitles\PlainText;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 class Ssa extends Ass
 {
     protected $extension = "ssa";
@@ -12,9 +10,7 @@ class Ssa extends Ass
 
     public static function isThisFormat($file)
     {
-        $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
-
-        $lines = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
+        $lines = read_lines($file);
 
         foreach ($lines as $line) {
             if (SsaCue::isTimingString($line)) {
@@ -23,6 +19,7 @@ class Ssa extends Ass
         }
 
         $maybeSsaFile = false;
+
         $sample = array_map('strtolower', array_slice($lines, 0, 10));
 
         foreach ($sample as $string) {

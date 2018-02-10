@@ -4,6 +4,7 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\TimingStrings;
 use App\Subtitles\TransformsToGenericCue;
+use Exception;
 
 class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGenericCue
 {
@@ -45,7 +46,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
     public function setTimingFromString($string)
     {
         if (! static::isTimingString($string)) {
-            throw new \Exception("Not a valid " . get_class($this) . " cue string ({$string})");
+            throw new Exception('Not a valid '.get_class($this).' cue string: '.$string);
         }
 
         $parts = explode(',', trim($string));
@@ -78,10 +79,10 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
         $SS = $SS % 60;
         $MM = $MM % 60;
 
-        $MM = str_pad($MM, 2, "0", STR_PAD_LEFT);
-        $SS = str_pad($SS, 2, "0", STR_PAD_LEFT);
+        $MM = str_pad($MM, 2, '0', STR_PAD_LEFT);
+        $SS = str_pad($SS, 2, '0', STR_PAD_LEFT);
         // Remove the last digit from the milliseconds, ass only has two digits there
-        $MIL = substr(str_pad($MIL, 3, "0", STR_PAD_LEFT), 0, 2);
+        $MIL = substr(str_pad($MIL, 3, '0', STR_PAD_LEFT), 0, 2);
 
         return "{$H}:{$MM}:{$SS}.{$MIL}";
     }
@@ -99,22 +100,18 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
 
     public function toString()
     {
-        $timingPart = $this->msToTimecode($this->startMs) . "," . $this->msToTimecode($this->endMs);
+        $timingPart = $this->msToTimecode($this->startMs).','.$this->msToTimecode($this->endMs);
 
         $textPart = implode('\N', $this->lines);
 
-        return $this->cueFirstPart . $timingPart . $this->cueMiddlePart . $textPart;
+        return $this->cueFirstPart.$timingPart.$this->cueMiddlePart.$textPart;
     }
 
     public function toGenericCue()
     {
-        $genericCue = new GenericSubtitleCue();
-
-        $genericCue->setLines($this->lines);
-
-        $genericCue->setTiming($this->startMs, $this->endMs);
-
-        return $genericCue;
+        return (new GenericSubtitleCue)
+            ->setLines($this->lines)
+            ->setTiming($this->startMs, $this->endMs);
     }
 
     public static function isTimingString($string)
@@ -131,7 +128,7 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
             return false;
         }
 
-        if (!preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/i", $string)) {
+        if (! preg_match("/^Dialogue: \d+,\d:[0-5]\d:[0-5]\d\.\d{2},\d:[0-5]\d:[0-5]\d\.\d{2},/i", $string)) {
             return false;
         }
 

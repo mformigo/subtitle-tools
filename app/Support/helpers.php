@@ -1,9 +1,42 @@
 <?php
 
 use App\Models\StoredFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @param $file string|StoredFile
+ * @param $file string|StoredFile|UploadedFile
+ *
+ * @return array
+ */
+function read_lines($file)
+{
+    if ($file instanceof StoredFile) {
+        $file = $file->file_path;
+    } elseif ($file instanceof UploadedFile) {
+        $file = $file->getRealPath();
+    }
+
+    return TextFileReader::getLines($file);
+}
+
+/**
+ * @param $file string|StoredFile|UploadedFile
+ *
+ * @return string
+ */
+function read_content($file)
+{
+    if ($file instanceof StoredFile) {
+        $file = $file->file_path;
+    } elseif ($file instanceof UploadedFile) {
+        $file = $file->getRealPath();
+    }
+
+    return TextFileReader::getContent($file);
+}
+
+/**
+ * @param $file string|StoredFile|UploadedFile
  *
  * @return bool
  */
@@ -11,6 +44,8 @@ function is_text_file($file)
 {
     if ($file instanceof StoredFile) {
         $file = $file->file_path;
+    } elseif ($file instanceof UploadedFile) {
+        $file = $file->getRealPath();
     }
 
     return TextFileIdentifier::isTextFile($file);

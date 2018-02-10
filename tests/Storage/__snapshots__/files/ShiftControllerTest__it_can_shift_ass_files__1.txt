@@ -675,4 +675,3 @@ Dialogue: 0,0:29:02.06,0:29:03.18,*Default,NTP,0000,0000,0000,,{\an8}{\fn方正�
 Dialogue: 0,0:29:05.09,0:29:07.58,*Default,NTP,0000,0000,0000,,再好不过了  再好不过\N{\fn微软雅黑\fs14}Never better. Never better.
 Dialogue: 0,0:29:08.06,0:29:09.36,*Default,NTP,0000,0000,0000,,我以为你走神了呢\N{\fn微软雅黑\fs14}Thought I lost you there.
 Dialogue: 0,0:29:10.52,0:29:11.45,*Default,NTP,0000,0000,0000,,斯宾塞\N{\fn微软雅黑\fs14}Spence?
-

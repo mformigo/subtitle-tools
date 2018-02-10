@@ -15,11 +15,11 @@ class AssTest extends TestCase
     {
         $ass = new Ass();
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/mime-octet-utf8.ass");
+        $ass->loadFile($this->testFilesStoragePath.'TextFiles/mime-octet-utf8.ass');
 
         $this->assertSame('mime-octet-utf8', $ass->getFileNameWithoutExtension());
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/mime-octet-utf8.ass", $ass->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'TextFiles/mime-octet-utf8.ass', $ass->getFilePath());
     }
 
     /** @test */
@@ -27,7 +27,7 @@ class AssTest extends TestCase
     {
         $ass = new Ass();
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $ass->loadFile($this->testFilesStoragePath.'TextFiles/three-cues.ass');
 
         $genericSub = $ass->toGenericSubtitle();
 
@@ -35,7 +35,7 @@ class AssTest extends TestCase
 
         $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof Ass);
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.ass", $genericSub->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'TextFiles/three-cues.ass', $genericSub->getFilePath());
 
         $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
 
@@ -61,7 +61,7 @@ class AssTest extends TestCase
 
         $this->assertTrue($ass instanceof ShiftsCues);
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $ass->loadFile($this->testFilesStoragePath.'TextFiles/three-cues.ass');
 
         $originalLines = $ass->getContentLines();
 
@@ -118,7 +118,7 @@ class AssTest extends TestCase
 
         $this->assertTrue($ass instanceof PartialShiftsCues);
 
-        $ass->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass");
+        $ass->loadFile($this->testFilesStoragePath.'TextFiles/three-cues.ass');
 
         $cues = $ass->toGenericSubtitle()->getCues();
 
@@ -157,5 +157,32 @@ class AssTest extends TestCase
 
         $this->assertSame(59730, $cues[2]->getStartMs());
         $this->assertSame(60000, $cues[2]->getEndMs());
+    }
+
+    /** @test */
+    function it_can_load_an_empty_file()
+    {
+        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'TextFiles/empty.srt');
+
+        $this->assertSame(
+            [''],
+            $ass->getContentLines()
+        );
+    }
+
+    /** @test */
+    function it_can_load_a_file_without_a_header()
+    {
+        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'TextFiles/SubtitleParsing/no-header.ass');
+
+        $this->assertSame(
+            [
+                'Dialogue: 0,0:00:00.00,0:00:38.73,*Default,NTP,0000,0000,0000,,This is the first line, it is crazy',
+                'Dialogue: 0,0:00:59.73,0:01:00.00,*Default,NTP,,0000,0000,,Second line starts here\NAlso crazy',
+                'Dialogue: 0,0:01:00.25,0:10:00.00,*Default,,0000,0000,0000,,And this is the third line',
+                '',
+            ],
+            $ass->getContentLines()
+        );
     }
 }

@@ -146,4 +146,31 @@ class SsaTest extends TestCase
         $this->assertSame(59730, $cues[2]->getStartMs());
         $this->assertSame(60000, $cues[2]->getEndMs());
     }
+
+    /** @test */
+    function it_can_load_an_empty_file()
+    {
+        $ssa = (new Ssa)->loadFile($this->testFilesStoragePath.'TextFiles/empty.srt');
+
+        $this->assertSame(
+            [''],
+            $ssa->getContentLines()
+        );
+    }
+
+    /** @test */
+    function it_can_load_a_file_without_a_header()
+    {
+        $ssa = (new Ssa)->loadFile($this->testFilesStoragePath.'TextFiles/SubtitleParsing/no-header.ssa');
+
+        $this->assertSame(
+            [
+                'Dialogue: Marked=0,0:00:00.00,0:00:38.73,*Default,NTP,0000,0000,0000,,This is the first line, it is crazy',
+                'Dialogue: marked=1,0:00:59.73,0:01:00.00,*Default,NTP,,0000,0000,,Second line starts here\NAlso crazy',
+                'Dialogue: Marked=0,0:01:00.25,0:10:00.00,*Default,,0000,0000,0000,,And this is the third line',
+                '',
+            ],
+            $ssa->getContentLines()
+        );
+    }
 }
