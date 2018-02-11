@@ -51,6 +51,15 @@ class GenericSubtitleCue
         return $this;
     }
 
+    public function addLines($lines)
+    {
+        foreach ($lines as $line) {
+            $this->addLine($line);
+        }
+
+        return $this;
+    }
+
     public function hasLines()
     {
         return count($this->lines) > 0;

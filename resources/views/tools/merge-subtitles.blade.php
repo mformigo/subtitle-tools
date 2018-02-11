@@ -28,6 +28,22 @@
             <small class="block my-2">
                 Supported formats: srt, ass, ssa, smi, sub, vtt
             </small>
+
+
+            <strong>Mode</strong>
+            <div class="max-w-xs leading-normal">
+                <label class="block cursor-pointer">
+                    <input type="radio" name="mode" value="simple" {{ old('mode', 'simple') === 'simple' ? 'checked' : '' }}>
+                    Simple
+                </label>
+
+                <label class="block cursor-pointer my-3">
+                    <input type="radio" name="mode" value="nearestCueThreshold" {{ old('mode') === 'nearestCueThreshold' ? 'checked' : '' }}>
+                    Nearest cue with threshold
+                </label>
+            </div>
+
+
         @endslot
 
         @slot('buttonText') Merge @endslot

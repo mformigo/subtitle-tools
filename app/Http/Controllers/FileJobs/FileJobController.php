@@ -3,18 +3,24 @@
 namespace App\Http\Controllers\FileJobs;
 
 use App\Http\Controllers\Controller;
+use App\Subtitles\Tools\Options\NoOptions;
+use App\Subtitles\Tools\Options\ToolOptions;
 use App\Support\Facades\FileName;
 use App\Http\Rules\AreUploadedFilesRule;
 use App\Models\FileGroup;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use LogicException;
 
 abstract class FileJobController extends Controller
 {
     protected $indexRouteName;
 
     protected $job;
+
+    /**
+     * @var ToolOptions
+     */
+    protected $options = NoOptions::class;
 
     protected $shouldAlwaysQueue = false;
 
@@ -28,9 +34,7 @@ abstract class FileJobController extends Controller
             $this->middleware('extract-archives')->only('post');
         }
 
-        if (! $this->indexRouteName || ! $this->job) {
-            throw new LogicException('You should define both "$indexRouteName" and "$job" on the FileJobController');
-        }
+        $this->options = new $this->options;
     }
 
     abstract public function index();
@@ -39,13 +43,17 @@ abstract class FileJobController extends Controller
     {
         $this->validateFileJob(
             $request,
-            $this->rules()
+            $this->rules() + $this->options->rules()
         );
 
         $options = $this->options($request);
 
         if ($options instanceof RedirectResponse) {
             return $options;
+        }
+
+        if ($options instanceof ToolOptions) {
+            $options = $options->toArray();
         }
 
         return $this->doFileJobs($this->job, $options);
@@ -66,7 +74,7 @@ abstract class FileJobController extends Controller
 
     protected function options(Request $request)
     {
-        return [];
+        return $this->options->load($request);
     }
 
     public function result($urlKey)
