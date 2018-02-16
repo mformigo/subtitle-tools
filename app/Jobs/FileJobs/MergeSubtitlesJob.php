@@ -16,25 +16,30 @@ class MergeSubtitlesJob extends FileJob
 {
     protected $fileExtension = '';
 
+    /**
+     * @var MergeSubtitlesOptions
+     */
+    protected $options;
+
     public function handle()
     {
         $this->startFileJob();
 
-        $options = new MergeSubtitlesOptions((array) $this->fileGroup->job_options);
+        $this->options = new MergeSubtitlesOptions((array) $this->fileGroup->job_options);
 
         $baseSubtitle = $this->getBaseSubtitle();
 
         $this->fileExtension = $baseSubtitle->getExtension();
 
-        $mergeSubtitle = $this->getMergeWithSubtitle($options);
+        $mergeSubtitle = $this->getMergeWithSubtitle();
 
         if (! $baseSubtitle || ! $mergeSubtitle) {
             return $this->abortFileJob('messages.cant_merge_these_subtitles');
         }
 
-        if ($options->simpleMode()) {
+        if ($this->options->simpleMode()) {
             $outputSubtitle = $this->simpleMerge($baseSubtitle, $mergeSubtitle);
-        } elseif ($options->nearestCueThresholdMode()) {
+        } elseif ($this->options->nearestCueThresholdMode()) {
             $outputSubtitle = $this->nearestCueThresholdMerge($baseSubtitle, $mergeSubtitle);
         } else {
             throw new RuntimeException('Invalid mode');
@@ -62,9 +67,9 @@ class MergeSubtitlesJob extends FileJob
     /**
      * @return null|ContainsGenericCues|TextFile
      */
-    protected function getMergeWithSubtitle(MergeSubtitlesOptions $options)
+    protected function getMergeWithSubtitle()
     {
-        $mergeWithStoredFile = $options->getMergeStoredFile();
+        $mergeWithStoredFile = $this->options->getMergeStoredFile();
 
         $mergeWithSubtitle = TextFileFormat::getMatchingFormat($mergeWithStoredFile);
 
@@ -108,10 +113,9 @@ class MergeSubtitlesJob extends FileJob
             $baseSubtitle->addCue($mergeCue);
         }
 
-        $baseSubtitle->removeEmptyCues()
+        return $baseSubtitle
+            ->removeEmptyCues()
             ->removeDuplicateCues();
-
-        return $baseSubtitle;
     }
 
     /**
@@ -127,13 +131,10 @@ class MergeSubtitlesJob extends FileJob
         foreach ($mergeSubtitle->getCues() as $cue) {
             $nearestCue = $this->findNearestCue($baseCues, $cue);
 
-            if ($nearestCue === null) {
-                // There is no cue nearby within the threshold,
-                // just merge the whole cue.
-                $baseSubtitle->addCue($cue);
-            } else {
-                $nearestCue->addLines($cue->getLines());
-            }
+            // If there is no nearby cue, merge the whole cue.
+            is_null($nearestCue)
+                ? $baseSubtitle->addCue($cue)
+                : $nearestCue->addLines($cue->getLines());
         }
 
         return $baseSubtitle;
@@ -156,8 +157,8 @@ class MergeSubtitlesJob extends FileJob
         foreach ($baseCues as $cue) {
             $difference = abs($cue->getStartMs() - $cueStartMs);
 
-            // Cues within 1000ms are considered a nearby cue.
-            if ($difference > 1000) {
+            // Cues should be within the threshold to be a nearby cue.
+            if ($difference > $this->options->nearestCueThreshold) {
                 continue;
             }
 

@@ -102,7 +102,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function assertSuccessfulFileJobRedirect(TestResponse $response, FileGroup $fileGroup)
     {
-        $response->assertStatus(302)->assertRedirect($fileGroup->resultRoute);
+        $response->assertStatus(302)->assertRedirect($fileGroup->result_route);
     }
 
     public function createApplication()
@@ -111,7 +111,6 @@ abstract class TestCase extends BaseTestCase
 
         $app->make(Kernel::class)->bootstrap();
 
-        // Reduce bcrypt strength to speed up the tests
         Hash::setRounds(4);
 
         return $app;

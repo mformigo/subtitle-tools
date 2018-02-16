@@ -39,8 +39,15 @@
 
                 <label class="block cursor-pointer my-3">
                     <input type="radio" name="mode" value="nearestCueThreshold" {{ old('mode') === 'nearestCueThreshold' ? 'checked' : '' }}>
-                    Nearest cue with threshold
+                    Nearest cue
                 </label>
+
+                <label class="block cursor-pointer">
+                    Threshold:
+                    <input class="field" type="number" min="1" name="nearest_cue_threshold" value="{{ old('nearest_cue_threshold', 1000) }}" title="Nearest cue threshold in milliseconds" required>
+                </label>
+
+
             </div>
 
 

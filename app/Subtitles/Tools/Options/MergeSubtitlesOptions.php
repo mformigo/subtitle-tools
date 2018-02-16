@@ -13,11 +13,14 @@ class MergeSubtitlesOptions extends ToolOptions
 
     public $mode = 'simple';
 
+    public $nearestCueThreshold = 1000;
+
     public function rules(): array
     {
         return [
-            'mode'            => 'required|in:simple,nearestCueThreshold',
-            'second-subtitle' => ['required', 'file', new FileNotEmptyRule, new SubtitleFileRule],
+            'mode'                  => 'required|in:simple,nearestCueThreshold',
+            'nearest_cue_threshold' => 'required|numeric|not_in:0|regex:/^\d+$/',
+            'second-subtitle'       => ['required', 'file', new FileNotEmptyRule, new SubtitleFileRule],
         ];
     }
 
@@ -28,6 +31,7 @@ class MergeSubtitlesOptions extends ToolOptions
         return $this->load([
             'mode'                  => $request->get('mode'),
             'mergeWithStoredFileId' => StoredFile::getOrCreate($file)->id,
+            'nearestCueThreshold'   => (int) $request->get('nearest_cue_threshold'),
         ]);
     }
 

@@ -1,0 +1,38 @@
+﻿WEBVTT - https://subtitletools.com
+
+STYLE
+::cue {
+  background-image: linear-gradient(to bottom, dimgray, lightgray);
+  color: papayawhip;
+}
+/* Style blocks cannot use blank lines nor "dash dash greater than" */
+
+NOTE comment blocks can be used between style blocks.
+
+STYLE
+::cue(b) {
+  color: peachpuff;
+}
+
+00:00:01.266 --> 00:00:03.366
+Do you know what this is all
+about? Why we're here?
+
+00:00:03.400 --> 00:00:06.366
+To be out. This is out.
+[AUDIENCE LAUGHS]
+
+00:00:05.160 --> 00:00:10.100
+Hello everyone and welcome to an introduction to linear regression and this lecture we're going to get
+
+00:00:06.400 --> 00:00:08.233
+And out is one of
+the single most
+
+00:00:10.100 --> 00:00:15.600 position:10%,line-left align:left size:35%
+a light theoretical background history behind the idea of linear regression before we actually tackle
+
+crédit de transcription
+00:00:15.600 --> 00:00:19.270
+the concept with Python and the sikat learn library.
+This is the second line!!
