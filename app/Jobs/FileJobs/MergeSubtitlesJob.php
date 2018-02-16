@@ -156,8 +156,8 @@ class MergeSubtitlesJob extends FileJob
         foreach ($baseCues as $cue) {
             $difference = abs($cue->getStartMs() - $cueStartMs);
 
-            // Cues within 400ms are considered a nearby cue.
-            if ($difference > 400) {
+            // Cues within 1000ms are considered a nearby cue.
+            if ($difference > 1000) {
                 continue;
             }
 

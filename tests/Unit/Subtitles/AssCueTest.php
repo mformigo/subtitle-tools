@@ -208,4 +208,16 @@ class AssCueTest extends TestCase
             $assCue->getLines()
         );
     }
+
+    /** @test */
+    function it_strips_angle_brackets_when_adding_lines()
+    {
+        $assCue = (new AssCue)
+            ->addLine('First <b>line</b>');
+
+        $this->assertSame(
+            ['First line'],
+            $assCue->getLines()
+        );
+    }
 }

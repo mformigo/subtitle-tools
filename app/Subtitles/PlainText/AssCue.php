@@ -62,6 +62,14 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
         return $this;
     }
 
+    public function addLine($line)
+    {
+        // Strip angle brackets from this cue.
+        $line = preg_replace('/<.*?>/s', '', $line);
+
+        return parent::addLine($line);
+    }
+
     public function setTimingFromString($string)
     {
         if (! static::isTimingString($string)) {
