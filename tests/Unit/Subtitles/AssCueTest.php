@@ -220,4 +220,27 @@ class AssCueTest extends TestCase
             $assCue->getLines()
         );
     }
+
+    /** @test */
+    function it_can_be_styled_to_show_on_top()
+    {
+        $cue = (new AssCue)
+            ->addLine('Wow!')
+            ->stylePositionTop();
+
+        $this->assertSame(
+            'Dialogue: 0,0:00:00.00,0:00:00.00,*Default,NTP,0,0,0,,{\a6}Wow!',
+            $cue->toString()
+        );
+
+        // It should not apply the style twice.
+        $cue = (new AssCue)
+            ->addLine('{\a6}Wow!')
+            ->stylePositionTop();
+
+        $this->assertSame(
+            'Dialogue: 0,0:00:00.00,0:00:00.00,*Default,NTP,0,0,0,,{\a6}Wow!',
+            $cue->toString()
+        );
+    }
 }

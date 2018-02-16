@@ -118,7 +118,9 @@ class GenericSubtitleCue
     /**
      * Pass all lines from this cue one by one into a closure. The closure must return
      * a string. The returned string can contain new lines.
+     *
      * @param Closure $closure
+     *
      * @return $this
      */
     public function alterLines(Closure $closure)
@@ -138,7 +140,9 @@ class GenericSubtitleCue
     /**
      * Pass all lines from this cue as an array into a closure. The closure must return
      * an array
+     *
      * @param Closure $closure
+     *
      * @return $this
      */
     public function alterAllLines(Closure $closure)
@@ -149,7 +153,18 @@ class GenericSubtitleCue
     }
 
     /**
+     * Style this cue to appear on the top of the screen.
+     *
+     * @return $this
+     */
+    public function stylePositionTop()
+    {
+        return $this;
+    }
+
+    /**
      * Used for cue comparison (like removeDuplicateCues())
+     *
      * @return string
      */
     public function __toString()

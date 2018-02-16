@@ -37,6 +37,11 @@
                     Simple
                 </label>
 
+                <label class="block cursor-pointer">
+                    <input type="radio" name="mode" value="topBottom" {{ old('mode') === 'topBottom' ? 'checked' : '' }}>
+                    Top and Bottom
+                </label>
+
                 <label class="block cursor-pointer my-3">
                     <input type="radio" name="mode" value="nearestCueThreshold" {{ old('mode') === 'nearestCueThreshold' ? 'checked' : '' }}>
                     Nearest cue

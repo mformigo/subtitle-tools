@@ -124,4 +124,21 @@ class WebVttCueTest extends TestCase
 
         $this->assertSame("00:00:00.000 --> 00:00:00.000", $cue->getTimingString());
     }
+
+    /** @test */
+    function it_can_be_styled_to_show_on_top()
+    {
+        $cue = (new WebVttCue)
+            ->addLine('Wow!')
+            ->stylePositionTop();
+
+        $this->assertSame(['{\an8}Wow!'], $cue->getLines());
+
+        // It should not apply the style twice.
+        $cue = (new WebVttCue)
+            ->addLine('{\an8}Wow!')
+            ->stylePositionTop();
+
+        $this->assertSame(['{\an8}Wow!'], $cue->getLines());
+    }
 }

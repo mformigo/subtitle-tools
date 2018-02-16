@@ -18,7 +18,7 @@ class MergeSubtitlesOptions extends ToolOptions
     public function rules(): array
     {
         return [
-            'mode'                  => 'required|in:simple,nearestCueThreshold',
+            'mode'                  => 'required|in:simple,nearestCueThreshold,topBottom',
             'nearest_cue_threshold' => 'required|numeric|not_in:0|regex:/^\d+$/',
             'second-subtitle'       => ['required', 'file', new FileNotEmptyRule, new SubtitleFileRule],
         ];
@@ -43,6 +43,11 @@ class MergeSubtitlesOptions extends ToolOptions
     public function simpleMode()
     {
         return $this->mode === 'simple';
+    }
+
+    public function topBottomMode()
+    {
+        return $this->mode === 'topBottom';
     }
 
     public function nearestCueThresholdMode()

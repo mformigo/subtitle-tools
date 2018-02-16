@@ -35,17 +35,24 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         }
     }
 
+    /**
+     * @param $cue
+     *
+     * @return SrtCue
+     */
     public function addCue($cue)
     {
-        if ($cue instanceof SrtCue) {
-            $this->cues[] = $cue;
-        } elseif ($cue instanceof GenericSubtitleCue) {
-            $this->cues[] = new SrtCue($cue);
-        } else {
-            throw new \InvalidArgumentException("Invalid cue");
+        if (! $cue instanceof SrtCue && ! $cue instanceof GenericSubtitleCue) {
+            throw new \InvalidArgumentException('Invalid cue');
         }
 
-        return $this;
+        $cue = $cue instanceof SrtCue
+            ? $cue
+            : new SrtCue($cue);
+
+        $this->cues[] = $cue;
+
+        return $cue;
     }
 
     public function getContentLines()

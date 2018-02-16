@@ -4,6 +4,7 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\LoadsGenericCues;
 use App\Subtitles\TimingStrings;
+use LogicException;
 
 class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCues
 {
@@ -89,6 +90,17 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
         );
 
         $this->setLines($genericCue->getLines());
+
+        return $this;
+    }
+
+    public function stylePositionTop()
+    {
+        if (count($this->lines) === 0) {
+            throw new LogicException('A cue with no lines cannot be styled');
+        }
+
+        $this->lines[0] = str_start($this->lines[0], '{\an8}');
 
         return $this;
     }

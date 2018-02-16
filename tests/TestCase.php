@@ -69,6 +69,15 @@ abstract class TestCase extends BaseTestCase
         return $this->testFilesStoragePath.'__snapshots__';
     }
 
+    protected function getFileSnapshotDirectory(): string
+    {
+        $subDirectory = property_exists($this, 'fileSnapshotDirectory')
+            ? DIRECTORY_SEPARATOR.$this->fileSnapshotDirectory
+            : '';
+
+        return $this->testFilesStoragePath.'_file-snapshots_'.$subDirectory;
+    }
+
     public function assertMatchesFileSnapshot($file)
     {
         if ($file instanceof StoredFile) {

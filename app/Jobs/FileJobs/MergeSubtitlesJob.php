@@ -37,7 +37,7 @@ class MergeSubtitlesJob extends FileJob
             return $this->abortFileJob('messages.cant_merge_these_subtitles');
         }
 
-        if ($this->options->simpleMode()) {
+        if ($this->options->simpleMode() || $this->options->topBottomMode()) {
             $outputSubtitle = $this->simpleMerge($baseSubtitle, $mergeSubtitle);
         } elseif ($this->options->nearestCueThresholdMode()) {
             $outputSubtitle = $this->nearestCueThresholdMerge($baseSubtitle, $mergeSubtitle);
@@ -110,7 +110,11 @@ class MergeSubtitlesJob extends FileJob
     protected function simpleMerge($baseSubtitle, $mergeSubtitle)
     {
         foreach ($mergeSubtitle->getCues() as $mergeCue) {
-            $baseSubtitle->addCue($mergeCue);
+            $addedCue = $baseSubtitle->addCue($mergeCue);
+
+            if ($this->options->topBottomMode()) {
+                $addedCue->stylePositionTop();
+            }
         }
 
         return $baseSubtitle

@@ -7,6 +7,7 @@ use App\Subtitles\TimingStrings;
 use App\Subtitles\TransformsToGenericCue;
 use Exception;
 use InvalidArgumentException;
+use LogicException;
 
 class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGenericCue, LoadsGenericCues
 {
@@ -177,6 +178,17 @@ class AssCue extends GenericSubtitleCue implements TimingStrings, TransformsToGe
         );
 
         $this->setLines($genericCue->getLines());
+
+        return $this;
+    }
+
+    public function stylePositionTop()
+    {
+        if (count($this->lines) === 0) {
+            throw new LogicException('A cue with no lines cannot be styled');
+        }
+
+        $this->lines[0] = str_start($this->lines[0], '{\a6}');
 
         return $this;
     }

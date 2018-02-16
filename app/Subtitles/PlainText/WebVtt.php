@@ -191,17 +191,24 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
         return $this;
     }
 
+    /**
+     * @param $cue
+     *
+     * @return WebVttCue
+     */
     public function addCue($cue)
     {
-        if ($cue instanceof WebVttCue) {
-            $this->cues[] = $cue;
-        } elseif ($cue instanceof GenericSubtitleCue) {
-            $this->cues[] = new WebVttCue($cue);
-        } else {
-            throw new LogicException('Invalid cue');
+        if (! $cue instanceof WebVttCue && ! $cue instanceof GenericSubtitleCue) {
+            throw new \InvalidArgumentException('Invalid cue');
         }
 
-        return $this;
+        $cue = $cue instanceof WebVttCue
+            ? $cue
+            : new WebVttCue($cue);
+
+        $this->cues[] = $cue;
+
+        return $cue;
     }
 
     public function getContentLines()

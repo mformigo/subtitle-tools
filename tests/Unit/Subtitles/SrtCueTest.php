@@ -175,4 +175,21 @@ class SrtCueTest extends TestCase
         $cue->setTimingFromString("\t00:01:01,266 --> 00:01:03,366");
         $cue->setTimingFromString("00:01:01,266 --> 00:01:03,366\t");
     }
+
+    /** @test */
+    function it_can_be_styled_to_show_on_top()
+    {
+        $cue = (new SrtCue)
+            ->addLine('Wow!')
+            ->stylePositionTop();
+
+        $this->assertSame(['{\an8}Wow!'], $cue->getLines());
+
+        // It should not apply the style twice.
+        $cue = (new SrtCue)
+            ->addLine('{\an8}Wow!')
+            ->stylePositionTop();
+
+        $this->assertSame(['{\an8}Wow!'], $cue->getLines());
+    }
 }
