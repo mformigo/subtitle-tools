@@ -33,7 +33,7 @@ return [
             'dan',
             'deu',
 //            'dzo',
-//            'ell',
+            'ell',
 
 //            'enm',
             'epo',
@@ -83,13 +83,13 @@ return [
 //            'ori',
 //            'osd',
 //            'pan',
-//            'pol',
+            'pol',
             'por',
 //            'pus',
 //            'ron',
             'rus',
 //            'san',
-//            'sin', //  <------------------------ todo: sri lanka
+//            'sin', // Sri Lanka
 //            'slk',
             'slv',
             'spa',
