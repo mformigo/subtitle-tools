@@ -37,16 +37,17 @@ class Kernel extends HttpKernel
 
     // These middleware may be assigned to groups or used individually.
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth'          => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic'    => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings'      => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can'           => \Illuminate\Auth\Middleware\Authorize::class,
+        'throttle'      => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
+        'guest'            => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'swap-sub-and-idx' => \App\Http\Middleware\SwapSubAndIdx::class,
         'extract-archives' => \App\Http\Middleware\ExtractArchives::class,
-        'check-file-size' => \App\Http\Middleware\CheckFileSize::class,
+        'check-file-size'  => \App\Http\Middleware\CheckFileSize::class,
     ];
 
 }

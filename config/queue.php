@@ -42,6 +42,7 @@ return [
             'connection'  => 'default',
             'queue'       => 'default',
             'retry_after' => 360,
+            'block_for'   => null,
         ],
 
         'sync' => [

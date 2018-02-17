@@ -11,6 +11,10 @@ class AreUploadedFilesRule implements Rule
     {
         $uploadedFiles = request()->files->get($attribute);
 
+        if ($uploadedFiles === null) {
+            return false;
+        }
+
         foreach (array_wrap($uploadedFiles) as $file) {
             if (! $file instanceof UploadedFile) {
                 return false;

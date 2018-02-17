@@ -120,7 +120,7 @@ abstract class TestCase extends BaseTestCase
 
         $app->make(Kernel::class)->bootstrap();
 
-        Hash::setRounds(4);
+        Hash::driver('bcrypt')->setRounds(4);
 
         return $app;
     }
