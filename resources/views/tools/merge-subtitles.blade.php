@@ -14,19 +14,19 @@
     </p>
 
 
-    @component('components.tool-form', ['bare' => true])
+    @component('components.tool-form', ['bare' => true, 'singleFile' => true])
 
         @slot('title') Select subtitles to merge @endslot
 
         @slot('extraBefore')
             <strong class="block mb-2">Base file</strong>
-            <input class="block" type="file" name="subtitles" required>
+            <input id="base-file-input" class="block" type="file" name="subtitles" required>
             <small class="block my-2">
                 Supported formats: srt, ass, ssa, vtt
             </small>
 
             <strong class="block mt-4 mb-2">Merge file</strong>
-            <input class="block" type="file" name="second-subtitle" required>
+            <input id="merge-file-input" class="block" type="file" name="second-subtitle" required>
             <small class="block my-2">
                 Supported formats: srt, ass, ssa, smi, sub, vtt
             </small>

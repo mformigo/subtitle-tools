@@ -14,11 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var idxInput = document.getElementById("idx-input");
 
+    var baseFileInput = document.getElementById("base-file-input");
+    var mergeFileInput = document.getElementById("merge-file-input");
+
     // The sub/idx tool uses different inputs, and should have
     // the default drag and drop behaviour disabled.
     var defaultDropInputExists = !! subtitlesInput;
 
     var hasSubIdxInputs = !! subInput && !! idxInput;
+
+    var hasMergeInputs = !! baseFileInput && !! mergeFileInput;
 
     var dragLeaveTimeout = null;
     var hideDropzoneTimeout = null;
@@ -28,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    if (! defaultDropInputExists && ! hasSubIdxInputs) {
+    if (! defaultDropInputExists && ! hasSubIdxInputs && ! hasMergeInputs) {
         return;
     }
 
@@ -150,9 +155,42 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
+    /**
+     * At the merge tool, the first file is put into the "base file" input,
+     * and the second file into the "merge file" input.
+     */
+    function initMergeBehaviour() {
+        dropContainer.ondrop = function (event) {
+            event.preventDefault();
+            event.stopPropagation();
 
-    defaultDropInputExists
-        ? initDefaultBehaviour()
-        : initSubIdxBehaviour();
+            dropContainer.classList.remove("dropzone-active");
+
+            if (! isDraggingFiles(event)) {
+                return;
+            }
+
+            if (event.dataTransfer.files.length > 1) {
+                showDropzoneError('Drop the base and merge file one by one');
+
+                return;
+            }
+
+            draggedFile = event.dataTransfer.files[0];
+
+            if (baseFileInput.files.length === 0) {
+                baseFileInput.files = event.dataTransfer.files;
+            } else if (mergeFileInput.files.length === 0) {
+                mergeFileInput.files = event.dataTransfer.files;
+            }
+        };
+    }
+
+
+    defaultDropInputExists ? initDefaultBehaviour() : null;
+
+    hasSubIdxInputs ? initSubIdxBehaviour() : null;
+
+    hasMergeInputs ? initMergeBehaviour() : null;
 
 }, false);
