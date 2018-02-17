@@ -50,6 +50,7 @@
 
                 <strong class="my-2 pr-3 border-t pt-2">Other</strong>
                 {!! hamburger_item('pinyin') !!}
+                {!! hamburger_item('merge') !!}
                 {!! hamburger_item('contact') !!}
             </div>
         </div>

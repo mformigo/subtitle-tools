@@ -13,6 +13,7 @@ return [
     'item.contact' => 'Contact',
     'item.convertToPlainText' => 'Convert to Plain Text',
     'item.sup' => 'Sup to Srt',
+    'item.merge' => 'Merge Subtitles',
 
     // Admin Nav
     'item.admin'         => 'Dashboard',
