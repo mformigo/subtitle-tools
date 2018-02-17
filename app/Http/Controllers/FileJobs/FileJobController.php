@@ -96,8 +96,10 @@ abstract class FileJobController extends Controller
             ->whereNull('error_message')
             ->findOrFail($id);
 
-        // The original name can contain a path if it came from an archive file
-        $name = basename($fileJob->originalNameWithNewExtension);
+        // The original name can contain a path if it came from
+        // an archive file. Use "class_basename" because some
+        // archives use backslashes as directory separators.
+        $name = class_basename($fileJob->original_name_with_new_extension);
 
         // Adding a watermark also helps guarantee that the file name has some
         // ascii chars. If the name does not contain any ascii chars, the
