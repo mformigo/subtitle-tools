@@ -109,6 +109,13 @@
             'text'  => 'Turn normal Chinese subtitles into romanized, pinyin subtitles.',
         ])
 
+        @include('helpers.homepage-card', [
+            'route' => route('merge'),
+            'icon'  => 'wrench',
+            'title' => 'Subtitle Merger',
+            'text'  => 'Combine two subtitles into a single file.',
+        ])
+
     </div>
 
 @endsection
