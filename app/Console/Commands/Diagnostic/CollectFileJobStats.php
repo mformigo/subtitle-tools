@@ -45,6 +45,11 @@ class CollectFileJobStats extends Command
         foreach ($fileGroups as $fileGroup) {
             $totalFiles += $fileGroup->fileJobs->count();
 
+            // The merge tool always has two input files but only one file job.
+            if ($toolRoute === 'merge') {
+                $totalFiles += $fileGroup->fileJobs->count();
+            }
+
             foreach ($fileGroup->fileJobs as $fileJob) {
                 if ($fileJob->inputStoredFile->meta) {
                     $totalSize += $fileJob->inputStoredFile->meta->size;
