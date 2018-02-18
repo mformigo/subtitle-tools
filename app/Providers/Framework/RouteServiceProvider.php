@@ -28,6 +28,10 @@ class RouteServiceProvider extends ServiceProvider
     protected function registerRouteMacros()
     {
         Route::macro('fileGroupTool', function ($routeName, $controller, $slug) {
+            if (! in_array($routeName, config('st.tool_routes'))) {
+                throw new \LogicException('This route is not defined in the config');
+            }
+
             Route::prefix($slug)->namespace('FileJobs')->group(function () use ($controller, $routeName) {
                 Route::get('/',               ['uses' => $controller.'@index',    'as' => $routeName]);
                 Route::post('/',              ['uses' => $controller.'@post']);

@@ -29,6 +29,9 @@ Route::prefix('convert-sub-idx-to-srt-online')->group(function () {
     });
 });
 
+/**
+ * When adding a new FileGroupTool route, also add it to "config/st.php".
+ */
 Route::fileGroupTool('convertToSrt',       'ConvertToSrtController',       'convert-to-srt-online');
 Route::fileGroupTool('convertToVtt',       'ConvertToVttController',       'convert-to-vtt-online');
 Route::fileGroupTool('cleanSrt',           'CleanSrtController',           'srt-cleaner');

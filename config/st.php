@@ -3,11 +3,26 @@
 return [
 
     /**
+     * These tool routes are use for FileJobStats.
+     */
+    'tool_routes' => [
+        'convertToSrt',
+        'convertToVtt',
+        'cleanSrt',
+        'shift',
+        'shiftPartial',
+        'convertToUtf8',
+        'pinyin',
+        'convertToPlainText',
+        'merge',
+    ],
+
+    /**
      * Checked migration is used in:
      *   PruneStoredFiles command
      *
      */
-    'checked-migration' => '2017_11_18_194519_create_sup_job_metas_table',
+    'checked-migration' => '2018_02_18_142350_create_file_job_stats_table',
 
     'tesseract' => [
 

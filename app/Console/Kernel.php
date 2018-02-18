@@ -24,8 +24,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('queue:restart')->hourly();
 
         // Diagnostic commands
-        $schedule->command('st:collect-meta'        )->everyTenMinutes();
+        $schedule->command('st:collect-meta'        )->everyFiveMinutes();
         $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
+        $schedule->command('st:collect-file-job-stats')->dailyAt('1:35');
     }
 
     protected function commands()
