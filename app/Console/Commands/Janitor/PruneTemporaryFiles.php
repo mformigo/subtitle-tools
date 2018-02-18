@@ -15,7 +15,7 @@ class PruneTemporaryFiles extends Command
         $this->info('Deleting temporary files and directories older than five days...');
 
         // Slow OCR jobs could take more than a day if the queue is very busy,
-        // to be safe, only delete things older than five days
+        // to be safe, only delete things older than five days.
         $dontDeletePrefixes = [
             date('Y-z-'), // todays prefix
             date('Y-z-', strtotime('-1 days')),
@@ -23,7 +23,6 @@ class PruneTemporaryFiles extends Command
             date('Y-z-', strtotime('-3 days')),
             date('Y-z-', strtotime('-4 days')),
         ];
-
 
         $this->cleanTemporaryFiles($dontDeletePrefixes);
 
@@ -43,7 +42,7 @@ class PruneTemporaryFiles extends Command
         });
 
         foreach ($fileNames as $name) {
-            unlink($temporaryFilesDir . $name);
+            unlink($temporaryFilesDir.$name);
         }
     }
 
@@ -59,6 +58,7 @@ class PruneTemporaryFiles extends Command
                     return false;
                 }
             }
+
             return true;
         });
 

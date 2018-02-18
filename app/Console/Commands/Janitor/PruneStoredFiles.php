@@ -30,7 +30,29 @@ class PruneStoredFiles extends Command
     }
 
     /**
-     * Delete stored files from the database that are not referenced by any other record
+     * If a new table is added that uses stored files, and we forget to update this command,
+     * it will take me ages to figure out stuff is broken. Therefor we only delete records
+     * from the database if the database is on a migration we specified.
+     *
+     * @return bool
+     */
+    protected function isOnCheckedMigration()
+    {
+        $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
+
+        if ($lastMigration === config('st.checked-migration')) {
+            return true;
+        }
+
+        $this->error('Not on a checked migration, not deleting records');
+
+        info('PruneStoredFiles did not delete any database records because it is not on a checked migration');
+
+        return false;
+    }
+
+    /**
+     * Delete stored files from the database that are not referenced by any other record.
      */
     protected function deleteUnreferencedStoredFileRecords()
     {
@@ -48,7 +70,7 @@ class PruneStoredFiles extends Command
                 ->select($columns)
                 ->get()
                 ->map(function ($record) {
-                    return array_values((array)$record);
+                    return array_values((array) $record);
                 })
                 ->flatten()
                 ->filter()
@@ -72,27 +94,8 @@ class PruneStoredFiles extends Command
     }
 
     /**
-     * If a new table is added that uses stored files, and we forget to update this command,
-     * it will take me ages to figure out stuff is broken. Therefor we only delete records
-     * from the database if the database is on a migration we specified
-     *
-     * @return bool
+     * Delete all stored file on the disk that do not have a reference in the database.
      */
-    protected function isOnCheckedMigration()
-    {
-        $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
-
-        if ($lastMigration === config('st.checked-migration')) {
-            return true;
-        }
-
-        $this->error('Not on a checked migration, not deleting records');
-
-        info('PruneStoredFiles did not delete any database records because it is not on a checked migration');
-
-        return false;
-    }
-
     protected function deleteOrphanedStoredFiles()
     {
         $existingStoredFiles = array_filter(Storage::allFiles('stored-files/'), function ($fileName) {
