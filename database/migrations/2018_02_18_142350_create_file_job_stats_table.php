@@ -14,6 +14,7 @@ class CreateFileJobStatsTable extends Migration
             $table->string('tool_route');
             $table->integer('times_used')->unsigned()->default(0);
             $table->integer('total_files')->unsigned()->default(0);
+            $table->integer('amount_failed')->unsigned()->default(0);
             $table->bigInteger('total_size')->unsigned()->default(0);
             $table->timestamps();
 
