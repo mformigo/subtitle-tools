@@ -64,6 +64,12 @@ class CollectFileJobStats extends Command
             }
 
             foreach ($fileGroup->fileJobs as $fileJob) {
+                // TODO: sometimes, because of a missing foreign key, input
+                // stored files do not exist.
+                if (! $fileJob->inputStoredFile) {
+                    continue;
+                }
+
                 if ($fileJob->inputStoredFile->meta) {
                     $totalSize += $fileJob->inputStoredFile->meta->size;
                 }
