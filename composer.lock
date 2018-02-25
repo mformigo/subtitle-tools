@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed2fdf8ba3cd6da2447e4190f82fdbc3",
+    "content-hash": "d17dd2588e6fc4f081a76e3d0519e3bb",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1006,16 +1006,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.3",
+            "version": "v5.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "db3e5422070d9b5166493313142b30419efab207"
+                "reference": "2e68209991e15aca1382ef9a3443d13f2e0d8755"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/db3e5422070d9b5166493313142b30419efab207",
-                "reference": "db3e5422070d9b5166493313142b30419efab207",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2e68209991e15aca1382ef9a3443d13f2e0d8755",
+                "reference": "2e68209991e15aca1382ef9a3443d13f2e0d8755",
                 "shasum": ""
             },
             "require": {
@@ -1026,7 +1026,7 @@
                 "ext-openssl": "*",
                 "league/flysystem": "~1.0",
                 "monolog/monolog": "~1.12",
-                "nesbot/carbon": "~1.20",
+                "nesbot/carbon": "^1.22.1",
                 "php": "^7.1.3",
                 "psr/container": "~1.0",
                 "psr/simple-cache": "^1.0",
@@ -1072,7 +1072,7 @@
                 "illuminate/translation": "self.version",
                 "illuminate/validation": "self.version",
                 "illuminate/view": "self.version",
-                "tightenco/collect": "self.version"
+                "tightenco/collect": "<5.5.33"
             },
             "require-dev": {
                 "aws/aws-sdk-php": "~3.0",
@@ -1137,7 +1137,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-02-09T13:33:22+00:00"
+            "time": "2018-02-22T19:21:38+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2258,16 +2258,16 @@
         },
         {
             "name": "sjorso/text-file",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/text-file-package.git",
-                "reference": "afb57976534739f92be43ef8198edae33ddbad62"
+                "reference": "ac1ccfd9678f91eaf4b9fa46d7348cb3b0455b7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/text-file-package/zipball/afb57976534739f92be43ef8198edae33ddbad62",
-                "reference": "afb57976534739f92be43ef8198edae33ddbad62",
+                "url": "https://api.github.com/repos/SjorsO/text-file-package/zipball/ac1ccfd9678f91eaf4b9fa46d7348cb3b0455b7b",
+                "reference": "ac1ccfd9678f91eaf4b9fa46d7348cb3b0455b7b",
                 "shasum": ""
             },
             "require": {
@@ -2312,20 +2312,20 @@
                 "text file",
                 "uchardet"
             ],
-            "time": "2018-02-05T19:13:18+00:00"
+            "time": "2018-02-25T10:50:55+00:00"
         },
         {
             "name": "spatie/browsershot",
-            "version": "3.16.1",
+            "version": "3.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "699344871900c90fce753d58dfb3a9bd8ad8c63c"
+                "reference": "20352c99a96ff33d75ef6247273c54f6e5581369"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/699344871900c90fce753d58dfb3a9bd8ad8c63c",
-                "reference": "699344871900c90fce753d58dfb3a9bd8ad8c63c",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/20352c99a96ff33d75ef6247273c54f6e5581369",
+                "reference": "20352c99a96ff33d75ef6247273c54f6e5581369",
                 "shasum": ""
             },
             "require": {
@@ -2368,20 +2368,20 @@
                 "screenshot",
                 "webpage"
             ],
-            "time": "2018-02-08T09:12:26+00:00"
+            "time": "2018-02-22T12:28:51+00:00"
         },
         {
             "name": "spatie/crawler",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/crawler.git",
-                "reference": "5bb5dcfb488b42c43911f928ab24834c3be8701d"
+                "reference": "f40aacc5f3c444bad74235c908a79400b4461a6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/crawler/zipball/5bb5dcfb488b42c43911f928ab24834c3be8701d",
-                "reference": "5bb5dcfb488b42c43911f928ab24834c3be8701d",
+                "url": "https://api.github.com/repos/spatie/crawler/zipball/f40aacc5f3c444bad74235c908a79400b4461a6b",
+                "reference": "f40aacc5f3c444bad74235c908a79400b4461a6b",
                 "shasum": ""
             },
             "require": {
@@ -2426,7 +2426,7 @@
                 "spatie",
                 "website"
             ],
-            "time": "2018-01-25T20:48:33+00:00"
+            "time": "2018-02-21T21:11:50+00:00"
         },
         {
             "name": "spatie/image",
@@ -2481,16 +2481,16 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.0.11",
+            "version": "1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "12eacb85a70158f64d60f39d32a2a86d84ff6b89"
+                "reference": "73906c29290baf047727ba5c1df6d7a3f1e3df22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/12eacb85a70158f64d60f39d32a2a86d84ff6b89",
-                "reference": "12eacb85a70158f64d60f39d32a2a86d84ff6b89",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/73906c29290baf047727ba5c1df6d7a3f1e3df22",
+                "reference": "73906c29290baf047727ba5c1df6d7a3f1e3df22",
                 "shasum": ""
             },
             "require": {
@@ -2526,7 +2526,7 @@
                 "image-optimizer",
                 "spatie"
             ],
-            "time": "2018-02-08T14:45:11+00:00"
+            "time": "2018-02-22T18:36:53+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
@@ -4333,16 +4333,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be"
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
                 "shasum": ""
             },
             "require": {
@@ -4392,7 +4392,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-11T18:49:29+00:00"
+            "time": "2018-02-19T10:16:54+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -5547,8 +5547,5 @@
     "platform": {
         "php": ">=7.1.3"
     },
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "7.1.3"
-    }
+    "platform-dev": []
 }
