@@ -127,6 +127,28 @@ trait WithGenericCues
     }
 
     /**
+     * Removes all square brackets from the text lines, then removes empty cues.
+     *
+     * @return $this
+     */
+    public function stripSquareBracketsFromCues()
+    {
+        foreach ($this->cues as $cue) {
+            $cue->alterAllLines(function ($lines) {
+                $singleLine = implode("\n", $lines);
+
+                $strippedLines = preg_replace('/\[.*?\]/s', '', $singleLine);
+
+                return explode("\n", $strippedLines);
+            });
+        }
+
+        $this->removeEmptyCues();
+
+        return $this;
+    }
+
+    /**
      * @param bool $sortCues
      *
      * @return GenericSubtitleCue[]

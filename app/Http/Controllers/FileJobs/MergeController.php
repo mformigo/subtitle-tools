@@ -15,9 +15,6 @@ class MergeController extends FileJobController
 
     protected $job = MergeSubtitlesJob::class;
 
-    /**
-     * @var MergeSubtitlesOptions
-     */
     protected $options = MergeSubtitlesOptions::class;
 
     protected $shouldAlwaysQueue = true;

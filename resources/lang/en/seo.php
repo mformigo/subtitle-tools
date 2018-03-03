@@ -27,7 +27,7 @@ return [
     'title.blogVlcSubtitleBoxes' => 'How to fix subtitles in VLC: no more weird symbols, boxes or question marks',
 
 //--------------160-characters------------'################################################################################################################################################################'---------------------------
-    'description.cleanSrt'             => 'Removes formatting, brackets (curly, parentheses or angle brackets), html and other effects from subrip files. Easy online tool for cleaning and fixing srt subtitles',
+    'description.cleanSrt'             => 'Removes formatting, brackets (curly, parentheses, square or angle brackets), html and other effects from subrip files. Easy online tool for cleaning and fixing srt subtitles',
     'description.contact'              => 'We appreciate all feedback! Contact us if you have any suggestions, or if you want to report a bug',
     'description.convertToSrt'         => 'This free online converter can change many subtitle formats to srt, including ass to srt, webvtt to srt and smi to srt. Works on Windows, Mac and Linux',
     'description.convertToVtt'         => 'Convert subtitles to WebVtt. This online tool can convert many formats, including srt, ass and sub. Supports batch subtitle conversions. Works on Windows, Mac and Linux',
@@ -47,7 +47,7 @@ return [
     'description.blogVlcSubtitleBoxes' => 'A simple guide on how to fix VLC displaying srt subtitles as weird symbols, boxes or question marks. Use subtitles with unicode UTF-8 encoding and use a unicode font.',
 
 
-    'keywords.cleanSrt'        => 'subtitle, subtitles, srt, clean, bracket, html, braces, angle, effects, colors, font, b, i, formatting, strip, stripping',
+    'keywords.cleanSrt'        => 'subtitle, subtitles, srt, clean, bracket, html, braces, square, angle, effects, colors, font, b, i, formatting, strip, stripping',
     'keywords.contact'         => 'contact, email, support, feedback',
     'keywords.convertToSrt'    => 'convert to srt, subtitles to srt, ass to srt, ssa to srt, microdvd, smi to srt, ass2srt, ssa2srt, smi2srt, online, free, converter, conversion, subtitles, windows, mac, linux, freeware, vtt, webvtt',
     'keywords.convertToVtt'    => 'convert to vtt, subtitles to vtt, ass to vtt, ssa to vtt, microdvd, smi to vtt, ass2vtt, ssa2vtt, smi2vtt, online, free, converter, conversion, subtitles, windows, mac, linux, freeware, vtt, webvtt',

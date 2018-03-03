@@ -25,7 +25,7 @@ class MergeSubtitlesJob extends FileJob
     {
         $this->startFileJob();
 
-        $this->options = new MergeSubtitlesOptions((array) $this->fileGroup->job_options);
+        $this->options = new MergeSubtitlesOptions($this->fileGroup->job_options);
 
         $baseSubtitle = $this->getBaseSubtitle();
 

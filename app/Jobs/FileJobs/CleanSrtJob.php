@@ -2,18 +2,25 @@
 
 namespace App\Jobs\FileJobs;
 
+use App\Subtitles\Tools\Options\SrtCleanerOptions;
 use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
-use SjorsO\TextFile\Facades\TextFileIdentifier;
 
 class CleanSrtJob extends FileJob
 {
+    /**
+     * @var SrtCleanerOptions
+     */
+    protected $options;
+
     public function handle()
     {
         $this->startFileJob();
 
-        if (! TextFileIdentifier::isTextFile($this->inputStoredFile->filePath)) {
+        $this->options = new SrtCleanerOptions($this->fileGroup->job_options);
+
+        if (! is_text_file($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
@@ -23,18 +30,20 @@ class CleanSrtJob extends FileJob
             return $this->abortFileJob('messages.file_is_not_srt');
         }
 
-        $jobOptions = $this->fileGroup->job_options;
-
-        if ($jobOptions->stripParentheses ?? true) {
+        if ($this->options->stripParentheses) {
             $srt->stripParenthesesFromCues();
         }
 
-        if ($jobOptions->stripCurly ?? true) {
+        if ($this->options->stripCurly) {
             $srt->stripCurlyBracketsFromCues();
         }
 
-        if ($jobOptions->stripAngle ?? true) {
+        if ($this->options->stripAngle) {
             $srt->stripAngleBracketsFromCues();
+        }
+
+        if ($this->options->stripSquare) {
+            $srt->stripSquareBracketsFromCues();
         }
 
         $srt->removeDuplicateCues();

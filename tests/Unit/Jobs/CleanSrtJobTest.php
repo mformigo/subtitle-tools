@@ -34,35 +34,6 @@ class CleanSrtJobTest extends TestCase
     }
 
     /** @test */
-    function it_cleans_everything_by_default()
-    {
-        $fileGroup = $this->createFileGroup();
-
-        dispatch(
-            new CleanSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues-cleanable.srt")
-        );
-
-        $fileJob = $fileGroup->fileJobs()->firstOrFail();
-
-        $this->assertSame('three-cues-cleanable.srt', $fileJob->original_name);
-
-        $convertedStoredFile = $fileJob->outputStoredFile;
-
-        $subtitle = TextFileFormat::getMatchingFormat($convertedStoredFile->filePath);
-
-        $this->assertTrue($subtitle instanceof Srt);
-
-        // it removes the duplicate cue
-        // an extra cue is added as a watermark
-        $this->assertSame(4, count($subtitle->getCues()));
-
-        $this->assertNotContains('<i>', $subtitle->getContent());
-        $this->assertNotContains('</i>', $subtitle->getContent());
-        $this->assertNotContains('{', $subtitle->getContent());
-        $this->assertNotContains('}', $subtitle->getContent());
-    }
-
-    /** @test */
     function job_options_can_disable_options()
     {
         $fileGroup = $this->createFileGroup();
@@ -111,7 +82,7 @@ class CleanSrtJobTest extends TestCase
             ],
         ]);
 
-        CleanSrtJob::dispatch($fileGroup, "{$this->testFilesStoragePath}TextFiles/cleanable-hearing-impaired.srt");
+        CleanSrtJob::dispatch($fileGroup, "{$this->testFilesStoragePath}TextFiles/srt-cleaner-tool/cleanable-hearing-impaired.srt");
 
         $this->assertMatchesFileSnapshot(
             StoredFile::findOrFail(2)

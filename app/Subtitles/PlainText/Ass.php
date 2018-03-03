@@ -179,32 +179,22 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
         return $this;
     }
 
-    /**
-     * Removes all parentheses from the text lines, then removes empty cues
-     *
-     * @return $this
-     */
     public function stripParenthesesFromCues()
     {
         return $this;
     }
 
-    /**
-     * Removes all angle brackets from the text lines, then removes empty cues
-     *
-     * @return $this
-     */
     public function stripAngleBracketsFromCues()
     {
         return $this;
     }
 
-    /**
-     * Removes all curly brackets and lines containing .ass drawings from the text lines, then removes empty cues
-     *
-     * @return $this
-     */
     public function stripCurlyBracketsFromCues()
+    {
+        return $this;
+    }
+
+    public function stripSquareBracketsFromCues()
     {
         return $this;
     }

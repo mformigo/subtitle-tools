@@ -7,9 +7,11 @@ use ReflectionClass;
 
 abstract class ToolOptions
 {
-    public function __construct(array $options = [])
+    public function __construct($options = [])
     {
-        $this->load($options);
+        $this->load(
+            (array) $options
+        );
     }
 
     public function rules(): array

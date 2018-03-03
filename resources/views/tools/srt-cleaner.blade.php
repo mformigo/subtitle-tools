@@ -10,7 +10,7 @@
 
     <h1>Remove formatting from Srt subtitles</h1>
     <p>
-        This tool cleans srt files by removing html tags and other formatting.
+        Cleans srt files by stripping html tags and other formatting
     </p>
 
 
@@ -27,6 +27,7 @@
             <input type="hidden" name="stripParentheses" value="" />
             <input type="hidden" name="stripCurly"       value="" />
             <input type="hidden" name="stripAngle"       value="" />
+            <input type="hidden" name="stripSquare"      value="" />
 
             <label class="block">
                 <input type="checkbox" name="stripParentheses" value="1" {{ old('stripParentheses', 'checked') }}>
@@ -38,9 +39,14 @@
                 Strip text between curly brackets { }
             </label>
 
-            <label class="block mb-3">
+            <label class="block my-3">
                 <input type="checkbox" name="stripAngle" value="1" {{ old('stripAngle', 'checked') }}>
                 Strip text between angle brackets &lt; &gt;
+            </label>
+
+            <label class="block mb-3">
+                <input type="checkbox" name="stripSquare" value="1" {{ old('stripSquare', 'checked') }}>
+                Strip text between square brackets [ ]
             </label>
         @endslot
 
@@ -60,6 +66,7 @@
     <p>
         The <i>strip text between parentheses</i> option can be used to turn subtitles for the deaf and hard-of-hearing (SDH subtitles) into regular subtitles.
         This option will remove any SDH text (which should be between parentheses), leaving only dialogue cues.
+        If the SDH text is contained in different kinds of brackets, you can use one of the other options to strip them too.
     </p>
 
     <h3>Other formatting tags</h3>

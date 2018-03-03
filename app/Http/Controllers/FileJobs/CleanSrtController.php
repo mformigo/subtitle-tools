@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FileJobs;
 
 use App\Jobs\FileJobs\CleanSrtJob;
-use Illuminate\Http\Request;
+use App\Subtitles\Tools\Options\SrtCleanerOptions;
 
 class CleanSrtController extends FileJobController
 {
@@ -11,17 +11,10 @@ class CleanSrtController extends FileJobController
 
     protected $job = CleanSrtJob::class;
 
+    protected $options = SrtCleanerOptions::class;
+
     public function index()
     {
         return view('tools.srt-cleaner');
-    }
-
-    protected function options(Request $request)
-    {
-        return [
-            'stripCurly'       => $request->get('stripCurly') !== null,
-            'stripAngle'       => $request->get('stripAngle') !== null,
-            'stripParentheses' => $request->get('stripParentheses') !== null,
-        ];
     }
 }
