@@ -185,8 +185,9 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         }
 
         // 2018-05-18: A user using "Camtasia software" said that the 0 length second
-        // watermark cue produces an error. therefor, make it 1 ms long.
-        $cue = (new SrtCue)->setTiming(0, 1)->addLine('Edited at https://subtitletools.com');
+        // watermark cue produces an error. Camtasia needs it to be 1 frame long
+        // therefor, make it 33ms long.
+        $cue = (new SrtCue)->setTiming(0, 33)->addLine('Edited at https://subtitletools.com');
 
         return $this->addCue($cue);
     }
