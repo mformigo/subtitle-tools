@@ -73,6 +73,11 @@
         The <i>strip text between parentheses</i> option can be used to turn subtitles for the deaf and hard-of-hearing (SDH subtitles) into regular subtitles.
         This option will remove any SDH text (which should be between parentheses), leaving only dialogue cues.
         If the SDH text is contained in different kinds of brackets, you can use one of the other options to strip them too.
+        <br><br>
+        The <strong>strip speaker labels</strong> option is also useful when working with SDH subtitles.
+        It removes the name of the speaker from the beginning of lines.
+        In a dialogue cue, any uppercase text before a colon (:) is considered a speaker label.
+        For example, a cue containing the text "GEORGE: The summer of George!" will be changed to "-The summer of George!".
     </p>
 
     <h3>Other formatting tags</h3>
