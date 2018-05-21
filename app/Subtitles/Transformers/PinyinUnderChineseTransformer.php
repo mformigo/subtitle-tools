@@ -3,9 +3,10 @@
 namespace App\Subtitles\Transformers;
 
 use App\Subtitles\ContainsGenericCues;
+use App\Subtitles\PlainText\GenericSubtitleCue;
 use SjorsO\Pinyin\Pinyin;
 
-class PinyinUnderChineseTransformer implements CueTransformer
+class PinyinUnderChineseTransformer extends CueTransformer
 {
     protected $pinyin;
 
@@ -21,7 +22,7 @@ class PinyinUnderChineseTransformer implements CueTransformer
      *
      * @return bool False if no valid transformations have happened, true otherwise
      */
-    public function transformCues(ContainsGenericCues $subtitle)
+    public function transformCues(ContainsGenericCues $subtitle): bool
     {
         $hasChangedSomething = false;
 
@@ -40,5 +41,15 @@ class PinyinUnderChineseTransformer implements CueTransformer
         }
 
         return $hasChangedSomething;
+    }
+
+    public function transformCue(GenericSubtitleCue $cue): bool
+    {
+        throw new \RuntimeException('Not implemented');
+    }
+
+    public function transformLines(array $lines): array
+    {
+        throw new \RuntimeException('Not implemented');
     }
 }
