@@ -24,10 +24,11 @@
 
         @slot('extraAfter')
             {{-- Hidden inputs so the values are always present in the request --}}
-            <input type="hidden" name="stripParentheses" value="" />
-            <input type="hidden" name="stripCurly"       value="" />
-            <input type="hidden" name="stripAngle"       value="" />
-            <input type="hidden" name="stripSquare"      value="" />
+            <input type="hidden" name="stripParentheses"   value="" />
+            <input type="hidden" name="stripCurly"         value="" />
+            <input type="hidden" name="stripAngle"         value="" />
+            <input type="hidden" name="stripSquare"        value="" />
+            <input type="hidden" name="stripSpeakerLabels" value="" />
 
             <label class="block">
                 <input type="checkbox" name="stripParentheses" value="1" {{ old('stripParentheses', 'checked') }}>
@@ -47,6 +48,11 @@
             <label class="block mb-3">
                 <input type="checkbox" name="stripSquare" value="1" {{ old('stripSquare', 'checked') }}>
                 Strip text between square brackets [ ]
+            </label>
+
+            <label class="block mb-3">
+                <input type="checkbox" name="stripSpeakerLabels" value="1">
+                Strip speaker labels
             </label>
         @endslot
 

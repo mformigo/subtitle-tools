@@ -3,6 +3,7 @@
 namespace App\Jobs\FileJobs;
 
 use App\Subtitles\Tools\Options\SrtCleanerOptions;
+use App\Subtitles\Transformers\StripSpeakerLabels;
 use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
@@ -44,6 +45,12 @@ class CleanSrtJob extends FileJob
 
         if ($this->options->stripSquare) {
             $srt->stripSquareBracketsFromCues();
+        }
+
+        if ($this->options->stripSpeakerLabels) {
+            (new StripSpeakerLabels)->transformCues($srt);
+
+            $srt->removeEmptyCues();
         }
 
         $srt->removeDuplicateCues();

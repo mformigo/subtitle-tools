@@ -14,10 +14,10 @@ class SrtCleanerControllerTest extends TestCase
 
     protected $fileSnapshotDirectory = 'srt-cleaner';
 
-    private function postSrtCleanJob($options)
+    private function postSrtCleanJob($options, $filePath = null)
     {
         [$response, $fileGroup] = $this->postFileJob('cleanSrt', [
-            $this->createUploadedFile('TextFiles/srt-cleaner-tool/cleanable-01.srt'),
+            $this->createUploadedFile($filePath ?? 'TextFiles/srt-cleaner-tool/cleanable-01.srt'),
         ], $options);
 
         $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
@@ -100,5 +100,15 @@ class SrtCleanerControllerTest extends TestCase
         $options->stripSquare = true;
 
         $this->postSrtCleanJob($options);
+    }
+
+    /** @test */
+    function it_strips_speaker_labels()
+    {
+        $options = new SrtCleanerOptions();
+
+        $options->stripSpeakerLabels = true;
+
+        $this->postSrtCleanJob($options, 'TextFiles/srt-cleaner-tool/cleanable-02.srt');
     }
 }

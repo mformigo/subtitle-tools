@@ -39,15 +39,15 @@ class StripSpeakerLabelsTest extends TestCase
         ]);
 
         $this->assertLinesTransformed([
-            'She looked nice.',
-            'She looked stuck-up to me.',
+            '-She looked nice.',
+            '-She looked stuck-up to me.',
         ], [
             'AMBER: She looked nice.',
             'BLONDIE: She looked stuck-up to me.',
         ]);
 
         $this->assertLinesTransformed(
-            'Hey. Come here.',
+            '-Hey. Come here.',
             'WISE MAN: Hey. Come here.'
         );
     }
@@ -56,7 +56,7 @@ class StripSpeakerLabelsTest extends TestCase
     function it_strips_mostly_uppercase_speaker_labels()
     {
         $this->assertLinesTransformed(
-            'She looked stuck-up to me.',
+            '-She looked stuck-up to me.',
             'BLONDiE: She looked stuck-up to me.'
         );
     }

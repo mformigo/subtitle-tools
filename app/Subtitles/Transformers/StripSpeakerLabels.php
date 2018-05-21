@@ -26,9 +26,11 @@ class StripSpeakerLabels extends CueTransformer
 
         [$maybeSpeakerLabel, $dialogue] = explode(':', $line, 2);
 
-        return $this->isSpeakerLabel($maybeSpeakerLabel)
-            ? trim($dialogue)
-            : $line;
+        if (! $this->isSpeakerLabel($maybeSpeakerLabel)) {
+            return $line;
+        }
+
+        return blank($dialogue) ? '' : '-'.trim($dialogue);
     }
 
     protected function isSpeakerLabel($string): bool
