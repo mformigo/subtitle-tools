@@ -4,43 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\DB;
 use SjorsO\TextFile\Facades\TextFileReader;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    protected $supervisorWorkers = [
-        'st-worker-default',
-        'st-worker-broadcast',
-        'st-worker-subidx',
-        'st-worker-larry',
-    ];
-
     public function index()
     {
         $logsWithErrors = collect(scandir(storage_path('logs')))->filter(function ($name) {
-            return !starts_with($name, '.') && filesize(storage_path("logs/{$name}")) > 0;
+            return ! starts_with($name, '.') && filesize(storage_path("logs/{$name}")) > 0;
         })->values()->all();
-
-        $supervisorInfo = $this->getSupervisorInfo();
 
         $diskUsageFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
         $diskUsage = file_exists($diskUsageFilePath) ? file_get_contents($diskUsageFilePath) : 'NONE (100%)';
         $diskUsageWarning = str_before(str_after($diskUsage, '('), ')') > 60;
 
-        $failedJobCount = DB::table('failed_jobs')->count();
-
-        $notFoundRequests = $this->get404Info();
-
-        $dependencies = $this->getDependenciesInfo();
-
         return view('admin.dashboard', [
-            'logs'       => $logsWithErrors,
-            'supervisor' => $supervisorInfo,
-            'diskUsage' => strtolower($diskUsage),
+            'logs'             => $logsWithErrors,
+            'supervisor'       => $this->getSupervisorInfo(),
+            'diskUsage'        => strtolower($diskUsage),
             'diskUsageWarning' => $diskUsageWarning,
-            'notFoundRequests' => $notFoundRequests,
-            'dependencies' => $dependencies,
-            'failedJobCount' => $failedJobCount,
+            'dependencies'     => $this->getDependenciesInfo(),
+            'failedJobCount'   => DB::table('failed_jobs')->count(),
             'phpVars' => [
                 'max_post_size'       => ini_get('post_max_size'),
                 'upload_max_filesize' => ini_get('upload_max_filesize'),
@@ -100,81 +83,6 @@ class DashboardController extends Controller
                 'uptime'    => str_after($parts[3] ?? '?:??:??', 'uptime '),
             ];
         })->all();
-    }
-
-    private function get404Info()
-    {
-        $logFilePath = storage_disk_file_path('diagnostic/404.txt');
-
-        if (!file_exists($logFilePath)) {
-            return [];
-        }
-
-        $blacklistFilePath = storage_disk_file_path('diagnostic/404-blacklist.txt');
-
-        if (!file_exists($blacklistFilePath)) {
-            touch($blacklistFilePath);
-        }
-
-        $blackList = TextFileReader::getLines($blacklistFilePath);
-
-
-        $entries = TextFileReader::getLines($logFilePath);
-
-        $paths = collect($entries)->filter()->map(function ($line) {
-            return explode('|', $line)[2];
-        })->all();
-
-        $uniquePaths = [];
-
-        foreach ($paths as $path) {
-            if (in_array($path, $blackList)) {
-                continue;
-            }
-
-            if (!isset($uniquePaths[$path])) {
-                $uniquePaths[$path] = ['path' => $path, 'count' => 0];
-            }
-
-            $uniquePaths[$path]['count']++;
-        }
-
-        return array_values($uniquePaths);
-    }
-
-    public function open404Log()
-    {
-        $filePath = storage_disk_file_path('diagnostic/404.txt');
-
-        if (!file_exists($filePath)) {
-            return back();
-        }
-
-        return implode('<br />', TextFileReader::getLines($filePath));
-    }
-
-    public function delete404Log()
-    {
-        $filePath = storage_disk_file_path('diagnostic/404.txt');
-
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        }
-
-        return back();
-    }
-
-    public function append404Blacklist(Request $request)
-    {
-        $values = $request->validate(['path' => 'required']);
-
-        file_put_contents(
-            storage_disk_file_path('diagnostic/404-blacklist.txt'),
-            $values['path'] . "\r\n",
-            FILE_APPEND
-        );
-
-        return back();
     }
 
     private function getDependenciesInfo()
