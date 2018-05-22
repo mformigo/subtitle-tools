@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="flex flex-col pl-8 w-96">
+    <div class="flex flex-col pl-8 w-64">
         <div>
             <strong class="block mb-2">Logs</strong>
 
@@ -31,7 +31,7 @@
             @foreach($supervisor as $superInfo)
                 <div class="flex items-center pl-4 border-l-8 {{ $superInfo->isRunning ? 'border-green' : 'border-red' }}">
                     <div class="w-48">{{ $superInfo->worker }}</div>
-                    <small class="block ml-auto">{{ $superInfo->uptime }} uptime</small>
+                    <small class="block ml-auto">{{ $superInfo->uptime }}</small>
                 </div>
             @endforeach
         </div>
@@ -55,7 +55,7 @@
             <form class="flex" target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}">
                 {{ csrf_field() }}
 
-                <input type="text" name="id" class="field p-1" placeholder="stored file ids..." autocomplete="off" required />
+                <input type="text" name="id" class="field p-1 w-32" placeholder="stored file ids..." autocomplete="off" required />
 
                 <button type="submit" class="btn block p-1 ml-auto">Download</button>
             </form>
