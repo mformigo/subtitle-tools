@@ -2,174 +2,84 @@
 
 @section('content')
 
-    <div id="Dashboard">
-        <div class="container">
-            <h1>Dashboard</h1>
+    <div class="flex flex-col pl-8 w-96">
+        <div>
+            <strong class="block mb-2">Logs</strong>
 
-            <div class="row">
-                <div class="col-4">
-                    <div class="logs st-panel">
-                        <h2>Logs</h2>
-                        @forelse ($logs as $logName)
-                            <div class="alert alert-danger">
-                                <a href="{{ route('adminGetLog', ['name' => $logName]) }}" target="_blank">{{ $logName }}</a>
+            @foreach ($logs as $logName)
+                <div class="flex justify-between pl-4 border-l-8 border-red">
+                    <a class="text-black" href="{{ route('adminGetLog', $logName) }}" target="_blank">{{ $logName }}</a>
 
-                                <a href="{{ route('adminDeleteLog', ['name' => $logName]) }}">X</a>
-                            </div>
-                        @empty
-                            <div class="alert alert-success">
-                                All good
-                            </div>
-                        @endforelse
-                    </div>
+                    <a class="text-black" href="{{ route('adminDeleteLog', $logName) }}">x</a>
                 </div>
-
-                <div class="col-4">
-                    <div class="supervisor st-panel">
-                        <h2>Supervisor</h2>
-                        @if(!$goodSupervisor)
-                            <div class="alert alert-danger">
-                                Queues running: {{ count($supervisor) }}. That ain't right!
-                            </div>
-                        @endif
-
-                        @foreach($supervisor as $superInfo)
-                            <div class="alert alert-{{ $superInfo->isRunning ? 'success' : 'danger' }}">
-                                <strong>{{ $superInfo->worker }}</strong> uptime: {{ $superInfo->uptime }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="stored-file-download st-panel">
-                        <h2>Stored Files</h2>
-
-                        <form id="ToolForm" target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-
-                            <div class="form-group">
-                            <label for="StoredFileId">Download ids:</label>
-                            <input class="form-control" id="StoredFileId" type="text" name="id" autocomplete="off" required />
-                            </div>
-
-                            <button type="submit" class="float-right">Download</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4">
-                    <div class="st-panel">
-                        <h2>Disk Usage</h2>
-
-                        <div class="alert alert-{{ $diskUsageWarning ? 'danger' : 'success' }}">
-                            {{ $diskUsage }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="not-found-panel st-panel">
-                        <h2>404</h2>
-
-                        @if(count($notFoundRequests) > 0)
-                            <div class="log-controls">
-                                @include('admin.components.form-url', ['route' => route('admin.dashboard.open404Log'),   'text' => 'Open log'])
-                                @include('admin.components.form-url', ['route' => route('admin.dashboard.delete404Log'), 'text' => 'Delete log'])
-                            </div>
-
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($notFoundRequests as $notFound)
-                                        <li>
-                                            <span><strong>{{ $notFound['path'] }}</strong> {{ $notFound['count'] > 1 ? "({$notFound['count']}x)" : "" }}</span>
-                                            <span>
-                                                <form method="post" action="{{ route('admin.dashboard.append404Blacklist') }}" enctype="multipart/form-data">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="path" value="{{ $notFound['path'] }}">
-                                                    <button type="submit" class="plain">Blacklist</button>
-                                                </form>
-                                            </span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                        @else
-                            <div class="alert alert-success">
-                                All good
-                            </div>
-                        @endif
-
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="logs st-panel">
-                        <h2>Queues</h2>
-
-                        @if($failedJobCount > 0)
-                            <div class="alert alert-danger">
-                                <a href="{{ route('admin.failedJobs') }}">{{ $failedJobCount }} failed jobs</a>
-
-                                <a href="{{ route('admin.failedJobs.truncate') }}">X</a>
-                            </div>
-                        @endif
-
-                    </div>
-                </div>
-
-            </div>
-
-
-
-            <div class="row">
-                <div class="col-4">
-                    <div class="st-panel">
-
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="st-panel">
-
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="st-panel">
-
-                        <h2>Server</h2>
-
-                        @foreach($phpVars as $name => $value)
-                            {{ $value }} => {{ $name }} <br/>
-                        @endforeach
-
-                        <hr>
-
-                        <a href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
-
-                        <hr>
-
-                        @foreach($dependencies as $name => $isLoaded)
-                            @if($isLoaded)
-                                {{ $name }} <br/>
-                            @else
-                                <div class="alert alert-danger">
-                                    {{ $name }}
-                                </div>
-                            @endif
-                        @endforeach
-
-                    </div>
-                </div>
-
-            </div>
-
-
+            @endforeach
         </div>
+
+
+        <div>
+            <strong class="block mb-2 mt-8">Disk Usage</strong>
+
+            <div class="pl-4 border-l-8 {{ $diskUsageWarning ? 'border-red' : 'border-green' }}">
+                {{ $diskUsage }}
+            </div>
+        </div>
+
+
+        <div>
+            <strong class="block mb-2 mt-8">Supervisor</strong>
+
+            @foreach($supervisor as $superInfo)
+                <div class="flex items-center pl-4 border-l-8 {{ $superInfo->isRunning ? 'border-green' : 'border-red' }}">
+                    <div class="w-48">{{ $superInfo->worker }}</div>
+                    <small class="block ml-auto">{{ $superInfo->uptime }} uptime</small>
+                </div>
+            @endforeach
+        </div>
+
+        @if($failedJobCount > 0)
+            <div>
+                <strong class="block mb-2 mt-8">Queues</strong>
+
+                <div class="flex justify-between pl-4 border-l-8 border-red">
+                    <a class="text-black" href="{{ route('admin.failedJobs') }}">{{ $failedJobCount }} failed jobs</a>
+
+                    <a class="text-black" href="{{ route('admin.failedJobs.truncate') }}">x</a>
+                </div>
+            </div>
+        @endif
+
+
+        <div>
+            <strong class="block mb-2 mt-8">Download Stored Files</strong>
+
+            <form class="flex" target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}">
+                {{ csrf_field() }}
+
+                <input type="text" name="id" class="field p-1" placeholder="stored file ids..." autocomplete="off" required />
+
+                <button type="submit" class="btn block p-1 ml-auto">Download</button>
+            </form>
+        </div>
+
+
+        <div>
+            <strong class="block mb-2 mt-8">Server</strong>
+
+            <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
+
+            @foreach($phpVars as $name => $value)
+                <div class="pl-4 border-l-8 border-grey-lighter">{{ $value }} {{ $name }}</div>
+            @endforeach
+
+            <div class="mb-2"></div>
+
+            @foreach($dependencies as $name => $isLoaded)
+                <div class="pl-4 border-l-8 {{ $isLoaded ? 'border-green' : 'border-red' }}">
+                    {{ $name }}
+                </div>
+            @endforeach
+        </div>
+
     </div>
 
 @endsection

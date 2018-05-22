@@ -14,15 +14,14 @@
 
     <link rel="icon" type="image/png" href="/images/favicon.png" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ mix('css/admin.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/main.css') }}" />
 
 </head>
-<body>
+<body class="bg-grey-lighter">
 
     @include('admin.layout.header')
 
-    <div id="app" class="admin">
+    <div id="app">
         @yield('content')
     </div>
 

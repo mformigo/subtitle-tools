@@ -36,7 +36,6 @@ class DashboardController extends Controller
         return view('admin.dashboard', [
             'logs'       => $logsWithErrors,
             'supervisor' => $supervisorInfo,
-            'goodSupervisor' => count($this->supervisorWorkers) === count($supervisorInfo),
             'diskUsage' => strtolower($diskUsage),
             'diskUsageWarning' => $diskUsageWarning,
             'notFoundRequests' => $notFoundRequests,
