@@ -78,6 +78,19 @@ function storage_disk_file_path($path, $disk = null)
     return rtrim($storagePath, '/').'/'.ltrim($path, '/');
 }
 
+function format_file_size($bytes)
+{
+    $units = ['b', 'kb', 'mb', 'gb', 'tb'];
+
+    $bytes = max($bytes, 0);
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+    $pow = min($pow, count($units) - 1);
+
+    $bytes /= pow(1024, $pow);
+
+    return round($bytes, 0).' '.$units[$pow];
+}
+
 function interval(int $interval, $closure)
 {
     $interval = ($interval === 0) ? 1 : $interval;

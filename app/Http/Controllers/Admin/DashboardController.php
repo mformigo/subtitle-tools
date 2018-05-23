@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Diagnostic\FileJobStats;
 use Illuminate\Support\Facades\DB;
 use SjorsO\TextFile\Facades\TextFileReader;
 
@@ -24,6 +25,7 @@ class DashboardController extends Controller
             'diskUsageWarning' => $diskUsageWarning,
             'dependencies'     => $this->getDependenciesInfo(),
             'failedJobCount'   => DB::table('failed_jobs')->count(),
+            'fileJobStats'     => $this->getFileJobStats(),
             'phpVars' => [
                 'max_post_size'       => ini_get('post_max_size'),
                 'upload_max_filesize' => ini_get('upload_max_filesize'),
@@ -104,5 +106,28 @@ class DashboardController extends Controller
         $dependencies['Tesseract traineddata'] = file_exists('/usr/share/tesseract-ocr/tessdata/nld.traineddata');
 
         return $dependencies;
+    }
+
+    protected function getFileJobStats()
+    {
+        $yesterday = now()->subDays(1)->format('Y-m-d');
+        $lastMonth = now()->subDays(29)->format('Y-m-d');
+
+        $yesterdayStats = FileJobStats::where('date', $yesterday)->orderByDesc('times_used')->get()->toArray();
+        $lastMonthStats = FileJobStats::where('date', $lastMonth)->orderByDesc('times_used')->get();
+
+        for($i = 0; $i < count($yesterdayStats); $i++) {
+            $lastMonthStat = $lastMonthStats->where('tool_route', $yesterdayStats[$i]['tool_route'])->first();
+
+            $yesterdayStats[$i] += [
+                'times_used_diff'    => $yesterdayStats[$i]['times_used']    - $lastMonthStat->times_used,
+                'total_files_diff'   => $yesterdayStats[$i]['total_files']   - $lastMonthStat->total_files,
+                'amount_failed_diff' => $yesterdayStats[$i]['amount_failed'] - $lastMonthStat->amount_failed,
+                'total_size_diff'    => $yesterdayStats[$i]['total_size']    - $lastMonthStat->total_size,
+            ];
+        }
+        return array_map(function ($array) {
+            return (object) $array;
+        }, $yesterdayStats);
     }
 }
