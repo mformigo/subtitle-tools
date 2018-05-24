@@ -87,32 +87,35 @@
 
         <div class="ml-32">
 
-            <div class="flex font-bold pb-1">
-                <div class="w-48"></div>
-                <div class="w-32">Times Used</div>
-                <div class="w-32">Total Files</div>
-                <div class="w-32">Total Size</div>
+            <div class="flex flex-col">
+                <strong>Times used</strong>
+                <span class="flex items-center justify-between font-mono">
+                    <span class="w-16">{{ number_format($fileJobStats->timesUsedTotal) }}</span>
+                    <small class="{{ $fileJobStats->timesUsedDiff > 0 ? 'text-green-dark' : 'text-red' }}">
+                        {{ $fileJobStats->timesUsedDiff > 0 ? '+' : '' }}{{ number_format($fileJobStats->timesUsedDiff) }}
+                    </small>
+                </span>
             </div>
 
-            @foreach($fileJobStats as $stats)
-                <div class="flex py-1 border-t hover:bg-grey-light">
-                    <div class="w-48">{{ $stats->tool_route }}</div>
-                    <div class="w-32 flex justify-between items-center">
-                        {{ $stats->times_used }}
-                        <small class="mr-10 {{ $stats->times_used_diff > 0 ? 'text-green-dark' : 'text-red' }}">
-                            {{ $stats->times_used_diff > 0 ? '+' : '' }}{{ $stats->times_used_diff }}
-                        </small>
-                    </div>
-                    <div class="w-32 flex justify-between items-center">
-                        {{ $stats->total_files }}
-                        <small class="mr-10 {{ $stats->total_files_diff > 0 ? 'text-green-dark' : 'text-red' }}">
-                            {{ $stats->total_files_diff > 0 ? '+' : '' }}{{ $stats->total_files_diff }}
-                        </small>
-                    </div>
-                    <div class="w-32">{{ format_file_size($stats->total_size) }}</div>
-                </div>
-            @endforeach
+            <div class="flex flex-col mt-4">
+                <strong>File count</strong>
+                <span class="flex items-center justify-between font-mono">
+                    <span class="w-16">{{ number_format($fileJobStats->fileCountTotal) }}</span>
+                    <small class="{{ $fileJobStats->fileCountDiff > 0 ? 'text-green-dark' : 'text-red' }}">
+                        {{ $fileJobStats->fileCountDiff > 0 ? '+' : '' }}{{ number_format($fileJobStats->fileCountDiff) }}
+                    </small>
+                </span>
+            </div>
 
+            <div class="flex flex-col mt-4">
+                <strong>File count</strong>
+                <span class="flex items-center justify-between font-mono">
+                    <span class="w-16">{{ format_file_size($fileJobStats->fileSizeTotal) }}</span>
+                    <small class="{{ $fileJobStats->fileSizeDiff > 0 ? 'text-green-dark' : 'text-red' }}">
+                        {{ $fileJobStats->fileSizeDiff > 0 ? '+' : '-' }}{{ format_file_size($fileJobStats->fileSizeDiff) }}
+                    </small>
+                </span>
+            </div>
 
         </div>
 

@@ -80,6 +80,8 @@ function storage_disk_file_path($path, $disk = null)
 
 function format_file_size($bytes)
 {
+    $bytes = abs($bytes);
+
     $units = ['b', 'kb', 'mb', 'gb', 'tb'];
 
     $bytes = max($bytes, 0);

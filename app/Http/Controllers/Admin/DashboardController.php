@@ -110,24 +110,28 @@ class DashboardController extends Controller
 
     protected function getFileJobStats()
     {
-        $yesterday = now()->subDays(1)->format('Y-m-d');
-        $lastMonth = now()->subDays(29)->format('Y-m-d');
+        $lastMonth = FileJobStats::query()
+            ->where('date', '>=', now()->subDays(31))
+            ->where('tool_route', '*')
+            ->get();
 
-        $yesterdayStats = FileJobStats::where('date', $yesterday)->orderByDesc('times_used')->get()->toArray();
-        $lastMonthStats = FileJobStats::where('date', $lastMonth)->orderByDesc('times_used')->get();
+        $timesUsedTotal = $lastMonth->pluck('times_used')->sum();
+        $fileCountTotal = $lastMonth->pluck('total_files')->sum();
+        $fileSizeTotal  = $lastMonth->pluck('total_size')->sum();
 
-        for($i = 0; $i < count($yesterdayStats); $i++) {
-            $lastMonthStat = $lastMonthStats->where('tool_route', $yesterdayStats[$i]['tool_route'])->first();
+        $twoMonthsAgo = FileJobStats::query()
+            ->where('date', '>=', now()->subDays(62))
+            ->where('date', '<=', now()->subDays(32))
+            ->where('tool_route', '*')
+            ->get();
 
-            $yesterdayStats[$i] += [
-                'times_used_diff'    => $yesterdayStats[$i]['times_used']    - $lastMonthStat->times_used,
-                'total_files_diff'   => $yesterdayStats[$i]['total_files']   - $lastMonthStat->total_files,
-                'amount_failed_diff' => $yesterdayStats[$i]['amount_failed'] - $lastMonthStat->amount_failed,
-                'total_size_diff'    => $yesterdayStats[$i]['total_size']    - $lastMonthStat->total_size,
-            ];
-        }
-        return array_map(function ($array) {
-            return (object) $array;
-        }, $yesterdayStats);
+        return (object) [
+            'timesUsedTotal' => $timesUsedTotal,
+            'fileCountTotal' => $fileCountTotal,
+            'fileSizeTotal'  => $fileSizeTotal,
+            'timesUsedDiff'  => $timesUsedTotal - $twoMonthsAgo->pluck('times_used')->sum(),
+            'fileCountDiff'  => $fileCountTotal - $twoMonthsAgo->pluck('total_files')->sum(),
+            'fileSizeDiff'   => $fileSizeTotal  - $twoMonthsAgo->pluck('total_size')->sum(),
+        ];
     }
 }
