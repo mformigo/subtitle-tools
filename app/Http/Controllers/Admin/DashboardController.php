@@ -25,7 +25,6 @@ class DashboardController extends Controller
             'diskUsageWarning' => $diskUsageWarning,
             'dependencies'     => $this->getDependenciesInfo(),
             'failedJobCount'   => DB::table('failed_jobs')->count(),
-            'fileJobStats'     => $this->getFileJobStats(),
             'phpVars' => [
                 'max_post_size'       => ini_get('post_max_size'),
                 'upload_max_filesize' => ini_get('upload_max_filesize'),
@@ -72,7 +71,7 @@ class DashboardController extends Controller
         ] : explode("\n", shell_exec('supervisorctl status'));
 
         return collect($lines)->filter(function ($line) {
-            return !empty($line);
+            return ! empty($line);
         })->map(function ($line) {
            return preg_split('/ {3,}|, /', $line);
         })->map(function ($parts) {
@@ -84,6 +83,8 @@ class DashboardController extends Controller
                 'pid'       => str_after($parts[2] ?? '?', 'pid '),
                 'uptime'    => str_after($parts[3] ?? '?:??:??', 'uptime '),
             ];
+        })->filter(function ($object) {
+            return starts_with($object->worker, 'st-');
         })->all();
     }
 
@@ -106,32 +107,5 @@ class DashboardController extends Controller
         $dependencies['Tesseract traineddata'] = file_exists('/usr/share/tesseract-ocr/tessdata/nld.traineddata');
 
         return $dependencies;
-    }
-
-    protected function getFileJobStats()
-    {
-        $lastMonth = FileJobStats::query()
-            ->where('date', '>=', now()->subDays(31))
-            ->where('tool_route', '*')
-            ->get();
-
-        $timesUsedTotal = $lastMonth->pluck('times_used')->sum();
-        $fileCountTotal = $lastMonth->pluck('total_files')->sum();
-        $fileSizeTotal  = $lastMonth->pluck('total_size')->sum();
-
-        $twoMonthsAgo = FileJobStats::query()
-            ->where('date', '>=', now()->subDays(62))
-            ->where('date', '<=', now()->subDays(32))
-            ->where('tool_route', '*')
-            ->get();
-
-        return (object) [
-            'timesUsedTotal' => $timesUsedTotal,
-            'fileCountTotal' => $fileCountTotal,
-            'fileSizeTotal'  => $fileSizeTotal,
-            'timesUsedDiff'  => $timesUsedTotal - $twoMonthsAgo->pluck('times_used')->sum(),
-            'fileCountDiff'  => $fileCountTotal - $twoMonthsAgo->pluck('total_files')->sum(),
-            'fileSizeDiff'   => $fileSizeTotal  - $twoMonthsAgo->pluck('total_size')->sum(),
-        ];
     }
 }
