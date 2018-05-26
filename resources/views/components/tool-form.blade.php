@@ -2,13 +2,9 @@
     $singleFile = ($singleFile ?? false);
 @endphp
 
-<div class="md:hidden block mt-6">
-    @include('helpers.ads.tool-form-large-mobile-banner')
-</div>
-
 <h2>{{ $title }}</h2>
 
-<div class="flex mt-6">
+<div class="flex md:flex-row flex-col mt-6">
 
     <form id="drop-container" method="post" enctype="multipart/form-data" class="relative">
         {{ csrf_field() }}
@@ -62,7 +58,7 @@
 
     </form>
 
-    <div class="mx-auto md:block hidden">
+    <div class="mx-auto block mt-8 md:mt-0">
         @include('helpers.ads.tool-form-large-rectangle')
     </div>
 
