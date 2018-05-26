@@ -30,7 +30,7 @@
         <link rel="stylesheet" type="text/css" href="{{ mix('css/main.css') }}" />
 
         @if(App::environment('production'))
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({
                     google_ad_client: "ca-pub-8027891891391991",
