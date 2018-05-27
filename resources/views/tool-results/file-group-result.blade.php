@@ -23,20 +23,11 @@
     @endif
 
 
-    <div class="block lg:hidden my-8">
-        @include('helpers.ads.result-page-large-mobile-banner')
-    </div>
-
-
-    <div class="flex my-8">
+    <div class="flex my-8 flex-col md:flex-row">
         <file-group-jobs url-key="{{ $urlKey }}"></file-group-jobs>
 
-        <div class="mx-auto lg:block hidden">
-            @if($fileCount > 15)
-                @include('helpers.ads.result-page-large-skyscraper')
-            @else
-                @include('helpers.ads.result-page-large-rectangle')
-            @endif
+        <div class="mx-auto mt-8 md:mt-0">
+            @include('helpers.ads.result-page-large-rectangle')
         </div>
     </div>
 

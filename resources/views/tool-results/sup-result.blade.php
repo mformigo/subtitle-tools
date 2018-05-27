@@ -27,21 +27,15 @@
     </p>
 
 
-    <div class="block lg:hidden my-8">
-        @include('helpers.ads.result-page-large-mobile-banner')
-    </div>
-
-
-    <div class="flex my-8">
+    <div class="flex my-8 flex-col md:flex-row">
         <sup-job url-key="{{ $urlKey }}"></sup-job>
 
-        <div class="mx-auto lg:block hidden">
+        <div class="mx-auto md:mt-0 mt-8">
             @include('helpers.ads.result-page-large-rectangle')
         </div>
     </div>
 
 
     <a class="tool-btn inline-block" href="{{ route('sup') }}">Back to tool</a>
-
 
 @endsection

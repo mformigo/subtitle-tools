@@ -58,7 +58,7 @@
 
     </form>
 
-    <div class="mx-auto block mt-8 md:mt-0">
+    <div class="mx-auto mt-8 md:mt-0">
         @include('helpers.ads.tool-form-large-rectangle')
     </div>
 

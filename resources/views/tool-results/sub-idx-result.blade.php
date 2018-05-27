@@ -20,20 +20,12 @@
         Extracting srt files from <strong>{{ $originalName }}</strong>
     </p>
 
-    <div class="block lg:hidden my-8">
-        @include('helpers.ads.result-page-large-mobile-banner')
-    </div>
 
-
-    <div class="flex my-8">
+    <div class="flex my-8 flex-col-reverse md:flex-row">
         <sub-idx-languages page-id="{{ $pageId }}"></sub-idx-languages>
 
-        <div class="mx-auto lg:block hidden">
-            @if($languageCount > 10)
-                @include('helpers.ads.result-page-large-skyscraper')
-            @else
-                @include('helpers.ads.result-page-large-rectangle')
-            @endif
+        <div class="lg:mx-auto md:ml-auto md:mb-0 mb-6">
+            @include('helpers.ads.result-page-large-rectangle')
         </div>
     </div>
 

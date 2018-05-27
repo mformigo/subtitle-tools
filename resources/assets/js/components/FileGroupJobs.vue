@@ -59,7 +59,7 @@
 
         methods: {
             shorten: function(string) {
-                let maxLength = 36;
+                let maxLength = 30;
 
                 if (string.length < maxLength ) {
                     return string;
