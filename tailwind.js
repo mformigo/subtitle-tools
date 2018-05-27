@@ -62,4 +62,17 @@ module.exports = {
         '64': '16rem',
     }),
 
+    maxHeight: Object.assign(defaultConfig.negativeMargin, {
+        '10': '2.5rem',
+        '12': '3rem',
+        '14': '3.5rem',
+        '16': '4rem',
+        '24': '6rem',
+        '32': '8rem',
+        '48': '12rem',
+        '64': '16rem',
+
+        '500': '500px', // Used for the "vlc fix boxes" blog
+    }),
+
 };

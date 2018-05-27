@@ -14,7 +14,7 @@
         Subtitles not working is a common problem with Chinese, Japanese, Korean and Arabic srt subtitles.
     </p>
 
-    <img class="my-4" src="/images/blog/170901-broken-subtitles.png" alt="Unreadable subtitles in VLC" />
+    <img class="max-h-32 my-4" src="/images/blog/170901-broken-subtitles.png" alt="Unreadable subtitles in VLC" />
 
     <p>
         There are three possible reasons why subtitles don't work in VLC:
@@ -30,14 +30,24 @@
         If the subtitles are not encoded in unicode UTF-8, VLC does not know how to display them.
         The easiest way to find out if your subtitles are encoded properly is by opening them in Notepad.
     </p>
-    <img class="mt-4" src="/images/blog/170901-vlc-subtitle-boxes-wrong-encoding.png" alt="Chinese subtitles opened in Notepad with wrong text encoding" />
-    <img class="mb-4" src="/images/blog/170901-vlc-subtitle-boxes-right-encoding.png" alt="Chinese subtitles opened in Notepad with utf-8 text encoding" />
-    <p>
-        The first picture shows a file using Chinese text encoding, and can't be read by Notepad or VLC.
-        The second picture is the same file converted to UTF-8, displaying correctly.
-        You need to convert the subtitles to UTF-8 for them to be readable in VLC.
-        <a class="font-bold" href="{{ route('convertToUtf8') }}">You can easily convert a text file to unicode with the convert to UTF-8 tool.</a>
-    </p>
+    <div class="flex justify-around lg:flex-row flex-col items-center my-4">
+        <img class="max-h-48 lg:mb-0 mb-4" src="/images/blog/170901-vlc-subtitle-boxes-wrong-encoding.png" alt="Chinese subtitles opened in Notepad with wrong text encoding" />
+        <img class="max-h-48" src="/images/blog/170901-vlc-subtitle-boxes-right-encoding.png" alt="Chinese subtitles opened in Notepad with utf-8 text encoding" />
+    </div>
+
+    <div class="mt-8 flex md:flex-row flex-col">
+
+        <p class="md:w-1/2">
+            The first picture shows a file using Chinese text encoding, and can't be read by Notepad or VLC.
+            The second picture is the same file converted to UTF-8, displaying correctly.
+            You need to convert the subtitles to UTF-8 for them to be readable in VLC.
+            <a class="font-bold" href="{{ route('convertToUtf8') }}">You can easily convert a text file to unicode with the convert to UTF-8 tool.</a>
+        </p>
+
+        <div class="mx-auto md:mt-0 mt-8">
+            @include('helpers.ads.vlc-fix-boxes-large-rectangle')
+        </div>
+    </div>
 
     <h2>Using a unicode font in VLC</h2>
     <p>
@@ -45,20 +55,20 @@
         <br/><br/>
         <strong>Step 1:</strong> open the VLC settings by pressing <kbd>Ctrl</kbd>+<kbd>P</kbd> or by going to Tools > Preferences
     </p>
-    <img class="my-4" src="/images/blog/170901-change-font-in-vlc-step-1.png" alt="Changing font in VLC step 1: open VLC settings" />
+    <img class="mt-8 mb-16" src="/images/blog/170901-change-font-in-vlc-step-1.png" alt="Changing font in VLC step 1: open VLC settings" />
 
 
     <p>
         <strong>Step 2:</strong> in the bottom left corner of the preferences screen underneath <i>show settings</i>, select the <b>all</b> radiobutton
     </p>
-    <img class="my-4" src="/images/blog/170901-change-font-in-vlc-step-2.png" alt="Changing font in VLC step 2: show all settings" />
+    <img class="mt-8 mb-16 max-h-500" src="/images/blog/170901-change-font-in-vlc-step-2.png" alt="Changing font in VLC step 2: show all settings" />
 
 
     <p>
         <strong>Step 3:</strong> expand the Subtitles / OSD item, and select <b>text renderer</b>.
         Now make sure the font is set to <b>Arial Unicode MS</b>, other unicode fonts should also work. If Arial Unicode MS is not in the list, you can <a class="font-bold" href="https://www.wfonts.com/font/arial-unicode-ms" target="_blank" rel="nofollow">download and install it from here</a>
     </p>
-    <img class="my-4" src="/images/blog/170901-change-font-in-vlc-step-4.png" alt="Changing font in VLC step 4: use the Arial Unicode MS font" />
+    <img class="mt-8 mb-16 max-h-500" src="/images/blog/170901-change-font-in-vlc-step-4.png" alt="Changing font in VLC step 4: use the Arial Unicode MS font" />
     <p>
         You might need to restart VLC after changing these font settings.
         VLC is now using a unicode font that can display all Chinese, Korean and Japanese characters correctly.
