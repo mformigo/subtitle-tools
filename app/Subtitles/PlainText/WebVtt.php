@@ -65,7 +65,9 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
 
         // If we are loading a WebVtt file, save all lines between the header and the first cue.
         if ($this->loadingFromWebVttFile && count($timingIndexes) > 0) {
-            $this->styleLines = array_slice($lines, 1, $timingIndexes[0] - 1);
+            // Minus 2 to skip both the optional cue index, and
+            // the required white line above tbe timing string.
+            $this->styleLines = array_slice($lines, 1, $timingIndexes[0] - 2);
         }
 
         $timingIndexes[] = count($lines);

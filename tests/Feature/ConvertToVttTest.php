@@ -22,4 +22,28 @@ class ConvertToVttTest extends TestCase
 
         $this->assertMatchesStoredFileSnapshot(2);
     }
+
+    /** @test */
+    function it_can_convert_a_vtt_with_indexes_to_vtt()
+    {
+        [$response, $fileGroup] = $this->postFileJob('convertToVtt', [
+            $this->createUploadedFile('TextFiles/Normal/normal02.vtt'),
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
+    }
+
+    /** @test */
+    function it_can_convert_a_vtt_without_indexes_to_vtt()
+    {
+        [$response, $fileGroup] = $this->postFileJob('convertToVtt', [
+            $this->createUploadedFile('TextFiles/Normal/normal03.vtt'),
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
+    }
 }

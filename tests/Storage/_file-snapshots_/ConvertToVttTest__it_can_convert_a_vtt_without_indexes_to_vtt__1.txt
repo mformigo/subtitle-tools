@@ -1,0 +1,11 @@
+﻿WEBVTT - https://subtitletools.com
+
+00:00:05.160 --> 00:00:10.100
+Single line, crazy stuff
+
+00:00:15.600 --> 00:00:19.270
+Two lines.
+That is way too many
+
+00:00:19.840 --> 00:00:23.020
+Last line

@@ -6,7 +6,6 @@ use App\Subtitles\PlainText\WebVtt;
 use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\TransformsToGenericSubtitle;
-use SjorsO\TextFile\Facades\TextFileIdentifier;
 
 class ConvertToVttJob extends FileJob
 {
@@ -14,7 +13,7 @@ class ConvertToVttJob extends FileJob
     {
         $this->startFileJob();
 
-        if (! TextFileIdentifier::isTextFile($this->inputStoredFile->filePath)) {
+        if (! is_text_file($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 
@@ -24,7 +23,7 @@ class ConvertToVttJob extends FileJob
             return $this->abortFileJob('messages.cant_convert_file_to_vtt');
         }
 
-        $vtt = ($inputSubtitle instanceof WebVtt)
+        $vtt = $inputSubtitle instanceof WebVtt
             ? $inputSubtitle
             : new WebVtt($inputSubtitle);
 
