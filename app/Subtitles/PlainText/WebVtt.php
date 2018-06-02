@@ -5,8 +5,6 @@ namespace App\Subtitles\PlainText;
 use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\LoadsGenericSubtitles;
 use App\Subtitles\WithGenericCues;
-use LogicException;
-use SjorsO\TextFile\Facades\TextFileReader;
 use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
@@ -37,9 +35,7 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
 
     public function loadFileFromFormat($file, $sourceFormat)
     {
-        if ($sourceFormat === WebVtt::class) {
-            $this->loadingFromWebVttFile = true;
-        }
+        $this->loadingFromWebVttFile = $sourceFormat === WebVtt::class;
 
         return $this->loadFile($file);
     }
@@ -56,20 +52,16 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
             ? $file->getRealPath()
             : $file;
 
-        $lines = TextFileReader::getLines($this->filePath);
+        $lines = read_lines($this->filePath);
 
         // ensure parsing works properly on files missing the required trailing empty line
         $lines[] = '';
 
         $this->cues = [];
 
-        $timingIndexes = [];
-
-        for ($i = 0; $i < count($lines); $i++) {
-            if (WebVttCue::isTimingString($lines[$i])) {
-                $timingIndexes[] = $i;
-            }
-        }
+        $timingIndexes = collect($lines)->filter(function ($line) {
+            return WebVttCue::isTimingString($line);
+        })->keys();
 
         // If we are loading a WebVtt file, save all lines between the header and the first cue.
         if ($this->loadingFromWebVttFile && count($timingIndexes) > 0) {
@@ -113,7 +105,7 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        $lines = TextFileReader::getLines($filePath);
+        $lines = read_lines($filePath);
 
         if (count($lines) === 0) {
             return false;
@@ -151,10 +143,7 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
         return $this;
     }
 
-    /**
-     * @return GenericSubtitle
-     */
-    public function toGenericSubtitle()
+    public function toGenericSubtitle(): GenericSubtitle
     {
         $generic = new GenericSubtitle();
 
