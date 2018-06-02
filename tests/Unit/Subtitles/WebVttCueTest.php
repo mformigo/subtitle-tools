@@ -7,12 +7,12 @@ use Tests\TestCase;
 
 class WebVttCueTest extends TestCase
 {
-    private function assert_Valid_TimingString($timingString)
+    private function assertValidTimingString($timingString)
     {
         $this->assertTrue(WebVttCue::isTimingString($timingString), "'{$timingString}' is not a valid timing string");
     }
 
-    private function assert_Invalid_TimingString($timingString)
+    private function assertInvalidTimingString($timingString)
     {
         $this->assertFalse(WebVttCue::isTimingString($timingString), "'{$timingString}' is detected as a valid timing string, it should not be");
     }
@@ -24,38 +24,43 @@ class WebVttCueTest extends TestCase
         //   mm:ss.ttt
         //   hh:mm:ss.ttt  (hh must be at least two digits, but can be greater than two (e.g. 9999:00:00.000)
 
-        $this->assert_Valid_TimingString('00:01.000 --> 00:04.000');
-        $this->assert_Valid_TimingString('00:30.739 --> 00:00:34.074');
+        $this->assertValidTimingString('00:01.000 --> 00:04.000');
+        $this->assertValidTimingString('00:30.739 --> 00:00:34.074');
 
-        $this->assert_Valid_TimingString('00:01:14.815 --> 00:01:18.114');
-        $this->assert_Valid_TimingString('00:01:14.815 --> 00:01:18.114 ');
-        $this->assert_Valid_TimingString(' 00:01:14.815 --> 00:01:18.114');
+        $this->assertValidTimingString('00:01:14.815 --> 00:01:18.114');
+        $this->assertValidTimingString('00:01:14.815 --> 00:01:18.114 ');
+        $this->assertValidTimingString(' 00:01:14.815 --> 00:01:18.114');
 
-        $this->assert_Valid_TimingString('9999:00:00.000 --> 10000:00:00.000');
+        $this->assertValidTimingString('9999:00:00.000 --> 10000:00:00.000');
 
 
-        $this->assert_Valid_TimingString('00:00:05.000 --> 00:00:10.000 line:0 position:20% size:60% align:start');
-        $this->assert_Valid_TimingString('00:00:05.000 --> 00:00:10.000 line:63% position:72% align:start');
-        $this->assert_Valid_TimingString('00:00:05.000 --> 00:00:10.000 line:0 position:20% size:60% align:start');
-        $this->assert_Valid_TimingString('00:00:05.000 --> 00:00:10.000 vertical:rt line:-1 align:end');
+        $this->assertValidTimingString('00:00:05.000 --> 00:00:10.000 line:0 position:20% size:60% align:start');
+        $this->assertValidTimingString('00:00:05.000 --> 00:00:10.000 line:63% position:72% align:start');
+        $this->assertValidTimingString('00:00:05.000 --> 00:00:10.000 line:0 position:20% size:60% align:start');
+        $this->assertValidTimingString('00:00:05.000 --> 00:00:10.000 vertical:rt line:-1 align:end');
 
         // Specs say there should be 'at least one' space before and after the arrow
-        $this->assert_Valid_TimingString('00:01:14.815    --> 00:01:18.114');
-        $this->assert_Valid_TimingString('00:01:14.815 -->     00:01:18.114');
+        $this->assertValidTimingString('00:01:14.815    --> 00:01:18.114');
+        $this->assertValidTimingString('00:01:14.815 -->     00:01:18.114');
+
+        // Someone told me he puts WebVtt files into Google Translate, and that
+        // messes up the timing strings in the following way:
+        $this->assertValidTimingString('00: 00: 00.760 -> 00: 00: 04.190');
     }
 
     /** @test */
     function it_accepts_timing_with_possible_mistakes()
     {
         // commas instead of dots
-        $this->assert_Valid_TimingString('00:01,000 --> 00:04,000');
+        $this->assertValidTimingString('00:01,000 --> 00:04,000');
     }
 
     /** @test */
     function it_corrects_valid_timing_strings_with_common_mistakes()
     {
         // dot instead of comma
-        $cue = (new WebVttCue())->setTimingFromString('00:00:00,000 --> 00:00:00,000');
+        $cue = (new WebVttCue)->setTimingFromString('00:00:00,000 --> 00:00:00,000');
+
         $this->assertSame('00:00:00.000 --> 00:00:00.000', $cue->getTimingString());
     }
 
@@ -63,24 +68,24 @@ class WebVttCueTest extends TestCase
     function it_rejects_invalid_timing_strings()
     {
         // hh must be at least two digits
-        $this->assert_Invalid_TimingString('00:30.739 --> 0:00:34.074');
+        $this->assertInvalidTimingString('00:30.739 --> 0:00:34.074');
 
         // ends before it starts
-        $this->assert_Invalid_TimingString('00:00:00,001 --> 00:00:00,000');
+        $this->assertInvalidTimingString('00:00:00,001 --> 00:00:00,000');
 
         // no space between timing and style
-        $this->assert_Invalid_TimingString('00:00:5.000 --> 00:00:10.000line:63% position:72% align:start');
+        $this->assertInvalidTimingString('00:00:5.000 --> 00:00:10.000line:63% position:72% align:start');
 
         // style cant contain an arrow
-        $this->assert_Invalid_TimingString('00:00:5.000 --> 00:00:10.000line:63% position:72%-->align:start');
+        $this->assertInvalidTimingString('00:00:5.000 --> 00:00:10.000line:63% position:72%-->align:start');
 
         // seconds should be two digits
-        $this->assert_Invalid_TimingString('00:00:5.000 --> 00:00:10.000');
+        $this->assertInvalidTimingString('00:00:5.000 --> 00:00:10.000');
 
-        $this->assert_Invalid_TimingString('This man is out of ideas.');
-        $this->assert_Invalid_TimingString('');
-        $this->assert_Invalid_TimingString(null);
-        $this->assert_Invalid_TimingString(false);
+        $this->assertInvalidTimingString('This man is out of ideas.');
+        $this->assertInvalidTimingString('');
+        $this->assertInvalidTimingString(null);
+        $this->assertInvalidTimingString(false);
     }
 
     /** @test */
@@ -103,14 +108,14 @@ class WebVttCueTest extends TestCase
         ];
 
         foreach($valuesShouldNotChange as $val) {
-            $this->assertSame($val, (new WebVttCue())->setTimingFromString($val)->getTimingString());
+            $this->assertSame($val, (new WebVttCue)->setTimingFromString($val)->getTimingString());
         }
     }
 
     /** @test */
     function it_does_not_preserve_timing_strings_without_hours()
     {
-        $cue = (new WebVttCue())->setTimingFromString('00:01.000 --> 00:04.000');
+        $cue = (new WebVttCue)->setTimingFromString('00:01.000 --> 00:04.000');
 
         $this->assertSame('00:00:01.000 --> 00:00:04.000', $cue->getTimingString());
     }
