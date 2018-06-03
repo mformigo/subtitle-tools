@@ -294,7 +294,7 @@ class SrtTest extends TestCase
 
         $cues = $srt->getCues();
 
-        $this->assertSame(5, count($cues));
+        $this->assertCount(5, $cues);
 
         $this->assertSame([
             '00:00:06,012 --> 00:00:08,321',
@@ -307,11 +307,11 @@ class SrtTest extends TestCase
     /** @test */
     function it_parses_files_with_common_mistakes()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/srt-spaces-after-colon-and-single-dash-arrow.srt");
+        $srt = new Srt($this->testFilesStoragePath.'TextFiles/SubtitleParsing/srt-broken-by-google-translate.srt');
 
         $cues = $srt->getCues();
 
-        $this->assertSame(4, count($cues));
+        $this->assertCount(4, $cues);
 
         $this->assertSame([
             '00:02:50,399 --> 00:02:53,334',

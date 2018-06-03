@@ -151,7 +151,7 @@ trait WithGenericCues
     /**
      * @param bool $sortCues
      *
-     * @return GenericSubtitleCue[]
+     * @return array|GenericSubtitleCue[]
      */
     public function getCues($sortCues = true)
     {
