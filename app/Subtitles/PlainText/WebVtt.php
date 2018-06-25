@@ -22,17 +22,6 @@ class WebVtt extends TextFile implements ShiftsCues, PartialShiftsCues, Transfor
 
     protected $styleLines = [];
 
-    public function __construct($source = null)
-    {
-        if ($source === null) {
-            return;
-        } elseif ($source instanceof TransformsToGenericSubtitle) {
-            $this->loadGenericSubtitle($source->toGenericSubtitle());
-        } else {
-            $this->loadFile($source);
-        }
-    }
-
     public function loadFileFromFormat($file, $sourceFormat)
     {
         $this->loadingFromWebVttFile = $sourceFormat === WebVtt::class;

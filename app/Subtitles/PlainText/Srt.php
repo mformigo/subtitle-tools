@@ -24,17 +24,6 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
      */
     protected $cues = [];
 
-    public function __construct($source = null)
-    {
-        if ($source === null) {
-            return;
-        } elseif ($source instanceof TransformsToGenericSubtitle) {
-            $this->loadGenericSubtitle($source->toGenericSubtitle());
-        } else {
-            $this->loadFile($source);
-        }
-    }
-
     /**
      * @param $cue
      *

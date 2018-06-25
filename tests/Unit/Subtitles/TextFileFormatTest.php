@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\MicroDVD;
 use App\Subtitles\PlainText\Mpl2;
+use App\Subtitles\PlainText\Otranscribe\Otranscribe;
 use App\Subtitles\PlainText\PlainText;
 use App\Subtitles\PlainText\Smi;
 use App\Subtitles\PlainText\Srt;
@@ -97,6 +98,12 @@ class TextFileFormatTest extends TestCase
         $this->assertTextFileFormat(Mpl2::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/mpl2-01.mpl");
         $this->assertTextFileFormat(Mpl2::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/mpl2-02.mpl");
         $this->assertTextFileFormat(Mpl2::class, "{$this->testFilesStoragePath}TextFiles/FormatDetection/mpl2-03.mpl");
+    }
+
+    /** @test */
+    function it_matches_otranscribe_files()
+    {
+        $this->assertTextFileFormat(Otranscribe::class, $this->testFilesStoragePath.'TextFiles/otranscribe/otranscribe-1.txt');
     }
 
     /** @test */

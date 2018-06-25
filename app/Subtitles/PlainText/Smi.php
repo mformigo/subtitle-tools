@@ -17,6 +17,11 @@ class Smi extends TextFile implements TransformsToGenericSubtitle, ShiftsCues
 
     protected $cues = [];
 
+    public function __construct()
+    {
+
+    }
+
     /**
      * @return GenericSubtitle
      */

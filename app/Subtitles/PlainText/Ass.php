@@ -29,6 +29,11 @@ class Ass extends TextFile implements TransformsToGenericSubtitle, ShiftsCues, P
      */
     protected $headerLines = [];
 
+    public function __construct()
+    {
+
+    }
+
     /**
      * @param $file string|UploadedFile
      *

@@ -18,6 +18,15 @@ trait WithGenericCues
         return $this;
     }
 
+    public function addCues($cues)
+    {
+        foreach ($cues as $cue) {
+            $this->addCue($cue);
+        }
+
+        return $this;
+    }
+
     public function hasCues()
     {
         return count($this->cues) > 0;

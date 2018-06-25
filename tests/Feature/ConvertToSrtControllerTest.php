@@ -200,4 +200,10 @@ class ConvertToSrtControllerTest extends TestCase
     {
         $this->convertAndSnapshot('TextFiles/Normal/normal01.ssa');
     }
+
+    /** @test */
+    function it_can_convert_otranscribe_files_to_srt()
+    {
+        $this->convertAndSnapshot('TextFiles/otranscribe/otranscribe-1.txt');
+    }
 }

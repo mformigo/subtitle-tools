@@ -13,6 +13,17 @@ abstract class TextFile
 
     protected $filePath = false;
 
+    public function __construct($source = null)
+    {
+        if ($source === null) {
+            return;
+        } elseif ($this instanceof LoadsGenericSubtitles && $source instanceof TransformsToGenericSubtitle) {
+            $this->loadGenericSubtitle($source->toGenericSubtitle());
+        } else {
+            $this->loadFile($source);
+        }
+    }
+
     /**
      * Returns true if the $filePath file is a valid format for this class.
      *

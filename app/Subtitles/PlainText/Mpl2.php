@@ -12,14 +12,7 @@ class Mpl2 extends TextFile implements TransformsToGenericSubtitle
 {
     use WithFileLines;
 
-    protected $extension = "mpl";
-
-    public function __construct($source = null)
-    {
-        if ($source !== null) {
-            $this->loadFile($source);
-        }
-    }
+    protected $extension = 'mpl';
 
     /**
      * Returns true if the $filePath file is a valid format for this class

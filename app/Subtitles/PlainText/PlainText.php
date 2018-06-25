@@ -12,6 +12,11 @@ class PlainText extends TextFile
 
     protected $extension = "txt";
 
+    public function __construct()
+    {
+
+    }
+
     public function setContent($string)
     {
         $this->content = $string;

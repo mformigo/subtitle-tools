@@ -16,13 +16,6 @@ class MicroDVD extends TextFile implements TransformsToGenericSubtitle
 
     protected $frameRate = 23.976;
 
-    public function __construct($source = null)
-    {
-        if ($source !== null) {
-            $this->loadFile($source);
-        }
-    }
-
     public function loadFile($file)
     {
         parent::loadFile($file);

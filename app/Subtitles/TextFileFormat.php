@@ -15,6 +15,7 @@ class TextFileFormat
         \App\Subtitles\PlainText\Smi::class,
         \App\Subtitles\PlainText\MicroDVD::class,
         \App\Subtitles\PlainText\Mpl2::class,
+        \App\Subtitles\PlainText\Otranscribe\Otranscribe::class,
         \App\Subtitles\PlainText\PlainText::class,
     ];
 
