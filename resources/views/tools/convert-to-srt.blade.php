@@ -107,6 +107,14 @@
         The program SubEdit is used to make these mpl subtitles.
     </p>
 
+    <h3>oTranscribe to srt</h3>
+    <p>
+        Transcripts made with <a href="http://otranscribe.com" rel="nofollow" target="_blank">oTranscribe</a> are supported.
+        If you export your transcript as <i>plain text (.txt)</i>, you can use this tool to convert it to a subtitle file.
+        Make sure you don't export your transcript as a markdown file, the bold and italic effects will not be converted correctly.
+        If you would like markdown transcripts to be supported, <a href="{{ route('contact') }}">send me a message.</a>
+    </p>
+
     <h3>Converting a batch of subtitles</h3>
     <p>
         You can convert up to a hundred files at the same time by uploading multiple files.

@@ -49,8 +49,8 @@ return [
 
     'keywords.cleanSrt'        => 'subtitle, subtitles, srt, clean, bracket, html, braces, square, angle, effects, colors, font, b, i, formatting, strip, stripping', 'SDH', 'hearing-impaired', 'speaker labels',
     'keywords.contact'         => 'contact, email, support, feedback',
-    'keywords.convertToSrt'    => 'convert to srt, subtitles to srt, ass to srt, ssa to srt, microdvd, smi to srt, ass2srt, ssa2srt, smi2srt, online, free, converter, conversion, subtitles, windows, mac, linux, freeware, vtt, webvtt',
-    'keywords.convertToVtt'    => 'convert to vtt, subtitles to vtt, ass to vtt, ssa to vtt, microdvd, smi to vtt, ass2vtt, ssa2vtt, smi2vtt, online, free, converter, conversion, subtitles, windows, mac, linux, freeware, vtt, webvtt',
+    'keywords.convertToSrt'    => 'convert to srt, subtitles to srt, ass to srt, ssa to srt, microdvd, smi to srt, ass2srt, ssa2srt, smi2srt, online, free, converter, conversion, subtitles, windows, mac, linux, freeware, vtt, webvtt, otranscribe',
+    'keywords.convertToVtt'    => 'convert to vtt, subtitles to vtt, ass to vtt, ssa to vtt, microdvd, smi to vtt, ass2vtt, ssa2vtt, smi2vtt, online, free, converter, conversion, subtitles, windows, mac, linux, freeware, vtt, webvtt, otranscribe',
     'keywords.convertToPlainText' => 'convert, plain text, transcript, timestamps, srt, ass, ssa, smi, microdvd, sub, learn, subtitle, subtitles, extract, webvtt',
     'keywords.convertToUtf8'   => 'subtitle, subtitles, unicode, srt, ass, txt, utf-8, encoding, file, files, text, textfile, convert, ascii, plain, ansi, online',
     'keywords.fileGroupResult' => 'download, processed, files, subtitles, subtitle',
