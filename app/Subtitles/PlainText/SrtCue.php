@@ -74,7 +74,13 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     private function timecodeToMs($timecode)
     {
-        list($HH, $MM, $SS, $MIL) = preg_split("/(:|,)/", $timecode);
+        [$HH, $MM, $SS, $MIL] = preg_split("/(:|,)/", $timecode);
+
+        // Fix for timings with only two digits for the milliseconds.
+        // example: 00:00:01,26 should be 260ms, not 26ms.
+        if (strlen($MIL) === 2) {
+            $MIL = $MIL * 10;
+        }
 
         return ($HH * 60 * 60 * 1000) +
                ($MM      * 60 * 1000) +
@@ -124,7 +130,7 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
             trim($string)
         );
 
-        if (!preg_match("/^\d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3} -?-> \d{2}: ?[0-5]\d: ?[0-5]\d(,|\.)\d{3}( ? x1: ?\d+ x2: ?\d+ y1: ?\d+ y2: ?\d+|)$/", $string)) {
+        if (! preg_match("/^\d\d?: ?[0-5]\d: ?[0-5]\d(,|\.)\d\d\d? -?-> \d\d?: ?[0-5]\d: ?[0-5]\d(,|\.)\d\d\d?( ? x1: ?\d+ x2: ?\d+ y1: ?\d+ y2: ?\d+|)$/", $string)) {
             return false;
         }
 

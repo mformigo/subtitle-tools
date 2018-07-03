@@ -43,19 +43,21 @@ class SrtCueTest extends TestCase
         $this->assert_Valid_TimingString('00:00:00,000 --> 00:00:00.000');
         $this->assert_Valid_TimingString('00:00:05.123 --> 00:12:01,100');
 
-        // Spaces after the colons
+        // Spaces after the colons. Google Translate causes this
         $this->assert_Valid_TimingString('00: 00: 05,123 --> 00: 12: 01,100');
         $this->assert_Valid_TimingString('00:00:05,123 --> 00:12: 01,100');
 
-        // single dash in the arrow
+        // single dash in the arrow. Google translate causes this
         $this->assert_Valid_TimingString('00:00:00,400 -> 00:03:29,533');
+
+        // one digit for hours, two for milliseconds
+        $this->assert_Valid_TimingString('0:00:01,26 --> 0:00:03,36');
     }
 
     /** @test */
     function it_rejects_invalid_timing_strings()
     {
         $this->assertFalse(SrtCue::isTimingString("00:13:25,707 --> 00:13:27,5"));
-        $this->assertFalse(SrtCue::isTimingString("0:00:01,266 --> 0:00:03,366"));
         $this->assertFalse(SrtCue::isTimingString("100:00:01,266 --> 125:00:03,366"));
 
         // The most popular subtitle shifter on google can (incorrectly) turn timecodes negative
@@ -98,6 +100,14 @@ class SrtCueTest extends TestCase
         foreach($valuesShouldNotChange as $val) {
             $this->assertSame($val, (new SrtCue())->setTimingFromString($val)->getTimingString());
         }
+    }
+
+    /** @test */
+    function it_correctly_handles_timing_strings_with_two_digits_for_the_milliseconds()
+    {
+        $cue = (new SrtCue)->setTimingFromString('00:00:01,26 --> 00:00:03,36');
+
+        $this->assertSame('00:00:01,260 --> 00:00:03,360', $cue->getTimingString());
     }
 
     /** @test */
