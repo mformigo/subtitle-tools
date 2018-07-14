@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Jobs\Diagnostic;
 
 use App\Jobs\Diagnostic\CollectStoredFileMetaJob;
 use App\Models\StoredFile;

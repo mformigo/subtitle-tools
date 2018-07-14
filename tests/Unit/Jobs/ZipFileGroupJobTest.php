@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Jobs;
 
 use App\Jobs\FileJobs\ConvertToSrtJob;
 use App\Jobs\ZipFileGroupJob;

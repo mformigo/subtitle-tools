@@ -7,6 +7,7 @@ use App\Models\StoredFile;
 use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Snapshots\MatchesSnapshots;
@@ -66,7 +67,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function getSnapshotDirectory(): string
     {
-        return $this->testFilesStoragePath.'__snapshots__';
+        return $this->testFilesStoragePath.'_snapshots_';
     }
 
     protected function getFileSnapshotDirectory(): string
@@ -119,6 +120,9 @@ abstract class TestCase extends BaseTestCase
         $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
+
+        // Sqlite has foreign key constraints disabled by default
+        DB::connection()->getSchemaBuilder()->enableForeignKeyConstraints();
 
         Hash::driver('bcrypt')->setRounds(4);
 

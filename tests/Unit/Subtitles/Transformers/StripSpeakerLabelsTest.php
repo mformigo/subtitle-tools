@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Subtitles\Transformers;
 
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;

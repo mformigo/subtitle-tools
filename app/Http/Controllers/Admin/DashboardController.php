@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Diagnostic\FileJobStats;
 use Illuminate\Support\Facades\DB;
 use SjorsO\TextFile\Facades\TextFileReader;
 

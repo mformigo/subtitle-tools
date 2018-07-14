@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Rules;
 
 use App\Http\Rules\TextFileRule;
 use Tests\CreatesUploadedFiles;

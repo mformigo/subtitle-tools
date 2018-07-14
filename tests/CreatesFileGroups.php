@@ -9,6 +9,7 @@ trait CreatesFileGroups
     /**
      * @param string $toolRoute
      * @param null $urlKey
+     *
      * @return FileGroup
      */
     private function createFileGroup($toolRoute = "default-route", $urlKey = null)

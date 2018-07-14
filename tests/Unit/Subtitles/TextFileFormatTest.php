@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Subtitles;
 
 use App\Subtitles\PlainText\Ass;
 use App\Subtitles\PlainText\MicroDVD;
