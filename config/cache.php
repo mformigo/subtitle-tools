@@ -86,6 +86,6 @@ return [
     |
     */
 
-    'prefix' => 'st_',
+    'prefix' => 'subtitle_tools_',
 
 ];

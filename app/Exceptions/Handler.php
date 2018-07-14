@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use SjorsO\TextFile\Exceptions\TextEncodingException;
@@ -11,13 +10,12 @@ use SjorsO\TextFile\Exceptions\TextEncodingException;
 class Handler extends ExceptionHandler
 {
     protected $dontReport = [
-        \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Session\TokenMismatchException::class,
-        \Illuminate\Validation\ValidationException::class,
         PostTooLargeException::class,
+    ];
+
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
     ];
 
     public function report(Exception $exception)
@@ -40,17 +38,5 @@ class Handler extends ExceptionHandler
         }
 
         return parent::render($request, $exception);
-    }
-
-    /**
-     * Convert an authentication exception into an unauthenticated response.
-     */
-    protected function unauthenticated($request, AuthenticationException $exception)
-    {
-        if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
-
-        return redirect()->guest(route('login'));
     }
 }

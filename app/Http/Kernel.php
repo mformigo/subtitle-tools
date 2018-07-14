@@ -2,13 +2,14 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckForMaintenanceMode;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
     // These middleware are run during every request to your application.
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -43,6 +44,7 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can'           => \Illuminate\Auth\Middleware\Authorize::class,
         'throttle'      => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'signed'        => \Illuminate\Routing\Middleware\ValidateSignature::class,
 
         'guest'            => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'swap-sub-and-idx' => \App\Http\Middleware\SwapSubAndIdx::class,

@@ -8,7 +8,6 @@ use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Snapshots\MatchesSnapshots;
 use Illuminate\Contracts\Console\Kernel;
 
@@ -83,8 +82,6 @@ abstract class TestCase extends BaseTestCase
 
         // Sqlite has foreign key constraints disabled by default
         DB::connection()->getSchemaBuilder()->enableForeignKeyConstraints();
-
-        Hash::driver('bcrypt')->setRounds(4);
 
         return $app;
     }

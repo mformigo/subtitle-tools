@@ -1,5 +1,8 @@
 # Subtitle Tools
 
+## Laravel version
+[compare to laravel master](https://github.com/laravel/laravel/compare/fa81e36841ee25c3440fc430ed8d6b66c641062b...master)
+
 ## Required mods
 The status of the mods can be checked in the admin dashboard
 
