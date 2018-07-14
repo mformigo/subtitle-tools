@@ -13,20 +13,20 @@ class SubMimeRuleTest extends TestCase
     /** @test */
     function it_passes_if_file_has_valid_sub_mime()
     {
-        $uploadedFile = $this->createUploadedFile("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.sub");
+        $uploadedFile = $this->createUploadedFile('sub-idx/error-and-nl.sub');
 
-        $subMimeRule = new SubMimeRule();
-
-        $this->assertTrue($subMimeRule->passes('', $uploadedFile));
+        $this->assertTrue(
+            (new SubMimeRule)->passes('', $uploadedFile)
+        );
     }
 
     /** @test */
     function it_fails_if_file_does_not_have_a_valid_sub_mime()
     {
-        $uploadedFile = $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $uploadedFile = $this->createUploadedFile('text/srt/three-cues.srt');
 
-        $subMimeRule = new SubMimeRule();
-
-        $this->assertFalse($subMimeRule->passes('', $uploadedFile));
+        $this->assertFalse(
+            (new SubMimeRule)->passes('', $uploadedFile)
+        );
     }
 }

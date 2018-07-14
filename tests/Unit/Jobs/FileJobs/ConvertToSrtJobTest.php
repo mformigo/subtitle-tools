@@ -21,7 +21,7 @@ class ConvertToSrtJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -35,7 +35,7 @@ class ConvertToSrtJobTest extends TestCase
         $this->assertTrue($subtitle instanceof Srt);
 
         // an extra cue is added as a watermark
-        $this->assertSame(4, count($subtitle->getCues()));
+        $this->assertCount(4, $subtitle->getCues());
     }
 
     /** @test */
@@ -44,15 +44,15 @@ class ConvertToSrtJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
         $textFileJob = FileJob::findOrFail(1);
 
         $this->assertSame('three-cues.ass', $textFileJob->original_name);
         $this->assertSame('srt', $textFileJob->new_extension);
-        $this->assertSame(null, $textFileJob->error_message);
-        $this->assertNotSame(null, $textFileJob->finished_at);
+        $this->assertNull($textFileJob->error_message);
+        $this->assertNotNull($textFileJob->finished_at);
     }
 
     /** @test */
@@ -61,11 +61,11 @@ class ConvertToSrtJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
         $firstJob = FileJob::findOrFail(1);
@@ -81,16 +81,16 @@ class ConvertToSrtJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/empty.srt")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/srt/empty.srt')
         );
 
-        $this->assertTrue(StoredFile::count() === 1);
+        $this->assertSame(1, StoredFile::count());
 
         $textFileJob = FileJob::findOrFail(1);
 
-        $this->assertNotSame(null, $textFileJob->error_message);
-        $this->assertNotSame(null, $textFileJob->finished_at);
-        $this->assertSame(null, $textFileJob->output_stored_file_id);
+        $this->assertNotNull($textFileJob->error_message);
+        $this->assertNotNull($textFileJob->finished_at);
+        $this->assertNull($textFileJob->output_stored_file_id);
     }
 
     /** @test */
@@ -99,16 +99,16 @@ class ConvertToSrtJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/cues-no-dialogue.ass")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/ass/cues-no-dialogue.ass')
         );
 
-        $this->assertTrue(StoredFile::count() === 1);
+        $this->assertSame(1, StoredFile::count());
 
         $textFileJob = FileJob::findOrFail(1);
 
-        $this->assertNotSame(null, $textFileJob->error_message);
-        $this->assertNotSame(null, $textFileJob->finished_at);
-        $this->assertSame(null, $textFileJob->output_stored_file_id);
+        $this->assertNotNull($textFileJob->error_message);
+        $this->assertNotNull($textFileJob->finished_at);
+        $this->assertNull($textFileJob->output_stored_file_id);
     }
 
     /** @test */
@@ -117,7 +117,7 @@ class ConvertToSrtJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.srt")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/srt/three-cues.srt')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -131,6 +131,6 @@ class ConvertToSrtJobTest extends TestCase
         $this->assertTrue($subtitle instanceof Srt);
 
         // an extra cue is added as a watermark
-        $this->assertSame(4, count($subtitle->getCues()));
+        $this->assertCount(4, $subtitle->getCues());
     }
 }

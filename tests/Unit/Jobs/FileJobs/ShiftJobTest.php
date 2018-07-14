@@ -26,7 +26,7 @@ class ShiftJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new ShiftJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.srt")
+            new ShiftJob($fileGroup, $this->testFilesStoragePath.'text/srt/three-cues.srt')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -64,7 +64,7 @@ class ShiftJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new ShiftJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.txt")
+            new ShiftJob($fileGroup, $this->testFilesStoragePath.'text/normal01.txt')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -86,7 +86,7 @@ class ShiftJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new ShiftJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/Fake/dat.ass")
+            new ShiftJob($fileGroup, $this->testFilesStoragePath.'text/fake/dat.ass')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();

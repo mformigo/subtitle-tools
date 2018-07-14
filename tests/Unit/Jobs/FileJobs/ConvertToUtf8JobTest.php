@@ -4,6 +4,7 @@ namespace Tests\Unit\Jobs\FileJobs;
 
 use App\Jobs\FileJobs\ConvertToUtf8Job;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use SjorsO\TextFile\Facades\TextEncoding;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
@@ -17,7 +18,7 @@ class ConvertToUtf8JobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToUtf8Job($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new ConvertToUtf8Job($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -28,7 +29,7 @@ class ConvertToUtf8JobTest extends TestCase
 
         $newFilePath = $fileJob->outputStoredFile->filePath;
 
-        $encoding = app(\SjorsO\TextFile\Contracts\TextEncodingInterface::class)->detectFromFile($newFilePath);
+        $encoding = TextEncoding::detectFromFile($newFilePath);
 
         $this->assertSame('UTF-8', $encoding);
     }
@@ -39,7 +40,7 @@ class ConvertToUtf8JobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToUtf8Job($fileGroup, "{$this->testFilesStoragePath}TextFiles/Fake/dat.ass")
+            new ConvertToUtf8Job($fileGroup, $this->testFilesStoragePath.'text/fake/dat.ass')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();

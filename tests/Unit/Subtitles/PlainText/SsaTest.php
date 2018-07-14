@@ -15,7 +15,7 @@ class SsaTest extends TestCase
     {
         $ssa = new Ssa();
 
-        $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
+        $ssa->loadFile("{$this->testFilesStoragePath}text/ssa/three-cues.ssa");
 
         $genericSub = $ssa->toGenericSubtitle();
 
@@ -23,7 +23,7 @@ class SsaTest extends TestCase
 
         $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof Ssa);
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.ssa", $genericSub->getFilePath());
+        $this->assertSame("{$this->testFilesStoragePath}text/ssa/three-cues.ssa", $genericSub->getFilePath());
 
         $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
 
@@ -49,7 +49,7 @@ class SsaTest extends TestCase
 
         $this->assertTrue($ssa instanceof ShiftsCues);
 
-        $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
+        $ssa->loadFile("{$this->testFilesStoragePath}text/ssa/three-cues.ssa");
 
         $originalLines = $ssa->getContentLines();
 
@@ -106,7 +106,7 @@ class SsaTest extends TestCase
 
         $this->assertTrue($ssa instanceof PartialShiftsCues);
 
-        $ssa->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.ssa");
+        $ssa->loadFile("{$this->testFilesStoragePath}text/ssa/three-cues.ssa");
 
         $cues = $ssa->toGenericSubtitle()->getCues();
 
@@ -150,7 +150,7 @@ class SsaTest extends TestCase
     /** @test */
     function it_can_load_an_empty_file()
     {
-        $ssa = (new Ssa)->loadFile($this->testFilesStoragePath.'TextFiles/empty.srt');
+        $ssa = (new Ssa)->loadFile($this->testFilesStoragePath.'text/srt/empty.srt');
 
         $this->assertSame(
             [''],
@@ -161,7 +161,7 @@ class SsaTest extends TestCase
     /** @test */
     function it_can_load_a_file_without_a_header()
     {
-        $ssa = (new Ssa)->loadFile($this->testFilesStoragePath.'TextFiles/SubtitleParsing/no-header.ssa');
+        $ssa = (new Ssa)->loadFile($this->testFilesStoragePath.'text/ssa/no-header.ssa');
 
         $this->assertSame(
             [

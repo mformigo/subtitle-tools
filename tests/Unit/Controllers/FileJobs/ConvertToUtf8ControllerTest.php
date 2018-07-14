@@ -54,7 +54,7 @@ class ConvertToUtf8ControllerTest extends TestCase
     {
         $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/Fake/exe.srt"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/fake/dat.ass"),
             ],
         ]);
 
@@ -67,7 +67,7 @@ class ConvertToUtf8ControllerTest extends TestCase
     {
         $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
             ],
         ]);
 
@@ -100,8 +100,8 @@ class ConvertToUtf8ControllerTest extends TestCase
     {
         $response = $this->post(route('convertToUtf8'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
             ],
         ]);
 

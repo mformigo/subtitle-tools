@@ -12,7 +12,7 @@ trait CreatesFileGroups
      *
      * @return FileGroup
      */
-    private function createFileGroup($toolRoute = "default-route", $urlKey = null)
+    private function createFileGroup($toolRoute = 'default-route', $urlKey = null)
     {
         $fileGroup = new FileGroup();
 

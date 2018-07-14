@@ -3,7 +3,6 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\StoredFile;
-use SjorsO\TextFile\Facades\TextFileReader;
 use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,7 +15,7 @@ class SupControllerTest extends TestCase
     function it_rejects_files_that_are_not_sup()
     {
         $this->post(route('sup'), [
-            'subtitle'    => $this->createUploadedFile($this->testFilesStoragePath.'/TextFiles/three-cues.ass'),
+            'subtitle'    => $this->createUploadedFile('text/ass/three-cues.ass'),
             'ocrLanguage' => 'eng',
         ])
         ->assertStatus(302)
@@ -27,14 +26,14 @@ class SupControllerTest extends TestCase
     function it_converts_sup_to_srt()
     {
         $this->post(route('sup'), [
-            'subtitle'    => $this->createUploadedFile($this->testFilesStoragePath.'/Sup/three-english-cues.sup'),
+            'subtitle'    => $this->createUploadedFile('sup/three-english-cues.sup'),
             'ocrLanguage' => 'eng',
         ])
         ->assertStatus(302);
 
-        $outputFile = StoredFile::findOrFail(2)->file_path;
+        $outputFile = StoredFile::findOrFail(2);
 
-        $lines = TextFileReader::getLines($outputFile);
+        $lines = read_lines($outputFile);
 
         $this->assertMatchesSnapshot($lines);
     }

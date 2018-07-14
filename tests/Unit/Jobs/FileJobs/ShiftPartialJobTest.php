@@ -29,7 +29,7 @@ class ShiftPartialJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new ShiftPartialJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.srt")
+            new ShiftPartialJob($fileGroup, $this->testFilesStoragePath.'text/srt/three-cues.srt')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -72,7 +72,7 @@ class ShiftPartialJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new ShiftPartialJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/Normal/normal01.smi")
+            new ShiftPartialJob($fileGroup, $this->testFilesStoragePath.'text/smi/normal01.smi')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -96,7 +96,7 @@ class ShiftPartialJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new ShiftPartialJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/Fake/dat.ass")
+            new ShiftPartialJob($fileGroup, $this->testFilesStoragePath.'text/fake/dat.ass')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();

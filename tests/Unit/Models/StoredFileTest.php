@@ -15,47 +15,45 @@ class StoredFileTest extends TestCase
     /** @test */
     function it_stores_files_on_disk_and_in_the_database()
     {
-        $originalFilePath = "{$this->testFilesStoragePath}TextFiles/three-cues.ass";
+        $originalFilePath = $this->testFilesStoragePath.'text/ass/three-cues.ass';
 
         $storedFile = StoredFile::getOrCreate($originalFilePath);
 
-        $this->assertTrue(StoredFile::count() === 1);
+        $this->assertSame(1, StoredFile::count());
 
-        $this->assertTrue(file_exists($storedFile->filePath));
+        $this->assertFileExists($storedFile->filePath);
 
-        $this->assertTrue($originalFilePath !== $storedFile->filePath);
+        $this->assertNotSame($originalFilePath, $storedFile->filePath);
 
-        $this->assertFalse(empty($storedFile->hash));
+        $this->assertNotEmpty($storedFile->hash);
     }
 
     /** @test */
     function it_copies_the_input_file()
     {
-        $originalFilePath = "{$this->testFilesStoragePath}TextFiles/three-cues.ass";
+        $originalFilePath = $this->testFilesStoragePath.'text/ass/three-cues.ass';
 
         $storedFile = StoredFile::getOrCreate($originalFilePath);
 
-        $this->assertTrue(file_exists($originalFilePath));
+        $this->assertFileExists($originalFilePath);
     }
 
     /** @test */
     function it_reuses_identical_files()
     {
-        $originalFilePath = "{$this->testFilesStoragePath}TextFiles/three-cues.ass";
+        $originalFilePath = $this->testFilesStoragePath.'text/ass/three-cues.ass';
 
         $first = StoredFile::getOrCreate($originalFilePath);
 
         $second = StoredFile::getOrCreate($originalFilePath);
 
-        $this->assertTrue(StoredFile::count() === 1);
+        $this->assertSame(1, StoredFile::count());
     }
 
     /** @test */
     function it_stores_text_files_with_utf8_bom()
     {
-        $originalFilePath = "{$this->testFilesStoragePath}TextEncodings/big5.txt";
-
-        $srt = TextFileFormat::getMatchingFormat($originalFilePath);
+        $srt = TextFileFormat::getMatchingFormat($this->testFilesStoragePath.'text/srt/three-cues.srt');
 
         $this->assertTrue($srt instanceof Srt);
 

@@ -11,11 +11,6 @@ class SupJobTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @param $inputFilePath
-     * @param string $ocrLanguage
-     * @return SupJob
-     */
     private function makeSupJob($inputFilePath, $ocrLanguage = 'eng')
     {
         $inputFilePath = $this->testFilesStoragePath . ltrim($inputFilePath, '/');
@@ -38,7 +33,7 @@ class SupJobTest extends TestCase
     /** @test */
     function it_converts_a_sup_to_srt()
     {
-        $supJob = $this->makeSupJob('Sup/three-english-cues.sup', 'eng');
+        $supJob = $this->makeSupJob('sup/three-english-cues.sup', 'eng');
 
         $supJob->dispatchJob();
 
@@ -52,7 +47,7 @@ class SupJobTest extends TestCase
     /** @test */
     function it_can_retry_a_job()
     {
-        $supJob = $this->makeSupJob('Sup/three-english-cues.sup', 'eng');
+        $supJob = $this->makeSupJob('sup/three-english-cues.sup', 'eng');
 
         $supJob->dispatchJob();
 

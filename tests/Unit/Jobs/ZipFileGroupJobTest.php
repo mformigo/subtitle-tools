@@ -19,7 +19,7 @@ class ZipFileGroupJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new ConvertToSrtJob($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
         $fileGroup = FileGroup::findOrFail(1);

@@ -12,12 +12,12 @@ class CleanSrtControllerTest extends TestCase
 {
     use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
 
-    protected $fileSnapshotDirectory = 'srt-cleaner';
+    protected $snapshotDirectory = 'srt-cleaner';
 
     private function postSrtCleanJob($options, $filePath = null)
     {
         [$response, $fileGroup] = $this->postFileJob('cleanSrt', [
-            $this->createUploadedFile($filePath ?? 'TextFiles/srt-cleaner-tool/cleanable-01.srt'),
+            $this->createUploadedFile($filePath ?? 'text/srt/cleanable-01.srt'),
         ], $options);
 
         $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
@@ -31,7 +31,7 @@ class CleanSrtControllerTest extends TestCase
     function it_can_handle_files_that_are_not_text_files()
     {
         [$response, $fileGroup] = $this->postFileJob('cleanSrt', [
-            $this->createUploadedFile('TextFiles/Fake/exe.srt'),
+            $this->createUploadedFile('text/fake/dat.ass'),
         ], [
             // no options
         ]);
@@ -109,6 +109,6 @@ class CleanSrtControllerTest extends TestCase
 
         $options->stripSpeakerLabels = true;
 
-        $this->postSrtCleanJob($options, 'TextFiles/srt-cleaner-tool/cleanable-02.srt');
+        $this->postSrtCleanJob($options, 'text/srt/cleanable-02.srt');
     }
 }

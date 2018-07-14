@@ -12,15 +12,6 @@ class CollectStoredFileMetaJobTest extends TestCase
 {
     use RefreshDatabase;
 
-    private function runCollectMetaJob($fileName = "TextFiles/three-cues.srt")
-    {
-        $storedFile = StoredFile::getOrCreate("{$this->testFilesStoragePath}{$fileName}");
-
-        dispatch_now(new CollectStoredFileMetaJob($storedFile));
-
-        return StoredFileMeta::findOrFail(1);
-    }
-
     /** @test */
     function it_collects_the_file_size()
     {
@@ -48,7 +39,7 @@ class CollectStoredFileMetaJobTest extends TestCase
     /** @test */
     function it_collects_if_the_file_is_not_a_text_file()
     {
-        $meta = $this->runCollectMetaJob("TextFiles/Fake/dat.ass");
+        $meta = $this->runCollectMetaJob('text/fake/dat.ass');
 
         $this->assertSame(false, $meta->is_text_file);
     }
@@ -74,7 +65,7 @@ class CollectStoredFileMetaJobTest extends TestCase
     {
         $meta = $this->runCollectMetaJob();
 
-        $this->assertSame("LF", $meta->line_endings);
+        $this->assertSame('LF', $meta->line_endings);
     }
 
     /** @test */
@@ -83,5 +74,16 @@ class CollectStoredFileMetaJobTest extends TestCase
         $meta = $this->runCollectMetaJob();
 
         $this->assertSame(15, $meta->line_count);
+    }
+
+    private function runCollectMetaJob($fileName = 'text/srt/three-cues.srt')
+    {
+        $storedFile = StoredFile::getOrCreate($this->testFilesStoragePath.$fileName);
+
+        dispatch_now(
+            new CollectStoredFileMetaJob($storedFile)
+        );
+
+        return StoredFileMeta::findOrFail(1);
     }
 }

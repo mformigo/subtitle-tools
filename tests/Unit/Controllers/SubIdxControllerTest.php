@@ -30,8 +30,8 @@ class SubIdxControllerTest extends TestCase
     function it_rejects_empty_files()
     {
         $response = $this->post(route('subIdx'), [
-            'sub' => $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt", "empty.sub"),
-            'idx' => $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt", "empty.idx"),
+            'sub' => $this->createUploadedFile("{$this->testFilesStoragePath}text/srt/empty.srt", "empty.sub"),
+            'idx' => $this->createUploadedFile("{$this->testFilesStoragePath}text/srt/empty.srt", "empty.idx"),
         ]);
 
         $response->assertStatus(302)

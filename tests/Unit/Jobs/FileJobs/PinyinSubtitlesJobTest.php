@@ -25,7 +25,7 @@ class PinyinSubtitlesJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new PinyinSubtitlesJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues-chinese.srt")
+            new PinyinSubtitlesJob($fileGroup, $this->testFilesStoragePath.'text/srt/three-cues-chinese.srt')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -40,7 +40,7 @@ class PinyinSubtitlesJobTest extends TestCase
 
         // it still removes the duplicate cue
         // an extra cue is added as a watermark
-        $this->assertSame(4, count($subtitle->getCues()));
+        $this->assertCount(4, $subtitle->getCues());
 
         // mode 1 should replaced all chinese with pinyin
         $this->assertNotContains('我', $subtitle->getContent());

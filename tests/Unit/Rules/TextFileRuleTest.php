@@ -13,20 +13,20 @@ class TextFileRuleTest extends TestCase
     /** @test */
     function it_passes_if_file_is_a_text_file()
     {
-        $uploadedFile = $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $uploadedFile = $this->createUploadedFile('text/srt/three-cues.srt');
 
-        $textFileRule = new TextFileRule();
-
-        $this->assertTrue($textFileRule->passes('', $uploadedFile));
+        $this->assertTrue(
+            (new TextFileRule)->passes('', $uploadedFile)
+        );
     }
 
     /** @test */
     function it_fails_if_file_is_not_a_text_file()
     {
-        $uploadedFile = $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/Fake/dat.ass");
+        $uploadedFile = $this->createUploadedFile('text/fake/dat.ass');
 
-        $textFileRule = new TextFileRule();
-
-        $this->assertFalse($textFileRule->passes('', $uploadedFile));
+        $this->assertFalse(
+            (new TextFileRule)->passes('', $uploadedFile)
+        );
     }
 }

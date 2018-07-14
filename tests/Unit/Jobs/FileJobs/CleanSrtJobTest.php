@@ -21,16 +21,16 @@ class CleanSrtJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new CleanSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new CleanSrtJob($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
-        $this->assertTrue(StoredFile::count() === 1);
+        $this->assertSame(1, StoredFile::count());
 
         $textFileJob = FileJob::findOrFail(1);
 
         $this->assertSame('messages.file_is_not_srt', $textFileJob->error_message);
-        $this->assertNotSame(null, $textFileJob->finished_at);
-        $this->assertSame(null, $textFileJob->output_stored_file_id);
+        $this->assertNotNull($textFileJob->finished_at);
+        $this->assertNull($textFileJob->output_stored_file_id);
     }
 
     /** @test */
@@ -46,7 +46,7 @@ class CleanSrtJobTest extends TestCase
         $fileGroup->save();
 
         dispatch(
-            new CleanSrtJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues-cleanable.srt")
+            new CleanSrtJob($fileGroup, $this->testFilesStoragePath.'text/srt/three-cues-cleanable.srt')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
@@ -61,7 +61,7 @@ class CleanSrtJobTest extends TestCase
 
         // it still removes the duplicate cue
         // an extra cue is added as a watermark
-        $this->assertSame(4, count($subtitle->getCues()));
+        $this->assertCount(4, $subtitle->getCues());
 
         $this->assertContains('<i>', $subtitle->getContent());
         $this->assertContains('</i>', $subtitle->getContent());
@@ -82,7 +82,7 @@ class CleanSrtJobTest extends TestCase
             ],
         ]);
 
-        CleanSrtJob::dispatch($fileGroup, "{$this->testFilesStoragePath}TextFiles/srt-cleaner-tool/cleanable-hearing-impaired.srt");
+        CleanSrtJob::dispatch($fileGroup, $this->testFilesStoragePath.'text/srt/cleanable-03-hearing-impaired.srt');
 
         $this->assertMatchesFileSnapshot(
             StoredFile::findOrFail(2)

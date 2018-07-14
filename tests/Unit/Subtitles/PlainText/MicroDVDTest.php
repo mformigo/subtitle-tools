@@ -11,29 +11,30 @@ class MicroDVDTest extends TestCase
     /** @test */
     function it_loads_from_file()
     {
-        $microDVD = new MicroDVD("{$this->testFilesStoragePath}TextFiles/three-cues.sub");
+        $microDVD = new MicroDVD($this->testFilesStoragePath.'text/microdvd/three-cues.sub');
 
         $this->assertSame('three-cues', $microDVD->getFileNameWithoutExtension());
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.sub", $microDVD->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/microdvd/three-cues.sub', $microDVD->getFilePath());
     }
 
     /** @test */
     function it_has_a_good_default_frame_rate()
     {
-        $microDVD = New MicroDVD();
-
-        $this->assertSame(23.976, $microDVD->getFps());
+        $this->assertSame(
+            23.976,
+            (new MicroDVD)->getFps()
+        );
     }
 
     /** @test */
     function it_reads_frame_rate_hints()
     {
-        $microDVD = new MicroDVD("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/microdvd-fps-hint.sub");
+        $microDVD = new MicroDVD($this->testFilesStoragePath.'text/microdvd/microdvd-fps-hint.sub');
 
         $this->assertSame(25.0, $microDVD->getFps());
 
-        $microDVD = new MicroDVD("{$this->testFilesStoragePath}TextFiles/FormatDetection/microdvd02.sub");
+        $microDVD = new MicroDVD($this->testFilesStoragePath.'text/microdvd/microdvd02.sub');
 
         $this->assertSame(23.976, $microDVD->getFps());
     }
@@ -41,7 +42,7 @@ class MicroDVDTest extends TestCase
     /** @test */
     function it_transforms_to_generic_subtitle()
     {
-        $microDVD = new MicroDVD("{$this->testFilesStoragePath}TextFiles/three-cues.sub");
+        $microDVD = new MicroDVD($this->testFilesStoragePath.'text/microdvd/three-cues.sub');
 
         $this->assertSame(23.976, $microDVD->getFps());
 
@@ -49,13 +50,13 @@ class MicroDVDTest extends TestCase
 
         $genericCues = $genericSub->getCues();
 
-        $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof MicroDVD);
+        $this->assertTrue($genericSub instanceof GenericSubtitle && ! $genericSub instanceof MicroDVD);
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.sub", $genericSub->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/microdvd/three-cues.sub', $genericSub->getFilePath());
 
-        $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
+        $this->assertSame('three-cues', $genericSub->getFileNameWithoutExtension());
 
-        $this->assertSame(3, count($genericCues));
+        $this->assertCount(3, $genericCues);
 
         $this->assertSame(12429, $genericCues[0]->getStartMs());
         $this->assertSame(16058, $genericCues[0]->getEndMs());

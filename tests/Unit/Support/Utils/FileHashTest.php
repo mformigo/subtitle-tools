@@ -2,55 +2,35 @@
 
 namespace Tests\Unit\Support\Utils;
 
+use App\Utils\Support\FileHash;
 use Tests\TestCase;
 
 class FileHashTest extends TestCase
 {
-    protected $reasonablyLongLength = 16;
-
     /** @test */
     function it_makes_a_unique_hash_from_a_file()
     {
-        $fileHasher = new \App\Utils\Support\FileHash();
+        $fileHash = new FileHash();
 
-        $a1 = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/empty.srt");
-        $b1 = $fileHasher->make("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.sub");
-        $b2 = $fileHasher->make("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.sub");
+        $a1 = $fileHash->make($this->testFilesStoragePath.'text/srt/empty.srt');
 
-        $this->assertTrue($a1 !== $b1);
-        $this->assertTrue($b1 === $b2);
-    }
+        $this->assertSame(40, strlen($a1));
 
-    /** @test */
-    function hashes_are_reasonably_long()
-    {
-        // Hashes should be reasonably long because they are used internally to make ids
+        $b1 = $fileHash->make($this->testFilesStoragePath.'archives/zip/empty.zip');
+        $b2 = $fileHash->make($this->testFilesStoragePath.'archives/zip/empty.zip');
 
-        $fileHasher = new \App\Utils\Support\FileHash();
-
-        $b = $fileHasher->make("{$this->testFilesStoragePath}SubIdxFiles/error-and-nl.sub");
-
-        $this->assertTrue(strlen($b) > $this->reasonablyLongLength);
-    }
-
-    /** @test */
-    function it_can_hash_empty_files()
-    {
-        $fileHasher = new \App\Utils\Support\FileHash();
-
-        $a = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/empty.srt");
-
-        $this->assertTrue(strlen($a) > $this->reasonablyLongLength);
+        $this->assertNotSame($a1, $b1);
+        $this->assertSame($b1, $b2);
     }
 
     /** @test */
     function hashes_are_made_from_file_content_not_from_file_name()
     {
-        $fileHasher = new \App\Utils\Support\FileHash();
+        $fileHash = new FileHash();
 
-        $a = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/Fake/torrent.srt");
-        $b = $fileHasher->make("{$this->testFilesStoragePath}TextFiles/Fake/torrent-srt-copy.dat");
+        $a = $fileHash->make($this->testFilesStoragePath.'text/fake/dat.ass');
+        $b = $fileHash->make($this->testFilesStoragePath.'text/fake/dat-copy.ass');
 
-        $this->assertTrue($a === $b);
+        $this->assertSame($a, $b);
     }
 }

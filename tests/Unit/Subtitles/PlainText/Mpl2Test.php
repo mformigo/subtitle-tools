@@ -11,29 +11,29 @@ class Mpl2Test extends TestCase
     /** @test */
     function it_loads_from_file()
     {
-        $mpl2 = new Mpl2("{$this->testFilesStoragePath}TextFiles/three-cues.mpl");
+        $mpl2 = new Mpl2($this->testFilesStoragePath.'text/mpl2/three-cues.mpl');
 
         $this->assertSame('three-cues', $mpl2->getFileNameWithoutExtension());
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.mpl", $mpl2->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/mpl2/three-cues.mpl', $mpl2->getFilePath());
     }
 
     /** @test */
     function it_transforms_to_generic_subtitle()
     {
-        $mpl2 = new Mpl2("{$this->testFilesStoragePath}TextFiles/three-cues.mpl");
+        $mpl2 = new Mpl2($this->testFilesStoragePath.'text/mpl2/three-cues.mpl');
 
         $genericSub = $mpl2->toGenericSubtitle();
 
         $genericCues = $genericSub->getCues();
 
-        $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof Mpl2);
+        $this->assertTrue($genericSub instanceof GenericSubtitle && ! $genericSub instanceof Mpl2);
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.mpl", $genericSub->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/mpl2/three-cues.mpl', $genericSub->getFilePath());
 
-        $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
+        $this->assertSame('three-cues', $genericSub->getFileNameWithoutExtension());
 
-        $this->assertSame(3, count($genericCues));
+        $this->assertCount(3, $genericCues);
 
         $this->assertSame(300, $genericCues[0]->getStartMs());
         $this->assertSame(2600, $genericCues[0]->getEndMs());

@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Jobs\FileJobs;
 
-use SjorsO\TextFile\Facades\TextFileReader;
 use App\Jobs\FileJobs\ConvertToPlainTextJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreatesFileGroups;
@@ -18,16 +17,16 @@ class ConvertToPlainTextJobTest extends TestCase
         $fileGroup = $this->createFileGroup();
 
         dispatch(
-            new ConvertToPlainTextJob($fileGroup, "{$this->testFilesStoragePath}TextFiles/three-cues.ass")
+            new ConvertToPlainTextJob($fileGroup, $this->testFilesStoragePath.'text/ass/three-cues.ass')
         );
 
         $fileJob = $fileGroup->fileJobs()->firstOrFail();
 
         $this->assertSame('three-cues.ass', $fileJob->original_name);
 
-        $lines = TextFileReader::getLines($fileJob->outputStoredFile->filePath);
+        $lines = read_lines($fileJob->outputStoredFile->filePath);
 
-        $this->assertSame(7, count($lines));
+        $this->assertCount(7, $lines);
 
         $this->assertSame([
             'This is the first line, it is crazy',

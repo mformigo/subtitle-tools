@@ -52,7 +52,7 @@ class ShiftControllerTest extends TestCase
     function it_shows_errors_on_same_page_if_single_file_cant_be_shifted()
     {
         $this->post(route('shift'), [
-            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt")],
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}text/srt/empty.srt")],
             'milliseconds' => 1000,
         ])->assertStatus(302)->assertSessionHasErrors(['subtitles' => __('messages.file_can_not_be_shifted')]);
     }
@@ -61,7 +61,7 @@ class ShiftControllerTest extends TestCase
     function it_shows_errors_on_same_page_if_single_file_is_not_a_text_file()
     {
         $this->post(route('shift'), [
-            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/Fake/exe.srt")],
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}text/fake/dat.ass")],
             'milliseconds' => 1000,
         ])->assertStatus(302)->assertSessionHasErrors(['subtitles' => __('messages.not_a_text_file')]);
     }
@@ -70,7 +70,7 @@ class ShiftControllerTest extends TestCase
     function it_redirects_to_results_page_if_single_uploads_is_valid()
     {
         $response = $this->post(route('shift'), [
-            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass")],
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass")],
             'milliseconds' => 1000,
         ]);
 
@@ -104,8 +104,8 @@ class ShiftControllerTest extends TestCase
     {
         $this->post(route('shift'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
             ],
             'milliseconds' => 1000,
         ]);
@@ -117,7 +117,7 @@ class ShiftControllerTest extends TestCase
     function it_can_shift_vtt_files()
     {
         [$response, $fileGroup] = $this->postFileJob('shift', [
-            $this->createUploadedFile('TextFiles/three-cues.vtt'),
+            $this->createUploadedFile('text/vtt/three-cues.vtt'),
         ], [
             'milliseconds' => 1000,
         ]);
@@ -131,7 +131,7 @@ class ShiftControllerTest extends TestCase
     function it_can_shift_ass_files()
     {
         [$response, $fileGroup] = $this->postFileJob('shift', [
-            $this->createUploadedFile('TextFiles/Normal/normal01.ass'),
+            $this->createUploadedFile('text/ass/normal01.ass'),
         ], [
             'milliseconds' => 1000,
         ]);
@@ -145,7 +145,7 @@ class ShiftControllerTest extends TestCase
     function it_can_shift_ssa_files()
     {
         [$response, $fileGroup] = $this->postFileJob('shift', [
-            $this->createUploadedFile('TextFiles/Normal/normal01.ssa'),
+            $this->createUploadedFile('text/ssa/normal01.ssa'),
         ], [
             'milliseconds' => -1000,
         ]);

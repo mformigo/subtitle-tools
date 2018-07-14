@@ -1,0 +1,62 @@
+﻿[Script Info]
+; // The sub is created by AssToolkit
+; // The ass is made by Sunhelter
+Title:Subtitles
+Original Script:Subtitles
+website:www.zimuzu.tv
+Sina Weibo:@zimuzu
+Find more subs in www.abcsub.com
+Synch Point:0
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,方正黑体_GBK,20,&H00FFFFFF,&HF0000000,&H00000000,&H32000000,0,0,0,0,100,100,0,0,1,2,1,2,5,5,2,134
+
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:09.73,0:00:39.73,*Default,NTP,0000,0000,0000,,{\an7\p1\bord0\shad0\fscx0\fscy0\t(0,200,\fscx206\fscy266\t(200,400,\fscx103\fscy133\t(29600,29800,\fscx206,fscy266\t(29800,30000,\fscx0\fscy0))))\c&H573E00&\pos(39.5,211)}m -13 -10 l -13 -13 l 10 -13 l -6 3 l -8 1 l 3 -10 l -13 -10m -13 -14 l 13 -14 l 13 12 l -13 12 l -13 -14 {\p0}
+Dialogue: 0,0:00:09.73,0:00:39.73,*Default,NTP,0000,0000,0000,,{\p1\fscx0\fscy0\t(0,200,\fscx206\fscy266\t(200,400,\fscx103\fscy133\t(29600,29800,\fscx206,fscy266\t(29800,30000,\fscx0\fscy0))))\c&HEBAE00&\bord0\shad0\fad(0,330)\pos(51.4,231.16)}m -13 -10 l -13 -13 l 10 -13 l -6 3 l -8 1 l 3 -10 l -13 -10 {\p0}
+Dialogue: 0,0:00:09.73,0:00:39.73,*Default,NTP,0000,0000,0000,,{\p1\fscx0\fscy0\t(0,200,\fscx206\fscy266\t(200,400,\fscx103\fscy133\t(29600,29800,\fscx206,fscy266\t(29800,30000,\fscx0\fscy0))))\c&HEBAE00&\bord0\shad0\frz180\t(0,500,\clip(-1,0,386,289))\pos(27.7,188.26)}m -13 -10 l -13 -13 l 10 -13 l -6 3 l -8 1 l 3 -10 l -13 -10 {\p0}
+Dialogue: 0,0:00:09.73,0:00:49.73,*Default,NTP,0000,0000,0000,,{\an5\fad(0,500)\bord0\shad0\fscx0\fscy0\alpha&B0\c&H000000&\t(0,200,\fscx2000\fscy600\t(200,400,\fscx2500\fscy300\t(29800,30200,\c&HFFFFFF&\3c&H000000&\alpha&AA\fscy400\fscx400)))\move(158,211.2,46.5,211.2,29800,30200)}■
+Dialogue: 0,0:00:09.73,0:00:14.73,*Default,NTP,0000,0000,0000,,{\an4\fad(0,500)\bord0\shad0\fs16\fn方正大黑_GBK\move(-150,211,56,211,400,600)\clip(54.24,192,230.88,228.48)}本字幕首发于{\c&HEBAE00&}字幕组{\c&HFFFFFF&}网站\N{\c&H00C0FF&}www.ZiMuZu.tv {\c&HFFFFFF&}欢迎交流
+Dialogue: 0,0:00:14.73,0:00:19.73,*Default,NTP,0000,0000,0000,,{\an4\fad(0,500)\fn方正黑体_GBK\fs17\bord0\shad0\pos(57.12,210.56)\clip(134,195,134,227)\t(0,500,\clip(54,195,281,227))}翻译  麦克姜 不高兴童鞋 胖兔纯
+Dialogue: 0,0:00:19.73,0:00:24.73,*Default,NTP,0000,0000,0000,,{\an4\fad(0,500)\fn方正黑体_GBK\fs17\bord0\shad0\pos(57.12,210.56)\clip(134,195,134,227)\t(0,500,\clip(54,195,291,227))}翻译  瑒瑒 兮之 roaddog
+Dialogue: 0,0:00:24.73,0:00:29.73,*Default,NTP,0000,0000,0000,,{\an4\fn方正黑体_GBK\fs17\bord0\shad0\frx-630\t(0,500,\frx0\t(4500,5000,\clip(40,213,40,248)))\pos(57.12,210.56)}校对  roaddog 不高兴童鞋
+Dialogue: 0,0:00:29.73,0:00:34.73,*Default,NTP,0000,0000,0000,,{\an4\fad(500,0)\fn方正黑体_GBK\fs17\bord0\shad0\move(57.12,210.56,400,210.56,4500,5000)\clip(54.24,193.92,284.24,228.48)}时间轴 想念Gallifrey的wholock 贝贝
+Dialogue: 0,0:00:34.73,0:00:39.73,*Default,NTP,0000,0000,0000,,{\an4\fad(300,300)\fn方正黑体_GBK\fs17\bord0\c&HFFFFFF&\3c&HEDB425&\4c&H9EF6FF&\shad0\bord0\blur20\t(0,500,\blur0\t(4500,5000,\fs30\blur20))\pos(57.12,210.56)}后期  吉吉  总监 roaddog
+Dialogue: 0,0:00:39.73,0:00:44.73,*Default,NTP,0000,0000,0000,,{\fad(500,500)\an4\bord0\shad0\fs12\fn方正大黑_GBK\alpha&44\pos(70,211.2)}打开微信   扫描左侧二维码\N或搜索公众号:{\c&HEBAE00&}    ustvboom\N{\c&HFFFFFF&}了解最新影视字幕发布信息
+Dialogue: 0,0:01:12.50,0:01:15.55,*Default,NTP,0000,0000,0000,,{\an5\fn方正大黑_GBK\fs1\t(0,280,\fs40)\bord0\shad0\pos(189.858,134.159)}球手\N{\fs1\t(0,280,\fs22)}第一季  第一集
+Dialogue: 0,0:02:18.20,0:02:20.76,*Default,NTP,0000,0000,0000,,*在天空翱翔*\N{\fn微软雅黑\fs14}*Take a ride in the sky*
+Dialogue: 0,0:02:20.91,0:02:23.58,*Default,NTP,0000,0000,0000,,*乘坐幻想飞船*\N{\fn微软雅黑\fs14}*On our ship fantasize*
+Dialogue: 0,0:02:23.61,0:02:28.57,*Default,NTP,0000,0000,0000,,*一切梦想瞬间成真*\N{\fn微软雅黑\fs14}*All your dreams will come true right away*
+Dialogue: 0,0:02:29.80,0:02:30.76,*Default,NTP,0000,0000,0000,,宝贝\N{\fn微软雅黑\fs14}Baby.
+Dialogue: 0,0:02:31.44,0:02:32.49,*Default,NTP,0000,0000,0000,,我爱你\N{\fn微软雅黑\fs14}I love you.
+Dialogue: 0,0:02:32.95,0:02:34.95,*Default,NTP,0000,0000,0000,,是吗  我也爱你\N{\fn微软雅黑\fs14}Hell, yeah, you do. Love you, too, girl.
+Dialogue: 0,0:02:35.08,0:02:36.16,*Default,NTP,0000,0000,0000,,-真的吗  -当然\N{\fn微软雅黑\fs14}- Do you really? - Yeah.
+Dialogue: 0,0:02:36.16,0:02:38.52,*Default,NTP,0000,0000,0000,,-认真的吗  -你怎么老问我这个\N{\fn微软雅黑\fs14}- I mean, are you sure? - Why you always ask me that?
+Dialogue: 0,0:02:38.57,0:02:39.89,*Default,NTP,0000,0000,0000,,我爱你  不管你问多少遍\N{\fn微软雅黑\fs14}You ask me that a lot. I do.
+Dialogue: 0,0:02:39.89,0:02:40.81,*Default,NTP,0000,0000,0000,,有多爱\N{\fn微软雅黑\fs14}How much?
+Dialogue: 0,0:02:40.81,0:02:43.05,*Default,NTP,0000,0000,0000,,这种事情怎么能量化呢\N{\fn微软雅黑\fs14}Got to quantify every damn thing, huh, baby?
+Dialogue: 0,0:02:43.05,0:02:44.90,*Default,NTP,0000,0000,0000,,我只是想听你说出来\N{\fn微软雅黑\fs14}Maybe I just like to hear you say it.
+Dialogue: 0,0:02:44.90,0:02:46.76,*Default,NTP,0000,0000,0000,,-那我就再说一遍  -好\N{\fn微软雅黑\fs14}- Maybe I'll just say it again. - Okay.
+Dialogue: 0,0:02:46.76,0:02:48.70,*Default,NTP,0000,0000,0000,,我爱你\N{\fn微软雅黑\fs14}I love you.
+Dialogue: 0,0:02:48.70,0:02:49.76,*Default,NTP,0000,0000,0000,,过来\N{\fn微软雅黑\fs14}Bring it in here.
+Dialogue: 0,0:02:51.30,0:02:52.50,*Default,NTP,0000,0000,0000,,胜过世间一切\N{\fn微软雅黑\fs14}More than anything, baby.
+Dialogue: 0,0:02:52.50,0:02:54.51,*Default,NTP,0000,0000,0000,,胜过橄榄球吗\N{\fn微软雅黑\fs14}More than football?
+Dialogue: 0,0:02:54.52,0:02:56.04,*Default,NTP,0000,0000,0000,,当然胜过橄榄球\N{\fn微软雅黑\fs14}More than ball. Come on, now.
+Dialogue: 0,0:02:56.04,0:02:57.74,*Default,NTP,0000,0000,0000,,那和年度最佳新秀奖杯比呢\N{\fn微软雅黑\fs14}More than your Rookie of the Year trophy?
+Dialogue: 0,0:02:57.74,0:02:59.84,*Default,NTP,0000,0000,0000,,-奖杯算个屁  -好吧\N{\fn微软雅黑\fs14}- Fuck that trophy. - All right.
+Dialogue: 0,0:03:00.16,0:03:01.79,*Default,NTP,0000,0000,0000,,超级碗冠军戒指呢\N{\fn微软雅黑\fs14}How about that Super Bowl ring?
+Dialogue: 0,0:03:01.79,0:03:03.08,*Default,NTP,0000,0000,0000,,这就是个装饰而已\N{\fn微软雅黑\fs14}It's just jewelry, baby.
+Dialogue: 0,0:03:03.55,0:03:05.66,*Default,NTP,0000,0000,0000,,所以你愿意为我做任何事吗\N{\fn微软雅黑\fs14}So you would do anything for me?
+Dialogue: 0,0:03:06.09,0:03:08.53,*Default,NTP,0000,0000,0000,,因为你知道我愿意为你做任何事\N{\fn微软雅黑\fs14}'Cause, baby, you know I'd do anything for you.
+Dialogue: 0,0:03:08.89,0:03:10.45,*Default,NTP,0000,0000,0000,,哪怕是舍弃我的性命\N{\fn微软雅黑\fs14}Even kill myself.
+Dialogue: 0,0:03:13.40,0:03:15.93,*Default,NTP,0000,0000,0000,,没错  任何事  宝贝\N{\fn微软雅黑\fs14}Yup, absolutely anything, baby.
+Dialogue: 0,0:03:16.24,0:03:17.71,*Default,NTP,0000,0000,0000,,包括离开你妻子吗\N{\fn微软雅黑\fs14}Even leave your wife?
+Dialogue: 0,0:03:20.15,0:03:21.85,*Default,NTP,0000,0000,0000,,-你这个骗子  我就知道  -冷静点\N{\fn微软雅黑\fs14}- You motherfucker. I knew it. - Hey, relax.
+Dialogue: 0,0:03:21.85,0:03:22.90,*Default,NTP,0000,0000,0000,,你跟我说你们分居了\N{\fn微软雅黑\fs14}You told me you were separated.
+Dialogue: 0,0:03:22.90,0:03:25.11,*Default,NTP,0000,0000,0000,,别抱怨这么多  根本没必要\N{\fn微软雅黑\fs14}Well, stop labeling every damn thing because you don't have to.
+Dialogue: 0,0:03:25.11,0:03:26.18,*Default,NTP,0000,0000,0000,,你这个骗子  我调查过了\N{\fn微软雅黑\fs14}You lying piece of shit. I checked.

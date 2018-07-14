@@ -11,7 +11,7 @@ class MergeControllerTest extends TestCase
 {
     use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
 
-    protected $fileSnapshotDirectory = 'merge';
+    protected $snapshotDirectory = 'merge';
 
     private function postMergeJob($attributes)
     {
@@ -25,8 +25,8 @@ class MergeControllerTest extends TestCase
     function it_can_simple_merge_subtitles_into_srt_files()
     {
         [$response, $fileGroup] = $this->postMergeJob([
-            'subtitles'       => $this->createUploadedFile('TextFiles/three-cues.srt'),
-            'second-subtitle' => $this->createUploadedFile('TextFiles/three-cues.ass'),
+            'subtitles'       => $this->createUploadedFile('text/srt/three-cues.srt'),
+            'second-subtitle' => $this->createUploadedFile('text/ass/three-cues.ass'),
             'mode'            => 'simple',
         ]);
 
@@ -39,8 +39,8 @@ class MergeControllerTest extends TestCase
     function it_can_simple_merge_subtitles_into_ass_files()
     {
         [$response, $fileGroup] = $this->postMergeJob([
-            'subtitles'       => $this->createUploadedFile('TextFiles/three-cues.ass'),
-            'second-subtitle' => $this->createUploadedFile('TextFiles/three-cues.srt'),
+            'subtitles'       => $this->createUploadedFile('text/ass/three-cues.ass'),
+            'second-subtitle' => $this->createUploadedFile('text/srt/three-cues.srt'),
             'mode'            => 'simple',
         ]);
 
@@ -53,8 +53,8 @@ class MergeControllerTest extends TestCase
     function it_can_simple_merge_subtitles_into_ssa_files()
     {
         [$response, $fileGroup] = $this->postMergeJob([
-            'subtitles'       => $this->createUploadedFile('TextFiles/three-cues.ssa'),
-            'second-subtitle' => $this->createUploadedFile('TextFiles/three-cues.srt'),
+            'subtitles'       => $this->createUploadedFile('text/ssa/three-cues.ssa'),
+            'second-subtitle' => $this->createUploadedFile('text/srt/three-cues.srt'),
             'mode'            => 'simple',
         ]);
 
@@ -67,8 +67,8 @@ class MergeControllerTest extends TestCase
     function it_can_simple_merge_subtitles_into_vtt_files()
     {
         [$response, $fileGroup] = $this->postMergeJob([
-            'subtitles'       => $this->createUploadedFile('TextFiles/three-cues.vtt'),
-            'second-subtitle' => $this->createUploadedFile('TextFiles/three-cues.srt'),
+            'subtitles'       => $this->createUploadedFile('text/vtt/three-cues.vtt'),
+            'second-subtitle' => $this->createUploadedFile('text/srt/three-cues.srt'),
             'mode'            => 'simple',
         ]);
 
@@ -81,8 +81,8 @@ class MergeControllerTest extends TestCase
     function it_can_nearest_cue_merge_subtitles_into_ass_files()
     {
         [$response, $fileGroup] = $this->postMergeJob([
-            'subtitles'             => $this->createUploadedFile('TextFiles/merge-tool/merge.ass'),
-            'second-subtitle'       => $this->createUploadedFile('TextFiles/merge-tool/merge.srt'),
+            'subtitles'             => $this->createUploadedFile('text/ass/merge-01.ass'),
+            'second-subtitle'       => $this->createUploadedFile('text/srt/merge-01.srt'),
             'nearest_cue_threshold' => 3000,
             'mode'                  => 'nearestCueThreshold',
         ]);
@@ -96,8 +96,8 @@ class MergeControllerTest extends TestCase
     function it_can_top_bottom_merge_subtitles_into_ass_files()
     {
         [$response, $fileGroup] = $this->postMergeJob([
-            'subtitles'       => $this->createUploadedFile('TextFiles/three-cues.ass'),
-            'second-subtitle' => $this->createUploadedFile('TextFiles/three-cues.srt'),
+            'subtitles'       => $this->createUploadedFile('text/ass/three-cues.ass'),
+            'second-subtitle' => $this->createUploadedFile('text/srt/three-cues.srt'),
             'mode'            => 'topBottom',
         ]);
 
@@ -110,8 +110,8 @@ class MergeControllerTest extends TestCase
     function it_can_top_bottom_merge_subtitles_into_srt_files()
     {
         [$response, $fileGroup] = $this->postMergeJob([
-            'subtitles'       => $this->createUploadedFile('TextFiles/three-cues.srt'),
-            'second-subtitle' => $this->createUploadedFile('TextFiles/three-cues.ass'),
+            'subtitles'       => $this->createUploadedFile('text/srt/three-cues.srt'),
+            'second-subtitle' => $this->createUploadedFile('text/ass/three-cues.ass'),
             'mode'            => 'topBottom',
         ]);
 

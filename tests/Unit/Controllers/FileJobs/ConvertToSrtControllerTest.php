@@ -91,7 +91,7 @@ class ConvertToSrtControllerTest extends TestCase
     {
         $response = $this->post(route('convertToSrt'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/srt/empty.srt"),
             ],
         ]);
 
@@ -104,7 +104,7 @@ class ConvertToSrtControllerTest extends TestCase
     {
         $response = $this->post(route('convertToSrt'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/cues-no-dialogue.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/cues-no-dialogue.ass"),
             ],
         ]);
 
@@ -117,7 +117,7 @@ class ConvertToSrtControllerTest extends TestCase
     {
         $response = $this->post(route('convertToSrt'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/Fake/exe.srt"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/fake/dat.ass"),
             ],
         ]);
 
@@ -130,7 +130,7 @@ class ConvertToSrtControllerTest extends TestCase
     {
         $response = $this->post(route('convertToSrt'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
             ],
         ]);
 
@@ -163,8 +163,8 @@ class ConvertToSrtControllerTest extends TestCase
     {
         $response = $this->post(route('convertToSrt'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
             ],
         ]);
 
@@ -174,36 +174,36 @@ class ConvertToSrtControllerTest extends TestCase
     /** @test */
     function it_can_convert_srt_files_to_srt()
     {
-        $this->convertAndSnapshot('TextFiles/three-cues.srt');
+        $this->convertAndSnapshot('text/srt/three-cues.srt');
     }
 
     /** @test */
     function it_can_convert_ass_files_to_srt()
     {
-        $this->convertAndSnapshot('TextFiles/Normal/normal01.ass');
+        $this->convertAndSnapshot('text/ass/normal01.ass');
     }
 
     /** @test */
     function it_can_convert_microdvd_sub_files_to_srt()
     {
-        $this->convertAndSnapshot('TextFiles/three-cues.sub');
+        $this->convertAndSnapshot('text/microdvd/three-cues.sub');
     }
 
     /** @test */
     function it_can_convert_vtt_files_to_srt()
     {
-        $this->convertAndSnapshot('TextFiles/three-cues.vtt');
+        $this->convertAndSnapshot('text/vtt/three-cues.vtt');
     }
 
     /** @test */
     function it_can_convert_ssa_files_to_srt()
     {
-        $this->convertAndSnapshot('TextFiles/Normal/normal01.ssa');
+        $this->convertAndSnapshot('text/ssa/normal01.ssa');
     }
 
     /** @test */
     function it_can_convert_otranscribe_files_to_srt()
     {
-        $this->convertAndSnapshot('TextFiles/otranscribe/otranscribe-1.txt');
+        $this->convertAndSnapshot('text/otranscribe/otranscribe-1.txt');
     }
 }

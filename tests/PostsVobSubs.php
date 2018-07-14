@@ -7,15 +7,15 @@ use Illuminate\Http\UploadedFile;
 
 trait PostsVobSubs
 {
-    private $defaultSubIdxName = "error-and-nl";
+    private $defaultSubIdxName = 'error-and-nl';
 
     private function getSubUploadedFile($fileNameWithoutExtension = null)
     {
         $fileNameWithoutExtension = $fileNameWithoutExtension ?: $this->defaultSubIdxName;
 
         return new UploadedFile(
-            $this->testFilesStoragePath . "SubIdxFiles/{$fileNameWithoutExtension}.sub",
-            "{$fileNameWithoutExtension}.sub",
+            $this->testFilesStoragePath.'sub-idx/'.$fileNameWithoutExtension.'.sub',
+            $fileNameWithoutExtension.'.sub',
             null, null, null, true
         );
     }
@@ -25,8 +25,8 @@ trait PostsVobSubs
         $fileNameWithoutExtension = $fileNameWithoutExtension ?: $this->defaultSubIdxName;
 
         return new UploadedFile(
-            $this->testFilesStoragePath . "SubIdxFiles/{$fileNameWithoutExtension}.idx",
-            "{$fileNameWithoutExtension}.idx",
+            $this->testFilesStoragePath.'sub-idx/'.$fileNameWithoutExtension.'.idx',
+            $fileNameWithoutExtension.'.idx',
             null, null, null, true
         );
     }

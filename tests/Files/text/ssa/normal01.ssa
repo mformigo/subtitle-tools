@@ -1,0 +1,62 @@
+[Script Info]
+; This is a Sub Station Alpha v4 script.
+; For Sub Station Alpha info and downloads,
+; go to http://www.eswat.demon.co.uk/
+; or email kotus@eswat.demon.co.uk
+Title: Escaflowne - The Movie
+Original Script: Freelance Task by: Vash-Sama & James Knight
+Original Translation: Animefactory
+Original Editing: Papacha Anime (Spanish)
+Original Timing: Vash-Sama
+Original Script Checking: Vash-Sama
+Synch Point: Rip del DVD, inicio
+Script Updated By: 100% Vash-Sama & James Knight
+ScriptType: v4.00
+Collisions: Normal
+PlayResY: 1024
+PlayDepth: 0
+Timer: 100.0000
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,75,16777215,16777215,16777215,16711680,-1,0,1,1,1,2,30,30,30,0,0
+Style: DigitalSub,Arial,60,16777215,16777215,16777215,16711680,-1,0,1,1,1,2,20,20,20,0,0
+
+[Events]
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Comment: Marked=0,0:00:10.00,0:00:15.00,DigitalSub,,0000,0000,0000,,Escaflowne - La Película
+Dialogue: Marked=0,0:00:15.00,0:00:20.00,DigitalSub,,0000,0000,0000,,Everything but Translation made by:\N {\c&HFF&}|Vash| & James Knight \N{\c&HFFFFFF&}Line corrections:{\c&HFF&}\NPako\N{\c&HFFFFFF&}Spanish Translation:{\c&HFF&}\NBigKRM
+Dialogue: Marked=0,0:00:20.00,0:00:25.00,DigitalSub,,0000,0000,0000,,Original Translation by: {\c&HFF&}Animefactory\N{\c&HFFFFFF&}Spanish version:{\c&HFF&} {\fnPP Handwriting}Papacha Anime
+Dialogue: Marked=0,0:01:16.00,0:01:17.60,DigitalSub,,0000,0000,0000,,Perdemos altitud.
+Dialogue: Marked=0,0:01:17.60,0:01:18.56,DigitalSub,,0000,0000,0000,,...¿Y el motor de vapor?
+Dialogue: Marked=0,0:01:18.56,0:01:20.14,DigitalSub,,0000,0000,0000,,No hay ninguna anomalía.
+Dialogue: Marked=0,0:01:22.10,0:01:23.75,DigitalSub,,0000,0000,0000,,¿La carga será demasiado pesada?
+Dialogue: Marked=0,0:01:23.75,0:01:27.03,DigitalSub,,0000,0000,0000,,No, eso no debe ser el problema.
+Dialogue: Marked=0,0:01:28.37,0:01:32.43,DigitalSub,,0000,0000,0000,,...¿Estás diciendo que esta 'Armadura'\Nse levantará de entre los muertos?
+Dialogue: Marked=0,0:02:29.23,0:02:30.96,DigitalSub,,0000,0000,0000,,¡¿Quién eres tú!?
+Dialogue: Marked=0,0:02:41.34,0:02:42.99,DigitalSub,,0000,0000,0000,,No puedo mantener la altitud.
+Dialogue: Marked=0,0:02:42.99,0:02:45.38,DigitalSub,,0000,0000,0000,,Debemos circunnavegar la montaña\Ny volar a través de Salace.
+Dialogue: Marked=0,0:02:45.38,0:02:47.13,DigitalSub,,0000,0000,0000,,Camaradas...
+Dialogue: Marked=0,0:02:47.13,0:02:49.35,DigitalSub,,0000,0000,0000,,...No tenemos otra opción.
+Dialogue: Marked=0,0:02:49.35,0:02:53.28,DigitalSub,,0000,0000,0000,,'Esto' es demasiado importante\Npara el futuro de nuestro clan.
+Dialogue: Marked=0,0:02:53.28,0:02:56.77,DigitalSub,,0000,0000,0000,,Debemos entregárselo a Lord\NFolken lo antes posible.
+Dialogue: Marked=0,0:03:08.39,0:03:09.61,DigitalSub,,0000,0000,0000,,¡El enemigo está solo!
+Dialogue: Marked=0,0:03:05.93,0:03:06.93,DigitalSub,,0000,0000,0000,,¡Atrápenlo!
+Dialogue: Marked=0,0:03:11.35,0:03:12.35,DigitalSub,,0000,0000,0000,,¡Muere!
+Dialogue: Marked=0,0:03:25.02,0:03:26.01,DigitalSub,,0000,0000,0000,,¡Sujétenlo!
+Dialogue: Marked=0,0:03:31.24,0:03:33.32,DigitalSub,,0000,0000,0000,,¿Qué están haciendo?\N¡Está solo!
+Dialogue: Marked=0,0:03:49.04,0:03:50.47,DigitalSub,,0000,0000,0000,,¡Imposible!
+Dialogue: Marked=0,0:03:50.47,0:03:51.92,DigitalSub,,0000,0000,0000,,¿É-é-...él hizo todo eso solo...!?
+Dialogue: Marked=0,0:04:09.07,0:04:12.10,DigitalSub,,0000,0000,0000,,Así es que tú eres el famoso Dragón...
+Dialogue: Marked=0,0:04:13.36,0:04:15.96,DigitalSub,,0000,0000,0000,,Acabaré con todos mis enemigos.
+Dialogue: Marked=0,0:04:55.66,0:04:58.45,DigitalSub,,0000,0000,0000,,Armadura del Dragón...
+Dialogue: Marked=0,0:04:58.45,0:05:01.60,DigitalSub,,0000,0000,0000,,...¡despierta de tu eterno cautiverio...!
+Dialogue: Marked=0,0:05:01.97,0:05:04.23,DigitalSub,,0000,0000,0000,,Tu Nombre es Escaflowne.
+Dialogue: Marked=0,0:05:04.55,0:05:07.41,DigitalSub,,0000,0000,0000,,Mi Armadura...
+Dialogue: Marked=0,0:06:06.65,0:06:08.00,DigitalSub,,0000,0000,0000,,¡¿Quién eres tú?!
+Dialogue: Marked=0,0:07:08.71,0:07:10.75,DigitalSub,,0000,0000,0000,,Te dormiste otra vez...
+Dialogue: Marked=0,0:07:10.75,0:07:14.00,DigitalSub,,0000,0000,0000,,¿Faltas a clases y encima te duermes, Hitomi?
+Dialogue: Marked=0,0:07:16.03,0:07:18.00,DigitalSub,,0000,0000,0000,,Tuve un sueño...
+Dialogue: Marked=0,0:07:19.68,0:07:21.18,DigitalSub,,0000,0000,0000,,¿Qué sueño?
+Dialogue: Marked=0,0:07:22.80,0:07:25.00,DigitalSub,,0000,0000,0000,,De mi niñez...
+Dialogue: Marked=0,0:07:25.54,0:07:28.25,DigitalSub,,0000,0000,0000,,Ah, el que me dijiste aquella vez.

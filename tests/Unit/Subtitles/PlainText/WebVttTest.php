@@ -14,7 +14,7 @@ class WebVttTest extends TestCase
     /** @test */
     function it_preserves_valid_webvtt_files()
     {
-        $filePath = $this->testFilesStoragePath.'TextFiles/Normal/normal01.vtt';
+        $filePath = $this->testFilesStoragePath.'text/vtt/normal01.vtt';
 
         $webVtt = new WebVtt($filePath);
 
@@ -26,7 +26,7 @@ class WebVttTest extends TestCase
     /** @test */
     function it_shifts_cues()
     {
-        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/three-cues.vtt');
+        $webVtt = new WebVtt($this->testFilesStoragePath.'text/vtt/three-cues.vtt');
 
         $this->assertTrue($webVtt instanceof ShiftsCues);
 
@@ -53,7 +53,7 @@ class WebVttTest extends TestCase
     /** @test */
     function it_partial_shifts_cues()
     {
-        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/three-cues.vtt');
+        $webVtt = new WebVtt($this->testFilesStoragePath.'text/vtt/three-cues.vtt');
 
         $this->assertTrue($webVtt instanceof PartialShiftsCues);
 
@@ -80,7 +80,7 @@ class WebVttTest extends TestCase
     /** @test */
     function it_transforms_to_generic_subtitle()
     {
-        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/three-cues.vtt');
+        $webVtt = new WebVtt($this->testFilesStoragePath.'text/vtt/three-cues.vtt');
 
         $generic = $webVtt->toGenericSubtitle();
 
@@ -111,7 +111,7 @@ class WebVttTest extends TestCase
     /** @test */
     function it_can_parse_a_file_that_ends_with_a_cue_without_dialogue()
     {
-        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/SubtitleParsing/webvtt-edge-case-01.vtt');
+        $webVtt = new WebVtt($this->testFilesStoragePath.'text/vtt/webvtt-edge-case-01.vtt');
 
         $generic = $webVtt->toGenericSubtitle();
 
@@ -133,7 +133,7 @@ class WebVttTest extends TestCase
     /** @test */
     function it_can_parse_a_file_with_no_dialogue()
     {
-        $webVtt = new WebVtt($this->testFilesStoragePath.'TextFiles/SubtitleParsing/webvtt-no-dialogue.vtt');
+        $webVtt = new WebVtt($this->testFilesStoragePath.'text/vtt/webvtt-no-dialogue.vtt');
 
         $generic = $webVtt->toGenericSubtitle();
 

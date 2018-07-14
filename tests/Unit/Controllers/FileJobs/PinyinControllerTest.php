@@ -16,7 +16,7 @@ class PinyinControllerTest extends TestCase
     function mode_job_option_is_required()
     {
         $response = $this->post(route('pinyin'), [
-            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues-cleanable.srt")],
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}text/srt/three-cues-cleanable.srt")],
         ]);
 
         $response->assertStatus(302)
@@ -27,7 +27,7 @@ class PinyinControllerTest extends TestCase
     function mode_job_option_cant_be_empty()
     {
         $response = $this->post(route('pinyin'), [
-            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues-cleanable.srt")],
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}text/srt/three-cues-cleanable.srt")],
             'mode' => '',
         ]);
 
@@ -39,7 +39,7 @@ class PinyinControllerTest extends TestCase
     function mode_must_be_valid()
     {
         $response = $this->post(route('pinyin'), [
-            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/three-cues-cleanable.srt")],
+            'subtitles' => [$this->createUploadedFile("{$this->testFilesStoragePath}text/srt/three-cues-cleanable.srt")],
             'mode' => '4',
         ]);
 
@@ -113,7 +113,7 @@ class PinyinControllerTest extends TestCase
     {
         $response = $this->post(route('pinyin'), [
             'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}TextFiles/empty.srt"),
+                $this->createUploadedFile("{$this->testFilesStoragePath}text/srt/empty.srt"),
             ],
             'mode' => '3',
         ]);

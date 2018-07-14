@@ -15,7 +15,7 @@ class SrtTest extends TestCase
     /** @test */
     function it_loads_from_file()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/three-cues.srt');
 
         $this->assertSame('three-cues', $srt->getFileNameWithoutExtension());
 
@@ -39,11 +39,11 @@ class SrtTest extends TestCase
     /** @test */
     function it_preserves_valid_srt_files()
     {
-        $filePath = "{$this->testFilesStoragePath}TextFiles/three-cues.srt";
+        $filePath = $this->testFilesStoragePath.'text/srt/three-cues.srt';
 
         $srt = new Srt($filePath);
 
-        $content = app(\SjorsO\TextFile\Contracts\TextFileReaderInterface::class)->getLines($filePath);
+        $content = read_lines($filePath);
 
         $this->assertSame($content, $srt->getContentLines());
     }
@@ -51,7 +51,7 @@ class SrtTest extends TestCase
     /** @test */
     function it_returns_empty_content_if_there_are_no_cues()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/empty.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/empty.srt');
 
         $this->assertSame("", $srt->getContent());
 
@@ -62,17 +62,17 @@ class SrtTest extends TestCase
     function it_parses_edge_cases()
     {
         // Starts with a timing line
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-1.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/parse-edge-case-1.srt');
         $cues = $srt->getCues();
         $this->assertEquals(5, count($cues));
 
         // Ends with a timing line, it isnt added because it has no text lines
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-2.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/parse-edge-case-2.srt');
         $cues = $srt->getCues();
         $this->assertEquals(5, count($cues));
 
         // Starts with three timing lines in a row, and some random timings without text
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-3.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/parse-edge-case-3.srt');
         $cues = $srt->getCues();
         $this->assertEquals(1, count($cues));
         $this->assertEquals($cues[0]->getLines()[0], "One of them,");
@@ -80,7 +80,7 @@ class SrtTest extends TestCase
         $this->assertEquals(false, isset($cues[0]->getLines()[2]));
 
         // doesn't have a trailing empty line
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-4.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/parse-edge-case-4.srt');
         $cues = $srt->getCues();
         $this->assertEquals(5, count($cues));
         $this->assertEquals($cues[4]->getLines()[0], "They both, of course,");
@@ -88,7 +88,7 @@ class SrtTest extends TestCase
         $this->assertEquals(false, isset($cues[4]->getLines()[2]));
 
         // doesn't have a trailing empty line
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/parse-edge-case-5.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/parse-edge-case-5.srt');
         $cues = $srt->getCues();
         $this->assertEquals(5, count($cues));
         $this->assertEquals($cues[4]->getLines()[0], "They both, of course,");
@@ -98,7 +98,7 @@ class SrtTest extends TestCase
     /** @test */
     function it_shifts_cues()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/three-cues.srt');
 
         $this->assertTrue($srt instanceof ShiftsCues);
 
@@ -137,7 +137,7 @@ class SrtTest extends TestCase
     /** @test */
     function it_partial_shifts_cues()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/three-cues.srt');
 
         $this->assertTrue($srt instanceof PartialShiftsCues);
 
@@ -178,7 +178,7 @@ class SrtTest extends TestCase
     {
         $srt = new Srt();
 
-        $srt->addCue((new SrtCue())->addLine('it only watermarks files with at least 1 cue!'));
+        $srt->addCue((new SrtCue)->addLine('it only watermarks files with at least 1 cue!'));
 
         $this->assertTrue($srt instanceof Watermarkable);
 
@@ -204,7 +204,7 @@ class SrtTest extends TestCase
     {
         $srt = new Srt();
 
-        $srt->addCue((new SrtCue())->addLine('it only watermarks files with at least 1 cue!'));
+        $srt->addCue((new SrtCue)->addLine('it only watermarks files with at least 1 cue!'));
 
         $this->assertTrue($srt instanceof Watermarkable);
 
@@ -220,14 +220,14 @@ class SrtTest extends TestCase
     /** @test */
     function load_file_removes_empty_and_duplicate_cues()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/Problematic/empty-and-duplicate-cues.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/empty-and-duplicate-cues.srt');
 
         $this->assertTrue($srt instanceof ContainsGenericCues);
 
         $this->assertSame(1, count($srt->getCues()));
 
         $srt2 = new Srt();
-        $srt2->loadFile("{$this->testFilesStoragePath}TextFiles/Problematic/empty-and-duplicate-cues.srt");
+        $srt2->loadFile("{$this->testFilesStoragePath}text/srt/empty-and-duplicate-cues.srt");
 
         $this->assertSame(1, count($srt2->getCues()));
     }
@@ -235,7 +235,7 @@ class SrtTest extends TestCase
     /** @test */
     function load_file_does_not_watermark()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/empty.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/empty.srt');
 
         $this->assertSame(0, count($srt->getCues()));
     }
@@ -243,7 +243,7 @@ class SrtTest extends TestCase
     /** @test */
     function content_ends_with_empty_line()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/three-cues.srt');
 
         $this->assertTrue(ends_with($srt->getContent(), "\r\n"));
     }
@@ -259,7 +259,7 @@ class SrtTest extends TestCase
     /** @test */
     function it_transforms_to_generic_subtitle()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/three-cues.srt');
 
         $generic = $srt->toGenericSubtitle();
 
@@ -290,7 +290,7 @@ class SrtTest extends TestCase
     /** @test */
     function it_parses_files_with_coordinates()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/srt-with-coordinates.srt");
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/srt-with-coordinates.srt');
 
         $cues = $srt->getCues();
 
@@ -307,7 +307,7 @@ class SrtTest extends TestCase
     /** @test */
     function it_parses_files_with_common_mistakes()
     {
-        $srt = new Srt($this->testFilesStoragePath.'TextFiles/SubtitleParsing/srt-broken-by-google-translate.srt');
+        $srt = new Srt($this->testFilesStoragePath.'text/srt/broken-by-google-translate.srt');
 
         $cues = $srt->getCues();
 

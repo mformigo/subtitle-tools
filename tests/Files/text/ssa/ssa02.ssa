@@ -1,0 +1,54 @@
+!SRT a SSA Conversor, por Feñiz 2.001
+Synch Point: Side 1 0m00s
+Collisions: Normal
+Timer: 100.0000
+Style: Default,Arial Narrow,31,13948116,0,16777215,0,-1,0,2,2,2,20,20,10,0,0
+Dialogue: Marked=0,0:00:11.99,0:00:14.31,Default,NTP,0000,0000,0000,!Effect,Anteriormente en 24.
+Dialogue: Marked=0,0:00:14.31,0:00:15.63,Default,NTP,0000,0000,0000,!Effect,Quiero a Bauer arrestado.
+Dialogue: Marked=0,0:00:15.63,0:00:17.83,Default,NTP,0000,0000,0000,!Effect,Bauer dirige la operacion de campo.
+Dialogue: Marked=0,0:00:17.83,0:00:19.99,Default,NTP,0000,0000,0000,!Effect,¡Jack Bauer no es el unico que puede hacer ese trabajo!
+Dialogue: Marked=0,0:00:19.99,0:00:21.59,Default,NTP,0000,0000,0000,!Effect,Pon a alguien mas a cargo.
+Dialogue: Marked=0,0:00:21.59,0:00:23.03,Default,NTP,0000,0000,0000,!Effect,Jack, tenemos un problema.
+Dialogue: Marked=0,0:00:23.03,0:00:25.51,Default,NTP,0000,0000,0000,!Effect,El Servicio Secreto va camino a arrestarte.
+Dialogue: Marked=0,0:00:25.51,0:00:27.19,Default,NTP,0000,0000,0000,!Effect,Bill, no pueden interrumpir esta mision.
+Dialogue: Marked=0,0:00:27.19,0:00:28.39,Default,NTP,0000,0000,0000,!Effect,Tienes que detenerlos.
+Dialogue: Marked=0,0:00:28.39,0:00:29.55,Default,NTP,0000,0000,0000,!Effect,No puedo hacer nada desde aqui.
+Dialogue: Marked=0,0:00:29.55,0:00:31.78,Default,NTP,0000,0000,0000,!Effect,Tienes que capturar a Marwan antes de que llegue el Servicio Secreto.
+Dialogue: Marked=0,0:00:31.78,0:00:33.41,Default,NTP,0000,0000,0000,!Effect,Gente de America...
+Dialogue: Marked=0,0:00:33.41,0:00:36.05,Default,NTP,0000,0000,0000,!Effect,hoy despiertan en un mundo diferente.
+Dialogue: Marked=0,0:00:36.05,0:00:39.69,Default,NTP,0000,0000,0000,!Effect,Tengo visual de Marwan. Esta en el edificio.
+Dialogue: Marked=0,0:00:39.69,0:00:40.66,Default,NTP,0000,0000,0000,!Effect,Diablos, sabe que estamos aqui.
+Dialogue: Marked=0,0:00:40.66,0:00:41.70,Default,NTP,0000,0000,0000,!Effect,Todos muevanse al edificio.
+Dialogue: Marked=0,0:00:41.70,0:00:44.38,Default,NTP,0000,0000,0000,!Effect,¡Nuestra cobertura ha caido!. ¡Todos, vamos, vamos, vamos!.
+Dialogue: Marked=0,0:00:44.38,0:00:46.18,Default,NTP,0000,0000,0000,!Effect,¡Corran!
+Dialogue: Marked=0,0:00:49.08,0:00:51.20,Default,NTP,0000,0000,0000,!Effect,El Presidente Logan reconoce haber cometido un error.
+Dialogue: Marked=0,0:00:51.20,0:00:53.00,Default,NTP,0000,0000,0000,!Effect,Puede irse.
+Dialogue: Marked=0,0:00:54.34,0:00:56.70,Default,NTP,0000,0000,0000,!Effect,Teniamos a Marwan.
+Dialogue: Marked=0,0:00:56.74,0:00:58.71,Default,NTP,0000,0000,0000,!Effect,¡Maldicion, lo teniamos!
+Dialogue: Marked=0,0:00:58.71,0:01:02.82,Default,NTP,0000,0000,0000,!Effect,Este hombre, Marwan, tiene una ojiva nuclear y yo le permiti escapar.
+Dialogue: Marked=0,0:01:02.82,0:01:04.11,Default,NTP,0000,0000,0000,!Effect,- Sr. Presidente...\N- ¡Detente!.
+Dialogue: Marked=0,0:01:04.11,0:01:06.83,Default,NTP,0000,0000,0000,!Effect,Ni siquiera se si merezco que me llamen asi.
+Dialogue: Marked=0,0:01:06.83,0:01:10.35,Default,NTP,0000,0000,0000,!Effect,Hay alguien que puede asesorarlo mejor que yo.
+Dialogue: Marked=0,0:01:10.35,0:01:12.75,Default,NTP,0000,0000,0000,!Effect,No estoy seguro de lo que me estas pidiendo.
+Dialogue: Marked=0,0:01:12.75,0:01:14.63,Default,NTP,0000,0000,0000,!Effect,El Presidente Logan le esta pidiendo...
+Dialogue: Marked=0,0:01:14.63,0:01:16.75,Default,NTP,0000,0000,0000,!Effect,que haga el esfuerzo de recuperar el arma robada...
+Dialogue: Marked=0,0:01:16.75,0:01:18.35,Default,NTP,0000,0000,0000,!Effect,y le da la libertad de tomar...
+Dialogue: Marked=0,0:01:18.35,0:01:21.03,Default,NTP,0000,0000,0000,!Effect,cualquier decision que haya que tomar.
+Dialogue: Marked=0,0:01:21.03,0:01:22.27,Default,NTP,0000,0000,0000,!Effect,¿Es compatible?
+Dialogue: Marked=0,0:01:22.27,0:01:24.30,Default,NTP,0000,0000,0000,!Effect,Necesito reconfigurar el mecanismo de detonacion.
+Dialogue: Marked=0,0:01:24.31,0:01:26.38,Default,NTP,0000,0000,0000,!Effect,¿Se reconfiguro la ojiva?
+Dialogue: Marked=0,0:01:26.39,0:01:30.16,Default,NTP,0000,0000,0000,!Effect,Si, nosotros, podriamos tener una brecha potencial de seguridad.
+Dialogue: Marked=0,0:01:30.17,0:01:31.20,Default,NTP,0000,0000,0000,!Effect,¿Quien?
+Dialogue: Marked=0,0:01:31.21,0:01:32.72,Default,NTP,0000,0000,0000,!Effect,El tecnico, Sabir.
+Dialogue: Marked=0,0:01:32.73,0:01:35.40,Default,NTP,0000,0000,0000,!Effect,Su novia empieza a sospechar.
+Dialogue: Marked=0,0:01:35.41,0:01:37.49,Default,NTP,0000,0000,0000,!Effect,Creo que Sabir pudo haberse involucrado con...
+Dialogue: Marked=0,0:01:37.49,0:01:39.25,Default,NTP,0000,0000,0000,!Effect,grupos radicales.
+Dialogue: Marked=0,0:01:39.25,0:01:41.11,Default,NTP,0000,0000,0000,!Effect,- ¿Quieres decir terroristas?\N- Si.
+Dialogue: Marked=0,0:01:41.11,0:01:43.93,Default,NTP,0000,0000,0000,!Effect,La mujer del llamado telefonico que sospecha que su novio esta implicado...
+Dialogue: Marked=0,0:01:43.93,0:01:46.21,Default,NTP,0000,0000,0000,!Effect,nos envio un diagrama de un microchip que solo...
+Dialogue: Marked=0,0:01:46.21,0:01:48.33,Default,NTP,0000,0000,0000,!Effect,se usa en ojivas nucleares antiguas.
+Dialogue: Marked=0,0:01:48.33,0:01:50.40,Default,NTP,0000,0000,0000,!Effect,Ve con un equipo, sigamos esto.
+Dialogue: Marked=0,0:01:50.41,0:01:52.21,Default,NTP,0000,0000,0000,!Effect,¿Que fue eso?
+Dialogue: Marked=0,0:01:53.13,0:01:55.73,Default,NTP,0000,0000,0000,!Effect,¡Va a atropellarnos!
+Dialogue: Marked=0,0:02:05.21,0:02:10.41,Default,NTP,0000,0000,0000,!Effect,Los siguientes hechos ocurren entre las 2:00 am y las 3:00 am.
+Dialogue: Marked=0,0:02:24.13,0:02:25.85,Default,NTP,0000,0000,0000,!Effect,Es un placer tenerlo de regreso, Sr. Presidente.

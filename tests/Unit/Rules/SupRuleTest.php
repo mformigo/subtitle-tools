@@ -13,20 +13,20 @@ class SupRuleTest extends TestCase
     /** @test */
     function it_passes_if_file_is_a_valid_sup()
     {
-        $uploadedFile = $this->createUploadedFile($this->testFilesStoragePath.'Sup/three-english-cues.sup');
+        $uploadedFile = $this->createUploadedFile('sup/three-english-cues.sup');
 
-        $supRule = new SupRule();
-
-        $this->assertTrue($supRule->passes('', $uploadedFile));
+        $this->assertTrue(
+            (new SupRule)->passes('', $uploadedFile)
+        );
     }
 
     /** @test */
     function it_fails_if_file_is_not_a_valid_sup()
     {
-        $uploadedFile = $this->createUploadedFile($this->testFilesStoragePath.'TextFiles/three-cues.ass');
+        $uploadedFile = $this->createUploadedFile('text/ass/three-cues.ass');
 
-        $supRule = new SupRule();
-
-        $this->assertFalse($supRule->passes('', $uploadedFile));
+        $this->assertFalse(
+            (new SupRule)->passes('', $uploadedFile)
+        );
     }
 }

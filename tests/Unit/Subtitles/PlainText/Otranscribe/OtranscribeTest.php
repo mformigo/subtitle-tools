@@ -11,7 +11,7 @@ class OtranscribeTest extends TestCase
     /** @test */
     function it_loads_from_file()
     {
-        $filePath = $this->testFilesStoragePath.'TextFiles/otranscribe/otranscribe-1.txt';
+        $filePath = $this->testFilesStoragePath.'text/otranscribe/otranscribe-1.txt';
 
         $oTranscribe = new Otranscribe($filePath);
 
@@ -23,7 +23,7 @@ class OtranscribeTest extends TestCase
     /** @test */
     function it_transforms_to_generic_subtitle()
     {
-        $filePath = $this->testFilesStoragePath.'TextFiles/otranscribe/otranscribe-1.txt';
+        $filePath = $this->testFilesStoragePath.'text/otranscribe/otranscribe-1.txt';
 
         $oTranscribe = new Otranscribe($filePath);
 

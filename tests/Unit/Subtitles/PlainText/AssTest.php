@@ -16,11 +16,11 @@ class AssTest extends TestCase
     {
         $ass = new Ass();
 
-        $ass->loadFile($this->testFilesStoragePath.'TextFiles/mime-octet-utf8.ass');
+        $ass->loadFile($this->testFilesStoragePath.'text/ass/three-cues.ass');
 
-        $this->assertSame('mime-octet-utf8', $ass->getFileNameWithoutExtension());
+        $this->assertSame('three-cues', $ass->getFileNameWithoutExtension());
 
-        $this->assertSame($this->testFilesStoragePath.'TextFiles/mime-octet-utf8.ass', $ass->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/ass/three-cues.ass', $ass->getFilePath());
     }
 
     /** @test */
@@ -28,7 +28,7 @@ class AssTest extends TestCase
     {
         $ass = new Ass();
 
-        $ass->loadFile($this->testFilesStoragePath.'TextFiles/three-cues.ass');
+        $ass->loadFile($this->testFilesStoragePath.'text/ass/three-cues.ass');
 
         $genericSub = $ass->toGenericSubtitle();
 
@@ -36,7 +36,7 @@ class AssTest extends TestCase
 
         $this->assertTrue($genericSub instanceof GenericSubtitle && !$genericSub instanceof Ass);
 
-        $this->assertSame($this->testFilesStoragePath.'TextFiles/three-cues.ass', $genericSub->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/ass/three-cues.ass', $genericSub->getFilePath());
 
         $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
 
@@ -62,7 +62,7 @@ class AssTest extends TestCase
 
         $this->assertTrue($ass instanceof ShiftsCues);
 
-        $ass->loadFile($this->testFilesStoragePath.'TextFiles/three-cues.ass');
+        $ass->loadFile($this->testFilesStoragePath.'text/ass/three-cues.ass');
 
         $originalLines = $ass->getContentLines();
 
@@ -119,7 +119,7 @@ class AssTest extends TestCase
 
         $this->assertTrue($ass instanceof PartialShiftsCues);
 
-        $ass->loadFile($this->testFilesStoragePath.'TextFiles/three-cues.ass');
+        $ass->loadFile($this->testFilesStoragePath.'text/ass/three-cues.ass');
 
         $cues = $ass->toGenericSubtitle()->getCues();
 
@@ -163,7 +163,7 @@ class AssTest extends TestCase
     /** @test */
     function it_can_load_an_empty_file()
     {
-        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'TextFiles/empty.srt');
+        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'text/srt/empty.srt');
 
         $this->assertSame(
             [''],
@@ -174,7 +174,7 @@ class AssTest extends TestCase
     /** @test */
     function it_can_load_a_file_without_a_header()
     {
-        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'TextFiles/SubtitleParsing/no-header.ass');
+        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'text/ass/no-header.ass');
 
         $this->assertSame(
             [
@@ -190,7 +190,7 @@ class AssTest extends TestCase
     /** @test */
     function you_can_add_cues_to_an_ass_file()
     {
-        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'TextFiles/SubtitleParsing/no-header.ass');
+        $ass = (new Ass)->loadFile($this->testFilesStoragePath.'text/ass/no-header.ass');
 
         $srtCue = (new SrtCue)
             ->setTimingFromString('00:00:30,123 --> 00:00:35,456')

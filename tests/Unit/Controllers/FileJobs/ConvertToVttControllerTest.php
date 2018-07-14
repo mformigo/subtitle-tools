@@ -14,25 +14,25 @@ class ConvertToVttControllerTest extends TestCase
     /** @test */
     function it_converts_files_to_vtt()
     {
-        $this->convertAndSnapshot('TextFiles/three-cues.ass');
+        $this->convertAndSnapshot('text/ass/three-cues.ass');
     }
 
     /** @test */
     function it_can_convert_a_vtt_with_indexes_to_vtt()
     {
-        $this->convertAndSnapshot('TextFiles/Normal/normal02.vtt');
+        $this->convertAndSnapshot('text/vtt/normal02.vtt');
     }
 
     /** @test */
     function it_can_convert_a_vtt_without_indexes_to_vtt()
     {
-        $this->convertAndSnapshot('TextFiles/Normal/normal03.vtt');
+        $this->convertAndSnapshot('text/vtt/normal03.vtt');
     }
 
     /** @test */
     function it_can_convert_otranscribe_files_to_vtt()
     {
-        $this->convertAndSnapshot('TextFiles/otranscribe/otranscribe-1.txt');
+        $this->convertAndSnapshot('text/otranscribe/otranscribe-1.txt');
     }
 
     private function convertAndSnapshot($filePath)

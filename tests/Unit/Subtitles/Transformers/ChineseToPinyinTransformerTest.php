@@ -11,7 +11,7 @@ class ChineseToPinyinTransformerTest extends TestCase
     /** @test */
     function it_transforms_cue_lines_to_pinyin()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues-chinese.srt");
+        $srt = new Srt("{$this->testFilesStoragePath}text/srt/three-cues-chinese.srt");
 
         $transformer = app(ChineseToPinyinTransformer::class);
 
@@ -32,7 +32,7 @@ class ChineseToPinyinTransformerTest extends TestCase
     /** @test */
     function it_returns_false_if_no_changes_are_made()
     {
-        $srt = new Srt("{$this->testFilesStoragePath}TextFiles/three-cues.srt");
+        $srt = new Srt("{$this->testFilesStoragePath}text/srt/three-cues.srt");
 
         $transformer = app(ChineseToPinyinTransformer::class);
 

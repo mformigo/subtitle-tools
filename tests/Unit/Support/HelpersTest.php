@@ -9,7 +9,10 @@ class HelpersTest extends TestCase
     /** @test */
     function file_mime_returns_the_file_mime()
     {
-        $this->assertSame('text/plain', file_mime(base_path("tests/Storage/TextEncodings/big5.txt")));
+        $this->assertSame(
+            'text/plain',
+            file_mime($this->testFilesStoragePath.'sub-idx/error-and-nl.idx')
+        );
     }
 
     /** @test */

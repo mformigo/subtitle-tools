@@ -15,11 +15,11 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/Normal/normal01.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/normal01.smi');
 
         $this->assertSame('normal01', $smi->getFileNameWithoutExtension());
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/Normal/normal01.smi", $smi->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/smi/normal01.smi', $smi->getFilePath());
     }
 
     /** @test */
@@ -27,7 +27,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/three-cues.smi');
 
         $genericSub = $smi->toGenericSubtitle();
 
@@ -35,7 +35,7 @@ class SmiTest extends TestCase
 
         $this->assertFalse($genericSub instanceof Smi);
 
-        $this->assertSame("{$this->testFilesStoragePath}TextFiles/three-cues.smi", $genericSub->getFilePath());
+        $this->assertSame($this->testFilesStoragePath.'text/smi/three-cues.smi', $genericSub->getFilePath());
 
         $this->assertSame("three-cues", $genericSub->getFileNameWithoutExtension());
 
@@ -61,7 +61,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi01-big-mess.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/smi01-big-mess.smi');
 
         $genericSub = $smi->toGenericSubtitle();
 
@@ -87,7 +87,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi03-big-mess-no-line-breaks.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/smi03-big-mess-no-line-breaks.smi');
 
         $genericSub = $smi->toGenericSubtitle();
 
@@ -113,7 +113,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi02.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/smi02.smi');
 
         $genericSub = $smi->toGenericSubtitle();
 
@@ -130,7 +130,7 @@ class SmiTest extends TestCase
         $this->assertTrue($smi instanceof ShiftsCues);
         $this->assertFalse($smi instanceof PartialShiftsCues);
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/three-cues.smi');
 
         $genericCues = $smi->toGenericSubtitle()->getCues();
         $this->assertSame(3, count($genericCues));
@@ -176,7 +176,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/three-cues.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/three-cues.smi');
 
         $genericCues = $smi->toGenericSubtitle()->getCues();
 
@@ -195,7 +195,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi01-big-mess.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/smi01-big-mess.smi');
 
         $genericSub = $smi->toGenericSubtitle();
         $genericCues = $genericSub->getCues();
@@ -253,7 +253,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi03-big-mess-no-line-breaks.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/smi03-big-mess-no-line-breaks.smi');
 
         $genericSub = $smi->toGenericSubtitle();
         $genericCues = $genericSub->getCues();
@@ -311,7 +311,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/SubtitleParsing/smi-04-regression-start-and-end-time.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/smi-04-regression-start-and-end-time.smi');
 
         $genericSub = $smi->toGenericSubtitle();
 
@@ -329,7 +329,7 @@ class SmiTest extends TestCase
     {
         $smi = new Smi();
 
-        $smi->loadFile("{$this->testFilesStoragePath}TextFiles/FormatDetection/smi05--no-sami-tag.smi");
+        $smi->loadFile($this->testFilesStoragePath.'text/smi/smi05--no-sami-tag.smi');
 
         $genericSub = $smi->toGenericSubtitle();
 
