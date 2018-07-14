@@ -106,6 +106,12 @@ abstract class FileJobController extends Controller
         // download response could strip the whole name.
         $name = FileName::watermark($name);
 
+        // TODO: test + handle this neatly in the query above
+        // Sometimes there is no "outputStoredFile" at this point.
+        if (! $fileJob->outputStoredFile) {
+            abort(404);
+        }
+
         return response()->download($fileJob->outputStoredFile->file_path, $name);
     }
 

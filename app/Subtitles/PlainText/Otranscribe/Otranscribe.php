@@ -12,7 +12,7 @@ class Otranscribe extends TextFile implements TransformsToGenericSubtitle
 {
     use WithFileLines;
 
-    public function toGenericSubtitle()
+    public function toGenericSubtitle(): GenericSubtitle
     {
         $genericSubtitle = new GenericSubtitle();
 
@@ -25,6 +25,8 @@ class Otranscribe extends TextFile implements TransformsToGenericSubtitle
         $cueLines = array_filter($this->lines, function ($line) {
             return OtranscribeCue::isTimingString($line);
         });
+
+        sort($cueLines);
 
         /** @var GenericSubtitleCue $previousCue */
         $previousCue = null;

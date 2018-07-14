@@ -103,7 +103,7 @@ class TextFileFormatTest extends TestCase
     /** @test */
     function it_matches_otranscribe_files()
     {
-        $this->assertTextFileFormat(Otranscribe::class, $this->testFilesStoragePath.'text/otranscribe/otranscribe-1.txt');
+        $this->assertTextFileFormat(Otranscribe::class, $this->testFilesStoragePath.'text/otranscribe/otranscribe-01.txt');
     }
 
     /** @test */

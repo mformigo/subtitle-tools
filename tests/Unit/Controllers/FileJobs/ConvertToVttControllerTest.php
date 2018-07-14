@@ -32,7 +32,7 @@ class ConvertToVttControllerTest extends TestCase
     /** @test */
     function it_can_convert_otranscribe_files_to_vtt()
     {
-        $this->convertAndSnapshot('text/otranscribe/otranscribe-1.txt');
+        $this->convertAndSnapshot('text/otranscribe/otranscribe-01.txt');
     }
 
     private function convertAndSnapshot($filePath)
