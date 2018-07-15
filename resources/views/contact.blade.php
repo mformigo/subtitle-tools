@@ -34,9 +34,9 @@
     <form class="mt-4 w-full max-w-sm" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
-        <input class="field block w-full mb-2" type="text" name="email" value="{{ old('email') }}" placeholder="Email (optional)">
+        <input class="field block w-full mb-2" type="text" name="em" value="{{ old('em') }}" placeholder="Email (optional)">
 
-        <textarea class="field block w-full h-24" name="message" placeholder="Your message here..." required></textarea>
+        <textarea class="field block w-full h-24" name="mg" placeholder="Your message here..." required></textarea>
 
         <button class="tool-btn block ml-auto">Send message</button>
     </form>

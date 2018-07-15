@@ -14,16 +14,16 @@ class ContactController extends Controller
     public function post(Request $request)
     {
         $request->validate([
-            'message' => 'required',
+            'mg' => 'required',
         ]);
 
-        $outputFilePath = storage_path('logs/feedback.log');
-
-        $email = $request->get('email') ?? '(none)';
+        // These strange input names are an attempt to prevent spam bots.
+        $message = $request->get('mg');
+        $email   = $request->get('em') ?? '(none)';
 
         file_put_contents(
-            $outputFilePath,
-            '<h4>'.now().' -- '.$request->ip().'</h4><pre>email: '.e($email)."\r\n\r\n".e($request->get('message'))."</pre>\r\n\r\n<hr>",
+            storage_path('logs/feedback.log'),
+            '<h4>'.now().' -- '.$request->ip().'</h4><pre>email: '.e($email)."\r\n\r\n".e($message)."</pre>\r\n\r\n<hr>",
             FILE_APPEND
         );
 
