@@ -41,6 +41,8 @@ class MergeSubtitlesJob extends FileJob
             $outputSubtitle = $this->simpleMerge($baseSubtitle, $mergeSubtitle);
         } elseif ($this->options->nearestCueThresholdMode()) {
             $outputSubtitle = $this->nearestCueThresholdMerge($baseSubtitle, $mergeSubtitle);
+        } elseif ($this->options->glueEndToEndMode()) {
+            $outputSubtitle = $this->glueEndToEndMerge($baseSubtitle, $mergeSubtitle);
         } else {
             throw new RuntimeException('Invalid mode');
         }
@@ -115,6 +117,27 @@ class MergeSubtitlesJob extends FileJob
             if ($this->options->topBottomMode()) {
                 $addedCue->stylePositionTop();
             }
+        }
+
+        return $baseSubtitle
+            ->removeEmptyCues()
+            ->removeDuplicateCues();
+    }
+
+    /**
+     * @param $baseSubtitle ContainsGenericCues|TextFile
+     * @param $mergeSubtitle ContainsGenericCues|TextFile
+     *
+     * @return ContainsGenericCues|TextFile
+     */
+    protected function glueEndToEndMerge($baseSubtitle, $mergeSubtitle)
+    {
+        $baseCues = $baseSubtitle->getCues();
+
+        $glueOffset = ($baseCues ? end($baseCues)->getStartMs() : 0) + $this->options->glueOffset;
+
+        foreach ($mergeSubtitle->getCues() as $mergeCue) {
+            $baseSubtitle->addCue($mergeCue)->shift($glueOffset);
         }
 
         return $baseSubtitle

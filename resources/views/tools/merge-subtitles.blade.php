@@ -53,6 +53,16 @@
                     Threshold (ms):
                     <input id="threshold-input" class="field py-1 w-24" type="number" min="1" name="nearest_cue_threshold" value="{{ old('nearest_cue_threshold', 1000) }}" required>
                 </label>
+
+                <label class="block cursor-pointer my-3">
+                    <input id="glue-mode" type="radio" name="mode" onchange="toggleThresholdField()" value="glue" {{ old('mode') === 'glue' ? 'checked' : '' }}>
+                    Glue end-to-end
+                </label>
+
+                <label id="glue-offset-field" class="block cursor-pointer hidden" title="Glue offset in milliseconds">
+                    Glue offset (ms):
+                    <input id="glue-offset-input" class="field py-1 w-24" type="number" name="glue_offset" value="{{ old('glue_offset', 1000) }}" required>
+                </label>
             </div>
         @endslot
 
@@ -81,11 +91,14 @@
     <h4>Simple merge</h4>
     <p>
         Using the simple mode, the merge file will simply be merged into the base file.
+        The cues from both files are combined into one file.
+        Cue style and cue timings are not changed.
     </p>
 
     <h4>Top and Bottom merge</h4>
     <p>
-        The top and bottom mode will merge the merge file into the base file and add style effects so the cues appear on top of the screen.
+        Similar to the simple merge mode, this mode combines the cues of both files.
+        It will add style effects so that the cues of the merge subtitle appear on top of the screen.
         Keep in mind that not all video players support showing subtitles on top of the screen.
     </p>
 
@@ -99,6 +112,19 @@
         This mode is useful when you are combining two subtitles, and the cues from the base file appear slightly earlier or slightly later than the cues from the merge file.
     </p>
 
+    <h4>Glue subtitles end-to-end</h4>
+    <p>
+        This mode works differently than the other modes.
+        The merge file is glued to the end of the base file, all the cue timings of the merge file are shifted to appear after the last cue from the base file has been shown.
+        The cues and timings from the base file are not changed.
+        The glue offset is used to set the time between the last cue from the base file, and the first cue from the merge file.
+        <br><br>
+        An example usage of this mode is if you have subtitles for cd1 and cd2, but your movie is one file.
+        <br><br>
+        Keep in mind that it might be very difficult to get subtitles that are in sync with the video when using this mode.
+        You might have to manually sync the subtitles with your video player.
+        If you want to permanently fix the sync of your glued subtitles, you can do this with the <a href="{{ route('shiftPartial') }}">partial shifter tool.</a>
+    </p>
 
 @endsection
 
@@ -114,6 +140,17 @@
 
                 // prevent validation errors when the input is hidden.
                 document.getElementById('threshold-input').value = 1000;
+            }
+
+            var glueOffsetField = document.getElementById('glue-offset-field');
+
+            if (document.getElementById('glue-mode').checked) {
+                glueOffsetField.classList.remove('hidden');
+            } else {
+                glueOffsetField.classList.add('hidden');
+
+                // prevent validation errors when the input is hidden.
+                document.getElementById('glue-offset-input').value = 1000;
             }
         }
 
