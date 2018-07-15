@@ -60,6 +60,9 @@
 
         @include('layout.footer')
 
+        <script src="{{ mix('js/app.js') }}"></script>
+        @stack('footer')
+
         <script>
             function adBlockDetected() {
                 var elements = document.getElementsByClassName("anti-adblock-ad");
@@ -71,9 +74,6 @@
 
             (typeof blockAdBlock === "undefined") ? adBlockDetected() : blockAdBlock.onDetected(adBlockDetected);
         </script>
-
-        <script src="{{ mix('js/app.js') }}"></script>
-        @stack('footer')
 
     </body>
 </html>
