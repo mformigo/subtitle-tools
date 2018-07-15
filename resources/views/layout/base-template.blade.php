@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,8 +52,6 @@
 
         @include('layout.header')
 
-        @include('helpers.anti-adblock-banner')
-
         @include('layout.global-notification')
 
         <div id="app" class="container mx-auto px-4">
@@ -61,6 +59,18 @@
         </div>
 
         @include('layout.footer')
+
+        <script>
+            function adBlockDetected() {
+                var elements = document.getElementsByClassName("anti-adblock-ad");
+
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].classList.remove("hidden");
+                }
+            }
+
+            (typeof blockAdBlock === "undefined") ? adBlockDetected() : blockAdBlock.onDetected(adBlockDetected);
+        </script>
 
         <script src="{{ mix('js/app.js') }}"></script>
         @stack('footer')

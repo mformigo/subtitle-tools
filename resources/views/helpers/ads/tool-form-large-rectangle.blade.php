@@ -6,6 +6,8 @@
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-@else
-    <ins style="display:inline-block;width:336px;height:280px;border:1px solid black;"></ins>
 @endif
+
+<div class="anti-adblock-ad inline-block hidden" style="width:336px;height:280px;border:1px solid black;">
+    @include('helpers.anti-adblock-message')
+</div>
