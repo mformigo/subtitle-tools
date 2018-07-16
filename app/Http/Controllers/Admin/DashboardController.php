@@ -95,6 +95,8 @@ class DashboardController extends Controller
         $dependencies['upload_max_filesize: '.$uploadMaxFileSize] = (int) $uploadMaxFileSize >= 100;
         $dependencies['max_file_uploads: '.$maxFileUploads]       = (int) $maxFileUploads >= 100;
 
+        $dependencies['Multibyte support'] = function_exists('mb_detect_encoding');
+
         $dependencies['Zip archives'] = class_exists(\ZipArchive::class);
 
         $dependencies['Rar archives (PECL)'] = class_exists(\RarArchive::class);
