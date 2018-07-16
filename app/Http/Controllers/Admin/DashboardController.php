@@ -24,10 +24,6 @@ class DashboardController extends Controller
             'diskUsageWarning' => $diskUsageWarning,
             'dependencies'     => $this->getDependenciesInfo(),
             'failedJobCount'   => DB::table('failed_jobs')->count(),
-            'phpVars' => [
-                'max_post_size'       => ini_get('post_max_size'),
-                'upload_max_filesize' => ini_get('upload_max_filesize'),
-            ],
         ]);
     }
 
@@ -91,7 +87,19 @@ class DashboardController extends Controller
     {
         $dependencies = [];
 
-        $dependencies['PHP Rar archives (PECL)'] = class_exists(\RarArchive::class);
+        $postMaxSize = ini_get('post_max_size');
+        $uploadMaxFileSize = ini_get('upload_max_filesize');
+        $maxFileUploads = ini_get('max_file_uploads');
+
+        $dependencies['post_max_size: '.$postMaxSize]             = (int) $postMaxSize >= 100;
+        $dependencies['upload_max_filesize: '.$uploadMaxFileSize] = (int) $uploadMaxFileSize >= 100;
+        $dependencies['max_file_uploads: '.$maxFileUploads]       = (int) $maxFileUploads >= 100;
+
+        $dependencies['Zip archives'] = class_exists(\ZipArchive::class);
+
+        $dependencies['Rar archives (PECL)'] = class_exists(\RarArchive::class);
+
+        $dependencies['Curl extension'] = function_exists('curl_exec');
 
         $dependencies['PHP GD (image library)'] = function_exists('imagecreatetruecolor');
 

@@ -68,12 +68,6 @@
 
             <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
 
-            @foreach($phpVars as $name => $value)
-                <div class="pl-4 border-l-8 border-grey-lighter">{{ $value }} {{ $name }}</div>
-            @endforeach
-
-            <div class="mb-2"></div>
-
             @foreach($dependencies as $name => $isLoaded)
                 <div class="pl-4 border-l-8 {{ $isLoaded ? 'border-green' : 'border-red' }}">
                     {{ $name }}
