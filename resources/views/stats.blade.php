@@ -46,7 +46,7 @@
 
     <h2>Last month</h2>
     <p class="mb-8">
-        These are the tool statistics of {{ now()->format('F') }}.
+        These are the tool statistics of {{ now()->startOfMonth()->subDays(1)->format('F') }}.
     </p>
 
     <div class="overflow-x-auto">
