@@ -11,6 +11,8 @@ Route::view('/how-to-fix-vlc-subtitles-displaying-as-boxes', 'blogs.fix-vlc-subt
 Route::get('/contact')->uses('ContactController@index')->name('contact');
 Route::post('/contact')->uses('ContactController@post')->name('contact.post');
 
+Route::get('/stats')->uses('StatsController@index')->name('stats');
+
 Route::post('/file-group-archive/{urlKey}')->uses('DownloadController@fileGroupArchive')->name('fileGroupArchiveDownload');
 Route::get('/file-group-archive/{urlKey}', function ($urlKey) {
     $fileGroup = \App\Models\FileGroup::where('url_key', $urlKey)->firstOrFail();

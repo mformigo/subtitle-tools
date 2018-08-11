@@ -24,6 +24,7 @@ return [
     'title.mergeSubtitles'       => 'Subtitle merger: combine two subtitles into a single file | Subtitle Tools',
     'title.404'                  => '404 - Page not Found | Subtitle Tools',
     'title.error'                => 'Whoops | Subtitle Tools',
+    'title.stats'                => 'Statistics | Subtitle Tools',
     'title.blogVlcSubtitleBoxes' => 'How to fix subtitles in VLC: no more weird symbols, boxes or question marks',
 
 //--------------160-characters------------'################################################################################################################################################################'---------------------------
@@ -44,6 +45,7 @@ return [
     'description.mergeSubtitles'       => 'Combine two subtitles into a single file. Useful for creating multilanguage subtitles. Create top and bottom subtitles online. Combine cd1 and cd2 subtitles.',
     'description.404'                  => 'This page could not be found',
     'description.error'                => 'Whoops!',
+    'description.stats'                => 'SubtitleTools.com usage statistics.',
     'description.blogVlcSubtitleBoxes' => 'A simple guide on how to fix VLC displaying srt subtitles as weird symbols, boxes or question marks. Use subtitles with unicode UTF-8 encoding and use a unicode font.',
 
 
@@ -64,6 +66,7 @@ return [
     'keywords.mergeSubtitles'  => 'merge, combine, two, one, subtitle, subtitles, simple, top, bottom, nearest, cue, file, online, free, easy, windows, mac, linux, create', 'cd1', 'cd2', 'glue', 'end-to-end',
     'keywords.404'             => '404, not, found',
     'keywords.error'           => 'whoops',
+    'keywords.stats'           => 'statistics, numbers, stats',
     'keywords.blogVlcSubtitleBoxes' => 'utf-8, unicode, fix, vlc, subtitles, srt, display, can\'t read, font, boxes, squares, question marks, weird symbols, unreadable, broken, VLC',
 
 ];

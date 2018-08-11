@@ -4,7 +4,7 @@
         <div class="flex flex-col">
             <span class="mb-6">
                 <strong class="block">Donate</strong>
-                <span class="block w-48">Support me and the site with a small donation</span>
+                <span class="block w-48 sm:mx-0 mx-auto">Support me and the site with a small donation</span>
             </span>
 
             <form class="mx-auto mb-4" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -44,10 +44,10 @@
 
         </div>
 
-        <div class="sm:mt-0 mt-4">
-            <a title="{{ __('nav.item.contact') }}" href="{{ route('contact') }}">
-                Requests / Feedback
-            </a>
+        <div class="flex flex-col sm:mt-0 mt-4 sm:text-right text-center">
+            <a class="mb-2 text-black hover:underline" href="{{ route('contact') }}">Contact / Feedback / Requests</a>
+
+            <a class="mb-2 text-black hover:underline" href="{{ route('stats') }}">Statistics</a>
         </div>
 
     </div>
