@@ -35,8 +35,9 @@ class ContactControllerTest extends TestCase
     function it_sends_feedback()
     {
         $this->post(route('contact.post'), [
-            'mg' => 'Message Text',
-            'em' => 'Email Text',
+            'message' => 'Message Text',
+            'email'   => 'Email Text',
+            'captcha' => '6',
         ])
         ->assertStatus(200)
         ->assertSessionHasNoErrors()
@@ -57,17 +58,30 @@ class ContactControllerTest extends TestCase
     function message_is_required()
     {
         $this->post(route('contact.post'), [
-            'em' => 'Email Text',
+            'email'   => 'Email Text',
+            'captcha' => '6',
         ])
         ->assertStatus(302)
-        ->assertSessionHasErrors('mg');
+        ->assertSessionHasErrors('message');
+    }
+
+    /** @test */
+    function captcha_must_be_correct()
+    {
+        $this->post(route('contact.post'), [
+            'message' => 'content',
+            'captcha' => '4',
+        ])
+        ->assertStatus(302)
+        ->assertSessionHasErrors('captcha');
     }
 
     /** @test */
     function email_field_is_optional()
     {
         $this->post(route('contact.post'), [
-            'mg' => 'Message Text',
+            'message' => 'Message Text',
+            'captcha' => '6',
         ])
         ->assertStatus(200)
         ->assertSessionHasNoErrors()
@@ -88,7 +102,8 @@ class ContactControllerTest extends TestCase
     function it_has_the_correct_input_names()
     {
         $this->get(route('contact'))
-            ->assertSee('name="mg"')
-            ->assertSee('name="em"');
+            ->assertSee('name="message"')
+            ->assertSee('name="email"')
+            ->assertSee('name="captcha"');
     }
 }

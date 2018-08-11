@@ -14,12 +14,12 @@ class ContactController extends Controller
     public function post(Request $request)
     {
         $request->validate([
-            'mg' => 'required',
+            'message' => 'required',
+            'captcha' => 'required|numeric|regex:/^6$/',
         ]);
 
-        // These strange input names are an attempt to prevent spam bots.
-        $message = $request->get('mg');
-        $email   = $request->get('em') ?? '(none)';
+        $message = $request->get('message');
+        $email   = $request->get('email') ?? '(none)';
 
         file_put_contents(
             storage_path('logs/feedback.log'),

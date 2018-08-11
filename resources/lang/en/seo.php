@@ -8,7 +8,7 @@ return [
 
 //---------------60-characters------'############################################################'---------------------------
     'title.cleanSrt'             => 'Srt cleaner: remove formatting from subtitles | Subtitle Tools',
-    'title.contact'              => 'Contact: Send us Feedback | Subtitle Tools',
+    'title.contact'              => 'Contact: send me a message | Subtitle Tools',
     'title.convertToSrt'         => 'Convert Subtitles to Srt: easy online format converter | Subtitle Tools',
     'title.convertToVtt'         => 'Convert Subtitles to Vtt: easy online format converter | Subtitle Tools',
     'title.convertToPlainText'   => 'Convert subtitles to plain text: easy online tool | Subtitle Tools',
@@ -28,7 +28,7 @@ return [
 
 //--------------160-characters------------'################################################################################################################################################################'---------------------------
     'description.cleanSrt'             => 'Removes formatting, brackets (curly, square or angle brackets), html and other effects from subrip files. Can also clean up SDH (hearing impaired) subtitles. Easy online tool for fixing srt subtitles',
-    'description.contact'              => 'We appreciate all feedback! Contact us if you have any suggestions, or if you want to report a bug',
+    'description.contact'              => 'If you want to give feedback, or simply send me a message, you can do that using the form on this page',
     'description.convertToSrt'         => 'This free online converter can change many subtitle formats to srt, including ass to srt, webvtt to srt and smi to srt. Works on Windows, Mac and Linux',
     'description.convertToVtt'         => 'Convert subtitles to WebVtt. This online tool can convert many formats, including srt, ass and sub. Supports batch subtitle conversions. Works on Windows, Mac and Linux',
     'description.convertToPlainText'   => 'Online tool that extracts text from subtitle files. Create a movie transcript by removing all timestamps and formatting from subtitles. Supports srt, ass, ssa, smi, sub and webvtt formats.',
