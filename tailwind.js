@@ -62,7 +62,8 @@ module.exports = {
         '64': '16rem',
     }),
 
-    maxHeight: Object.assign(defaultConfig.negativeMargin, {
+    maxHeight: Object.assign(defaultConfig.maxHeight, {
+        '8': '2rem',
         '10': '2.5rem',
         '12': '3rem',
         '14': '3.5rem',
