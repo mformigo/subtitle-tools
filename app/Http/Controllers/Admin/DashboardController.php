@@ -17,7 +17,12 @@ class DashboardController extends Controller
         $diskUsage = file_exists($diskUsageFilePath) ? file_get_contents($diskUsageFilePath) : 'NONE (100%)';
         $diskUsageWarning = str_before(str_after($diskUsage, '('), ')') > 60;
 
+        $feedbackFilePath = storage_path('logs/feedback.log');
+
+        $feedbackContent = file_exists($feedbackFilePath) ? read_lines($feedbackFilePath) : [];
+
         return view('admin.dashboard', [
+            'feedbackLines'    => $feedbackContent,
             'logs'             => $logsWithErrors,
             'supervisor'       => $this->getSupervisorInfo(),
             'diskUsage'        => strtolower($diskUsage),

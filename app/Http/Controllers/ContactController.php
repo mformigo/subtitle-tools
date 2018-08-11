@@ -23,7 +23,7 @@ class ContactController extends Controller
 
         file_put_contents(
             storage_path('logs/feedback.log'),
-            '<h4>'.now().' -- '.$request->ip().'</h4><pre>email: '.e($email)."\r\n\r\n".e($message)."</pre>\r\n\r\n<hr>",
+            '<strong>'.now()->format('l, \t\h\e jS \\of F \a\t H:i')."</strong><br>".$request->ip().'<br><p>email: '.e($email)."<br><br>".e($message)."</p><br><br>",
             FILE_APPEND
         );
 

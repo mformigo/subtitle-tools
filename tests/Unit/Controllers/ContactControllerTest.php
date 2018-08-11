@@ -46,11 +46,7 @@ class ContactControllerTest extends TestCase
         $feedbackLines = read_lines($this->feedbackLogFilePath);
 
         $this->assertSame([
-            '<h4>2018-07-14 12:30:00 -- 127.0.0.1</h4><pre>email: Email Text',
-            '',
-            'Message Text</pre>',
-            '',
-            '<hr>',
+            '<strong>Saturday, the 14th of July at 12:30</strong><br>127.0.0.1<br><p>email: Email Text<br><br>Message Text</p><br><br>',
         ], $feedbackLines);
     }
 
@@ -90,11 +86,7 @@ class ContactControllerTest extends TestCase
         $feedbackLines = read_lines($this->feedbackLogFilePath);
 
         $this->assertSame([
-            '<h4>2018-07-14 12:30:00 -- 127.0.0.1</h4><pre>email: (none)',
-            '',
-            'Message Text</pre>',
-            '',
-            '<hr>',
+            '<strong>Saturday, the 14th of July at 12:30</strong><br>127.0.0.1<br><p>email: (none)<br><br>Message Text</p><br><br>'
         ], $feedbackLines);
     }
 
