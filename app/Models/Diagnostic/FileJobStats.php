@@ -41,7 +41,8 @@ class FileJobStats extends Model
 
         ksort($tools);
 
-        return $tools;
+        // make sure the "*" array item is the last one
+        return array_reverse($tools, true);
     }
 
     public static function yesterday()

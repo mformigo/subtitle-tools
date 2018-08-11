@@ -33,8 +33,8 @@
                 <div class="w-1/4">Total file size</div>
             </div>
             @foreach($fileJobStatsYesterday as $toolRoute => $toolStats)
-                <div class="flex max-w-md p-1 hover:bg-grey-lighter">
-                    <div class="w-1/4">{{ $toolRoute }}</div>
+                <div class="flex max-w-md p-1 hover:bg-grey-lighter {{ $loop->last ? 'font-bold' : '' }}">
+                    <div class="w-1/4">{{ __('tools.stats.'.$toolRoute) }}</div>
                     <div class="w-1/4">{{ number_format($toolStats['times_used']) }}</div>
                     <div class="w-1/4">{{ number_format($toolStats['total_files']) }}</div>
                     <div class="w-1/4">{{ format_file_size($toolStats['total_size']) }}</div>
@@ -58,8 +58,8 @@
                 <div class="w-1/4">Total file size</div>
             </div>
             @foreach($fileJobStatsLastMonth as $toolRoute => $toolStats)
-                <div class="flex max-w-md p-1 hover:bg-grey-lighter">
-                    <div class="w-1/4">{{ $toolRoute }}</div>
+                <div class="flex max-w-md p-1 hover:bg-grey-lighter {{ $loop->last ? 'font-bold' : '' }}">
+                    <div class="w-1/4">{{ __('tools.stats.'.$toolRoute) }}</div>
                     <div class="w-1/4">{{ number_format($toolStats['times_used']) }}</div>
                     <div class="w-1/4">{{ number_format($toolStats['total_files']) }}</div>
                     <div class="w-1/4">{{ format_file_size($toolStats['total_size']) }}</div>
@@ -84,8 +84,8 @@
                 <div class="w-1/4">Total file size</div>
             </div>
             @foreach($fileJobStatsAllTime as $toolRoute => $toolStats)
-                <div class="flex max-w-md p-1 hover:bg-grey-lighter">
-                    <div class="w-1/4">{{ $toolRoute }}</div>
+                <div class="flex max-w-md p-1 hover:bg-grey-lighter {{ $loop->last ? 'font-bold' : '' }}">
+                    <div class="w-1/4">{{ __('tools.stats.'.$toolRoute) }}</div>
                     <div class="w-1/4">{{ number_format($toolStats['times_used']) }}</div>
                     <div class="w-1/4">{{ number_format($toolStats['total_files']) }}</div>
                     <div class="w-1/4">{{ format_file_size($toolStats['total_size']) }}</div>
@@ -93,8 +93,5 @@
             @endforeach
         </div>
     </div>
-
-    {{--fileJobStatsLastMonth--}}
-    {{--fileJobStatsAllTime--}}
 
 @endsection
