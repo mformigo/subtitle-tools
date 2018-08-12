@@ -15,7 +15,7 @@ class ContactController extends Controller
     {
         $request->validate([
             'message' => 'required',
-            'captcha' => 'required|numeric|regex:/^6$/',
+            'captcha' => 'required|numeric|regex:/^5$/',
         ]);
 
         $message = $request->get('message');

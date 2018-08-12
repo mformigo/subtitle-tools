@@ -43,7 +43,7 @@
         <textarea class="field block w-full h-24" name="message" placeholder="Your message here..." required>{{ old('message') }}</textarea>
 
         <div class="flex items-center mt-2">
-            <div class="mr-4">3 + 3 = </div>
+            <div id="hard-math" class="mr-4">3</div>
 
             <input type="text" class="field w-10" name="captcha" placeholder="?" required>
 
@@ -59,3 +59,13 @@
     </p>
 
 @endsection
+
+@push('footer')
+    <script>
+        setTimeout(function () {
+            var el = document.getElementById('hard-math');
+
+            el.innerText += ' + 2 =';
+        }, 1000)
+    </script>
+@endpush

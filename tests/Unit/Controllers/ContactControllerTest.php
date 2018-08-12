@@ -37,7 +37,7 @@ class ContactControllerTest extends TestCase
         $this->post(route('contact.post'), [
             'message' => 'Message Text',
             'email'   => 'Email Text',
-            'captcha' => '6',
+            'captcha' => '5',
         ])
         ->assertStatus(200)
         ->assertSessionHasNoErrors()
@@ -55,7 +55,7 @@ class ContactControllerTest extends TestCase
     {
         $this->post(route('contact.post'), [
             'email'   => 'Email Text',
-            'captcha' => '6',
+            'captcha' => '5',
         ])
         ->assertStatus(302)
         ->assertSessionHasErrors('message');
@@ -66,7 +66,7 @@ class ContactControllerTest extends TestCase
     {
         $this->post(route('contact.post'), [
             'message' => 'content',
-            'captcha' => '4',
+            'captcha' => '6',
         ])
         ->assertStatus(302)
         ->assertSessionHasErrors('captcha');
@@ -77,7 +77,7 @@ class ContactControllerTest extends TestCase
     {
         $this->post(route('contact.post'), [
             'message' => 'Message Text',
-            'captcha' => '6',
+            'captcha' => '5',
         ])
         ->assertStatus(200)
         ->assertSessionHasNoErrors()
