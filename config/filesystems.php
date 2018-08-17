@@ -53,7 +53,6 @@ return [
             'root'   => storage_path('testing'),
         ],
 
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
@@ -61,13 +60,9 @@ return [
             'visibility' => 'public',
         ],
 
-        's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'key' => env('DROPBOX_ACCESS_TOKEN'),
         ],
 
     ],

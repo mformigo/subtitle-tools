@@ -12,9 +12,11 @@
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^3.0",
         "sjorso/archive": "^1.0",
+        "sjorso/configless-laravel-backup": "^0.0.1",
         "sjorso/pinyin": "^1.0",
         "sjorso/sup": "^0.0",
         "sjorso/text-file": "^1.0",
+        "spatie/flysystem-dropbox": "^1.0",
         "spatie/laravel-sitemap": "^4.0",
         "thiagoalessio/tesseract_ocr": "dev-master#161ae110a206096dbae99d26640411728f8fd68e"
     },

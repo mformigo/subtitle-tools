@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('st:collect-meta'        )->everyFiveMinutes();
         $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
         $schedule->command('st:collect-file-job-stats')->dailyAt('1:35');
+
+        $schedule->command('backup:run-configless --only-db --disable-notifications --set-destination-disks=dropbox')->dailyAt('01:03');
     }
 
     protected function commands()
