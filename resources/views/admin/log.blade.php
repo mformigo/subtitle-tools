@@ -2,53 +2,52 @@
 
 @section('content')
 
-    <div id="showLog">
-        <div class="container">
-            <h1>{{ $name }}</h1>
-            <br/>
+    <div class="font-mono overflow-x-scroll text-xs mx-4">
+        <h1>{{ $name }}</h1>
 
-            @php
-                $inStacktrace = false;
-                $entriesCounter = 0;
-            @endphp
 
-            @foreach($lines as $line)
+        @php
+            $inStacktrace = false;
+            $entriesCounter = 0;
+        @endphp
 
-                @if($inStacktrace)
-                    {{ $line }}<br/>
+        @foreach($lines as $line)
 
-                    @if($line === '"} ')
-                        @php $inStacktrace = false; @endphp
-                        </div>
-                    @endif
+            @if($inStacktrace)
+                {{ $line }}<br/>
 
-                @elseif(starts_with($line, '['))
-
-                    @if($line === '[stacktrace]')
-                        @php
-                            $inStacktrace = true;
-                        @endphp
-                        <div class="log-stacktrace hidden" id="LogEntry{{ $entriesCounter++ }}">
-                    @else
-                        @php
-                            list($timeStamp, $message) = explode('] ', substr($line, 1), 2);
-                        @endphp
-
-                        <hr/>
-
-                        <span class="toggle-stacktrace-button" onclick="toggleStacktrace({{ $entriesCounter }})">+</span>
-
-                        <strong>{{ \Carbon\Carbon::parse($timeStamp)->diffForHumans() }}</strong> &nbsp;&nbsp;&nbsp; {{ $timeStamp }}<br/>
-                        {{ $message }} <br/>
-
-                        <br/>
-                    @endif
-
+                @if($line === '"} ')
+                    @php $inStacktrace = false; @endphp
+                    </div>
+                    </div>
                 @endif
 
-            @endforeach
+            @elseif(starts_with($line, '['))
 
-        </div>
+                @if($line === '[stacktrace]')
+                    @php
+                        $inStacktrace = true;
+                    @endphp
+                    <div class="hidden overflow-x-scroll whitespace-no-wrap" id="LogEntry{{ $entriesCounter++ }}">
+                @else
+                    @php
+                        list($timeStamp, $message) = explode('] ', substr($line, 1), 2);
+                    @endphp
+
+                    <div class="mb-8">
+
+                    <span class="cursor-pointer" onclick="toggleStacktrace({{ $entriesCounter }})">+</span>
+
+                    <strong>{{ \Carbon\Carbon::parse($timeStamp)->diffForHumans() }}</strong> &nbsp;&nbsp;&nbsp; {{ $timeStamp }}<br/>
+                    <input type="text" class="w-full bg-grey-lighter" value="{{ $message }}" readonly>
+
+                    <br/>
+                @endif
+
+            @endif
+
+        @endforeach
+
     </div>
 
 @endsection
