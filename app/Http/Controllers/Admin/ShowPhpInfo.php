@@ -6,6 +6,10 @@ class ShowPhpInfo extends Controller
 {
     public function __invoke()
     {
+        dump(
+            opcache_get_status(false)
+        );
+
         phpinfo();
     }
 }

@@ -100,6 +100,8 @@ class DashboardController extends Controller
         $dependencies['upload_max_filesize: '.$uploadMaxFileSize] = (int) $uploadMaxFileSize >= 100;
         $dependencies['max_file_uploads: '.$maxFileUploads]       = (int) $maxFileUploads >= 100;
 
+        $dependencies['Opcache'] = function_exists('opcache_get_status') && (opcache_get_status()['opcache_enabled'] ?? false);
+
         $dependencies['Multibyte support'] = extension_loaded('mbstring');
 
         $dependencies['Zip archives'] = class_exists(\ZipArchive::class);
