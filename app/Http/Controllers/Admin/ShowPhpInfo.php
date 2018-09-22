@@ -11,5 +11,9 @@ class ShowPhpInfo extends Controller
         );
 
         phpinfo();
+
+        dump('Start of cli');
+
+        echo '<code>'.nl2br(shell_exec("php -r 'phpinfo();'")).'</code>';
     }
 }
