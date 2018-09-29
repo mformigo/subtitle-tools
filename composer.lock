@@ -439,16 +439,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.5",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3"
+                "reference": "0578b32b30b22de3e8664f797cf846fc9246f786"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/54859fabea8b3beecbb1a282888d5c990036b9e3",
-                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/0578b32b30b22de3e8664f797cf846fc9246f786",
+                "reference": "0578b32b30b22de3e8664f797cf846fc9246f786",
                 "shasum": ""
             },
             "require": {
@@ -492,7 +492,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-08-16T20:49:45+00:00"
+            "time": "2018-09-25T20:47:26+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -880,16 +880,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.5",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515"
+                "reference": "93e761bb5367166ce98ba908d5eb0edd6be76792"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ddb87a87471b452456fbbe1365e1b9ae55483515",
-                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/93e761bb5367166ce98ba908d5eb0edd6be76792",
+                "reference": "93e761bb5367166ce98ba908d5eb0edd6be76792",
                 "shasum": ""
             },
             "require": {
@@ -1017,7 +1017,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-09-20T14:03:45+00:00"
+            "time": "2018-09-25T14:29:00+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2075,52 +2075,6 @@
             "time": "2018-07-27T18:11:47+00:00"
         },
         {
-            "name": "sjorso/bitstream",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SjorsO/bitstream.git",
-                "reference": "2558d87a2b2ad20448471af19271cf4e983f76bc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/bitstream/zipball/2558d87a2b2ad20448471af19271cf4e983f76bc",
-                "reference": "2558d87a2b2ad20448471af19271cf4e983f76bc",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SjorsO\\Bitstream\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sjors Ottjes",
-                    "email": "sjorsottjes@gmail.com"
-                }
-            ],
-            "description": "A stream for reading a resource bit by bit",
-            "homepage": "https://github.com/SjorsO/bitstream",
-            "keywords": [
-                "binary stream",
-                "bits",
-                "bitstream",
-                "run length encoding"
-            ],
-            "time": "2018-07-27T18:12:14+00:00"
-        },
-        {
             "name": "sjorso/configless-laravel-backup",
             "version": "0.0.1",
             "source": {
@@ -2229,24 +2183,24 @@
         },
         {
             "name": "sjorso/sup",
-            "version": "0.0.7",
+            "version": "0.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/sup.git",
-                "reference": "c44bc4be6cb2ffcd64f6460b73b86bacbfec85e3"
+                "reference": "2835d1d7e06ad6df0e724af5fd7368735678dbb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/sup/zipball/c44bc4be6cb2ffcd64f6460b73b86bacbfec85e3",
-                "reference": "c44bc4be6cb2ffcd64f6460b73b86bacbfec85e3",
+                "url": "https://api.github.com/repos/SjorsO/sup/zipball/2835d1d7e06ad6df0e724af5fd7368735678dbb2",
+                "reference": "2835d1d7e06ad6df0e724af5fd7368735678dbb2",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
-                "sjorso/bitstream": "^1.0"
+                "ext-gd": "*",
+                "php": "^7.1.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~6.0",
+                "phpunit/phpunit": "^7.0",
                 "spatie/phpunit-snapshot-assertions": "^1.1"
             },
             "type": "library",
@@ -2272,7 +2226,7 @@
                 "subtitles",
                 "sup"
             ],
-            "time": "2018-07-27T18:09:23+00:00"
+            "time": "2018-09-28T12:37:41+00:00"
         },
         {
             "name": "sjorso/text-file",
@@ -2457,16 +2411,16 @@
         },
         {
             "name": "spatie/db-dumper",
-            "version": "2.10.1",
+            "version": "2.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/db-dumper.git",
-                "reference": "1192bb0df9f49ee1f0bdecb7aa921d2647b4c7c7"
+                "reference": "858ea38e341e2e5f74a5b59cc8184c5c7e94b50d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/1192bb0df9f49ee1f0bdecb7aa921d2647b4c7c7",
-                "reference": "1192bb0df9f49ee1f0bdecb7aa921d2647b4c7c7",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/858ea38e341e2e5f74a5b59cc8184c5c7e94b50d",
+                "reference": "858ea38e341e2e5f74a5b59cc8184c5c7e94b50d",
                 "shasum": ""
             },
             "require": {
@@ -2503,7 +2457,7 @@
                 "mysqldump",
                 "spatie"
             ],
-            "time": "2018-08-30T12:10:16+00:00"
+            "time": "2018-09-27T06:30:34+00:00"
         },
         {
             "name": "spatie/dropbox-api",
@@ -3971,16 +3925,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v5.7.3",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "a4d5291ee732f8accad72d02ba2a06dc20780b75"
+                "reference": "4d1fdf5d98c4fc9f905e9e3a1805a0df8cb71101"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/a4d5291ee732f8accad72d02ba2a06dc20780b75",
-                "reference": "a4d5291ee732f8accad72d02ba2a06dc20780b75",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/4d1fdf5d98c4fc9f905e9e3a1805a0df8cb71101",
+                "reference": "4d1fdf5d98c4fc9f905e9e3a1805a0df8cb71101",
                 "shasum": ""
             },
             "require": {
@@ -4017,7 +3971,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2018-09-14T01:47:28+00:00"
+            "time": "2018-09-25T21:20:45+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
