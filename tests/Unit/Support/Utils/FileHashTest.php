@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Support\Utils;
 
-use App\Utils\Support\FileHash;
+use App\Support\Utils\FileHash;
 use Tests\TestCase;
 
 class FileHashTest extends TestCase

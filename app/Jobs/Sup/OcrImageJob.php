@@ -7,7 +7,7 @@ use App\Events\SupJobProgressChanged;
 use App\Jobs\BaseJob;
 use App\Models\SupJob;
 use App\Support\Tesseract;
-use App\Utils\Support\FileName;
+use App\Support\Utils\FileName;
 use Carbon\Carbon;
 use Exception;
 

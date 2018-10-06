@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\Utils\FileHash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
@@ -24,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('FileHash', function () {
-            return new \App\Utils\Support\FileHash();
+            return new FileHash();
         });
     }
 }
