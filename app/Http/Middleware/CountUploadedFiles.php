@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use SjorsO\Archive\Archive;
+use App\Support\Archive\Archive;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CountUploadedFiles

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\UploadedFile;
-use SjorsO\Archive\Archive;
+use App\Support\Archive\Archive;
 
 class CheckFileSize
 {

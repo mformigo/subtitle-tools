@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d7c8d3f3fcbbaaa1b5b5ca9043f1ec7",
+    "content-hash": "5c28da753f6cf687941af898f898be54",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2088,52 +2088,6 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
-        },
-        {
-            "name": "sjorso/archive",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SjorsO/archive.git",
-                "reference": "014b17d257376473487eda9afdeb7c5dff0bbb00"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/archive/zipball/014b17d257376473487eda9afdeb7c5dff0bbb00",
-                "reference": "014b17d257376473487eda9afdeb7c5dff0bbb00",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SjorsO\\Archive\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sjors Ottjes",
-                    "email": "sjorsottjes@gmail.com"
-                }
-            ],
-            "description": "Easily read and extract from archive files",
-            "homepage": "https://github.com/SjorsO/archive",
-            "keywords": [
-                "archive",
-                "extract",
-                "rar",
-                "zip"
-            ],
-            "time": "2018-07-27T18:11:47+00:00"
         },
         {
             "name": "sjorso/configless-laravel-backup",
