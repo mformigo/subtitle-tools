@@ -17,8 +17,7 @@
         "sjorso/sup": "^0.0",
         "sjorso/text-file": "^1.0",
         "spatie/flysystem-dropbox": "^1.0",
-        "spatie/laravel-sitemap": "^5.0",
-        "thiagoalessio/tesseract_ocr": "dev-master#161ae110a206096dbae99d26640411728f8fd68e"
+        "spatie/laravel-sitemap": "^5.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.4",

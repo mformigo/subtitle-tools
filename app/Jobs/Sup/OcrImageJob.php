@@ -6,10 +6,10 @@ use App\Events\SupJobChanged;
 use App\Events\SupJobProgressChanged;
 use App\Jobs\BaseJob;
 use App\Models\SupJob;
+use App\Support\Tesseract;
 use App\Utils\Support\FileName;
 use Carbon\Carbon;
 use Exception;
-use TesseractOCR;
 
 class OcrImageJob extends BaseJob
 {
@@ -77,7 +77,7 @@ class OcrImageJob extends BaseJob
             throw new Exception('File does not exist: '.$filePath);
         }
 
-        $text = (new TesseractOCR($filePath))
+        $text = (new Tesseract($filePath))
             ->executable('/usr/bin/tesseract')
             ->quietMode()
             ->suppressErrors()
