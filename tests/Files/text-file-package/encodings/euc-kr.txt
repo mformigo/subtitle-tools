@@ -1,0 +1,161 @@
+<SAMI>
+<HEAD>
+<TITLE></TITLE>
+<STYLE TYPE="text/css">
+<!--
+P { margin-left:8pt; margin-right:8pt; margin-bottom:2pt;
+    margin-top:2pt; font-size:14pt; text-align:center;
+    font-family:굴림, Arial; font-weight:normal; color:white;
+    background-color:black; }
+.KRCC { Name:한국어; lang:ko-KR; SAMIType:CC; }
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<SYNC Start=3534><P Class=KRCC>
+<font color=FF6600>W
+<SYNC Start=3948><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e
+<SYNC Start=6448><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A
+<SYNC Start=6948><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>r
+<SYNC Start=7448><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re
+<SYNC Start=8948><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re  <font color=FF6600>F
+<SYNC Start=9448><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re  <font color=FF6600>F<font color=yellow>a
+<SYNC Start=9948><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re  <font color=FF6600>F<font color=yellow>am
+<SYNC Start=10448><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re  <font color=FF6600>F<font color=yellow>ami
+<SYNC Start=10948><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re  <font color=FF6600>F<font color=yellow>amil
+<SYNC Start=11448><P Class=KRCC>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re  <font color=FF6600>F<font color=yellow>amily
+<SYNC Start=12448><P Class=KRCC>&nbsp;
+<SYNC Start=12948><P Class=KRCC>
+<font color=33FFFF>Team <font color=66FF00>WAF<br>
+<font color=FF6600>W<font color=yellow>e  <font color=FF6600>A<font color=yellow>re  <font color=FF6600>F<font color=yellow>amily
+<SYNC Start=17034><P Class=KRCC>&nbsp;
+<SYNC Start=19034><P Class=KRCC>
+<font color=66FF00>WAF sync  <font color=0066FF>by<br>
+<font color=violet>WAF<font color=white> - <font color=FF6600>김리
+<SYNC Start=25747><P Class=KRCC>&nbsp;
+<SYNC Start=634328><P Class=KRCC>
+당신은...베이커가 보낸 거요?
+<SYNC Start=637357><P Class=KRCC>&nbsp;
+<SYNC Start=648242><P Class=KRCC>
+베이커에게 전하시오<br>내가 아는 건 모두 말했다고...
+<SYNC Start=650648><P Class=KRCC>&nbsp;
+<SYNC Start=650648><P Class=KRCC>
+난 조용히 살고 싶다고 전해요<br>아시겠소?
+<SYNC Start=652176><P Class=KRCC>&nbsp;
+<SYNC Start=652176><P Class=KRCC>
+날 괴롭혀봤자<br>아무런 소용도 없을 거요!
+<SYNC Start=654962><P Class=KRCC>&nbsp;
+<SYNC Start=655350><P Class=KRCC>
+난 그 사건에 대해서 다 알지 못해요
+<SYNC Start=658212><P Class=KRCC>&nbsp;
+<SYNC Start=658212><P Class=KRCC>
+이제 그 금은 사라졌소
+<SYNC Start=659615><P Class=KRCC>&nbsp;
+<SYNC Start=659615><P Class=KRCC>
+그가 내 말을 들었더라면<br>우린 아무런 문제도 없었을 거요
+<SYNC Start=662151><P Class=KRCC>&nbsp;
+<SYNC Start=663644><P Class=KRCC>
+난 군 법정에 나갔었소
+<SYNC Start=665461><P Class=KRCC>&nbsp;
+<SYNC Start=665461><P Class=KRCC>
+목격자들도 없었고
+<SYNC Start=667190><P Class=KRCC>&nbsp;
+<SYNC Start=667190><P Class=KRCC>
+그들은 아무것도 알아내지 못했소
+<SYNC Start=669550><P Class=KRCC>&nbsp;
+<SYNC Start=669550><P Class=KRCC>
+그 돈들이 어떻게 된 건지<br>베이커에게 말할 것이 없소
+<SYNC Start=672208><P Class=KRCC>&nbsp;
+<SYNC Start=672666><P Class=KRCC>
+돌아가서 그렇게 전하시오!
+<SYNC Start=674393><P Class=KRCC>&nbsp;
+<SYNC Start=677033><P Class=KRCC>
+당신 말을 들으니 <br>누군가 왔었던 것만 같군
+<SYNC Start=679202><P Class=KRCC>&nbsp;
+<SYNC Start=680969><P Class=KRCC>
+베이커도 그걸 알고 있지
+<SYNC Start=682762><P Class=KRCC>&nbsp;
+<SYNC Start=684877><P Class=KRCC>
+잭슨이란 자요
+<SYNC Start=686413><P Class=KRCC>&nbsp;
+<SYNC Start=691948><P Class=KRCC>
+잭슨이 여기에 왔거나...
+<SYNC Start=693746><P Class=KRCC>&nbsp;
+<SYNC Start=695573><P Class=KRCC>
+베이커가 잘못 짚은 거로군
+<SYNC Start=697783><P Class=KRCC>&nbsp;
+<SYNC Start=705809><P Class=KRCC>
+잘못 짚은 건 아니오
+<SYNC Start=707219><P Class=KRCC>&nbsp;
+<SYNC Start=708052><P Class=KRCC>
+단지 베이커가 궁금해하는 건 <br>당신과 잭슨이 한 얘기요
+<SYNC Start=712298><P Class=KRCC>&nbsp;
+<SYNC Start=712696><P Class=KRCC>
+그 현금 상자에 대해서 말이지
+<SYNC Start=714901><P Class=KRCC>&nbsp;
+<SYNC Start=718811><P Class=KRCC>
+내가 전해 줄 것이 없잖아
+<SYNC Start=721039><P Class=KRCC>&nbsp;
+<SYNC Start=725353><P Class=KRCC>
+단지 지금 잭슨이 쓰는<br>이름을 알고 싶을 뿐인데!
+<SYNC Start=729310><P Class=KRCC>&nbsp;
+<SYNC Start=732623><P Class=KRCC>
+어째서 잭슨이<br>가명을 쓸 것이라고 생각하는 거요?
+<SYNC Start=735194><P Class=KRCC>&nbsp;
+<SYNC Start=735194><P Class=KRCC>
+그렇지 않다면 <br>내가 벌써 찾았을 테니까
+<SYNC Start=737385><P Class=KRCC>&nbsp;
+<SYNC Start=738503><P Class=KRCC>
+난 일을 시작하면 <br>누구라도 다 찾아내지
+<SYNC Start=741066><P Class=KRCC>&nbsp;
+<SYNC Start=741997><P Class=KRCC>
+그래서 사람들이 내게<br>그 대가를 지불하는 거요
+<SYNC Start=743837><P Class=KRCC>&nbsp;
+<SYNC Start=749517><P Class=KRCC>
+베이커가 <br>당신에게 준 것이 뭐요?
+<SYNC Start=751269><P Class=KRCC>&nbsp;
+<SYNC Start=754903><P Class=KRCC>
+당신 가족들인가?
+<SYNC Start=756379><P Class=KRCC>&nbsp;
+<SYNC Start=766463><P Class=KRCC>
+그렇소
+<SYNC Start=767560><P Class=KRCC>&nbsp;
+<SYNC Start=768362><P Class=KRCC>
+좋은 가족들이군
+<SYNC Start=769994><P Class=KRCC>&nbsp;
+<SYNC Start=772868><P Class=KRCC>
+날 죽이는 대가로 <br>얼마를 받았소?
+<SYNC Start=774932><P Class=KRCC>&nbsp;
+<SYNC Start=778236><P Class=KRCC>
+오백 달러
+<SYNC Start=780106><P Class=KRCC>&nbsp;
+<SYNC Start=780968><P Class=KRCC>
+이름을 가져가는 값이지!
+<SYNC Start=782561><P Class=KRCC>&nbsp;
+<SYNC Start=788713><P Class=KRCC>
+이름!
+<SYNC Start=789917><P Class=KRCC>&nbsp;
+<SYNC Start=799698><P Class=KRCC>
+카슨
+<SYNC Start=800989><P Class=KRCC>&nbsp;
+<SYNC Start=801329><P Class=KRCC>
+빌 카슨이오
+<SYNC Start=802763><P Class=KRCC>&nbsp;
+<SYNC Start=803166><P Class=KRCC>
+지금 그가 쓰고 있는 이름이오
+<SYNC Start=805599><P Class=KRCC>&nbsp;
+<SYNC Start=836303><P Class=KRCC>
+여기 천 달러가 있소
+<SYNC Start=838989><P Class=KRCC>&nbsp;
+<SYNC Start=843107><P Class=KRCC>
+천 달러라...

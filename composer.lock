@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "721af5208827b9ee5e97cda3cb9d3762",
+    "content-hash": "8d7c8d3f3fcbbaaa1b5b5ca9043f1ec7",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2288,72 +2288,6 @@
                 "sup"
             ],
             "time": "2018-09-28T12:37:41+00:00"
-        },
-        {
-            "name": "sjorso/text-file",
-            "version": "1.2.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SjorsO/text-file.git",
-                "reference": "32bc2c106d77967e3089c64c3db4973d42dd4349"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/text-file/zipball/32bc2c106d77967e3089c64c3db4973d42dd4349",
-                "reference": "32bc2c106d77967e3089c64c3db4973d42dd4349",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "library",
-            "extra": {
-                "dependencies": {
-                    "executables": [
-                        "uchardet"
-                    ],
-                    "extensions": [
-                        "mbstring"
-                    ]
-                },
-                "laravel": {
-                    "providers": [
-                        "SjorsO\\TextFile\\Providers\\TextFileProvider"
-                    ],
-                    "aliases": {
-                        "TextEncoding": "SjorsO\\TextFile\\Facades\\TextEncoding",
-                        "TextFileReader": "SjorsO\\TextFile\\Facades\\TextFileReader",
-                        "TextFileIdentifier": "SjorsO\\TextFile\\Facades\\TextFileIdentifier"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SjorsO\\TextFile\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sjors Ottjes",
-                    "email": "sjorsottjes@gmail.com"
-                }
-            ],
-            "description": "Utilities for identifying and reading text files of different text encodings",
-            "homepage": "https://github.com/SjorsO/text-file-package",
-            "keywords": [
-                "text",
-                "text encoding",
-                "text file",
-                "uchardet"
-            ],
-            "time": "2018-08-20T08:22:02+00:00"
         },
         {
             "name": "spatie/browsershot",

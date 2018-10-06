@@ -3,7 +3,7 @@
 namespace App\Http\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use SjorsO\TextFile\Facades\TextFileIdentifier;
+use App\Support\TextFile\Facades\TextFileIdentifier;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TextFileRule implements Rule

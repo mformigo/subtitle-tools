@@ -3,9 +3,9 @@
 namespace App\Jobs\Diagnostic;
 
 use App\Support\Facades\TextFileFormat;
-use SjorsO\TextFile\Facades\TextEncoding;
-use SjorsO\TextFile\Facades\TextFileIdentifier;
-use SjorsO\TextFile\Facades\TextFileReader;
+use App\Support\TextFile\Facades\TextEncoding;
+use App\Support\TextFile\Facades\TextFileIdentifier;
+use App\Support\TextFile\Facades\TextFileReader;
 use App\Models\StoredFile;
 use App\Models\StoredFileMeta;
 use Exception;

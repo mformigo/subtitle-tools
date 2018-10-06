@@ -6,6 +6,7 @@ use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\PlainText;
 use App\Subtitles\TransformsToGenericSubtitle;
+use App\Support\TextFile\Facades\TextFileIdentifier;
 
 class ConvertToPlainTextJob extends FileJob
 {
@@ -13,7 +14,7 @@ class ConvertToPlainTextJob extends FileJob
     {
         $this->startFileJob();
 
-        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (! TextFileIdentifier::isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 

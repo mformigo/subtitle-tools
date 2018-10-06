@@ -4,7 +4,7 @@ namespace Tests\Unit\Jobs\FileJobs;
 
 use App\Jobs\FileJobs\ConvertToUtf8Job;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use SjorsO\TextFile\Facades\TextEncoding;
+use App\Support\TextFile\Facades\TextEncoding;
 use Tests\CreatesFileGroups;
 use Tests\TestCase;
 

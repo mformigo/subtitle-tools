@@ -1,0 +1,1054 @@
+[Script Info]
+ScriptType: v4.00+
+Collisions: Normal
+PlayDepth: 0
+Timer: 100,0000
+Video Aspect Ratio: 0
+WrapStyle: 0
+ScaledBorderAndShadow: no
+
+[V4+ Styles]
+Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding
+Style: Default,Arial,14,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,3,0,2,10,10,10,0
+Style: Top,Arial,14,&H00F9FFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,3,0,8,10,10,10,0
+Style: Mid,Arial,14,&H0000FFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,3,0,5,10,10,10,0
+Style: Bot,Arial,14,&H00F9FFF9,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,3,0,2,10,10,10,0
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:03.48,0:00:24.48,Top,,0000,0000,0000,,*  west king  *  ‹—Ã‹„‹…
+Dialogue: 0,0:00:05.27,0:00:10.30,Bot,,0000,0000,0000,,Hearing-transcripted\NEnglish subtitle by watddefaq\NEnjoy!
+Dialogue: 0,0:00:26.48,0:00:31.10,Top,,0000,0000,0000,,›Ì ÌÊ„ „‰ «·√Ì«„
+Dialogue: 0,0:00:29.00,0:00:32.87,Bot,,0000,0000,0000,, There's one word to describe what's happening,\Nand that word is...
+Dialogue: 0,0:00:31.10,0:00:36.50,Top,,0000,0000,0000,,Â‰«ﬂ ﬂ·„… Ê«Õœ…  ’› „« ÌÕœÀ\N"ÊÂ–Â «·ﬂ·„… ÂÌ "«·–⁄—
+Dialogue: 0,0:00:32.91,0:00:34.30,Bot,,0000,0000,0000,, "Panic"
+Dialogue: 0,0:00:34.80,0:00:38.31,Bot,,0000,0000,0000,, And of course this comes with unthinkable\Nirrational behavior,
+Dialogue: 0,0:00:36.50,0:00:40.13,Top,,0000,0000,0000,,≈‰Â ÌƒœÌ ·”·Êﬂ\N€Ì— „‰ÿﬁÌ Ê·« Ì’œﬁ
+Dialogue: 0,0:00:38.40,0:00:43.50,Bot,,0000,0000,0000,, the crash of 29, 1987 Black Monday\Ncame with tragic suicides and murders,
+Dialogue: 0,0:00:40.13,0:00:43.68,Top,,0000,0000,0000,,Õ«œÀ… 29\N⁄«„ 1987ÌÊ„ «·«À‰Ì‰ «·√”Êœ
+Dialogue: 0,0:00:43.50,0:00:46.89,Bot,,0000,0000,0000,, ..this collapse is no exception.
+Dialogue: 0,0:00:43.68,0:00:49.33,Top,,0000,0000,0000,,Õ«·«  «‰ Õ«— ÊÃ—«∆„ „√”«ÊÌ…\NÊÂ–« «·«‰ÂÌ«— ·Ì” «” À‰«¡
+Dialogue: 0,0:00:46.89,0:00:48.10,Bot,,0000,0000,0000,, Just one hour ago..
+Dialogue: 0,0:00:48.35,0:00:54.37,Bot,,0000,0000,0000,, as the market were opening, 2 partners at CapVA\NHolding were shot at the troubled company's headquarters.
+Dialogue: 0,0:00:49.33,0:00:56.67,Top,,0000,0000,0000,,ﬁ»· ”«⁄… ⁄‰œ «›  «Õ «·”Êﬁ, ‘—Ìﬂ«‰ «Õ Ã“Ê«\Nﬂ—Â«∆‰ √ÿ·ﬁ «·‰«— ⁄·ÌÂ„ ›Ì «·‘—ﬂ… «·„÷ÿ—»…
+Dialogue: 0,0:00:54.58,0:00:58.10,Bot,,0000,0000,0000,, Senior partner, Laura Muller,\Ndied on site.
+Dialogue: 0,0:00:56.67,0:00:59.76,Top,,0000,0000,0000,,(«·‘—Ìﬂ… «·—∆Ì”Ì… (·Ê—« „Ê«—·œ\N Ê›Ì  ⁄·Ï «·›Ê—
+Dialogue: 0,0:00:58.18,0:01:00.99,Bot,,0000,0000,0000,,An analyst, Albert Bernard,\Nis in critical condition.
+Dialogue: 0,0:00:59.76,0:01:03.19,Top,,0000,0000,0000,,(Ê«·„Õ·· (√·»—  »—‰«œ\N›Ì Õ«·… Õ—Ã…
+Dialogue: 0,0:01:01.25,0:01:07.90,Bot,,0000,0000,0000,, Jeffrey Desange, also Senior partner, was in the office\Nat the time of the shooting and is now gone missing.
+Dialogue: 0,0:01:03.19,0:01:10.57,Top,,0000,0000,0000,,ÃÌ›—Ì œ”«‰Ã) ‘—Ìﬂ —∆Ì”Ì √Ì÷« ﬂ«‰)\N»«·„ﬂ » Êﬁ  «·≈ÿ·«ﬁ «·‰«— Ê«·¬‰ ÂÊ „›ﬁÊœ
+Dialogue: 0,0:01:28.55,0:01:32.03,Bot,,0000,0000,0000,,I'm sorry, we, we gotta go, sweetheart.
+Dialogue: 0,0:01:30.48,0:01:33.23,Top,,0000,0000,0000,,¬”› Ì« ’€Ì— Ì\N⁄·Ì‰« «·–Â«»
+Dialogue: 0,0:01:35.70,0:01:38.34,Bot,,0000,0000,0000,,Isn't Mommy taking me to school?
+Dialogue: 0,0:01:36.01,0:01:37.24,Top,,0000,0000,0000,,Âﬂ–«
+Dialogue: 0,0:01:38.04,0:01:44.00,Top,,0000,0000,0000,,√·‰  √Œ–‰Ì √„Ì ··„œ—”…ø -\N√„ﬂˆ ·Ì”  »ŒÌ— -
+Dialogue: 0,0:01:39.10,0:01:41.15,Bot,,0000,0000,0000,,Mommy's not feeling well.
+Dialogue: 0,0:01:42.49,0:01:44.93,Bot,,0000,0000,0000,,Hurry. Put on your glasses. Come on.
+Dialogue: 0,0:01:44.36,0:01:46.36,Top,,0000,0000,0000,,÷⁄Ì ‰Ÿ«— ﬂˆ
+Dialogue: 0,0:01:46.48,0:01:50.08,Top,,0000,0000,0000,,ÂÌ« »‰« ·‰–Â»
+Dialogue: 0,0:01:46.63,0:01:48.17,Bot,,0000,0000,0000,,Let's go.
+Dialogue: 0,0:02:03.60,0:02:07.10,Bot,,0000,0000,0000,,Daddy, where're we going?
+Dialogue: 0,0:02:05.64,0:02:11.45,Top,,0000,0000,0000,,√»Ì, ≈·Ï √Ì‰ –«Â»Ê‰ø -\N·« √⁄·„ -
+Dialogue: 0,0:02:08.60,0:02:09.90,Bot,,0000,0000,0000,,I don't know.
+Dialogue: 0,0:02:33.30,0:02:34.90,Bot,,0000,0000,0000,,Fuck.
+Dialogue: 0,0:02:35.01,0:02:35.81,Top,,0000,0000,0000,, »«
+Dialogue: 0,0:02:36.32,0:02:38.60,Bot,,0000,0000,0000,,You're driving too fast.
+Dialogue: 0,0:02:38.55,0:02:41.39,Top,,0000,0000,0000,,√‰   ﬁÊœ »”—⁄… ﬂ»Ì—…
+Dialogue: 0,0:02:51.40,0:02:54.80,Bot,,0000,0000,0000,,- Daddy, you're driving too..\N- Shut up!
+Dialogue: 0,0:02:53.75,0:02:57.74,Top,,0000,0000,0000,,...√»Ì, √‰   ﬁÊœ »”‹ -\N√Œ—”Ì -
+Dialogue: 0,0:03:20.68,0:03:23.20,Bot,,0000,0000,0000,,Sorry, excuse me.
+Dialogue: 0,0:03:22.93,0:03:25.87,Top,,0000,0000,0000,,¬”›, „⁄–—…
+Dialogue: 0,0:03:24.24,0:03:27.64,Bot,,0000,0000,0000,,- Hey, buddy, you wanna get behind the tape?\N- I'm family. I'm Lucas Desange.
+Dialogue: 0,0:03:26.33,0:03:29.83,Top,,0000,0000,0000,,Ì« ’«Õ, ⁄·Ìﬂ √‰  ⁄Êœ Œ·› «·‘—Ìÿ -\N(√‰« „‰ «·⁄«∆·…, √‰« (·Êﬂ«” œ”«‰Ã -
+Dialogue: 0,0:03:27.74,0:03:30.24,Bot,,0000,0000,0000,,You called me. Someone called me.\NDetective or something?
+Dialogue: 0,0:03:29.83,0:03:32.33,Top,,0000,0000,0000,,« ’· »Ì √ÕœÂ„\N≈‰Â „Õﬁﬁ
+Dialogue: 0,0:03:30.39,0:03:32.29,Bot,,0000,0000,0000,,- You live here?\N- No, my brother lives here.
+Dialogue: 0,0:03:32.33,0:03:35.69,Top,,0000,0000,0000,,√ ⁄Ì‘ Â‰«ø -\Nﬂ·«, √ŒÌ Ì⁄Ì‘ Â‰«, „« «·Œÿ»ø -
+Dialogue: 0,0:03:32.45,0:03:35.45,Bot,,0000,0000,0000,,What's going on?\NWhere is Jeff?
+Dialogue: 0,0:03:35.69,0:03:37.79,Top,,0000,0000,0000,,√Ì‰ (ÃÌ›)ø
+Dialogue: 0,0:03:36.55,0:03:38.05,Bot,,0000,0000,0000,,Are the girls okay?\NWhere are the girls?
+Dialogue: 0,0:03:38.10,0:03:40.85,Bot,,0000,0000,0000,,Sir, just hang on, all right?\NJust wait here.
+Dialogue: 0,0:03:38.58,0:03:43.00,Top,,0000,0000,0000,,Â· «·› « «‰ »ŒÌ—ø √Ì‰ Â„«ø -\N”ÌœÌ «‰ Ÿ— ›ﬁÿ -
+Dialogue: 0,0:03:40.90,0:03:42.55,Bot,,0000,0000,0000,,Jesus Christ.
+Dialogue: 0,0:03:43.00,0:03:44.15,Top,,0000,0000,0000,,—»«Â
+Dialogue: 0,0:03:48.80,0:03:55.75,Bot,,0000,0000,0000,, ..Jeffrey Desange apparently shot 2 of his partners\Nto death before going on to murder his estranged wife.
+Dialogue: 0,0:03:51.47,0:03:57.61,Top,,0000,0000,0000,,ÃÌ›—Ì œ”«‰Ã) Ì»œÊ √‰Â √ÿ·ﬁ «·‰«—)\N⁄·Ï ‘—ﬂ«∆Â ﬁ»· √‰ Ìﬁ · “ÊÃ Â
+Dialogue: 0,0:03:55.85,0:03:58.95,Bot,,0000,0000,0000,,And kidnapped his two daughters,\Nage three and one.
+Dialogue: 0,0:03:57.73,0:04:02.53,Top,,0000,0000,0000,,Ê«Œ ÿ› «»‰ «Â ⁄„— «·√Ê·Ï 3 ”‰Ê« \NÊ«·À«‰Ì… ⁄„—Â« ”‰…
+Dialogue: 0,0:04:06.55,0:04:09.47,Bot,,0000,0000,0000,,It's okay. It's okay.\NCome on.
+Dialogue: 0,0:04:08.51,0:04:13.84,Top,,0000,0000,0000,,·« »√”, ·« »√” ÂÌ« »‰« -\N√»Ì, Â· Ê’·‰«ø -
+Dialogue: 0,0:04:09.49,0:04:11.95,Bot,,0000,0000,0000,,Daddy, are we there yet?
+Dialogue: 0,0:04:15.55,0:04:18.45,Bot,,0000,0000,0000,,My glasses are broken.
+Dialogue: 0,0:04:17.86,0:04:21.02,Top,,0000,0000,0000,,‰Ÿ«— Ì „ﬂ”Ê—…
+Dialogue: 0,0:04:30.55,0:04:35.55,Bot,,0000,0000,0000,,- What is it?\N- It's okay.
+Dialogue: 0,0:04:32.62,0:04:33.47,Top,,0000,0000,0000,,„« Â–«ø
+Dialogue: 0,0:04:35.63,0:04:37.12,Top,,0000,0000,0000,,·« »√”
+Dialogue: 0,0:04:42.55,0:04:46.00,Bot,,0000,0000,0000,,Helvetia
+Dialogue: 0,0:04:44.61,0:04:48.06,Top,,0000,0000,0000,,"ÂÌ·›Ì Ì«"
+Dialogue: 0,0:05:05.55,0:05:09.66,Bot,,0000,0000,0000,,- It's all right, come here.\N- There's someone inside.
+Dialogue: 0,0:05:08.08,0:05:11.07,Top,,0000,0000,0000,,·« »√”,  ⁄«·Ì -\NÂ‰«ﬂ ‘Œ’ »«·œ«Œ· -
+Dialogue: 0,0:05:09.75,0:05:11.36,Bot,,0000,0000,0000,,Now!
+Dialogue: 0,0:05:11.07,0:05:11.92,Top,,0000,0000,0000,,«·¬‰
+Dialogue: 0,0:05:46.77,0:05:49.78,Bot,,0000,0000,0000,,Come on, come on..
+Dialogue: 0,0:05:48.86,0:05:50.55,Top,,0000,0000,0000,,ÂÌ«, ÂÌ«
+Dialogue: 0,0:06:31.79,0:06:35.68,Bot,,0000,0000,0000,,Daddy, there's a woman outside.
+Dialogue: 0,0:06:33.05,0:06:36.38,Top,,0000,0000,0000,,√»Ì\NÂ‰«ﬂ ≈„—√… »«·Œ«—Ã
+Dialogue: 0,0:06:38.77,0:06:41.68,Bot,,0000,0000,0000,,She's not touching the floor.
+Dialogue: 0,0:06:39.87,0:06:43.17,Top,,0000,0000,0000,,≈‰Â« ·«  ·„” «·√—÷
+Dialogue: 0,0:07:07.77,0:07:12.67,Bot,,0000,0000,0000,,- Why are you crying?\N- Because I'm sad, honey.
+Dialogue: 0,0:07:09.26,0:07:14.33,Top,,0000,0000,0000,,·„«–«  »ﬂÌø -\N·√‰‰Ì Õ“Ì‰ Ì« ⁄“Ì“ Ì -
+Dialogue: 0,0:07:12.77,0:07:15.67,Bot,,0000,0000,0000,,Why are you sad?
+Dialogue: 0,0:07:14.33,0:07:22.42,Top,,0000,0000,0000,,·„« √‰  Õ“Ì‰ø -\N ⁄·„Ì‰ø √„ﬂˆ ﬁœ  Ê›Ì  -
+Dialogue: 0,0:07:15.97,0:07:20.87,Bot,,0000,0000,0000,,You know, Mom and Dad they..
+Dialogue: 0,0:07:21.87,0:07:26.97,Bot,,0000,0000,0000,,They tried real hard. But sometimes\Nthey messed things up.
+Dialogue: 0,0:07:22.42,0:07:27.30,Top,,0000,0000,0000,,Õ«Ê·  Ã«Âœ«\N·ﬂ‰‰Ì √›”œ «·√„Ê— √ÕÌ«‰«
+Dialogue: 0,0:07:29.77,0:07:31.67,Bot,,0000,0000,0000,,You know Daddy loves you, right?
+Dialogue: 0,0:07:30.19,0:07:33.44,Top,,0000,0000,0000,, ⁄·„Ì‰ √‰ Ê«·œﬂˆ ÌÕ»ﬂˆ, ’ÕÌÕø
+Dialogue: 0,0:07:35.77,0:07:39.67,Bot,,0000,0000,0000,,I can't see.
+Dialogue: 0,0:07:36.49,0:07:38.99,Top,,0000,0000,0000,,·« √” ÿÌ⁄ √‰ √—Ï
+Dialogue: 0,0:07:40.77,0:07:43.67,Bot,,0000,0000,0000,,What's that?
+Dialogue: 0,0:07:41.97,0:07:43.02,Top,,0000,0000,0000,,„« Â–«ø
+Dialogue: 0,0:07:56.77,0:07:58.97,Bot,,0000,0000,0000,,Look honey, there..
+Dialogue: 0,0:07:58.12,0:07:59.17,Top,,0000,0000,0000,,«‰Ÿ—Ì ⁄“Ì“ Ì ≈·Ï Â‰«ﬂ
+Dialogue: 0,0:08:23.77,0:08:24.97,Bot,,0000,0000,0000,,Daddy?
+Dialogue: 0,0:08:24.97,0:08:25.77,Top,,0000,0000,0000,,√»Ìø
+Dialogue: 0,0:08:28.77,0:08:29.97,Bot,,0000,0000,0000,,Daddy?
+Dialogue: 0,0:08:29.52,0:08:30.32,Top,,0000,0000,0000,,√»Ìø
+Dialogue: 0,0:08:37.77,0:08:38.97,Bot,,0000,0000,0000,,Daddy?
+Dialogue: 0,0:08:38.31,0:08:39.11,Top,,0000,0000,0000,,√»Ìø
+Dialogue: 0,0:08:41.77,0:08:43.27,Bot,,0000,0000,0000,,Daddy?
+Dialogue: 0,0:08:42.31,0:08:43.11,Top,,0000,0000,0000,,√»Ìø
+Dialogue: 0,0:09:16.67,0:09:20.27,Bot,,0000,0000,0000,,Look, Lilly. A cherry.
+Dialogue: 0,0:09:17.46,0:09:21.06,Top,,0000,0000,0000,,«‰Ÿ—Ì Ì« (·Ì·Ì) ≈‰Â« ﬂ—“…
+Dialogue: 0,0:10:13.18,0:10:18.65,Top,,0000,0000,0000,,„‹«„‹«
+Dialogue: 0,0:10:18.39,0:11:50.39,Top,,0000,0000,0000,,*  west king  *  ‹—Ã‹„‹…
+Dialogue: 0,0:11:53.53,0:11:57.52,Top,,0000,0000,0000,,»⁄œ 5 ”‰Ê« 
+Dialogue: 0,0:12:02.77,0:12:06.17,Bot,,0000,0000,0000,,Burnsie, where are you guys, then?
+Dialogue: 0,0:12:03.52,0:12:06.92,Top,,0000,0000,0000,,(»Ê—‰“Ì)\N√Ì‰ √‰ „ «·ÌÊ„ Ì« —›«ﬁø
+Dialogue: 0,0:12:06.27,0:12:11.77,Bot,,0000,0000,0000,,Well, we're gonna to have a another\Nlook around sector  1-7-12-33.
+Dialogue: 0,0:12:07.02,0:12:12.52,Top,,0000,0000,0000,,Õ”‰«, ”‰»ÕÀ ÕÊ·\N«·ﬁÿ«⁄ 1-7-12-33
+Dialogue: 0,0:12:12.27,0:12:14.97,Bot,,0000,0000,0000,,- That's the mountain road, right?\N- Uhuh.
+Dialogue: 0,0:12:13.02,0:12:15.72,Top,,0000,0000,0000,,Â–« ÿ—Ìﬁ «·Ã»·, ’ÕÌÕø -\N‰⁄„ -
+Dialogue: 0,0:12:15.18,0:12:18.77,Bot,,0000,0000,0000,,Gas station..\NRoad to the Paulson Pass..
+Dialogue: 0,0:12:15.93,0:12:19.82,Top,,0000,0000,0000,,„Õÿ… «·»‰“Ì‰\N"„ ÃÂ« ·√⁄·Ï ÿ—Ìﬁ "ÊÌ·”Ê‰
+Dialogue: 0,0:12:19.07,0:12:21.77,Bot,,0000,0000,0000,,- This is good.\N- Oh, God. I hate to do this.
+Dialogue: 0,0:12:19.82,0:12:22.52,Top,,0000,0000,0000,,Â–« ÃÌœ -\N—»«Â, √ﬂ—Â ›⁄· Â–« -
+Dialogue: 0,0:12:21.97,0:12:25.57,Bot,,0000,0000,0000,,- Do what?\N- The last payment didn't clear.
+Dialogue: 0,0:12:22.72,0:12:26.32,Top,,0000,0000,0000,,›⁄· „«–«ø -\N·„ ‰√Œ– «·œ›⁄… «·√ŒÌ—… -
+Dialogue: 0,0:12:26.70,0:12:33.16,Bot,,0000,0000,0000,,Well, uh.. I'll check on that.\NDon't worry about that. Things go down.
+Dialogue: 0,0:12:27.46,0:12:33.92,Top,,0000,0000,0000,,Õ”‰«, ”√ Õ—Ï ⁄‰ Â–« «·√„—\N‘ﬂ—« ⁄·Ï „”«⁄œ ﬂ
+Dialogue: 0,0:12:33.27,0:12:35.47,Bot,,0000,0000,0000,,All right. I'll work on that\Nand get back to you.
+Dialogue: 0,0:12:34.02,0:12:36.22,Top,,0000,0000,0000,,Õ”‰« ”√ Õﬁﬁ »«·√„— Ê« ’· »ﬂ ·«Õﬁ«
+Dialogue: 0,0:12:35.47,0:12:36.27,Bot,,0000,0000,0000,,"Not Pregnant"
+Dialogue: 0,0:12:36.22,0:12:37.02,Top,,0000,0000,0000,,·« ÌÊÃœ Õ„·
+Dialogue: 0,0:12:37.27,0:12:39.07,Bot,,0000,0000,0000,,Thank you, good bye.
+Dialogue: 0,0:12:38.02,0:12:39.82,Top,,0000,0000,0000,,Õ”‰« Êœ«⁄«
+Dialogue: 0,0:12:39.27,0:12:42.47,Bot,,0000,0000,0000,,Thank you, God.\NSweet!
+Dialogue: 0,0:12:40.02,0:12:43.21,Top,,0000,0000,0000,,‘ﬂ—« Ì« ≈·ÂÌ, —«∆⁄
+Dialogue: 0,0:12:43.27,0:12:45.57,Bot,,0000,0000,0000,,- That was Burnsie on the phone?\N- Yup.
+Dialogue: 0,0:12:44.01,0:12:47.01,Top,,0000,0000,0000,,ﬂ«‰ Â–« (»Ê—‰“Ì) ⁄·Ï «·Â« ›ø -\N√Ã· -
+Dialogue: 0,0:12:46.27,0:12:48.07,Bot,,0000,0000,0000,,What is his next move?
+Dialogue: 0,0:12:47.01,0:12:48.81,Top,,0000,0000,0000,,„« ÂÌ ŒÿÊ Â «· «·Ì…ø
+Dialogue: 0,0:12:48.27,0:12:52.47,Bot,,0000,0000,0000,,Is he gonna search sector lousy alpha?
+Dialogue: 0,0:12:49.01,0:12:55.51,Top,,0000,0000,0000,,”Ì»ÕÀ »Ã„Ì⁄ ﬁÿ«⁄«  «·√Õ—› «·√»ÃœÌ…ø
+Dialogue: 0,0:12:54.77,0:12:56.67,Bot,,0000,0000,0000,,Hey, guess who's not pregnant?
+Dialogue: 0,0:12:55.51,0:13:00.41,Top,,0000,0000,0000,,Œ„‰ „‰ ·Ì”  Õ«„·ø\N„« Œÿ»ﬂø
+Dialogue: 0,0:12:57.27,0:12:59.67,Bot,,0000,0000,0000,,What is wrong with you?
+Dialogue: 0,0:13:03.27,0:13:06.57,Bot,,0000,0000,0000,,Last payment didn't clear.
+Dialogue: 0,0:13:04.01,0:13:09.31,Top,,0000,0000,0000,,·„ Ì „ﬂ‰Ê« „‰ ﬁ»÷ «·œ›⁄… «·√ŒÌ—…
+Dialogue: 0,0:13:09.27,0:13:13.20,Bot,,0000,0000,0000,,- Is there a problem with the bank, or..\N- The money's gone.
+Dialogue: 0,0:13:10.01,0:13:13.94,Top,,0000,0000,0000,,...Â· Â‰«ﬂ „‘ﬂ·… »«·‰»ﬂ √Ê -\N«Œ ›Ï «·„«· -
+Dialogue: 0,0:13:13.27,0:13:17.47,Bot,,0000,0000,0000,,- I pick B.\N- That is the correct answer.
+Dialogue: 0,0:13:14.01,0:13:19.21,Top,,0000,0000,0000,,«Œ «— «·ŒÌ«— «·À«‰Ì -\NÂ–Â ÂÌ «·≈Ã«»… «·’ÕÌÕ… -
+Dialogue: 0,0:13:19.27,0:13:21.47,Bot,,0000,0000,0000,,Look, babe..
+Dialogue: 0,0:13:20.01,0:13:22.21,Top,,0000,0000,0000,,«”„⁄ Ì« ⁄“Ì“Ì
+Dialogue: 0,0:13:21.77,0:13:26.07,Bot,,0000,0000,0000,,It's your brother. You wanna spend all\Nyour money, and find them, it's okay with me.
+Dialogue: 0,0:13:23.01,0:13:29.31,Top,,0000,0000,0000,,≈–« √—œ  √‰  ‰›ﬁ „«·‰« ﬂ·Â\N· ÃœÂ„« ·« »√” »Â–«, ≈‰Â √—Œ’ „‰ «·⁄·«Ã
+Dialogue: 0,0:13:26.07,0:13:28.57,Bot,,0000,0000,0000,,It's cheaper than therapy.
+Dialogue: 0,0:13:28.77,0:13:30.27,Bot,,0000,0000,0000,,- And so am I.\N- What..?
+Dialogue: 0,0:13:29.51,0:13:30.31,Top,,0000,0000,0000,,Ê√‰« ﬂ–·ﬂ
+Dialogue: 0,0:13:43.27,0:13:45.47,Bot,,0000,0000,0000,,I need to go.
+Dialogue: 0,0:13:44.00,0:13:47.20,Top,,0000,0000,0000,,√—Ìœ √‰ √ﬁ÷Ì Õ«Ã Ì
+Dialogue: 0,0:13:59.27,0:14:02.60,Bot,,0000,0000,0000,,- Burnsie!\N- What?
+Dialogue: 0,0:14:00.00,0:14:03.33,Top,,0000,0000,0000,,(»Ê—‰“Ì) -\N„«–«ø -
+Dialogue: 0,0:14:03.27,0:14:04.77,Bot,,0000,0000,0000,,Hey, Burnsie!
+Dialogue: 0,0:14:04.00,0:14:05.50,Top,,0000,0000,0000,,(»Ê—‰“Ì)
+Dialogue: 0,0:14:05.27,0:14:07.47,Bot,,0000,0000,0000,,Jesus Christ!
+Dialogue: 0,0:14:06.00,0:14:08.19,Top,,0000,0000,0000,,—»«Â
+Dialogue: 0,0:14:12.27,0:14:16.17,Bot,,0000,0000,0000,,- You're gonna call him?\N- Just give me a minute.
+Dialogue: 0,0:14:12.99,0:14:16.89,Top,,0000,0000,0000,,Â· ”‰ ’· »Â„ø -\N√⁄ÿÌ‰Ì ·ÕŸ… ›ﬁÿ -
+Dialogue: 0,0:14:16.27,0:14:21.47,Bot,,0000,0000,0000,,- But we should call, we said we'd call.\N- Ronney, shut up.
+Dialogue: 0,0:14:16.99,0:14:24.89,Top,,0000,0000,0000,,⁄·Ì‰« √‰ ‰ ’·, ﬁ·‰« √‰‰« ”‰ ’· »Â„ -\N—Ê‰Ì) √Œ—” ›ﬁÿ ··ÕŸ…) -
+Dialogue: 0,0:14:22.20,0:14:24.17,Bot,,0000,0000,0000,,Just for one minute.
+Dialogue: 0,0:14:30.27,0:14:34.47,Bot,,0000,0000,0000,,Here you go, Bird.\NTake a whiff of that.
+Dialogue: 0,0:14:30.99,0:14:35.19,Top,,0000,0000,0000,, ›÷· Ì« (»Ì—œ) «‘ „ —«∆Õ… Â–«
+Dialogue: 0,0:15:10.27,0:15:12.47,Bot,,0000,0000,0000,,Hello?
+Dialogue: 0,0:15:10.98,0:15:13.18,Top,,0000,0000,0000,,„—Õ»«ø
+Dialogue: 0,0:15:30.27,0:15:33.47,Bot,,0000,0000,0000,,Ah, yes sir. Yes sir. Yes sir.
+Dialogue: 0,0:15:30.98,0:15:34.17,Top,,0000,0000,0000,,...√Ã· Ì« ”ÌœÌ, √Ã· Ì« ”ÌœÌ
+Dialogue: 0,0:16:04.27,0:16:06.87,Bot,,0000,0000,0000,,It's cherry pits.
+Dialogue: 0,0:16:05.73,0:16:09.78,Top,,0000,0000,0000,,≈‰Â« »–Ê— ﬂ—“
+Dialogue: 0,0:16:28.27,0:16:30.47,Bot,,0000,0000,0000,,Hey, Burnsie!
+Dialogue: 0,0:16:28.96,0:16:31.16,Top,,0000,0000,0000,,(»Ê—‰“Ì)
+Dialogue: 0,0:16:58.27,0:17:02.57,Bot,,0000,0000,0000,,Burnsie, can we call him now?
+Dialogue: 0,0:16:58.95,0:17:04.25,Top,,0000,0000,0000,,»Ê—‰“Ì) √Ì„ﬂ‰‰« «·≈ ’«· »Â„ «·¬‰ø)
+Dialogue: 0,0:17:27.07,0:17:30.07,Bot,,0000,0000,0000,,- They found them.\N- You shitting me.
+Dialogue: 0,0:17:27.75,0:17:30.75,Top,,0000,0000,0000,,·ﬁœ ÊÃœÊÂ„« -\N√‰   „“Õ „⁄Ì -
+Dialogue: 0,0:17:30.27,0:17:33.47,Bot,,0000,0000,0000,,They found the girls. Alive.
+Dialogue: 0,0:17:30.95,0:17:36.15,Top,,0000,0000,0000,,·ﬁœ ÊÃœÊ« «·› « «‰ ⁄·Ï ﬁÌœ «·ÕÌ«…
+Dialogue: 0,0:17:40.27,0:17:44.47,Bot,,0000,0000,0000,,Dr. Gerald Dreyfuss. And you\Nmust be Annabel. / I must be.
+Dialogue: 0,0:17:40.94,0:17:45.74,Top,,0000,0000,0000,,(œ. (ÃÌ—«·œ œ—Ì›Ê”) Ê·« »œ √‰ﬂˆ (√‰«»Ì· -\N·« »œ √‰‰Ì ﬂ–·ﬂ -
+Dialogue: 0,0:17:44.57,0:17:46.57,Bot,,0000,0000,0000,,Lucas.\NHow are they?
+Dialogue: 0,0:17:45.74,0:17:47.24,Top,,0000,0000,0000,,(·Êﬂ«”) -\NﬂÌ› Õ«·Â„ø -
+Dialogue: 0,0:17:46.97,0:17:51.07,Bot,,0000,0000,0000,,Well, just let me warn you.\NThis won't be easy.
+Dialogue: 0,0:17:47.64,0:17:51.74,Top,,0000,0000,0000,,›ﬁÿ œ⁄Ê‰Ì √Õ–—ﬂ„«, Â–« ·‰ ÌﬂÊ‰ ”Â·«
+Dialogue: 0,0:17:52.27,0:17:57.37,Bot,,0000,0000,0000,,We're very fortunate, that Victoria was\Nold enough to retain much of her vocabulary.
+Dialogue: 0,0:17:52.94,0:17:58.04,Top,,0000,0000,0000,,‰Õ‰ „ÕŸÊŸÊ‰ ·√‰ (›Ìﬂ Ê—Ì«) ﬂ»Ì—…\N»„« Ìﬂ›Ì · Õ«›Ÿ ⁄·Ï „›—œ« Â«
+Dialogue: 0,0:17:57.67,0:18:03.07,Bot,,0000,0000,0000,,But it's still too early to determine\Nif this development../ What about the other one?
+Dialogue: 0,0:17:58.34,0:18:03.74,Top,,0000,0000,0000,,Ê·ﬂ‰ „«“«· «·√„— ”«»ﬁ ·√Ê«‰Â ·‰ﬁ—— ≈–« „«  ÿÊ— -\N„«–« ⁄‰ «·√Œ—Ïø -
+Dialogue: 0,0:18:03.27,0:18:06.07,Bot,,0000,0000,0000,,That's a different story.
+Dialogue: 0,0:18:03.94,0:18:06.74,Top,,0000,0000,0000,,Â–Â ﬁ’… „Œ ·›…
+Dialogue: 0,0:18:17.52,0:18:18.26,Bot,,0000,0000,0000,,Shit.
+Dialogue: 0,0:18:24.27,0:18:25.57,Bot,,0000,0000,0000,,Oh, yeah.
+Dialogue: 0,0:18:24.93,0:18:27.73,Top,,0000,0000,0000,,√Ã·
+Dialogue: 0,0:18:30.37,0:18:32.07,Bot,,0000,0000,0000,,Hey, Victoria.
+Dialogue: 0,0:18:31.03,0:18:33.73,Top,,0000,0000,0000,,(„—Õ»« Ì« (›ﬂ Ê—Ì«
+Dialogue: 0,0:18:43.47,0:18:47.57,Bot,,0000,0000,0000,,Is that you, Lilly?\NHey..
+Dialogue: 0,0:18:44.13,0:18:47.73,Top,,0000,0000,0000,,√Â–Â √‰ ˆ Ì« (·Ì·Ì)ø „—Õ»«
+Dialogue: 0,0:18:50.50,0:18:53.37,Bot,,0000,0000,0000,,No, no, no. It's okay.\NIt's okay.
+Dialogue: 0,0:18:51.16,0:18:54.03,Top,,0000,0000,0000,,·«, ·« »√”, ·« »√”
+Dialogue: 0,0:18:55.17,0:18:57.67,Bot,,0000,0000,0000,,I'm not gonna hurt you.
+Dialogue: 0,0:18:55.83,0:18:58.33,Top,,0000,0000,0000,,·‰ √ƒ–Ìﬂˆ
+Dialogue: 0,0:19:01.37,0:19:03.17,Bot,,0000,0000,0000,,It's okay. It's okay.
+Dialogue: 0,0:19:02.03,0:19:03.82,Top,,0000,0000,0000,,·« »√”, ·« »√”
+Dialogue: 0,0:19:06.37,0:19:11.17,Bot,,0000,0000,0000,,I brought something for you.\NFor your eyes.
+Dialogue: 0,0:19:07.02,0:19:11.82,Top,,0000,0000,0000,,·œÌ ‘Ì∆« ·ﬂˆ, „‰ √Ã· ⁄Ì‰Ìﬂˆ
+Dialogue: 0,0:19:11.20,0:19:17.17,Bot,,0000,0000,0000,,When you were a little girl.\NYou had a pair of these. You remember?
+Dialogue: 0,0:19:11.85,0:19:17.82,Top,,0000,0000,0000,,⁄‰œ„« ﬂ‰ ˆ ’€Ì—…\Nﬂ«‰ ·œÌﬂˆ „À· Â–Â, √ –ﬂ—Ì‰ø
+Dialogue: 0,0:19:18.27,0:19:21.57,Bot,,0000,0000,0000,,I was gonna put.. That's okay.
+Dialogue: 0,0:19:19.42,0:19:22.22,Top,,0000,0000,0000,,”√÷⁄Â« , ·« »√”
+Dialogue: 0,0:19:21.77,0:19:25.57,Bot,,0000,0000,0000,,Just gonna put them here.
+Dialogue: 0,0:19:22.42,0:19:26.22,Top,,0000,0000,0000,,”√÷⁄Â« Â‰« ›ﬁÿ
+Dialogue: 0,0:19:31.57,0:19:32.57,Bot,,0000,0000,0000,,It's okay.
+Dialogue: 0,0:19:32.22,0:19:35.22,Top,,0000,0000,0000,,·« »√”
+Dialogue: 0,0:19:39.77,0:19:41.57,Bot,,0000,0000,0000,,Yeah.
+Dialogue: 0,0:19:40.42,0:19:42.22,Top,,0000,0000,0000,,√Ã·
+Dialogue: 0,0:19:44.77,0:19:46.57,Bot,,0000,0000,0000,,That's it.
+Dialogue: 0,0:19:45.41,0:19:47.21,Top,,0000,0000,0000,,Âﬂ–«
+Dialogue: 0,0:20:07.77,0:20:10.57,Bot,,0000,0000,0000,,Daddy?
+Dialogue: 0,0:20:08.41,0:20:11.21,Top,,0000,0000,0000,,√»Ìø
+Dialogue: 0,0:20:11.77,0:20:17.57,Bot,,0000,0000,0000,,Oh, no, no, honey.\NHoney, no, I'm not your Daddy.
+Dialogue: 0,0:20:12.41,0:20:18.21,Top,,0000,0000,0000,,·«, ·« Ì« ⁄“Ì“ Ì\N...·”  Ê«·œﬂˆ √‰«
+Dialogue: 0,0:20:18.70,0:20:20.57,Bot,,0000,0000,0000,,I'm your Daddy's brother.
+Dialogue: 0,0:20:19.34,0:20:21.21,Top,,0000,0000,0000,,√‰« ‘ﬁÌﬁ Ê«·œﬂˆ
+Dialogue: 0,0:20:20.77,0:20:25.57,Bot,,0000,0000,0000,,Remember Uncle Luke?
+Dialogue: 0,0:20:21.41,0:20:26.21,Top,,0000,0000,0000,,(√ –ﬂ—Ì‰ø ⁄„ﬂˆ (·Êﬂ
+Dialogue: 0,0:20:29.77,0:20:32.57,Bot,,0000,0000,0000,,Dad?
+Dialogue: 0,0:20:30.40,0:20:33.20,Top,,0000,0000,0000,,√»Ìø
+Dialogue: 0,0:20:38.77,0:20:40.57,Bot,,0000,0000,0000,,It's okay.
+Dialogue: 0,0:20:39.40,0:20:41.20,Top,,0000,0000,0000,,·« »√”
+Dialogue: 0,0:20:40.77,0:20:44.57,Bot,,0000,0000,0000,,- Dad?\N- It's okay.
+Dialogue: 0,0:20:41.40,0:20:45.20,Top,,0000,0000,0000,,√»Ì -\N·« »√” -
+Dialogue: 0,0:20:54.27,0:20:59.57,Bot,,0000,0000,0000,,Dr. Gerald Dreyfuss, Your Honor.\NThe girls have been in my care at the Institute.
+Dialogue: 0,0:20:54.90,0:21:00.20,Top,,0000,0000,0000,,√‰« œ. (ÃÌ—«·œ œ—Ì›Ê”) Õ÷—… «·ﬁ«÷Ì\N«·› « «‰ ﬂ«‰ «  Õ  —⁄«Ì Ì »«·„⁄Âœ
+Dialogue: 0,0:20:59.77,0:21:03.87,Bot,,0000,0000,0000,,- Since they were found 87 days ago.\N- And how would you define their progress?
+Dialogue: 0,0:21:00.40,0:21:04.50,Top,,0000,0000,0000,,„‰– √‰ ⁄À— ⁄·ÌÂ„« ﬁ»· 87 ÌÊ„ -\NÊﬂÌ›  Õœœ  ﬁœ„Â„«ø -
+Dialogue: 0,0:21:03.97,0:21:09.97,Bot,,0000,0000,0000,,Solid, and outstandingly fast.\NIf I may?
+Dialogue: 0,0:21:04.60,0:21:10.59,Top,,0000,0000,0000,,»‘ﬂ· ﬁÊÌ Ê”—Ì⁄\N≈–« ”„Õ  ·Ìø
+Dialogue: 0,0:21:13.77,0:21:17.77,Bot,,0000,0000,0000,,Your Honor, Victoria and Lilly Desange\Nwere found in deplorable conditions.
+Dialogue: 0,0:21:14.39,0:21:21.39,Top,,0000,0000,0000,,(Õ÷—… «·ﬁ«÷Ì (›Ìﬂ Ê—Ì) Ê(·Ì·Ì œ”«‰Ã\NÊÃœ « »√Ê÷«⁄ „ƒ”›… „⁄“Ê· Ì‰, Ã«∆⁄ Ì‰
+Dialogue: 0,0:21:17.87,0:21:20.57,Bot,,0000,0000,0000,,Isolated, starved.
+Dialogue: 0,0:21:20.77,0:21:24.57,Bot,,0000,0000,0000,,They feared and distrusted all physical contact.
+Dialogue: 0,0:21:21.39,0:21:25.19,Top,,0000,0000,0000,,≈‰Â„« Œ«∆› Ì‰ Ê⁄«Ã“ Ì‰\N⁄‰ √Ì ≈ ’«· Ã”œÌ
+Dialogue: 0,0:21:24.77,0:21:28.97,Bot,,0000,0000,0000,,Their emotional growth was\Nclearly compromised by their abandonment.
+Dialogue: 0,0:21:25.19,0:21:30.19,Top,,0000,0000,0000,,‰„ÊÂ„« «·⁄«ÿ›Ì  ⁄—÷ ··Œÿ—\N»”»» «· Œ·Ì ⁄‰Â„«
+Dialogue: 0,0:21:29.57,0:21:34.87,Bot,,0000,0000,0000,,In order to survive such extreme isolation,\Nthe girls created an imaginary guardian.
+Dialogue: 0,0:21:30.19,0:21:35.49,Top,,0000,0000,0000,,·  „ﬂ‰« „‰ «·‰Ã«… »Ÿ—Ê› „⁄“Ê·…\N«·› « «‰ Œ·ﬁ « Õ«—”… ÊÂ„Ì…
+Dialogue: 0,0:21:35.17,0:21:39.27,Bot,,0000,0000,0000,,A parent figure, to feed them,\Nsing to them, protect them.
+Dialogue: 0,0:21:35.79,0:21:40.79,Top,,0000,0000,0000,,‘Œ’Ì… –«   √ÀÌ— √»ÊÌ\N· ÿ⁄„Â„«,  €‰Ì ·Â„«,  Õ„ÌÂ„«
+Dialogue: 0,0:21:40.17,0:21:42.97,Bot,,0000,0000,0000,,They called her: "Mama".
+Dialogue: 0,0:21:40.79,0:21:43.59,Top,,0000,0000,0000,,"Ì”„Ê‰Â« "„«„«
+Dialogue: 0,0:21:45.17,0:21:48.17,Bot,,0000,0000,0000,,Victoria and Lilly have a real chance\Nto have a normal life, though.
+Dialogue: 0,0:21:45.29,0:21:49.24,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì) Ê(·Ì·Ì) ·œÌÂ„« ›—’…)\NÕﬁÌﬁÌ… »ÕÌ«… ÿ»Ì⁄Ì… «·¬‰
+Dialogue: 0,0:21:48.62,0:21:55.10,Bot,,0000,0000,0000,,With the right care, physical emotional development,\Nand much needed love and affection. They'll get better.
+Dialogue: 0,0:21:49.24,0:21:55.71,Top,,0000,0000,0000,,„⁄ «·—⁄«Ì… «·„‰«”»… Ê«· ‰„Ì… «·⁄«ÿ›Ì…\N„‰ Œ·«· «·Õ» Ê«·„Êœ… ”Ê›   Õ”‰«‰
+Dialogue: 0,0:21:55.12,0:21:56.92,Bot,,0000,0000,0000,,Thank you, Dr. Dreyfuss.
+Dialogue: 0,0:21:55.73,0:21:57.73,Top,,0000,0000,0000,,(‘ﬂ—« ·ﬂ, œ. (œ—Ì›Ê”
+Dialogue: 0,0:21:57.12,0:22:00.32,Bot,,0000,0000,0000,,Ms. Podolski. Would you care\Nto address the Court?
+Dialogue: 0,0:21:57.73,0:22:00.93,Top,,0000,0000,0000,,”Ìœ… (»ÊœÊ·”ﬂÌ) √Ì„ﬂ‰ﬂˆ\N≈·ﬁ«¡ Œÿ«»ﬂˆ »«·„Õﬂ„…ø
+Dialogue: 0,0:22:00.50,0:22:05.92,Bot,,0000,0000,0000,,Good morning, Your Honor. Jeffrey Desange murdered\Nmy niece. And abandoned his daughters in the forrest.
+Dialogue: 0,0:22:01.11,0:22:06.53,Top,,0000,0000,0000,,(’»«Õ «·ŒÌ— Õ÷—… «·ﬁ«÷Ì (ÃÌ›—Ì œ”«‰Ã\Nﬁ · «»‰… √ŒÌ Ê Œ·Ï ⁄‰ »‰« Â »«·€«»…
+Dialogue: 0,0:22:06.12,0:22:11.02,Bot,,0000,0000,0000,,And now his brother did an extraordinary thing.\NLucas never gave up on his nieces.
+Dialogue: 0,0:22:06.73,0:22:11.63,Top,,0000,0000,0000,,Ê‘ﬁÌﬁÂ ﬁ«„ »⁄„· „œÂ‘\N·Êﬂ«”) ·„ ÌÌ√” „‰ √ÌÃ«œ »‰«  √ŒÌÂ)
+Dialogue: 0,0:22:11.12,0:22:16.60,Bot,,0000,0000,0000,,But he did it for the girls. Not for himself.\NSo, if he still has their best interest at heart,
+Dialogue: 0,0:22:11.73,0:22:17.21,Top,,0000,0000,0000,,·ﬂ‰Â ›⁄·Â« „‰ √Ã·Â„« Ê·Ì” ·‰›”Â\N≈–« ﬂ«‰ Ì—Ìœ „’·Õ Â„« „‰ ﬂ· ﬁ·»Â
+Dialogue: 0,0:22:16.82,0:22:22.22,Bot,,0000,0000,0000,,he must know neither his salary, nor his very small\Napartment are suitable for the raising of 2 children.
+Dialogue: 0,0:22:17.43,0:22:22.93,Top,,0000,0000,0000,,›·«»œ √‰Â Ì⁄·„ √‰ »Ì Â «·’€Ì— Ê—« »Â\N€Ì— „·«∆„«‰ · —»Ì… «·ÿ›· «‰
+Dialogue: 0,0:22:22.32,0:22:25.51,Bot,,0000,0000,0000,,- Let alone, 2 children with a very special needs.\N- How many kid did you raise, Jean?
+Dialogue: 0,0:22:22.93,0:22:26.41,Top,,0000,0000,0000,,ÊŒ’Ê’« ÿ›· «‰ –Ê«  «·«Õ Ì«Ã«  «·Œ«’… -\Nﬂ„ ÿ›·« ﬁ„  » —»Ì Â (ÃÌ‰)ø -
+Dialogue: 0,0:22:25.80,0:22:28.92,Bot,,0000,0000,0000,,Not as many as you, Lucas.
+Dialogue: 0,0:22:26.41,0:22:29.73,Top,,0000,0000,0000,,(»⁄œœ «·√ÿ›«· «·–Ì‰ —»Ì Â„ Ì« (·Êﬂ«”
+Dialogue: 0,0:22:29.12,0:22:32.22,Bot,,0000,0000,0000,,Of couse she wants the girls, Lucas.\NStand on her shoes first.
+Dialogue: 0,0:22:29.73,0:22:32.90,Top,,0000,0000,0000,,(»«·ÿ»⁄  —Ìœ «·√ÿ›«· (·Êﬂ«”\Nﬁ› ›Ì „ﬂ«‰Â« ··ÕŸ…
+Dialogue: 0,0:22:32.30,0:22:35.92,Bot,,0000,0000,0000,,She can't just sweep in, and take them.\NThey are not hers to take.
+Dialogue: 0,0:22:32.90,0:22:36.72,Top,,0000,0000,0000,,·« Ì„ﬂ‰Â« √‰  √Œ–Â„ »»”«ÿ…\N·Ì”Ê« √ÿ›«·Â« · √Œ–Â„
+Dialogue: 0,0:22:36.12,0:22:37.62,Bot,,0000,0000,0000,,I'm sure that's not entirely fair.
+Dialogue: 0,0:22:36.72,0:22:38.62,Top,,0000,0000,0000,,·”  „ √ﬂœ« ≈–« ﬂ«‰ Â–« ⁄«œ·«
+Dialogue: 0,0:22:37.62,0:22:41.92,Bot,,0000,0000,0000,,I'll tell you, what's not fair.\NIt's not fair is she gets to buy my nieces.
+Dialogue: 0,0:22:38.72,0:22:42.30,Top,,0000,0000,0000,,”√ﬁÊ· „«ÂÊ «·€Ì— ⁄«œ·\N√‰  ‘ —Ì √Ê·«œ √ŒÌ
+Dialogue: 0,0:22:42.02,0:22:43.08,Bot,,0000,0000,0000,,Is that really such a bad thing?
+Dialogue: 0,0:22:42.30,0:22:44.90,Top,,0000,0000,0000,,√Â–« √„— ”Ì¡ Õﬁ«ø -\N„«–«ø -
+Dialogue: 0,0:22:43.12,0:22:47.92,Bot,,0000,0000,0000,,- What?\N- Annabel plays in the band..
+Dialogue: 0,0:22:46.14,0:22:50.72,Top,,0000,0000,0000,,√‰«»Ì·)  ⁄“› ›Ì ›—ﬁ… Ê√‰ )\N ﬂ”» —“ﬁﬂ „‰ —”„ «··ÊÕ« 
+Dialogue: 0,0:22:47.92,0:22:49.22,Bot,,0000,0000,0000,,You draw pictures for a living.
+Dialogue: 0,0:22:50.12,0:22:55.92,Bot,,0000,0000,0000,,Where do you live? Do you have room for\Nchildren in your life? I mean, really..
+Dialogue: 0,0:22:50.72,0:22:56.72,Top,,0000,0000,0000,,»ÿ—Ìﬁ… ⁄Ì‘ﬂ„ Â–Â √·œÌﬂ„ „ﬂ«‰\N··√ÿ›«· »ÕÌ« ﬂ„ø √ﬁ’œ ›⁄·«
+Dialogue: 0,0:22:56.12,0:22:57.92,Bot,,0000,0000,0000,,What are you saying, Gerald?
+Dialogue: 0,0:22:56.72,0:22:58.52,Top,,0000,0000,0000,,„«·–Ì  ﬁ’œÂ Ì« (ÃÊ)ø
+Dialogue: 0,0:22:58.12,0:23:01.92,Bot,,0000,0000,0000,,When it comes to the girls' welfare..
+Dialogue: 0,0:22:58.72,0:23:02.52,Top,,0000,0000,0000,,⁄‰œ„« Ì ⁄·ﬁ «·√„— »„’·Õ… «·› « «‰
+Dialogue: 0,0:23:02.12,0:23:05.22,Bot,,0000,0000,0000,,Family Court judge is pretty much\Noblige to act on my recommendation.
+Dialogue: 0,0:23:02.52,0:23:05.61,Top,,0000,0000,0000,,„Õﬂ„… ‘ƒÊ‰ «·ﬁ«’—Ì‰\N”  ’—› Ê›ﬁ« · Ê’Ì« Ì
+Dialogue: 0,0:23:05.22,0:23:10.22,Bot,,0000,0000,0000,,And right now, I'll be lying if I didn't\Nsay it was a slam dunk for Ms. Podolski.
+Dialogue: 0,0:23:05.61,0:23:12.52,Top,,0000,0000,0000,,Ê«·¬‰ ”√ﬂÊ‰ ﬂ«–»« ≈‰ ·„ √ﬁ· √‰Â«\N(” ﬂÊ‰ ·’«·Õ «·”Ìœ… (»ÊœÊ·”ﬂÌ
+Dialogue: 0,0:23:11.92,0:23:12.92,Bot,,0000,0000,0000,,But the truth is..
+Dialogue: 0,0:23:12.52,0:23:13.52,Top,,0000,0000,0000,,...·ﬂ‰ «·ÕﬁÌﬁ… ÂÌ
+Dialogue: 0,0:23:14.12,0:23:18.92,Bot,,0000,0000,0000,,I don't want them living on the other\Nside of the country anymore than you do.
+Dialogue: 0,0:23:14.72,0:23:20.71,Top,,0000,0000,0000,,·« √—ÌœÂ„« √‰  ⁄Ì‘«‰\N»«·Ã«‰» «·¬Œ— „‰ «·„œÌ‰… „À·ﬂ„
+Dialogue: 0,0:23:20.12,0:23:24.92,Bot,,0000,0000,0000,,So, we can realy really help each other out\Nright now. You want the girls..
+Dialogue: 0,0:23:20.71,0:23:25.51,Top,,0000,0000,0000,,≈–«, Ì„ﬂ‰‰« √‰ ‰”«⁄œ »⁄÷‰« Õﬁ« «·¬‰\N√‰ „«  —Ìœ«‰ «·› « «‰
+Dialogue: 0,0:23:25.12,0:23:30.02,Bot,,0000,0000,0000,,- I need continued access to them.\N- What are we gonna do?
+Dialogue: 0,0:23:25.71,0:23:31.61,Top,,0000,0000,0000,,√—Ìœ «· Ê«’· „⁄Â„« œÊ„« -\N„«·–Ì ”‰›⁄·Âø -
+Dialogue: 0,0:23:35.92,0:23:40.72,Bot,,0000,0000,0000,,This house, courtesy of the Institute,\Nis used for case studies. Rent-free.
+Dialogue: 0,0:23:36.51,0:23:41.99,Top,,0000,0000,0000,,Â–« «·„‰“· „·ﬂ ··„⁄Âœ\NÌ” Œœ„ ·œ—«”… «·Õ«·«  Ê≈‰Â „Ã«‰Ì
+Dialogue: 0,0:23:41.40,0:23:47.02,Bot,,0000,0000,0000,,- You move to the house, you get the girls.\N- This is a joke, right?
+Dialogue: 0,0:23:41.99,0:23:49.61,Top,,0000,0000,0000,,≈‰ ﬁ·« ··„‰“· ›” Õ’·«‰ ⁄·Ï «·› « «‰ -\NÂ–Â „“Õ…° ’ÕÌÕø -
+Dialogue: 0,0:23:53.41,0:23:56.21,Bot,,0000,0000,0000,, Mr. Desange, is your brother still alive?
+Dialogue: 0,0:23:54.01,0:23:58.80,Top,,0000,0000,0000,,”Ìœ (œ”«‰Ã) √·« Ì“«· ‘ﬁÌﬁﬂ ÕÌ«ø -\NÂ· « ’· »ﬂ ‘ﬁÌﬁﬂø -
+Dialogue: 0,0:23:58.12,0:23:59.92,Bot,,0000,0000,0000,,Oh, son of a bitch.
+Dialogue: 0,0:23:59.70,0:24:01.50,Top,,0000,0000,0000,, ·ﬂ «·‰–·…
+Dialogue: 0,0:24:01.12,0:24:04.02,Bot,,0000,0000,0000,,- Look, Jean..\N- No.
+Dialogue: 0,0:24:01.70,0:24:04.60,Top,,0000,0000,0000,,(«‰Ÿ—Ì° Ì« (ÃÌ‰ -\N·« -
+Dialogue: 0,0:24:04.82,0:24:06.22,Bot,,0000,0000,0000,,I just wanna see them.\NThat's all.
+Dialogue: 0,0:24:05.29,0:24:10.23,Top,,0000,0000,0000,,√—Ìœ —ƒÌ Â„« ›ﬁÿ -\N... Ì„ﬂ‰ﬂˆ —ƒÌ Â„« ·œÌﬂˆ Õﬁ «·“Ì«—… ‰Õ —„ –·ﬂ -
+Dialogue: 0,0:24:06.32,0:24:10.62,Bot,,0000,0000,0000,,You'll see them. I mean, you've got\Nvisitation, right? We respect that.
+Dialogue: 0,0:24:10.92,0:24:15.42,Bot,,0000,0000,0000,,Right now, we need a little space.\NJust work on this thing for a while.
+Dialogue: 0,0:24:11.50,0:24:18.70,Top,,0000,0000,0000,,«·¬‰ ‰Õ «Ã »⁄÷ «·Œ’Ê’Ì… ·ﬂÌ ‰⁄„·\N⁄·Ï Â–« «·‘Ì¡ ·»⁄÷ «·Êﬁ  ·‰Ãœ Õ·«
+Dialogue: 0,0:24:15.42,0:24:18.12,Bot,,0000,0000,0000,,Find their feet.
+Dialogue: 0,0:24:19.52,0:24:21.02,Bot,,0000,0000,0000,,- Okay?\N- Excuse me.
+Dialogue: 0,0:24:20.10,0:24:21.60,Top,,0000,0000,0000,,Õ”‰«ø -\N⁄–—« -
+Dialogue: 0,0:24:21.92,0:24:25.42,Bot,,0000,0000,0000,,October the 26th.\NAlthough she seems collaborative,
+Dialogue: 0,0:24:22.50,0:24:26.70,Top,,0000,0000,0000,,›Ì 26  ‘—Ì‰ «·√Ê·\N»«·—€„ „‰ √‰Â«  »œÊ „ ⁄«Ê‰…
+Dialogue: 0,0:24:25.52,0:24:29.12,Bot,,0000,0000,0000,,and is quickly recovering her language skills..
+Dialogue: 0,0:24:26.70,0:24:29.80,Top,,0000,0000,0000,,Ê ” ⁄Ìœ »”—⁄… „Â«— Â« «··€ÊÌ…
+Dialogue: 0,0:24:29.22,0:24:33.62,Bot,,0000,0000,0000,, Victoria maybe repressing the memory\Nof her experience in the wilderness.
+Dialogue: 0,0:24:29.80,0:24:35.60,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«) —»„«)\N ﬂ»Õ –ﬂ—Ì«   Ã—» Â« ›Ì «·»—Ì…
+Dialogue: 0,0:24:35.02,0:24:38.42,Bot,,0000,0000,0000,,Okay, Victoria. Are you nice\Nand relax?
+Dialogue: 0,0:24:35.60,0:24:40.69,Top,,0000,0000,0000,,(Õ”‰« Ì« (›Ìﬂ Ê—Ì«\N√√‰ ˆ »ŒÌ— Ê„” —ŒÌ…ø
+Dialogue: 0,0:24:40.12,0:24:41.02,Bot,,0000,0000,0000,,Are you feeling sleepy?
+Dialogue: 0,0:24:40.69,0:24:42.59,Top,,0000,0000,0000,,√ ‘⁄—Ì‰ »«·‰⁄«”ø
+Dialogue: 0,0:24:43.42,0:24:45.72,Bot,,0000,0000,0000,,I want you to tell me the story again.
+Dialogue: 0,0:24:43.99,0:24:49.10,Top,,0000,0000,0000,,√—Ìœﬂˆ √‰  Œ»—Ì‰Ì «·ﬁ’… „Ãœœ«\N√Ì„ﬂ‰ﬂˆ ≈Œ»«—Ì »«·ﬁ’…ø
+Dialogue: 0,0:24:47.02,0:24:48.52,Bot,,0000,0000,0000,,Can you tell me the story?
+Dialogue: 0,0:24:52.02,0:24:57.42,Bot,,0000,0000,0000,,It was long time ago, a lady run away\Nfrom hospital for sad people.
+Dialogue: 0,0:24:52.59,0:24:58.99,Top,,0000,0000,0000,,ÕœÀ  «·ﬁ’… „‰– “„‰ˆ »⁄Ìœ\NÂ—»  ”Ìœ… „ˆ‰ „‘›Ï ··√‘Œ«’ «·Õ“Ì‰Ì‰
+Dialogue: 0,0:24:58.42,0:25:03.22,Bot,,0000,0000,0000,,She took her baby.\NShe jumped into the water.
+Dialogue: 0,0:24:58.99,0:25:04.94,Top,,0000,0000,0000,,√Œ–  ÿ›· Â«\NÊ ﬁ›“ « »«·„«¡
+Dialogue: 0,0:25:04.37,0:25:07.17,Bot,,0000,0000,0000,,How could you know that story, Victoria?
+Dialogue: 0,0:25:04.94,0:25:08.64,Top,,0000,0000,0000,,ﬂÌ› ⁄—›  Â–Â «·ﬁ’… Ì« (›Ìﬂ Ê—Ì«)ø
+Dialogue: 0,0:25:08.07,0:25:10.00,Bot,,0000,0000,0000,,Did Mama tell you that story?
+Dialogue: 0,0:25:08.64,0:25:11.14,Top,,0000,0000,0000,,Â· "„«„«" √Œ»— ﬂˆ Â–Â «·ﬁ’…ø
+Dialogue: 0,0:25:10.57,0:25:13.57,Bot,,0000,0000,0000,,- She showed me.\N- How?
+Dialogue: 0,0:25:11.14,0:25:14.14,Top,,0000,0000,0000,,·ﬁœ √— ‰Ì ≈Ì«Â« -\NﬂÌ›ø -
+Dialogue: 0,0:25:14.57,0:25:16.17,Bot,,0000,0000,0000,,In a dream.
+Dialogue: 0,0:25:15.14,0:25:16.74,Top,,0000,0000,0000,,›Ì Õ·„
+Dialogue: 0,0:25:16.57,0:25:19.57,Bot,,0000,0000,0000,,Go on, Victoria.
+Dialogue: 0,0:25:17.14,0:25:21.14,Top,,0000,0000,0000,,(«” „—Ì Ì« (›Ìﬂ Ê—Ì«
+Dialogue: 0,0:25:26.57,0:25:29.07,Bot,,0000,0000,0000,,And you can't tell anyone\Nwhere you are?
+Dialogue: 0,0:25:27.13,0:25:31.13,Top,,0000,0000,0000,,Ê·«  ” ÿÌ⁄Ì‰ ≈Œ»«— √Õœ »„ﬂ«‰ﬂ„ø
+Dialogue: 0,0:25:30.07,0:25:33.47,Bot,,0000,0000,0000,,- Nope.\N- That's just bizzare, dude.
+Dialogue: 0,0:25:31.13,0:25:34.03,Top,,0000,0000,0000,,·« -\NÂ–« €—Ì» ›ﬁÿ -
+Dialogue: 0,0:25:33.57,0:25:38.37,Bot,,0000,0000,0000,,Yeah, well. For the girls.\NFew breaths away.
+Dialogue: 0,0:25:34.13,0:25:38.93,Top,,0000,0000,0000,,Â–« „‰ √Ã· ≈»⁄«œ\N«·’Õ«›… ⁄‰ «·› « «‰
+Dialogue: 0,0:25:38.57,0:25:41.99,Bot,,0000,0000,0000,,- So much deplorable.\N- All families are the messed up.
+Dialogue: 0,0:25:39.13,0:25:42.78,Top,,0000,0000,0000,,„÷ÿ—» «‰ ··€«Ì…  -\NÃ„Ì⁄ «·⁄«∆·«  „÷ÿ—»… -
+Dialogue: 0,0:25:42.22,0:25:44.37,Bot,,0000,0000,0000,,Yeah, but this one messed up,\Nand it ends it.
+Dialogue: 0,0:25:42.78,0:25:45.93,Top,,0000,0000,0000,,√Ã·° ·ﬂ‰ Â–Â «·⁄«∆·… √÷ÿ—»  »·ÕŸ…
+Dialogue: 0,0:25:45.37,0:25:49.57,Bot,,0000,0000,0000,,I don't even have the chance\Nto screw them up. They came that way.
+Dialogue: 0,0:25:45.93,0:25:50.53,Top,,0000,0000,0000,,·Ì” ·œÌ ›—’… ·≈›”«œÂ„\N·ﬁœ √ Ê« »Â–Â «·Õ«·…
+Dialogue: 0,0:25:49.97,0:25:52.47,Bot,,0000,0000,0000,,- Leave him.\N- I can't.
+Dialogue: 0,0:25:50.53,0:25:53.13,Top,,0000,0000,0000,,√ —ﬂÌÂ -\N·« √” ÿÌ⁄ -
+Dialogue: 0,0:25:52.57,0:25:55.87,Bot,,0000,0000,0000,,You don't sign up for this, babe.
+Dialogue: 0,0:25:53.13,0:25:56.43,Top,,0000,0000,0000,,·„  Êﬁ⁄Ì ⁄·Ï Â–« «·√„— Ì« ⁄“Ì“ Ì
+Dialogue: 0,0:25:57.00,0:25:58.57,Bot,,0000,0000,0000,,I can't do that to him.
+Dialogue: 0,0:25:57.56,0:26:01.13,Top,,0000,0000,0000,,·« √” ÿÌ⁄ ›⁄· Â–« »Â -\N"”Ìœ… "«·Õ”«”Ì… -
+Dialogue: 0,0:25:58.67,0:26:00.47,Bot,,0000,0000,0000,,Mrs. Sensitivity,
+Dialogue: 0,0:26:00.57,0:26:07.17,Bot,,0000,0000,0000,,- You are in a rock band.\N- I was in a rock band, yeah.
+Dialogue: 0,0:26:01.13,0:26:07.72,Top,,0000,0000,0000,,"√‰ ˆ ›Ì ›—ﬁ… "—Êﬂ -\N·ﬁœ ﬂ‰  »›—ﬁ… "—Êﬂ" √Ã· -
+Dialogue: 0,0:26:50.57,0:26:53.57,Bot,,0000,0000,0000,,Hey, girls.
+Dialogue: 0,0:26:51.11,0:26:54.11,Top,,0000,0000,0000,,„—Õ»« Ì« › Ì« 
+Dialogue: 0,0:26:55.57,0:26:59.57,Bot,,0000,0000,0000,,Hey, come here.
+Dialogue: 0,0:26:56.11,0:27:00.11,Top,,0000,0000,0000,,„—Õ»«,  ⁄«·Ì ≈·Ï Â‰«
+Dialogue: 0,0:27:00.37,0:27:01.47,Bot,,0000,0000,0000,,Mama.
+Dialogue: 0,0:27:00.91,0:27:02.01,Top,,0000,0000,0000,,"„«„«"
+Dialogue: 0,0:27:01.57,0:27:05.87,Bot,,0000,0000,0000,,No, don't call me that. I'm not your Mom.\NI'm Annabel. You can call me that..
+Dialogue: 0,0:27:02.11,0:27:07.11,Top,,0000,0000,0000,,·«° ·«  ‰«œÌ‰Ì Âﬂ–«, ·”  √„ﬂˆ\N√‰« (√‰«»Ì·) Ì„ﬂ‰ﬂˆ „‰«œ« Ì »Â–« «·«”„
+Dialogue: 0,0:27:06.57,0:27:09.87,Bot,,0000,0000,0000,,or Annie, or whatever you like.
+Dialogue: 0,0:27:07.11,0:27:12.41,Top,,0000,0000,0000,,√Ê (¬‰Ì) √Ê √Ì «”„ Ì⁄Ã»ﬂ„«
+Dialogue: 0,0:27:13.07,0:27:16.87,Bot,,0000,0000,0000,,We could..\NWe could work it out together, right?
+Dialogue: 0,0:27:14.11,0:27:17.41,Top,,0000,0000,0000,,Ì„ﬂ‰‰« «·‰Ã«Õ »«·⁄„· ”ÊÌ«° ’ÕÌÕø
+Dialogue: 0,0:27:19.37,0:27:20.57,Bot,,0000,0000,0000,,Mama.
+Dialogue: 0,0:27:19.91,0:27:21.11,Top,,0000,0000,0000,,"„«„«"
+Dialogue: 0,0:27:59.57,0:28:01.57,Bot,,0000,0000,0000,,Handsome?
+Dialogue: 0,0:28:00.10,0:28:02.10,Top,,0000,0000,0000,,Â«‰”Ê‰)ø)
+Dialogue: 0,0:29:26.38,0:29:27.88,Top,,0000,0000,0000,,"ﬂ·Ì› Ê‰ ›Ê—Ã"\N«·”Ã·«  «·⁄«„…
+Dialogue: 0,0:29:32.57,0:29:39.47,Bot,,0000,0000,0000,,There are no police reports between 2008 and 2012\Nthat match the patient's story.
+Dialogue: 0,0:29:33.08,0:29:39.97,Top,,0000,0000,0000,,·«ÌÊÃœ  ﬁ«—Ì— ··‘—ÿ…\N»Ì‰ ⁄«„Ì 2008 Ê 2012  ÿ«»ﬁ ﬁ’… «·„—Ì÷…
+Dialogue: 0,0:29:39.57,0:29:44.57,Bot,,0000,0000,0000,,And Doctor, there are no psychiatric hospitals\Nanywhere near Clifton Forge.
+Dialogue: 0,0:29:40.07,0:29:45.07,Top,,0000,0000,0000,,ÊÌ« œﬂ Ê— ·«ÌÊÃœ „‘›Ï ··√„—«÷ «·⁄ﬁ·Ì…\N"»«·ﬁ—» „‰ "ﬂ·Ì› Ê‰ ›Ê—Ã
+Dialogue: 0,0:29:45.57,0:29:50.57,Bot,,0000,0000,0000,,- Where were the closest one would be?\N- Falls Church, 200 miles from here.
+Dialogue: 0,0:29:46.07,0:29:52.05,Top,,0000,0000,0000,,√Ì‰ √ﬁ—» „‘›Ïø -\Nﬂ‰Ì”… "›Ê·“"  »⁄œ 200 „Ì· „‰ Â‰« -
+Dialogue: 0,0:29:51.57,0:29:55.57,Bot,,0000,0000,0000,,Now this log book, contains records\Nfrom St. Kurch's asylum.
+Dialogue: 0,0:29:52.05,0:29:56.61,Top,,0000,0000,0000,,Â–« «·ﬂ «» ÌÕ ÊÌ ⁄·Ï ”Ã·« \N"„‰ „’Õ "”«‰  ﬂ—Ì ‘
+Dialogue: 0,0:29:55.57,0:29:59.47,Bot,,0000,0000,0000,,Abided to Salt Lake.\NThat's 5 miles north from here.
+Dialogue: 0,0:29:56.61,0:30:00.07,Top,,0000,0000,0000,,"»«·ﬁ—» „‰ »ÕÌ—… "”Ê· \N »⁄œ 5 √„Ì«· ‘„«·« „‰ Â‰«
+Dialogue: 0,0:29:59.57,0:30:03.47,Bot,,0000,0000,0000,,But you told me that there are no\Nmental hospitals in the area.
+Dialogue: 0,0:30:00.07,0:30:03.57,Top,,0000,0000,0000,,·ﬂ‰ﬂˆ √Œ»— ‰Ì √‰Â\N·« ÌÊÃœ „’Õ »«·„‰ÿﬁ…
+Dialogue: 0,0:30:03.57,0:30:07.97,Bot,,0000,0000,0000,,There aren't.\NSt. Kurch is shut down in 1878.
+Dialogue: 0,0:30:03.57,0:30:10.47,Top,,0000,0000,0000,,·«ÌÊÃœ „‘›Ï\N”«‰  ﬂ—Ì ‘" «€·ﬁ  ›Ì ⁄«„ 1878"
+Dialogue: 0,0:30:10.57,0:30:15.17,Bot,,0000,0000,0000,,Page 31.\NPatient Edith Brennan.
+Dialogue: 0,0:30:11.07,0:30:15.67,Top,,0000,0000,0000,,"«·’›Õ… "31\N(«·„—Ì÷… (≈ÌœÌÀ »Ì—‰«‰
+Dialogue: 0,0:31:28.37,0:31:30.67,Bot,,0000,0000,0000,,- Annabel?\N- Yup?
+Dialogue: 0,0:31:28.85,0:31:31.15,Top,,0000,0000,0000,,(√‰«»Ì·) -\N‰⁄„ø -
+Dialogue: 0,0:31:31.00,0:31:34.17,Bot,,0000,0000,0000,,- Handsome is outside.\N- Try to put him there.
+Dialogue: 0,0:31:31.48,0:31:34.65,Top,,0000,0000,0000,,Â«‰”Ê‰) »«·Œ«—Ã) -\N√Õ«Ê· «· ‰ŸÌ› Â‰« -
+Dialogue: 0,0:31:35.07,0:31:38.07,Bot,,0000,0000,0000,,But he's crying.
+Dialogue: 0,0:31:35.55,0:31:38.55,Top,,0000,0000,0000,,·ﬂ‰Â Ì»ﬂÌ
+Dialogue: 0,0:31:43.40,0:31:44.20,Bot,,0000,0000,0000,,Awesome.
+Dialogue: 0,0:31:43.88,0:31:44.68,Top,,0000,0000,0000,,„–Â·
+Dialogue: 0,0:33:01.27,0:33:04.07,Bot,,0000,0000,0000,,There's no way these kids\Nare ready for this.
+Dialogue: 0,0:33:01.73,0:33:04.96,Top,,0000,0000,0000,,„” ÕÌ· √‰  ﬂÊ‰« Â« «‰\N«·ÿ›· «‰ „” ⁄œ «‰ ·Â–«
+Dialogue: 0,0:33:04.50,0:33:09.87,Bot,,0000,0000,0000,,- I know it's tough. It'll get better. I promise.\N- I don't know if I can do this, Luke.
+Dialogue: 0,0:33:04.96,0:33:10.52,Top,,0000,0000,0000,,√⁄·„ √‰ «·√„— ’⁄» ·ﬂ‰Â ”Ì Õ”‰, √⁄œﬂˆ -\N(·« √⁄·„ ≈–« ﬂ«‰ »≈„ﬂ«‰Ì ›⁄· Â–«, Ì« (·Êﬂ -
+Dialogue: 0,0:33:10.07,0:33:12.07,Bot,,0000,0000,0000,,I love you, girl.
+Dialogue: 0,0:33:10.52,0:33:12.52,Top,,0000,0000,0000,,√Õ»ﬂ Ì« › « Ì
+Dialogue: 0,0:33:35.07,0:33:37.07,Bot,,0000,0000,0000,,Someone's here!
+Dialogue: 0,0:33:35.52,0:33:37.52,Top,,0000,0000,0000,,√ÕœÂ„ Â‰«
+Dialogue: 0,0:33:37.87,0:33:42.67,Bot,,0000,0000,0000,,What?\NVictoria, Lilly?
+Dialogue: 0,0:33:38.32,0:33:43.12,Top,,0000,0000,0000,,„«–«ø (›Ìﬂ Ê—Ì«)ø (·Ì·Ì)ø
+Dialogue: 0,0:34:25.90,0:34:29.07,Bot,,0000,0000,0000,,- No one's here.\N- Someone's here. I saw them.
+Dialogue: 0,0:34:26.34,0:34:30.51,Top,,0000,0000,0000,,·« ÌÊÃœ √Õœ Â‰« -\N√Õœ „« Â‰« ·ﬁœ —√Ì Â„ -
+Dialogue: 0,0:34:29.37,0:34:31.97,Bot,,0000,0000,0000,,- Wow, wow, honey, honey.\N- I saw them.
+Dialogue: 0,0:34:30.81,0:34:32.40,Top,,0000,0000,0000,,„Â·« Ì«⁄“Ì“ Ì -\N·ﬁœ —√Ì Â„ -
+Dialogue: 0,0:34:32.10,0:34:37.37,Bot,,0000,0000,0000,,Give me the hammer. I'll check downstair.\NYou look after the girls.
+Dialogue: 0,0:34:32.53,0:34:37.80,Top,,0000,0000,0000,,√⁄ÿÌ‰Ì «·„ÿ—ﬁ…\N”√ ›Õ’ «·ÿ«»ﬁ «·”›·Ì Ê√‰  √Â „Ì »«·› « «‰
+Dialogue: 0,0:35:48.37,0:35:51.57,Bot,,0000,0000,0000,,Lucas?
+Dialogue: 0,0:35:48.79,0:35:52.29,Top,,0000,0000,0000,,·Êﬂ«”)ø)\N·Êﬂ«”)ø)
+Dialogue: 0,0:35:51.57,0:35:54.87,Bot,,0000,0000,0000,,Oh my God. Lucas?
+Dialogue: 0,0:35:52.79,0:35:55.29,Top,,0000,0000,0000,,—»«Â, (·Êﬂ«”)ø
+Dialogue: 0,0:35:55.20,0:35:57.37,Bot,,0000,0000,0000,, Hi, it's Vince with Slap Chop.
+Dialogue: 0,0:35:55.62,0:36:04.60,Top,,0000,0000,0000,,"„—Õ»« √‰« (›Ì‰”) „⁄ ¬·… "”·«» ‘Ê»\N...≈‰Â« ¬·… —«∆⁄… Ì„ﬂ‰ﬂ √‰  ﬂÊ‰Ì „Â„·… »«·’»«Õ Ê
+Dialogue: 0,0:36:13.77,0:36:16.87,Bot,,0000,0000,0000,,I'm really sorry, Annabel.
+Dialogue: 0,0:36:14.18,0:36:17.28,Top,,0000,0000,0000,,(¬”› »«·›⁄· Ì« (√‰«»Ì·
+Dialogue: 0,0:36:17.87,0:36:23.37,Bot,,0000,0000,0000,,But they told me he responded well to the tests.\NAnd it's uh, very likely this coma is temporary.
+Dialogue: 0,0:36:18.28,0:36:24.28,Top,,0000,0000,0000,,·ﬂ‰Â„ √Œ»—Ê‰Ì √‰Â  Ã«Ê» »‘ﬂ· ÃÌœ ··√Œ »«—« \NÊ⁄·Ï «·√€·» ≈‰ Â–Â «·€Ì»Ê»… „ƒﬁ …
+Dialogue: 0,0:36:23.87,0:36:28.00,Bot,,0000,0000,0000,,- What happens now?\N- I'm afraid I don't follow.
+Dialogue: 0,0:36:24.28,0:36:28.41,Top,,0000,0000,0000,,„«·–Ì ”ÌÕœÀ «·¬‰ø -\N√Œ‘Ï √‰‰Ì ·„ √›Â„ „«  ﬁ’œÌÂ -
+Dialogue: 0,0:36:28.87,0:36:35.77,Bot,,0000,0000,0000,,Those girls now without Lucas../ Annabel, the girls\Nneed you. They need security, protectability.
+Dialogue: 0,0:36:29.28,0:36:36.18,Top,,0000,0000,0000,,...(«·› « «‰ Ê«·¬‰ (·Êﬂ«” -\N«·› « «‰ Ì« (√‰«»Ì·) ≈‰Â„«  Õ «Ã«‰ﬂˆ Ê Õ «Ã«‰ ··√„‰ -
+Dialogue: 0,0:36:35.87,0:36:40.99,Bot,,0000,0000,0000,,But I'm not prepared for this. I can't\Ndo this alone. This is not my job to do.
+Dialogue: 0,0:36:36.28,0:36:41.50,Top,,0000,0000,0000,,·”  „” ⁄œ… ·Â–«° ·« √” ÿÌ⁄\N›⁄· Â–« »„›—œÌ Â–« ·Ì” ⁄„·Ì ·√›⁄·Â
+Dialogue: 0,0:36:40.10,0:36:42.20,Bot,,0000,0000,0000,,Just follow, if you not,\Nyou'll lose custody.
+Dialogue: 0,0:36:41.50,0:36:42.60,Top,,0000,0000,0000,,” ›ﬁœ«‰ «·Ê’«Ì…
+Dialogue: 0,0:36:42.27,0:36:45.97,Bot,,0000,0000,0000,,And Lucas will be lucky if he sees\Nhis nieces every second at Thanksgiving.
+Dialogue: 0,0:36:42.67,0:36:48.37,Top,,0000,0000,0000,,Ê”ÌﬂÊ‰ (·Êﬂ«”) „ÕŸÊŸ«\N"≈–« —¬Ï »‰«  √ŒÌÂ »ﬂ· ⁄Ìœ "‘ﬂ—
+Dialogue: 0,0:36:53.37,0:36:58.40,Bot,,0000,0000,0000,,Well, I checked out. All the doors and windows\Nare locked. No evidence of intruder. Nothing's stolen.
+Dialogue: 0,0:36:54.37,0:36:58.80,Top,,0000,0000,0000,, Õﬁﬁ‰« „‰ ﬂ· ‘Ì¡, Ã„Ì⁄ «·‰Ê«›– ﬂ«‰  „€·ﬁ…\N·« ÌÊÃœ œ·Ì· ⁄·Ï ÊÃÊœ œŒÌ· Ê·„ Ì”—ﬁ ‘Ì¡
+Dialogue: 0,0:36:58.57,0:37:02.47,Bot,,0000,0000,0000,,So.. / So, I imagined it then, yeah?\NAll right, thank you, bud.
+Dialogue: 0,0:36:58.97,0:37:03.47,Top,,0000,0000,0000,,≈–«  ŒÌ·  «·√„— , ’ÕÌÕø\NÕ”‰«, ‘ﬂ—« ·ﬂ
+Dialogue: 0,0:37:03.07,0:37:07.37,Bot,,0000,0000,0000,,- Maam..\N- Richmond's finest..
+Dialogue: 0,0:37:03.47,0:37:07.77,Top,,0000,0000,0000,,”Ìœ Ì -\N"√›÷· —Ã«· »‹"—Ì ‘„«‰ -
+Dialogue: 0,0:37:10.47,0:37:12.17,Bot,,0000,0000,0000,,Okay, guys.
+Dialogue: 0,0:37:10.87,0:37:12.57,Top,,0000,0000,0000,,Õ”‰«° Ì« —›«ﬁ
+Dialogue: 0,0:37:12.27,0:37:14.17,Bot,,0000,0000,0000,,Just you and me for a while.
+Dialogue: 0,0:37:12.67,0:37:14.57,Top,,0000,0000,0000,,”√»ﬁÏ √‰« Ê√‰ „\N›ﬁÿ ·»⁄÷ «·Êﬁ 
+Dialogue: 0,0:37:14.20,0:37:19.47,Bot,,0000,0000,0000,,I don't know how are you feeling\Nabout that. But we got no choice.
+Dialogue: 0,0:37:14.60,0:37:20.86,Top,,0000,0000,0000,,·« √⁄—› „« —√Ìﬂ„ »‘√‰ Â–«\N·ﬂ‰ ·Ì” ·œÌ‰« ŒÌ«—
+Dialogue: 0,0:38:32.00,0:38:37.77,Bot,,0000,0000,0000,,- How they've been affected by all of this?\N- They are talking to the walls.
+Dialogue: 0,0:38:33.18,0:38:38.15,Top,,0000,0000,0000,,ﬂÌ›  √À— «‰ »Â–« ﬂ·Âø -\N≈‰Â„«   ﬂ·„«‰ „⁄ «·Ãœ—«‰ -
+Dialogue: 0,0:38:38.47,0:38:40.47,Bot,,0000,0000,0000,,What did they say?
+Dialogue: 0,0:38:38.85,0:38:40.85,Top,,0000,0000,0000,,„«–«  ﬁÊ·«‰ø
+Dialogue: 0,0:38:41.07,0:38:44.47,Bot,,0000,0000,0000,,Mama.
+Dialogue: 0,0:38:41.85,0:38:44.84,Top,,0000,0000,0000,,"„«„«"
+Dialogue: 0,0:38:56.07,0:38:59.47,Bot,,0000,0000,0000,,What's this?
+Dialogue: 0,0:38:56.84,0:38:59.84,Top,,0000,0000,0000,,„« Â–«ø
+Dialogue: 0,0:39:00.07,0:39:03.37,Bot,,0000,0000,0000,,They made that.
+Dialogue: 0,0:39:00.84,0:39:03.74,Top,,0000,0000,0000,,Â„« ’‰⁄ « Â–Â
+Dialogue: 0,0:39:12.47,0:39:15.47,Bot,,0000,0000,0000,, They found a doll\Nin the cabin, Victoria.
+Dialogue: 0,0:39:12.84,0:39:17.44,Top,,0000,0000,0000,,(ÊÃœÊ« œ„Ì… »«·ﬂÊŒ Ì« (›Ìﬂ Ê—Ì«
+Dialogue: 0,0:39:17.07,0:39:19.47,Bot,,0000,0000,0000,,Who made the doll?
+Dialogue: 0,0:39:17.44,0:39:20.84,Top,,0000,0000,0000,,„‰ ’‰⁄ «·œ„Ì…ø
+Dialogue: 0,0:39:20.47,0:39:22.47,Bot,,0000,0000,0000,,Mama.
+Dialogue: 0,0:39:20.84,0:39:22.84,Top,,0000,0000,0000,,"„«„«"
+Dialogue: 0,0:39:23.47,0:39:27.97,Bot,,0000,0000,0000,,The doll's called Mama?\NOr Mama made the doll?
+Dialogue: 0,0:39:23.84,0:39:30.03,Top,,0000,0000,0000,,«·œ„Ì…  œ⁄Ï "„«„«"ø\N√Ê "„«„«" ’‰⁄  «·œ„Ì…ø
+Dialogue: 0,0:39:29.67,0:39:33.47,Bot,,0000,0000,0000,,- Mama made the doll.\N- And who is Mama?
+Dialogue: 0,0:39:30.03,0:39:37.83,Top,,0000,0000,0000,,„«„«" ’‰⁄  «·œ„Ì…" -\NÊ„‰ ÂÌ "„«„«"ø √√‰ ˆ "„«„«" Ì« (›ﬂ Ê—Ì«)ø -
+Dialogue: 0,0:39:34.47,0:39:37.47,Bot,,0000,0000,0000,,Are you Mama, Victoria?
+Dialogue: 0,0:40:01.07,0:40:04.27,Bot,,0000,0000,0000,,This is Dr. Gerald Dreyfuss.\NPlease leave a message.
+Dialogue: 0,0:40:01.43,0:40:04.63,Top,,0000,0000,0000,,(Â‰« œ. (ÃÌ—«·œ œ—Ì›Ê”\N—Ã«¡« √ —ﬂ —”«·…
+Dialogue: 0,0:40:04.47,0:40:08.47,Bot,,0000,0000,0000,,Dr. Dreyfuss, this is Louise from\NClifton Forge Public Records.
+Dialogue: 0,0:40:04.83,0:40:11.82,Top,,0000,0000,0000,,"œ. (œ—Ì›Ê”) √‰« (·ÊÌ“) „‰ "ﬂ·Ì› Ê‰ ›Ê—Ã\N··”Ã·«  «·⁄«„…, ÊÃœ  ‘Ì∆« ⁄·Ìﬂ —ƒÌ Â
+Dialogue: 0,0:40:08.47,0:40:11.47,Bot,,0000,0000,0000,,I found something that\Nyou would want to see.
+Dialogue: 0,0:40:30.47,0:40:32.47,Bot,,0000,0000,0000,,You guys okay?
+Dialogue: 0,0:40:30.82,0:40:33.82,Top,,0000,0000,0000,,√√‰ „ »ŒÌ— Ì« —›«ﬁø
+Dialogue: 0,0:40:49.07,0:40:51.07,Bot,,0000,0000,0000,,What's so funny?
+Dialogue: 0,0:40:49.42,0:40:52.42,Top,,0000,0000,0000,,„« «·√„— «·„÷Õﬂ ﬂÀÌ—«ø
+Dialogue: 0,0:41:10.27,0:41:14.67,Bot,,0000,0000,0000,,- Good night.\N- No!
+Dialogue: 0,0:41:10.61,0:41:15.61,Top,,0000,0000,0000,, ’»ÕÌ‰ ⁄·Ï ŒÌ— -\N·« -
+Dialogue: 0,0:41:15.27,0:41:16.77,Bot,,0000,0000,0000,,Whatever.
+Dialogue: 0,0:41:15.61,0:41:17.11,Top,,0000,0000,0000,,·« ÌÂ„
+Dialogue: 0,0:41:22.47,0:41:25.47,Bot,,0000,0000,0000,,Nice butt, Bruce.
+Dialogue: 0,0:41:22.81,0:41:26.81,Top,,0000,0000,0000,,(„ƒŒ— ﬂ Ã„Ì·… Ì« (»—Ê”
+Dialogue: 0,0:41:58.67,0:42:00.47,Bot,,0000,0000,0000,,Victoria..
+Dialogue: 0,0:41:59.00,0:42:04.10,Top,,0000,0000,0000,,"›Ìﬂ Ê—Ì«),  ⁄«·Ì "„«„«)
+Dialogue: 0,0:42:01.77,0:42:03.77,Bot,,0000,0000,0000,,Come. Mama...
+Dialogue: 0,0:43:14.47,0:43:16.47,Bot,,0000,0000,0000,,You guys know what time it is?
+Dialogue: 0,0:43:14.78,0:43:17.78,Top,,0000,0000,0000,,√ ⁄·„«‰ ﬂ„ «·”«⁄… «·¬‰ø
+Dialogue: 0,0:43:18.77,0:43:22.77,Bot,,0000,0000,0000,,I guess you wouldn't. It's late.\NIt's really really late.
+Dialogue: 0,0:43:19.08,0:43:24.08,Top,,0000,0000,0000,,√⁄ ﬁœ √‰ﬂ„« ·«  ⁄—›«‰\N≈‰ «·Êﬁ  „ √Œ— ··€«Ì…
+Dialogue: 0,0:43:35.47,0:43:36.97,Bot,,0000,0000,0000,,Don't.
+Dialogue: 0,0:43:35.78,0:43:37.28,Top,,0000,0000,0000,,·«  ›⁄·Ì –·ﬂ
+Dialogue: 0,0:43:40.17,0:43:44.57,Bot,,0000,0000,0000,,- Don't what?\N- Don't close the closet.
+Dialogue: 0,0:43:40.47,0:43:44.87,Top,,0000,0000,0000,,·« √›⁄· „«–«ø -\N·«  › ÕÌ «·Œ“«‰… -
+Dialogue: 0,0:43:47.17,0:43:50.47,Bot,,0000,0000,0000,,Why not? What's in the closet?
+Dialogue: 0,0:43:47.47,0:43:51.77,Top,,0000,0000,0000,,·„« ·«ø „«–« ÌÊÃœ »«·Œ“«‰…ø
+Dialogue: 0,0:43:54.30,0:43:56.00,Bot,,0000,0000,0000,,Nothing.
+Dialogue: 0,0:43:54.61,0:43:56.31,Top,,0000,0000,0000,,·« ‘Ì¡
+Dialogue: 0,0:44:20.21,0:44:25.15,Bot,,0000,0000,0000,,Okay. It's been an along day. So you guys\Nshould get some sleep. Go to bed.
+Dialogue: 0,0:44:20.51,0:44:27.44,Top,,0000,0000,0000,,Õ”‰«, ·ﬁœ ﬂ«‰ ÌÊ„« ÿÊÌ·«\N·–« ⁄·Ìﬂ„« «·‰Ê„ √–Â»« ≈·Ï «·›—«‘
+Dialogue: 0,0:44:28.65,0:44:31.05,Bot,,0000,0000,0000,,You want me to leave the door open?
+Dialogue: 0,0:44:28.94,0:44:32.34,Top,,0000,0000,0000,,√ Êœ«‰ √‰ √ —ﬂ «·»«» „› ÊÕ«ø
+Dialogue: 0,0:44:35.15,0:44:38.15,Bot,,0000,0000,0000,,Good night.
+Dialogue: 0,0:44:35.44,0:44:38.44,Top,,0000,0000,0000,, ’»Õ«‰ ⁄·Ï ŒÌ—
+Dialogue: 0,0:44:43.60,0:44:46.15,Bot,,0000,0000,0000,,Just tell me about it.
+Dialogue: 0,0:44:43.89,0:44:47.94,Top,,0000,0000,0000,,›ﬁÿ √Œ»—Ì‰Ì »«·√„—
+Dialogue: 0,0:44:47.65,0:44:50.35,Bot,,0000,0000,0000,,- I think someone's coming to visit them.\N- Who?
+Dialogue: 0,0:44:47.94,0:44:50.64,Top,,0000,0000,0000,,√⁄ ﬁœ √‰ √ÕœÂ„ Ì√ Ì ·“Ì«— Â„« -\N„‰ø -
+Dialogue: 0,0:44:51.10,0:44:53.15,Bot,,0000,0000,0000,,I don't know.
+Dialogue: 0,0:44:51.39,0:44:53.44,Top,,0000,0000,0000,,·« √⁄—›
+Dialogue: 0,0:44:54.05,0:44:56.05,Bot,,0000,0000,0000,,- And you believe that?\N- I heard her..
+Dialogue: 0,0:44:54.34,0:44:57.34,Top,,0000,0000,0000,,Ê√‰   ’œﬁÌ‰ –·ﬂø -\N·ﬁœ ”„⁄ Â« -
+Dialogue: 0,0:44:56.15,0:45:00.15,Bot,,0000,0000,0000,,She was.. singing to them,\Nlike a lullaby, or something.
+Dialogue: 0,0:44:57.44,0:45:00.44,Top,,0000,0000,0000,,ﬂ«‰   €‰Ì ·Â„« √€‰Ì…\Nﬁ»· «·‰Ê„ √Ê‘Ì∆« „«
+Dialogue: 0,0:45:00.30,0:45:03.15,Bot,,0000,0000,0000,,You heard her?
+Dialogue: 0,0:45:00.59,0:45:03.44,Top,,0000,0000,0000,,Ê√‰  ”„⁄ Â«ø
+Dialogue: 0,0:45:03.40,0:45:06.15,Bot,,0000,0000,0000,,- Definitely a her?\N- Yeah.
+Dialogue: 0,0:45:03.69,0:45:06.43,Top,,0000,0000,0000,,„ √ﬂœ… √‰Â« ≈„—√…ø -\N‰⁄„ -
+Dialogue: 0,0:45:08.05,0:45:11.15,Bot,,0000,0000,0000,,Sound like this?
+Dialogue: 0,0:45:08.33,0:45:11.43,Top,,0000,0000,0000,,»œ« ’Ê Â« Âﬂ–«ø
+Dialogue: 0,0:45:24.55,0:45:30.09,Bot,,0000,0000,0000,,Yeah, but it was, it was different.\NHer voice was deeper.
+Dialogue: 0,0:45:25.33,0:45:30.93,Top,,0000,0000,0000,,√Ã· ·ﬂ‰Â ﬂ«‰ „Œ ·›«\N’Ê Â« ﬂ«‰ √⁄„ﬁ
+Dialogue: 0,0:45:30.65,0:45:35.20,Bot,,0000,0000,0000,,Victoria is showing signs.\NA dissociative personality disorder.
+Dialogue: 0,0:45:30.93,0:45:35.88,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«)  ŸÂ— ⁄·«„« )\N≈‰Â«  ⁄«‰Ì „‰ ≈‰›’«„ »«·‘Œ’Ì…
+Dialogue: 0,0:45:35.60,0:45:39.65,Bot,,0000,0000,0000,,I think she could taking on the role\Nof Mama. Literally, becoming her.
+Dialogue: 0,0:45:35.88,0:45:40.23,Top,,0000,0000,0000,,"√⁄ ﬁœ √‰Â«  √Œ– œÊ— "„«„«\N≈‰Â«  ’»Õ ÂÌ Õ—›Ì«
+Dialogue: 0,0:45:39.95,0:45:42.65,Bot,,0000,0000,0000,,It's treatable.\NWith time and patience.
+Dialogue: 0,0:45:40.23,0:45:42.93,Top,,0000,0000,0000,,Ì„ﬂ‰ ⁄·«ÃÂ »«·Êﬁ  Ê«·’»—
+Dialogue: 0,0:45:43.15,0:45:46.99,Bot,,0000,0000,0000,,- Am I safe?\N- What? Look, she's 8 years old.
+Dialogue: 0,0:45:43.43,0:45:47.93,Top,,0000,0000,0000,,Â· √‰« »√„«‰ø -\N„«–«ø „‰ › «… „Ã‰Ê‰… ⁄„—Â« 8 ”‰Ê« ø -
+Dialogue: 0,0:45:47.65,0:45:50.65,Bot,,0000,0000,0000,,Give me a break.
+Dialogue: 0,0:45:47.93,0:45:50.92,Top,,0000,0000,0000,, —›ﬁÌ »Ì
+Dialogue: 0,0:46:07.15,0:46:11.15,Bot,,0000,0000,0000,,I found second entry under the name of\Nthat woman. / Edith Brennan?
+Dialogue: 0,0:46:07.42,0:46:11.57,Top,,0000,0000,0000,,ÊÃœ  ÊÀÌﬁ… √Œ—Ï »‹ «”„  ·ﬂ «·„—√… -\N≈ÌœÌÀ »Ì—‰«‰)ø) -
+Dialogue: 0,0:46:11.30,0:46:12.95,Bot,,0000,0000,0000,,Not Edith Brennan.
+Dialogue: 0,0:46:11.57,0:46:13.22,Top,,0000,0000,0000,,≈ÌœÌÀ »Ì—‰«‰) «·„Ã‰Ê‰…)
+Dialogue: 0,0:46:13.80,0:46:17.95,Bot,,0000,0000,0000,,Welcome to isle 17, Doctor.\NEvery archive has one.
+Dialogue: 0,0:46:14.07,0:46:18.62,Top,,0000,0000,0000,,„—Õ»« »ﬂ »«·ﬁ”„ 17 Ì« œﬂ Ê—\Nﬂ· √—‘Ì› ·œÌÂ ﬁ”„ ﬂÂ–«
+Dialogue: 0,0:46:18.35,0:46:22.05,Bot,,0000,0000,0000,,Lost and found of things\Npeople don't wanna find.
+Dialogue: 0,0:46:18.62,0:46:22.32,Top,,0000,0000,0000,,√‘Ì«¡ „›ﬁÊœ… ·« Ì—Ìœ «·‰«” ≈ÌÃ«œÂ«
+Dialogue: 0,0:46:22.30,0:46:25.75,Bot,,0000,0000,0000,,Twenty years ago, when they moved\Nto Clifton Forge cemetery.
+Dialogue: 0,0:46:22.57,0:46:25.92,Top,,0000,0000,0000,,„‰– 20 ⁄«„ ⁄‰œ„« ‰ﬁ·Ê«\N"„ﬁ»—… "ﬂ·Ì› Ê‰ ›Ê—Ã
+Dialogue: 0,0:46:25.75,0:46:31.55,Bot,,0000,0000,0000,,Some of the oldest, smallest remains,\Nwere not claimed by the relatives.
+Dialogue: 0,0:46:25.92,0:46:31.81,Top,,0000,0000,0000,,»⁄÷ «·»ﬁ«Ì« «·ﬁœÌ„… Ê«·’€Ì—…\N·„ Ìÿ«·» »Â« «·√ﬁ«—»
+Dialogue: 0,0:46:31.65,0:46:34.35,Bot,,0000,0000,0000,,They were sent here to be filed.
+Dialogue: 0,0:46:31.91,0:46:34.86,Top,,0000,0000,0000,,√—”·  ≈·Ï Â‰« ·Ì „  Œ“Ì‰Â«
+Dialogue: 0,0:46:34.60,0:46:39.54,Bot,,0000,0000,0000,,I'm not a religious person, but I do\Nbelieve, there's a place for human remains.
+Dialogue: 0,0:46:34.86,0:46:46.41,Top,,0000,0000,0000,,·”  „ œÌ‰… ·ﬂ‰‰Ì √ƒ„‰ √‰ Â‰«ﬂ „ﬂ«‰\N·»ﬁ«Ì« «·»‘— Ê·Ì” ⁄·Ï —› ›Ì „»‰Ï ÕﬂÊ„Ì
+Dialogue: 0,0:46:39.65,0:46:44.15,Bot,,0000,0000,0000,,And that's not on the shelf\Nin a Government building.
+Dialogue: 0,0:46:54.65,0:46:56.65,Bot,,0000,0000,0000,,Do you believe in ghosts?
+Dialogue: 0,0:46:54.91,0:46:59.91,Top,,0000,0000,0000,,√ ƒ„‰ »ÊÃÊœ «·√‘»«Õø -\N·« Ì„ﬂ‰‰Ì «·ﬁÊ· √‰‰Ì √ƒ„‰ »Â« -
+Dialogue: 0,0:46:57.15,0:46:59.65,Bot,,0000,0000,0000,,I can't say that I do.
+Dialogue: 0,0:47:00.20,0:47:06.54,Bot,,0000,0000,0000,,When a corpse is left out.\NThe elements withered. Dessicated..
+Dialogue: 0,0:47:00.46,0:47:06.80,Top,,0000,0000,0000,,⁄‰œ„«  ‰”Ï ÃÀ… ›≈‰ √Ã“«¡Â«\N –»· Ê  ’»Õ Ã«›…
+Dialogue: 0,0:47:06.70,0:47:12.15,Bot,,0000,0000,0000,,Twisting it into a distorted figure that's\Nbarely recognizable as a human being.
+Dialogue: 0,0:47:06.96,0:47:12.41,Top,,0000,0000,0000,,Ê  ÕÊ· ≈·Ï „ŸÂ— „‘ÊÂ\N»«·ﬂ«œ  „Ì“ ﬂ≈‰”«‰
+Dialogue: 0,0:47:12.65,0:47:20.55,Bot,,0000,0000,0000,,A ghost is an emotion went out of shape.\NCondemned to repeat itself, time and time again.
+Dialogue: 0,0:47:12.90,0:47:20.80,Top,,0000,0000,0000,,«·‘»Õ ÂÊ ⁄«ÿ›… ﬁÊÌ… „ ‘ﬂ·…\N„ﬁœ— ·Â √‰ Ìﬂ—— ‰›”Â ··√»œ
+Dialogue: 0,0:47:20.65,0:47:24.15,Bot,,0000,0000,0000,,Until it rights the wrong that was done.
+Dialogue: 0,0:47:20.90,0:47:24.40,Top,,0000,0000,0000,,Õ Ï Ì’ÕÕ «·Œÿ√ «·–Ì ÕœÀ
+Dialogue: 0,0:47:30.65,0:47:33.65,Bot,,0000,0000,0000,,- What's this?\N- The wrong.
+Dialogue: 0,0:47:30.90,0:47:33.90,Top,,0000,0000,0000,,„« Â–«ø -\N«·Œÿ√ -
+Dialogue: 0,0:49:58.65,0:50:01.65,Bot,,0000,0000,0000,,- Jeff?\N- Save my girls...
+Dialogue: 0,0:49:58.87,0:50:01.86,Top,,0000,0000,0000,,ÃÌ›)ø) -\N√‰ﬁ– «»‰ «Ì -
+Dialogue: 0,0:50:05.65,0:50:08.65,Bot,,0000,0000,0000,,Go to the cabin..
+Dialogue: 0,0:50:05.86,0:50:08.86,Top,,0000,0000,0000,,≈–Â» ≈·Ï «·ﬂÊŒ
+Dialogue: 0,0:50:14.86,0:50:17.06,Top,,0000,0000,0000,,"„«„«", "„«„«"\N"„«„«", "„«„«"
+Dialogue: 0,0:50:21.95,0:50:23.65,Bot,,0000,0000,0000,,He seizures. Hold him still.
+Dialogue: 0,0:50:22.16,0:50:25.86,Top,,0000,0000,0000,,„«·–Ì ÌÕœÀø -\N·ﬁœ √’Ì» »‰Ê»… ﬁ·»Ì… √»ﬁÌÂ À«» « -
+Dialogue: 0,0:50:24.95,0:50:28.65,Bot,,0000,0000,0000,,- Lorazepam. 4 milligrams.\N- 4 milligrams of lorazepam.
+Dialogue: 0,0:50:30.05,0:50:32.65,Bot,,0000,0000,0000,,- Fever?\N- No fever, doctor.
+Dialogue: 0,0:50:44.34,0:50:49.94,Bot,,0000,0000,0000,, You kicked me out of the bed. Checked on\Nthe girls. That as much as I remember.
+Dialogue: 0,0:50:44.55,0:50:50.15,Top,,0000,0000,0000,,ÿ—œ ‰Ì Œ«—Ã «·›—«‘ Ê ›ﬁœ  «·› « «‰\NÂ–« ﬂ· „« √–ﬂ—Â
+Dialogue: 0,0:50:49.95,0:50:54.15,Bot,,0000,0000,0000,,- For I know that you took me..\N- I would've managed the job..
+Dialogue: 0,0:50:50.15,0:50:55.35,Top,,0000,0000,0000,,ﬂ‰  „” ·ﬁÌ« „⁄ﬂ -\Nﬂ‰  ”√‰ÂÌ «·„Â„… -
+Dialogue: 0,0:50:58.65,0:51:02.35,Bot,,0000,0000,0000,,- Oh, you drew me a picture.\N- It's a raccoon.
+Dialogue: 0,0:50:58.85,0:51:03.70,Top,,0000,0000,0000,,—”„ Ì ·Ì ’Ê—… -\N"≈‰Â "—«ﬂÊ‰ -
+Dialogue: 0,0:51:03.50,0:51:07.59,Bot,,0000,0000,0000,,Thank you. I do something\Nfor you guys too.
+Dialogue: 0,0:51:03.70,0:51:08.85,Top,,0000,0000,0000,,‘ﬂ—« ·ﬂ ·ﬁœ —”„  ·ﬂ„« ‘Ì∆« √Ì÷«
+Dialogue: 0,0:51:08.65,0:51:13.55,Bot,,0000,0000,0000,,- Here you go. You like it?\N- Yeah.
+Dialogue: 0,0:51:08.85,0:51:13.75,Top,,0000,0000,0000,, ›÷·Ì Â· √⁄Ã» ﬂø -\N‰⁄„ -
+Dialogue: 0,0:51:14.10,0:51:19.84,Bot,,0000,0000,0000,, It's cute. So, how was it?\NWas it a tunnel? With the light at the end?
+Dialogue: 0,0:51:14.31,0:51:20.05,Top,,0000,0000,0000,,≈‰Â ·ÿÌ›, ≈–« ﬂÌ› ﬂ«‰ «·√„—ø\NÂ· ﬂ«‰ ‰›ﬁ« ›ÌÂ ÷Ê¡ »‰Â«Ì Âø
+Dialogue: 0,0:51:19.85,0:51:24.35,Bot,,0000,0000,0000,,Oh yeah, that was good.\NAlso I stepped into the light.
+Dialogue: 0,0:51:20.05,0:51:25.55,Top,,0000,0000,0000,,√Ã· ÿ·»Ê« „‰Ì «·√» ⁄«œ ⁄‰ «·÷Ê¡
+Dialogue: 0,0:51:27.10,0:51:30.55,Bot,,0000,0000,0000,,So, how was it been?\NHow is the single Mom?
+Dialogue: 0,0:51:27.29,0:51:30.84,Top,,0000,0000,0000,,ﬂÌ› «·ÕÌ«…\Nﬂ√„ ⁄«“»…ø
+Dialogue: 0,0:51:30.65,0:51:32.15,Bot,,0000,0000,0000,,- That's great.\N- Yeah?
+Dialogue: 0,0:51:30.84,0:51:32.34,Top,,0000,0000,0000,,ﬂ«‰  ÃÌœ… -\NÕﬁ«ø -
+Dialogue: 0,0:51:32.60,0:51:37.25,Bot,,0000,0000,0000,,- They're terrible. They hate me.\N- They don't hate you.
+Dialogue: 0,0:51:32.79,0:51:37.84,Top,,0000,0000,0000,,ﬂ«‰  ”Ì∆…, ≈‰Â„«  ﬂ—Â«‰‰Ì -\N·«  ﬂ—Â«‰ﬂˆ -
+Dialogue: 0,0:51:37.65,0:51:42.55,Bot,,0000,0000,0000,,So easy for you to say. You're like\Nthe cool uncle. / I am the cool uncle.
+Dialogue: 0,0:51:37.84,0:51:44.84,Top,,0000,0000,0000,,”Â·« ⁄·Ìﬂ ﬁÊ· Â–« ·√‰ﬂ «·⁄„ «·—«∆⁄ -\N√‰« «·⁄„ «·—«∆⁄ -
+Dialogue: 0,0:51:44.65,0:51:47.45,Bot,,0000,0000,0000,,What?\NWhat is it, Annie?
+Dialogue: 0,0:51:44.84,0:51:47.84,Top,,0000,0000,0000,,„«–«ø „« «·Œÿ» Ì« (¬‰Ì)ø
+Dialogue: 0,0:51:47.65,0:51:51.15,Bot,,0000,0000,0000,,Just get well soon, so you can come home,\Nand clean their mess, please?
+Dialogue: 0,0:51:47.84,0:51:51.84,Top,,0000,0000,0000,, ⁄«›Ï »”—⁄… —Ã«¡«\N· ⁄Êœ ··„‰“· Ê ‰Ÿ› ›Ê÷ Â„
+Dialogue: 0,0:51:51.65,0:51:55.85,Bot,,0000,0000,0000,,- You sure about this?\N- Yeah.
+Dialogue: 0,0:51:51.84,0:51:56.04,Top,,0000,0000,0000,,√„ √ﬂœ… √‰ Â–« ﬂ· ‘Ì¡ø -\N‰⁄„ -
+Dialogue: 0,0:52:05.55,0:52:07.65,Bot,,0000,0000,0000,,You okay?
+Dialogue: 0,0:52:05.74,0:52:07.83,Top,,0000,0000,0000,,√√‰ ˆ »ŒÌ—ø
+Dialogue: 0,0:52:12.65,0:52:14.65,Bot,,0000,0000,0000,,What are you doing in here?
+Dialogue: 0,0:52:12.83,0:52:15.83,Top,,0000,0000,0000,,„«·–Ì  ›⁄·Ì‰Â Â‰«ø
+Dialogue: 0,0:52:16.65,0:52:19.65,Bot,,0000,0000,0000,,Here, I'll help.
+Dialogue: 0,0:52:16.83,0:52:19.83,Top,,0000,0000,0000,,√⁄ÿÌ‰Ì ≈Ì«Â ”√”«⁄œﬂ
+Dialogue: 0,0:52:24.65,0:52:28.55,Bot,,0000,0000,0000,,- What is it?\N- I don't want you to get hurt.
+Dialogue: 0,0:52:24.83,0:52:29.33,Top,,0000,0000,0000,,„«–« Â‰«ﬂø -\N·« √—Ìœﬂ √‰   √–Ì  -
+Dialogue: 0,0:52:29.15,0:52:35.35,Bot,,0000,0000,0000,,What do you mean? I'm fine.\NNothing bad is gonna happened.
+Dialogue: 0,0:52:29.33,0:52:36.18,Top,,0000,0000,0000,,„«·–Ì  ﬁ’œÌ‰Âø √‰« »ŒÌ—\N·‰ √’«» »√–Ï
+Dialogue: 0,0:52:36.00,0:52:38.60,Bot,,0000,0000,0000,,- You can't do that.\N- Why?
+Dialogue: 0,0:52:36.18,0:52:39.08,Top,,0000,0000,0000,,·«  ” ÿÌ⁄Ì‰ ›⁄· –·ﬂø -\N·„«–«ø -
+Dialogue: 0,0:52:38.90,0:52:42.15,Bot,,0000,0000,0000,,She gets jealous.
+Dialogue: 0,0:52:39.08,0:52:42.33,Top,,0000,0000,0000,,·√‰Â« ” ‘⁄— »«·€Ì—…
+Dialogue: 0,0:52:54.75,0:52:57.05,Bot,,0000,0000,0000,,Hey, wait!
+Dialogue: 0,0:52:54.92,0:52:57.22,Top,,0000,0000,0000,,«‰ Ÿ—Ì
+Dialogue: 0,0:52:59.05,0:53:01.65,Bot,,0000,0000,0000,,What's wrong with you?
+Dialogue: 0,0:52:59.22,0:53:01.82,Top,,0000,0000,0000,,„« Œÿ»ﬂˆø
+Dialogue: 0,0:53:07.15,0:53:09.55,Bot,,0000,0000,0000,,- Hello.\N- Hey, Jean.
+Dialogue: 0,0:53:07.32,0:53:11.92,Top,,0000,0000,0000,,„—Õ»« Ì« (ÃÌ‰) ﬂÌ› Ì„ﬂ‰‰Ì „”«⁄œ ﬂˆø
+Dialogue: 0,0:53:09.75,0:53:11.75,Bot,,0000,0000,0000,,How can I help?
+Dialogue: 0,0:53:13.15,0:53:14.95,Bot,,0000,0000,0000,,It's my day.
+Dialogue: 0,0:53:13.32,0:53:15.12,Top,,0000,0000,0000,,≈‰Â ÌÊ„Ì
+Dialogue: 0,0:53:15.05,0:53:18.85,Bot,,0000,0000,0000,,- Are you sure. I thought that was Thursday.\N- It is Thursday.
+Dialogue: 0,0:53:15.22,0:53:19.02,Top,,0000,0000,0000,,√„ √ﬂœ…ø Ÿ‰‰  √‰Â ÌÊ„ «·Œ„Ì” -\N«·ÌÊ„ ÂÊ «·Œ„Ì” -
+Dialogue: 0,0:53:18.90,0:53:23.05,Bot,,0000,0000,0000,,- Sorry about the mess.\N- Children make mess. It's how it works.
+Dialogue: 0,0:53:19.07,0:53:23.32,Top,,0000,0000,0000,,«⁄ –— ⁄·Ï «·›Ê÷Ï -\N«·√Ê·«œ Ì’‰⁄Ê‰ «·›Ê÷Ï Âﬂ–«  Ã—Ì «·√„Ê— -
+Dialogue: 0,0:53:23.15,0:53:25.95,Bot,,0000,0000,0000,,- How are they?\N- Adorsey. You want coffee?
+Dialogue: 0,0:53:23.32,0:53:26.12,Top,,0000,0000,0000,,ﬂÌ› Õ«·Â„«ø -\N‰‘Ìÿ «‰ , √ —ÌœÌ‰ «·ﬁÂÊ…ø -
+Dialogue: 0,0:53:26.15,0:53:28.05,Bot,,0000,0000,0000,,Thank you.
+Dialogue: 0,0:53:26.32,0:53:28.22,Top,,0000,0000,0000,,‘ﬂ—« ·ﬂ
+Dialogue: 0,0:53:30.15,0:53:34.05,Bot,,0000,0000,0000,,Oh my God. What is this?
+Dialogue: 0,0:53:30.32,0:53:34.21,Top,,0000,0000,0000,,—»«Â , „«Â–«ø
+Dialogue: 0,0:53:34.15,0:53:38.05,Bot,,0000,0000,0000,,- I know, they're wild sometimes.\N- It's not an excuse.
+Dialogue: 0,0:53:34.31,0:53:39.41,Top,,0000,0000,0000,,·« √⁄·„,  ’»Õ«‰ Ã«„Õ «‰ √ÕÌ«‰« -\NÂ–« ·Ì” ⁄–—« -
+Dialogue: 0,0:53:39.25,0:53:42.55,Bot,,0000,0000,0000,,Hey, now. They're bruises.\NKids get bruise.
+Dialogue: 0,0:53:39.41,0:53:42.76,Top,,0000,0000,0000,,„Â·« «·¬‰, ≈‰Â«\N—÷Ê÷ «·√ÿ›«· Ì’«»Ê‰ »Â«
+Dialogue: 0,0:53:42.60,0:53:45.30,Bot,,0000,0000,0000,,- This bruise?\N- It's not like that.
+Dialogue: 0,0:53:42.76,0:53:45.46,Top,,0000,0000,0000,,Â–Â «·—÷Ê÷ø -\N≈‰Â ·Ì” ﬂ–·ﬂ -
+Dialogue: 0,0:53:47.00,0:53:49.05,Bot,,0000,0000,0000,,- Let me have them.\N- Sorry?
+Dialogue: 0,0:53:47.16,0:53:49.21,Top,,0000,0000,0000,,œ⁄Ì‰Ì √Œ–Â„« -\N„⁄–—…ø -
+Dialogue: 0,0:53:49.15,0:53:56.60,Bot,,0000,0000,0000,,Just for a few days. You can umm.. I don't know.\NPlay with your band, have a drink with your friends.
+Dialogue: 0,0:53:49.31,0:53:56.76,Top,,0000,0000,0000,,·⁄œ… √Ì«„ ›ﬁÿ Ì„ﬂ‰ﬂ...·« √⁄·„\N«⁄“›Ì „⁄ ›—ﬁ ﬂ √Ê √ﬁ÷Ì Êﬁ  „⁄ √’œﬁ«∆ﬂ
+Dialogue: 0,0:53:58.15,0:54:03.90,Bot,,0000,0000,0000,,Jean, I think it's great. But the girls\Nhave relationship with their own. I really really do.
+Dialogue: 0,0:53:58.31,0:54:04.31,Top,,0000,0000,0000,,ÃÌ‰) √⁄ ﬁœ √‰Â „‰ «·—«∆⁄ √‰  ÕŸÏ)\N«·› « «‰ »⁄·«ﬁ… ÃÌœ… „⁄ Œ«· Â„
+Dialogue: 0,0:54:04.15,0:54:08.05,Bot,,0000,0000,0000,,But right now, I need you to get out\Nof my house. Before I kick your ass.
+Dialogue: 0,0:54:04.31,0:54:08.21,Top,,0000,0000,0000,,Ê·ﬂ‰ Õ«·Ì« ⁄·Ìﬂ «·Œ—ÊÃ „‰\N„‰“·Ì ﬁ»· √‰ √—ﬂ· „ƒŒ— ﬂ
+Dialogue: 0,0:54:14.95,0:54:19.65,Bot,,0000,0000,0000,,- I'll see you both very soon, okay?\N- Hey!
+Dialogue: 0,0:54:15.10,0:54:19.80,Top,,0000,0000,0000,,”√—«ﬂ„ ﬁ—Ì»« Ì« › Ì«  Õ”‰« -\N...«‰ Ÿ—Ì -
+Dialogue: 0,0:54:21.90,0:54:24.65,Bot,,0000,0000,0000,,- Do you've been coming around here?\N- I beg your pardon?
+Dialogue: 0,0:54:22.05,0:54:24.85,Top,,0000,0000,0000,,√ﬂ‰   √ Ì‰ ≈·Ï Â‰«ø -\N√” „ÌÕﬂ ⁄–—«ø -
+Dialogue: 0,0:54:24.70,0:54:28.10,Bot,,0000,0000,0000,,Do you've been coming at the house,\Nplaying with girls? / Of couse not! Why?
+Dialogue: 0,0:54:24.85,0:54:30.30,Top,,0000,0000,0000,,√ﬂ‰   √ Ì‰ ··„‰“· Ê ·⁄»Ì‰ „⁄ «·› « «‰ø -\N»«·ÿ»⁄ ·«, ·„«–«ø -
+Dialogue: 0,0:54:30.15,0:54:32.15,Bot,,0000,0000,0000,,Doesn't matter.
+Dialogue: 0,0:54:30.30,0:54:32.30,Top,,0000,0000,0000,,€Ì— „Â„
+Dialogue: 0,0:54:36.15,0:54:39.15,Bot,,0000,0000,0000,,Richmond.\NSocial Services.
+Dialogue: 0,0:54:37.30,0:54:39.30,Top,,0000,0000,0000,,«·Œœ„«  «·«Ã „«⁄Ì…
+Dialogue: 0,0:54:40.15,0:54:45.15,Bot,,0000,0000,0000,,Who should I speak to if I\Nbelieve my nieces are being abused?
+Dialogue: 0,0:54:40.30,0:54:47.45,Top,,0000,0000,0000,,„⁄ „‰ ÌÃ» «· ÕœÀ ≈–« ﬂ‰  √⁄ ﬁœ\N√‰ »‰«  √Œ Ì Ì ⁄—÷Ê‰ ··≈”«¡…ø
+Dialogue: 0,0:54:47.30,0:54:52.15,Bot,,0000,0000,0000,,Well, what kind of evidence\Ndo I need exactly?
+Dialogue: 0,0:54:47.45,0:54:52.30,Top,,0000,0000,0000,,„«‰Ê⁄ «·√œ·… «· Ì √Õ «ÃÂ« »«·÷»ÿø
+Dialogue: 0,0:54:53.15,0:54:55.75,Bot,,0000,0000,0000,,- How the hell did you forget?\N- Are you kidding me?
+Dialogue: 0,0:54:53.30,0:54:55.90,Top,,0000,0000,0000,,ﬂÌ› ‰”Ì Ìø -\N√ „“Õ „⁄Ìø -
+Dialogue: 0,0:54:56.15,0:54:58.70,Bot,,0000,0000,0000,,You know she wants to take\Nthe girls from us.
+Dialogue: 0,0:54:56.30,0:54:58.84,Top,,0000,0000,0000,, ⁄·„Ì‰ √‰Â«  —Ìœ √Œ– «·› « «‰ „‰«
+Dialogue: 0,0:54:58.70,0:55:02.35,Bot,,0000,0000,0000,,I'm exhausted, I'm sorry.\NI forgot today is her day.
+Dialogue: 0,0:54:58.84,0:55:02.74,Top,,0000,0000,0000,,√‰« „ ⁄»… ¬”›…\N·ﬁœ ‰”Ì  √‰Â ÌÊ„Â«
+Dialogue: 0,0:55:02.60,0:55:07.35,Bot,,0000,0000,0000,,Jesus Christ, Annie. It's one visit.\NIt's not much to remember.
+Dialogue: 0,0:55:02.74,0:55:07.49,Top,,0000,0000,0000,,—»«Â Ì« (¬‰Ì) ≈‰Â« “Ì«—… Ê«Õœ… ·«  ı–ﬂ—
+Dialogue: 0,0:55:08.15,0:55:10.60,Bot,,0000,0000,0000,,Annie, listen. They're just kids.\NAll you gotta do is..
+Dialogue: 0,0:55:08.29,0:55:10.74,Top,,0000,0000,0000,,¬‰Ì) «”„⁄Ì ≈‰Â„« „Ã—œ ÿ›· Ì‰)\N...ﬂ· „« ⁄·Ìﬂˆ ›⁄·Â
+Dialogue: 0,0:55:10.65,0:55:15.20,Bot,,0000,0000,0000,,What? Chill out? Take it easy?\NYou know I can't do this. This is not my job.
+Dialogue: 0,0:55:10.79,0:55:15.34,Top,,0000,0000,0000,,„«–«ø √‰ √Âœ√ Ê¬Œ– «·√„— »»”«ÿ…ø\N·« √” ÿÌ⁄ ›⁄· –·ﬂ, Â–« ·Ì” ⁄„·Ì
+Dialogue: 0,0:55:15.30,0:55:19.15,Bot,,0000,0000,0000,,This is your job. / I'm out of here\Nin a day, just hold it together until then.
+Dialogue: 0,0:55:15.44,0:55:19.29,Top,,0000,0000,0000,,≈‰Â ⁄„·ﬂ -\N”√Œ—Ã »⁄œ ÌÊ„,  „«”ﬂÌ Õ Ï  ·ﬂ «··ÕŸ… -
+Dialogue: 0,0:55:19.17,0:55:21.99,Bot,,0000,0000,0000,,All right, fine, yeah. We'll see what\Nhappens then. / I'll take care of them..
+Dialogue: 0,0:55:19.31,0:55:27.29,Top,,0000,0000,0000,,Õ”‰« ”‰—Ï „« ”ÌÕœÀ Õ Ï –·ﬂ «·ÕÌ‰ -\N”√Â „ »Â„«,  ·ﬂ «·› « «‰ √Â„ ‘Ì¡ »«·⁄«·„ »«·‰”»… ·Ì -
+Dialogue: 0,0:55:22.20,0:55:26.15,Bot,,0000,0000,0000,,Those girls are the important thing\Nin the world to me..
+Dialogue: 0,0:55:27.15,0:55:30.15,Bot,,0000,0000,0000,,- Awesome..\N- Annie, you..
+Dialogue: 0,0:55:27.29,0:55:30.29,Top,,0000,0000,0000,,„–Â· -\N...¬‰Ì) √‰ ˆ) -
+Dialogue: 0,0:55:42.15,0:55:45.05,Bot,,0000,0000,0000,,Okay, Victoria.
+Dialogue: 0,0:55:42.28,0:55:47.68,Top,,0000,0000,0000,,Õ”‰« Ì« (›Ìﬂ Ê—Ì«) √√‰  »ŒÌ— Ê„” —ŒÌ…ø
+Dialogue: 0,0:55:45.15,0:55:47.55,Bot,,0000,0000,0000,,Are you nice and relax?
+Dialogue: 0,0:55:48.15,0:55:52.15,Bot,,0000,0000,0000,,Are you feeling sleepy?
+Dialogue: 0,0:55:48.28,0:55:52.28,Top,,0000,0000,0000,,√ ‘⁄—Ì‰ »«·‰⁄«”ø
+Dialogue: 0,0:55:54.15,0:55:57.45,Bot,,0000,0000,0000,,I'd like you to tell me\Nabout Mama.
+Dialogue: 0,0:55:54.28,0:55:57.58,Top,,0000,0000,0000,,"√—Ìœﬂˆ √‰  Œ»—Ì‰Ì ⁄‰ "„«„«
+Dialogue: 0,0:55:58.15,0:56:01.15,Bot,,0000,0000,0000,,Did she live in that house with you?
+Dialogue: 0,0:55:58.28,0:56:01.28,Top,,0000,0000,0000,,√ﬂ«‰   ⁄Ì‘ „⁄ﬂ„« ›Ì –·ﬂ «·„‰“·ø
+Dialogue: 0,0:56:02.15,0:56:06.15,Bot,,0000,0000,0000,,The house by the lake..
+Dialogue: 0,0:56:02.28,0:56:06.28,Top,,0000,0000,0000,,«·„‰“· «·ﬁ—Ì» „‰ «·»ÕÌ—…ø
+Dialogue: 0,0:56:09.15,0:56:11.85,Bot,,0000,0000,0000,,Where did she live?
+Dialogue: 0,0:56:09.28,0:56:19.27,Top,,0000,0000,0000,,√Ì‰ ﬂ«‰   ⁄Ì‘ø -\N›Ì «·Ãœ—«‰ -
+Dialogue: 0,0:56:17.15,0:56:19.15,Bot,,0000,0000,0000,,In the walls.
+Dialogue: 0,0:56:21.15,0:56:23.15,Bot,,0000,0000,0000,,Where is she now?
+Dialogue: 0,0:56:21.28,0:56:28.27,Top,,0000,0000,0000,,√Ì‰ ÂÌ «·¬‰ø -\N·« √⁄·„ -
+Dialogue: 0,0:56:26.15,0:56:28.15,Bot,,0000,0000,0000,,I don't know.
+Dialogue: 0,0:56:29.15,0:56:33.65,Bot,,0000,0000,0000,,I think you know. I think\Nyou know where she is.
+Dialogue: 0,0:56:29.27,0:56:34.77,Top,,0000,0000,0000,,√⁄ ﬁœ √‰ﬂˆ  ⁄·„Ì‰\N√⁄ ﬁœ √‰ﬂˆ  ⁄·„Ì‰ √Ì‰ ÂÌ
+Dialogue: 0,0:56:36.15,0:56:38.60,Bot,,0000,0000,0000,,Where is she, Victoria?
+Dialogue: 0,0:56:36.27,0:56:38.72,Top,,0000,0000,0000,,√Ì‰ ÂÌ Ì« (›Ìﬂ Ê—Ì«)ø
+Dialogue: 0,0:56:40.15,0:56:43.95,Bot,,0000,0000,0000,,Is she here, in this house?\NDid she come with you?
+Dialogue: 0,0:56:40.27,0:56:45.07,Top,,0000,0000,0000,,√ÂÌ Â‰« »Â–« «·„‰“·ø\NÂ· √   „⁄ﬂ„«ø
+Dialogue: 0,0:56:46.15,0:56:49.15,Bot,,0000,0000,0000,,Open your eyes, Victoria.
+Dialogue: 0,0:56:46.27,0:56:49.27,Top,,0000,0000,0000,,(«› ÕÌ ⁄Ì‰Ìﬂˆ Ì« (›Ìﬂ Ê—Ì«
+Dialogue: 0,0:56:50.15,0:56:53.95,Bot,,0000,0000,0000,,Look at this photograph,\Nis this Mama?
+Dialogue: 0,0:56:50.27,0:56:54.07,Top,,0000,0000,0000,,«‰Ÿ—Ì ≈·Ï Â–Â «·’Ê—…\N√Â–Â ÂÌ "„«„«"ø
+Dialogue: 0,0:56:54.15,0:56:56.60,Bot,,0000,0000,0000,,- Is this Mama, Victoria?\N- Go away!
+Dialogue: 0,0:56:54.27,0:56:56.72,Top,,0000,0000,0000,,√Â–Â "„«„«" Ì« (›Ìﬂ Ê—Ì«)ø -\N«€—» ⁄‰ ÊÃÂÌ  -
+Dialogue: 0,0:56:56.75,0:56:57.95,Bot,,0000,0000,0000,,- Tell me about her.\N- No!
+Dialogue: 0,0:56:56.87,0:56:58.07,Top,,0000,0000,0000,,√Œ»—Ì‰Ì ⁄‰Â« -\N·« -
+Dialogue: 0,0:56:58.15,0:56:59.55,Bot,,0000,0000,0000,,Yes!
+Dialogue: 0,0:56:58.27,0:56:59.67,Top,,0000,0000,0000,,‰⁄„
+Dialogue: 0,0:57:25.60,0:57:28.90,Bot,,0000,0000,0000,,- What's going on?\N- Nothing. Nothing's going on.
+Dialogue: 0,0:57:25.71,0:57:29.26,Top,,0000,0000,0000,,„«·–Ì ÌÕœÀø -\N·« ‘Ì¡, ·« ‘Ì¡ ÌÕœÀ -
+Dialogue: 0,0:57:29.15,0:57:32.75,Bot,,0000,0000,0000,,- Gerald, what happened?\N- I have to go. I'll call you.
+Dialogue: 0,0:57:29.26,0:57:32.86,Top,,0000,0000,0000,,ÃÌ—«·œ) „«–« ÕœÀø) -\N⁄·Ì «·–Â«» ”√ ’· »ﬂ  -
+Dialogue: 0,0:57:49.15,0:57:51.15,Bot,,0000,0000,0000,,November third..
+Dialogue: 0,0:57:49.25,0:57:51.25,Top,,0000,0000,0000,,›Ì 3  ‘—Ì‰ «·À«‰Ì
+Dialogue: 0,0:57:52.15,0:57:55.05,Bot,,0000,0000,0000,,The seventh session was more\Nthan revealing.
+Dialogue: 0,0:57:52.25,0:57:55.15,Top,,0000,0000,0000,,«·Ã·”… «·‹7 «ﬂ ‘› \N»Â« «·„“Ìœ „‰ «·√„Ê—
+Dialogue: 0,0:57:55.15,0:58:01.95,Bot,,0000,0000,0000,, I think I have found the door, a passage,\Nthat connects Helvetia into this house..
+Dialogue: 0,0:57:55.25,0:58:03.05,Top,,0000,0000,0000,,√⁄ ﬁœ √‰Ì ÊÃœ  «·»«» „„—\N(Ì’· (ÂÌ·›Ì Ì«) »„‰“· ¬· (œ”«‰Ã
+Dialogue: 0,0:58:05.15,0:58:08.05,Bot,,0000,0000,0000,, There is no rational explanation\Nthat supports this theory.
+Dialogue: 0,0:58:05.25,0:58:08.15,Top,,0000,0000,0000,,·Ì” Â‰«ﬂ  ›”Ì— ⁄ﬁ·«‰Ì ·œ⁄„ Â–Â «·‰Ÿ—Ì…
+Dialogue: 0,0:58:08.15,0:58:12.45,Bot,,0000,0000,0000,,But it is only the ability to embrace\Nthe different reality,
+Dialogue: 0,0:58:08.25,0:58:17.55,Top,,0000,0000,0000,,·ﬂ‰ ›ﬁÿ «·ﬁœ—… ⁄·Ï  ﬁ»· Õﬁ«∆ﬁ „Œ ·›…\NÌÃ⁄· «·⁄·„ Ì Ê”⁄ ›Êﬁ ÕœÊœ „⁄—› ‰«
+Dialogue: 0,0:58:12.45,0:58:16.45,Bot,,0000,0000,0000,,that makes science expand beyond\Nthe limits of what we know..
+Dialogue: 0,0:58:23.00,0:58:27.85,Bot,,0000,0000,0000,, However, extraordinary claims\Nrequire extraordinary proof.
+Dialogue: 0,0:58:23.10,0:58:27.94,Top,,0000,0000,0000,,Ê„⁄ –·ﬂ ›≈‰ «·≈œ⁄«¡«  «·≈” À‰«∆Ì…\N Õ «Ã ≈·Ï √œ·… «” À‰«∆Ì…
+Dialogue: 0,0:58:28.15,0:58:32.55,Bot,,0000,0000,0000,, I'm never this close than ever,\Nto the real subject to my research.
+Dialogue: 0,0:58:28.24,0:58:33.24,Top,,0000,0000,0000,,√⁄·„ √‰‰Ì √ﬁ—» „‰ √Ì Êﬁ  „÷Ï\N··„Ê÷Ê⁄ «·ÕﬁÌﬁÌ ·√»Õ«ÀÌ
+Dialogue: 0,0:58:33.15,0:58:38.65,Bot,,0000,0000,0000,,I will come back from Clifton Forge,\Nwith an answer.
+Dialogue: 0,0:58:33.24,0:58:38.74,Top,,0000,0000,0000,,”√⁄Êœ „‰ "ﬂ·Ì› Ê‰ ›Ê—Ã" „⁄ ≈Ã«»…
+Dialogue: 0,0:59:35.50,0:59:36.95,Bot,,0000,0000,0000,,No!
+Dialogue: 0,0:59:35.58,0:59:37.03,Top,,0000,0000,0000,,·«
+Dialogue: 0,0:59:56.20,0:59:58.15,Bot,,0000,0000,0000,,Make her stop!
+Dialogue: 0,1:00:50.85,1:00:53.85,Bot,,0000,0000,0000,,What's wrong?
+Dialogue: 0,1:00:50.91,1:00:53.91,Top,,0000,0000,0000,,„« «·„‘ﬂ·…ø
+Dialogue: 0,1:01:01.85,1:01:04.85,Bot,,0000,0000,0000,,What's under the bed?
+Dialogue: 0,1:01:01.91,1:01:04.91,Top,,0000,0000,0000,,„«–« ÌÊÃœ √”›· «·”—Ì—ø
+Dialogue: 0,1:01:05.85,1:01:06.85,Bot,,0000,0000,0000,,Victoria?
+Dialogue: 0,1:01:05.91,1:01:06.91,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«)ø)
+Dialogue: 0,1:02:13.10,1:02:16.60,Bot,,0000,0000,0000,,Victoria. Come. Mama.
+Dialogue: 0,1:02:13.14,1:02:16.64,Top,,0000,0000,0000,,"›Ìﬂ Ê—Ì«)  ⁄«·Ì "„«„«)
+Dialogue: 0,1:02:27.10,1:02:30.30,Bot,,0000,0000,0000,,Victoria. Come. Mama.
+Dialogue: 0,1:02:27.14,1:02:30.34,Top,,0000,0000,0000,,"›Ìﬂ Ê—Ì«)  ⁄«·Ì "„«„«)
+Dialogue: 0,1:02:38.10,1:02:42.10,Bot,,0000,0000,0000,,Victoria stay.
+Dialogue: 0,1:02:38.14,1:02:42.13,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«) ·‰  –Â»)
+Dialogue: 0,1:03:14.00,1:03:15.49,Bot,,0000,0000,0000,,Mama?
+Dialogue: 0,1:03:14.04,1:03:15.53,Top,,0000,0000,0000,,„«„«"ø"
+Dialogue: 0,1:03:18.10,1:03:21.10,Bot,,0000,0000,0000,,Where, Mama?
+Dialogue: 0,1:03:18.13,1:03:21.13,Top,,0000,0000,0000,,√Ì‰ "„«„«"ø
+Dialogue: 0,1:03:58.80,1:04:01.10,Bot,,0000,0000,0000,,I know your name.
+Dialogue: 0,1:03:58.82,1:04:01.12,Top,,0000,0000,0000,,√⁄—› «”„ﬂˆ
+Dialogue: 0,1:04:02.80,1:04:05.80,Bot,,0000,0000,0000,,I know what you want.
+Dialogue: 0,1:04:02.82,1:04:05.81,Top,,0000,0000,0000,,√⁄·„ „«–«  —ÌœÌ‰
+Dialogue: 0,1:05:12.80,1:05:14.80,Bot,,0000,0000,0000,,Lilly?
+Dialogue: 0,1:05:12.80,1:05:14.80,Top,,0000,0000,0000,,·Ì·Ì)ø)
+Dialogue: 0,1:05:15.90,1:05:19.20,Bot,,0000,0000,0000,,Lilly, are you okay?
+Dialogue: 0,1:05:15.90,1:05:19.20,Top,,0000,0000,0000,,·Ì·Ì) , (·Ì·Ì) √√‰ ˆ »ŒÌ—ø)
+Dialogue: 0,1:05:19.80,1:05:22.80,Bot,,0000,0000,0000,,How did you get down here?
+Dialogue: 0,1:05:19.80,1:05:22.80,Top,,0000,0000,0000,,ﬂÌ› ‰“· Ì ≈·Ï Â‰«ø
+Dialogue: 0,1:05:24.80,1:05:28.80,Bot,,0000,0000,0000,,You shitting me. Are you shitting me?\NCome, you crazy.
+Dialogue: 0,1:05:24.80,1:05:28.80,Top,,0000,0000,0000,,√ „“ÕÌ‰ „⁄Ìø\N ⁄«·Ì Ì« „Ã‰Ê‰…
+Dialogue: 0,1:05:31.79,1:05:33.39,Top,,0000,0000,0000,,Õ”‰«
+Dialogue: 0,1:05:31.80,1:05:33.40,Bot,,0000,0000,0000,,Okay.
+Dialogue: 0,1:05:38.79,1:05:42.89,Top,,0000,0000,0000,, Êﬁ›Ì
+Dialogue: 0,1:05:39.20,1:05:41.50,Bot,,0000,0000,0000,,Stop!
+Dialogue: 0,1:05:41.60,1:05:42.90,Bot,,0000,0000,0000,,Stop it!
+Dialogue: 0,1:05:50.79,1:05:52.98,Top,,0000,0000,0000,, Êﬁ›Ì ⁄‰ –·ﬂ
+Dialogue: 0,1:05:50.80,1:05:52.99,Bot,,0000,0000,0000,,Stop.
+Dialogue: 0,1:05:56.79,1:06:00.69,Top,,0000,0000,0000,,·« ⁄·Ìﬂˆ, ÂÌ«
+Dialogue: 0,1:05:56.80,1:06:00.70,Bot,,0000,0000,0000,,It's okay. Come on.
+Dialogue: 0,1:06:01.46,1:06:03.71,Top,,0000,0000,0000,,...≈Âœ∆Ì
+Dialogue: 0,1:06:09.48,1:06:11.47,Top,,0000,0000,0000,,Õ”‰« √‰« Â‰«
+Dialogue: 0,1:06:27.78,1:06:29.78,Top,,0000,0000,0000,,„«–«ø
+Dialogue: 0,1:06:27.80,1:06:29.80,Bot,,0000,0000,0000,,What?
+Dialogue: 0,1:06:34.58,1:06:36.78,Top,,0000,0000,0000,,√√⁄Ã»ﬂˆ Â–«ø
+Dialogue: 0,1:06:34.60,1:06:36.80,Bot,,0000,0000,0000,,You like that?
+Dialogue: 0,1:06:52.77,1:06:54.77,Top,,0000,0000,0000,,Õ”‰«
+Dialogue: 0,1:06:52.80,1:06:54.80,Bot,,0000,0000,0000,,Okay.
+Dialogue: 0,1:07:13.27,1:07:20.27,Top,,0000,0000,0000,,Õ”‰« «·»«» ÃÌœ Ê«·‰«›–… ”Ì∆…\N≈–« √—œ‰« «·Œ—ÊÃ, „«·–Ì ”‰›⁄·Âø
+Dialogue: 0,1:07:13.30,1:07:18.90,Bot,,0000,0000,0000,,Okay. Door's good, window's bad. So, if\Nyou wanna go outside, what do we do?
+Dialogue: 0,1:07:20.27,1:07:23.67,Top,,0000,0000,0000,,‰” Œœ„ «·œ—Ãø -\N’ÕÌÕ, (·Ì·Ì)ø -
+Dialogue: 0,1:07:20.30,1:07:23.70,Bot,,0000,0000,0000,,- We use the stairs?\N- Right. Lilly?
+Dialogue: 0,1:07:25.27,1:07:27.27,Top,,0000,0000,0000,,‰” Œœ„ «·œ—Ãø
+Dialogue: 0,1:07:25.30,1:07:27.30,Bot,,0000,0000,0000,,We took stairs?
+Dialogue: 0,1:07:30.27,1:07:34.57,Top,,0000,0000,0000,,‰⁄„ Â–« „„ «“\NÕ”‰« ·‰ ‰«Ê· «·≈›ÿ«—
+Dialogue: 0,1:07:30.30,1:07:34.60,Bot,,0000,0000,0000,,Yeah, that's excellent. Okay.\NLet's go get breakfast.
+Dialogue: 0,1:07:44.26,1:07:46.16,Top,,0000,0000,0000,,—»«Â
+Dialogue: 0,1:07:44.30,1:07:46.20,Bot,,0000,0000,0000,,Oh, God!
+Dialogue: 0,1:07:46.26,1:07:49.96,Top,,0000,0000,0000,,·Ì·Ì) ·ﬁœ √Œ› Ì‰Ì ﬂÀÌ—«)
+Dialogue: 0,1:07:46.30,1:07:50.00,Bot,,0000,0000,0000,,Lilly, you scared the crap out of me.
+Dialogue: 0,1:07:50.26,1:07:53.66,Top,,0000,0000,0000,,√‰«»Ì·) «·≈›ÿ«— Ã«Â“)
+Dialogue: 0,1:07:50.30,1:07:53.70,Bot,,0000,0000,0000,,Annabel, breakfast is ready!
+Dialogue: 0,1:07:54.26,1:07:56.26,Top,,0000,0000,0000,,”¬ Ì ⁄·Ï «·›Ê—
+Dialogue: 0,1:07:54.30,1:07:56.30,Bot,,0000,0000,0000,,I'll be right down!
+Dialogue: 0,1:07:57.26,1:08:00.86,Top,,0000,0000,0000,,√‰«»Ì·) (·Ì·Ì) Ã«∆⁄…)
+Dialogue: 0,1:07:57.30,1:08:00.90,Bot,,0000,0000,0000,,Annabel, Lilly's hungry!
+Dialogue: 0,1:09:06.05,1:09:07.51,Top,,0000,0000,0000,,√‰«»Ì·)ø)
+Dialogue: 0,1:09:06.10,1:09:07.56,Bot,,0000,0000,0000,,Annabel?
+Dialogue: 0,1:09:13.54,1:09:14.45,Top,,0000,0000,0000,,‰⁄„
+Dialogue: 0,1:09:13.60,1:09:14.50,Bot,,0000,0000,0000,,Yeah.
+Dialogue: 0,1:09:28.24,1:09:36.69,Top,,0000,0000,0000,,(›Ìﬂ Ê—Ì«) √‰ ˆ Ê œ.(œ—Ì›Ê”)\N  ÕœÀ«‰ ”ÊÌ« √⁄‰Ì √‰ „«   ÕœÀ«‰ ﬂÀÌ—« ’ÕÌÕø
+Dialogue: 0,1:09:28.30,1:09:36.75,Bot,,0000,0000,0000,,Victoria. You and Dr. Dreyfuss, you guys\Ntalk some.. I mean, you guys talked a lot, right?
+Dialogue: 0,1:09:44.23,1:09:47.48,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«) √‰« Ê œ.(œ—Ì›Ê”)  ÕœÀ‰« √Ì÷«)
+Dialogue: 0,1:09:44.30,1:09:47.54,Bot,,0000,0000,0000,,Victoria, Dr. Dreyfuss and I,\Nwe talked some too.
+Dialogue: 0,1:09:48.23,1:09:49.93,Top,,0000,0000,0000,," ÕœÀ‰« ⁄‰ "„«„«
+Dialogue: 0,1:09:48.30,1:09:49.99,Bot,,0000,0000,0000,,We talked about Mama.
+Dialogue: 0,1:09:51.91,1:09:57.29,Top,,0000,0000,0000,,√‰ ˆ Ê œ.(œ—Ì›Ê”)  ÕœÀ „«\N⁄‰ "„«„«" √Ì÷«, ’ÕÌÕø
+Dialogue: 0,1:09:51.97,1:09:57.35,Bot,,0000,0000,0000,,You and Dr. Dreyfuss. You..\NYou guys talked about Mama too, right?
+Dialogue: 0,1:10:03.62,1:10:05.85,Top,,0000,0000,0000,,„‰ ÂÌ "„«„«" Ì« (›Ìﬂ Ê—Ì«)ø
+Dialogue: 0,1:10:03.69,1:10:05.91,Bot,,0000,0000,0000,,Where is Mama, Victoria?
+Dialogue: 0,1:10:11.59,1:10:14.53,Top,,0000,0000,0000,,(√‰« œ.(ÃÌ—«·œ œ—Ì›Ê”\N—Ã«¡« √ —ﬂ —”«·…
+Dialogue: 0,1:10:11.66,1:10:14.60,Bot,,0000,0000,0000,,This is Dr. Gerald Dreyfuss.\NPlease leave a message.
+Dialogue: 0,1:10:14.94,1:10:21.66,Top,,0000,0000,0000,,„—Õ»« √‰« (√‰«»Ì·) √—Ìœ «· ÕœÀ „⁄ﬂ, « ’· »Ì\N—Ã«¡« ⁄‰œ„«  ”„⁄ «·—”«·… Õ”‰«, ‘ﬂ—« Êœ«⁄«
+Dialogue: 0,1:10:15.01,1:10:19.73,Bot,,0000,0000,0000,,Hey, it's Annabel. I need to talk to you.\NSo, please call me whenever you get this.
+Dialogue: 0,1:10:19.74,1:10:21.73,Bot,,0000,0000,0000,,Okay, thanks. Bye.
+Dialogue: 0,1:10:41.22,1:10:45.85,Top,,0000,0000,0000,,Ã·”… «· ‰ÊÌ„ «·„€‰«ÿÌ”Ì „‰ 1 ≈·Ï 5\N›Ì «· ”ÃÌ·: ·« ÌÊÃœ ≈” Ã«»…
+Dialogue: 0,1:10:45.89,1:10:50.33,Top,,0000,0000,0000,,Ã·”… «· ‰ÊÌ„ «·„€‰«ÿÌ”Ì 6\N›Ì «· ”ÃÌ·: ÌÊÃœ ≈” Ã«»…
+Dialogue: 0,1:11:06.31,1:11:10.03,Top,,0000,0000,0000,,√Ã· ·ﬁœ  ÕœÀ  ≈·ÌÂ ·ﬂ‰Â ·„ Ì—œ\N„‰– ”«⁄ Ì‰
+Dialogue: 0,1:11:06.40,1:11:10.11,Bot,,0000,0000,0000,,Yes, I talked to him, sir.\NTwo and a half hours ago.
+Dialogue: 0,1:11:10.62,1:11:12.03,Top,,0000,0000,0000,,„ √ﬂœ… √‰ﬂ ” ›⁄·
+Dialogue: 0,1:11:10.70,1:11:12.11,Bot,,0000,0000,0000,,I'm sure you are..
+Dialogue: 0,1:11:13.42,1:11:19.03,Top,,0000,0000,0000,,√‰« ·« √›Â„, √Œ‘Ï √‰ „ﬂ—ÊÂ«\Nﬁœ √’«» «·œﬂ Ê—
+Dialogue: 0,1:11:13.50,1:11:19.11,Bot,,0000,0000,0000,, I just don't understand. I am afraid that\Nsomething bad may have happened to the doctor.
+Dialogue: 0,1:11:25.72,1:11:26.95,Top,,0000,0000,0000,,√√‰ ˆ »ŒÌ—ø
+Dialogue: 0,1:11:25.80,1:11:27.04,Bot,,0000,0000,0000,,You okay?
+Dialogue: 0,1:11:36.66,1:11:38.01,Top,,0000,0000,0000,,≈Ã·”Ì Â‰«ﬂ
+Dialogue: 0,1:11:36.75,1:11:38.10,Bot,,0000,0000,0000,,Sit!
+Dialogue: 0,1:11:54.20,1:11:57.04,Top,,0000,0000,0000,,ÂÌ« √Õ÷—« „⁄ÿ›Ìﬂ„«
+Dialogue: 0,1:11:54.30,1:11:57.14,Bot,,0000,0000,0000,,Come on. Get your clothes.
+Dialogue: 0,1:12:15.20,1:12:17.04,Top,,0000,0000,0000,,"ﬂ·Ì› Ê‰ ›Ê—Ã"
+Dialogue: 0,1:12:22.20,1:12:25.04,Top,,0000,0000,0000,,"„„— "ÊÌ·”Ê‰
+Dialogue: 0,1:12:29.63,1:12:35.26,Top,,0000,0000,0000,,—Ì ‘„«‰) √Õ «Ã ≈·Ï —ﬁ„ ·ÊÕ…)\N(«·”Ì«—… «·„” √Ã—… ·‹ (√‰«»Ì· »—«Ì”
+Dialogue: 0,1:12:29.73,1:12:33.70,Bot,,0000,0000,0000,,Richmond. I need a number\Nfor enterprise that rent a car.
+Dialogue: 0,1:12:34.62,1:12:35.66,Bot,,0000,0000,0000,,Yeah.
+Dialogue: 0,1:12:35.26,1:12:36.29,Top,,0000,0000,0000,,√Ã·
+Dialogue: 0,1:12:48.72,1:12:51.82,Top,,0000,0000,0000,,ﬂ·Ì› Ê‰ ›Ê—Ã 9
+Dialogue: 0,1:13:56.00,1:13:57.39,Bot,,0000,0000,0000,,Desange
+Dialogue: 0,1:13:56.61,1:13:58.00,Top,,0000,0000,0000,,(œ”«‰Ã)
+Dialogue: 0,1:14:00.30,1:14:04.80,Bot,,0000,0000,0000,,Mama - by Dr. Gerald Dreyfuss
+Dialogue: 0,1:14:00.90,1:14:05.40,Top,,0000,0000,0000,,„«„«", ﬂ »  „‰ ﬁ»· "\N(«·œﬂ Ê— (ÃÌ—«·œ œ—Ì›Ê”
+Dialogue: 0,1:14:07.10,1:14:12.21,Top,,0000,0000,0000,,"›Ì ⁄«„ 1877 «·—⁄» √ Ï ·‹"ﬂ·Ì› Ê‰ ›Ê—Ã
+Dialogue: 0,1:14:12.21,1:14:20.21,Top,,0000,0000,0000,,....·ﬁœ  √À—  «·› « «‰ »–·ﬂ\N√ﬂ«‰ Â‰«ﬂ √Õœ Ì⁄ ‰Ì »Â„«ø
+Dialogue: 0,1:14:21.46,1:14:22.60,Top,,0000,0000,0000,,«·»ÕÊÀ
+Dialogue: 0,1:14:23.86,1:14:27.00,Bot,,0000,0000,0000,,Dr. Dreyfuss:\NI want you to tell me the story again.
+Dialogue: 0,1:14:24.46,1:14:28.59,Top,,0000,0000,0000,,√—Ìœﬂˆ √‰  Œ»—Ì‰Ì «·ﬁ’… „Ãœœ«
+Dialogue: 0,1:14:30.00,1:14:31.76,Bot,,0000,0000,0000,,Can you tell me the story?
+Dialogue: 0,1:14:30.59,1:14:32.35,Top,,0000,0000,0000,,√Ì„ﬂ‰ﬂˆ ≈Œ»«—Ì »«·ﬁ’…ø
+Dialogue: 0,1:14:31.86,1:14:36.30,Bot,,0000,0000,0000,,It was a long time ago, a lady run away\Nfrom the hospital for sad people.
+Dialogue: 0,1:14:32.45,1:14:40.27,Top,,0000,0000,0000,,ÕœÀ  «·ﬁ’… „‰– “„‰ »⁄Ìœ, Â—»  ≈„—√…\N„‰ „‘›Ï ··√‘Œ«’ «·Õ“Ì‰Ì‰ √Œ–  ÿ›· Â«
+Dialogue: 0,1:14:37.86,1:14:39.30,Bot,,0000,0000,0000,,She took her baby.
+Dialogue: 0,1:14:39.68,1:14:41.50,Bot,,0000,0000,0000,,She jumped into the water.
+Dialogue: 0,1:14:40.27,1:14:42.80,Top,,0000,0000,0000,,À„ ﬁ›“ « »«·„«¡
+Dialogue: 0,1:14:42.21,1:14:46.80,Bot,,0000,0000,0000,,How could you know the story, Victoria?\NDid Mama tell you that story?
+Dialogue: 0,1:14:42.80,1:14:48.39,Top,,0000,0000,0000,,ﬂÌ› √„ﬂ‰ﬂ „⁄—›… Â–Â «·ﬁ’… (›Ìﬂ Ê—Ì«)ø\NÂ· "„«„«" √Œ»— ﬂ Â–Â «·ﬁ’…ø
+Dialogue: 0,1:14:48.67,1:14:51.50,Bot,,0000,0000,0000,,- She showed me.\N- How?
+Dialogue: 0,1:14:49.26,1:14:52.08,Top,,0000,0000,0000,,·ﬁœ √— ‰Ì ≈Ì«Â« -\NﬂÌ›ø -
+Dialogue: 0,1:14:51.88,1:14:54.44,Bot,,0000,0000,0000,,- In a dream\N- Go on.
+Dialogue: 0,1:14:52.47,1:14:55.03,Top,,0000,0000,0000,,›Ì Õ·„ -\N«” „—Ì -
+Dialogue: 0,1:14:54.48,1:14:58.90,Bot,,0000,0000,0000,,She fell into the water,\Nbut the baby didn't.
+Dialogue: 0,1:14:55.07,1:14:59.49,Top,,0000,0000,0000,,”ﬁÿ  ›Ì «·„«¡ ·ﬂ‰ «·ÿ›·… ·„  ﬁ⁄
+Dialogue: 0,1:14:59.49,1:15:00.83,Top,,0000,0000,0000,,(≈ÌœÌÀ »Ì—‰«‰)
+Dialogue: 0,1:15:00.25,1:15:01.39,Bot,,0000,0000,0000,,Why?
+Dialogue: 0,1:15:00.83,1:15:04.61,Top,,0000,0000,0000,,·„«–«ø -\N·« √⁄·„ -
+Dialogue: 0,1:15:02.85,1:15:04.03,Bot,,0000,0000,0000,,I don't know.
+Dialogue: 0,1:15:04.52,1:15:08.90,Bot,,0000,0000,0000,,- What could've happened to the baby, Victoria?\N- I don't know.
+Dialogue: 0,1:15:05.10,1:15:09.49,Top,,0000,0000,0000,,„«·–Ì ÕœÀ ··ÿ›·… Ì« (›Ìﬂ Ê—Ì«)ø -\N·« √⁄·„ -
+Dialogue: 0,1:15:10.45,1:15:14.16,Bot,,0000,0000,0000,,Mama didn't show you?
+Dialogue: 0,1:15:11.03,1:15:14.74,Top,,0000,0000,0000,,√·„  —Ìﬂˆ ≈Ì«Â« "„«„«"ø
+Dialogue: 0,1:15:14.92,1:15:17.96,Bot,,0000,0000,0000,,She doesn't know what happened\Nto her baby.
+Dialogue: 0,1:15:15.50,1:15:18.54,Top,,0000,0000,0000,,≈‰Â« ·«  ⁄·„ „« «·–Ì ÕœÀ ·ÿ›· Â«
+Dialogue: 0,1:15:24.55,1:15:31.20,Bot,,0000,0000,0000,,She went walking in the woods.  Looking\Nfor it. She searched for a very long time.
+Dialogue: 0,1:15:25.13,1:15:31.77,Top,,0000,0000,0000,,⁄«œ  ”Ì—« ⁄·Ï «·√ﬁœ«„ ··€«»… »ÕÀ« ⁄‰Â«\N·ﬁœ »ÕÀ  ·› —… ÿÊÌ·…
+Dialogue: 0,1:15:31.25,1:15:32.54,Bot,,0000,0000,0000,,And then?
+Dialogue: 0,1:15:31.83,1:15:33.11,Top,,0000,0000,0000,,Ê»⁄œ –·ﬂø
+Dialogue: 0,1:15:33.77,1:15:38.04,Bot,,0000,0000,0000,,- Then she found us.\N- Why are you crying, Victoria?
+Dialogue: 0,1:15:34.35,1:15:38.61,Top,,0000,0000,0000,,Ê»⁄œ –·ﬂ ÊÃœ ‰« -\N·„«  »ﬂÌ‰ Ì« (›Ìﬂ Ê—Ì«)ø -
+Dialogue: 0,1:15:38.72,1:15:40.42,Bot,,0000,0000,0000,,Because she's sad..
+Dialogue: 0,1:15:39.29,1:15:40.99,Top,,0000,0000,0000,,·√‰Â« Õ“Ì‰…
+Dialogue: 0,1:15:43.59,1:15:47.59,Top,,0000,0000,0000,,ÿ·» ··”Ã·« 
+Dialogue: 0,1:15:44.02,1:15:45.42,Bot,,0000,0000,0000,,Disenterrement Request
+Dialogue: 0,1:15:47.02,1:15:50.00,Bot,,0000,0000,0000,,Is she sad, or are you sad, Victoria?
+Dialogue: 0,1:15:47.59,1:15:52.22,Top,,0000,0000,0000,,Â· ÂÌ «·Õ“Ì‰…\N√Ê √‰ ˆ «·Õ“Ì‰… Ì« (›ﬂ Ê—Ì«)ø
+Dialogue: 0,1:15:51.66,1:15:56.02,Bot,,0000,0000,0000,, Where is Mama?\NIs she here with us?
+Dialogue: 0,1:15:52.22,1:15:58.89,Top,,0000,0000,0000,,√Ì‰ "„«„«"ø\NÂ· ÂÌ Â‰« „⁄‰«ø
+Dialogue: 0,1:15:58.33,1:16:01.64,Bot,,0000,0000,0000,,- Can you show me Mama?\N- She won't come here.
+Dialogue: 0,1:15:58.89,1:16:02.35,Top,,0000,0000,0000,,√Ì„ﬂ‰ﬂˆ √‰  —Ì‰Ì "„«„«"ø -\N≈‰Â« ·«  √ Ì ≈·Ï Â‰« -
+Dialogue: 0,1:16:01.79,1:16:03.05,Bot,,0000,0000,0000,,Why not?
+Dialogue: 0,1:16:02.35,1:16:03.61,Top,,0000,0000,0000,,·„« ·«ø
+Dialogue: 0,1:16:04.98,1:16:07.84,Bot,,0000,0000,0000,,Because she knows through watching.
+Dialogue: 0,1:16:05.54,1:16:09.40,Top,,0000,0000,0000,,·√‰Â«  ⁄—› ≈‰‰« ‰—«ﬁ»Â«
+Dialogue: 0,1:16:28.85,1:16:30.65,Top,,0000,0000,0000,,(√‰«»Ì·)
+Dialogue: 0,1:16:37.30,1:16:42.10,Bot,,0000,0000,0000,,This isn't Annabel. Leave your message\Nafter the beep. Fuck you. Beep..
+Dialogue: 0,1:16:37.85,1:16:43.64,Top,,0000,0000,0000,,√‰« (√‰«»Ì·) √ —ﬂ —”«· ﬂ »⁄œ ”„«⁄ «·’›«—…\N«··⁄‰… ⁄·Ìﬂ
+Dialogue: 0,1:16:51.30,1:16:52.86,Bot,,0000,0000,0000,,Annabel?
+Dialogue: 0,1:16:51.84,1:16:53.40,Top,,0000,0000,0000,,√‰«»Ì·)ø)
+Dialogue: 0,1:16:55.30,1:16:56.65,Bot,,0000,0000,0000,,Hey, Victoria.
+Dialogue: 0,1:16:55.84,1:16:57.19,Top,,0000,0000,0000,,(„—Õ»« Ì« (›Ìﬂ Ê—Ì«
+Dialogue: 0,1:16:57.88,1:17:01.43,Bot,,0000,0000,0000,,- Are you, okay?\N- Yeah, I'm fine.
+Dialogue: 0,1:16:58.42,1:17:01.97,Top,,0000,0000,0000,,√√‰ ˆ »ŒÌ—ø -\N√Ã·, √‰« »ŒÌ— -
+Dialogue: 0,1:17:24.22,1:17:25.81,Bot,,0000,0000,0000,,Good night, Annabel.
+Dialogue: 0,1:17:24.75,1:17:28.34,Top,,0000,0000,0000,,( ’»ÕÌ‰ ⁄·Ï ŒÌ— Ì« (√‰«»Ì·
+Dialogue: 0,1:17:29.87,1:17:31.52,Bot,,0000,0000,0000,,I love you.
+Dialogue: 0,1:17:30.40,1:17:32.05,Top,,0000,0000,0000,,√Õ»ﬂˆ
+Dialogue: 0,1:17:33.99,1:17:35.28,Bot,,0000,0000,0000,,No.
+Dialogue: 0,1:17:34.52,1:17:35.80,Top,,0000,0000,0000,,·«
+Dialogue: 0,1:19:55.50,1:19:56.72,Bot,,0000,0000,0000,,Lilly!
+Dialogue: 0,1:19:55.98,1:19:57.20,Top,,0000,0000,0000,,(·Ì·Ì)
+Dialogue: 0,1:20:01.05,1:20:02.42,Bot,,0000,0000,0000,,Lilly!
+Dialogue: 0,1:20:01.53,1:20:02.90,Top,,0000,0000,0000,,(·Ì·Ì)
+Dialogue: 0,1:20:09.50,1:20:10.85,Bot,,0000,0000,0000,,Don't look at her!
+Dialogue: 0,1:20:09.97,1:20:11.32,Top,,0000,0000,0000,,·«  ‰Ÿ—Ì ≈·ÌÂ«
+Dialogue: 0,1:20:16.00,1:20:17.23,Bot,,0000,0000,0000,,She's mad.
+Dialogue: 0,1:20:16.47,1:20:17.70,Top,,0000,0000,0000,,≈‰Â« €«÷»…
+Dialogue: 0,1:20:19.27,1:20:20.93,Bot,,0000,0000,0000,,Go up!
+Dialogue: 0,1:20:19.74,1:20:22.40,Top,,0000,0000,0000,,√’⁄œÌ ··√⁄·Ï\NÂÌ«
+Dialogue: 0,1:20:29.40,1:20:31.91,Bot,,0000,0000,0000,,Open the door!
+Dialogue: 0,1:20:29.87,1:20:32.38,Top,,0000,0000,0000,,ÂÌ« √› ÕÌ «·»«»
+Dialogue: 0,1:20:47.25,1:20:49.71,Bot,,0000,0000,0000,,- Victoria, what's going on? / Annabel.\N- Are you okay?
+Dialogue: 0,1:20:47.72,1:20:51.06,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«) „«·–Ì ÌÕœÀø √√‰ ˆ »ŒÌ—ø) -\N(√‰«»Ì·) -
+Dialogue: 0,1:20:50.00,1:20:51.86,Bot,,0000,0000,0000,,It's Lilly!
+Dialogue: 0,1:20:51.06,1:20:52.32,Top,,0000,0000,0000,,(≈‰Â« (·Ì·Ì
+Dialogue: 0,1:20:53.42,1:20:54.74,Bot,,0000,0000,0000,,Lilly?
+Dialogue: 0,1:20:53.88,1:20:57.99,Top,,0000,0000,0000,,·Ì·Ì), √√‰ ˆ »ŒÌ—ø)
+Dialogue: 0,1:20:56.00,1:20:57.54,Bot,,0000,0000,0000,,Are you okay?
+Dialogue: 0,1:21:30.90,1:21:34.62,Bot,,0000,0000,0000,,Mama, stop it!\NYou promise!
+Dialogue: 0,1:21:31.34,1:21:35.07,Top,,0000,0000,0000,,„«„«"  Êﬁ›Ì"\N·ﬁœ Ê⁄œ ‰«
+Dialogue: 0,1:21:38.90,1:21:40.93,Bot,,0000,0000,0000,,Leave her alone!
+Dialogue: 0,1:21:39.34,1:21:42.38,Top,,0000,0000,0000,,œ⁄ÌÂ« Ê‘√‰Â«
+Dialogue: 0,1:22:33.70,1:22:34.94,Bot,,0000,0000,0000,,Annabel?
+Dialogue: 0,1:22:34.12,1:22:35.36,Top,,0000,0000,0000,,(√‰«»Ì·)
+Dialogue: 0,1:22:36.40,1:22:37.73,Bot,,0000,0000,0000,,Annabel!
+Dialogue: 0,1:22:36.82,1:22:38.15,Top,,0000,0000,0000,,(√‰«»Ì·)
+Dialogue: 0,1:23:36.20,1:23:37.78,Bot,,0000,0000,0000,,Aunt Jean?
+Dialogue: 0,1:23:36.60,1:23:38.18,Top,,0000,0000,0000,,Œ«· Ì (ÃÌ‰)ø
+Dialogue: 0,1:23:43.50,1:23:44.82,Bot,,0000,0000,0000,,Are you okay?
+Dialogue: 0,1:23:43.90,1:23:45.21,Top,,0000,0000,0000,,√√‰ ˆ »ŒÌ—ø
+Dialogue: 0,1:24:46.76,1:24:48.02,Bot,,0000,0000,0000,,Lilly?
+Dialogue: 0,1:24:47.14,1:24:48.39,Top,,0000,0000,0000,,·Ì·Ì)ø)
+Dialogue: 0,1:24:51.75,1:24:53.29,Bot,,0000,0000,0000,,Victoria?
+Dialogue: 0,1:24:52.12,1:24:53.67,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«)ø)
+Dialogue: 0,1:25:24.75,1:25:27.36,Bot,,0000,0000,0000,,Hey, this is Lucas.\NLeave a message.
+Dialogue: 0,1:25:25.12,1:25:27.72,Top,,0000,0000,0000,,„—Õ»« √‰« (·Êﬂ«”) √ —ﬂ —”«· ﬂ
+Dialogue: 0,1:25:27.77,1:25:30.69,Bot,,0000,0000,0000,,Lucas, she has the girls.\NI'm heading to Clifton Forge.
+Dialogue: 0,1:25:28.14,1:25:33.05,Top,,0000,0000,0000,,·Êﬂ«”) ·ﬁœ √Œ–  «·› « «‰)\N"√‰« –«Â»… ≈·Ï "ﬂ·Ì› Ê‰ ›Ê—Ã
+Dialogue: 0,1:25:37.40,1:25:38.37,Bot,,0000,0000,0000,,Luke?
+Dialogue: 0,1:25:37.76,1:25:38.73,Top,,0000,0000,0000,,(·Êﬂ)
+Dialogue: 0,1:25:39.40,1:25:41.29,Bot,,0000,0000,0000,,Luke!
+Dialogue: 0,1:25:39.75,1:25:41.65,Top,,0000,0000,0000,,(·Êﬂ)
+Dialogue: 0,1:25:42.30,1:25:44.62,Bot,,0000,0000,0000,,I got your message.
+Dialogue: 0,1:25:42.65,1:25:44.97,Top,,0000,0000,0000,,⁄“Ì“Ì -\NÊ’· ‰Ì —”«· ﬂ -
+Dialogue: 0,1:25:44.65,1:25:46.21,Bot,,0000,0000,0000,,What the hell are you doing here?
+Dialogue: 0,1:25:45.00,1:25:46.57,Top,,0000,0000,0000,,„«·–Ì  ›⁄·Â Â‰«ø
+Dialogue: 0,1:25:47.00,1:25:49.45,Bot,,0000,0000,0000,,- Where are the girls?\N- She took them. / What?
+Dialogue: 0,1:25:47.95,1:25:49.87,Top,,0000,0000,0000,,√Ì‰ «·› « «‰ø -\N·ﬁœ √Œ– Â„«      - „«–«ø -
+Dialogue: 0,1:25:49.52,1:25:51.47,Bot,,0000,0000,0000,,- I saw her. She's real.\N- What the hell's happening?
+Dialogue: 0,1:25:49.87,1:25:52.39,Top,,0000,0000,0000,,·ﬁœ —√Ì Â«° ≈‰Â« ÕﬁÌﬁÌ… -\N„«·–Ì ÌÕœÀø -
+Dialogue: 0,1:25:51.53,1:25:56.10,Bot,,0000,0000,0000,,She's gonna kill them. We gotta get to the cabin.\NShe was here with them the whole time.
+Dialogue: 0,1:25:52.39,1:25:56.55,Top,,0000,0000,0000,,” ﬁ ·Â„« ⁄·Ì‰« «·–Â«» ··ﬂÊŒ\Nﬂ«‰  „⁄Â„« ÿÊ«· «·Êﬁ 
+Dialogue: 0,1:25:56.20,1:25:59.04,Bot,,0000,0000,0000,,- Dr. Dreyfuss knew it.\N- Oh, God..
+Dialogue: 0,1:25:56.55,1:26:01.39,Top,,0000,0000,0000,,œ. (œ—Ì›Ê”) ⁄—› –·ﬂ -\N—»«Â -
+Dialogue: 0,1:26:23.97,1:26:25.00,Bot,,0000,0000,0000,,Jean?
+Dialogue: 0,1:26:24.31,1:26:25.34,Top,,0000,0000,0000,,ÃÌ‰)ø)
+Dialogue: 0,1:26:50.06,1:26:51.63,Bot,,0000,0000,0000,,They're on the cliff!
+Dialogue: 0,1:26:50.39,1:26:53.96,Top,,0000,0000,0000,,≈‰Â„« ⁄·Ï Õ«›… «·„‰Õœ—
+Dialogue: 0,1:27:18.10,1:27:20.42,Bot,,0000,0000,0000,,Victoria!\NLilly!
+Dialogue: 0,1:27:18.42,1:27:20.75,Top,,0000,0000,0000,,(›Ìﬂ Ê—Ì«)° (·Ì·Ì)
+Dialogue: 0,1:27:23.60,1:27:24.55,Bot,,0000,0000,0000,,No!
+Dialogue: 0,1:27:23.92,1:27:24.87,Top,,0000,0000,0000,,·«
+Dialogue: 0,1:27:32.60,1:27:34.30,Bot,,0000,0000,0000,,- LUCAS: No! No!\N- LILLY: Mama!
+Dialogue: 0,1:27:32.91,1:27:34.62,Top,,0000,0000,0000,,·«° ·« -\N"„«„«" -
+Dialogue: 0,1:27:34.33,1:27:38.00,Bot,,0000,0000,0000,,- LUCAS: Lilly! Lilly!\N- ANNABEL: No!
+Dialogue: 0,1:27:34.65,1:27:38.32,Top,,0000,0000,0000,,(·Ì·Ì), (·Ì·Ì) -\N·« -
+Dialogue: 0,1:27:46.60,1:27:47.67,Bot,,0000,0000,0000,,LILLY: Mama!
+Dialogue: 0,1:27:46.91,1:27:47.98,Top,,0000,0000,0000,,"„«„«"
+Dialogue: 0,1:27:50.87,1:27:51.67,Bot,,0000,0000,0000,,ANNABEL: Lilly!
+Dialogue: 0,1:27:51.18,1:27:51.98,Top,,0000,0000,0000,,(·Ì·Ì)
+Dialogue: 0,1:29:16.97,1:29:18.40,Bot,,0000,0000,0000,,LILLY: Mama!
+Dialogue: 0,1:29:17.25,1:29:18.69,Top,,0000,0000,0000,,"„«„«"
+Dialogue: 0,1:29:20.60,1:29:21.85,Bot,,0000,0000,0000,,ANNABEL: Lilly?
+Dialogue: 0,1:29:20.88,1:29:22.14,Top,,0000,0000,0000,,·«, (·Ì·Ì)ø
+Dialogue: 0,1:29:51.60,1:29:54.17,Bot,,0000,0000,0000,,VICTORIA: Mama, no, Mama!
+Dialogue: 0,1:29:51.87,1:29:54.44,Top,,0000,0000,0000,,„«„«" ·«"\N"„«„«"
+Dialogue: 0,1:30:01.50,1:30:02.99,Bot,,0000,0000,0000,,LILLY: Mama!
+Dialogue: 0,1:30:01.76,1:30:03.26,Top,,0000,0000,0000,,"„«„«"
+Dialogue: 0,1:30:21.40,1:30:23.01,Bot,,0000,0000,0000,,Stay here..
+Dialogue: 0,1:30:21.66,1:30:23.27,Top,,0000,0000,0000,,≈»ﬁÌ Â‰«
+Dialogue: 0,1:30:29.60,1:30:31.55,Bot,,0000,0000,0000,,Bye, Annabel..
+Dialogue: 0,1:30:29.85,1:30:31.81,Top,,0000,0000,0000,,(Êœ«⁄« Ì« (√‰«»Ì·
+Dialogue: 0,1:30:40.40,1:30:46.35,Bot,,0000,0000,0000,,- Sleep, Annabel!\N- Victoria, Lilly..
+Dialogue: 0,1:30:40.65,1:30:46.60,Top,,0000,0000,0000,,(‰«„Ì Ì« (√‰«»Ì· -\N(›Ìﬂ Ê—Ì«)° (·Ì·Ì) -
+Dialogue: 0,1:31:16.00,1:31:18.73,Bot,,0000,0000,0000,,Sleep, Annabel, sleep..
+Dialogue: 0,1:31:16.24,1:31:18.97,Top,,0000,0000,0000,,‰«„Ì Ì« (√‰«»Ì·), ‰«„Ì
+Dialogue: 0,1:31:24.20,1:31:26.21,Bot,,0000,0000,0000,,Sleep..
+Dialogue: 0,1:31:24.43,1:31:26.44,Top,,0000,0000,0000,,‰«„Ì
+Dialogue: 0,1:32:07.20,1:32:08.64,Bot,,0000,0000,0000,,Good bye, Mama..
+Dialogue: 0,1:32:07.42,1:32:12.40,Top,,0000,0000,0000,,Êœ«⁄« Ì« "„«„«" √Õ»ﬂˆ
+Dialogue: 0,1:32:10.81,1:32:12.18,Bot,,0000,0000,0000,,I love you..
+Dialogue: 0,1:32:17.70,1:32:20.22,Bot,,0000,0000,0000,,Victoria, come..
+Dialogue: 0,1:32:17.91,1:32:20.44,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«)  ⁄«·Ì)
+Dialogue: 0,1:32:21.38,1:32:23.18,Bot,,0000,0000,0000,,Victoria stay.
+Dialogue: 0,1:32:21.60,1:32:23.40,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«) ·‰  –Â»)
+Dialogue: 0,1:32:24.90,1:32:29.83,Bot,,0000,0000,0000,,Come. Lilly. Mama. Victoria.
+Dialogue: 0,1:32:25.11,1:32:30.05,Top,,0000,0000,0000,,( ⁄«·Ì (·Ì·Ì) Ê"„«„«" Ê(›Ìﬂ Ê—Ì«
+Dialogue: 0,1:32:29.90,1:32:34.42,Bot,,0000,0000,0000,,No. Lilly. Mama.
+Dialogue: 0,1:32:30.11,1:32:34.63,Top,,0000,0000,0000,,"·« (·Ì·Ì) Ê"„«„«
+Dialogue: 0,1:32:43.10,1:32:45.93,Bot,,0000,0000,0000,,Lilly!
+Dialogue: 0,1:32:43.31,1:32:46.14,Top,,0000,0000,0000,,(·Ì·Ì), (·Ì·Ì)
+Dialogue: 0,1:32:46.10,1:32:48.36,Bot,,0000,0000,0000,,Victoria, no...
+Dialogue: 0,1:32:46.30,1:32:48.57,Top,,0000,0000,0000,,›Ìﬂ Ê—Ì«) ·«)
+Dialogue: 0,1:32:48.80,1:32:51.58,Bot,,0000,0000,0000,,Lilly!
+Dialogue: 0,1:32:49.00,1:32:51.78,Top,,0000,0000,0000,,(·Ì·Ì), (·Ì·Ì)
+Dialogue: 0,1:32:51.60,1:32:55.68,Bot,,0000,0000,0000,,- No...\N- Lilly!
+Dialogue: 0,1:32:51.81,1:32:55.88,Top,,0000,0000,0000,,·« -\N(·Ì·Ì) -
+Dialogue: 0,1:32:55.70,1:32:58.03,Bot,,0000,0000,0000,,Oh God, bring her back...
+Dialogue: 0,1:32:55.90,1:32:58.23,Top,,0000,0000,0000,,—»«Â, √⁄ÌœÌÂ« ≈·Ì‰«
+Dialogue: 0,1:32:59.50,1:33:00.83,Bot,,0000,0000,0000,,Please...
+Dialogue: 0,1:32:59.70,1:33:01.03,Top,,0000,0000,0000,,⁄“Ì“ Ì
+Dialogue: 0,1:33:01.10,1:33:02.48,Bot,,0000,0000,0000,,Lilly..
+Dialogue: 0,1:33:01.30,1:33:02.69,Top,,0000,0000,0000,,(·Ì·Ì)
+Dialogue: 0,1:34:42.48,1:34:44.28,Bot,,0000,0000,0000,,Lilly?
+Dialogue: 0,1:34:42.65,1:34:44.45,Top,,0000,0000,0000,,(·Ì·Ì)
+Dialogue: 0,1:35:03.03,1:38:12.46,Top,,0000,0000,0000,,*  west king  *  ‹—Ã‹„‹…

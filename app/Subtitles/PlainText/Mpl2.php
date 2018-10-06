@@ -2,7 +2,7 @@
 
 namespace App\Subtitles\PlainText;
 
-use SjorsO\TextFile\Facades\TextFileReader;
+use App\Support\TextFile\Facades\TextFileReader;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Subtitles\WithFileLines;

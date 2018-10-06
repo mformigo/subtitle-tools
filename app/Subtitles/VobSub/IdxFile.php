@@ -2,7 +2,7 @@
 
 namespace App\Subtitles\VobSub;
 
-use SjorsO\TextFile\Facades\TextFileReader;
+use App\Support\TextFile\Facades\TextFileReader;
 
 class IdxFile
 {

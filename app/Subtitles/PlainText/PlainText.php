@@ -4,6 +4,7 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\TextFile;
 use App\Subtitles\WithFileContent;
+use App\Support\TextFile\Facades\TextFileIdentifier;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PlainText extends TextFile
@@ -28,6 +29,6 @@ class PlainText extends TextFile
     {
         $filePath = $file instanceof UploadedFile ? $file->getRealPath() : $file;
 
-        return app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($filePath);
+        return TextFileIdentifier::isTextFile($filePath);
     }
 }

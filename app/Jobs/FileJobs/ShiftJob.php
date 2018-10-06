@@ -6,6 +6,7 @@ use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
+use App\Support\TextFile\Facades\TextFileIdentifier;
 
 class ShiftJob extends FileJob
 {
@@ -15,7 +16,7 @@ class ShiftJob extends FileJob
     {
         $this->startFileJob();
 
-        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (! TextFileIdentifier::isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 

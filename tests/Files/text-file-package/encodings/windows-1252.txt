@@ -1,0 +1,42 @@
+[Script Info]
+Title: <untitled>
+Original Script: <unknown>
+ScriptType: v4.00+
+Collisions: Normal
+Timer: 100.0000
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Tahoma,22,&H00FFFFFF,&H00FF0000,&H00000000,&H00000000,-1,0,0,0,100,100,0,0.00,1,2,3,2,30,30,10,1
+
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:02:15.89,0:02:19.33,Default,,0000,0000,0000,,{\c&H80FFFF&}Dougal... you settle down now, please.
+Dialogue: 0,0:02:20.57,0:02:22.30,Default,,0000,0000,0000,,{\c&H80FFFF&}It won't be long.
+Dialogue: 0,0:02:40.59,0:02:42.29,Default,,0000,0000,0000,,{\c&H80FFFF&}Next.
+Dialogue: 0,0:02:48.03,0:02:50.32,Default,,0000,0000,0000,,{\c&H80FFFF&}- British, huh?\N- Yes.
+Dialogue: 0,0:02:50.52,0:02:52.81,Default,,0000,0000,0000,,{\c&H80FFFF&}- First trip to New York?\N- Yes.
+Dialogue: 0,0:02:53.94,0:02:56.45,Default,,0000,0000,0000,,{\c&H80FFFF&}- Anything edible in there?\N- No.
+Dialogue: 0,0:02:58.25,0:02:59.95,Default,,0000,0000,0000,,{\c&H80FFFF&}Livestock?
+Dialogue: 0,0:03:04.82,0:03:07.36,Default,,0000,0000,0000,,{\c&H80FFFF&}Must get that fixed... ahh, no.
+Dialogue: 0,0:03:08.76,0:03:10.46,Default,,0000,0000,0000,,{\c&H80FFFF&}Let me take a look.
+Dialogue: 0,0:03:33.40,0:03:35.46,Default,,0000,0000,0000,,{\c&H80FFFF&}- Welcome to New York.\N- Thank you.
+Dialogue: 0,0:03:36.73,0:03:38.44,Default,,0000,0000,0000,,{\c&H80FFFF&}Next!
+Dialogue: 0,0:03:41.01,0:03:45.48,Default,,0000,0000,0000,,{\c&H80FFFF&}And it was like a... like a\Nwind or like a... like a ghost...
+Dialogue: 0,0:03:46.65,0:03:51.02,Default,,0000,0000,0000,,{\c&H80FFFF&}but dark... and I saw its eyes.
+Dialogue: 0,0:03:51.85,0:03:53.59,Default,,0000,0000,0000,,{\c&H80FFFF&}Shinin’ white eyes...
+Dialogue: 0,0:03:57.03,0:04:02.37,Default,,0000,0000,0000,,{\c&H80FFFF&}- A dark wind... with eyes.\N- Like a dark mass,
+Dialogue: 0,0:04:02.67,0:04:05.64,Default,,0000,0000,0000,,{\c&H80FFFF&}and it dove down there, down underground.
+Dialogue: 0,0:04:06.77,0:04:08.68,Default,,0000,0000,0000,,{\c&H80FFFF&}Someone ought do something about it.
+Dialogue: 0,0:04:09.34,0:04:12.81,Default,,0000,0000,0000,,{\c&H80FFFF&}It's everywhere this thing.\NIt's out of control.
+Dialogue: 0,0:04:15.45,0:04:18.59,Default,,0000,0000,0000,,{\c&H80FFFF&}- Hey, did you get anything?\N- Dark wind, blah blah.
+Dialogue: 0,0:04:19.72,0:04:22.83,Default,,0000,0000,0000,,{\c&H80FFFF&}It’s some atmospheric hooey.\NOr electrical.
+Dialogue: 0,0:04:23.56,0:04:24.97,Default,,0000,0000,0000,,{\c&H80FFFF&}Hey, you thirsty?
+Dialogue: 0,0:04:25.17,0:04:28.77,Default,,0000,0000,0000,,{\c&H80FFFF&}Nah, I’m on the wagon.\NPromised Martha I’d lay off.
+Dialogue: 0,0:04:31.84,0:04:33.64,Default,,0000,0000,0000,,{\c&H80FFFF&}It's atmospheric.
+Dialogue: 0,0:05:13.23,0:05:17.77,Default,,0000,0000,0000,,{\c&H80FFFF&}This great city sparkles with\Nthe jewels of man’s invention!
+Dialogue: 0,0:05:17.80,0:05:23.24,Default,,0000,0000,0000,,{\c&H80FFFF&}Movie theaters, automobiles,\Nthe wireless, electric lights.
+Dialogue: 0,0:05:23.27,0:05:25.78,Default,,0000,0000,0000,,{\c&H80FFFF&}- All dazzle and bewitch us!\N- So sorry.
+Dialogue: 0,0:05:26.51,0:05:30.55,Default,,0000,0000,0000,,{\c&H80FFFF&}But where there is light\Nthere is shadow, friend.
+Dialogue: 0,0:05:30.65,0:05:33.71,Default,,0000,0000,0000,,{\c&H80FFFF&}Something is stalking our city,\Nwreaking destruction
+Dialogue: 0,0:05:33.91,0:05:36.96,Default,,0000,0000,0000,,{\c&H80FFFF&}and then disappearing without a trace.

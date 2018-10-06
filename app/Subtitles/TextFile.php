@@ -3,7 +3,7 @@
 namespace App\Subtitles;
 
 use Illuminate\Http\UploadedFile;
-use SjorsO\TextFile\Facades\TextFileReader;
+use App\Support\TextFile\Facades\TextFileReader;
 
 abstract class TextFile
 {

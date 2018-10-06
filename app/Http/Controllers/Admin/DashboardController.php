@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\DB;
-use SjorsO\TextFile\Facades\TextFileReader;
+use App\Support\TextFile\Facades\TextFileReader;
 
 class DashboardController extends Controller
 {

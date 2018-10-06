@@ -9,6 +9,7 @@ use App\Subtitles\Transformers\ChineseToPinyinTransformer;
 use App\Subtitles\Transformers\OnlyPinyinAndChineseTransformer;
 use App\Subtitles\Transformers\PinyinUnderChineseTransformer;
 use App\Subtitles\TransformsToGenericSubtitle;
+use App\Support\TextFile\Facades\TextFileIdentifier;
 
 class PinyinSubtitlesJob extends FileJob
 {
@@ -16,7 +17,7 @@ class PinyinSubtitlesJob extends FileJob
     {
         $this->startFileJob();
 
-        if (!app(\SjorsO\TextFile\Contracts\TextFileIdentifierInterface::class)->isTextFile($this->inputStoredFile->filePath)) {
+        if (! TextFileIdentifier::isTextFile($this->inputStoredFile->filePath)) {
             return $this->abortFileJob('messages.not_a_text_file');
         }
 

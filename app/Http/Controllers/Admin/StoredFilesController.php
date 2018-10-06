@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Support\Facades\TempFile;
-use SjorsO\TextFile\Facades\TextFileIdentifier;
-use SjorsO\TextFile\Facades\TextFileReader;
+use App\Support\TextFile\Facades\TextFileIdentifier;
+use App\Support\TextFile\Facades\TextFileReader;
 use App\Models\StoredFile;
 use Illuminate\Http\Request;
 

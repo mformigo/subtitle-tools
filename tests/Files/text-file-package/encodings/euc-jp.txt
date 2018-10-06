@@ -1,0 +1,355 @@
+<SAMI>
+
+<HEAD>
+<TITLE>[ABP-097] 一泊二日、美少女完全予約制。 第二章 ～長野くみの場合</TITLE>
+
+<SAMIParam>
+  Metrics {time:ms;}
+  Spec {MSFT:1.0;}
+</SAMIParam>
+
+<STYLE TYPE="text/css">
+<!--
+P { margin-left:8pt; margin-right:8pt; margin-bottom:2pt;
+    margin-top:2pt; font-size:14pt; text-align:center;
+    font-family:굴림, Arial; font-weight:normal; color:white;
+    background-color:black; }
+.KRCC { Name:한국어; lang:ko-KR; SAMIType:CC; }
+#STDPrn { Name:Standard Print; }
+#LargePrn { Name:Large Print; font-size:20pt; }
+#SmallPrn { Name:Small Print; font-size:10pt; }
+-->
+</STYLE>
+
+</HEAD>
+
+<BODY>
+
+<-- Open play menu, choose Captions and Subtiles, On if available -->
+<-- Open tools menu, Security, Show local captions when present -->
+
+<SYNC Start=241><P Class=KRCC>[ABP-097] 一泊二日、美少女完全予約制。 第二章 ～長野くみの場合<br>릴날짜 : 2014년 01월 27일 / 배포일 : 2014년 01월 28일 (첫번째 삽질)<br>♣ 제작 : 바이꾸 ♣
+<SYNC Start=8241><P Class=KRCC>&nbsp;
+<SYNC Start=9942><P Class=KRCC>저 자동차이네요
+<SYNC Start=11766><P Class=KRCC>&nbsp;
+<SYNC Start=12052><P Class=KRCC>아
+<SYNC Start=13835><P Class=KRCC>안녕하세요
+<SYNC Start=15409><P Class=KRCC>&nbsp;
+<SYNC Start=15908><P Class=KRCC>ㅎㅎㅎ
+<SYNC Start=18218><P Class=KRCC>&nbsp;
+<SYNC Start=18441><P Class=KRCC>잘 부탁합니다
+<SYNC Start=26352><P Class=KRCC>어떻습니까? 이 아저씨
+<SYNC Start=27589><P Class=KRCC>대단해<br>수다쟁이~
+<SYNC Start=29212><P Class=KRCC>듣던대로
+<SYNC Start=30986><P Class=KRCC>&nbsp;
+<SYNC Start=33740><P Class=KRCC>잘 부탁합니다
+<SYNC Start=36358><P Class=KRCC>그럼 이것저것 맡기도록 하겠으니...
+<SYNC Start=40564><P Class=KRCC>귀엽지요?
+<SYNC Start=41634><P Class=KRCC>&nbsp;
+<SYNC Start=43266><P Class=KRCC>귀엽네요
+<SYNC Start=45259><P Class=KRCC>&nbsp;
+<SYNC Start=46326><P Class=KRCC>잘 부탁합니다
+<SYNC Start=48294><P Class=KRCC>&nbsp;
+<SYNC Start=58658><P Class=KRCC>좋아. 카메라를 향해 출발 부탁합니다.
+<SYNC Start=64898><P Class=KRCC>출발~!
+<SYNC Start=66422><P Class=KRCC>&nbsp;
+<SYNC Start=79656><P Class=KRCC>(햇빛) 괜찮아?
+<SYNC Start=80839><P Class=KRCC>네 괜찮아요
+<SYNC Start=82172><P Class=KRCC>지금 몇살?
+<SYNC Start=83300><P Class=KRCC>19세입니다
+<SYNC Start=84220><P Class=KRCC>19살?
+<SYNC Start=86524><P Class=KRCC>훌륭하네~
+<SYNC Start=88058><P Class=KRCC>훌륭해...ㅎㅎ
+<SYNC Start=90680><P Class=KRCC>이름 뭐라고 했더라
+<SYNC Start=92164><P Class=KRCC>쿠미입니다
+<SYNC Start=93156><P Class=KRCC>쿠미짱?
+<SYNC Start=94089><P Class=KRCC>하이
+<SYNC Start=94666><P Class=KRCC>쿠미짱이면 내가 처음으로 결혼하고싶다고 생각한 여자아이인데...
+<SYNC Start=100448><P Class=KRCC>뭐 쿠미'코'라고 하지만... 쿠미짱은 쿠미까지? '코'는 없는거지?<br>요즘 애들은 '코'는 별로 안붙이니까 말야
+<SYNC Start=108080><P Class=KRCC>그렇네요
+<SYNC Start=110454><P Class=KRCC>몇작품 정도 나왔어?
+<SYNC Start=111978><P Class=KRCC>3작품이요
+<SYNC Start=112800><P Class=KRCC>3번째?
+<SYNC Start=113532><P Class=KRCC>&nbsp;
+<SYNC Start=113650><P Class=KRCC>하이
+<SYNC Start=114394><P Class=KRCC>&nbsp;
+<SYNC Start=114510><P Class=KRCC>1번째는 어떤??<br>[엄청 긴장했다는 내용]
+<SYNC Start=121467><P Class=KRCC>&nbsp;
+<SYNC Start=139104><P Class=KRCC>마실꺼 있지?
+<SYNC Start=142308><P Class=KRCC>&nbsp;
+<SYNC Start=148851><P Class=KRCC>남자 친구는?<br>(없어요)
+<SYNC Start=150902><P Class=KRCC>&nbsp;
+<SYNC Start=155217><P Class=KRCC>없은지 2개월 정도...
+<SYNC Start=157434><P Class=KRCC>&nbsp;
+<SYNC Start=159616><P Class=KRCC>어느정도 사귀었고 몇살 정도인지<br>어째서 헤어졌는지... 그런거
+<SYNC Start=166632><P Class=KRCC>&nbsp;
+<SYNC Start=169800><P Class=KRCC>8개월 정도 사귀었고... 연하이고
+<SYNC Start=172600><P Class=KRCC>&nbsp;
+<SYNC Start=173473><P Class=KRCC>만남은?
+<SYNC Start=174647><P Class=KRCC>만남은 대학의 친구의 OOO로...뭐랄까 원거리로
+<SYNC Start=180494><P Class=KRCC>&nbsp;
+<SYNC Start=182429><P Class=KRCC>원거리?
+<SYNC Start=184308><P Class=KRCC>몇살 연하? 2살 정도였어요
+<SYNC Start=186616><P Class=KRCC>&nbsp;
+<SYNC Start=189181><P Class=KRCC>지금 쿠미짱 몇살이었더라?<br>19살...
+<SYNC Start=194312><P Class=KRCC>17살? 고등학생?
+<SYNC Start=198724><P Class=KRCC>&nbsp;
+<SYNC Start=200111><P Class=KRCC>지금이라면 2살차이야 뭐 아무렇지도 않지만서도...
+<SYNC Start=206064><P Class=KRCC>고등학생이 대학생 누님을 만나는건 큰일이네
+<SYNC Start=210948><P Class=KRCC>&nbsp;
+<SYNC Start=215490><P Class=KRCC>뭐~ 원숭이네
+<SYNC Start=216545><P Class=KRCC>&nbsp;
+<SYNC Start=218844><P Class=KRCC>ㅎㅎㅎ 응 원숭이였다
+<SYNC Start=220278><P Class=KRCC>&nbsp;
+<SYNC Start=222612><P Class=KRCC>한번에 10회정도 한다던가?
+<SYNC Start=224046><P Class=KRCC>에? 그렇게 체력없어요 저는... 3회정도 라던가...<br>(차소리때문에 안들림...)
+<SYNC Start=229778><P Class=KRCC>&nbsp;
+<SYNC Start=234335><P Class=KRCC>'생'으로?<br>아 뭐 '생'이였네요
+<SYNC Start=237573><P Class=KRCC>&nbsp;
+<SYNC Start=237765><P Class=KRCC>어디에 쌌어?<br>배위에 라든가...
+<SYNC Start=242109><P Class=KRCC>&nbsp;
+<SYNC Start=244667><P Class=KRCC>전희같은것도 별로 없었지?<br>아네요 있었어효 제대로~
+<SYNC Start=247282><P Class=KRCC>있어? 제대로 망꼬 햝아 주던?<br>음... 뭐 대충이었지만요
+<SYNC Start=252882><P Class=KRCC>&nbsp;
+<SYNC Start=253639><P Class=KRCC>그치? 그런거 할 나이가 아니라니까...
+<SYNC Start=256986><P Class=KRCC>&nbsp;
+<SYNC Start=258344><P Class=KRCC>아저씨라면 2~3시간 햝을꺼니깐 말야? (클낫다!^^*)<br>이런 저런 곳을.. 그게 아저씨의 팥팥이거덩? ㅎㅎㅎ
+<SYNC Start=267755><P Class=KRCC>&nbsp;
+<SYNC Start=268897><P Class=KRCC>그니까 이건 아저씨와 젊은여자애가 온천여행 간다.라는 걸로
+<SYNC Start=273825><P Class=KRCC>&nbsp;
+<SYNC Start=274528><P Class=KRCC>대체로 나 같이 40대 전후가 보는 거니까 말이에요
+<SYNC Start=278683><P Class=KRCC>&nbsp;
+<SYNC Start=279445><P Class=KRCC>그니까 아저씨의 집요한 곳을 보여줄꺼니까 말야...<br>(집요한?,,,ㅎㅎㅎ)
+<SYNC Start=282239><P Class=KRCC>아저씨를 대표해서 쿠미짱과<br>팥팥하도록 할게요.
+<SYNC Start=287741><P Class=KRCC>&nbsp;
+<SYNC Start=298035><P Class=KRCC>이야 단풍이 잘 들었네..<br>엄청 예뻐요
+<SYNC Start=302141><P Class=KRCC>&nbsp;
+<SYNC Start=302556><P Class=KRCC>따듯해~ 좋네 따끈따끈해서<br>좋은 날씨에요~
+<SYNC Start=307182><P Class=KRCC>&nbsp;
+<SYNC Start=307555><P Class=KRCC>산보할래? 예! 산보갑시다~
+<SYNC Start=312516><P Class=KRCC>&nbsp;
+<SYNC Start=314478><P Class=KRCC>이런 공원데이트는 어때? 쿠미짱은
+<SYNC Start=318383><P Class=KRCC>&nbsp;
+<SYNC Start=318509><P Class=KRCC>저 이런 느긋한 데이트가 좋을지도 몰라요
+<SYNC Start=322629><P Class=KRCC>&nbsp;
+<SYNC Start=323895><P Class=KRCC>삐~ 보다는 공원이라던지가...
+<SYNC Start=331225><P Class=KRCC>&nbsp;
+<SYNC Start=332338><P Class=KRCC>아이스가 있네...단거 좋아해? 엄청 좋아요
+<SYNC Start=336532><P Class=KRCC>&nbsp;
+<SYNC Start=338125><P Class=KRCC>그럼 사줄수있게 해달라고...
+<SYNC Start=339187><P Class=KRCC>에? 감사합니다.<br>에 동전이..자 골라~ 감사합니다.
+<SYNC Start=348158><P Class=KRCC>&nbsp;
+<SYNC Start=351788><P Class=KRCC>어째서 그 맛이 좋은거야?
+<SYNC Start=353772><P Class=KRCC>&nbsp;
+<SYNC Start=354489><P Class=KRCC>초코하고 민트가 콜라보가 절묘해서<br>엄청 어울려요~
+<SYNC Start=358391><P Class=KRCC>&nbsp;
+<SYNC Start=364298><P Class=KRCC>차안이 더웠지? 더웠어요~
+<SYNC Start=369483><P Class=KRCC>&nbsp;
+<SYNC Start=381629><P Class=KRCC>잘먹겠습니다~
+<SYNC Start=385491><P Class=KRCC>&nbsp;
+<SYNC Start=391236><P Class=KRCC>(어때?)<br>역시 초코민트 맛있어~
+<SYNC Start=398623><P Class=KRCC>자 이쪽으로 여기 안에 들어가보자
+<SYNC Start=406514><P Class=KRCC>&nbsp;
+<SYNC Start=418086><P Class=KRCC>이쪽이쪽...
+<SYNC Start=420722><P Class=KRCC>&nbsp;
+<SYNC Start=425260><P Class=KRCC>여기봐 이렇게 보이는게 뭐랄까 변태같은 느낌?
+<SYNC Start=435009><P Class=KRCC>이양~ 안 그래요 ^^
+<SYNC Start=438677><P Class=KRCC>&nbsp;
+<SYNC Start=446008><P Class=KRCC>아니 거기 앉아서 다리를...
+<SYNC Start=449749><P Class=KRCC>&nbsp;
+<SYNC Start=451274><P Class=KRCC>다리?
+<SYNC Start=453294><P Class=KRCC>&nbsp;
+<SYNC Start=460214><P Class=KRCC>좀더 이쪽을 향해봐 좀더 좀더
+<SYNC Start=465271><P Class=KRCC>&nbsp;
+<SYNC Start=472118><P Class=KRCC>좀더?
+<SYNC Start=475265><P Class=KRCC>&nbsp;
+<SYNC Start=480005><P Class=KRCC>오늘 무슨색?<br>핑크?... 핑크^^
+<SYNC Start=492714><P Class=KRCC>&nbsp;
+<SYNC Start=494202><P Class=KRCC>T백? T가 아니야~<br>T는 안 입어? 응 안입어
+<SYNC Start=499312><P Class=KRCC>&nbsp;
+<SYNC Start=499484><P Class=KRCC>안 갖고있어?<br>응 안 갖고 있고 엄청 기분 나뻐...
+<SYNC Start=504068><P Class=KRCC>&nbsp;
+<SYNC Start=540219><P Class=KRCC>에? 어떨때 입냐고요?<br>승부를 걸거나 할때
+<SYNC Start=544208><P Class=KRCC>에~~~<br>ㅎㅎㅎ
+<SYNC Start=545440><P Class=KRCC>무슨색?<br>무슨색일까나??? 아, 핑크
+<SYNC Start=550178><P Class=KRCC>&nbsp;
+<SYNC Start=551652><P Class=KRCC>어느때 승부(팬티) 입을 때라고 생각해?
+<SYNC Start=556781><P Class=KRCC>자고 올때나...밤늦게 놀때
+<SYNC Start=567675><P Class=KRCC>예를들면 몇번째 데이트 정도일때<br>'오늘 가랑이 허락해 버릴까나?' 생각해?
+<SYNC Start=580709><P Class=KRCC>&nbsp;
+<SYNC Start=581448><P Class=KRCC>3번째....<br>그래도 사람에 따라서 일까나? 그래도 음....
+<SYNC Start=586272><P Class=KRCC>평균 평균
+<SYNC Start=587626><P Class=KRCC>3회째
+<SYNC Start=591034><P Class=KRCC>&nbsp;
+<SYNC Start=592304><P Class=KRCC>왜 다들 3회째라고 말하는 걸까나?<br>3회로 될꺼면 첫번째에 해도 되자나.
+<SYNC Start=596443><P Class=KRCC>이야이야 첫날은 절대...
+<SYNC Start=598092><P Class=KRCC>&nbsp;
+<SYNC Start=613825><P Class=KRCC>첫번째는 어떻게???
+<SYNC Start=615765><P Class=KRCC>&nbsp;
+<SYNC Start=617075><P Class=KRCC>공원의 산보라던지 수족관이라던지<br>그리고 두번째는 같이 쇼핑가거나
+<SYNC Start=635085><P Class=KRCC>&nbsp;
+<SYNC Start=645509><P Class=KRCC>두번째 헤어질때는? 마무리는?<br>마무리방법 ???
+<SYNC Start=648767><P Class=KRCC>&nbsp;
+<SYNC Start=650626><P Class=KRCC>츄 (뽀뽀)<br>손은 이미 잡고 있었으면 좋겠고....
+<SYNC Start=660125><P Class=KRCC>어떤 츄?<br>가볍게 또는 딮이라던지...
+<SYNC Start=663551><P Class=KRCC>처음에는 가볍게 츄츄 후반은 좀 진하게 ㅎㅎㅎ
+<SYNC Start=668759><P Class=KRCC>&nbsp;
+<SYNC Start=670298><P Class=KRCC>남자가 흥분해서.... 발기...하면?<br>ㅎㅎㅎ 발기?
+<SYNC Start=677313><P Class=KRCC>에? 딮키스로?
+<SYNC Start=678580><P Class=KRCC>&nbsp;
+<SYNC Start=684786><P Class=KRCC>뭐 '거기까지만' 이라고 해두고...<br>3뱐째는 어떻게?
+<SYNC Start=688750><P Class=KRCC>3번째는 유원지 라던지...<br>시작해서 자고 오기...같은...
+<SYNC Start=696936><P Class=KRCC>&nbsp;
+<SYNC Start=697551><P Class=KRCC>자고오기는 3번째에?
+<SYNC Start=701022><P Class=KRCC>음...서로 맘이 맞았다면...<br>3번째에 밤을 불태우고 싶달까....
+<SYNC Start=709243><P Class=KRCC>&nbsp;
+<SYNC Start=735571><P Class=KRCC>그냥하는쪽? 콘돔끼고하는쪽?입니까?
+<SYNC Start=737448><P Class=KRCC>그냥하는쪽입니다 ㅎㅎㅎ
+<SYNC Start=740942><P Class=KRCC>&nbsp;
+<SYNC Start=747404><P Class=KRCC>자 먹으면서 다음 장소로...
+<SYNC Start=750400><P Class=KRCC>&nbsp;
+<SYNC Start=752136><P Class=KRCC>이걸로 첫날째 데이트 라는걸로~~<br>오~~
+<SYNC Start=758667><P Class=KRCC>&nbsp;
+<SYNC Start=789049><P Class=KRCC>아 고양이다 고양이에게 아이스 줘보던가?
+<SYNC Start=791436><P Class=KRCC>싫어~
+<SYNC Start=792865><P Class=KRCC>&nbsp;
+<SYNC Start=812224><P Class=KRCC>고양이 좋아?<br>좋아~아 귀여워~
+<SYNC Start=820201><P Class=KRCC>&nbsp;
+<SYNC Start=852837><P Class=KRCC>다음 장소 갈까? 갈까요?
+<SYNC Start=857209><P Class=KRCC>&nbsp;
+<SYNC Start=886109><P Class=KRCC>이 버튼 눌러보렴 (ㅎㅎㅎ)<br>뭔가 들어있지?
+<SYNC Start=893075><P Class=KRCC>&nbsp;
+<SYNC Start=896778><P Class=KRCC>그게 뭔지 여러분에게...
+<SYNC Start=897892><P Class=KRCC>&nbsp;
+<SYNC Start=900866><P Class=KRCC>이게 뭐더라... 핑크 로터 입니다~
+<SYNC Start=903865><P Class=KRCC>&nbsp;
+<SYNC Start=906015><P Class=KRCC>뭐 드라이브데이트라고 하면<br>차안에서 자위하는거지
+<SYNC Start=911504><P Class=KRCC>&nbsp;
+<SYNC Start=911884><P Class=KRCC>그런거야? (암 그런거야)<br>정해진거 같이 ㅎㅎㅎ
+<SYNC Start=916445><P Class=KRCC>이걸로 말이죠...<br>자위를
+<SYNC Start=920223><P Class=KRCC>망꼬라든지 가슴보이면 안되요~<br>역시 주변에 눈이 있으니까....
+<SYNC Start=928895><P Class=KRCC>&nbsp;
+<SYNC Start=932199><P Class=KRCC>자 지금부터의 기세를<br>카메라를 향해서
+<SYNC Start=934130><P Class=KRCC>&nbsp;
+<SYNC Start=934252><P Class=KRCC>지금부터 자위하겠습니다<br>ㅎㅎㅎ
+<SYNC Start=939170><P Class=KRCC>&nbsp;
+<SYNC Start=939969><P Class=KRCC>좋을대로 해도 되요
+<SYNC Start=943410><P Class=KRCC>&nbsp;
+<SYNC Start=1052708><P Class=KRCC>사람 엄청 많아...
+<SYNC Start=1055249><P Class=KRCC>더 흥분되지? 에 어째서? 그런일 없어 ㅎㅎㅎ
+<SYNC Start=1075389><P Class=KRCC>&nbsp;
+<SYNC Start=1086551><P Class=KRCC>움찔움찔 하네
+<SYNC Start=1089053><P Class=KRCC>&nbsp;
+<SYNC Start=1098890><P Class=KRCC>안에 넣어봐, 보이면 안된다고
+<SYNC Start=1105219><P Class=KRCC>&nbsp;
+<SYNC Start=1246775><P Class=KRCC>갈것 같아<br>가고 싶어~
+<SYNC Start=1250481><P Class=KRCC>아직 안되
+<SYNC Start=1252715><P Class=KRCC>엣?
+<SYNC Start=1253946><P Class=KRCC>가게 해 주세요 라고 말해봐
+<SYNC Start=1257089><P Class=KRCC>&nbsp;
+<SYNC Start=1260813><P Class=KRCC>가게 해 주세요. 부탁합니다 (뿌우~)
+<SYNC Start=1265650><P Class=KRCC>&nbsp;
+<SYNC Start=1322985><P Class=KRCC>자위 즐거웠습니다.ㅎㅎ
+<SYNC Start=1326299><P Class=KRCC>&nbsp;
+<SYNC Start=1327346><P Class=KRCC>밖에서...보여질까 생각하니까<br>거꾸로... 흥분했어^^
+<SYNC Start=1340364><P Class=KRCC>&nbsp;
+<SYNC Start=1348944><P Class=KRCC>쿠미짱~~<br>너무 먹어
+<SYNC Start=1352494><P Class=KRCC>&nbsp;
+<SYNC Start=1353273><P Class=KRCC>너무 먹었습니다~
+<SYNC Start=1355225><P Class=KRCC>깜딱 놀랐다고 정말...
+<SYNC Start=1358059><P Class=KRCC>&nbsp;
+<SYNC Start=1360598><P Class=KRCC>배 불러~
+<SYNC Start=1363072><P Class=KRCC>&nbsp;
+<SYNC Start=1364299><P Class=KRCC>그럼 방으로 갈까요?
+<SYNC Start=1367873><P Class=KRCC>&nbsp;
+<SYNC Start=1391269><P Class=KRCC>여기 다른 사람들도 머물고 있으니까 말야 조용히
+<SYNC Start=1396736><P Class=KRCC>2층의 한 가운데 방이래~
+<SYNC Start=1406309><P Class=KRCC>&nbsp;
+<SYNC Start=1435706><P Class=KRCC>딱 和란 느낌이네요~<br>할머니집에 온것 같네 진정되네
+<SYNC Start=1443997><P Class=KRCC>&nbsp;
+<SYNC Start=1467369><P Class=KRCC>진정되~
+<SYNC Start=1468644><P Class=KRCC>이쪽은 진정안되는데 말야...<br>어째서요?~~
+<SYNC Start=1474293><P Class=KRCC>&nbsp;
+<SYNC Start=1474725><P Class=KRCC>차안에서 자위할때도 그렇고 말야...<br>지금도...봐, 이런 앵글 좋아하거든 ㅎㅎㅎ
+<SYNC Start=1491721><P Class=KRCC>&nbsp;
+<SYNC Start=1504028><P Class=KRCC>이거... 테이블 위에 올라가서 M자로 벌려봐
+<SYNC Start=1511887><P Class=KRCC>&nbsp;
+<SYNC Start=1512398><P Class=KRCC>테이블 위에서 M자?
+<SYNC Start=1518383><P Class=KRCC>&nbsp;
+<SYNC Start=1533311><P Class=KRCC>더 더 더 더 더
+<SYNC Start=1540299><P Class=KRCC>&nbsp;
+<SYNC Start=1567776><P Class=KRCC>여기 털 삐져나와있어
+<SYNC Start=1571672><P Class=KRCC>&nbsp;
+<SYNC Start=1608194><P Class=KRCC>이상한 느낌~
+<SYNC Start=1612052><P Class=KRCC>&nbsp;
+<SYNC Start=1617360><P Class=KRCC>자~ 그럼....<br>브래지어만 벗어볼까
+<SYNC Start=1620033><P Class=KRCC>브래지어만?
+<SYNC Start=1624420><P Class=KRCC>&nbsp;
+<SYNC Start=1693513><P Class=KRCC>이거 보는것만으로도 흥분되네...
+<SYNC Start=1695658><P Class=KRCC>에~ 정말? 귀엽지 않나요?~
+<SYNC Start=1698405><P Class=KRCC>원숭이 녀석의 기분을 알겠어<br>ㅎㅎㅎ
+<SYNC Start=1700785><P Class=KRCC>&nbsp;
+<SYNC Start=1708055><P Class=KRCC>이걸 이렇게 끼워서...하면 기분좋을거 같아~<br>그래요? 그런거예요?
+<SYNC Start=1718107><P Class=KRCC>&nbsp;
+<SYNC Start=1738305><P Class=KRCC>뭔가 안에 입고있어? 캐미솔 그건 벗을 수 있어?
+<SYNC Start=1743279><P Class=KRCC>&nbsp;
+<SYNC Start=1772615><P Class=KRCC>아 온기가...<br>ㅎㅎ 아직 따뜻해요
+<SYNC Start=1776553><P Class=KRCC>&nbsp;
+<SYNC Start=1791891><P Class=KRCC>젖꼭지가 서있어...<br>하지마요~.... 서있어?
+<SYNC Start=1800169><P Class=KRCC>&nbsp;
+<SYNC Start=1820811><P Class=KRCC>귀여운 반응하네
+<SYNC Start=1826655><P Class=KRCC>&nbsp;
+<SYNC Start=1912843><P Class=KRCC>이쪽... 카메라를 보세요~
+<SYNC Start=1918182><P Class=KRCC>&nbsp;
+<SYNC Start=1952497><P Class=KRCC>좋은 얼굴 하고 있네....<br>좀... 옆으로 엎드려봐...
+<SYNC Start=1962400><P Class=KRCC>&nbsp;
+<SYNC Start=1979307><P Class=KRCC>카메라를 향해
+<SYNC Start=1982826><P Class=KRCC>&nbsp;
+<SYNC Start=2848617><P Class=KRCC>이쪽 보고~<br>스커트 위로 올려봐
+<SYNC Start=2855515><P Class=KRCC>&nbsp;
+<SYNC Start=2857833><P Class=KRCC>좀더 위로
+<SYNC Start=2861427><P Class=KRCC>&nbsp;
+<SYNC Start=3297238><P Class=KRCC>밖의 노천온천 가자<br>노천온천?
+<SYNC Start=3301413><P Class=KRCC>와 대단해요~
+<SYNC Start=3305012><P Class=KRCC>오 이쁘네...
+<SYNC Start=3307460><P Class=KRCC>&nbsp;
+<SYNC Start=3311512><P Class=KRCC>들어가도 되~<br>되요?
+<SYNC Start=3316802><P Class=KRCC>&nbsp;
+<SYNC Start=3321720><P Class=KRCC>아 좋은 느낌
+<SYNC Start=3323686><P Class=KRCC>&nbsp;
+<SYNC Start=3330779><P Class=KRCC>기분 좋아 따듯해~~
+<SYNC Start=3337283><P Class=KRCC>&nbsp;
+<SYNC Start=3365323><P Class=KRCC>기분좋아?
+<SYNC Start=3368662><P Class=KRCC>아까 한 거와는?
+<SYNC Start=3371530><P Class=KRCC>ㅎㅎㅎ 아까했던게 기분 좋았을까나?
+<SYNC Start=3376303><P Class=KRCC>&nbsp;
+<SYNC Start=3387047><P Class=KRCC>저 뒤에 앉아봐
+<SYNC Start=3390818><P Class=KRCC>&nbsp;
+<SYNC Start=3401882><P Class=KRCC>그냥 보통으로 편하게...<br>이야 야하네~
+<SYNC Start=3415460><P Class=KRCC>&nbsp;
+<SYNC Start=3430315><P Class=KRCC>이리와~
+<SYNC Start=3432901><P Class=KRCC>&nbsp;
+<SYNC Start=3531850><P Class=KRCC>털이 없지?
+<SYNC Start=3534004><P Class=KRCC>응 첨봤을때 깜짝 놀랐어요
+<SYNC Start=3537289><P Class=KRCC>최근에 (제모) 했다는...<br>최근이구나~
+<SYNC Start=3544405><P Class=KRCC>&nbsp;
+<SYNC Start=3705086><P Class=KRCC>넣고싶어~ (어디에?)<br>망꼬에 넣으면 좋겠어~
+<SYNC Start=3711152><P Class=KRCC>&nbsp;
+<SYNC Start=4744084><P Class=KRCC>대단해
+<SYNC Start=4746286><P Class=KRCC>&nbsp;
+<SYNC Start=4758610><P Class=KRCC>대단해
+<SYNC Start=4760890><P Class=KRCC>&nbsp;
+<SYNC Start=4776184><P Class=KRCC>즐거웠다...
+<SYNC Start=4779259><P Class=KRCC>&nbsp;
+<SYNC Start=4816589><P Class=KRCC>이런 노천온천에서 해보니 어때? 응?
+<SYNC Start=4823177><P Class=KRCC>&nbsp;
+<SYNC Start=4824567><P Class=KRCC>뭔가 참신~ 기분 좋아 ㅎㅎㅎ
+<SYNC Start=4830660><P Class=KRCC>&nbsp;
+<SYNC Start=4834135><P Class=KRCC>좀 배고프지않아?<br>배고파~~^^
+<SYNC Start=4840266><P Class=KRCC>&nbsp;
+<SYNC Start=4840773><P Class=KRCC>밥 먹을까? 먹을까요?
+<SYNC Start=4844440><P Class=KRCC>&nbsp;
+<SYNC Start=4846950><P Class=KRCC>[ 바이꾸의 허접 첫번째 자막은 여기까지... ]<br>[ 이후는 딱히 대사도 없습니다....그럼 즐감상 ^^;; ]
+<SYNC Start=4857421><P Class=KRCC>&nbsp;
+</BODY>
+</SAMI>
