@@ -29,10 +29,10 @@ class SrtCueTest extends TestCase
     /** @test */
     function it_identifies_valid_timing_strings_with_coordinates()
     {
+        $this->assert_Valid_TimingString('00: 07: 39.053 --> 00: 07: 43.683  X1: 112 X2: 602 Y1: 444 Y2: 523');
         $this->assert_Valid_TimingString('00:02:26,407 --> 00:02:31,356 X1:100 X2:100 Y1:100 Y2:100');
         $this->assert_Valid_TimingString('00:02:26,407 --> 00:02:31,356  X1:100 X2:100 Y1:100 Y2:100');
         $this->assert_Valid_TimingString('00:00:36,452 --> 00:00:38,920  x1:205 x2:512 y1:450 y2:524');
-        $this->assert_Valid_TimingString('00: 07: 39.053 --> 00: 07: 43.683  X1: 112 X2: 602 Y1: 444 Y2: 523');
     }
 
     /** @test */
@@ -68,8 +68,6 @@ class SrtCueTest extends TestCase
 
         $this->assertFalse(SrtCue::isTimingString("This man is out of ideas."));
         $this->assertFalse(SrtCue::isTimingString(""));
-        $this->assertFalse(SrtCue::isTimingString(null));
-        $this->assertFalse(SrtCue::isTimingString(false));
     }
 
     /** @test */
@@ -108,6 +106,11 @@ class SrtCueTest extends TestCase
         $cue = (new SrtCue)->setTimingFromString('00:00:01,26 --> 00:00:03,36');
 
         $this->assertSame('00:00:01,260 --> 00:00:03,360', $cue->getTimingString());
+
+        $this->assertFalse(
+            SrtCue::isTimingString($timing = '00:07:42,87 --> 00:07:42,796'),
+            'Timing: '.$timing
+        );
     }
 
     /** @test */

@@ -4,6 +4,7 @@ namespace App\Subtitles\PlainText;
 
 use App\Subtitles\LoadsGenericCues;
 use App\Subtitles\TimingStrings;
+use Exception;
 use LogicException;
 
 class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCues
@@ -21,22 +22,15 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     public function setTimingFromString($string)
     {
-        if (!self::isTimingString($string)) {
-            throw new \Exception("Not a valid timing string ({$string})");
+        $timing = new SrtTiming($string);
+
+        if ($timing->invalid()) {
+            throw new Exception('Not a valid timing string: '.$string);
         }
 
-        $timingString = trim(
-            str_before( strtolower($string), 'x' )
-        );
-
-        $timingString = str_replace([' ', '-'], '',  $timingString);
-        $timingString = str_replace(['.'],      ',', $timingString);
-
-        list($startTimecode, $endTimecode) = explode('>', $timingString);
-
         $this->setTiming(
-            $this->timecodeToMs($startTimecode),
-            $this->timecodeToMs($endTimecode)
+            $timing->start()->milliseconds(),
+            $timing->end()->milliseconds()
         );
 
         return $this;
@@ -44,48 +38,11 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     public function getTimingString()
     {
-        return $this->msToTimecode($this->startMs) . " --> " . $this->msToTimecode($this->endMs);
-    }
+        $start = new SrtTimecode($this->startMs);
 
-    private function msToTimecode($ms)
-    {
-        if ($ms < 0) {
-            return "00:00:00,000";
-        }
+        $end = new SrtTimecode($this->endMs);
 
-        if ($ms >= 360000000) {
-            return "99:59:59,999";
-        }
-
-        $SS = floor($ms / 1000);
-        $MM = floor($SS / 60);
-        $HH = floor($MM / 60);
-        $MIL = $ms % 1000;
-        $SS = $SS % 60;
-        $MM = $MM % 60;
-
-        $HH  = str_pad($HH,  2, "0", STR_PAD_LEFT);
-        $MM  = str_pad($MM,  2, "0", STR_PAD_LEFT);
-        $SS  = str_pad($SS,  2, "0", STR_PAD_LEFT);
-        $MIL = str_pad($MIL, 3, "0", STR_PAD_LEFT);
-
-        return "{$HH}:{$MM}:{$SS},{$MIL}";
-    }
-
-    private function timecodeToMs($timecode)
-    {
-        [$HH, $MM, $SS, $MIL] = preg_split("/(:|,)/", $timecode);
-
-        // Fix for timings with only two digits for the milliseconds.
-        // example: 00:00:01,26 should be 260ms, not 26ms.
-        if (strlen($MIL) === 2) {
-            $MIL = $MIL * 10;
-        }
-
-        return ($HH * 60 * 60 * 1000) +
-               ($MM      * 60 * 1000) +
-               ($SS           * 1000) +
-               ($MIL                );
+        return $start->timecode().' --> '.$end->timecode();
     }
 
     public function loadGenericCue(GenericSubtitleCue $genericCue)
@@ -126,24 +83,8 @@ class SrtCue extends GenericSubtitleCue implements TimingStrings, LoadsGenericCu
 
     public static function isTimingString($string)
     {
-        $string = strtolower(
-            trim($string)
-        );
+        $timing = new SrtTiming($string);
 
-        if (! preg_match("/^\d\d?: ?[0-5]\d: ?[0-5]\d(,|\.)\d\d\d? -?-> \d\d?: ?[0-5]\d: ?[0-5]\d(,|\.)\d\d\d?( ? x1: ?\d+ x2: ?\d+ y1: ?\d+ y2: ?\d+|)$/", $string)) {
-            return false;
-        }
-
-        $string = trim(
-            str_before($string, 'x')
-        );
-
-        list($startInt, $endInt) = explode('>', str_replace([':', ' ', ',', '.', '-'], '', $string));
-
-        if ($startInt > $endInt) {
-            return false;
-        }
-
-        return true;
+        return $timing->valid();
     }
 }
