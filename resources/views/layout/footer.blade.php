@@ -28,18 +28,6 @@
                     </a>
                 </div>
 
-                <div class="w-6">
-                    <a href="https://live.blockcypher.com/ltc/address/LcQrB8CYXwaxhfzomaCvVYyxqPwVNbzuq7/" title="Donate Litecoin (LTC)" target="_blank" rel="nofollow">
-                        @include('helpers.svg.litecoin')
-                    </a>
-                </div>
-
-                <div class="w-8">
-                    <a href="https://explorer.bitcoin.com/bch/address/bitcoincash:qpwznnur9d8eedcc6gfyftf32azaj0lq7s82cm4kyz" title="Donate Bitcoin Cash (BCH)" target="_blank" rel="nofollow">
-                        @include('helpers.svg.bitcoin-cash')
-                    </a>
-                </div>
-
             </div>
 
         </div>
