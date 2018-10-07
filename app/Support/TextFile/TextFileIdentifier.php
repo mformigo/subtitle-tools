@@ -63,7 +63,9 @@ class TextFileIdentifier
             $mbStrLength = mb_strlen($chunk);
 
             for ($i = 0; $i < $mbStrLength; $i++) {
-                if ($chunk[$i] !== "\r" && $chunk[$i] !== "\n" && $chunk[$i] !== "\t" && ctype_cntrl($chunk[$i])) {
+                // "\x0E" is a SO (shift out), which i once saw being used to indicate
+                // that a cue was song lyrics. See "text-file-with-song.txt"
+                if (! in_array($chunk[$i], ["\r", "\n", "\t", "\x0E"]) && ctype_cntrl($chunk[$i])) {
                     $controlCharCount++;
                 }
             }

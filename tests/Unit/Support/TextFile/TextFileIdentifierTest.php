@@ -57,6 +57,7 @@ class TextFileIdentifierTest extends TestCase
             $this->testFilesStoragePath.'text-file-package/identifying/octet-stream-03.txt',
             // Tabs are control characters that should always be allowed
             $this->testFilesStoragePath.'text-file-package/identifying/octet-stream-04-with-tabs.txt',
+            $this->testFilesStoragePath.'text-file-package/identifying/text-file-with-song.txt',
         ];
 
         foreach ($files as $filePath) {
