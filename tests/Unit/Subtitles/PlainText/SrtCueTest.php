@@ -68,6 +68,9 @@ class SrtCueTest extends TestCase
 
         $this->assertFalse(SrtCue::isTimingString("This man is out of ideas."));
         $this->assertFalse(SrtCue::isTimingString(""));
+
+        // This cue has the arrow after the letter "x", this caused problems
+        $this->assertFalse(SrtCue::isTimingString('Dialogue: 0,0:06:41.75,0:06:43.54,sign_9633_65_Win____earn_two,Text,0000,0000,0000,,Win -> Earn Two'));
     }
 
     /** @test */

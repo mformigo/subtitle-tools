@@ -22,11 +22,15 @@ class SrtTiming
             str_before($timing, 'x')
         );
 
-        [$startTimecode, $endTimecode] = preg_split('/ -?-> /', $timing);
+        $parts = preg_split('/ -?-> /', $timing);
 
-        $this->start = new SrtTimecode($startTimecode);
+        if (count($parts) !== 2) {
+            return;
+        }
 
-        $this->end = new SrtTimecode($endTimecode);
+        $this->start = new SrtTimecode($parts[0]);
+
+        $this->end = new SrtTimecode($parts[1]);
     }
 
     public function valid()
