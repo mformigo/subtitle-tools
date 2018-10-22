@@ -2,22 +2,23 @@
 
 @section('content')
 
-    <div id="StoredFileDetail">
+    <div class="ml-4 text-sm">
         <h1>Stored File Detail</h1>
 
-        <table class="meta">
+
+        <table>
             <tr>
-                <td>Id</td>
+                <td class="block w-32">Id</td>
                 <td>
                     <form target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <input type="hidden" name="id" value="{{ $storedFileId }}" />
-                        <button class="plain" type="submit">{{ $storedFileId }}</button>
+                        <button class="text-blue underline" type="submit">{{ $storedFileId }}</button>
                     </form>
                 </td>
             </tr>
-            @if($meta !== null)
+            @if($meta)
                 <tr>
                     <td>Size</td>
                     <td>{{ round($meta->size / 1024, 2) }}kb</td>
@@ -50,15 +51,15 @@
         </table>
 
 
-<div class="pres">
+<div class="flex bg-white m-4">
 
-<pre>
+<pre class="pr-2 mr-2 border-r">
 @foreach($lines as $line)
 {{ $loop->iteration }}
 @endforeach
 </pre>
 
-<pre>
+<pre class="overflow-y-scroll">
 @foreach($lines as $line)
 {{ $line }}
 @endforeach

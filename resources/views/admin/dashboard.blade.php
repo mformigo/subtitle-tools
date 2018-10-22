@@ -53,6 +53,19 @@
 
 
             <div>
+                <strong class="block mb-2 mt-8">Server</strong>
+
+                <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
+
+                @foreach($dependencies as $name => $isLoaded)
+                    <div class="pl-4 border-l-8 {{ $isLoaded ? 'border-green' : 'border-red' }}">
+                        {{ $name }}
+                    </div>
+                @endforeach
+            </div>
+
+
+            <div>
                 <strong class="block mb-2 mt-8">Download Stored Files</strong>
 
                 <form class="flex" target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}">
@@ -77,19 +90,6 @@
 
                     <button type="submit" class="btn block p-1 ml-auto">Convert</button>
                 </form>
-            </div>
-
-
-            <div>
-                <strong class="block mb-2 mt-8">Server</strong>
-
-                <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
-
-                @foreach($dependencies as $name => $isLoaded)
-                    <div class="pl-4 border-l-8 {{ $isLoaded ? 'border-green' : 'border-red' }}">
-                        {{ $name }}
-                    </div>
-                @endforeach
             </div>
 
         </div>
