@@ -21,6 +21,8 @@ Route::get('/stored-file/{id}')->uses('StoredFilesController@detail')->name('adm
 
 Route::post('/stored-file/download')->uses('StoredFilesController@download')->name('adminStoredFileDownload');
 
+Route::post('/convert-to-utf8')->uses('ConvertToUtf8')->name('admin.ConvertToUtf8');
+
 Route::fallback(function () {
    return '<pre>404, dummy</pre>';
 });

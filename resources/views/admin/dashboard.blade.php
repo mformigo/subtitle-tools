@@ -66,6 +66,21 @@
 
 
             <div>
+                <strong class="block mb-2 mt-8">Convert to Utf-8</strong>
+
+                <form class="" target="_blank" method="post" enctype="multipart/form-data" action="{{ route('admin.ConvertToUtf8') }}">
+                    {{ csrf_field() }}
+
+                    <input type="file" name="file" class="p-1 w-full" required />
+
+                    <input type="text" name="from_encoding" class="field p-1 w-full" placeholder="from encoding" autocomplete="on" required />
+
+                    <button type="submit" class="btn block p-1 ml-auto">Convert</button>
+                </form>
+            </div>
+
+
+            <div>
                 <strong class="block mb-2 mt-8">Server</strong>
 
                 <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
