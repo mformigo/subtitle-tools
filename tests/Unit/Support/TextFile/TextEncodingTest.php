@@ -30,6 +30,7 @@ class TextEncodingTest extends TestCase
         'windows-1251.txt'   => 'windows-1251',
         'windows-1252.txt'   => 'windows-1252',
         'windows-1253.txt'   => 'windows-1253',
+        'windows-1254.txt'   => 'windows-1254',
         'windows-1255.txt'   => 'windows-1255',
         'x-mac-cyrillic.txt' => 'MacCyrillic',
         'x-euc-tw.txt'       => 'EUC-TW',
@@ -118,22 +119,35 @@ class TextEncodingTest extends TestCase
     /** @test */
     function it_detects_encoding_for_romanian_text()
     {
-        $textEncoding = new TextEncoding();
+        $path = $this->testFilesStoragePath.'text-file-package/encodings/iso-8859-2/';
 
-        $filePath = $this->testFilesStoragePath.'text-file-package/encodings/1252/iso-8859-2--with-romanian.txt';
-
-        $this->assertSame('ISO-8859-2', $textEncoding->detectFromFile($filePath));
+        $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-000.txt');
+        $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-001.txt');
+        $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-002.txt');
+        $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-003.txt');
     }
 
     /** @test */
     function it_detects_encoding_for_persian_text()
     {
-        $textEncoding = new TextEncoding();
+        $path = $this->testFilesStoragePath.'text-file-package/encodings/1256/';
 
-        $this->assertSame('windows-1256', $textEncoding->detectFromFile($this->testFilesStoragePath.'text-file-package/encodings/1256/windows-1256--1.txt'));
-        $this->assertSame('windows-1256', $textEncoding->detectFromFile($this->testFilesStoragePath.'text-file-package/encodings/1256/windows-1256--2.txt'));
-        $this->assertSame('windows-1256', $textEncoding->detectFromFile($this->testFilesStoragePath.'text-file-package/encodings/1256/windows-1256--3.txt'));
-        $this->assertSame('windows-1256', $textEncoding->detectFromFile($this->testFilesStoragePath.'text-file-package/encodings/1256/windows-1256--4.txt'));
+        $this->assertEncoding('windows-1256', $path.'windows-1256--1.txt');
+        $this->assertEncoding('windows-1256', $path.'windows-1256--2.txt');
+        $this->assertEncoding('windows-1256', $path.'windows-1256--3.txt');
+        $this->assertEncoding('windows-1256', $path.'windows-1256--4.txt');
+    }
+
+    /** @test */
+    function it_detects_encoding_for_windows_1254_turkish_text()
+    {
+        $path = $this->testFilesStoragePath.'text-file-package/encodings/1254/';
+
+        $this->assertEncoding('windows-1254', $path.'windows-1254-002.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-003.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-004.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-005.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-006.txt');
     }
 
     /** @test */
@@ -176,5 +190,14 @@ class TextEncodingTest extends TestCase
         $detectedEncoding = $mockTextEncoding->detectFromFile($this->testFilesStoragePath.'text-file-package/encodings/utf-8.txt');
 
         $this->assertSame('fallback-encoding', $detectedEncoding);
+    }
+
+    private function assertEncoding($expected, $filePath)
+    {
+        $this->assertSame(
+            $expected,
+            (new TextEncoding)->detectFromFile($filePath),
+            'File: '.substr($filePath, strlen($this->testFilesStoragePath))
+        );
     }
 }

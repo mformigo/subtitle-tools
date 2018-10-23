@@ -33,6 +33,7 @@ class TextEncoding
         'windows-1251'   => 'windows-1251', // Russian
         'windows-1252'   => 'windows-1252', // ANSI (for scandinavian languages, doesn't work for Polish)
         'windows-1253'   => 'windows-1253',
+        'windows-1254'   => 'windows-1254', // Turkish (often identified as "windows-1252")
         'windows-1255'   => 'windows-1255',
         'windows-1256'   => 'windows-1256',
         'x-euc-tw'       => 'EUC-TW',
@@ -142,12 +143,19 @@ class TextEncoding
 
         if (strpos($content, "\xB3") !== false) {
             // B3 hex in windows-1252 === ³ (cube)
+            // B3 hex in windows-1254 === ³ (cube)
             // B3 hex in windows-1250 === ł (polish letter)
             return 'windows-1250';
         } elseif (strpos($content, "\xBA") !== false) {
             // BA hex in windows-1252 === º (degree sign)
+            // BA hex in windows-1254 === º (degree sign)
             // BA hex in   ISO-8859-2 === ş (romanian letter)
             return 'ISO-8859-2';
+        } elseif (strpos($content, "\xF0") !== false) {
+            // F0 hex in windows-1252 === ð (weird o)
+            // F0 hex in   ISO-8859-2 === đ (weird a)
+            // F0 hex in windows-1254 === ğ (common turkish letter)
+            return 'windows-1254';
         }
 
         return 'windows-1252';
