@@ -125,6 +125,7 @@ class TextEncodingTest extends TestCase
         $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-001.txt');
         $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-002.txt');
         $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-003.txt');
+        $this->assertEncoding('ISO-8859-2', $path.'iso-8859-2-004.txt');
     }
 
     /** @test */
