@@ -144,12 +144,13 @@ class TextEncodingTest extends TestCase
     {
         $path = $this->testFilesStoragePath.'text-file-package/encodings/1254/';
 
-        $this->assertEncoding('windows-1254', $path.'windows-1254-002.txt');
-        $this->assertEncoding('windows-1254', $path.'windows-1254-003.txt');
-        $this->assertEncoding('windows-1254', $path.'windows-1254-004.txt');
-        $this->assertEncoding('windows-1254', $path.'windows-1254-005.txt');
-        $this->assertEncoding('windows-1254', $path.'windows-1254-006.txt');
-        $this->assertEncoding('windows-1254', $path.'windows-1254-007.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-002-tur.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-003-tur.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-004-tur.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-005-tur.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-006-tur.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-007-tur.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-008-tur.txt');
     }
 
     /** @test */

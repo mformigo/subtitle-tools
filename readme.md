@@ -3,6 +3,24 @@
 ## Laravel version
 [compare to laravel master](https://github.com/laravel/laravel/compare/7028b17ed8bf35ee2f1269c0f9c985b411cb4469...master)
 
+## General information
+* Language codes use [ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) (same as Tesseract)
+
+
+
+
+
+-------------
+ 
+-------------
+ 
+-------------
+ 
+-------------
+ # OLD
+ # OLD
+ # OLD
+
 ## Required mods
 The status of the mods can be checked in the admin dashboard
 
