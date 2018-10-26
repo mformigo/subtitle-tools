@@ -3,53 +3,70 @@
 @section('content')
 
     <div class="ml-4 text-sm">
-        <h1>Stored File Detail</h1>
+        <h1>Stored File: &nbsp;&nbsp;&nbsp;&nbsp; {{ $storedFileId }}</h1>
 
 
-        <table>
-            <tr>
-                <td class="block w-32">Id</td>
-                <td>
-                    <form target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+        <div class="flex justify-between max-w-md">
 
-                        <input type="hidden" name="id" value="{{ $storedFileId }}" />
-                        <button class="text-blue underline" type="submit">{{ $storedFileId }}</button>
-                    </form>
-                </td>
-            </tr>
-            @if($meta)
+            <table>
                 <tr>
-                    <td>Size</td>
-                    <td>{{ round($meta->size / 1024, 2) }}kb</td>
-                </tr>
-                <tr>
-                    <td>Mime</td>
-                    <td>{{ $meta->mime }}</td>
-                </tr>
-                <tr>
-                    <td>Encoding</td>
-                    <td>{{ $meta->encoding }}</td>
-                </tr>
-                <tr>
-                    <td>Identified as</td>
-                    <td>{{ class_basename($meta->identified_as) }}</td>
-                </tr>
-                <tr>
-                    <td>Line endings</td>
-                    <td>{{ $meta->line_endings }}</td>
-                </tr>
-                <tr>
-                    <td>Line count</td>
-                    <td>{{ $meta->line_count }}</td>
-                </tr>
-            @else
-                <tr>
-                    <td colspan="2">Stored file meta not yet available</td>
-                </tr>
-            @endif
-        </table>
+                    <td class="block w-32"></td>
+                    <td>
+                        <form target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
 
+                            <input type="hidden" name="id" value="{{ $storedFileId }}" />
+                            <button class="text-blue underline" type="submit">Download</button>
+                        </form>
+                    </td>
+                </tr>
+                @if($meta)
+                    <tr>
+                        <td>Size</td>
+                        <td>{{ round($meta->size / 1024, 2) }}kb</td>
+                    </tr>
+                    <tr>
+                        <td>Mime</td>
+                        <td>{{ $meta->mime }}</td>
+                    </tr>
+                    <tr>
+                        <td>Encoding</td>
+                        <td>{{ $meta->encoding }}</td>
+                    </tr>
+                    <tr>
+                        <td>Identified as</td>
+                        <td>{{ class_basename($meta->identified_as) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Line endings</td>
+                        <td>{{ $meta->line_endings }}</td>
+                    </tr>
+                    <tr>
+                        <td>Line count</td>
+                        <td>{{ $meta->line_count }}</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td colspan="2">Stored file meta not yet available</td>
+                    </tr>
+                @endif
+            </table>
+
+
+            <div>
+                <h3 class="mt-0 mb-2">Related file jobs</h3>
+                @forelse($relatedFileJobs as $f)
+                    <div>
+                        <a target="_blank" href="{{ route('adminStoredFileDetail', $f->input_stored_file_id) }}">{{ $f->input_stored_file_id }}</a>
+                        <span class="mx-2">🡆</span>
+                        <a target="_blank" href="{{ route('adminStoredFileDetail', $f->output_stored_file_id) }}">{{ $f->output_stored_file_id }}</a>
+                    </div>
+                @empty
+                    None
+                @endforelse
+            </div>
+
+        </div>
 
 <div class="flex bg-white m-4">
 

@@ -17,7 +17,7 @@ Route::post('/sup/{supJob}', ['uses' => 'SupController@retry', 'as' => 'admin.su
 
 
 
-Route::get('/stored-file/{id}')->uses('StoredFilesController@detail')->name('adminStoredFileDetail');
+Route::get('/stored-file/{storedFile}')->uses('StoredFilesController@detail')->name('adminStoredFileDetail');
 
 Route::post('/stored-file/download')->uses('StoredFilesController@download')->name('adminStoredFileDownload');
 

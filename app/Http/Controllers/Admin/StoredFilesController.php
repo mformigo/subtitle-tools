@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\FileJob;
 use App\Support\Facades\TempFile;
 use App\Models\StoredFile;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class StoredFilesController
 {
-    public function detail($id)
+    public function detail(StoredFile $storedFile)
     {
-        $storedFile = StoredFile::findOrFail($id);
+         $relatedFileJobs = FileJob::query()
+             ->where(function (Builder $query) use ($storedFile) {
+                 $query->where('input_stored_file_id', $storedFile->id)->orWhere('output_stored_file_id', $storedFile->id);
+             })
+             ->get();
 
         $lines = is_text_file($storedFile)
             ? read_lines($storedFile)
@@ -19,7 +25,8 @@ class StoredFilesController
         return view('admin.stored-file-detail', [
             'storedFileId' => $storedFile->id,
             'lines' => $lines,
-            'meta' => $storedFile->meta
+            'meta' => $storedFile->meta,
+            'relatedFileJobs' => $relatedFileJobs,
         ]);
     }
 
