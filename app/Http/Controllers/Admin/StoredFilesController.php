@@ -13,6 +13,8 @@ class StoredFilesController
     public function detail(StoredFile $storedFile)
     {
          $relatedFileJobs = FileJob::query()
+             ->whereNotNull('input_stored_file_id')
+             ->whereNotNull('output_stored_file_id')
              ->where(function (Builder $query) use ($storedFile) {
                  $query->where('input_stored_file_id', $storedFile->id)->orWhere('output_stored_file_id', $storedFile->id);
              })

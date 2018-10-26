@@ -53,13 +53,24 @@
             </table>
 
 
-            <div>
+
+            <div class="overflow-y-scroll h-32 px-2">
                 <h3 class="mt-0 mb-2">Related file jobs</h3>
                 @forelse($relatedFileJobs as $f)
                     <div>
-                        <a target="_blank" href="{{ route('adminStoredFileDetail', $f->input_stored_file_id) }}">{{ $f->input_stored_file_id }}</a>
+                        @if($f->input_stored_file_id === $storedFileId)
+                            This
+                        @else
+                            <a target="_blank" href="{{ route('adminStoredFileDetail', $f->input_stored_file_id) }}">{{ $f->input_stored_file_id }}</a>
+                        @endif
+
                         <span class="mx-2">🡆</span>
-                        <a target="_blank" href="{{ route('adminStoredFileDetail', $f->output_stored_file_id) }}">{{ $f->output_stored_file_id }}</a>
+
+                        @if($f->output_stored_file_id === $storedFileId)
+                            This
+                        @else
+                            <a target="_blank" href="{{ route('adminStoredFileDetail', $f->output_stored_file_id) }}">{{ $f->output_stored_file_id }}</a>
+                        @endif
                     </div>
                 @empty
                     None
