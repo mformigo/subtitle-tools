@@ -2,8 +2,27 @@
 
 @section('content')
 
+
     <div class="max-w-4xl text-sm pl-4 mb-16">
-        <h1>File Jobs</h1>
+        <div class="flex justify-between items-center mb-4">
+            <h1>File Jobs</h1>
+
+            <form method="get" id="filters">
+                <select name="encoding" class="field" onchange="document.getElementById('filters').submit()">
+                    <option value="">(all encodings)</option>
+                    @foreach($encodings as $encoding)
+                        <option value="{{ $encoding }}" {{ request()->get('encoding') === $encoding ? 'selected' : '' }}>{{ $encoding }}</option>
+                    @endforeach
+                </select>
+
+                <select name="type" class="field" onchange="document.getElementById('filters').submit()">
+                    <option value="">(all types)</option>
+                    @foreach($types as $type)
+                        <option value="{{ $type }}" {{ request()->get('type') === $type ? 'selected' : '' }}>{{ class_basename($type) }}</option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
 
         <div class="flex px-2 font-bold">
             <div class="w-3/12">Original Name</div>
@@ -26,7 +45,7 @@
                     {{ optional($fileJob->inputStoredFile->meta)->encoding }}
                 </div>
                 <div class="w-1/12">
-                    {{ substr(optional($fileJob->inputStoredFile->meta)->identified_as, strlen('App\Subtitles\PlainText\\')) }}
+                    {{ class_basename(optional($fileJob->inputStoredFile->meta)->identified_as) }}
                 </div>
                 <div class="w-2/12">
                     <a target="_blank" href="{{ route('adminStoredFileDetail', $fileJob->input_stored_file_id) }}">{{ $fileJob->input_stored_file_id }}</a>
