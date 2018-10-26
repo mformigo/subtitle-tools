@@ -149,6 +149,7 @@ class TextEncodingTest extends TestCase
         $this->assertEncoding('windows-1254', $path.'windows-1254-004.txt');
         $this->assertEncoding('windows-1254', $path.'windows-1254-005.txt');
         $this->assertEncoding('windows-1254', $path.'windows-1254-006.txt');
+        $this->assertEncoding('windows-1254', $path.'windows-1254-007.txt');
     }
 
     /** @test */
