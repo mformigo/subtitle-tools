@@ -23,7 +23,7 @@ class SubIdxController extends Controller
     public function post(Request $request)
     {
         $request->validate([
-            'sub' => ['required', 'file', new FileNotEmptyRule, new SubMimeRule ],
+            'sub' => ['required', 'file', new FileNotEmptyRule, new SubMimeRule],
             'idx' => ['required', 'file', new FileNotEmptyRule, new TextFileRule],
         ]);
 

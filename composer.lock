@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6eeb6647f85a54454bf09aac4f41d996",
+    "content-hash": "5bfc582f0c0b902506e9b03210fd5461",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -6085,6 +6085,55 @@
                 "phra"
             ],
             "time": "2015-10-13T18:44:15+00:00"
+        },
+        {
+            "name": "sjorso/mocks-time",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SjorsO/mocks-time.git",
+                "reference": "6943df468c09319350ba6bfd724bd713486a003e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SjorsO/mocks-time/zipball/6943df468c09319350ba6bfd724bd713486a003e",
+                "reference": "6943df468c09319350ba6bfd724bd713486a003e",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "^1.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SjorsO\\MocksTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjors Ottjes",
+                    "email": "sjorsottjes@gmail.com"
+                }
+            ],
+            "description": "A trait that provides a simple, fluent interface for working with Carbon::setTestNow()",
+            "homepage": "https://github.com/SjorsO/mocks-time",
+            "keywords": [
+                "carbon",
+                "datetime",
+                "set test now",
+                "setTestNow",
+                "testing",
+                "time"
+            ],
+            "time": "2018-07-27T18:01:00+00:00"
         },
         {
             "name": "spatie/phpunit-snapshot-assertions",

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\Janitor\PruneSubIdxTableJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('st:prune-temporary-files')->dailyAt('2:10');
         $schedule->command('st:prune-file-jobs'      )->dailyAt('2:15');
         $schedule->command('st:prune-sup-files'      )->dailyAt('2:20');
+        $schedule->job(PruneSubIdxTableJob::class)->dailyAt('2:25');
         $schedule->command('st:prune-stored-files'   )->dailyAt('2:50');
         $schedule->command('cache:clear'             )->dailyAt('2:55');
 

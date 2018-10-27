@@ -3,6 +3,7 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\StoredFile;
+use App\Models\SubIdx;
 use Illuminate\Http\UploadedFile;
 use Tests\CreatesUploadedFiles;
 use Tests\MocksVobSub2Srt;
@@ -65,6 +66,33 @@ class SubIdxControllerTest extends TestCase
 
         $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.sub"), "Stored sub file does not exist");
         $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.idx"), "Stored idx file does not exist");
+    }
+
+    /** @test */
+    function it_records_cache_hit_stats()
+    {
+        $this->setTestNow('2018-05-01 12:00:00');
+
+        $this->withoutJobs();
+
+        $subIdx = $this->postVobSub();
+
+        $this->assertNull($subIdx->last_cache_hit);
+        $this->assertSame(0, $subIdx->cache_hits);
+
+        $subIdx = $this->postVobSub();
+
+        $this->assertSame((string) now(), (string) $subIdx->last_cache_hit);
+        $this->assertSame(1, $subIdx->cache_hits);
+
+        $this->progressTimeInDays(5);
+
+        $subIdx = $this->postVobSub();
+
+        $this->assertSame((string) now(), (string) $subIdx->last_cache_hit);
+        $this->assertSame(2, $subIdx->cache_hits);
+
+        $this->assertSame(1, SubIdx::count());
     }
 
     /** @test */

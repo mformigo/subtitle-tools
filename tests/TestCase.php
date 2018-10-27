@@ -8,12 +8,13 @@ use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\DB;
+use SjorsO\MocksTime\MocksTime;
 use Spatie\Snapshots\MatchesSnapshots;
 use Illuminate\Contracts\Console\Kernel;
 
 abstract class TestCase extends BaseTestCase
 {
-    use MatchesSnapshots;
+    use MatchesSnapshots, MocksTime;
 
     public $testFilesStoragePath;
 

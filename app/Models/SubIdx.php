@@ -13,6 +13,11 @@ class SubIdx extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'last_cache_hit' => 'datetime',
+        'cache_hits' => 'int',
+    ];
+
     protected function getFilePathWithoutExtensionAttribute()
     {
         return storage_disk_file_path($this->store_directory.$this->filename);
@@ -60,12 +65,18 @@ class SubIdx extends Model
         $subHash = FileHash::make($subFile);
         $idxHash = FileHash::make($idxFile);
 
-        $fromCache = SubIdx::query()
+        $cachedSubIdx = SubIdx::query()
             ->where('sub_hash', $subHash)
-            ->where('idx_hash', $idxHash);
+            ->where('idx_hash', $idxHash)
+            ->first();
 
-        if ($fromCache->count() > 0) {
-            return $fromCache->first();
+        if ($cachedSubIdx) {
+            $cachedSubIdx->update([
+                'last_cache_hit' => now(),
+                'cache_hits' => $cachedSubIdx->cache_hits + 1,
+            ]);
+
+            return $cachedSubIdx;
         }
 
         $baseFileName = substr($subHash, 0, 6).substr($idxHash, 0, 6);

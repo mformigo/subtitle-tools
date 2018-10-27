@@ -1,16 +1,19 @@
 # Subtitle Tools
 
+## Queues
+File jobs and diagnostics:
+```bash
+php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast
+```
+
 ## Laravel version
 [compare to laravel master](https://github.com/laravel/laravel/compare/7028b17ed8bf35ee2f1269c0f9c985b411cb4469...master)
 
 ## General information
 * Language codes use [ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) (same as Tesseract)
 
-## Queues
-```bash
-php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast
-```
-
+### Janitor jobs
+~~
 
 
 -------------
