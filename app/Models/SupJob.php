@@ -14,8 +14,10 @@ class SupJob extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'input_stored_file_id'  => 'integer',
-        'output_stored_file_id' => 'integer',
+        'input_stored_file_id' => 'int',
+        'output_stored_file_id' => 'int',
+        'last_cache_hit' => 'datetime',
+        'cache_hits' => 'int',
     ];
 
     public function meta()

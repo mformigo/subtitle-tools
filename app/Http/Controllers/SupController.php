@@ -30,19 +30,26 @@ class SupController extends Controller
             ->where('ocr_language', $ocrLanguage)
             ->first();
 
-        if ($supJob === null) {
-            $inputFile = StoredFile::getOrCreate($supFile);
-
-            $supJob = SupJob::create([
-                'url_key'              => generate_url_key(),
-                'input_stored_file_id' => $inputFile->id,
-                'input_file_hash'      => $hash,
-                'ocr_language'         => $ocrLanguage,
-                'original_name'        => basename($supFile->getClientOriginalName()),
+        if ($supJob) {
+            $supJob->update([
+                'last_cache_hit' => now(),
+                'cache_hits' => $supJob->cache_hits + 1,
             ]);
 
-            $supJob->dispatchJob();
+            return redirect()->route('sup.show', $supJob->url_key);
         }
+
+        $inputFile = StoredFile::getOrCreate($supFile);
+
+        $supJob = SupJob::create([
+            'url_key' => generate_url_key(),
+            'input_stored_file_id' => $inputFile->id,
+            'input_file_hash' => $hash,
+            'ocr_language' => $ocrLanguage,
+            'original_name' => basename($supFile->getClientOriginalName()),
+        ]);
+
+        $supJob->dispatchJob();
 
         return redirect()->route('sup.show', $supJob->url_key);
     }
