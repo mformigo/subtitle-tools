@@ -2,9 +2,9 @@
 
 namespace App\Jobs\FileJobs;
 
+use App\Subtitles\Tools\ToPlainText;
 use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
-use App\Subtitles\PlainText\PlainText;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Support\TextFile\Facades\TextFileIdentifier;
 
@@ -20,44 +20,25 @@ class ConvertToPlainTextJob extends FileJob
 
         $inputSubtitle = TextFileFormat::getMatchingFormat($this->inputStoredFile->filePath);
 
-        if (!$inputSubtitle instanceof TransformsToGenericSubtitle) {
+        if (! $inputSubtitle instanceof TransformsToGenericSubtitle) {
             return $this->abortFileJob('messages.cant_convert_file_to_plain_text');
         }
 
-        $genericSubtitle = $inputSubtitle->toGenericSubtitle();
+        $tool = new ToPlainText();
 
-        $genericSubtitle->stripCurlyBracketsFromCues()
-            ->stripAngleBracketsFromCues()
-            ->removeDuplicateCues();
+        $plainText = $tool->convert($inputSubtitle);
 
-        if (!$genericSubtitle->hasCues()) {
-            return $this->abortFileJob('messages.file_has_no_dialogue_to_convert');
+        if ($tool->hasError()) {
+            return $this->abortFileJob($tool->error);
         }
 
-        $genericCues = $genericSubtitle->getCues();
-        $lines = [];
-
-        foreach ($genericCues as $cue) {
-            foreach ($cue->getLines() as $line) {
-                $lines[] = $line;
-            }
-
-            $lines[] = '';
-        }
-
-        $textFile = new PlainText();
-
-        $textFile->setContent(
-            implode("\r\n", $lines)
-        );
-
-        $outputStoredFile = StoredFile::createFromTextFile($textFile);
+        $outputStoredFile = StoredFile::createFromTextFile($plainText);
 
         return $this->finishFileJob($outputStoredFile);
     }
 
     public function getNewExtension()
     {
-        return "txt";
+        return 'txt';
     }
 }

@@ -6,7 +6,10 @@
 ## General information
 * Language codes use [ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) (same as Tesseract)
 
-
+## Queues
+```bash
+php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast
+```
 
 
 

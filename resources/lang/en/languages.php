@@ -191,6 +191,13 @@ return [
     'zu' => 'Zulu',
 
 
+    // The languages below come from the Language detection package
+    'failed' => 'Failed',
+    'sr-Latn' => 'Serbian (latin)',
+    'bs-Latn' => 'Bosnian (latin)',
+
+
+
     'tesseract' => [
         'eng' => 'English',
         'ara' => 'Arabic',
