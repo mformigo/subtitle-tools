@@ -101,12 +101,16 @@ class CollectStoredFileMetaJob implements ShouldQueue
 
                     $options->newLineBetweenCues = false;
 
-                    $detectableContent = $tool->options($options)->convert($subtitleFormat)->getContent();
+                    $plainText = $tool->options($options)->convert($subtitleFormat);
+
+                    $detectableContent = is_null($plainText) ? null : $plainText->getContent();
                 } else {
                     $detectableContent = $fileContent;
                 }
 
-                $language = (string) (new Language)->detect($detectableContent);
+                $language = $detectableContent
+                    ? (string) (new Language)->detect($detectableContent)
+                    : 'failed';
             } catch (Exception $e) {
                 Log::error('Language detection exception for stored file id: '.$meta->stored_file_id);
                 Log::error($e->getMessage());
