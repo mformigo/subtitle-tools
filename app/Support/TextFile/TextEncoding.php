@@ -17,6 +17,7 @@ class TextEncoding
         'EUC-KR'         => 'EUC-KR', // Korean
         'gb18030'        => 'gb18030', // Simplified Chinese
         'gb2312'         => 'gb2312', // Simplified Chinese
+        'HZ-GB-2312'     => 'HZ', // Simplified Chinese
         'IBM855'         => 'IBM855',
         'IBM866'         => 'IBM866',
         'ISO-2022-JP'    => 'ISO-2022-JP',

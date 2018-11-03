@@ -11,3 +11,4 @@ I am not confident about the following encodings:
 - **KOI8-R** (only example is not a text file, consists mostly of NULL bytes)
 - **windows-1253** (only example is a binary file)
 - **EUC-TW** (only example seems like gibberish)
+- **HZ** (one weird example file)
