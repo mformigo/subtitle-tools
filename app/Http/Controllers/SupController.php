@@ -17,11 +17,8 @@ class SupController extends Controller
         ]);
     }
 
-    // public function post(SupRequest $request)
-    public function post()
+    public function post(SupRequest $request)
     {
-        return back()->withErrors(['error' => 'This tool is temporarily disabled. Sorry for the inconvenience. It will be back tomorrow.']);
-
         $supFile = $request->getSupFile();
 
         $ocrLanguage = $request->getOcrLanguage();
