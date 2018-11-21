@@ -22,6 +22,8 @@ class SubIdxController extends Controller
 
     public function post(Request $request)
     {
+        return back()->withErrors(['error' => 'This tool is temporarily disabled. Sorry for the inconvenience. It will be back tomorrow.']);
+
         $request->validate([
             'sub' => ['required', 'file', new FileNotEmptyRule, new SubMimeRule],
             'idx' => ['required', 'file', new FileNotEmptyRule, new TextFileRule],
