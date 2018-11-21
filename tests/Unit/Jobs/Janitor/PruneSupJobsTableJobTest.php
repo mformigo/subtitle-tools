@@ -58,7 +58,7 @@ class PruneSupJobsTableJobTest extends TestCase
         $this->assertStillExists($sup1);
         $this->assertStillExists($sup2);
 
-        $this->progressTimeInDays(35);
+        $this->progressTimeInDays(25);
 
         (new PruneSupJobsTableJob)->handle();
         $this->assertStillExists($sup1);

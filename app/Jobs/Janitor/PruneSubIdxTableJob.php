@@ -10,7 +10,7 @@ class PruneSubIdxTableJob extends BaseJob
 {
     public function handle()
     {
-        $threshold = now()->subDays(60);
+        $threshold = now()->subDays(45);
 
         SubIdx::query()
             ->whereDate('created_at', '<', $threshold)

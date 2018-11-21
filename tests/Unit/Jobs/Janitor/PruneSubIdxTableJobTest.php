@@ -58,7 +58,7 @@ class PruneSubIdxTableJobTest extends TestCase
         $this->assertStillExists($subIdx1);
         $this->assertStillExists($subIdx2);
 
-        $this->progressTimeInDays(35);
+        $this->progressTimeInDays(25);
 
         (new PruneSubIdxTableJob)->handle();
         $this->assertStillExists($subIdx1);

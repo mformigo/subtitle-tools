@@ -10,7 +10,7 @@ class PruneSupJobsTableJob extends BaseJob
 {
     public function handle()
     {
-        $threshold = now()->subDays(60);
+        $threshold = now()->subDays(45);
 
         SupJob::query()
             ->whereDate('created_at', '<', $threshold)
