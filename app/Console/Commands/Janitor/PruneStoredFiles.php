@@ -90,7 +90,9 @@ class PruneStoredFiles extends Command
 
         $this->comment('Deleting '.count($unreferencedIds).' unreferenced stored file records...');
 
-        StoredFile::whereIn('id', $unreferencedIds)->delete();
+        foreach (array_chunk($unreferencedIds, 10000) as $chunkOfUnreferencedIds) {
+            StoredFile::whereIn('id', $chunkOfUnreferencedIds)->delete();
+        }
     }
 
     /**
