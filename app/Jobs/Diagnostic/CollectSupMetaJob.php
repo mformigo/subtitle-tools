@@ -44,4 +44,10 @@ class CollectSupMetaJob extends BaseJob
             'failed_to_open' => $failedToOpen,
         ]);
     }
+
+    public function failed(Exception $exception)
+    {
+        \Log::error("Failed collecting sup meta (SupJobId: {$this->supJob->id})");
+        \Log::error($exception->getMessage());
+    }
 }
