@@ -20,6 +20,7 @@ Route::post('/sup/{supJob}', ['uses' => 'SupController@retry', 'as' => 'admin.su
 Route::get('/stored-file/{storedFile}')->uses('StoredFilesController@detail')->name('adminStoredFileDetail');
 
 Route::post('/stored-file/download')->uses('StoredFilesController@download')->name('adminStoredFileDownload');
+Route::delete('/stored-file/delete')->uses('StoredFilesController@delete')->name('admin.storedFiles.delete');
 
 Route::post('/convert-to-utf8')->uses('ConvertToUtf8')->name('admin.ConvertToUtf8');
 

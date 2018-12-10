@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Models\FileGroup;
 use App\Models\StoredFile;
+use App\Models\User;
 use App\Support\Facades\TempFile;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
@@ -73,6 +74,18 @@ abstract class TestCase extends BaseTestCase
     protected function assertSuccessfulFileJobRedirect(TestResponse $response, FileGroup $fileGroup)
     {
         $response->assertStatus(302)->assertRedirect($fileGroup->result_route);
+    }
+
+    /**
+     * @param null $user
+     *
+     * @return $this
+     */
+    protected function adminLogin($user = null)
+    {
+        $user = $user ?: factory(User::class)->create();
+
+        return $this->actingAs($user);
     }
 
     public function createApplication()

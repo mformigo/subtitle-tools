@@ -34,25 +34,7 @@ class StoredFilesController
 
     public function download(Request $request)
     {
-        $idsString = str_replace(' ', '', trim($request->get('id', '0'), ' ,-'));
-
-        $ids = collect(explode(',', $idsString))->map(function ($str) {
-               if (!str_contains($str, '-')) {
-                   return $str;
-               }
-
-               $ids = explode('-', $str);
-
-               $from = min($ids[0], $ids[1]);
-               $to   = max($ids[0], $ids[1]);
-
-               return range($from, $to);
-            })
-            ->flatten()
-            ->map(function ($val) {
-                return (string) $val;
-            })
-            ->all();
+        $ids = $this->getStoredFileIds($request->get('id'));
 
         if (count($ids) > 50) {
             return 'You can only download 50 files at once';
@@ -85,5 +67,36 @@ class StoredFilesController
         $zip->close();
 
         return response()->download($tempFilePath, "stored-files.zip");
+    }
+
+    public function delete(Request $request)
+    {
+        StoredFile::where('id', $request->get('id'))->delete();
+
+        return back();
+    }
+
+    private function getStoredFileIds($idsString)
+    {
+        $idsString = str_replace(' ', '', trim($idsString, ' ,-'));
+
+        return collect(explode(',', $idsString))
+            ->map(function ($str) {
+                if (!str_contains($str, '-')) {
+                    return $str;
+                }
+
+                $ids = explode('-', $str);
+
+                $from = min($ids[0], $ids[1]);
+                $to   = max($ids[0], $ids[1]);
+
+                return range($from, $to);
+            })
+            ->flatten()
+            ->map(function ($val) {
+                return (string) $val;
+            })
+            ->all();
     }
 }
