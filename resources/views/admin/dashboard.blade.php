@@ -81,7 +81,7 @@
             <div>
                 <strong class="block mb-2 mt-8">Delete Stored Files</strong>
 
-                <form class="flex" target="_blank" method="post" action="{{ route('admin.storedFiles.delete') }}">
+                <form class="flex" method="post" action="{{ route('admin.storedFiles.delete') }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <input type="text" name="id" class="field p-1 w-32" placeholder="stored file ids..." autocomplete="off" required />
