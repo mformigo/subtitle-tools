@@ -52,12 +52,11 @@ class CleanSrtControllerTest extends TestCase
     /** @test */
     function it_can_clean_four_kinds_of_brackets()
     {
-        $options = new SrtCleanerOptions();
-
-        $options->stripAngle = true;
-        $options->stripCurly = true;
-        $options->stripSquare= true;
-        $options->stripParentheses = true;
+        $options = (new SrtCleanerOptions)
+            ->stripAngle()
+            ->stripCurly()
+            ->stripSquare()
+            ->stripParentheses();
 
         $this->postSrtCleanJob($options);
     }
@@ -110,5 +109,13 @@ class CleanSrtControllerTest extends TestCase
         $options->stripSpeakerLabels = true;
 
         $this->postSrtCleanJob($options, 'text/srt/cleanable-02.srt');
+    }
+
+    /** @test */
+    function it_strips_cues_with_music_notes()
+    {
+        $options = (new SrtCleanerOptions)->stripCuesWithMusicNote();
+
+        $this->postSrtCleanJob($options, 'text/srt/cleanable-04.srt');
     }
 }

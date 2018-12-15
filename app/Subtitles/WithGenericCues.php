@@ -32,6 +32,15 @@ trait WithGenericCues
         return count($this->cues) > 0;
     }
 
+    public function filterCues($closure)
+    {
+        $this->cues = array_values(
+            array_filter($this->cues, $closure)
+        );
+
+        return $this;
+    }
+
     /**
      * Remove all cues that do not have text lines
      *
@@ -39,14 +48,9 @@ trait WithGenericCues
      */
     public function removeEmptyCues()
     {
-        $this->cues = array_filter($this->cues, function (GenericSubtitleCue $cue) {
+        return $this->filterCues(function (GenericSubtitleCue $cue) {
             return $cue->hasLines();
         });
-
-        // Reset the array keys
-        $this->cues = array_values($this->cues);
-
-        return $this;
     }
 
     /**

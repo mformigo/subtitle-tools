@@ -16,14 +16,59 @@ class SrtCleanerOptions extends ToolOptions
 
     public $stripSpeakerLabels = false;
 
+    public $stripCuesWithMusicNote = false;
+
     public function loadRequest(Request $request)
     {
         return $this->load([
-            'stripCurly'         => $request->has('stripCurly')         && (bool) $request->get('stripCurly'),
-            'stripAngle'         => $request->has('stripAngle')         && (bool) $request->get('stripAngle'),
-            'stripSquare'        => $request->has('stripSquare')        && (bool) $request->get('stripSquare'),
-            'stripParentheses'   => $request->has('stripParentheses')   && (bool) $request->get('stripParentheses'),
-            'stripSpeakerLabels' => $request->has('stripSpeakerLabels') && (bool) $request->get('stripSpeakerLabels'),
+            'stripCurly' => (bool) $request->get('stripCurly'),
+            'stripAngle' => (bool) $request->get('stripAngle'),
+            'stripSquare' => (bool) $request->get('stripSquare'),
+            'stripParentheses' => (bool) $request->get('stripParentheses'),
+            'stripSpeakerLabels' => (bool) $request->get('stripSpeakerLabels'),
+            'stripCuesWithMusicNote' => (bool) $request->get('stripCuesWithMusicNote'),
         ]);
+    }
+
+    public function stripCurly($bool = true)
+    {
+        $this->stripCurly = (bool) $bool;
+
+        return $this;
+    }
+
+    public function stripAngle($bool = true)
+    {
+        $this->stripAngle = (bool) $bool;
+
+        return $this;
+    }
+
+    public function stripSquare($bool = true)
+    {
+        $this->stripSquare = (bool) $bool;
+
+        return $this;
+    }
+
+    public function stripParentheses($bool = true)
+    {
+        $this->stripParentheses = (bool) $bool;
+
+        return $this;
+    }
+
+    public function stripSpeakerLabels($bool = true)
+    {
+        $this->stripSpeakerLabels = (bool) $bool;
+
+        return $this;
+    }
+
+    public function stripCuesWithMusicNote($bool = true)
+    {
+        $this->stripCuesWithMusicNote = (bool) $bool;
+
+        return $this;
     }
 }

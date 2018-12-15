@@ -145,7 +145,7 @@ abstract class FileJobController extends Controller
             }
 
             if ($fileJob->hasError) {
-                return back()->withErrors(['subtitles' => __($fileJob->error_message)]);
+                return back()->withInput()->withErrors(['subtitles' => __($fileJob->error_message)]);
             }
         }
 

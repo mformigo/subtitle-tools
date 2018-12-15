@@ -18,6 +18,11 @@ class GenericSubtitleCue
         return $this->lines;
     }
 
+    public function getLinesAsText()
+    {
+        return implode("\n", $this->lines);
+    }
+
     public function setLines(array $lines)
     {
         $this->lines = [];

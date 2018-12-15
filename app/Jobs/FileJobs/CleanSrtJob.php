@@ -3,16 +3,14 @@
 namespace App\Jobs\FileJobs;
 
 use App\Subtitles\Tools\Options\SrtCleanerOptions;
-use App\Subtitles\Transformers\StripSpeakerLabels;
+use App\Subtitles\Tools\SrtCleaner;
 use App\Support\Facades\TextFileFormat;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
 
 class CleanSrtJob extends FileJob
 {
-    /**
-     * @var SrtCleanerOptions
-     */
+    /** @var SrtCleanerOptions $options */
     protected $options;
 
     public function handle()
@@ -31,29 +29,7 @@ class CleanSrtJob extends FileJob
             return $this->abortFileJob('messages.file_is_not_srt');
         }
 
-        if ($this->options->stripParentheses) {
-            $srt->stripParenthesesFromCues();
-        }
-
-        if ($this->options->stripCurly) {
-            $srt->stripCurlyBracketsFromCues();
-        }
-
-        if ($this->options->stripAngle) {
-            $srt->stripAngleBracketsFromCues();
-        }
-
-        if ($this->options->stripSquare) {
-            $srt->stripSquareBracketsFromCues();
-        }
-
-        if ($this->options->stripSpeakerLabels) {
-            (new StripSpeakerLabels)->transformCues($srt);
-
-            $srt->removeEmptyCues();
-        }
-
-        $srt->removeDuplicateCues();
+        (new SrtCleaner)->clean($srt, $this->options);
 
         if (! $srt->hasCues()) {
             return $this->abortFileJob('messages.file_has_no_dialogue');

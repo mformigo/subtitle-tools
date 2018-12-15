@@ -44,6 +44,17 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         return $cue;
     }
 
+    public function createCue($startMs, $endMs, $lines)
+    {
+        $lines = is_array($lines) ? $lines : [$lines];
+
+        $this->addCue(
+            (new SrtCue)->setTiming($startMs, $endMs)->setLines($lines)
+        );
+
+        return $this;
+    }
+
     public function getContentLines()
     {
         $id = 1;

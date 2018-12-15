@@ -23,35 +23,39 @@
         @slot('buttonText') Clean @endslot
 
         @slot('extraAfter')
-            {{-- Hidden inputs so the values are always present in the request --}}
-            <input type="hidden" name="stripParentheses"   value="" />
-            <input type="hidden" name="stripCurly"         value="" />
-            <input type="hidden" name="stripAngle"         value="" />
-            <input type="hidden" name="stripSquare"        value="" />
-            <input type="hidden" name="stripSpeakerLabels" value="" />
-
             <label class="block">
-                <input type="checkbox" name="stripParentheses" value="1" {{ old('stripParentheses', 'checked') }}>
+                <input type="hidden" name="stripParentheses" value="" />
+                <input type="checkbox" name="stripParentheses" value="1" {{ old('stripParentheses', true) ? 'checked' : '' }}>
                 Strip text between parentheses ( )
             </label>
 
             <label class="block my-3">
-                <input type="checkbox" name="stripCurly" value="1" {{ old('stripCurly', 'checked') }}>
+                <input type="hidden" name="stripCurly" value="" />
+                <input type="checkbox" name="stripCurly" value="1" {{ old('stripCurly', true) ? 'checked' : '' }}>
                 Strip text between curly brackets { }
             </label>
 
             <label class="block my-3">
-                <input type="checkbox" name="stripAngle" value="1" {{ old('stripAngle', 'checked') }}>
+                <input type="hidden" name="stripAngle" value="" />
+                <input type="checkbox" name="stripAngle" value="1" {{ old('stripAngle', true) ? 'checked' : '' }}>
                 Strip text between angle brackets &lt; &gt;
             </label>
 
             <label class="block mb-3">
-                <input type="checkbox" name="stripSquare" value="1" {{ old('stripSquare', 'checked') }}>
+                <input type="hidden" name="stripSquare" value="" />
+                <input type="checkbox" name="stripSquare" value="1" {{ old('stripSquare', true) ? 'checked' : '' }}>
                 Strip text between square brackets [ ]
             </label>
 
             <label class="block mb-3">
-                <input type="checkbox" name="stripSpeakerLabels" value="1">
+                <input type="hidden" name="stripCuesWithMusicNote" value="" />
+                <input type="checkbox" name="stripCuesWithMusicNote" value="1" {{ old('stripCuesWithMusicNote') ? 'checked' : '' }}>
+                Strip any cue containing a music note (♪)
+            </label>
+
+            <label class="block mb-3">
+                <input type="hidden" name="stripSpeakerLabels" value="" />
+                <input type="checkbox" name="stripSpeakerLabels" value="1" {{ old('stripSpeakerLabels') ? 'checked' : '' }}>
                 Strip speaker labels
             </label>
         @endslot
@@ -64,6 +68,7 @@
         Srt subtitles sometimes contain style formatting tags. Unfortunately, many video players don't support formatting and display them as plain text.
         Examples of formatting are italic {{ '<i></i>' }}, bold {{ '<b></b>' }} or colored text {{ '<font></font>' }}.
         This tool strips all html formatting that is contained in angle brackets.
+        It can also remove song text and lyrics.
         <br/><br/>
         The cleaner also converts the file to UTF-8 text encoding, the cues will be sorted based on their start time, and duplicate or empty cues will be removed.
     </p>
