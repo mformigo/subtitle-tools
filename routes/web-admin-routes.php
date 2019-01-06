@@ -16,6 +16,10 @@ Route::get('/sup',           ['uses' => 'SupController@index', 'as' => 'admin.su
 Route::post('/sup/{supJob}', ['uses' => 'SupController@retry', 'as' => 'admin.sup.retry']);
 
 
+Route::get('/disk-usage', ['uses' => 'DiskUsageController@index', 'as' => 'admin.diskUsage.index']);
+
+Route::get('/tools', ['uses' => 'ToolsController@index', 'as' => 'admin.tools.index']);
+
 
 Route::get('/stored-file/{storedFile}')->uses('StoredFilesController@detail')->name('adminStoredFileDetail');
 

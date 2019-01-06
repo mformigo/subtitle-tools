@@ -4,7 +4,7 @@ require('laravel-mix-purgecss');
 
 mix.disableNotifications()
    .js('resources/js/app.js', 'public/js')
-   .postCss('resources/pcss/main.pcss', 'public/css', [
+   .postCss('resources/main.pcss', 'public/css', [
         tailwindcss('tailwind.js')
     ])
     .purgeCss({
