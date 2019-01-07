@@ -2,13 +2,11 @@
 
 namespace App\Jobs\Diagnostic;
 
-use App\Subtitles\TextFile;
 use App\Subtitles\Tools\Options\ToPlainTextOptions;
 use App\Subtitles\Tools\ToPlainText;
 use App\Subtitles\TransformsToGenericSubtitle;
 use App\Support\Facades\TextFileFormat;
 use App\Support\TextFile\Facades\TextEncoding;
-use App\Support\TextFile\Facades\TextFileReader;
 use App\Models\StoredFile;
 use App\Models\StoredFileMeta;
 use Exception;
@@ -40,12 +38,12 @@ class CollectStoredFileMetaJob implements ShouldQueue
         $filePath = $this->storedFile->filePath;
 
         if (StoredFileMeta::query()->where('stored_file_id', $this->storedFile->id)->count() > 0) {
-            Log::error("Tried running a CollectStoredFileMetaJob for a stored file that already has meta info ({$this->storedFile->id})");
+            Log::error("Tried running a CollectStoredFileMetaJob for a stored file that already has meta info (stored file id: {$this->storedFile->id})");
             return;
         }
 
         if (!file_exists($filePath)) {
-            Log::error("CollectStoredFileMetaJob: file does not exist ({$this->storedFile->id})");
+            Log::error("CollectStoredFileMetaJob: file does not exist (stored file id: {$this->storedFile->id})");
             return;
         }
 
@@ -126,7 +124,7 @@ class CollectStoredFileMetaJob implements ShouldQueue
 
     public function failed(Exception $exception)
     {
-        Log::error("Failed collecting stored file meta for {$this->storedFile->id}");
+        Log::error("Failed collecting stored file meta (stored file id: {$this->storedFile->id})");
         Log::error($exception->getMessage());
     }
 }

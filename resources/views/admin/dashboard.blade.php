@@ -4,8 +4,6 @@
 
     <div class="flex">
 
-        <div class="bg-purple-darker w-8 h-8"></div>
-        
         <div class="flex flex-col pl-8 w-64">
             <div>
                 <strong class="block mb-2">Logs</strong>
