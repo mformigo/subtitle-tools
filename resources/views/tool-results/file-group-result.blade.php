@@ -1,8 +1,8 @@
 @extends('layout.base-template')
 
-@section('title',       __('seo.title.fileGroupResult'))
+@section('title', __('seo.title.fileGroupResult'))
 @section('description', __('seo.description.fileGroupResult'))
-@section('keywords',    __('seo.keywords.fileGroupResult'))
+@section('keywords', __('seo.keywords.fileGroupResult'))
 
 @include('helpers.robots-no-index')
 
@@ -18,7 +18,12 @@
 
 
     @if($fileCount > 1)
-        <h3 class="mb-2">Download zip file</h3>
+        <h3>Download zip file</h3>
+        <p class="max-w-xs text-sm leading-normal mb-4">
+            Download the converted files as a single zip file.
+            The zip file does not include failed files.
+        </p>
+
         <file-group-archive url-key="{{ $urlKey }}"></file-group-archive>
     @endif
 

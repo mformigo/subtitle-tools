@@ -1,5 +1,5 @@
 <template>
-    <form :action="this.url" method="post" enctype="multipart/form-data" target="_blank">
+    <form ref="form" :action="this.url" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_token" :value="this.csrfToken">
 
         <button class="cursor-pointer flex items-center" type="submit">
@@ -14,13 +14,25 @@
 <script>
     export default {
 
-        props: [
-            'url',
-            'text'
-        ],
+        props: {
+            'url': String,
+            'text': String,
+            'instantDownload': {
+                type: Boolean,
+                default: false,
+            },
+        },
+
+        mounted() {
+            if (this.instantDownload) {
+                this.$refs.form.submit();
+            }
+        },
 
         computed: {
-            csrfToken: () => window.Laravel.csrf_token
+            csrfToken() {
+                return window.Laravel.csrf_token;
+            },
         },
 
     }

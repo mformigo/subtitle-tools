@@ -6,15 +6,14 @@
             Loading...
         </div>
         <div v-else-if="this.archiveRequestUrl">
-            <a href="javascript:" @click="requestArchive(archiveRequestUrl);archiveStatus = false;">{{ archiveStatus }}</a>
+            <a href="javascript:" @click="requestArchive(archiveRequestUrl)">{{ archiveStatus }}</a>
         </div>
         <div v-else-if="this.archiveDownloadUrl">
-            <download-link :url="this.archiveDownloadUrl" :text="archiveStatus"></download-link>
+            <download-link :url="this.archiveDownloadUrl" :text="archiveStatus" :instant-download="userHasRequested"></download-link>
         </div>
         <div v-else>
             {{ archiveStatus }}
         </div>
-
     </div>
 </template>
 
@@ -26,11 +25,13 @@
             archiveRequestUrl: false,
             archiveDownloadUrl: false,
             apiUpdateInterval: null,
+
+            userHasRequested: false,
         }),
 
-        props: [
-            'urlKey'
-        ],
+        props: {
+            'urlKey': String,
+        },
 
         mounted() {
             let updateFromApi = () => {
@@ -47,9 +48,14 @@
         },
 
         methods: {
-            requestArchive: function(requestUrl) {
+            requestArchive(requestUrl) {
+                this.userHasRequested = true;
+
+                this.archiveStatus = false;
+
                 return axios.post(requestUrl);
             },
+
         },
 
     }

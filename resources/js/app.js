@@ -2,6 +2,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+
 Vue.component('sub-idx-languages',  require('./components/SubIdxLanguages.vue'));
 Vue.component('file-group-jobs',    require('./components/FileGroupJobs.vue'));
 Vue.component('sup-job',            require('./components/SupJob.vue'));
