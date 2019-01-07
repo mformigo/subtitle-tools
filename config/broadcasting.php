@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('BROADCAST_DRIVER'),
+    'default' => env('BROADCAST_DRIVER', 'null'),
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => env('APP_HTTPS'),
+                'encrypted' => env('PUSHER_ENCRYPTED', true),
             ],
         ],
 

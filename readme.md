@@ -7,7 +7,7 @@ php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast
 ```
 
 ## Laravel version
-[compare to laravel master](https://github.com/laravel/laravel/compare/7028b17ed8bf35ee2f1269c0f9c985b411cb4469...master)
+[Compare to laravel master](https://github.com/laravel/laravel/compare/321d9e3786bfd605fe847e34687ccfa8def5bda2...master)
 
 ## General information
 * Language codes use [ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) (same as Tesseract)

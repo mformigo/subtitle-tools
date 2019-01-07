@@ -73,7 +73,7 @@ function file_mime($filePath)
 
 function storage_disk_file_path($path, $disk = null)
 {
-    $disk = $disk ?: env('FILESYSTEM_DRIVER');
+    $disk = $disk ?: config('filesystems.default');
 
     $storagePath = Storage::disk($disk)->getDriver()->getAdapter()->getPathPrefix();
 
