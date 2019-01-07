@@ -31,7 +31,7 @@ task('deploy', [
     'deploy:vendors',
     'build-npm-assets',
 
-    'deploy:writable',
+//    'deploy:writable',
 
 //    'artisan:storage:link',
     'artisan:view:clear',
@@ -39,10 +39,12 @@ task('deploy', [
 //    'artisan:route:cache',
 
     'artisan:migrate',
+
+    'deploy:symlink',
+
     'clear-opcache',
     'artisan:queue:restart',
 
-    'deploy:symlink',
     'deploy:unlock',
     'cleanup',
 ]);

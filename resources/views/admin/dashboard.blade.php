@@ -4,7 +4,7 @@
 
     <div class="flex">
 
-        <div class="bg-pink w-4 h-4"></div>
+        <div class="bg-purple-darker w-8 h-8"></div>
         
         <div class="flex flex-col pl-8 w-64">
             <div>
