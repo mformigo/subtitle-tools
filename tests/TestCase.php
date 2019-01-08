@@ -6,16 +6,17 @@ use App\Models\FileGroup;
 use App\Models\StoredFile;
 use App\Models\User;
 use App\Support\Facades\TempFile;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
-use Illuminate\Support\Facades\DB;
-use SjorsO\MocksTime\MocksTime;
 use Spatie\Snapshots\MatchesSnapshots;
 use Illuminate\Contracts\Console\Kernel;
 
 abstract class TestCase extends BaseTestCase
 {
-    use MatchesSnapshots, MocksTime;
+    use MatchesSnapshots;
+
+    protected $snapshotDirectory = '/';
 
     public $testFilesStoragePath;
 
@@ -28,16 +29,14 @@ abstract class TestCase extends BaseTestCase
 
     protected function getSnapshotDirectory(): string
     {
-        return $this->getFileSnapshotDirectory();
+        $subDirectory = DIRECTORY_SEPARATOR.ltrim($this->snapshotDirectory, DIRECTORY_SEPARATOR);
+
+        return $this->testFilesStoragePath.'_snapshots_'.$subDirectory;
     }
 
     protected function getFileSnapshotDirectory(): string
     {
-        $subDirectory = property_exists($this, 'snapshotDirectory')
-            ? DIRECTORY_SEPARATOR.$this->snapshotDirectory
-            : '';
-
-        return $this->testFilesStoragePath.'_snapshots_'.$subDirectory;
+        return $this->getSnapshotDirectory();
     }
 
     public function assertMatchesFileSnapshot($file)
@@ -88,14 +87,18 @@ abstract class TestCase extends BaseTestCase
         return $this->actingAs($user);
     }
 
+    protected function progressTimeInDays($days)
+    {
+        return Carbon::setTestNow(
+            Carbon::now()->addDays($days)
+        );
+    }
+
     public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
-
-        // Sqlite has foreign key constraints disabled by default
-        DB::connection()->getSchemaBuilder()->enableForeignKeyConstraints();
 
         return $app;
     }

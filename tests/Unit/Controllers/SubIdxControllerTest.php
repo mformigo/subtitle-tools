@@ -4,6 +4,7 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\StoredFile;
 use App\Models\SubIdx;
+use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Tests\CreatesUploadedFiles;
 use Tests\MocksVobSub2Srt;
@@ -71,7 +72,7 @@ class SubIdxControllerTest extends TestCase
     /** @test */
     function it_records_cache_hit_stats()
     {
-        $this->setTestNow('2018-05-01 12:00:00');
+        Carbon::setTestNow('2018-05-01 12:00:00');
 
         $this->withoutJobs();
 

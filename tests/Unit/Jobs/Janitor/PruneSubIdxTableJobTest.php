@@ -4,6 +4,7 @@ namespace Tests\Unit\Jobs\Janitor;
 
 use App\Jobs\Janitor\PruneSubIdxTableJob;
 use App\Models\SubIdx;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,7 +16,7 @@ class PruneSubIdxTableJobTest extends TestCase
     {
         parent::setUp();
 
-        $this->setTestNow('2018-05-01 12:00:00');
+        Carbon::setTestNow('2018-05-01 12:00:00');
     }
 
     /** @test */
