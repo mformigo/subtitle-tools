@@ -16,6 +16,8 @@ task('build-npm-assets', 'npm i; npm run prod');
 
 task('clear-opcache', 'sudo service apache2 restart');
 
+task('generate-sitemap', 'php artisan st:generate-sitemap');
+
 
 after('deploy:failed', 'deploy:unlock');
 
@@ -44,6 +46,8 @@ task('deploy', [
 
     'clear-opcache',
     'artisan:queue:restart',
+
+    'generate-sitemap',
 
     'deploy:unlock',
     'cleanup',

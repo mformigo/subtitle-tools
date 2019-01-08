@@ -2,25 +2,19 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\GenerateSitemapJob;
 use Illuminate\Console\Command;
-use Spatie\Sitemap\SitemapGenerator;
 
 class GenerateSitemap extends Command
 {
     protected $signature = 'st:generate-sitemap';
 
-    protected $description = 'Crawl the site and generate a sitemap.xml';
+    protected $description = 'Queue a job to generate a sitemap';
 
     public function handle()
     {
-        $this->output->write('Generating sitemap... ');
+        GenerateSitemapJob::dispatch();
 
-        $applicationUrl = config('app.url');
-
-        $sitemapFilePath = public_path('sitemap.xml');
-
-        SitemapGenerator::create($applicationUrl)->writeToFile($sitemapFilePath);
-
-        $this->info('Done!');
+        $this->info('Job dispatched to generate a sitemap!');
     }
 }
