@@ -55,10 +55,10 @@
                     {{ class_basename($meta->identified_as) }}
                 </div>
                 <div class="w-2/12">
-                    <a target="_blank" href="{{ route('adminStoredFileDetail', $fileJob->input_stored_file_id) }}">{{ $fileJob->input_stored_file_id }}</a>
+                    <a target="_blank" href="{{ route('admin.storedFiles.show', $fileJob->input_stored_file_id) }}">{{ $fileJob->input_stored_file_id }}</a>
                     <span class="mx-2">🡆</span>
                     @if($fileJob->output_stored_file_id)
-                        <a target="_blank" href="{{ route('adminStoredFileDetail', $fileJob->output_stored_file_id) }}">{{ $fileJob->output_stored_file_id }}</a>
+                        <a target="_blank" href="{{ route('admin.storedFiles.show', $fileJob->output_stored_file_id) }}">{{ $fileJob->output_stored_file_id }}</a>
                     @endif
                 </div>
                 <div class="w-2/12">

@@ -38,7 +38,7 @@
                     <div class="st-col minw-100">{{ $lang->language }}</div>
                     <div class="st-col minw-100">
                         @if($lang->output_stored_file_id)
-                            <a target="_blank" href="{{ route('adminStoredFileDetail', $lang->output_stored_file_id) }}">{{ $lang->output_stored_file_id }}</a>
+                            <a target="_blank" href="{{ route('admin.storedFiles.show', $lang->output_stored_file_id) }}">{{ $lang->output_stored_file_id }}</a>
                         @endif
                     </div>
                     <div class="st-col st-grow">{{ $lang->error_message }}</div>

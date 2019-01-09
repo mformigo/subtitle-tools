@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\DB;
-use App\Support\TextFile\Facades\TextFileReader;
 
 class DashboardController extends Controller
 {
@@ -30,35 +29,6 @@ class DashboardController extends Controller
             'dependencies'     => $this->getDependenciesInfo(),
             'failedJobCount'   => DB::table('failed_jobs')->count(),
         ]);
-    }
-
-    public function getLog($name)
-    {
-        $filePath = storage_path("logs/{$name}");
-
-        if (! file_exists($filePath)) {
-            return back();
-        }
-
-        if ($name === 'laravel.log') {
-            return view('admin.log', [
-                'name' => $name,
-                'lines' => TextFileReader::getLines($filePath),
-            ]);
-        }
-
-        return implode('<br />', TextFileReader::getLines($filePath));
-    }
-
-    public function deleteLog($name)
-    {
-        $filePath = storage_path("logs/{$name}");
-
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        }
-
-        return back();
     }
 
     private function getSupervisorInfo()

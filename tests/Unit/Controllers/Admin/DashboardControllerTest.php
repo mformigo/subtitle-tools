@@ -12,7 +12,7 @@ class DashboardControllerTest extends TestCase
     /** @test */
     function it_redirects_guests()
     {
-        $this->get(route('admin'))
+        $this->get(route('admin.dashboard.index'))
             ->assertStatus(302)
             ->assertRedirect(route('login'));
     }
@@ -21,7 +21,7 @@ class DashboardControllerTest extends TestCase
     function it_allows_logged_in_users()
     {
         $this->adminLogin()
-            ->get(route('admin'))
+            ->get(route('admin.dashboard.index'))
             ->assertStatus(200);
     }
 }

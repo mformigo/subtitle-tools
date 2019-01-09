@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class StoredFilesController
 {
-    public function detail(StoredFile $storedFile)
+    public function show(StoredFile $storedFile)
     {
          $relatedFileJobs = FileJob::query()
              ->whereNotNull('input_stored_file_id')

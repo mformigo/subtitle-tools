@@ -22,7 +22,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        return redirect()->route('admin');
+        return redirect()->route('admin.dashboard.index');
     }
 
     public function username()

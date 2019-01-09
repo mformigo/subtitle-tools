@@ -10,9 +10,9 @@
 
                 @foreach ($logs as $logName)
                     <div class="flex justify-between pl-4 border-l-8 border-red">
-                        <a class="text-black" href="{{ route('adminGetLog', $logName) }}" target="_blank">{{ $logName }}</a>
+                        <a class="text-black" href="{{ route('admin.logs.show', $logName) }}" target="_blank">{{ $logName }}</a>
 
-                        <a class="text-black" href="{{ route('adminDeleteLog', $logName) }}">x</a>
+                        <a class="text-black" href="{{ route('admin.logs.delete', $logName) }}">x</a>
                     </div>
                 @endforeach
             </div>
@@ -23,7 +23,7 @@
                     <strong class="block mb-2 mt-8">Queues</strong>
 
                     <div class="flex justify-between pl-4 border-l-8 border-red">
-                        <a class="text-black" href="{{ route('admin.failedJobs') }}">{{ $failedJobCount }} failed jobs</a>
+                        <a class="text-black" href="{{ route('admin.failedJobs.index') }}">{{ $failedJobCount }} failed jobs</a>
 
                         <a class="text-black" href="{{ route('admin.failedJobs.truncate') }}">x</a>
                     </div>
@@ -58,7 +58,7 @@
             <div>
                 <strong class="block mb-2 mt-8">Server</strong>
 
-                <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.dashboard.phpinfo') }}" target="_blank">phpinfo()</a>
+                <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.showPhpinfo') }}" target="_blank">phpinfo()</a>
 
                 @foreach($dependencies as $name => $isLoaded)
                     <div class="pl-4 border-l-8 {{ $isLoaded ? 'border-green' : 'border-red' }}">

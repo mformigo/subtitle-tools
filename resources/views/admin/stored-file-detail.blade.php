@@ -12,7 +12,7 @@
                 <tr>
                     <td class="block w-32"></td>
                     <td>
-                        <form target="_blank" method="post" action="{{ route('adminStoredFileDownload') }}" enctype="multipart/form-data">
+                        <form target="_blank" method="post" action="{{ route('admin.storedFiles.delete') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <input type="hidden" name="id" value="{{ $storedFileId }}" />
@@ -61,7 +61,7 @@
                         @if($f->input_stored_file_id === $storedFileId)
                             This
                         @else
-                            <a target="_blank" href="{{ route('adminStoredFileDetail', $f->input_stored_file_id) }}">{{ $f->input_stored_file_id }}</a>
+                            <a target="_blank" href="{{ route('admin.storedFiles.show', $f->input_stored_file_id) }}">{{ $f->input_stored_file_id }}</a>
                         @endif
 
                         <span class="mx-2">🡆</span>
@@ -69,7 +69,7 @@
                         @if($f->output_stored_file_id === $storedFileId)
                             This
                         @else
-                            <a target="_blank" href="{{ route('adminStoredFileDetail', $f->output_stored_file_id) }}">{{ $f->output_stored_file_id }}</a>
+                            <a target="_blank" href="{{ route('admin.storedFiles.show', $f->output_stored_file_id) }}">{{ $f->output_stored_file_id }}</a>
                         @endif
                     </div>
                 @empty
