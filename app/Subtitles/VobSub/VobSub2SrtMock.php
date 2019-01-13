@@ -24,14 +24,6 @@ class VobSub2SrtMock implements VobSub2SrtInterface
 
     public function getLanguages()
     {
-        if ($this->logToSubIdx !== null) {
-            $this->logToSubIdx->vobsub2srtOutputs()->create([
-                'argument' => '--langlist',
-                'index'    => null,
-                'output'   => 'mock mock mock mock mock mock mock mock mock mock mock mock mock mock',
-            ]);
-        }
-
         return [
             ['index' => 0, 'language' => 'en'],
             ['index' => 1, 'language' => 'unknown'],
@@ -63,14 +55,6 @@ class VobSub2SrtMock implements VobSub2SrtInterface
             case 3:
                 // don't write any output file
                 break;
-        }
-
-        if ($this->logToSubIdx !== null) {
-            $this->logToSubIdx->vobsub2srtOutputs()->create([
-                'argument' => "--index {$index}",
-                'index'    => $index,
-                'output'   => 'mock mock mock mock mock mock mock mock mock mock mock mock mock mock',
-            ]);
         }
 
         return $outputFilePath;
@@ -118,5 +102,4 @@ class VobSub2SrtMock implements VobSub2SrtInterface
 
         file_put_contents($filePath, $data);
     }
-
 }

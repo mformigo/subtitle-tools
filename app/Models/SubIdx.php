@@ -25,17 +25,12 @@ class SubIdx extends Model
 
     public function languages()
     {
-        return $this->hasMany(\App\Models\SubIdxLanguage::class);
-    }
-
-    public function vobsub2srtOutputs()
-    {
-        return $this->hasMany(\App\Models\Vobsub2srtOutput::class);
+        return $this->hasMany(SubIdxLanguage::class);
     }
 
     public function meta()
     {
-        return $this->hasOne(\App\Models\SubIdxMeta::class);
+        return $this->hasOne(SubIdxMeta::class);
     }
 
     /**
@@ -44,7 +39,7 @@ class SubIdx extends Model
     public function getVobSub2Srt()
     {
         return app(VobSub2SrtInterface::class, [
-            'path'   => $this->file_path_without_extension,
+            'path' => $this->file_path_without_extension,
             'subIdx' => $this,
         ]);
     }
@@ -104,7 +99,7 @@ class SubIdx extends Model
         if ($subIdx->languages->count() > 0) {
             $subIdx->update([
                 'is_readable' => true,
-                'page_id'     => generate_url_key(),
+                'page_id' => generate_url_key(),
             ]);
         }
 

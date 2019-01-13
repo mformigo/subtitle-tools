@@ -18,14 +18,6 @@ class SubIdxLanguage extends Model
         return $this->hasOne(StoredFile::class, 'id', 'output_stored_file_id');
     }
 
-    public function vobsubOutput()
-    {
-        return Vobsub2srtOutput::query()
-            ->where('sub_idx_id', $this->sub_idx_id)
-            ->where('index', $this->index)
-            ->first();
-    }
-
     public function getFilePathAttribute()
     {
         return $this->outputStoredFile()->firstOrFail()->filePath;

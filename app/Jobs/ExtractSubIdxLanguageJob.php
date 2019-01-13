@@ -100,9 +100,14 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
         return $this->subIdxLanguage;
     }
 
+    /**
+     * @deprecated
+     *
+     * @return bool
+     */
     protected function timedOut()
     {
-        $output = $this->subIdxLanguage->vobsubOutput()->output ?? 'NO OUTPUT';
+        $output = 'NO OUTPUT';
 
         return stripos($output, '__error: timeout') !== false;
     }
