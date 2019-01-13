@@ -55,7 +55,7 @@ function is_text_file($file)
 
 function generate_url_key()
 {
-    return strtolower(str_random(16));
+    return substr(sha1(str_random(16)), 0, 16);
 }
 
 function file_mime($filePath)
@@ -93,36 +93,4 @@ function format_file_size($bytes)
     $bytes /= pow(1024, $pow);
 
     return round($bytes, 0).' '.$units[$pow];
-}
-
-function interval(int $interval, $closure)
-{
-    $interval = ($interval === 0) ? 1 : $interval;
-
-    static $calls = [];
-
-    $caller = sha1(debug_backtrace()[0]['file'].'|'.debug_backtrace()[0]['line']);
-
-    $callCount = $calls[$caller] ?? 1;
-
-    if ($callCount % $interval === 0) {
-        $closure();
-    }
-
-    $calls[$caller] = $callCount + 1;
-}
-
-function once($closure)
-{
-    static $calls = [];
-
-    $caller = sha1(debug_backtrace()[0]['file'].'|'.debug_backtrace()[0]['line']);
-
-    if (isset($calls[$caller])) {
-        return;
-    }
-
-    $calls[$caller] = true;
-
-    $closure();
 }

@@ -9,11 +9,11 @@ class SubMimeRule implements Rule
 {
     public function passes($attribute, $value)
     {
-        if ($value instanceof UploadedFile) {
-            return file_mime($value->getRealPath()) === 'video/mpeg';
+        if (! $value instanceof UploadedFile) {
+            return false;
         }
 
-        return false;
+        return file_mime($value->getRealPath()) === 'video/mpeg';
     }
 
     public function message()

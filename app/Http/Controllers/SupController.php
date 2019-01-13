@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SupRequest;
+use App\Http\Rules\FileNotEmptyRule;
+use App\Http\Rules\SupRule;
 use App\Support\Facades\FileHash;
 use App\Support\Facades\FileName;
 use App\Models\StoredFile;
 use App\Models\SupJob;
+use Illuminate\Http\Request;
 
 class SupController extends Controller
 {
@@ -17,11 +19,16 @@ class SupController extends Controller
         ]);
     }
 
-    public function post(SupRequest $request)
+    public function post(Request $request)
     {
-        $supFile = $request->getSupFile();
+        $request->validate([
+            'subtitle' => ['bail', 'required', 'file', new FileNotEmptyRule, new SupRule],
+            'ocrLanguage' => 'required|in:'.implode(',', config('st.tesseract.languages')),
+        ]);
 
-        $ocrLanguage = $request->getOcrLanguage();
+        $supFile = $request->file('subtitle');
+
+        $ocrLanguage = $request->get('ocrLanguage');
 
         $hash = FileHash::make($supFile);
 
@@ -60,8 +67,8 @@ class SupController extends Controller
 
         return view('tool-results.sup-result', [
             'originalName' => $supJob->original_name,
-            'ocrLanguage'  => $supJob->ocr_language,
-            'urlKey'       => $urlKey,
+            'ocrLanguage' => $supJob->ocr_language,
+            'urlKey' => $urlKey,
         ]);
     }
 

@@ -5,7 +5,6 @@ namespace App\Http\Rules;
 use App\Subtitles\PlainText\PlainText;
 use App\Support\Facades\TextFileFormat;
 use Illuminate\Contracts\Validation\Rule;
-use App\Support\TextFile\Facades\TextFileIdentifier;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SubtitleFileRule implements Rule
@@ -18,7 +17,7 @@ class SubtitleFileRule implements Rule
 
         $filePath = $value->getRealPath();
 
-        if (! TextFileIdentifier::isTextFile($filePath)) {
+        if (! is_text_file($filePath)) {
             return false;
         }
 

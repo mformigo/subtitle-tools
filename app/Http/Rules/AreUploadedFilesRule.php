@@ -9,13 +9,13 @@ class AreUploadedFilesRule implements Rule
 {
     public function passes($attribute, $value)
     {
-        $uploadedFiles = request()->files->get($attribute);
+        $files = array_wrap($value);
 
-        if ($uploadedFiles === null) {
+        if (! $files) {
             return false;
         }
 
-        foreach (array_wrap($uploadedFiles) as $file) {
+        foreach ($files as $file) {
             if (! $file instanceof UploadedFile) {
                 return false;
             }

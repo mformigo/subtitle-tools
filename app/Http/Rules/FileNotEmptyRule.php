@@ -9,11 +9,15 @@ class FileNotEmptyRule implements Rule
 {
     public function passes($attribute, $value)
     {
-        if ($value instanceof UploadedFile && file_exists($value->getRealPath())) {
-            return filesize($value->getRealPath()) > 0;
+        if (! $value instanceof UploadedFile) {
+            return false;
         }
 
-        return false;
+        if (! file_exists($value->getRealPath())) {
+            return false;
+        }
+
+        return filesize($value->getRealPath()) > 0;
     }
 
     public function message()
