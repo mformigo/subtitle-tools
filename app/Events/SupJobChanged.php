@@ -5,17 +5,10 @@ namespace App\Events;
 use App\Http\Resources\SupJobResource;
 use App\Models\SupJob;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class SupJobChanged implements ShouldBroadcast
+class SupJobChanged extends BaseEvent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
-
-    public $broadcastQueue = 'broadcast';
-
     protected $supJob;
 
     public function __construct(SupJob $supJob)
@@ -30,8 +23,6 @@ class SupJobChanged implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        $request = request();
-
-        return SupJobResource::make($this->supJob)->toArray($request);
+        return SupJobResource::make($this->supJob)->toArray();
     }
 }

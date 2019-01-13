@@ -4,17 +4,10 @@ namespace App\Events;
 
 use App\Models\SubIdxLanguage;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ExtractingSubIdxLanguageChanged implements ShouldBroadcast
+class ExtractingSubIdxLanguageChanged extends BaseEvent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
-
-    public $broadcastQueue = 'broadcast';
-
     protected $subIdxLanguage;
 
     public function __construct(SubIdxLanguage $subIdxLanguage)

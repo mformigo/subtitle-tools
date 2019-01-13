@@ -7,16 +7,16 @@ use Illuminate\Http\Resources\Json\Resource;
 
 class SupJobResource extends Resource
 {
-    public function toArray($request)
+    public function toArray($request = null)
     {
         /** @var SupJob $supJob */
         $supJob = $this->resource;
 
         return [
-            'id'           => $supJob->id,
-            'ocrLanguage'  => $supJob->ocr_language,
+            'id' => $supJob->id,
+            'ocrLanguage' => $supJob->ocr_language,
             'originalName' => $supJob->original_name,
-            'isFinished'   => $supJob->is_finished,
+            'isFinished' => $supJob->is_finished,
             'errorMessage' => $supJob->has_error ? __($supJob->error_message) : false,
         ];
     }

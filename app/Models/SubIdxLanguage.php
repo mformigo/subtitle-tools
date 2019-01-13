@@ -83,13 +83,13 @@ class SubIdxLanguage extends Model
     public function getApiValues()
     {
         return [
-            'index'       => $this->index,
+            'index' => $this->index,
             'countryCode' => $this->language,
-            'language'    => __("languages.{$this->language}"),
-            'status'      => $this->statusMessage,
-            'hasError'    => $this->hasError,
+            'language' => __('languages.'.$this->language),
+            'status' => $this->statusMessage,
+            'hasError' => $this->hasError,
             'downloadUrl' => $this->downloadUrl,
-            'isFinished'  => $this->has_finished,
+            'isFinished' => $this->has_finished,
         ];
     }
 }
