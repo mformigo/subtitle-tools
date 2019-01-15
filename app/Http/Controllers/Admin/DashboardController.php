@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class DashboardController
 {
     public function index()
     {

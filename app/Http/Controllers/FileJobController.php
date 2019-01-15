@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\FileJobs;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Rules\AreUploadedFilesRule;
+use App\Models\FileGroup;
 use App\Subtitles\Tools\Options\NoOptions;
 use App\Subtitles\Tools\Options\ToolOptions;
 use App\Support\Facades\FileName;
-use App\Http\Rules\AreUploadedFilesRule;
-use App\Models\FileGroup;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
-abstract class FileJobController extends Controller
+abstract class FileJobController extends BaseController
 {
+    use DispatchesJobs;
+
     protected $indexRouteName;
 
     protected $job;
@@ -82,7 +85,7 @@ abstract class FileJobController extends Controller
         $fileGroup = FileGroup::findForTool($urlKey, $this->indexRouteName);
 
         return view('tool-results.file-group-result', [
-            'urlKey'    => $urlKey,
+            'urlKey' => $urlKey,
             'returnUrl' => route($this->indexRouteName),
             'fileCount' => $fileGroup->fileJobs()->count(),
         ]);
@@ -127,8 +130,8 @@ abstract class FileJobController extends Controller
         }
 
         $fileGroup = FileGroup::create([
-            'tool_route'  => $this->indexRouteName,
-            'url_key'     => generate_url_key(),
+            'tool_route' => $this->indexRouteName,
+            'url_key' => generate_url_key(),
             'job_options' => $jobOptions,
         ]);
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class ContactController
 {
     public function index()
     {
@@ -19,7 +19,7 @@ class ContactController extends Controller
         ]);
 
         $message = $request->get('message');
-        $email   = $request->get('email') ?? '(none)';
+        $email = $request->get('email') ?? '(none)';
 
         file_put_contents(
             storage_path('logs/feedback.log'),

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Controllers\FileJobs;
+namespace Tests\Unit\Controllers;
 
 use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;

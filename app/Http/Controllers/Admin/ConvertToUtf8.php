@@ -19,11 +19,9 @@ class ConvertToUtf8
         $file = $request->file('file');
         $encoding = $request->get('from_encoding');
 
-        $textEncoding = new TextEncoding();
-
         $content = file_get_contents($file->getRealPath());
 
-        $converted = $textEncoding->toUtf8($content, $encoding);
+        $converted = (new TextEncoding)->toUtf8($content, $encoding);
 
         $filePath = TempFile::make($converted);
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\DB;
 
-class FailedJobsController extends Controller
+class FailedJobsController
 {
     public function index()
     {

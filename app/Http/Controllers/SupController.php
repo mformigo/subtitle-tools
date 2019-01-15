@@ -10,7 +10,7 @@ use App\Models\StoredFile;
 use App\Models\SupJob;
 use Illuminate\Http\Request;
 
-class SupController extends Controller
+class SupController
 {
     public function index()
     {

@@ -1,8 +1,8 @@
 <?php
 
-Route::get('st-login',   'Auth\LoginController@showLoginForm')->name('login');
-Route::post('st-login',  'Auth\LoginController@login');
-Route::post('st-logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('st-login',   ['uses' => 'LoginController@showLoginForm', 'as' => 'login'])->middleware('guest');
+Route::post('st-login',  ['uses' => 'LoginController@login',         'as' => 'login.post']);
+Route::post('st-logout', ['uses' => 'LoginController@logout',        'as' => 'logout']);
 
 Route::view('/', 'home')->name('home');
 
@@ -22,7 +22,7 @@ Route::get('/file-group-archive/{urlKey}', function ($urlKey) {
 
 Route::prefix('convert-sub-idx-to-srt-online')->group(function () {
     Route::get('/',                  ['uses' => 'SubIdxController@index',       'as' => 'subIdx']);
-    Route::post('/',                 ['uses' => 'SubIdxController@post']);
+    Route::post('/',                 ['uses' => 'SubIdxController@post',        'as' => 'subIdx.post'])->middleware('swap-sub-and-idx');
     Route::get('/{pageId}',          ['uses' => 'SubIdxController@detail',      'as' => 'subIdx.show']);
     Route::post('/{pageId}/{index}', ['uses' => 'SubIdxController@downloadSrt', 'as' => 'subIdx.download']);
 
@@ -55,6 +55,3 @@ Route::prefix('convert-sup-to-srt-online')->group(function () {
         return redirect()->route('sup.show', $urlKey);
     });
 });
-
-
-Route::fallback('NotFoundController@index');

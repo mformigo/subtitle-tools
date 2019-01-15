@@ -8,13 +8,8 @@ use App\Http\Rules\TextFileRule;
 use App\Models\SubIdx;
 use Illuminate\Http\Request;
 
-class SubIdxController extends Controller
+class SubIdxController
 {
-    public function __construct()
-    {
-        $this->middleware('swap-sub-and-idx')->only('post');
-    }
-
     public function index()
     {
         return view('tools.convert-sub-idx-to-srt');
@@ -33,7 +28,7 @@ class SubIdxController extends Controller
         );
 
         if (! $subIdx->is_readable) {
-            return back()->withErrors(__("validation.subidx_cant_be_read"));
+            return back()->withErrors('The sub/idx file can not be read');
         }
 
         return redirect()->route('subIdx.show', $subIdx->page_id);
@@ -46,9 +41,9 @@ class SubIdxController extends Controller
         $languageCount = $subIdx->languages()->count();
 
         return view('tool-results.sub-idx-result', [
-            'originalName'  => $subIdx->original_name,
+            'originalName' => $subIdx->original_name,
             'languageCount' => $languageCount,
-            'pageId'        => $pageId,
+            'pageId' => $pageId,
         ]);
     }
 
@@ -69,5 +64,4 @@ class SubIdxController extends Controller
 
         return response()->download($filePath, $fileName);
     }
-
 }

@@ -1,19 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class LoginController
 {
     use AuthenticatesUsers;
-
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
 
     public function showLoginForm()
     {

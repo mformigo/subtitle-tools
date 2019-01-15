@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\SubIdx;
 
-class SubIdxController extends Controller
+class SubIdxController
 {
     public function index()
     {

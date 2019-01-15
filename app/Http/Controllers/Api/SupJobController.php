@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\SupJobResource;
-use App\Http\Controllers\Controller;
 use App\Models\SupJob;
 
-class SupJobController extends Controller
+class SupJobController
 {
     public function show($urlKey)
     {

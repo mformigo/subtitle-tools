@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\SubIdx;
-use App\Http\Controllers\Controller;
 
-class SubIdxController extends Controller
+class SubIdxController
 {
     public function languages($pageId)
     {
-        return SubIdx::where('page_id', $pageId)
+        return SubIdx::query()
+            ->where('page_id', $pageId)
             ->firstOrFail()
             ->languages()
             ->get()

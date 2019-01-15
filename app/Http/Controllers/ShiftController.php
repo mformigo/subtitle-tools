@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\FileJobs;
+namespace App\Http\Controllers;
 
 use App\Jobs\FileJobs\ShiftJob;
 use Illuminate\Http\Request;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-class ToolsController extends Controller
+class ToolsController
 {
     public function index()
     {

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\FileGroup;
 
-class DownloadController extends Controller
+class DownloadController
 {
     public function fileGroupArchive($urlKey)
     {
-        $fileGroup = FileGroup::where('url_key', $urlKey)
+        $fileGroup = FileGroup::query()
+            ->where('url_key', $urlKey)
             ->whereNotNull('archive_stored_file_id')
             ->firstOrFail();
 

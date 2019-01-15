@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-class DiskUsageController extends Controller
+class DiskUsageController
 {
     public function index()
     {

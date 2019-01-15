@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-class LogsController extends Controller
+class LogsController
 {
     public function show($name)
     {

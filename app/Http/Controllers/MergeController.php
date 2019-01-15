@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\FileJobs;
+namespace App\Http\Controllers;
 
 use App\Http\Rules\FileNotEmptyRule;
 use App\Http\Rules\SubtitleFileRule;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\SupJob;
 
-class SupController extends Controller
+class SupController
 {
     public function index()
     {

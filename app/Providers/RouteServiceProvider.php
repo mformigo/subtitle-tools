@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
                 throw new RuntimeException('This route is not defined in the config');
             }
 
-            Route::prefix($slug)->namespace('FileJobs')->group(function () use ($controller, $routeName) {
+            Route::prefix($slug)->group(function () use ($controller, $routeName) {
                 Route::get('/',               ['uses' => "$controller@index",    'as' => "$routeName"]);
                 Route::post('/',              ['uses' => "$controller@post",     'as' => "$routeName.post"]);
                 Route::get('/{urlKey}',       ['uses' => "$controller@result",   'as' => "$routeName.result"]);
