@@ -20,8 +20,6 @@ class CreateSupJobsTable extends Migration
             $table->string('internal_error_message')->nullable();
             $table->string('temp_dir')->nullable();
 
-            $table->timestamps();
-
             // MeasuresQueueTime trait
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();
@@ -29,6 +27,10 @@ class CreateSupJobsTable extends Migration
             $table->integer('extract_time')->nullable(); // Not part of the MeasuresQueueTime trait
             $table->integer('work_time')->nullable();
 
+            $table->unsignedInteger('cache_hits')->default(0);
+            $table->dateTime('last_cache_hit')->nullable();
+
+            $table->timestamps();
         });
     }
 

@@ -19,6 +19,7 @@ class CreateStoredFileMetasTable extends Migration
             $table->string('identified_as')->nullable();
             $table->string('line_endings')->nullable();
             $table->integer('line_count')->nullable();
+            $table->string('language')->nullable();
 
             $table->foreign('stored_file_id')->references('id')->on('stored_files')->onDelete('cascade');
         });

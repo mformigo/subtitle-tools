@@ -10,7 +10,6 @@ class CreateSubIdxesTable extends Migration
     {
         Schema::create('sub_idxes', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('page_id')->nullable();
             $table->string('store_directory');
             $table->string('filename');
@@ -21,6 +20,9 @@ class CreateSubIdxesTable extends Migration
             $table->string('sub_hash');
             $table->string('idx_hash');
             $table->boolean('is_readable')->nullable();
+            $table->unsignedInteger('cache_hits')->default(0);
+            $table->dateTime('last_cache_hit')->nullable();
+            $table->timestamps();
         });
     }
 
