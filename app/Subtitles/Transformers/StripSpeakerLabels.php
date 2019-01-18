@@ -12,7 +12,6 @@ class StripSpeakerLabels extends CueTransformer
             $transformedLines[] = $this->stripSpeakerLabel($line);
         }
 
-        // Remove empty lines and reset array keys
         return array_values(
             array_filter($transformedLines)
         );
@@ -26,11 +25,9 @@ class StripSpeakerLabels extends CueTransformer
 
         [$maybeSpeakerLabel, $dialogue] = explode(':', $line, 2);
 
-        if (! $this->isSpeakerLabel($maybeSpeakerLabel)) {
-            return $line;
-        }
-
-        return blank($dialogue) ? '' : '-'.trim($dialogue);
+        return $this->isSpeakerLabel($maybeSpeakerLabel)
+            ? trim($dialogue)
+            : $line;
     }
 
     protected function isSpeakerLabel($string): bool
