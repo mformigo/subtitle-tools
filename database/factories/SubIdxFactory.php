@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 
 $factory->define(SubIdx::class, function (Faker $faker) {
     return [
-        'page_id' => generate_url_key(),
+        'url_key' => generate_url_key(),
         'filename' => $fileName = strtolower(str_random(12)),
         'store_directory' => 'sub-idx/'.date('Y-z').'/'.date('U').'-'.$fileName.'/',
         'original_name' => snake_case($faker->words(3, true)),

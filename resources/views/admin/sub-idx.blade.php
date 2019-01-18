@@ -16,7 +16,7 @@
 
         @foreach($subIdxes as $subIdx)
             <div class="st-row">
-                <div class="st-col minw-75"><a href="{{ route('subIdx.show', $subIdx->page_id) }}" target="_blank">&nbsp;(*)</a></div>
+                <div class="st-col minw-75"><a href="{{ route('subIdx.show', $subIdx->url_key) }}" target="_blank">&nbsp;(*)</a></div>
                 <div class="st-col st-grow">{{ $subIdx->original_name }}</div>
                 <div class="st-col minw-75">{{ $subIdx->meta ? round($subIdx->meta->sub_file_size / 1024, 2) : '' }}kb</div>
                 <div class="st-col minw-75">{{ $subIdx->meta ? round($subIdx->meta->idx_file_size / 1024, 2) : '' }}kb</div>

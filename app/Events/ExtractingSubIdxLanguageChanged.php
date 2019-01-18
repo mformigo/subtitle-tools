@@ -17,7 +17,7 @@ class ExtractingSubIdxLanguageChanged extends BaseEvent implements ShouldBroadca
 
     public function broadcastOn()
     {
-        return new Channel('sub-idx.'.$this->subIdxLanguage->subIdx->page_id);
+        return new Channel('sub-idx.'.$this->subIdxLanguage->subIdx->url_key);
     }
 
     public function broadcastWith()

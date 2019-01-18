@@ -99,7 +99,7 @@ class SubIdx extends Model
         if ($subIdx->languages->count() > 0) {
             $subIdx->update([
                 'is_readable' => true,
-                'page_id' => generate_url_key(),
+                'url_key' => generate_url_key(),
             ]);
         }
 

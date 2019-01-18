@@ -31,12 +31,12 @@ class SubIdxController
             return back()->withErrors('The sub/idx file can not be read');
         }
 
-        return redirect()->route('subIdx.show', $subIdx->page_id);
+        return redirect()->route('subIdx.show', $subIdx->url_key);
     }
 
     public function detail($pageId)
     {
-        $subIdx = SubIdx::where('page_id', $pageId)->firstOrFail();
+        $subIdx = SubIdx::where('url_key', $pageId)->firstOrFail();
 
         $languageCount = $subIdx->languages()->count();
 
@@ -50,7 +50,7 @@ class SubIdxController
     public function downloadSrt($pageId, $languageIndex)
     {
         $subIdxLanguage = SubIdx::query()
-            ->where('page_id', $pageId)
+            ->where('url_key', $pageId)
             ->firstOrFail()
             ->languages()
             ->where('index', $languageIndex)

@@ -34,7 +34,7 @@ class RandomizeUrlKeys extends Command
                 $this->output->writeln('Randomizing '.count($collection).' sub/idx url keys...');
             })
             ->each(function (SubIdx $subIdx) {
-                $subIdx->update(['page_id' => generate_url_key()]);
+                $subIdx->update(['url_key' => generate_url_key()]);
             });
     }
 

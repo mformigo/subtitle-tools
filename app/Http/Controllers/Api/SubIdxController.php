@@ -9,7 +9,7 @@ class SubIdxController
     public function languages($pageId)
     {
         return SubIdx::query()
-            ->where('page_id', $pageId)
+            ->where('url_key', $pageId)
             ->firstOrFail()
             ->languages()
             ->get()
