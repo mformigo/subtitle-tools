@@ -9,12 +9,13 @@ use App\Support\Facades\TempFile;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
+use Spatie\Snapshots\Drivers\JsonDriver;
 use Spatie\Snapshots\MatchesSnapshots;
 use Illuminate\Contracts\Console\Kernel;
 
 abstract class TestCase extends BaseTestCase
 {
-    use MatchesSnapshots;
+    use MatchesSnapshots, CreatesUploadedFiles;
 
     protected $snapshotDirectory = '/';
 
@@ -64,6 +65,15 @@ abstract class TestCase extends BaseTestCase
         $this->assertMatchesFileSnapshot($storedFile);
     }
 
+    public function assertMatchesJsonSnapshot($actual)
+    {
+        if ($actual instanceof TestResponse) {
+            $actual = $actual->getContent();
+        }
+
+        $this->assertMatchesSnapshot($actual, new JsonDriver);
+    }
+
     /**
      * Assert that the file job controller redirected to the file group result page.
      *
@@ -73,6 +83,16 @@ abstract class TestCase extends BaseTestCase
     protected function assertSuccessfulFileJobRedirect(TestResponse $response, FileGroup $fileGroup)
     {
         $response->assertStatus(302)->assertRedirect($fileGroup->result_route);
+    }
+
+    public function assertNow($carbon)
+    {
+        $this->assertSame(
+            (string) now(),
+            (string) $carbon
+        );
+
+        return $this;
     }
 
     /**
@@ -90,7 +110,7 @@ abstract class TestCase extends BaseTestCase
     protected function progressTimeInDays($days)
     {
         return Carbon::setTestNow(
-            Carbon::now()->addDays($days)
+            now()->addDays($days)
         );
     }
 

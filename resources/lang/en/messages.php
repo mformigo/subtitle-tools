@@ -2,11 +2,6 @@
 
 return [
 
-    'status.queued'     => 'Queued',
-    'status.processing' => 'Processing',
-    'status.finished'   => 'Finished',
-    'status.failed'     => 'Failed',
-
     'download' => 'Download',
 
     'not_a_text_file' => 'This file is not a text file',

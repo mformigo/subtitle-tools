@@ -2,27 +2,38 @@
 
 namespace App\Subtitles\VobSub;
 
-use LogicException;
 use RuntimeException;
 
 class VobSub2Srt implements VobSub2SrtInterface
 {
-    protected $filePathWithoutExtension;
+    private $filePathWithoutExtension;
 
-    protected $idxFile;
+    /** @var IdxFile $idxFile */
+    private $idxFile;
 
-    public function __construct($pathWithoutExtension)
+    public function get()
+    {
+        return $this;
+    }
+
+    public function path($pathWithoutExtension)
     {
         $this->filePathWithoutExtension = $pathWithoutExtension;
 
-        if (! file_exists("{$this->filePathWithoutExtension}.sub") || ! file_exists("{$this->filePathWithoutExtension}.idx")) {
-            throw new RuntimeException($this->filePathWithoutExtension.'.sub/.idx does not exist');
+        if (! file_exists("$this->filePathWithoutExtension.sub")) {
+            throw new RuntimeException($this->filePathWithoutExtension.'.sub does not exist');
         }
 
-        $this->idxFile = new IdxFile($this->filePathWithoutExtension.'.idx');
+        if (! file_exists("$this->filePathWithoutExtension.idx")) {
+            throw new RuntimeException($this->filePathWithoutExtension.'.idx does not exist');
+        }
+
+        $this->idxFile = new IdxFile("$this->filePathWithoutExtension.idx");
+
+        return $this;
     }
 
-    public function getLanguages()
+    public function languages()
     {
         $outputLines = $this->execVobsub2srt('--langlist');
 
@@ -44,7 +55,7 @@ class VobSub2Srt implements VobSub2SrtInterface
         return $languages;
     }
 
-    public function extractLanguage($index, $language)
+    public function extract($index, $language)
     {
         $outputFilePath = $this->filePathWithoutExtension.'.srt';
 
@@ -60,15 +71,14 @@ class VobSub2Srt implements VobSub2SrtInterface
         return $outputFilePath;
     }
 
-    protected function execVobsub2srt($argument)
+    private function execVobsub2srt($argument)
     {
-        if (empty($argument)) {
-            throw new LogicException('Argument can not be empty');
+        if (! $argument) {
+            throw new RuntimeException('Argument can not be empty');
         }
 
         $output = shell_exec("timeout 300 /usr/local/bin/vobsub2srt \"{$this->filePathWithoutExtension}\" {$argument} 2>&1");
 
         return preg_split("/\r\n|\n|\r/", trim($output));
     }
-
 }

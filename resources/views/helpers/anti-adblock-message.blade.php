@@ -2,8 +2,8 @@
     <strong class="mb-4">It looks like you're using an adblocker</strong>
 
     <span>
-        That's ok, i use one too.
+        Ads help keep this website online.
         <br><br>
-        But if you frequently use these tools, could you consider whitelisting this website?
+        Could you whitelist this website?
     </span>
 </div>

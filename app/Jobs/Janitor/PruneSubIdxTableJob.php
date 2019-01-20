@@ -4,9 +4,10 @@ namespace App\Jobs\Janitor;
 
 use App\Jobs\BaseJob;
 use App\Models\SubIdx;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Builder;
 
-class PruneSubIdxTableJob extends BaseJob
+class PruneSubIdxTableJob extends BaseJob implements ShouldQueue
 {
     public function handle()
     {

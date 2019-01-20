@@ -10,8 +10,9 @@ use App\Support\Tesseract;
 use App\Support\Utils\FileName;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OcrImageJob extends BaseJob
+class OcrImageJob extends BaseJob implements ShouldQueue
 {
     /**
      * Manually stop the job after this many seconds

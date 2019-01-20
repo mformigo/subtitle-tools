@@ -50,7 +50,7 @@ class FileGroup extends Model
             return false;
         }
 
-        return route('fileGroupRequestArchive', ['urlKey' => $this->url_key]);
+        return route('api.fileGroup.requestArchive', $this->url_key);
     }
 
     public function getArchiveDownloadUrlAttribute()

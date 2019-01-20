@@ -5,23 +5,17 @@ namespace App\Jobs;
 use App\Models\StoredFile;
 use App\Models\SubIdxLanguage;
 use App\Subtitles\PlainText\Srt;
-use Carbon\Carbon;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Support\Facades\VobSub2Srt;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 
-class ExtractSubIdxLanguageJob implements ShouldQueue
+class ExtractSubIdxLanguageJob extends BaseJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $tries = 1;
-
     // the shell_exec in VobSub2Srt times out after 300 seconds
     public $timeout = 330;
 
-    protected $subIdxLanguage;
+    public $queue = 'sub-idx';
+
+    public $subIdxLanguage;
 
     public function __construct(SubIdxLanguage $subIdxLanguage)
     {
@@ -30,27 +24,20 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public function handle()
     {
-        $created = new Carbon($this->subIdxLanguage->created_at);
-        $start = Carbon::now();
+        $this->subIdxLanguage->update(['started_at' => now()]);
 
-        $this->subIdxLanguage->update([
-            'started_at' => $start,
-            'queue_time' => $start->diffInSeconds($created),
-        ]);
+        $outputFilePath = VobSub2Srt::get()
+            ->path($this->subIdxLanguage->subIdx->file_path_without_extension)
+            ->extract($this->subIdxLanguage->index, $this->subIdxLanguage->language);
 
-        $VobSub2Srt = $this->subIdxLanguage->subIdx->getVobSub2Srt();
-
-        // See the readme for more information about vobsub2srt behavior
-        $outputFilePath = $VobSub2Srt->extractLanguage($this->subIdxLanguage->index, $this->subIdxLanguage->language);
-
-        if (!file_exists($outputFilePath)) {
-            return $this->abortWithError('messages.subidx_no_vobsub2srt_output_file');
+        if (! file_exists($outputFilePath)) {
+            return $this->abort('messages.subidx_no_vobsub2srt_output_file');
         }
 
         if (filesize($outputFilePath) === 0) {
             unlink($outputFilePath);
 
-            return $this->abortWithError('messages.subidx_empty_vobsub2srt_output_file');
+            return $this->abort('messages.subidx_empty_vobsub2srt_output_file');
         }
 
         $srt = new Srt($outputFilePath);
@@ -58,20 +45,12 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
         if (count($srt->getCues()) === 0) {
             unlink($outputFilePath);
 
-            return $this->abortWithError('messages.subidx_vobsub2srt_output_file_only_empty_cues');
+            return $this->abort('messages.subidx_vobsub2srt_output_file_only_empty_cues');
         }
 
-        $storedFile = StoredFile::createFromTextFile($srt);
-
-        $finishedAt = Carbon::now();
-
-        $startedAt = new Carbon($this->subIdxLanguage->started_at);
-
         $this->subIdxLanguage->update([
-            'output_stored_file_id' => $storedFile->id,
-            'finished_at' => Carbon::now(),
-            'extract_time' => $finishedAt->diffInSeconds($startedAt),
-            'timed_out' => $this->timedOut(),
+            'output_stored_file_id' => StoredFile::createFromTextFile($srt)->id,
+            'finished_at' => now(),
         ]);
 
         unlink($outputFilePath);
@@ -81,34 +60,16 @@ class ExtractSubIdxLanguageJob implements ShouldQueue
 
     public function failed()
     {
-        return $this->abortWithError('messages.subidx_job_failed');
+        return $this->abort('messages.subidx_job_failed');
     }
 
-    protected function abortWithError($errorMessage)
+    private function abort($error)
     {
-        $finishedAt = Carbon::now();
-
-        $startedAt = new Carbon($this->subIdxLanguage->started_at);
-
         $this->subIdxLanguage->update([
-            'error_message' => $errorMessage,
-            'finished_at' => $finishedAt,
-            'extract_time' => $finishedAt->diffInSeconds($startedAt),
-            'timed_out' => $this->timedOut(),
+            'error_message' => $error,
+            'finished_at' => now(),
         ]);
 
         return $this->subIdxLanguage;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @return bool
-     */
-    protected function timedOut()
-    {
-        $output = 'NO OUTPUT';
-
-        return stripos($output, '__error: timeout') !== false;
     }
 }

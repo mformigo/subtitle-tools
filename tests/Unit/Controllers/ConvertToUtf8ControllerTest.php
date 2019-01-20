@@ -4,13 +4,12 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ConvertToUtf8ControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase;
 
     /** @test */
     function the_subtitles_field_is_server_side_required()

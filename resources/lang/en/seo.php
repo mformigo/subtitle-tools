@@ -61,7 +61,6 @@ return [
     'keywords.shift'           => 'sync, resync, shift, shifter, online, free, tool, srt, ass, ssa, smi, fix subtitle, synchronizer, permanently, permanent, adjust, vlc, timing, vtt, webvtt',
     'keywords.shiftPartial'    => 'sync, resync, shift, shifter, online, free, tool, srt, ass, ssa, smi, fix subtitle, synchronizer, multi, partial, permanent, adjust, vlc, timing, vtt, webvtt',
     'keywords.subIdx'          => 'sub, idx, sub/idx, sub to srt, idx to srt, sub/idx to srt, freeware, mac, linux, windows, online, free, fast, easy, convert, converter, dvd, subtitles, format, subrip, vobsub',
-    'keywords.subIdxDetail'    => 'download, processed, files, subtitles, subtitle, sub, idx, sub/idx',
     'keywords.sup'             => 'sup, suprip, freeware, mac, linux, windows, arabic, chinese, japanese, ocr, subpictures, subtitle, subtitles, srt, convert, online',
     'keywords.mergeSubtitles'  => 'merge, combine, two, one, subtitle, subtitles, simple, top, bottom, nearest, cue, file, online, free, easy, windows, mac, linux, create', 'cd1', 'cd2', 'glue', 'end-to-end',
     'keywords.404'             => '404, not, found',

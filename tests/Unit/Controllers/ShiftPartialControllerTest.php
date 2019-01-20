@@ -3,14 +3,13 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\FileGroup;
-use Tests\CreatesUploadedFiles;
 use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShiftPartialControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
+    use RefreshDatabase, PostsFileJobs;
 
     /** @test */
     function the_fields_are_server_side_required()

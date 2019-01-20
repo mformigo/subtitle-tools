@@ -2,14 +2,13 @@
 
 namespace Tests\Unit\Controllers;
 
-use Tests\CreatesUploadedFiles;
 use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ConvertToVttControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
+    use RefreshDatabase, PostsFileJobs;
 
     /** @test */
     function it_converts_files_to_vtt()

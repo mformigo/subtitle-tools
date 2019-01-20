@@ -49,7 +49,7 @@
                     {{ $meta->encoding }}
                 </div>
                 <div class="w-1/12">
-                    {{ $meta->language ? __('languages.'.$meta->language) : '' }}
+                    {{ $meta->language ? __('languages.subIdx.'.$meta->language) : '' }}
                 </div>
                 <div class="w-1/12">
                     {{ class_basename($meta->identified_as) }}

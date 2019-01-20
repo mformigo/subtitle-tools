@@ -2,14 +2,13 @@
 
 namespace Tests\Unit\Controllers;
 
-use Tests\CreatesUploadedFiles;
 use Tests\PostsFileJobs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class MergeControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
+    use RefreshDatabase, PostsFileJobs;
 
     protected $snapshotDirectory = 'merge';
 

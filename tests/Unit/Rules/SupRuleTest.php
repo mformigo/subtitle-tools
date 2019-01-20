@@ -3,13 +3,10 @@
 namespace Tests\Unit\Rules;
 
 use App\Http\Rules\SupRule;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 
 class SupRuleTest extends TestCase
 {
-    use CreatesUploadedFiles;
-
     /** @test */
     function it_passes_if_file_is_a_valid_sup()
     {

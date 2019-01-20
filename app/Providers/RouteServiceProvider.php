@@ -39,14 +39,15 @@ class RouteServiceProvider extends ServiceProvider
 
     private function registerRoutes()
     {
-        Route::middleware('api')
-            ->prefix('api/v1/')
-            ->namespace($this->namespace.'\Api')
-            ->group(base_path('routes/guest-api-routes.php'));
-
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/guest-web-routes.php'));
+
+        Route::middleware('api')
+            ->namespace($this->namespace.'\Api')
+            ->name('api.')
+            ->prefix('api/v1/')
+            ->group(base_path('routes/guest-api-routes.php'));
 
         Route::middleware(['web', 'auth'])
             ->namespace($this->namespace.'\Admin')

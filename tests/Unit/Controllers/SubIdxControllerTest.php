@@ -2,41 +2,32 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\Models\StoredFile;
 use App\Models\SubIdx;
-use Carbon\Carbon;
+use App\Models\SubIdxLanguage;
 use Illuminate\Http\UploadedFile;
-use Tests\CreatesUploadedFiles;
-use Tests\MocksVobSub2Srt;
-use Tests\PostsVobSubs;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubIdxControllerTest extends TestCase
 {
-    use RefreshDatabase, MocksVobSub2Srt, PostsVobSubs, CreatesUploadedFiles;
+    use RefreshDatabase;
 
     /** @test */
     function the_sub_and_idx_file_are_server_side_required()
     {
-        $response = $this->post(route('subIdx'));
-
-        $response->assertStatus(302)
-            ->assertSessionHasErrors([
-                'sub' => __('validation.required', ['attribute' => 'sub']),
-                'idx' => __('validation.required', ['attribute' => 'idx']),
-            ]);
+        $this->postSubIdx([])
+            ->assertStatus(302)
+            ->assertSessionHasErrors(['sub', 'idx']);
     }
 
     /** @test */
-    function it_rejects_empty_files()
+    function it_rejects_empty_sub_and_idx_files()
     {
-        $response = $this->post(route('subIdx'), [
-            'sub' => $this->createUploadedFile("{$this->testFilesStoragePath}text/srt/empty.srt", "empty.sub"),
-            'idx' => $this->createUploadedFile("{$this->testFilesStoragePath}text/srt/empty.srt", "empty.idx"),
-        ]);
-
-        $response->assertStatus(302)
+        $this->postSubIdx([
+                'sub' => $this->createUploadedFile('text/srt/empty.srt', 'empty.sub'),
+                'idx' => $this->createUploadedFile('text/srt/empty.srt', 'empty.idx'),
+            ])
+            ->assertStatus(302)
             ->assertSessionHasErrors([
                 'sub' => __('validation.file_is_empty', ['attribute' => 'sub']),
                 'idx' => __('validation.file_is_empty', ['attribute' => 'idx']),
@@ -44,14 +35,13 @@ class SubIdxControllerTest extends TestCase
     }
 
     /** @test */
-    function it_validates_uploaded_files()
+    function it_validates_uploaded_sub_and_idx_files()
     {
-        $response = $this->post(route('subIdx'), [
-            'sub' => UploadedFile::fake()->image('movie.sub'),
-            'idx' => UploadedFile::fake()->image('text.idx'),
-        ]);
-
-        $response->assertStatus(302)
+        $this->postSubIdx([
+                'sub' => UploadedFile::fake()->image('movie.sub'),
+                'idx' => UploadedFile::fake()->image('text.idx'),
+            ])
+            ->assertStatus(302)
             ->assertSessionHasErrors([
                 'sub' => __('validation.subidx_invalid_sub_mime', ['attribute' => 'sub']),
                 'idx' => __('validation.file_is_not_a_textfile',  ['attribute' => 'idx']),
@@ -59,87 +49,110 @@ class SubIdxControllerTest extends TestCase
     }
 
     /** @test */
-    function it_stores_valid_uploads_in_the_database_and_on_the_disk()
+    function it_fails_when_the_subidx_is_not_readable()
     {
-        $this->withoutJobs();
+        $this->postSubIdx([
+                'sub' => $this->createUploadedFile('sub-idx/unreadable.sub'),
+                'idx' => $this->createUploadedFile('sub-idx/unreadable.idx'),
+            ])
+            ->assertStatus(302)
+            ->assertSessionHasErrors();
 
-        $subIdx = $this->postVobSub();
+        $this->assertSame(
+            ['The sub/idx file can not be read'],
+            session('errors')->all()
+        );
 
-        $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.sub"), "Stored sub file does not exist");
-        $this->assertTrue(file_exists("{$subIdx->filePathWithoutExtension}.idx"), "Stored idx file does not exist");
+        $subIdx = SubIdx::findOrFail(1);
+
+        $this->assertNull($subIdx->url_key);
+        $this->assertFalse($subIdx->is_readable);
     }
 
     /** @test */
-    function it_records_cache_hit_stats()
+    function it_redirects_to_the_show_page()
     {
-        Carbon::setTestNow('2018-05-01 12:00:00');
+        $response = $this->postSubIdx([
+                'sub' => $this->createUploadedFile('sub-idx/error-and-nl.sub'),
+                'idx' => $this->createUploadedFile('sub-idx/error-and-nl.idx'),
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertStatus(302);
 
-        $this->withoutJobs();
+        $subIdx = SubIdx::findOrFail(1);
 
-        $subIdx = $this->postVobSub();
-
-        $this->assertNull($subIdx->last_cache_hit);
-        $this->assertSame(0, $subIdx->cache_hits);
-
-        $subIdx = $this->postVobSub();
-
-        $this->assertSame((string) now(), (string) $subIdx->last_cache_hit);
-        $this->assertSame(1, $subIdx->cache_hits);
-
-        $this->progressTimeInDays(5);
-
-        $subIdx = $this->postVobSub();
-
-        $this->assertSame((string) now(), (string) $subIdx->last_cache_hit);
-        $this->assertSame(2, $subIdx->cache_hits);
-
-        $this->assertSame(1, SubIdx::count());
+        $response->assertRedirect(route('subIdx.show', $subIdx->url_key));
     }
 
     /** @test */
-    function it_creates_language_extract_jobs()
+    function it_swaps_sub_and_idx_files_if_they_are_put_in_the_wrong_input()
     {
-        $this->expectsJobs(\App\Jobs\ExtractSubIdxLanguageJob::class);
+        $response = $this->postSubIdx([
+                'sub' => $this->createUploadedFile('sub-idx/error-and-nl.idx'),
+                'idx' => $this->createUploadedFile('sub-idx/error-and-nl.sub'),
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertStatus(302);
 
-        $this->postVobSub();
+        $subIdx = SubIdx::findOrFail(1);
 
-        $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 0, 'language' => 'unknown']);
-        $this->assertDatabaseHas('sub_idx_languages', ['sub_idx_id' => 1, 'index' => 1, 'language' => 'nl']);
+        $response->assertRedirect(route('subIdx.show', $subIdx->url_key));
     }
 
     /** @test */
-    function it_extracts_languages()
+    function it_can_show_the_detail_page()
     {
-        $this->useMockVobSub2Srt();
+        $subIdx = factory(SubIdx::class)->create();
 
-        $subIdx = $this->postVobSub();
+        $subIdx->languages()->saveMany([
+            factory(SubIdxLanguage::class)->states('idle')->make(),
+            factory(SubIdxLanguage::class)->states('queued')->make(),
+            factory(SubIdxLanguage::class)->states('processing')->make(),
+            factory(SubIdxLanguage::class)->states('failed')->make(),
+            factory(SubIdxLanguage::class)->states('finished')->make(),
+        ]);
 
-        $languages = $subIdx->languages()
-            ->whereNull('error_message')
-            ->whereNotNull('started_at')
-            ->whereNotNull('finished_at')
-            ->get();
-
-        $this->assertSame(1, count($languages));
-
-        $this->assertTrue(ends_with($languages[0]->fileName, '.srt'));
-
-        $this->assertSame(1, StoredFile::count());
-
-        foreach($languages->all() as $lang) {
-            $this->assertTrue(file_exists($lang->filePath), "Extracted file does not exist ({$lang->filePath})");
-
-            $this->assertTrue(filesize($lang->filepath) > 0, "Extracted file is empty");
-        }
+        $this->showSubIdx($subIdx)->assertStatus(200);
     }
 
     /** @test */
-    function it_fires_an_event_after_extracting_a_language()
+    function it_can_download_a_finished_language()
     {
-        $this->useMockVobSub2Srt();
+        $subIdx = factory(SubIdx::class)->create();
 
-        $this->expectsEvents(\App\Events\ExtractingSubIdxLanguageChanged::class);
+        $subIdx->languages()->save(
+            $language = factory(SubIdxLanguage::class)->states('finished')->make()
+        );
 
-        $this->postVobSub();
+        $this->downloadSubIdxLanguage($language)->assertStatus(200);
+    }
+
+    /** @test */
+    function getting_the_download_post_url_redirects_to_the_show_page()
+    {
+        $subIdx = factory(SubIdx::class)->create();
+
+        $subIdx->languages()->save(
+            $language = factory(SubIdxLanguage::class)->states('finished')->make()
+        );
+
+        $this->get($language->download_url)
+            ->assertStatus(302)
+            ->assertRedirect(route('subIdx.show', $language->subIdx->url_key));
+    }
+
+    private function postSubIdx($data)
+    {
+        return $this->post(route('subIdx.post'), $data);
+    }
+
+    private function showSubIdx($subIdx)
+    {
+        return $this->get(route('subIdx.show', $subIdx->url_key));
+    }
+
+    private function downloadSubIdxLanguage($language)
+    {
+        return $this->post($language->download_url);
     }
 }

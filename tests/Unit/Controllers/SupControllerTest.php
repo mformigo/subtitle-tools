@@ -5,13 +5,12 @@ namespace Tests\Unit\Controllers;
 use App\Models\StoredFile;
 use App\Models\SupJob;
 use Carbon\Carbon;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SupControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase;
 
     /** @test */
     function it_rejects_files_that_are_not_sup()

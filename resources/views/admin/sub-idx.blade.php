@@ -44,7 +44,7 @@
                     <div class="st-col st-grow">{{ $lang->error_message }}</div>
                     <div class="st-col minw-75">{{ $lang->queue_time }} s</div>
                     <div class="st-col minw-75">{{ $lang->extract_time }} s</div>
-                    <div class="st-col minw-75">{!! $lang->timed_out ? '<strong>true</strong>' : '' !!}</div>
+                    <div class="st-col minw-75">((old timed-out column))</div>
                 </div>
             @endforeach
 

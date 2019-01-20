@@ -175,3 +175,13 @@ a {
 .dropzone-active .dropzone-instructions {
     display: flex;
 }
+
+.spin {
+    animation: spin 3.5s linear infinite;
+}
+
+.spin-steps-8 {
+    animation: spin 1250ms steps(8, end) infinite
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

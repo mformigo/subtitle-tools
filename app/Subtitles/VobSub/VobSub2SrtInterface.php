@@ -4,7 +4,19 @@ namespace App\Subtitles\VobSub;
 
 interface VobSub2SrtInterface
 {
-    public function getLanguages();
+    /**
+     * @return $this
+     */
+    public function get();
 
-    public function extractLanguage($index, $language);
+    /**
+     * @param $pathWithoutExtension
+     *
+     * @return $this
+     */
+    public function path($pathWithoutExtension);
+
+    public function languages();
+
+    public function extract($index, $language);
 }

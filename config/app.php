@@ -168,9 +168,6 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        App\Providers\Subtitles\VobSubServiceProvider::class,
-        App\Providers\Subtitles\PlainTextServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\UtilsServiceProvider::class,
         App\Providers\RedirectsServiceProvider::class,

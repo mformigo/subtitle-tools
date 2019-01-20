@@ -3,13 +3,12 @@
 namespace Tests\Unit\Middleware;
 
 use App\Models\StoredFile;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CheckFileSizeTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase;
 
     /** @test */
     function it_rejects_files_that_are_too_big()

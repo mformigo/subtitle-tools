@@ -2,7 +2,8 @@
 
 namespace Tests\Unit\Subtitles\VobSub;
 
-use App\Subtitles\VobSub\VobSub2Srt;
+
+use App\Support\Facades\VobSub2Srt;
 use Tests\TestCase;
 
 class VobSub2SrtTest extends TestCase
@@ -10,9 +11,9 @@ class VobSub2SrtTest extends TestCase
     /** @test */
     function it_reads_languages_from_sub_files()
     {
-        $vobsub2srt = new VobSub2Srt($this->testFilesStoragePath.'sub-idx/error-and-nl');
-
-        $languages = $vobsub2srt->getLanguages();
+        $languages = VobSub2Srt::get()
+            ->path($this->testFilesStoragePath.'sub-idx/error-and-nl')
+            ->languages();
 
         $this->assertSame(2, count($languages));
 

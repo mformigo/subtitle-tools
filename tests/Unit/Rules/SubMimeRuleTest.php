@@ -3,13 +3,10 @@
 namespace Tests\Unit\Rules;
 
 use App\Http\Rules\SubMimeRule;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 
 class SubMimeRuleTest extends TestCase
 {
-    use CreatesUploadedFiles;
-
     /** @test */
     function it_passes_if_file_has_valid_sub_mime()
     {

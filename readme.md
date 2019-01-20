@@ -12,8 +12,48 @@ php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast
 ## General information
 * Language codes use [ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) (same as Tesseract)
 
-### Janitor jobs
-~~
+## Supervisor
+Supervisor runs four queue workers:
+
+**st-worker-broadcast**
+```
+[program:st-worker-broadcast]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/st/current/artisan queue:work --queue=broadcast --sleep=2 --tries=2
+autostart=true
+autorestart=true
+user=www-data
+```
+
+**st-worker-default**
+```
+[program:st-worker-default]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/st/current/artisan queue:work --queue=default,low-fast --sleep=2 --tries=2
+autostart=true
+autorestart=true
+user=www-data
+```
+
+**st-worker-larry**
+```
+[program:st-worker-larry]
+process_name=%(program_name)s_%(process_num)02d
+command=nice php /var/www/st/current/artisan queue:work --queue=larry-high,larry-default,larry-low,larry-lowest --sleep=2 --tries=1
+autostart=true
+autorestart=true
+user=www-data
+```
+
+**st-worker-subidx**
+```
+[program:st-worker-subidx]
+process_name=%(program_name)s_%(process_num)02d
+command=nice php /var/www/st/current/artisan queue:work --queue=slow-high,sub-idx,larry-high,larry-default,larry-low,larry-lowest --sleep=2 --tries=1
+autostart=true
+autorestart=true
+user=www-data
+```
 
 
 -------------

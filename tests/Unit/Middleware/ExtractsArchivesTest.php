@@ -4,13 +4,12 @@ namespace Tests\Unit\Middleware;
 
 use App\Models\FileJob;
 use App\Models\StoredFile;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExtractsArchivesTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase;
 
     /** @test */
     function it_extracts_zips_in_request()

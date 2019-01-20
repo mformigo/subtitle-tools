@@ -10,6 +10,19 @@ module.exports = {
     },
 
     width: Object.assign(defaultConfig.width, {
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '5':  '1.25rem',
+        '6': '1.5rem',
+        '7': '1.75rem',
+        '8': '2rem',
+        '9': '2.25rem',
+        '10': '2.5rem',
+
+
+        '80':  '20rem',
         '96':  '24rem',
         '128': '32rem',
         '176': '44rem',

@@ -52,7 +52,7 @@ class CollectMeta extends Command
             ->get()
             ->filter(function ($subIdx) {
                 return $subIdx->languages->every(function ($language) {
-                    return $language->hasFinished;
+                    return $language->finished_at !== null;
                 });
             })
             ->tap(function ($collection) {

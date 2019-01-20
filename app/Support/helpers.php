@@ -5,6 +5,8 @@ use App\Support\TextFile\Facades\TextFileIdentifier;
 use App\Support\TextFile\Facades\TextFileReader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+const DETERMINISTIC = 'factory_deterministic';
+
 /**
  * @param $file string|StoredFile|UploadedFile
  *

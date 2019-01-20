@@ -3,13 +3,10 @@
 namespace Tests\Unit\Rules;
 
 use App\Http\Rules\FileNotEmptyRule;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 
 class FileNotEmptyRuleTest extends TestCase
 {
-    use CreatesUploadedFiles;
-
     /** @test */
     function it_passes_if_file_is_not_empty()
     {

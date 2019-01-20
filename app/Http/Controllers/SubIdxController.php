@@ -6,6 +6,8 @@ use App\Http\Rules\FileNotEmptyRule;
 use App\Http\Rules\SubMimeRule;
 use App\Http\Rules\TextFileRule;
 use App\Models\SubIdx;
+use App\Models\SubIdxLanguage;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SubIdxController
@@ -34,34 +36,37 @@ class SubIdxController
         return redirect()->route('subIdx.show', $subIdx->url_key);
     }
 
-    public function detail($pageId)
+    public function show($urlKey)
     {
-        $subIdx = SubIdx::where('url_key', $pageId)->firstOrFail();
-
-        $languageCount = $subIdx->languages()->count();
+        $subIdx = SubIdx::where('url_key', $urlKey)->firstOrFail();
 
         return view('tool-results.sub-idx-result', [
             'originalName' => $subIdx->original_name,
-            'languageCount' => $languageCount,
-            'pageId' => $pageId,
+            'urlKey' => $urlKey,
         ]);
     }
 
-    public function downloadSrt($pageId, $languageIndex)
+    public function downloadSrt($urlKey, $index)
     {
-        $subIdxLanguage = SubIdx::query()
-            ->where('url_key', $pageId)
-            ->firstOrFail()
-            ->languages()
-            ->where('index', $languageIndex)
+        $language = SubIdxLanguage::query()
+            ->with('outputStoredFile')
+            ->where('index', $index)
             ->whereNull('error_message')
             ->whereNotNull('finished_at')
+            ->whereHas('subIdx', function (Builder $query) use ($urlKey) {
+                $query->where('url_key', $urlKey);
+            })
             ->firstOrFail();
 
-        $filePath = $subIdxLanguage->filePath;
+        if (! $language->outputStoredFile) {
+            abort(404);
+        }
 
-        $fileName = $subIdxLanguage->fileName;
+        return response()->download($language->outputStoredFile->file_path, $language->file_name);
+    }
 
-        return response()->download($filePath, $fileName);
+    public function downloadRedirect($urlKey, $index)
+    {
+        return redirect()->route('subIdx.show', $urlKey);
     }
 }

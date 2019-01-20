@@ -7,7 +7,7 @@ $factory->define(SubIdx::class, function (Faker $faker) {
     return [
         'url_key' => generate_url_key(),
         'filename' => $fileName = strtolower(str_random(12)),
-        'store_directory' => 'sub-idx/'.date('Y-z').'/'.date('U').'-'.$fileName.'/',
+        'store_directory' => 'sub-idx/'.now()->format('Y-z/U').'-'.$fileName.'/',
         'original_name' => snake_case($faker->words(3, true)),
         'sub_hash' => sha1(str_random(40)),
         'idx_hash' => sha1(str_random(40)),

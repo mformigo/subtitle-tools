@@ -6,7 +6,7 @@ use Illuminate\Http\UploadedFile;
 
 trait CreatesUploadedFiles
 {
-    private function createUploadedFile($filePath, $fileName = null)
+    public function createUploadedFile($filePath, $fileName = null)
     {
         if (! starts_with($filePath, $this->testFilesStoragePath)) {
             $filePath = str_finish($this->testFilesStoragePath, DIRECTORY_SEPARATOR).ltrim($filePath, DIRECTORY_SEPARATOR);

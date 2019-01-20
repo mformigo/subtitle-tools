@@ -1,0 +1,59 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "index": "0",
+            "language": "Unknown language",
+            "hasError": false,
+            "canBeRequested": true,
+            "isQueued": false,
+            "queuePosition": null,
+            "isProcessing": false,
+            "downloadUrl": false
+        },
+        {
+            "id": 2,
+            "index": "1",
+            "language": "Failed",
+            "hasError": false,
+            "canBeRequested": false,
+            "isQueued": true,
+            "queuePosition": 1,
+            "isProcessing": false,
+            "downloadUrl": false
+        },
+        {
+            "id": 3,
+            "index": "2",
+            "language": "Afar",
+            "hasError": false,
+            "canBeRequested": false,
+            "isQueued": false,
+            "queuePosition": null,
+            "isProcessing": true,
+            "downloadUrl": false
+        },
+        {
+            "id": 4,
+            "index": "3",
+            "language": "Abkhaz",
+            "hasError": true,
+            "canBeRequested": false,
+            "isQueued": false,
+            "queuePosition": null,
+            "isProcessing": false,
+            "downloadUrl": false
+        },
+        {
+            "id": 5,
+            "index": "4",
+            "language": "Avestan",
+            "hasError": false,
+            "canBeRequested": false,
+            "isQueued": false,
+            "queuePosition": null,
+            "isProcessing": false,
+            "downloadUrl": "http:\/\/st.test\/convert-sub-idx-to-srt-online\/abc123\/4"
+        }
+    ]
+}

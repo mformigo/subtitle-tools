@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "index": "0",
+            "language": "Unknown language",
+            "hasError": false,
+            "canBeRequested": true,
+            "isQueued": false,
+            "queuePosition": null,
+            "isProcessing": false,
+            "downloadUrl": false
+        },
+        {
+            "id": 2,
+            "index": "1",
+            "language": "Dutch",
+            "hasError": false,
+            "canBeRequested": true,
+            "isQueued": false,
+            "queuePosition": null,
+            "isProcessing": false,
+            "downloadUrl": false
+        }
+    ]
+}

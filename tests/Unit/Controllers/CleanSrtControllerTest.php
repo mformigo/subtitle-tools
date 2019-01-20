@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CleanSrtControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles, PostsFileJobs;
+    use RefreshDatabase, PostsFileJobs;
 
     protected $snapshotDirectory = 'srt-cleaner';
 

@@ -20,16 +20,13 @@ Route::get('/file-group-archive/{urlKey}', function ($urlKey) {
     return redirect($fileGroup->resultRoute);
 });
 
-Route::prefix('convert-sub-idx-to-srt-online')->group(function () {
-    Route::get('/',                  ['uses' => 'SubIdxController@index',       'as' => 'subIdx']);
-    Route::post('/',                 ['uses' => 'SubIdxController@post',        'as' => 'subIdx.post'])->middleware('swap-sub-and-idx');
-    Route::get('/{pageId}',          ['uses' => 'SubIdxController@detail',      'as' => 'subIdx.show']);
-    Route::post('/{pageId}/{index}', ['uses' => 'SubIdxController@downloadSrt', 'as' => 'subIdx.download']);
 
-    Route::get('/{pageId}/{index}', function ($pageId, $index) {
-        return redirect()->route('subIdx.show', $pageId);
-    });
-});
+Route::get('convert-sub-idx-to-srt-online',                   ['uses' => 'SubIdxController@index',            'as' => 'subIdx']);
+Route::post('convert-sub-idx-to-srt-online',                  ['uses' => 'SubIdxController@post',             'as' => 'subIdx.post'])->middleware('swap-sub-and-idx');
+Route::get('convert-sub-idx-to-srt-online/{urlKey}',          ['uses' => 'SubIdxController@show',             'as' => 'subIdx.show']);
+Route::post('convert-sub-idx-to-srt-online/{urlKey}/{index}', ['uses' => 'SubIdxController@downloadSrt',      'as' => 'subIdx.download']);
+Route::get('convert-sub-idx-to-srt-online/{urlKey}/{index}',  ['uses' => 'SubIdxController@downloadRedirect', 'as' => 'subIdx.downloadRedirect']);
+
 
 /**
  * When adding a new FileGroupTool route, also add it to "config/st.php".

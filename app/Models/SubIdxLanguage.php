@@ -8,6 +8,12 @@ class SubIdxLanguage extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'queued_at' => 'datetime',
+        'started_at' => 'datetime',
+        'finished_at' => 'datetime',
+    ];
+
     public function subIdx()
     {
         return $this->belongsTo(SubIdx::class);
@@ -18,46 +24,32 @@ class SubIdxLanguage extends Model
         return $this->hasOne(StoredFile::class, 'id', 'output_stored_file_id');
     }
 
-    public function getFilePathAttribute()
-    {
-        return $this->outputStoredFile()->firstOrFail()->filePath;
-    }
-
     public function getFileNameAttribute()
     {
         return $this->subIdx->original_name.'-'.$this->language.'.srt';
     }
 
-    public function getHasStartedAttribute()
+    public function getIsQueuedAttribute()
     {
-        return $this->started_at !== null;
+        return $this->queued_at !== null && $this->started_at === null;
     }
 
-    public function getHasFinishedAttribute()
+    public function getIsProcessingAttribute()
     {
-        return $this->finished_at !== null;
+        return $this->started_at !== null && $this->finished_at === null;
     }
 
-    public function getHasErrorAttribute()
+    public function getQueuePositionAttribute()
     {
-        return $this->error_message !== null;
-    }
-
-    public function getStatusMessageAttribute()
-    {
-        if (! $this->hasStarted) {
-            return __('messages.status.queued');
+        if (! $this->is_queued) {
+            return null;
         }
 
-        if (! $this->hasFinished) {
-            return __('messages.status.processing');
-        }
-
-        if ($this->hasError) {
-            return __('messages.status.failed');
-        }
-
-        return __('messages.status.finished');
+        return SubIdxLanguage::query()
+            ->whereNotNull('queued_at')
+            ->whereNull('started_at')
+            ->where('queued_at', '<=', $this->queued_at)
+            ->count();
     }
 
     public function getDownloadUrlAttribute()
@@ -66,22 +58,6 @@ class SubIdxLanguage extends Model
             return false;
         }
 
-        return route('subIdx.download', [
-            'urlKey' => $this->subIdx->url_key,
-            'index'  => $this->index,
-        ]);
-    }
-
-    public function getApiValues()
-    {
-        return [
-            'index' => $this->index,
-            'countryCode' => $this->language,
-            'language' => __('languages.'.$this->language),
-            'status' => $this->statusMessage,
-            'hasError' => $this->hasError,
-            'downloadUrl' => $this->downloadUrl,
-            'isFinished' => $this->has_finished,
-        ];
+        return route('subIdx.download', [$this->subIdx->url_key, $this->index]);
     }
 }

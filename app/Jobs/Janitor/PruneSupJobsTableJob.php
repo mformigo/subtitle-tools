@@ -4,9 +4,10 @@ namespace App\Jobs\Janitor;
 
 use App\Jobs\BaseJob;
 use App\Models\SupJob;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Builder;
 
-class PruneSupJobsTableJob extends BaseJob
+class PruneSupJobsTableJob extends BaseJob implements ShouldQueue
 {
     public function handle()
     {

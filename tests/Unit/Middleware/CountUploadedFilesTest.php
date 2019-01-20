@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CountUploadedFilesTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase;
 
     /** @test */
     function it_redirects_if_there_are_too_many_uploaded_files_inside_archives()

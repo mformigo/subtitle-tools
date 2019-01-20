@@ -6,9 +6,10 @@ use App\Jobs\BaseJob;
 use App\Models\Diagnostic\SupJobMeta;
 use App\Models\SupJob;
 use Exception;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use SjorsO\Sup\SupFile;
 
-class CollectSupMetaJob extends BaseJob
+class CollectSupMetaJob extends BaseJob implements ShouldQueue
 {
     protected $supJob;
 

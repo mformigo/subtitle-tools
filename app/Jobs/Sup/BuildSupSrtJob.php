@@ -9,9 +9,10 @@ use App\Models\SupJob;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;
 use Exception;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use SjorsO\Sup\SupFile;
 
-class BuildSupSrtJob extends BaseJob
+class BuildSupSrtJob extends BaseJob implements ShouldQueue
 {
     public $timeout = 30;
 

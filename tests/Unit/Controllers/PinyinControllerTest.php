@@ -4,13 +4,12 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;
-use Tests\CreatesUploadedFiles;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PinyinControllerTest extends TestCase
 {
-    use RefreshDatabase, CreatesUploadedFiles;
+    use RefreshDatabase;
 
     /** @test */
     function mode_job_option_is_required()

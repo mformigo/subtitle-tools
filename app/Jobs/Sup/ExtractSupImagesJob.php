@@ -8,10 +8,11 @@ use App\Support\Facades\TempDir;
 use App\Models\SupJob;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Artisan;
 use SjorsO\Sup\SupFile;
 
-class ExtractSupImagesJob extends BaseJob
+class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 {
     public $timeout = 300;
 
