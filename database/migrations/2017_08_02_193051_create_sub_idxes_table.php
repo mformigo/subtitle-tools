@@ -10,7 +10,7 @@ class CreateSubIdxesTable extends Migration
     {
         Schema::create('sub_idxes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('page_id')->nullable();
+            $table->string('url_key')->nullable()->unique();
             $table->string('store_directory');
             $table->string('filename');
             // name of the uploaded sub file without extension
