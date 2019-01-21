@@ -38,10 +38,15 @@ class SupController
             ->first();
 
         if ($supJob) {
+            // Don't update the "updated_at" column, that column is used in "RandomizeSupUrlKeysJob".
+            $supJob->timestamps = false;
+
             $supJob->update([
                 'last_cache_hit' => now(),
                 'cache_hits' => $supJob->cache_hits + 1,
             ]);
+
+            $supJob->timestamps = true;
 
             return redirect()->route('sup.show', $supJob->url_key);
         }

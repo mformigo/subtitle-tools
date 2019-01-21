@@ -48,6 +48,8 @@ class SupControllerTest extends TestCase
 
         $this->progressTimeInDays(5);
 
+        $originalUpdatedAt = (string) $supJob->updated_at;
+
         // post the same file + language again
         $this->postSup($postData)
             ->assertSessionHasNoErrors()
@@ -56,6 +58,9 @@ class SupControllerTest extends TestCase
         $supJob->refresh();
         $this->assertSame((string) now(), (string) $supJob->last_cache_hit);
         $this->assertSame(1, $supJob->cache_hits);
+
+        // It should not update the "updated_at" when retrieving the SupJob from cache.
+        $this->assertSame($originalUpdatedAt, (string) $supJob->updated_at);
 
         $this->assertSame(1, SupJob::count());
     }

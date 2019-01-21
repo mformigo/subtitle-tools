@@ -6,6 +6,7 @@ use App\Jobs\GenerateSitemapJob;
 use App\Jobs\Janitor\PruneSubIdxTableJob;
 use App\Jobs\Janitor\PruneSupJobsTableJob;
 use App\Jobs\RandomizeSubIdxUrlKeysJob;
+use App\Jobs\RandomizeSupUrlKeysJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,8 +14,8 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('st:randomize-url-keys')->dailyAt('1:55');
         $schedule->job(RandomizeSubIdxUrlKeysJob::class)->dailyAt('1:50');
+        $schedule->job(RandomizeSupUrlKeysJob::class)->dailyAt('1:55');
         $schedule->job(GenerateSitemapJob::class)->dailyAt('2:00');
 
         // Janitor commands
@@ -31,7 +32,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('queue:restart')->hourly();
 
         // Diagnostic commands
-        $schedule->command('st:collect-meta')->everyFiveMinutes();
+        $schedule->command('st:collect-meta')->everyFifteenMinutes();
         $schedule->command('st:calculate-disk-usage')->everyTenMinutes();
         $schedule->command('st:collect-file-job-stats')->dailyAt('1:35');
 
