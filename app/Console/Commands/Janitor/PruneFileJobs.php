@@ -19,7 +19,7 @@ class PruneFileJobs extends Command
 
         // The left-over stored files are deleted daily by the PruneStoredFiles command
         $rowsAffected = FileGroup::query()
-            ->whereDate('created_at', '<', $deleteOlderThan)
+            ->where('created_at', '<', $deleteOlderThan)
             ->delete();
 
         $this->info('Done! '.$rowsAffected.' file groups deleted');

@@ -14,9 +14,9 @@ class PruneSupJobsTableJob extends BaseJob implements ShouldQueue
         $threshold = now()->subDays(45);
 
         SupJob::query()
-            ->whereDate('created_at', '<', $threshold)
+            ->where('created_at', '<', $threshold)
             ->where(function (Builder $query) use ($threshold) {
-                $query->whereNull('last_cache_hit')->orWhereDate('last_cache_hit', '<', $threshold);
+                $query->whereNull('last_cache_hit')->orWhere('last_cache_hit', '<', $threshold);
             })
             ->delete();
     }

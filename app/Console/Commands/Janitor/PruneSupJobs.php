@@ -24,7 +24,7 @@ class PruneSupJobs extends Command
 
         // The left-over stored files are deleted by the PruneStoredFiles command
         $rowsAffected = SupJob::query()
-            ->whereDate('created_at', '<', $deleteOlderThan)
+            ->where('created_at', '<', $deleteOlderThan)
             ->update(['input_stored_file_id' => null]);
 
         $this->info('Done! '.$rowsAffected.' sup files deleted');
