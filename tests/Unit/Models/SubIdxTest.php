@@ -41,8 +41,6 @@ class SubIdxTest extends TestCase
     /** @test */
     function it_retrieves_subidxes_from_cache()
     {
-        Carbon::setTestNow('2019-01-19 12:00:00');
-
         $sub = $this->createUploadedFile('sub-idx/error-and-nl.sub');
         $idx = $this->createUploadedFile('sub-idx/error-and-nl.idx');
 
@@ -50,13 +48,20 @@ class SubIdxTest extends TestCase
 
         $subIdx->refresh();
 
+        $originalUpdatedAt = (string) $subIdx->updated_at;
+
         $this->assertNull($subIdx->last_cache_hit);
         $this->assertSame(0, $subIdx->cache_hits);
+
+        $this->progressTimeInHours(1);
 
         $subIdx = SubIdx::getOrCreateFromUpload($sub, $idx);
 
         $this->assertNow($subIdx->last_cache_hit);
         $this->assertSame(1, $subIdx->cache_hits);
+
+        // It should not updated the "updated_at" column when registering cache hits.
+        $this->assertSame($originalUpdatedAt, (string) $subIdx->refresh()->updated_at);
 
         $this->assertCount(1, SubIdx::all());
     }

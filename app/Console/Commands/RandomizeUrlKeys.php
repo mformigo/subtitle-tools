@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\SubIdx;
 use App\Models\SupJob;
 use Illuminate\Console\Command;
 
@@ -18,24 +17,9 @@ class RandomizeUrlKeys extends Command
 
         $notUpdatedSince = now()->subHours(36);
 
-        $this->changeSubIdxUrlKeys($notUpdatedSince);
-
         $this->changeSupUrlKeys($notUpdatedSince);
 
         $this->info('Done!');
-    }
-
-    protected function changeSubIdxUrlKeys($notUpdatedSince)
-    {
-        SubIdx::query()
-            ->whereDate('updated_at', '<', $notUpdatedSince)
-            ->get()
-            ->tap(function ($collection) {
-                $this->output->writeln('Randomizing '.count($collection).' sub/idx url keys...');
-            })
-            ->each(function (SubIdx $subIdx) {
-                $subIdx->update(['url_key' => generate_url_key()]);
-            });
     }
 
     protected function changeSupUrlKeys($notUpdatedSince)

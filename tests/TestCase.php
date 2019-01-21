@@ -109,9 +109,20 @@ abstract class TestCase extends BaseTestCase
 
     protected function progressTimeInDays($days)
     {
-        return Carbon::setTestNow(
+        Carbon::setTestNow(
             now()->addDays($days)
         );
+
+        return $this;
+    }
+
+    protected function progressTimeInHours($hours)
+    {
+        Carbon::setTestNow(
+            now()->addHours($hours)
+        );
+
+        return $this;
     }
 
     public function createApplication()

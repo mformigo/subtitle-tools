@@ -8,10 +8,13 @@ class SubIdxLanguage extends Model
 {
     protected $guarded = [];
 
+    protected $touches = ['subIdx'];
+
     protected $casts = [
         'queued_at' => 'datetime',
         'started_at' => 'datetime',
         'finished_at' => 'datetime',
+        'times_downloaded' => 'int',
     ];
 
     public function subIdx()

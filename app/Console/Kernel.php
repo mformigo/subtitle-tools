@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Jobs\GenerateSitemapJob;
 use App\Jobs\Janitor\PruneSubIdxTableJob;
 use App\Jobs\Janitor\PruneSupJobsTableJob;
+use App\Jobs\RandomizeSubIdxUrlKeysJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,6 +14,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('st:randomize-url-keys')->dailyAt('1:55');
+        $schedule->job(RandomizeSubIdxUrlKeysJob::class)->dailyAt('1:50');
         $schedule->job(GenerateSitemapJob::class)->dailyAt('2:00');
 
         // Janitor commands

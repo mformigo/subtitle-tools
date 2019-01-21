@@ -62,6 +62,9 @@ class SubIdxController
             abort(404);
         }
 
+        // Don't update the SubIdx "updated_at" column, that column is used in "RandomizeSubIdxUrlKeysJob".
+        $language->setTouchedRelations([])->increment('times_downloaded');
+
         return response()->download($language->outputStoredFile->file_path, $language->file_name);
     }
 

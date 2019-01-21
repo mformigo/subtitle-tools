@@ -13,6 +13,7 @@ $factory->define(SubIdxLanguage::class, function (Faker $faker) {
         'queued_at' => null,
         'started_at' => null,
         'finished_at' => null,
+        'times_downloaded' => 0,
         'created_at' => now(),
         'updated_at' => now(),
     ];
@@ -52,6 +53,7 @@ $factory->state(SubIdxLanguage::class, 'finished', function (Faker $faker) {
         'queued_at' => now()->addSeconds(5),
         'started_at' => now()->addSeconds(10),
         'finished_at' => now()->addSeconds(15),
+        'times_downloaded' => mt_rand(0, 5),
     ];
 });
 

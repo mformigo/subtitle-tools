@@ -121,10 +121,24 @@ class SubIdxControllerTest extends TestCase
         $subIdx = factory(SubIdx::class)->create();
 
         $subIdx->languages()->save(
-            $language = factory(SubIdxLanguage::class)->states('finished')->make()
+            $language = factory(SubIdxLanguage::class)->states('finished')->make(['times_downloaded' => 0])
         );
 
+        $originalUpdatedAt = (string) $language->updated_at;
+
+        $this->assertNow($subIdx->refresh()->updated_at);
+
+        $this->progressTimeInHours(1);
+
         $this->downloadSubIdxLanguage($language)->assertStatus(200);
+
+        $language->refresh();
+
+        $this->assertSame(1, $language->times_downloaded);
+        $this->assertNow($language->updated_at);
+
+        // It should not touch the SubIdx relationship when incrementing the "times_downloaded"
+        $this->assertSame($originalUpdatedAt, (string) $subIdx->refresh()->updated_at);
     }
 
     /** @test */

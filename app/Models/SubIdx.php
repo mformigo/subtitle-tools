@@ -45,10 +45,15 @@ class SubIdx extends Model
             ->first();
 
         if ($cachedSubIdx) {
+            // Don't update the "updated_at" column, that column is used in "RandomizeSubIdxUrlKeysJob".
+            $cachedSubIdx->timestamps = false;
+
             $cachedSubIdx->update([
                 'last_cache_hit' => now(),
                 'cache_hits' => $cachedSubIdx->cache_hits + 1,
             ]);
+
+            $cachedSubIdx->timestamps = true;
 
             return $cachedSubIdx;
         }
