@@ -30,9 +30,9 @@ abstract class TestCase extends BaseTestCase
 
     protected function getSnapshotDirectory(): string
     {
-        $subDirectory = DIRECTORY_SEPARATOR.ltrim($this->snapshotDirectory, DIRECTORY_SEPARATOR);
+        $subDirectory = ltrim($this->snapshotDirectory, DIRECTORY_SEPARATOR);
 
-        return $this->testFilesStoragePath.'_snapshots_'.$subDirectory;
+        return base_path('tests/_snapshots_/'.$subDirectory);
     }
 
     protected function getFileSnapshotDirectory(): string
