@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
         $schedule->job(GenerateSitemapJob::class)->dailyAt('2:00');
 
         // Janitor commands
-        $schedule->command('st:prune-sub-idx-files')->dailyAt('2:05');
+        // $schedule->command('st:prune-sub-idx-files')->dailyAt('2:05');
         $schedule->command('st:prune-temporary-files')->dailyAt('2:10');
         $schedule->command('st:prune-file-jobs')->dailyAt('2:15');
         $schedule->command('st:prune-sup-files')->dailyAt('2:20');
