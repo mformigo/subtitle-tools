@@ -1,15 +1,31 @@
-<nav class="flex mb-4 py-1 px-4 border-b">
-    <a class="mr-auto text-black" href="/">Subtitle Tools</a>
+<div class="mt-4 mb-16 ml-4 font-semibold">
+    <a class="text-black" href="/">Subtitle Tools</a>
+</div>
 
-    <a class="mx-4 text-black" href="{{ route('admin.dashboard.index') }}">Dashboard</a>
-    <a class="mx-4 text-black" href="{{ route('admin.tools.index') }}">Tools</a>
-    <a class="mx-4 text-black" href="{{ route('admin.fileJobs.index') }}">File jobs</a>
-    <a class="mx-4 text-black" href="{{ route('admin.subIdx.index') }}">Sub/idx</a>
-    <a class="mx-4 text-black" href="{{ route('admin.sup.index') }}">Sup</a>
+<div class="p-4 border-t border-b {{ Route::is('admin.dashboard.*') ? 'bg-grey-lighter font-semibold' : '' }}">
+    <a class="text-black" href="{{ route('admin.dashboard.index') }}">Dashboard</a>
+</div>
 
-    <form class="ml-4" action="{{ route('logout') }}" method="POST" id="LogoutForm">
-        {{ csrf_field() }}
+<div class="p-4 border-b {{ Route::is('admin.tools.*') ? 'bg-grey-lighter font-semibold' : '' }}">
+    <a class="text-black" href="{{ route('admin.tools.index') }}">Tools</a>
+</div>
 
-        <a class="text-black" href="#" onclick="document.getElementById('LogoutForm').submit()">Logout</a>
-    </form>
-</nav>
+<div class="p-4 border-b {{ Route::is('admin.fileJobs.*') ? 'bg-grey-lighter font-semibold' : '' }}">
+    <a class="text-black" href="{{ route('admin.fileJobs.index') }}">File jobs</a>
+</div>
+
+<div class="p-4 border-b {{ Route::is('admin.subIdx.*') ? 'bg-grey-lighter font-semibold' : '' }}">
+    <a class="text-black" href="{{ route('admin.subIdx.index') }}">Sub/idx</a>
+</div>
+
+<div class="p-4 border-b {{ Route::is('admin.sup.*') ? 'bg-grey-lighter font-semibold' : '' }}">
+    <a class="text-black" href="{{ route('admin.sup.index') }}">Sup</a>
+</div>
+
+<form class="absolute pin-b mb-2 ml-4" action="{{ route('logout') }}" method="post">
+    {{ csrf_field() }}
+
+    <button class="w-4 h-4">
+        @include('helpers.svg.logout')
+    </button>
+</form>

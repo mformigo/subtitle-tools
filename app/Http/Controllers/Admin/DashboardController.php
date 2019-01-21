@@ -23,10 +23,10 @@ class DashboardController
         return view('admin.dashboard', [
             'feedbackLines'    => $feedbackContent,
             'logs'             => $logsWithErrors,
-            'supervisor'       => $this->getSupervisorInfo(),
+            'supervisor' => $this->getSupervisorInfo(),
             'diskUsage'        => strtolower($diskUsage),
             'diskUsageWarning' => $diskUsageWarning,
-            'dependencies'     => $this->getDependenciesInfo(),
+            'dependencies' => $this->getDependenciesInfo(),
             'failedJobCount'   => DB::table('failed_jobs')->count(),
         ]);
     }
@@ -55,7 +55,7 @@ class DashboardController
             ];
         })->filter(function ($object) {
             return starts_with($object->worker, 'st-');
-        })->all();
+        });
     }
 
     private function getDependenciesInfo()
@@ -92,6 +92,6 @@ class DashboardController
 
         $dependencies['Tesseract traineddata'] = file_exists('/usr/share/tesseract-ocr/tessdata/nld.traineddata');
 
-        return $dependencies;
+        return collect($dependencies);
     }
 }

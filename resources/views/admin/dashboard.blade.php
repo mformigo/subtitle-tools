@@ -2,9 +2,53 @@
 
 @section('content')
 
+    <div class="flex mb-8 p-4 border rounded shadow bg-white">
+
+        <div class="border-l-8 pl-2 {{ $diskUsageWarning ? ' border-red' : 'border-green' }} mr-16">
+            <div class="flex items-center justify-between font-semibold mb-2">
+                Disk usage
+                <a class="text-xs text-black" href="{{ route('admin.diskUsage.index') }}">details</a>
+            </div>
+
+            <div class="text-lg">{{ $diskUsage }}</div>
+        </div>
+
+
+        <div class="border-l-8 pl-2 {{ $dependencies->filter()->count() === $dependencies->count() ? ' border-green' : 'border-red' }} mr-16">
+            <div class="flex items-center justify-between font-semibold mb-2">
+                Server
+                <a class="text-xs text-black" href="{{ route('admin.showPhpinfo') }}">phpinfo()</a>
+            </div>
+
+            @if($dependencies->filter()->count() === $dependencies->count())
+                Dependencies are OK
+            @else
+                @foreach($dependencies as $name => $isLoaded)
+                <div class="text-xs pl-2 border-l-4 {{ $isLoaded ? 'border-green' : 'border-red' }}">{{ $name }}</div>
+                @endforeach
+            @endif
+        </div>
+
+
+        <div class="border-l-8 pl-2 {{ $supervisor->every->isRunning ? ' border-green' : 'border-red' }} mr-16">
+            <div class="font-semibold mb-2">Queues</div>
+
+            @if($supervisor->every->isRunning)
+                {{ count($supervisor) }} workers running
+            @else
+                @foreach($supervisor as $superInfo)
+                    <div class="text-xs pl-2 border-l-8 {{ $superInfo->isRunning ? 'border-green' : 'border-red' }}">{{ $superInfo->worker }}</div>
+                @endforeach
+            @endif
+        </div>
+
+    </div>
+
+
+
     <div class="flex">
 
-        <div class="flex flex-col pl-8 w-64">
+        <div class="flex flex-col w-64">
             <div>
                 <strong class="block mb-2">Logs</strong>
 
@@ -31,41 +75,6 @@
             @endif
 
 
-            <div>
-                <strong class="flex items-center mb-2 mt-8">
-                    Disk Usage
-                    <a class="ml-8 text-xs font-semibold text-black" href="{{ route('admin.diskUsage.index') }}">details</a>
-                </strong>
-
-                <div class="pl-4 border-l-8 {{ $diskUsageWarning ? 'border-red' : 'border-green' }}">
-                    {{ $diskUsage }}
-                </div>
-            </div>
-
-
-            <div>
-                <strong class="block mb-2 mt-8">Supervisor</strong>
-
-                @foreach($supervisor as $superInfo)
-                    <div class="flex items-center pl-4 border-l-8 {{ $superInfo->isRunning ? 'border-green' : 'border-red' }}">
-                        <div class="w-48">{{ $superInfo->worker }}</div>
-                        <small class="block ml-auto">{{ $superInfo->uptime }}</small>
-                    </div>
-                @endforeach
-            </div>
-
-
-            <div>
-                <strong class="block mb-2 mt-8">Server</strong>
-
-                <a class="block pl-4 text-black mb-2 border-l-8 border-grey-lighter" href="{{ route('admin.showPhpinfo') }}" target="_blank">phpinfo()</a>
-
-                @foreach($dependencies as $name => $isLoaded)
-                    <div class="pl-4 border-l-8 {{ $isLoaded ? 'border-green' : 'border-red' }}">
-                        {{ $name }}
-                    </div>
-                @endforeach
-            </div>
 
         </div>
 
@@ -79,5 +88,4 @@
         @endif
 
     </div>
-
 @endsection
