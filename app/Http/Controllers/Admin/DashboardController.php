@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\SubIdx;
+use App\Models\SupJob;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController
@@ -28,6 +30,8 @@ class DashboardController
             'diskUsageWarning' => $diskUsageWarning,
             'dependencies' => $this->getDependenciesInfo(),
             'failedJobCount'   => DB::table('failed_jobs')->count(),
+            'subIdxCacheHitList' => SubIdx::orderByDesc('cache_hits')->take(5)->get(),
+            'supCacheHitList' => SupJob::orderByDesc('cache_hits')->take(5)->get(),
         ]);
     }
 

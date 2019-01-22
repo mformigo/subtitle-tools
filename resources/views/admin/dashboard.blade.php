@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="flex mb-8 p-4 border rounded shadow bg-white">
+    <div class="flex mb-4 p-4 border rounded shadow bg-white">
 
         <div class="border-l-8 pl-2 {{ $diskUsageWarning ? ' border-red' : 'border-green' }} mr-16">
             <div class="flex items-center justify-between font-semibold mb-2">
@@ -20,7 +20,7 @@
                 <a class="text-xs text-black" href="{{ route('admin.showPhpinfo') }}">phpinfo()</a>
             </div>
 
-            @if($dependencies->filter()->count() === $dependencies->count())
+            @if($dependencies->reject(true)->isEmpty())
                 Dependencies are OK
             @else
                 @foreach($dependencies as $name => $isLoaded)
@@ -45,6 +45,34 @@
     </div>
 
 
+    <div class="flex mb-8">
+
+        <div class="w-96 bg-white rounded shadow border mr-8 p-4">
+            <div class="font-semibold mb-2">Sub/idx cache hit leaderboards</div>
+
+            @foreach($subIdxCacheHitList as $subIdx)
+                <div class="flex text-sm mb-1">
+                    <div class="font-semibold mr-2">{{ $subIdx->cache_hits }}x</div>
+                    <input type="text" class="bg-white w-full" value="{{ $subIdx->original_name }}" readonly>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="w-96 bg-white rounded shadow border p-4">
+            <div class="font-semibold mb-2">Sup cache hit leaderboards</div>
+
+            @foreach($supCacheHitList as $sup)
+                <div class="flex text-sm mb-1">
+                    <div class="font-semibold mr-2">{{ $sup->cache_hits }}x</div>
+                    <input type="text" class="bg-white w-full" value="{{ $sup->original_name }}" readonly>
+                </div>
+            @endforeach
+        </div>
+
+    </div>
+
+
+
 
     <div class="flex">
 
@@ -61,7 +89,6 @@
                 @endforeach
             </div>
 
-
             @if($failedJobCount > 0)
                 <div>
                     <strong class="block mb-2 mt-8">Queues</strong>
@@ -73,9 +100,6 @@
                     </div>
                 </div>
             @endif
-
-
-
         </div>
 
 

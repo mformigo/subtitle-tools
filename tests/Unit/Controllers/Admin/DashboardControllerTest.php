@@ -24,4 +24,14 @@ class DashboardControllerTest extends TestCase
             ->get(route('admin.dashboard.index'))
             ->assertStatus(200);
     }
+
+    /** @test */
+    function it_can_show_with_a_seeded_database()
+    {
+        $this->seed();
+
+        $this->adminLogin()
+            ->get(route('admin.dashboard.index'))
+            ->assertStatus(200);
+    }
 }
