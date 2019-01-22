@@ -22,7 +22,7 @@ return [
      *   PruneStoredFiles command
      *
      */
-    'checked-migration' => '2018_10_27_160839_add_last_cache_hit_column_to_sup_table',
+    'checked-migration' => '2018_02_18_142350_create_file_job_stats_table',
 
     'tesseract' => [
 
