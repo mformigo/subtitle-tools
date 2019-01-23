@@ -26,10 +26,10 @@
 
         @slot('extraAfter')
             <strong class="block mb-2">Select the sub file</strong>
-            <input id="sub-input" class="block" type="file" name="sub" required>
+            <input id="sub-input" class="block" type="file" name="sub" accept=".sub,.SUB,.Sub" required>
 
             <strong class="block mt-6 mb-2">Select the idx file</strong>
-            <input id="idx-input" class="block mb-4" type="file" name="idx" required>
+            <input id="idx-input" class="block mb-4" type="file" name="idx" accept=".idx,.IDX,.Idx" required>
         @endslot
 
         @slot('buttonText') Convert to Srt @endslot

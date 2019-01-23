@@ -18,7 +18,7 @@
         It might not work correctly yet
     </div>
 
-    @component('components.tool-form', ['singleFile' => true])
+    @component('components.tool-form', ['singleFile' => true, 'accept' => '.sup,.SUP,.Sup'])
 
         @slot('title') Select sup to convert to srt @endslot
 

@@ -1,5 +1,7 @@
 @php
-    $singleFile = ($singleFile ?? false);
+    $singleFile = $singleFile ?? false;
+
+    $accept = $accept ?? false
 @endphp
 
 <h2>{{ $title }}</h2>
@@ -30,7 +32,7 @@
         @endisset
 
         @if(! isset($bare))
-            <input id="subtitles-input" type="file" {!! $singleFile ? 'name="subtitle"' : 'name="subtitles[]" multiple' !!} required>
+            <input id="subtitles-input" type="file" {!! $accept ? 'accept="'.$accept.'" ' : '' !!}{!! $singleFile ? 'name="subtitle"' : 'name="subtitles[]" multiple' !!} required>
 
             @isset($formats)
                 <small class="block my-2">{{ $formats }}</small>
