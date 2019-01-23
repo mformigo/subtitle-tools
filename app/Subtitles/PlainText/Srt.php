@@ -8,12 +8,11 @@ use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\ShiftsCues;
 use App\Subtitles\TextFile;
 use App\Subtitles\TransformsToGenericSubtitle;
-use App\Subtitles\Watermarkable;
 use App\Subtitles\WithFileLines;
 use App\Subtitles\WithGenericCues;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues, Watermarkable, ContainsGenericCues, TransformsToGenericSubtitle
+class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, PartialShiftsCues, ContainsGenericCues, TransformsToGenericSubtitle
 {
     use WithFileLines, WithGenericCues;
 
@@ -166,30 +165,6 @@ class Srt extends TextFile implements LoadsGenericSubtitles, ShiftsCues, Partial
         }
 
         return $this;
-    }
-
-    public function watermark()
-    {
-        if (count($this->cues) === 0) {
-            return $this;
-        }
-
-        $this->sortCues();
-
-        $sampleSize = (10 < count($this->cues)) ? 10 : count($this->cues);
-
-        for ($i = 0; $i < $sampleSize; $i++) {
-            if (stripos((string)$this->cues[$i], 'subtitletools.com') !== false) {
-                return $this;
-            }
-        }
-
-        // 2018-05-18: A user using "Camtasia software" said that the 0 length second
-        // watermark cue produces an error. Camtasia needs it to be 1 frame long
-        // therefor, make it 33ms long.
-        $cue = (new SrtCue)->setTiming(0, 33)->addLine('Edited at https://subtitletools.com');
-
-        return $this->addCue($cue);
     }
 
     /**

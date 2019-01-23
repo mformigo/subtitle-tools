@@ -1,8 +1,4 @@
 ﻿1
-00:00:00,000 --> 00:00:00,033
-Edited at https://subtitletools.com
-
-2
 00:00:15,000 --> 00:00:20,000
 Everything but Translation made by:
 |Vash| & James Knight
@@ -11,144 +7,144 @@ Pako
 Spanish Translation:
 BigKRM
 
-3
+2
 00:00:20,000 --> 00:00:25,000
 Original Translation by: Animefactory
 Spanish version: Papacha Anime
 
-4
+3
 00:01:16,000 --> 00:01:17,600
 Perdemos altitud.
 
-5
+4
 00:01:17,600 --> 00:01:18,560
 ...¿Y el motor de vapor?
 
-6
+5
 00:01:18,560 --> 00:01:20,140
 No hay ninguna anomalía.
 
-7
+6
 00:01:22,100 --> 00:01:23,750
 ¿La carga será demasiado pesada?
 
-8
+7
 00:01:23,750 --> 00:01:27,030
 No, eso no debe ser el problema.
 
-9
+8
 00:01:28,370 --> 00:01:32,430
 ...¿Estás diciendo que esta 'Armadura'
 se levantará de entre los muertos?
 
-10
+9
 00:02:29,230 --> 00:02:30,960
 ¡¿Quién eres tú!?
 
-11
+10
 00:02:41,340 --> 00:02:42,990
 No puedo mantener la altitud.
 
-12
+11
 00:02:42,990 --> 00:02:45,380
 Debemos circunnavegar la montaña
 y volar a través de Salace.
 
-13
+12
 00:02:45,380 --> 00:02:47,130
 Camaradas...
 
-14
+13
 00:02:47,130 --> 00:02:49,350
 ...No tenemos otra opción.
 
-15
+14
 00:02:49,350 --> 00:02:53,280
 'Esto' es demasiado importante
 para el futuro de nuestro clan.
 
-16
+15
 00:02:53,280 --> 00:02:56,770
 Debemos entregárselo a Lord
 Folken lo antes posible.
 
-17
+16
 00:03:05,930 --> 00:03:06,930
 ¡Atrápenlo!
 
-18
+17
 00:03:08,390 --> 00:03:09,610
 ¡El enemigo está solo!
 
-19
+18
 00:03:11,350 --> 00:03:12,350
 ¡Muere!
 
-20
+19
 00:03:25,020 --> 00:03:26,010
 ¡Sujétenlo!
 
-21
+20
 00:03:31,240 --> 00:03:33,320
 ¿Qué están haciendo?
 ¡Está solo!
 
-22
+21
 00:03:49,040 --> 00:03:50,470
 ¡Imposible!
 
-23
+22
 00:03:50,470 --> 00:03:51,920
 ¿É-é-...él hizo todo eso solo...!?
 
-24
+23
 00:04:09,070 --> 00:04:12,100
 Así es que tú eres el famoso Dragón...
 
-25
+24
 00:04:13,360 --> 00:04:15,960
 Acabaré con todos mis enemigos.
 
-26
+25
 00:04:55,660 --> 00:04:58,450
 Armadura del Dragón...
 
-27
+26
 00:04:58,450 --> 00:05:01,600
 ...¡despierta de tu eterno cautiverio...!
 
-28
+27
 00:05:01,970 --> 00:05:04,230
 Tu Nombre es Escaflowne.
 
-29
+28
 00:05:04,550 --> 00:05:07,410
 Mi Armadura...
 
-30
+29
 00:06:06,650 --> 00:06:08,000
 ¡¿Quién eres tú?!
 
-31
+30
 00:07:08,710 --> 00:07:10,750
 Te dormiste otra vez...
 
-32
+31
 00:07:10,750 --> 00:07:14,000
 ¿Faltas a clases y encima te duermes, Hitomi?
 
-33
+32
 00:07:16,030 --> 00:07:18,000
 Tuve un sueño...
 
-34
+33
 00:07:19,680 --> 00:07:21,180
 ¿Qué sueño?
 
-35
+34
 00:07:22,800 --> 00:07:25,000
 De mi niñez...
 
-36
+35
 00:07:25,540 --> 00:07:28,250
 Ah, el que me dijiste aquella vez.

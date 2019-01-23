@@ -7,7 +7,6 @@ use App\Subtitles\PartialShiftsCues;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;
 use App\Subtitles\ShiftsCues;
-use App\Subtitles\Watermarkable;
 use Tests\TestCase;
 
 class SrtTest extends TestCase
@@ -171,50 +170,6 @@ class SrtTest extends TestCase
 
         $this->assertSame(5400, $srt->getCues()[2]->getStartMs());
         $this->assertSame(7233, $srt->getCues()[2]->getEndMs());
-    }
-
-    /** @test */
-    function it_can_be_watermarked()
-    {
-        $srt = new Srt();
-
-        $srt->addCue((new SrtCue)->addLine('it only watermarks files with at least 1 cue!'));
-
-        $this->assertTrue($srt instanceof Watermarkable);
-
-        $srt->watermark();
-
-        $this->assertSame(2, count($srt->getCues()));
-
-        $this->assertTrue(stripos($srt->getContent(), 'subtitletools.com') !== false);
-    }
-
-    /** @test */
-    function it_does_not_watermark_empty_files()
-    {
-        $srt = new Srt();
-
-        $srt->watermark();
-
-        $this->assertSame(0, count($srt->getCues()));
-    }
-
-    /** @test */
-    function it_does_not_add_a_watermark_if_one_already_exists()
-    {
-        $srt = new Srt();
-
-        $srt->addCue((new SrtCue)->addLine('it only watermarks files with at least 1 cue!'));
-
-        $this->assertTrue($srt instanceof Watermarkable);
-
-        $srt->watermark();
-
-        $this->assertSame(2, count($srt->getCues()));
-
-        $srt->watermark();
-
-        $this->assertSame(2, count($srt->getCues()));
     }
 
     /** @test */

@@ -40,16 +40,15 @@ class ShiftJobTest extends TestCase
 
         $this->assertTrue($subtitle instanceof Srt);
 
-        // an extra cue is added as a watermark
         $cues = $subtitle->getCues();
 
-        $this->assertSame(4, count($cues));
+        $this->assertSame(3, count($cues));
 
-        $this->assertSame(2266, $cues[1]->getStartMs());
-        $this->assertSame(4366, $cues[1]->getEndMs());
+        $this->assertSame(2266, $cues[0]->getStartMs());
+        $this->assertSame(4366, $cues[0]->getEndMs());
 
-        $this->assertSame(4400, $cues[2]->getStartMs());
-        $this->assertSame(7366, $cues[2]->getEndMs());
+        $this->assertSame(4400, $cues[1]->getStartMs());
+        $this->assertSame(7366, $cues[1]->getEndMs());
     }
 
     /** @test */

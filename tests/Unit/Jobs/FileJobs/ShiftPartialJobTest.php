@@ -43,19 +43,18 @@ class ShiftPartialJobTest extends TestCase
 
         $this->assertTrue($subtitle instanceof Srt);
 
-        // an extra cue is added as a watermark
         $cues = $subtitle->getCues();
 
-        $this->assertSame(4, count($cues));
+        $this->assertSame(3, count($cues));
 
-        $this->assertSame(266, $cues[1]->getStartMs());
-        $this->assertSame(2366, $cues[1]->getEndMs());
+        $this->assertSame(266, $cues[0]->getStartMs());
+        $this->assertSame(2366, $cues[0]->getEndMs());
 
-        $this->assertSame(4400, $cues[2]->getStartMs());
-        $this->assertSame(7366, $cues[2]->getEndMs());
+        $this->assertSame(4400, $cues[1]->getStartMs());
+        $this->assertSame(7366, $cues[1]->getEndMs());
 
-        $this->assertSame(7400, $cues[3]->getStartMs());
-        $this->assertSame(9233, $cues[3]->getEndMs());
+        $this->assertSame(7400, $cues[2]->getStartMs());
+        $this->assertSame(9233, $cues[2]->getEndMs());
     }
 
     /** @test */

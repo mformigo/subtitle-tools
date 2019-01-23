@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Support\Facades\FileHash;
 use App\Support\Facades\TempFile;
 use App\Subtitles\TextFile;
-use App\Subtitles\Watermarkable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class StoredFile extends Model
 {
-    protected $fillable = ['hash', 'storage_file_path'];
+    protected $guarded = [];
 
     public function meta()
     {
@@ -37,13 +36,13 @@ class StoredFile extends Model
             return $fromCache->first();
         }
 
-        $storagePath = "stored-files/" . date('Y-W') . '/' . date('z');
+        $storagePath = 'stored-files/'.now()->format('Y-W/z');
 
         if (!File::isDirectory($storagePath)) {
             Storage::makeDirectory($storagePath);
         }
 
-        $storageFilePath = "{$storagePath}/" . time() . "-" . substr($hash, 0, 16);
+        $storageFilePath = "{$storagePath}/" . now()->format('U') . "-" . substr($hash, 0, 16);
 
         // copy instead of moving to prevent from moving test files
         copy($filePath, storage_disk_file_path($storageFilePath));
@@ -56,10 +55,6 @@ class StoredFile extends Model
 
     public static function createFromTextFile(TextFile $textFile)
     {
-        if ($textFile instanceof Watermarkable) {
-            $textFile->watermark();
-        }
-
         $filePath = TempFile::make("\xEF\xBB\xBF".$textFile->getContent());
 
         return self::getOrCreate($filePath);

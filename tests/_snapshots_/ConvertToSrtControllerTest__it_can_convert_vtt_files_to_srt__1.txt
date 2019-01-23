@@ -1,16 +1,12 @@
 ﻿1
-00:00:00,000 --> 00:00:00,033
-Edited at https://subtitletools.com
-
-2
 00:00:05,160 --> 00:00:10,100
 Hello everyone and welcome to an introduction to linear regression and this lecture we're going to get
 
-3
+2
 00:00:10,100 --> 00:00:15,600
 a light theoretical background history behind the idea of linear regression before we actually tackle
 
-4
+3
 00:00:15,600 --> 00:00:19,270
 the concept with Python and the sikat learn library.
 This is the second line!!

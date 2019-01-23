@@ -57,16 +57,17 @@ class CleanSrtJobTest extends TestCase
 
         $subtitle = TextFileFormat::getMatchingFormat($convertedStoredFile->filePath);
 
-        $this->assertTrue($subtitle instanceof Srt);
+        $this->assertInstanceOf(Srt::class, $subtitle);
 
         // it still removes the duplicate cue
-        // an extra cue is added as a watermark
-        $this->assertCount(4, $subtitle->getCues());
+        $this->assertCount(3, $subtitle->getCues());
 
-        $this->assertContains('<i>', $subtitle->getContent());
-        $this->assertContains('</i>', $subtitle->getContent());
-        $this->assertContains('{', $subtitle->getContent());
-        $this->assertContains('}', $subtitle->getContent());
+        $content = $subtitle->getContent();
+
+        $this->assertContains('<i>', $content);
+        $this->assertContains('</i>', $content);
+        $this->assertContains('{', $content);
+        $this->assertContains('}', $content);
     }
 
     /** @test */

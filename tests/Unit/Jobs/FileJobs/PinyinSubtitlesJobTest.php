@@ -39,8 +39,7 @@ class PinyinSubtitlesJobTest extends TestCase
         $this->assertTrue($subtitle instanceof Srt);
 
         // it still removes the duplicate cue
-        // an extra cue is added as a watermark
-        $this->assertCount(4, $subtitle->getCues());
+        $this->assertCount(3, $subtitle->getCues());
 
         // mode 1 should replaced all chinese with pinyin
         $this->assertNotContains('我', $subtitle->getContent());
