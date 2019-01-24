@@ -86,6 +86,8 @@ module.exports = {
         '32': '8rem',
         '48': '12rem',
         '64': '16rem',
+        '96': '20rem',
+        '128': '32rem',
 
         '500': '500px', // Used for the "vlc fix boxes" blog
     }),

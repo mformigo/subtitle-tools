@@ -2,11 +2,11 @@
 
 Route::get('/', ['uses' => 'DashboardController@index', 'as' => 'dashboard.index']);
 
-Route::get('/log/{name}',        ['uses' => 'LogsController@show',   'as' => 'logs.show']);
-Route::get('/log/{name}/delete', ['uses' => 'LogsController@delete', 'as' => 'logs.delete']);
+Route::delete('/error-log', ['uses' => 'ErrorLogController@delete', 'as' => 'errorLog.delete']);
 
-Route::get('/failed-jobs',          ['uses' => 'FailedJobsController@index',    'as' => 'failedJobs.index']);
-Route::get('/failed-jobs/truncate', ['uses' => 'FailedJobsController@truncate', 'as' => 'failedJobs.truncate']);
+Route::delete('/feedback', ['uses' => 'FeedbackController@delete', 'as' => 'feedback.delete']);
+
+Route::delete('/failed-jobs/truncate', ['uses' => 'FailedJobsController@truncate', 'as' => 'failedJobs.truncate']);
 
 Route::get('/sup',           ['uses' => 'SupController@index', 'as' => 'sup.index']);
 Route::post('/sup/{supJob}', ['uses' => 'SupController@retry', 'as' => 'sup.retry']);

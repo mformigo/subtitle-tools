@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\SubIdx;
-use App\Models\SupJob;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController
 {
     public function index()
     {
-        $logsWithErrors = collect(scandir(storage_path('logs')))->filter(function ($name) {
-            return ! starts_with($name, '.') && filesize(storage_path("logs/{$name}")) > 0;
-        })->values()->all();
-
         $diskUsageFilePath = storage_disk_file_path('diagnostic/disk-usage.txt');
         $diskUsage = file_exists($diskUsageFilePath) ? file_get_contents($diskUsageFilePath) : 'NONE (100%)';
         $diskUsageWarning = str_before(str_after($diskUsage, '('), ')') > 60;
 
         $feedbackFilePath = storage_path('logs/feedback.log');
+        $logFilePath = storage_path('logs/laravel.log');
 
         return view('admin.dashboard', [
             'feedbackLines' => file_exists($feedbackFilePath) ? read_lines($feedbackFilePath) : [],
-            'logs' => $logsWithErrors,
+            'errorLogLines' => file_exists($logFilePath) ? read_lines($logFilePath) : [],
             'supervisor' => $this->getSupervisorInfo(),
             'diskUsage' => strtolower($diskUsage),
             'diskUsageWarning' => $diskUsageWarning,
             'dependencies' => $this->getDependenciesInfo(),
-            'failedJobCount' => DB::table('failed_jobs')->count(),
+            'failedJobs' => DB::table('failed_jobs')->get(),
         ]);
     }
 
