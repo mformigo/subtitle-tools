@@ -45,35 +45,6 @@
     </div>
 
 
-    <div class="flex mb-8">
-
-        <div class="w-96 bg-white rounded shadow border mr-8 p-4">
-            <div class="font-semibold mb-2">Sub/idx cache hit leaderboards</div>
-
-            @foreach($subIdxCacheHitList as $subIdx)
-                <div class="flex text-sm mb-1">
-                    <div class="font-semibold mr-2">{{ $subIdx->cache_hits }}x</div>
-                    <input type="text" class="bg-white w-full" value="{{ $subIdx->original_name }}" readonly>
-                </div>
-            @endforeach
-        </div>
-
-        <div class="w-96 bg-white rounded shadow border p-4">
-            <div class="font-semibold mb-2">Sup cache hit leaderboards</div>
-
-            @foreach($supCacheHitList as $sup)
-                <div class="flex text-sm mb-1">
-                    <div class="font-semibold mr-2">{{ $sup->cache_hits }}x</div>
-                    <input type="text" class="bg-white w-full" value="{{ $sup->original_name }}" readonly>
-                </div>
-            @endforeach
-        </div>
-
-    </div>
-
-
-
-
     <div class="flex">
 
         <div class="flex flex-col w-64">

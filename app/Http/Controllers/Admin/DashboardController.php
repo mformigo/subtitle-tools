@@ -20,18 +20,14 @@ class DashboardController
 
         $feedbackFilePath = storage_path('logs/feedback.log');
 
-        $feedbackContent = file_exists($feedbackFilePath) ? read_lines($feedbackFilePath) : [];
-
         return view('admin.dashboard', [
-            'feedbackLines'    => $feedbackContent,
-            'logs'             => $logsWithErrors,
+            'feedbackLines' => file_exists($feedbackFilePath) ? read_lines($feedbackFilePath) : [],
+            'logs' => $logsWithErrors,
             'supervisor' => $this->getSupervisorInfo(),
-            'diskUsage'        => strtolower($diskUsage),
+            'diskUsage' => strtolower($diskUsage),
             'diskUsageWarning' => $diskUsageWarning,
             'dependencies' => $this->getDependenciesInfo(),
-            'failedJobCount'   => DB::table('failed_jobs')->count(),
-            'subIdxCacheHitList' => SubIdx::orderByDesc('cache_hits')->take(5)->get(),
-            'supCacheHitList' => SupJob::orderByDesc('cache_hits')->take(5)->get(),
+            'failedJobCount' => DB::table('failed_jobs')->count(),
         ]);
     }
 

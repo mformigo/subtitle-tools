@@ -5,6 +5,19 @@
 <div class="container" id="SubIdxes">
     <h1>Sups</h1>
 
+    <div class="w-96 bg-white rounded shadow border p-4">
+        <div class="font-semibold mb-2">Sup cache hit leaderboards</div>
+
+        @foreach($supCacheHitList as $sup)
+            <div class="flex text-sm mb-1">
+                <div class="font-semibold mr-2">{{ $sup->cache_hits }}x</div>
+                <input type="text" class="bg-white w-full" value="{{ $sup->original_name }}" readonly>
+            </div>
+        @endforeach
+    </div>
+
+
+
         <div class="st-row header">
             <div class="st-col minw-50"></div>
             <div class="st-col minw-100">Input</div>
