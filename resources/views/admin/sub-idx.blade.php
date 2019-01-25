@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="container" id="SubIdxes">
-    <h1>Sub Idx</h1>
+<h1>Sub Idx</h1>
 
-    <div class="w-96 bg-white rounded shadow border mr-8 p-4">
+<div class="flex max-w-2xl bg-white rounded shadow border p-4 mb-8">
+    <div class="flex-grow">
         <div class="font-semibold mb-2">Sub/idx cache hit leaderboards</div>
 
         @foreach($subIdxCacheHitList as $subIdx)
@@ -16,53 +16,58 @@
         @endforeach
     </div>
 
+    <div class="ml-16 text-center">
+        <h2 class="m-0">Files in queue</h2>
+        <div class="text-4xl mt-4">{{ $filesInQueue }}</div>
+    </div>
+</div>
 
 
-        <div class="st-row header">
-            <div class="st-col minw-75">Page</div>
-            <div class="st-col st-grow">Original Name</div>
-            <div class="st-col minw-75">Sub Size</div>
-            <div class="st-col minw-75">Idx Size</div>
-            <div class="st-col minw-125">Age</div>
+@foreach($subIdxes as $subIdx)
+    <div class="pb-4 mb-4 border-b text-sm">
+        <a href="{{ route('subIdx.show', $subIdx->url_key) }}" target="_blank">{{ $subIdx->original_name }}</a>
+        <div class="text-xs my-1">
+            <span class="font-semibold">{{ $subIdx->created_at }}</span>
+            ({{ \Carbon\Carbon::parse($subIdx->created_at)->diffForHumans() }})
+        </div>
+        <div class="text-xs">
+            sub: {{ $subIdx->meta ? format_file_size($subIdx->meta->sub_file_size) : '? kb' }}
+            <span class="mx-2"></span>
+            idx: {{ $subIdx->meta ? format_file_size($subIdx->meta->idx_file_size) : '? kb' }}
         </div>
 
-
-        @foreach($subIdxes as $subIdx)
-            <div class="st-row">
-                <div class="st-col minw-75"><a href="{{ route('subIdx.show', $subIdx->url_key) }}" target="_blank">&nbsp;(*)</a></div>
-                <div class="st-col st-grow">{{ $subIdx->original_name }}</div>
-                <div class="st-col minw-75">{{ $subIdx->meta ? round($subIdx->meta->sub_file_size / 1024, 2) : '' }}kb</div>
-                <div class="st-col minw-75">{{ $subIdx->meta ? round($subIdx->meta->idx_file_size / 1024, 2) : '' }}kb</div>
-                <div class="st-col minw-125">{{ \Carbon\Carbon::parse($subIdx->created_at)->diffForHumans() }}</div>
-            </div>
-
-
-            <div class="st-row st-sub-row header">
-                <div class="st-col minw-100">Lang</div>
-                <div class="st-col minw-100">Output</div>
-                <div class="st-col st-grow">Error</div>
-                <div class="st-col minw-75">Queue</div>
-                <div class="st-col minw-75">Extract</div>
-                <div class="st-col minw-75">Timeout</div>
+        <div class="bg-grey-lightest text-xs ml-8 mt-2 p-2">
+            <div class="flex font-bold mb-2">
+                <div class="w-16"></div>
+                <div class="w-32">Output stored file</div>
+                <div class="w-1/6">Queued at</div>
+                <div class="w-1/6">Time in queue</div>
+                <div class="w-1/6">Started at</div>
+                <div class="w-1/6">Finished at</div>
+                <div class="w-1/6">Times downloaded</div>
             </div>
 
             @foreach($subIdx->languages as $lang)
-                <div class="st-row st-sub-row">
-                    <div class="st-col minw-100">{{ $lang->language }}</div>
-                    <div class="st-col minw-100">
+                <div class="flex {{ $loop->last ? '' : 'mb-1 pb-1 border-b' }}">
+                    <div class="w-16">{{ $lang->language }}</div>
+                    <div class="w-32">
                         @if($lang->output_stored_file_id)
-                            <a target="_blank" href="{{ route('admin.storedFiles.show', $lang->output_stored_file_id) }}">{{ $lang->output_stored_file_id }}</a>
+                        <a target="_blank" href="{{ route('admin.storedFiles.show', $lang->output_stored_file_id) }}">{{ $lang->output_stored_file_id }}</a>
                         @endif
                     </div>
-                    <div class="st-col st-grow">{{ $lang->error_message }}</div>
-                    <div class="st-col minw-75">{{ $lang->queue_time }} s</div>
-                    <div class="st-col minw-75">{{ $lang->extract_time }} s</div>
-                    <div class="st-col minw-75">((old timed-out column))</div>
+                    <div class="w-1/6">{{ $lang->queued_at ? $lang->queued_at : '' }}</div>
+                    <div class="w-1/6">{{ $lang->started_at ? $lang->started_at->diffForHumans($lang->queued_at) : '' }}</div>
+                    <div class="w-1/6">{{ $lang->started_at ? $lang->started_at : '' }}</div>
+                    <div class="w-1/6">{{ $lang->finished_at ? $lang->finished_at : '' }}</div>
+                    <div class="w-1/6">
+                        {{ $lang->error_message ? $lang->error_message : '' }}
+                        {{ $lang->times_downloaded ? $lang->times_downloaded.'x' : '' }}
+                    </div>
                 </div>
             @endforeach
+        </div>
+    </div>
+@endforeach
 
-        @endforeach
-
-</div>
 
 @endsection

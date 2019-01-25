@@ -118,6 +118,8 @@ class SubIdxControllerTest extends TestCase
     /** @test */
     function it_can_download_a_finished_language()
     {
+        $this->progressTimeInHours(1);
+
         $subIdx = factory(SubIdx::class)->create();
 
         $subIdx->languages()->save(
