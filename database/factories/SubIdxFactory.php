@@ -11,6 +11,8 @@ $factory->define(SubIdx::class, function (Faker $faker) {
         'original_name' => snake_case($faker->words(3, true)),
         'sub_hash' => sha1(str_random(40)),
         'idx_hash' => sha1(str_random(40)),
+        'sub_file_size' => mt_rand(1000, 1000000),
+        'idx_file_size' => mt_rand(1000, 10000),
         'is_readable' => true,
         'last_cache_hit' => null,
         'cache_hits' => 0,

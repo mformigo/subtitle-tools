@@ -14,6 +14,8 @@ class SubIdx extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'sub_file_size' => 'int',
+        'idx_file_size' => 'int',
         'is_readable' => 'bool',
         'last_cache_hit' => 'datetime',
         'cache_hits' => 'int',
@@ -22,11 +24,6 @@ class SubIdx extends Model
     public function languages()
     {
         return $this->hasMany(SubIdxLanguage::class);
-    }
-
-    public function meta()
-    {
-        return $this->hasOne(SubIdxMeta::class);
     }
 
     public function getFilePathWithoutExtensionAttribute()
@@ -78,6 +75,8 @@ class SubIdx extends Model
             'filename' => $baseFileName,
             'sub_hash' => $subHash,
             'idx_hash' => $idxHash,
+            'sub_file_size' => filesize($destinationFilePathWithoutExtension.'.sub'),
+            'idx_file_size' => filesize($destinationFilePathWithoutExtension.'.idx'),
             'is_readable' => $isReadable = (bool) $languages,
             'url_key' => $isReadable ? generate_url_key() : null,
         ]);

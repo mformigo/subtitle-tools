@@ -36,6 +36,9 @@ class SubIdxTest extends TestCase
 
         Storage::assertExists($subIdx->store_directory.$subIdx->filename.'.idx');
         $this->assertFileExists($subIdx->file_path_without_extension.'.idx');
+
+        $this->assertSame(3293161, $subIdx->sub_file_size);
+        $this->assertSame(56300, $subIdx->idx_file_size);
     }
 
     /** @test */

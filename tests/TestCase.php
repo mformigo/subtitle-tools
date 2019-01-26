@@ -15,7 +15,7 @@ use Illuminate\Contracts\Console\Kernel;
 
 abstract class TestCase extends BaseTestCase
 {
-    use MatchesSnapshots, CreatesUploadedFiles;
+    use MatchesSnapshots, CreatesUploadedFiles, CreatesModels;
 
     protected $snapshotDirectory = '/';
 

@@ -31,9 +31,9 @@
             ({{ \Carbon\Carbon::parse($subIdx->created_at)->diffForHumans() }})
         </div>
         <div class="text-xs">
-            sub: {{ $subIdx->meta ? format_file_size($subIdx->meta->sub_file_size) : '? kb' }}
+            sub: {{ format_file_size($subIdx->sub_file_size) }}
             <span class="mx-2"></span>
-            idx: {{ $subIdx->meta ? format_file_size($subIdx->meta->idx_file_size) : '? kb' }}
+            idx: {{ format_file_size($subIdx->idx_file_size) }}
         </div>
 
         <div class="bg-grey-lightest text-xs ml-8 mt-2 p-2">

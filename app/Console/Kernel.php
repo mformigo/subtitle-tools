@@ -3,6 +3,8 @@
 namespace App\Console;
 
 use App\Jobs\Diagnostic\CalculateDiskUsageJob;
+use App\Jobs\Diagnostic\CollectMetaForStoredFilesJob;
+use App\Jobs\Diagnostic\CollectMetaForSupJobsJob;
 use App\Jobs\GenerateSitemapJob;
 use App\Jobs\Janitor\PruneSubIdxTableJob;
 use App\Jobs\Janitor\PruneSupJobsTableJob;
@@ -33,7 +35,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('queue:restart')->hourly();
 
         // Diagnostic commands
-        $schedule->command('st:collect-meta')->everyFifteenMinutes();
+        $schedule->job(CollectMetaForStoredFilesJob::class)->everyFifteenMinutes();
+        $schedule->job(CollectMetaForSupJobsJob::class)->everyFifteenMinutes();
         $schedule->job(CalculateDiskUsageJob::class)->everyTenMinutes();
         $schedule->command('st:collect-file-job-stats')->dailyAt('1:35');
 

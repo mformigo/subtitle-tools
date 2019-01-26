@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Diagnostic;
 
+use App\Jobs\BaseJob;
 use App\Subtitles\Tools\Options\ToPlainTextOptions;
 use App\Subtitles\Tools\ToPlainText;
 use App\Subtitles\TransformsToGenericSubtitle;
@@ -10,23 +11,19 @@ use App\Support\TextFile\Facades\TextEncoding;
 use App\Models\StoredFile;
 use App\Models\StoredFileMeta;
 use Exception;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Log;
 use LanguageDetection\Language;
 
-class CollectStoredFileMetaJob implements ShouldQueue
+class CollectStoredFileMetaJob extends BaseJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     public $tries = 1;
 
     public $timeout = 30;
 
-    protected $storedFile;
+    public $queue = 'low-fast';
+
+    public $storedFile;
 
     public function __construct(StoredFile $storedFile)
     {

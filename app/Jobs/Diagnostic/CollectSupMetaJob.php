@@ -3,7 +3,6 @@
 namespace App\Jobs\Diagnostic;
 
 use App\Jobs\BaseJob;
-use App\Models\Diagnostic\SupJobMeta;
 use App\Models\SupJob;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,7 +10,9 @@ use SjorsO\Sup\SupFile;
 
 class CollectSupMetaJob extends BaseJob implements ShouldQueue
 {
-    protected $supJob;
+    public $queue = 'low-fast';
+
+    public $supJob;
 
     public function __construct(SupJob $supJob)
     {
@@ -38,10 +39,10 @@ class CollectSupMetaJob extends BaseJob implements ShouldQueue
             $failedToOpen = true;
         }
 
-        SupJobMeta::create([
-            'sup_job_id'     => $this->supJob->id,
-            'format'         => $supFormat,
-            'cue_count'      => $cueCount,
+        $this->supJob->meta()->create([
+            'file_size' => filesize($supFilePath),
+            'format' => $supFormat,
+            'cue_count' => $cueCount,
             'failed_to_open' => $failedToOpen,
         ]);
     }

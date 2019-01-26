@@ -113,7 +113,7 @@
         {
             var el = document.getElementById(id);
 
-            if (++el.dataset.timesClicked >= 5) {
+            if (++el.dataset.timesClicked >= 3) {
                 el.submit();
             }
         }

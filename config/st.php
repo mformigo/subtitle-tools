@@ -22,7 +22,7 @@ return [
      *   PruneStoredFiles command
      *
      */
-    'checked-migration' => '2018_02_18_142350_create_file_job_stats_table',
+    'checked-migration' => '2019_01_26_104911_drop_sub_idx_meta_table',
 
     'tesseract' => [
 

@@ -10,7 +10,7 @@ class SubIdxController
     public function index()
     {
         $subIdxes = SubIdx::query()
-            ->with('meta', 'languages')
+            ->with('languages')
             ->orderByDesc('id')
             ->take(200)
             ->get();

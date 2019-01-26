@@ -9,6 +9,7 @@ class SupJobMeta extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'cue_count' => 'integer',
+        'file_size' => 'int',
+        'cue_count' => 'int',
     ];
 }
