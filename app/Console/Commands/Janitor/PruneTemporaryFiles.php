@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Janitor;
 
+use App\Jobs\Diagnostic\CalculateDiskUsageJob;
 use Illuminate\Console\Command;
 
 class PruneTemporaryFiles extends Command
@@ -28,7 +29,7 @@ class PruneTemporaryFiles extends Command
 
         $this->cleanTemporaryDirectories($dontDeletePrefixes);
 
-        $this->call('st:calculate-disk-usage');
+        CalculateDiskUsageJob::dispatch();
     }
 
     protected function cleanTemporaryFiles($dontDeletePrefixes)

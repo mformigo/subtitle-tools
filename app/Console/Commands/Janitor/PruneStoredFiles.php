@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Janitor;
 
+use App\Jobs\Diagnostic\CalculateDiskUsageJob;
 use App\Models\StoredFile;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,7 @@ class PruneStoredFiles extends Command
 
         $this->deleteEmptyStoredFileDirectories();
 
-        $this->call('st:calculate-disk-usage');
+        CalculateDiskUsageJob::dispatch();
     }
 
     /**

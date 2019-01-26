@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Janitor;
 
+use App\Jobs\Diagnostic\CalculateDiskUsageJob;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,6 +36,6 @@ class PruneSubIdxFiles extends Command
                 Storage::deleteDirectory($directoryName);
             });
 
-        $this->call('st:calculate-disk-usage');
+        CalculateDiskUsageJob::dispatch();
     }
 }
