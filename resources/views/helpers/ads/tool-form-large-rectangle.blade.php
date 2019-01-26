@@ -8,6 +8,6 @@
     </script>
 @endif
 
-<div class="anti-adblock-ad inline-block hidden" style="width:336px;height:280px;border:1px solid black;">
+<div class="anti-adblock-ad inline-block bg-grey-lightest hidden" style="width:336px;height:280px;border:1px solid black;">
     @include('helpers.anti-adblock-message')
 </div>

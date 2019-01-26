@@ -12,17 +12,9 @@ class DashboardControllerTest extends TestCase
     /** @test */
     function it_redirects_guests()
     {
-        $this->get(route('admin.dashboard.index'))
+        $this->getDashboard()
             ->assertStatus(302)
             ->assertRedirect(route('login'));
-    }
-
-    /** @test */
-    function it_allows_logged_in_users()
-    {
-        $this->adminLogin()
-            ->get(route('admin.dashboard.index'))
-            ->assertStatus(200);
     }
 
     /** @test */
@@ -31,7 +23,26 @@ class DashboardControllerTest extends TestCase
         $this->seed();
 
         $this->adminLogin()
-            ->get(route('admin.dashboard.index'))
+            ->getDashboard()
             ->assertStatus(200);
+    }
+
+    /** @test */
+    function it_can_show_the_dashboard_when_there_is_no_disk_usage_data()
+    {
+        $path = storage_path('logs/disk-usage.txt');
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        $this->adminLogin()
+            ->getDashboard()
+            ->assertStatus(200);
+    }
+
+    private function getDashboard()
+    {
+        return $this->get(route('admin.dashboard.index'));
     }
 }
