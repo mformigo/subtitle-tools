@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\Diagnostic\CalculateDiskUsageJob;
+use App\Jobs\Diagnostic\CollectFileJobStatsJob;
 use App\Jobs\Diagnostic\CollectMetaForStoredFilesJob;
 use App\Jobs\Diagnostic\CollectMetaForSupJobsJob;
 use App\Jobs\GenerateSitemapJob;
@@ -34,11 +35,11 @@ class Kernel extends ConsoleKernel
         // sort of fix a memory leak
         $schedule->command('queue:restart')->hourly();
 
-        // Diagnostic commands
+        // Diagnostic
         $schedule->job(CollectMetaForStoredFilesJob::class)->everyFifteenMinutes();
         $schedule->job(CollectMetaForSupJobsJob::class)->everyFifteenMinutes();
         $schedule->job(CalculateDiskUsageJob::class)->everyTenMinutes();
-        $schedule->command('st:collect-file-job-stats')->dailyAt('1:35');
+        $schedule->job(CollectFileJobStatsJob::class)->twiceDaily(2, 14);
 
         $schedule->command('backup:run-configless --only-db --disable-notifications --set-destination-disks=dropbox')->weeklyOn(1, '01:03');
     }
@@ -47,7 +48,6 @@ class Kernel extends ConsoleKernel
     {
         $this->load([
             __DIR__.'/Commands',
-            __DIR__.'/Commands/Diagnostic',
             __DIR__.'/Commands/Janitor',
         ]);
     }

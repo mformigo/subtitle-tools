@@ -1,56 +1,56 @@
 <?php
 
-namespace App\Console\Commands\Diagnostic;
+namespace App\Jobs\Diagnostic;
 
+use App\Jobs\BaseJob;
 use App\Models\Diagnostic\FileJobStats;
 use App\Models\FileGroup;
 use App\Models\FileJob;
-use Illuminate\Console\Command;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CollectFileJobStats extends Command
+class CollectFileJobStatsJob extends BaseJob implements ShouldQueue
 {
-    protected $signature = 'st:collect-file-job-stats';
-
-    protected $description = 'Collect file job stats for yesterday';
-
     public function handle()
     {
-        $toolRoutes = config('st.tool_routes');
-
         $yesterday = now()->subDay(1)->format('Y-m-d');
 
+        $exists = FileJobStats::query()
+            ->where('date', $yesterday)
+            ->exists();
+
+        if ($exists) {
+            return;
+        }
+
         $totalStats = FileJobStats::make([
-            'date'          => $yesterday,
-            'tool_route'    => '*',
-            'times_used'    => 0,
-            'total_files'   => 0,
+            'date' => $yesterday,
+            'tool_route' => '*',
+            'times_used' => 0,
+            'total_files' => 0,
             'amount_failed' => 0,
-            'total_size'    => 0,
+            'total_size' => 0,
         ]);
 
-        foreach ($toolRoutes as $toolRoute) {
+        foreach (config('st.tool_routes') as $toolRoute) {
             $fileJobStats = $this->collectStats($toolRoute, $yesterday);
 
-            $totalStats->times_used    += $fileJobStats->times_used;
-            $totalStats->total_files   += $fileJobStats->total_files;
+            $totalStats->times_used += $fileJobStats->times_used;
+            $totalStats->total_files += $fileJobStats->total_files;
             $totalStats->amount_failed += $fileJobStats->amount_failed;
-            $totalStats->total_size    += $fileJobStats->total_size;
+            $totalStats->total_size += $fileJobStats->total_size;
         }
 
         $totalStats->save();
     }
 
-    protected function collectStats($toolRoute, $forDate)
+    private function collectStats($toolRoute, $forDate)
     {
         $fileGroups = FileGroup::query()
             ->where('tool_route', $toolRoute)
             ->whereDate('created_at', $forDate)
-            ->with('fileJobs')
-            ->with('fileJobs.inputStoredFile')
-            ->with('fileJobs.inputStoredFile.meta')
+            ->with('fileJobs', 'fileJobs.inputStoredFile', 'fileJobs.inputStoredFile.meta')
             ->get();
 
-        $timesUsed = count($fileGroups);
         $totalFiles = 0;
         $amountFailed = 0;
         $totalSize = 0;
@@ -58,14 +58,13 @@ class CollectFileJobStats extends Command
         foreach ($fileGroups as $fileGroup) {
             $totalFiles += $fileGroup->fileJobs->count();
 
-            // The merge tool always has two input files but only one file job.
+            // The merge tool has two input files per file job
             if ($toolRoute === 'merge') {
                 $totalFiles += $fileGroup->fileJobs->count();
             }
 
             foreach ($fileGroup->fileJobs as $fileJob) {
-                // TODO: sometimes, because of a missing foreign key, input
-                // stored files do not exist.
+                // TODO: sometimes, because of a missing foreign key, input stored files do not exist.
                 if (! $fileJob->inputStoredFile) {
                     continue;
                 }
@@ -76,17 +75,17 @@ class CollectFileJobStats extends Command
             }
 
             $amountFailed += $fileGroup->fileJobs->filter(function (FileJob $fileJob) {
-                return $fileJob->has_error;
+                return $fileJob->error_message !== null;
             })->count();
         }
 
         return FileJobStats::create([
-            'date'          => $forDate,
-            'tool_route'    => $toolRoute,
-            'times_used'    => $timesUsed,
-            'total_files'   => $totalFiles,
+            'date' => $forDate,
+            'tool_route' => $toolRoute,
+            'times_used' => count($fileGroups),
+            'total_files' => $totalFiles,
             'amount_failed' => $amountFailed,
-            'total_size'    => $totalSize,
+            'total_size' => $totalSize,
         ]);
     }
 }

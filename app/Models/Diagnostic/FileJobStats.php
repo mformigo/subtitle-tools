@@ -10,10 +10,10 @@ class FileJobStats extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'times_used'    => 'integer',
-        'total_files'   => 'integer',
-        'amount_failed' => 'integer',
-        'total_size'    => 'integer',
+        'times_used' => 'int',
+        'total_files' => 'int',
+        'amount_failed' => 'int',
+        'total_size' => 'int',
     ];
 
     public static function collectRange($fromDate, $untilDate)
@@ -26,17 +26,17 @@ class FileJobStats extends Model
             ->get();
 
         $stats->unique('tool_route')->each(function (FileJobStats $stat) use (&$tools) {
-            $tools[$stat->tool_route]['times_used']    = 0;
-            $tools[$stat->tool_route]['total_files']   = 0;
+            $tools[$stat->tool_route]['times_used'] = 0;
+            $tools[$stat->tool_route]['total_files'] = 0;
             $tools[$stat->tool_route]['amount_failed'] = 0;
-            $tools[$stat->tool_route]['total_size']    = 0;
+            $tools[$stat->tool_route]['total_size'] = 0;
         });
 
         $stats->each(function (FileJobStats $stat) use (&$tools) {
-            $tools[$stat->tool_route]['times_used']    += $stat->times_used;
-            $tools[$stat->tool_route]['total_files']   += $stat->total_files;
+            $tools[$stat->tool_route]['times_used'] += $stat->times_used;
+            $tools[$stat->tool_route]['total_files'] += $stat->total_files;
             $tools[$stat->tool_route]['amount_failed'] += $stat->amount_failed;
-            $tools[$stat->tool_route]['total_size']    += $stat->total_size;
+            $tools[$stat->tool_route]['total_size'] += $stat->total_size;
         });
 
         ksort($tools);
@@ -47,10 +47,10 @@ class FileJobStats extends Model
 
     public static function yesterday()
     {
-        $yesterday = Carbon::yesterday()->toDateString();
-        $today     = Carbon::today()->toDateString();
-
-        return static::collectRange($yesterday, $today);
+        return static::collectRange(
+            Carbon::yesterday()->toDateString(),
+            Carbon::today()->toDateString()
+        );
     }
 
     public static function lastMonth()
