@@ -7,6 +7,7 @@ use App\Jobs\Diagnostic\CollectFileJobStatsJob;
 use App\Jobs\Diagnostic\CollectMetaForStoredFilesJob;
 use App\Jobs\Diagnostic\CollectMetaForSupJobsJob;
 use App\Jobs\GenerateSitemapJob;
+use App\Jobs\Janitor\PruneFileJobsJob;
 use App\Jobs\Janitor\PruneSubIdxTableJob;
 use App\Jobs\Janitor\PruneSupJobsTableJob;
 use App\Jobs\RandomizeSubIdxUrlKeysJob;
@@ -25,7 +26,7 @@ class Kernel extends ConsoleKernel
         // Janitor commands
         // $schedule->command('st:prune-sub-idx-files')->dailyAt('2:05');
         $schedule->command('st:prune-temporary-files')->dailyAt('2:10');
-        $schedule->command('st:prune-file-jobs')->dailyAt('2:15');
+        $schedule->job(PruneFileJobsJob::class)->dailyAt('2:15');
         $schedule->command('st:prune-sup-files')->dailyAt('2:20');
         $schedule->job(PruneSubIdxTableJob::class)->dailyAt('2:25');
         $schedule->job(PruneSupJobsTableJob::class)->dailyAt('2:30');

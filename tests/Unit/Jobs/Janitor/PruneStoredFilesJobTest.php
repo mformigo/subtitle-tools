@@ -21,4 +21,10 @@ class PruneStoredFilesJobTest extends TestCase
             'The migration written in "config/st.php" does not match the last migration'
         );
     }
+
+    /** @test */
+    function it_()
+    {
+        // todo: convert the command to a job
+    }
 }

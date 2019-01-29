@@ -95,6 +95,22 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    public function assertModelExists($model)
+    {
+        $this->assertNotNull(
+            $model::find($model->id),
+            'Model does not exist in database'
+        );
+    }
+
+    public function assertModelDoesntExist($model)
+    {
+        $this->assertNull(
+            $model::find($model->id),
+            'Model exists in database'
+        );
+    }
+
     /**
      * @param null $user
      *
