@@ -1,20 +1,30 @@
 <?php
 
+use App\Http\Controllers\ConvertToSrtController;
+use App\Http\Controllers\ConvertToVttController;
+use App\Http\Controllers\CleanSrtController;
+use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\ShiftPartialController;
+use App\Http\Controllers\ConvertToUtf8Controller;
+use App\Http\Controllers\PinyinController;
+use App\Http\Controllers\ConvertToPlainTextController;
+use App\Http\Controllers\MergeController;
+
 return [
 
     /**
      * These tool routes are use for FileJobStats.
      */
     'tool_routes' => [
-        'convertToSrt',
-        'convertToVtt',
-        'cleanSrt',
-        'shift',
-        'shiftPartial',
-        'convertToUtf8',
-        'pinyin',
-        'convertToPlainText',
-        'merge',
+        ConvertToSrtController::class => 'convertToSrt',
+        ConvertToVttController::class => 'convertToVtt',
+        CleanSrtController::class => 'cleanSrt',
+        ShiftController::class => 'shift',
+        ShiftPartialController::class => 'shiftPartial',
+        ConvertToUtf8Controller::class => 'convertToUtf8',
+        PinyinController::class => 'pinyin',
+        ConvertToPlainTextController::class => 'convertToPlainText',
+        MergeController::class => 'merge',
     ],
 
     /**

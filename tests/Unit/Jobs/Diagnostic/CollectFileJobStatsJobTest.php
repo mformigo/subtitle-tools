@@ -14,10 +14,4 @@ class CollectFileJobStatsJobTest extends TestCase
     {
 
     }
-
-    /** @test */
-    function it_has_the_correct_tool_routes_in_config()
-    {
-        // TODO: figure out a hack to check if "config('st.tool_routes')" is correct.
-    }
 }

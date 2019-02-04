@@ -42,13 +42,10 @@ Route::fileGroupTool('convertToPlainText', 'ConvertToPlainTextController', 'conv
 Route::fileGroupTool('merge',              'MergeController',              'merge-subtitles-online');
 
 
-Route::prefix('convert-sup-to-srt-online')->group(function () {
-    Route::get('/',                   ['uses' => 'SupController@index',    'as' => 'sup']);
-    Route::post('/',                  ['uses' => 'SupController@post',     'as' => 'sup.post']);
-    Route::get('/{urlKey}',           ['uses' => 'SupController@show',     'as' => 'sup.show']);
-    Route::post('/{urlKey}/download', ['uses' => 'SupController@download', 'as' => 'sup.show.download']);
-
-    Route::get('/{urlKey}/download', function ($urlKey) {
-        return redirect()->route('sup.show', $urlKey);
-    });
+Route::get('/convert-sup-to-srt-online',                    ['uses' => 'SupController@index',    'as' => 'sup']);
+Route::post('/convert-sup-to-srt-online',                   ['uses' => 'SupController@post',     'as' => 'sup.post']);
+Route::get('/convert-sup-to-srt-online/{urlKey}',           ['uses' => 'SupController@show',     'as' => 'sup.show']);
+Route::post('/convert-sup-to-srt-online/{urlKey}/download', ['uses' => 'SupController@download', 'as' => 'sup.show.download']);
+Route::get('/convert-sup-to-srt-online/{urlKey}/download', function ($urlKey) {
+    return redirect()->route('sup.show', $urlKey);
 });
