@@ -1,20 +1,15 @@
 <?php
 
-namespace App\Console\Commands\Janitor;
+namespace App\Jobs\Janitor;
 
+use App\Jobs\BaseJob;
 use App\Jobs\Diagnostic\CalculateDiskUsageJob;
-use Illuminate\Console\Command;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PruneTemporaryFiles extends Command
+class PruneTemporaryFilesJob extends BaseJob implements ShouldQueue
 {
-    protected $signature = 'st:prune-temporary-files';
-
-    protected $description = 'Prune temporary files and directories older than five days';
-
     public function handle()
     {
-        $this->info('Deleting temporary files and directories older than five days...');
-
         // Slow OCR jobs could take more than a day if the queue is very busy,
         // to be safe, only delete things older than five days.
         $dontDeletePrefixes = [
@@ -32,7 +27,7 @@ class PruneTemporaryFiles extends Command
         CalculateDiskUsageJob::dispatch();
     }
 
-    protected function cleanTemporaryFiles($dontDeletePrefixes)
+    private function cleanTemporaryFiles($dontDeletePrefixes)
     {
         $temporaryFilesDir = storage_disk_file_path('temporary-files/');
 
@@ -47,7 +42,7 @@ class PruneTemporaryFiles extends Command
         }
     }
 
-    protected function cleanTemporaryDirectories($dontDeletePrefixes)
+    private function cleanTemporaryDirectories($dontDeletePrefixes)
     {
         $temporaryDirectoriesDirectory = storage_disk_file_path('temporary-dirs/');
 

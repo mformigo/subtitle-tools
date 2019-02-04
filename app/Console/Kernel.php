@@ -9,8 +9,11 @@ use App\Jobs\Diagnostic\CollectMetaForSupJobsJob;
 use App\Jobs\GenerateSitemapJob;
 use App\Jobs\Janitor\PruneFileJobsJob;
 use App\Jobs\Janitor\PruneStoredFilesJob;
+use App\Jobs\Janitor\PruneSubIdxFilesJob;
 use App\Jobs\Janitor\PruneSubIdxTableJob;
+use App\Jobs\Janitor\PruneSupJobsJob;
 use App\Jobs\Janitor\PruneSupJobsTableJob;
+use App\Jobs\Janitor\PruneTemporaryFilesJob;
 use App\Jobs\RandomizeSubIdxUrlKeysJob;
 use App\Jobs\RandomizeSupUrlKeysJob;
 use Illuminate\Console\Scheduling\Schedule;
@@ -25,10 +28,10 @@ class Kernel extends ConsoleKernel
         $schedule->job(GenerateSitemapJob::class)->dailyAt('2:00');
 
         // Janitor commands
-        // $schedule->command('st:prune-sub-idx-files')->dailyAt('2:05');
-        $schedule->command('st:prune-temporary-files')->dailyAt('2:10');
+        // $schedule->command(PruneSubIdxFilesJob::class)->dailyAt('2:05');
+        $schedule->job(PruneTemporaryFilesJob::class)->dailyAt('2:10');
         $schedule->job(PruneFileJobsJob::class)->dailyAt('2:15');
-        $schedule->command('st:prune-sup-files')->dailyAt('2:20');
+        $schedule->job(PruneSupJobsJob::class)->dailyAt('2:20');
         $schedule->job(PruneSubIdxTableJob::class)->dailyAt('2:25');
         $schedule->job(PruneSupJobsTableJob::class)->dailyAt('2:30');
         $schedule->job(PruneStoredFilesJob::class)->dailyAt('2:50');
@@ -50,7 +53,6 @@ class Kernel extends ConsoleKernel
     {
         $this->load([
             __DIR__.'/Commands',
-            __DIR__.'/Commands/Janitor',
         ]);
     }
 }

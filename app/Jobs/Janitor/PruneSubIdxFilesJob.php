@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Console\Commands\Janitor;
+namespace App\Jobs\Janitor;
 
+use App\Jobs\BaseJob;
 use App\Jobs\Diagnostic\CalculateDiskUsageJob;
-use Illuminate\Console\Command;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 
-class PruneSubIdxFiles extends Command
+class PruneSubIdxFilesJob extends BaseJob implements ShouldQueue
 {
-    protected $signature = 'st:prune-sub-idx-files';
-
-    protected $description = 'Deletes sub/idx files older than a few days';
-
     public function handle()
     {
         $deleteDirectoryIfNotEndsWith = [
@@ -27,12 +24,7 @@ class PruneSubIdxFiles extends Command
             ->filter(function ($name) use ($deleteDirectoryIfNotEndsWith) {
                 return ! ends_with($name, $deleteDirectoryIfNotEndsWith);
             })
-            ->tap(function ($directoryNames) {
-                $this->info('Found '.count($directoryNames).' old sub/idx directories');
-            })
             ->each(function ($directoryName) {
-                $this->comment('Removing: '. $directoryName);
-
                 Storage::deleteDirectory($directoryName);
             });
 
