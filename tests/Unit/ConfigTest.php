@@ -24,15 +24,17 @@ class ConfigTest extends TestCase
                 continue;
             }
 
-            preg_match('/class (.*?) /', $content, $matches);
+            preg_match('/class (.*?) /', $content, $controllerName);
 
-            $fileJobControllers[] = 'App\\Http\\Controllers\\'.$matches[1];
+            preg_match('/\$indexRouteName = \'(.*?)\';/', $content, $indexRouteName);
+
+            $fileJobControllers['App\\Http\\Controllers\\'.$controllerName[1]] = $indexRouteName[1];
         }
 
-        $registeredControllers = array_keys(config('st.tool_routes'));
+        $registeredControllers = config('st.tool_routes');
 
-        sort($registeredControllers);
-        sort($fileJobControllers);
+        ksort($registeredControllers);
+        ksort($fileJobControllers);
 
         $this->assertNotEmpty($fileJobControllers);
 

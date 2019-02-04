@@ -65,6 +65,12 @@ class SupControllerTest extends TestCase
         $this->assertSame(1, SupJob::count());
     }
 
+    /** @test */
+    function it_redirects_get_method_downloads_to_the_result_route()
+    {
+
+    }
+
     private function postSup(array $data)
     {
         return $this->post(route('sup'), $data);

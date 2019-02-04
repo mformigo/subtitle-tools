@@ -3,13 +3,13 @@
 namespace Tests\Unit\Jobs\FileJobs;
 
 use App\Jobs\FileJobs\ConvertToPlainTextJob;
+use App\Models\FileGroup;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class ConvertToPlainTextJobTest extends TestCase
 {
-    use RefreshDatabase, CreatesFileGroups;
+    use RefreshDatabase;
 
     /** @test */
     function it_converts_a_file_to_plain_text()
@@ -37,5 +37,25 @@ class ConvertToPlainTextJobTest extends TestCase
             'And this is the third line',
             '',
         ], $lines);
+    }
+
+    /**
+     * @param string $toolRoute
+     * @param null $urlKey
+     *
+     * @return FileGroup
+     *
+     * @deprecated This is old, should be replaced by "createFileGroup" method from the "CreatesModels" trait
+     */
+    public function createFileGroup($toolRoute = 'default-route', $urlKey = null): FileGroup
+    {
+        $fileGroup = new FileGroup();
+
+        $fileGroup->fill([
+            'tool_route' => $toolRoute,
+            'url_key' => $urlKey ?? generate_url_key(),
+        ])->save();
+
+        return $fileGroup;
     }
 }

@@ -91,4 +91,9 @@ class SupController
 
         return response()->download($filePath, $fileName);
     }
+
+    public function downloadRedirect($urlKey)
+    {
+        return redirect()->route('sup.show', $urlKey);
+    }
 }

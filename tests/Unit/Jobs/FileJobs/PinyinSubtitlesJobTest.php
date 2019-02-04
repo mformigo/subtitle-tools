@@ -2,16 +2,16 @@
 
 namespace Tests\Unit\Jobs\FileJobs;
 
+use App\Models\FileGroup;
 use App\Support\Facades\TextFileFormat;
 use App\Jobs\FileJobs\PinyinSubtitlesJob;
 use App\Subtitles\PlainText\Srt;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class PinyinSubtitlesJobTest extends TestCase
 {
-    use RefreshDatabase, CreatesFileGroups;
+    use RefreshDatabase;
 
     /** @test */
     function it_makes_pinyin_subtitles()
@@ -45,4 +45,23 @@ class PinyinSubtitlesJobTest extends TestCase
         $this->assertNotContains('我', $subtitle->getContent());
     }
 
+    /**
+     * @param string $toolRoute
+     * @param null $urlKey
+     *
+     * @return FileGroup
+     *
+     * @deprecated This is old, should be replaced by "createFileGroup" method from the "CreatesModels" trait
+     */
+    public function createFileGroup($toolRoute = 'default-route', $urlKey = null): FileGroup
+    {
+        $fileGroup = new FileGroup();
+
+        $fileGroup->fill([
+            'tool_route' => $toolRoute,
+            'url_key' => $urlKey ?? generate_url_key(),
+        ])->save();
+
+        return $fileGroup;
+    }
 }

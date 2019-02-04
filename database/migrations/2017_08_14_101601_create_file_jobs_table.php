@@ -10,15 +10,15 @@ class CreateFileJobsTable extends Migration
     {
         Schema::create('file_jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->unsignedInteger('file_group_id');
             $table->string('original_name');
             $table->string('new_extension')->nullable();
             $table->string('error_message')->nullable();
-            $table->integer('file_group_id')->unsigned();
-            $table->integer('input_stored_file_id');
-            $table->integer('output_stored_file_id')->nullable();
-            $table->dateTime("started_at")->nullable();
-            $table->dateTime("finished_at")->nullable();
+            $table->unsignedInteger('input_stored_file_id');
+            $table->unsignedInteger('output_stored_file_id')->nullable();
+            $table->dateTime('started_at')->nullable();
+            $table->dateTime('finished_at')->nullable();
+            $table->timestamps();
 
             $table->foreign('file_group_id')->references('id')->on('file_groups')->onDelete('cascade');
         });

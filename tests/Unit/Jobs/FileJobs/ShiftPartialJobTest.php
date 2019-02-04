@@ -2,17 +2,17 @@
 
 namespace Tests\Unit\Jobs\FileJobs;
 
+use App\Models\FileGroup;
 use App\Support\Facades\TextFileFormat;
 use App\Jobs\FileJobs\ShiftPartialJob;
 use App\Subtitles\ContainsGenericCues;
 use App\Subtitles\PlainText\Srt;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class ShiftPartialJobTest extends TestCase
 {
-    use RefreshDatabase, CreatesFileGroups;
+    use RefreshDatabase;
 
     /** @test */
     function it_partial_shifts_a_subtitle_file()
@@ -103,5 +103,25 @@ class ShiftPartialJobTest extends TestCase
         $this->assertSame('messages.not_a_text_file', $fileJob->error_message);
 
         $this->assertNull($fileJob->output_stored_file_id);
+    }
+
+    /**
+     * @param string $toolRoute
+     * @param null $urlKey
+     *
+     * @return FileGroup
+     *
+     * @deprecated This is old, should be replaced by "createFileGroup" method from the "CreatesModels" trait
+     */
+    public function createFileGroup($toolRoute = 'default-route', $urlKey = null): FileGroup
+    {
+        $fileGroup = new FileGroup();
+
+        $fileGroup->fill([
+            'tool_route' => $toolRoute,
+            'url_key' => $urlKey ?? generate_url_key(),
+        ])->save();
+
+        return $fileGroup;
     }
 }

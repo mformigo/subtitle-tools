@@ -118,6 +118,13 @@ abstract class FileJobController extends BaseController
         return response()->download($fileJob->outputStoredFile->file_path, $name);
     }
 
+    public function downloadRedirect($urlKey, $id)
+    {
+        $resultRoute = route($this->indexRouteName.'.result', $urlKey);
+
+        return redirect($resultRoute);
+    }
+
     protected function doFileJobs($jobClass, array $jobOptions = [])
     {
         $files = array_wrap(

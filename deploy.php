@@ -38,7 +38,7 @@ task('deploy', [
 //    'artisan:storage:link',
     'artisan:view:clear',
     'artisan:config:cache',
-//    'artisan:route:cache',
+    'artisan:route:cache',
 
     'artisan:migrate',
 

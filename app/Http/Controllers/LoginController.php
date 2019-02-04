@@ -9,7 +9,7 @@ class LoginController
 {
     use AuthenticatesUsers;
 
-    public function showLoginForm()
+    public function index()
     {
         return view('login');
     }

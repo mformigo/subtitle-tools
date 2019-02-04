@@ -2,18 +2,18 @@
 
 namespace Tests\Unit\Jobs\FileJobs;
 
+use App\Models\FileGroup;
 use App\Support\Facades\TextFileFormat;
 use App\Jobs\FileJobs\ConvertToSrtJob;
 use App\Models\FileJob;
 use App\Models\StoredFile;
 use App\Subtitles\PlainText\Srt;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesFileGroups;
 use Tests\TestCase;
 
 class ConvertToSrtJobTest extends TestCase
 {
-    use RefreshDatabase, CreatesFileGroups;
+    use RefreshDatabase;
 
     /** @test */
     function it_converts_a_file_to_srt()
@@ -130,5 +130,25 @@ class ConvertToSrtJobTest extends TestCase
         $this->assertTrue($subtitle instanceof Srt);
 
         $this->assertCount(3, $subtitle->getCues());
+    }
+
+    /**
+     * @param string $toolRoute
+     * @param null $urlKey
+     *
+     * @return FileGroup
+     *
+     * @deprecated This is old, should be replaced by "createFileGroup" method from the "CreatesModels" trait
+     */
+    public function createFileGroup($toolRoute = 'default-route', $urlKey = null): FileGroup
+    {
+        $fileGroup = new FileGroup();
+
+        $fileGroup->fill([
+            'tool_route' => $toolRoute,
+            'url_key' => $urlKey ?? generate_url_key(),
+        ])->save();
+
+        return $fileGroup;
     }
 }

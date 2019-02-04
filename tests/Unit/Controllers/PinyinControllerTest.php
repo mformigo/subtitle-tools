@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Controllers;
 
+use App\Jobs\FileJobs\PinyinSubtitlesJob;
 use App\Models\FileGroup;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
@@ -120,13 +121,13 @@ class PinyinControllerTest extends TestCase
         $fileGroup = FileGroup::findOrFail(1);
 
         $response->assertStatus(302)
-            ->assertRedirect($fileGroup->resultRoute);
+            ->assertRedirect($fileGroup->result_route);
     }
 
     /** @test */
     function it_redirects_to_results_page_if_multiple_uploads_are_valid()
     {
-        $this->expectsJobs(\App\Jobs\FileJobs\PinyinSubtitlesJob::class);
+        $this->expectsJobs(PinyinSubtitlesJob::class);
 
         $response = $this->post(route('pinyin'), [
             'subtitles' => [
@@ -139,6 +140,15 @@ class PinyinControllerTest extends TestCase
         $fileGroup = FileGroup::findOrFail(1);
 
         $response->assertStatus(302)
-            ->assertRedirect($fileGroup->resultRoute);
+            ->assertRedirect($fileGroup->result_route);
+    }
+
+    /** @test */
+    function it_redirects_get_method_downloads_to_the_results_page()
+    {
+        $fileGroup = $this->createFileGroup(['tool_route' => 'pinyin']);
+
+        $this->get(route('pinyin.download', [$fileGroup->url_key, $fileGroup->fileJobs->first()->id]))
+            ->assertRedirect($fileGroup->result_route);
     }
 }
