@@ -8,6 +8,7 @@ use App\Jobs\Diagnostic\CollectMetaForStoredFilesJob;
 use App\Jobs\Diagnostic\CollectMetaForSupJobsJob;
 use App\Jobs\GenerateSitemapJob;
 use App\Jobs\Janitor\PruneFileJobsJob;
+use App\Jobs\Janitor\PruneStoredFilesJob;
 use App\Jobs\Janitor\PruneSubIdxTableJob;
 use App\Jobs\Janitor\PruneSupJobsTableJob;
 use App\Jobs\RandomizeSubIdxUrlKeysJob;
@@ -30,7 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('st:prune-sup-files')->dailyAt('2:20');
         $schedule->job(PruneSubIdxTableJob::class)->dailyAt('2:25');
         $schedule->job(PruneSupJobsTableJob::class)->dailyAt('2:30');
-        $schedule->command('st:prune-stored-files')->dailyAt('2:50');
+        $schedule->job(PruneStoredFilesJob::class)->dailyAt('2:50');
         $schedule->command('cache:clear')->dailyAt('2:55');
 
         // sort of fix a memory leak

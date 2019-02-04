@@ -13,7 +13,7 @@ class PruneStoredFilesJobTest extends TestCase
     /** @test */
     function the_checked_migration_is_correct()
     {
-        $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
+        $lastMigration = DB::table('migrations')->orderByDesc('id')->first()->migration;
 
         $this->assertSame(
             config('st.checked-migration'),
@@ -25,6 +25,12 @@ class PruneStoredFilesJobTest extends TestCase
     /** @test */
     function it_()
     {
-        // todo: convert the command to a job
+        // todo: test
+    }
+
+    /** @test */
+    function it_deletes_directories_that_become_empty_after_deleting_files()
+    {
+
     }
 }

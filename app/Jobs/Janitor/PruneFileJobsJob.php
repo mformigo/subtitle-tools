@@ -16,6 +16,5 @@ class PruneFileJobsJob extends BaseJob implements ShouldQueue
         FileGroup::query()
             ->where('created_at', '<', $threshold)
             ->delete();
-
     }
 }

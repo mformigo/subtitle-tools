@@ -1,24 +1,19 @@
 <?php
 
-namespace App\Console\Commands\Janitor;
+namespace App\Jobs\Janitor;
 
+use App\Jobs\BaseJob;
 use App\Jobs\Diagnostic\CalculateDiskUsageJob;
 use App\Models\StoredFile;
-use Illuminate\Console\Command;
+use RuntimeException;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Mockery\Exception;
 
-class PruneStoredFiles extends Command
+class PruneStoredFilesJob extends BaseJob implements ShouldQueue
 {
-    protected $signature = 'st:prune-stored-files';
-
-    protected $description = 'Deletes unreferenced stored files from database and disk';
-
     public function handle()
     {
-        $this->info('Pruning stored files...');
-
         if ($this->isOnCheckedMigration()) {
             $this->deleteUnreferencedStoredFileRecords();
         }
@@ -37,15 +32,13 @@ class PruneStoredFiles extends Command
      *
      * @return bool
      */
-    protected function isOnCheckedMigration()
+    private function isOnCheckedMigration()
     {
-        $lastMigration = DB::table('migrations')->orderBy('id', 'desc')->first()->migration;
+        $lastMigration = DB::table('migrations')->orderByDesc('id')->first()->migration;
 
         if ($lastMigration === config('st.checked-migration')) {
             return true;
         }
-
-        $this->error('Not on a checked migration, not deleting records');
 
         info('PruneStoredFiles did not delete any database records because it is not on a checked migration');
 
@@ -55,13 +48,13 @@ class PruneStoredFiles extends Command
     /**
      * Delete stored files from the database that are not referenced by any other record.
      */
-    protected function deleteUnreferencedStoredFileRecords()
+    private function deleteUnreferencedStoredFileRecords()
     {
         $storedFileColumns = [
-            'file_groups'       => ['archive_stored_file_id'],
-            'file_jobs'         => ['input_stored_file_id', 'output_stored_file_id'],
+            'file_groups' => ['archive_stored_file_id'],
+            'file_jobs' => ['input_stored_file_id', 'output_stored_file_id'],
             'sub_idx_languages' => ['output_stored_file_id'],
-            'sup_jobs'          => ['input_stored_file_id', 'output_stored_file_id'],
+            'sup_jobs' => ['input_stored_file_id', 'output_stored_file_id'],
         ];
 
         $referencedStoredFileIds = [];
@@ -87,10 +80,6 @@ class PruneStoredFiles extends Command
 
         $unreferencedIds = array_diff($allStoredFileIds, $referencedStoredFileIds);
 
-        $this->comment('Database has '.count($allStoredFileIds).' stored files, '.count($referencedStoredFileIds).' are referenced');
-
-        $this->comment('Deleting '.count($unreferencedIds).' unreferenced stored file records...');
-
         foreach (array_chunk($unreferencedIds, 10000) as $chunkOfUnreferencedIds) {
             StoredFile::whereIn('id', $chunkOfUnreferencedIds)->delete();
         }
@@ -99,10 +88,9 @@ class PruneStoredFiles extends Command
     /**
      * Delete all stored file on the disk that do not have a reference in the database.
      */
-    protected function deleteOrphanedStoredFiles()
+    private function deleteOrphanedStoredFiles()
     {
         $existingStoredFiles = array_filter(Storage::allFiles('stored-files/'), function ($fileName) {
-            // Remove .gitignore
             return ! starts_with($fileName, 'stored-files/.');
         });
 
@@ -111,16 +99,12 @@ class PruneStoredFiles extends Command
 
         $orphanedStoredFiles = array_diff($existingStoredFiles, $databaseStoredFiles);
 
-        $this->comment('Disk has '.count($existingStoredFiles).' stored files');
-
-        $this->comment('Deleting '.count($orphanedStoredFiles).' orphaned stored files...');
-
         foreach ($orphanedStoredFiles as $orphanFileName) {
             Storage::delete($orphanFileName);
         }
     }
 
-    protected function deleteEmptyStoredFileDirectories()
+    private function deleteEmptyStoredFileDirectories()
     {
         $allDirectories = Storage::allDirectories('stored-files/');
 
@@ -132,17 +116,17 @@ class PruneStoredFiles extends Command
             ->each(function ($directoryPath) {
                 // don't filter the array, directories might become empty when we delete subdirectories
                 if ($this->isEmptyStorageDirectory($directoryPath)) {
-                   Storage::deleteDirectory($directoryPath);
-               }
+                    Storage::deleteDirectory($directoryPath);
+                }
             });
     }
 
-    protected function isEmptyStorageDirectory($storagePath)
+    private function isEmptyStorageDirectory($storagePath)
     {
         $path = storage_disk_file_path($storagePath);
 
         if (! file_exists($path) || ! is_dir($path)) {
-            throw new Exception('Storage path is not a directory: '.$storagePath);
+            throw new RuntimeException('Storage path is not a directory: '.$storagePath);
         }
 
         $directoryEntries = array_diff(scandir($path), ['.', '..']);
