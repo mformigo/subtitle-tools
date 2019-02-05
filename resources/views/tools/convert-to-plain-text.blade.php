@@ -1,8 +1,8 @@
 @extends('layout.base-template')
 
-@section('title',       __('seo.title.convertToPlainText'))
+@section('title', __('seo.title.convertToPlainText'))
 @section('description', __('seo.description.convertToPlainText'))
-@section('keywords',    __('seo.keywords.convertToPlainText'))
+@section('keywords', __('seo.keywords.convertToPlainText'))
 
 @include('helpers.dont-connect-echo')
 
