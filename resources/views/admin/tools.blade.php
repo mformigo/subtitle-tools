@@ -3,6 +3,10 @@
 @section('content')
 <div class="ml-8">
 
+    @isset($error)
+        <div class="bg-red-lighter max-w-sm p-2 rounded mb-4">{{ $error }}</div>
+    @endisset
+
     <div class="max-w-xs bg-white p-2 rounded border shadow mb-8">
         <strong class="block mb-2">Download Stored Files</strong>
 

@@ -43,13 +43,25 @@ class StoredFilesController
         $storedFiles = [];
 
         foreach ($ids as $id) {
-            $storedFiles[] = StoredFile::query()->findOrFail($id);
+            $storedFile = StoredFile::find($id);
+
+            if (! $storedFile) {
+                return back()->with('error', 'Stored file with id '.$id.' does not exist');
+            }
+
+            $storedFiles[] = $storedFile;
         }
 
         if (count($storedFiles) === 0) {
-            return 'No stored file found with this id';
+            return back()->with('error', 'No stored file found with this id');
         } elseif (count($storedFiles) === 1) {
-            return response()->download($storedFiles[0]->filePath, "{$storedFiles[0]->id}.txt");
+            $path = $storedFiles[0]->file_path;
+
+            if (! file_exists($path)) {
+                return back()->with('error', 'Stored file does not exist on the disk, only in the database');
+            }
+
+            return response()->download($path, $storedFiles[0]->id.'txt');
         }
 
         $zip = new \ZipArchive();
@@ -61,12 +73,12 @@ class StoredFilesController
         }
 
         foreach ($storedFiles as $storedFile) {
-            $zip->addFile($storedFile->filePath, "{$storedFile->id}.txt");
+            $zip->addFile($storedFile->file_path, $storedFile->id.'.txt');
         }
 
         $zip->close();
 
-        return response()->download($tempFilePath, "stored-files.zip");
+        return response()->download($tempFilePath, 'stored-files.zip');
     }
 
     public function delete(Request $request)
