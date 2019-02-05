@@ -61,7 +61,7 @@ class StoredFilesController
                 return back()->with('error', 'Stored file does not exist on the disk, only in the database');
             }
 
-            return response()->download($path, $storedFiles[0]->id.'txt');
+            return response()->download($path, $storedFiles[0]->id.'.txt');
         }
 
         $zip = new \ZipArchive();
