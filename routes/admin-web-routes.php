@@ -16,7 +16,7 @@ Route::get('/disk-usage', ['uses' => 'DiskUsageController@index', 'as' => 'diskU
 Route::get('/debug-tools', ['uses' => 'ToolsController@index', 'as' => 'tools.index']);
 
 Route::get('/stored-file/{storedFile}', ['uses' => 'StoredFilesController@show',     'as' => 'storedFiles.show']);
-Route::post('/stored-file/download',    ['uses' => 'StoredFilesController@download', 'as' => 'storedFiles.delete']);
+Route::post('/stored-file/download',    ['uses' => 'StoredFilesController@download', 'as' => 'storedFiles.download']);
 Route::delete('/stored-file/delete',    ['uses' => 'StoredFilesController@delete',   'as' => 'storedFiles.delete']);
 
 Route::get('/file-jobs', ['uses' => 'FileJobsController@index', 'as' => 'fileJobs.index']);

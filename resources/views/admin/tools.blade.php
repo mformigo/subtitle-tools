@@ -7,6 +7,10 @@
         <div class="bg-red-lighter max-w-sm p-2 rounded mb-4">{{ $error }}</div>
     @endisset
 
+    @isset($success)
+        <div class="bg-green-lighter max-w-sm p-2 rounded mb-4">{{ $success }}</div>
+    @endisset
+
     <div class="max-w-xs bg-white p-2 rounded border shadow mb-8">
         <strong class="block mb-2">Download Stored Files</strong>
 
