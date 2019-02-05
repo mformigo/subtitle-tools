@@ -10,7 +10,7 @@
     <div class="max-w-xs bg-white p-2 rounded border shadow mb-8">
         <strong class="block mb-2">Download Stored Files</strong>
 
-        <form class="flex" target="_blank" method="post" action="{{ route('admin.storedFiles.delete') }}">
+        <form class="flex" target="_blank" method="post" action="{{ route('admin.storedFiles.download') }}">
             {{ csrf_field() }}
 
             <input type="text" name="id" class="field p-1 w-32" placeholder="stored file ids..." autocomplete="off" required />
