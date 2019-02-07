@@ -2,12 +2,9 @@
 
 namespace App\Jobs\FileJobs;
 
+use App\Jobs\BaseJob;
 use App\Support\Facades\TempFile;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use App\Events\FileJobChanged;
 use App\Models\FileGroup;
 use App\Models\FileJob as FileJobModel;
@@ -15,12 +12,8 @@ use App\Models\StoredFile;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-abstract class FileJob implements ShouldQueue
+abstract class FileJob extends BaseJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $tries = 1;
-
     protected $fileGroup;
 
     protected $inputStoredFile;

@@ -17,8 +17,6 @@ use LanguageDetection\Language;
 
 class CollectStoredFileMetaJob extends BaseJob implements ShouldQueue
 {
-    public $tries = 1;
-
     public $timeout = 30;
 
     public $queue = 'low-fast';

@@ -6,21 +6,12 @@ use App\Support\Facades\FileName;
 use App\Support\Facades\TempFile;
 use App\Models\FileGroup;
 use App\Models\StoredFile;
-use Carbon\Carbon;
 use Exception;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use ZipArchive;
 
-class ZipFileGroupJob implements ShouldQueue
+class ZipFileGroupJob extends BaseJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $tries = 1;
-
     public $timeout = 120;
 
     protected $fileGroup;
@@ -29,7 +20,7 @@ class ZipFileGroupJob implements ShouldQueue
     {
         $this->fileGroup = $fileGroup;
 
-        $fileGroup->update(['archive_requested_at' => Carbon::now()]);
+        $fileGroup->update(['archive_requested_at' => now()]);
     }
 
     public function handle()
@@ -74,7 +65,7 @@ class ZipFileGroupJob implements ShouldQueue
 
         $this->fileGroup->update([
             'archive_stored_file_id' => $storedFile->id,
-            'archive_finished_at' => Carbon::now(),
+            'archive_finished_at' => now(),
         ]);
 
         unlink($zipTempFilePath);
@@ -86,7 +77,7 @@ class ZipFileGroupJob implements ShouldQueue
     {
         $this->fileGroup->update([
             'archive_error' => $errorMessage,
-            'archive_finished_at' => Carbon::now(),
+            'archive_finished_at' => now(),
         ]);
 
         return $this->fileGroup;
