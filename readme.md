@@ -8,8 +8,8 @@ Required php extensions:
 Required binaries:
 - [Vobsub2srt](https://github.com/ruediger/VobSub2SRT) for converting sub/idx to srt
 - [Uchardet](https://github.com/BYVoid/uchardet) for detecting text encoding
-- [Tesseract](https://github.com/tesseract-ocr/tesseract) for OCR'ing sup images
-  - [Tesseract traineddata](https://github.com/tesseract-ocr/tessdata)
+- [Tesseract v3](https://github.com/tesseract-ocr/tesseract) for OCR'ing sup images
+  - [Tesseract v3 traineddata](https://github.com/tesseract-ocr/tessdata/tree/3.04.00)
 
 Optional PECL extension:
 - [rar](http://php.net/manual/en/book.rar.php) for extracting rar archives
