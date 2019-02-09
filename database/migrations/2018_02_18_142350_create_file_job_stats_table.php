@@ -21,9 +21,4 @@ class CreateFileJobStatsTable extends Migration
             $table->unique(['date', 'tool_route']);
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('file_job_stats');
-    }
 }

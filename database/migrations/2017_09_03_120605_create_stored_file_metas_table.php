@@ -24,9 +24,4 @@ class CreateStoredFileMetasTable extends Migration
             $table->foreign('stored_file_id')->references('id')->on('stored_files')->onDelete('cascade');
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('stored_file_metas');
-    }
 }

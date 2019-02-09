@@ -11,6 +11,7 @@ class CreateSupJobMetasTable extends Migration
         Schema::create('sup_job_metas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sup_job_id')->unsigned();
+            $table->unsignedInteger('file_size');
             $table->string('format')->nullable();
             $table->integer('cue_count')->nullable();
             $table->boolean('failed_to_open')->nullable();
@@ -18,10 +19,5 @@ class CreateSupJobMetasTable extends Migration
 
             $table->foreign('sup_job_id')->references('id')->on('sup_jobs')->onDelete('cascade');
         });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('sup_job_metas');
     }
 }

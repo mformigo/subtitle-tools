@@ -25,9 +25,4 @@ class CreateSubIdxLanguagesTable extends Migration
             $table->foreign('sub_idx_id')->references('id')->on('sub_idxes')->onDelete('cascade');
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('sub_idx_languages');
-    }
 }

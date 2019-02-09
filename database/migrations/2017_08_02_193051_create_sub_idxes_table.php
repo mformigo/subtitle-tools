@@ -19,15 +19,12 @@ class CreateSubIdxesTable extends Migration
             // the same directory, with .sub/.idx extensions
             $table->string('sub_hash');
             $table->string('idx_hash');
+            $table->unsignedInteger('sub_file_size');
+            $table->unsignedInteger('idx_file_size');
             $table->boolean('is_readable')->nullable();
             $table->unsignedInteger('cache_hits')->default(0);
             $table->dateTime('last_cache_hit')->nullable();
             $table->timestamps();
         });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('sub_idxes');
     }
 }

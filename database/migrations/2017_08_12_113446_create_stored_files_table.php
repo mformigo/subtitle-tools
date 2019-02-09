@@ -15,9 +15,4 @@ class CreateStoredFilesTable extends Migration
             $table->string('storage_file_path');
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('stored_files');
-    }
 }

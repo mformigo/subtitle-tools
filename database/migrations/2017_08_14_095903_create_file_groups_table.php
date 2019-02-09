@@ -21,9 +21,4 @@ class CreateFileGroupsTable extends Migration
             $table->integer('archive_stored_file_id')->nullable();
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('file_groups');
-    }
 }

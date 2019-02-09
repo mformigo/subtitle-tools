@@ -23,9 +23,4 @@ class CreateFileJobsTable extends Migration
             $table->foreign('file_group_id')->references('id')->on('file_groups')->onDelete('cascade');
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('file_jobs');
-    }
 }
