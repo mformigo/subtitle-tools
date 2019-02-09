@@ -4,6 +4,7 @@ namespace App\Jobs\Janitor;
 
 use App\Jobs\BaseJob;
 use App\Jobs\Diagnostic\CalculateDiskUsageJob;
+use App\Models\SubIdx;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,22 +12,28 @@ class PruneSubIdxFilesJob extends BaseJob implements ShouldQueue
 {
     public function handle()
     {
-        $deleteDirectoryIfNotEndsWith = [
-            DIRECTORY_SEPARATOR.now()->format('Y-z'),
-            DIRECTORY_SEPARATOR.now()->subDays(1)->format('Y-z'),
-            DIRECTORY_SEPARATOR.now()->subDays(2)->format('Y-z'),
-            DIRECTORY_SEPARATOR.now()->subDays(3)->format('Y-z'),
-        ];
+        $baseDirectories = Storage::directories('sub-idx/');
 
-        $subIdxDirectory = Storage::directories('sub-idx/');
-
-        collect($subIdxDirectory)
-            ->filter(function ($name) use ($deleteDirectoryIfNotEndsWith) {
-                return ! ends_with($name, $deleteDirectoryIfNotEndsWith);
+        $subIdxDirectories = collect(Storage::directories('sub-idx/', true))
+            ->diff($baseDirectories)
+            ->map(function ($string) {
+                return $string.DIRECTORY_SEPARATOR;
             })
-            ->each(function ($directoryName) {
-                Storage::deleteDirectory($directoryName);
-            });
+            ->toArray();
+
+        $databaseStorageDirectories = SubIdx::pluck('store_directory')->toArray();
+
+        $orphanedDirectories = array_diff($subIdxDirectories, $databaseStorageDirectories);
+
+        foreach ($orphanedDirectories as $dir) {
+            Storage::deleteDirectory($dir);
+        }
+
+        foreach ($baseDirectories as $dir) {
+            if (Storage::files($dir, true) === []) {
+                Storage::deleteDirectory($dir);
+            }
+        }
 
         CalculateDiskUsageJob::dispatch();
     }

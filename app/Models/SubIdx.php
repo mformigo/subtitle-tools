@@ -57,7 +57,7 @@ class SubIdx extends Model
 
         $baseFileName = substr($subHash, 0, 6).substr($idxHash, 0, 6);
 
-        // The date in this path is used in the "PruneSubIdxFiles" command
+        // The date in this path is used in the "PruneSubIdxFiles" job
         $storagePath = 'sub-idx/'.now()->format('Y-z/U')."-{$baseFileName}/";
 
         Storage::makeDirectory($storagePath);

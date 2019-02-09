@@ -23,19 +23,19 @@ class PruneSubIdxTableJobTest extends TestCase
     function it_deletes_old_records_with_no_cache_hits()
     {
         $subIdx1 = factory(SubIdx::class)->create(['last_cache_hit' => null, 'created_at' => now()]);
-        $subIdx2 = factory(SubIdx::class)->create(['last_cache_hit' => null, 'created_at' => now()->subDays(35)]);
+        $subIdx2 = factory(SubIdx::class)->create(['last_cache_hit' => null, 'created_at' => now()->subDays(14)]);
 
         (new PruneSubIdxTableJob)->handle();
         $this->assertStillExists($subIdx1);
         $this->assertStillExists($subIdx2);
 
-        $this->progressTimeInDays(35);
+        $this->progressTimeInDays(14);
 
         (new PruneSubIdxTableJob)->handle();
         $this->assertStillExists($subIdx1);
         $this->assertDeleted($subIdx2);
 
-        $this->progressTimeInDays(35);
+        $this->progressTimeInDays(14);
 
         (new PruneSubIdxTableJob)->handle();
         $this->assertDeleted($subIdx1);
@@ -47,25 +47,25 @@ class PruneSubIdxTableJobTest extends TestCase
     {
         $subIdx1 = factory(SubIdx::class)->create([
             'created_at' => now()->subDays(100),
-            'last_cache_hit' => now()->subDays(15),
+            'last_cache_hit' => now()->subDays(5),
         ]);
 
         $subIdx2 = factory(SubIdx::class)->create([
             'created_at' => now()->subDays(100),
-            'last_cache_hit' => now()->subDays(45),
+            'last_cache_hit' => now()->subDays(21),
         ]);
 
         (new PruneSubIdxTableJob)->handle();
         $this->assertStillExists($subIdx1);
         $this->assertStillExists($subIdx2);
 
-        $this->progressTimeInDays(25);
+        $this->progressTimeInDays(14);
 
         (new PruneSubIdxTableJob)->handle();
         $this->assertStillExists($subIdx1);
         $this->assertDeleted($subIdx2);
 
-        $this->progressTimeInDays(35);
+        $this->progressTimeInDays(14);
 
         (new PruneSubIdxTableJob)->handle();
         $this->assertDeleted($subIdx1);
@@ -89,8 +89,8 @@ class PruneSubIdxTableJobTest extends TestCase
     function it_does_not_delete_recent_records_with_recent_cache_hits()
     {
         $subIdx = factory(SubIdx::class)->create([
-            'created_at' => now()->subDays(30),
-            'last_cache_hit' => now()->subDays(20),
+            'created_at' => now()->subDays(14),
+            'last_cache_hit' => now()->subDays(7),
         ]);
 
         (new PruneSubIdxTableJob)->handle();
@@ -107,7 +107,7 @@ class PruneSubIdxTableJobTest extends TestCase
         ]);
 
         $subIdx2 = factory(SubIdx::class)->create([
-            'created_at' => now()->subDays(30),
+            'created_at' => now()->subDays(20),
             // it should be impossible for "last_cache_hit" to be before "created_at"
             'last_cache_hit' => now()->subDays(100),
         ]);

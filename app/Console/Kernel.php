@@ -28,11 +28,11 @@ class Kernel extends ConsoleKernel
         $schedule->job(GenerateSitemapJob::class)->dailyAt('2:00');
 
         // Janitor commands
-        // $schedule->command(PruneSubIdxFilesJob::class)->dailyAt('2:05');
         $schedule->job(PruneTemporaryFilesJob::class)->dailyAt('2:10');
         $schedule->job(PruneFileJobsJob::class)->dailyAt('2:15');
         $schedule->job(PruneSupJobsJob::class)->dailyAt('2:20');
         $schedule->job(PruneSubIdxTableJob::class)->dailyAt('2:25');
+        $schedule->job(PruneSubIdxFilesJob::class)->dailyAt('2:26');
         $schedule->job(PruneSupJobsTableJob::class)->dailyAt('2:30');
         $schedule->job(PruneStoredFilesJob::class)->dailyAt('2:50');
         $schedule->command('cache:clear')->dailyAt('2:55');
@@ -51,8 +51,6 @@ class Kernel extends ConsoleKernel
 
     protected function commands()
     {
-        $this->load([
-            __DIR__.'/Commands',
-        ]);
+        $this->load(__DIR__.'/Commands');
     }
 }
