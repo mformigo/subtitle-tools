@@ -9,14 +9,14 @@ class AddMissingForeignKey extends Migration
     public function up()
     {
         DB::transaction(function () {
-            Schema::table('file_jobs', function (Blueprint $table) {
-                $table->foreign('input_stored_file_id')->references('id')->on('stored_files');
-                $table->foreign('output_stored_file_id')->references('id')->on('stored_files');
-            });
+//            Schema::table('file_jobs', function (Blueprint $table) {
+//                $table->foreign('input_stored_file_id')->references('id')->on('stored_files');
+//                $table->foreign('output_stored_file_id')->references('id')->on('stored_files');
+//            });
 
-            Schema::table('sub_idx_languages', function (Blueprint $table) {
-                $table->foreign('output_stored_file_id')->references('id')->on('stored_files');
-            });
+//            Schema::table('sub_idx_languages', function (Blueprint $table) {
+//                $table->foreign('output_stored_file_id')->references('id')->on('stored_files');
+//            });
 
             Schema::table('stored_files', function (Blueprint $table) {
                 $table->unique('hash');
