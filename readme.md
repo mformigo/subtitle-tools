@@ -46,7 +46,7 @@ Subtitle Tools runs four separate queue workers. The supervisor config that keep
 
     [program:st-worker-default]
     process_name=%(program_name)s_%(process_num)02d
-    command=php /var/www/st/current/artisan queue:work --queue=default --sleep=2 --tries=1
+    command=php /var/www/st/current/artisan queue:work --queue=default,A500 --sleep=2 --tries=1
     numprocs=3
     autorestart=true
     user=www-data
