@@ -43,28 +43,4 @@ class SupJobTest extends TestCase
 
         $this->assertMatchesFileSnapshot($supJob->outputStoredFile);
     }
-
-    /** @test */
-    function it_can_retry_a_job()
-    {
-        $supJob = $this->makeSupJob('sup/three-english-cues.sup', 'eng');
-
-        $supJob->dispatchJob();
-
-        $supJob = SupJob::findOrFail($supJob->id);
-
-        $firstRunOutputId  = $supJob->output_stored_file_id;
-        $firstRunCreatedAt = $supJob->created_at;
-        $this->assertNull($supJob->error_message);
-
-        StoredFile::find($firstRunOutputId)->delete();
-
-        $supJob->retry();
-
-        $supJob = SupJob::findOrFail($supJob->id);
-
-        $this->assertNotSame($firstRunCreatedAt, $supJob->created_at);
-        $this->assertSame($firstRunOutputId + 1, $supJob->output_stored_file_id);
-        $this->assertNull($supJob->error_message);
-    }
 }

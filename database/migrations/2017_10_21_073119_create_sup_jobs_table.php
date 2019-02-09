@@ -31,6 +31,11 @@ class CreateSupJobsTable extends Migration
             $table->dateTime('last_cache_hit')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('input_stored_file_id')->references('id')->on('stored_files');
+            $table->foreign('output_stored_file_id')->references('id')->on('stored_files');
+
+            $table->unique(['ocr_language', 'input_file_hash']);
         });
     }
 }

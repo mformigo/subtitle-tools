@@ -52,32 +52,4 @@ class SupJob extends Model
     {
         ExtractSupImagesJob::dispatch($this)->onQueue('A200');
     }
-
-    /**
-     * Reset and retry this sup job
-     */
-    public function retry()
-    {
-        if ($this->inputStoredFile === null) {
-            abort(422, 'Can not retry sup job, input file has been deleted');
-        }
-
-        $this->update([
-            'created_at'             => now(),
-            'updated_at'             => now(),
-            'output_stored_file_id'  => null,
-            'error_message'          => null,
-            'internal_error_message' => null,
-            'temp_dir'               => null,
-            'started_at'             => null,
-            'finished_at'            => null,
-            'queue_time'             => null,
-            'extract_time'           => null,
-            'work_time'              => null,
-        ]);
-
-        optional($this->meta)->delete();
-
-        $this->dispatchJob();
-    }
 }

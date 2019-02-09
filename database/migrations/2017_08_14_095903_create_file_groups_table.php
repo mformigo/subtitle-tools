@@ -19,6 +19,8 @@ class CreateFileGroupsTable extends Migration
             $table->string('archive_error')->nullable();
             $table->unsignedInteger('archive_stored_file_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('archive_stored_file_id')->references('id')->on('stored_files');
         });
     }
 }

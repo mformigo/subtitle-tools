@@ -22,8 +22,6 @@ class SupController
 
     public function retry(SupJob $supJob)
     {
-        $supJob->retry();
-
-        return back();
+        dd('re-trying sup-jobs has been removed');
     }
 }

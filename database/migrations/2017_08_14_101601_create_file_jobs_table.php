@@ -21,6 +21,8 @@ class CreateFileJobsTable extends Migration
             $table->timestamps();
 
             $table->foreign('file_group_id')->references('id')->on('file_groups')->onDelete('cascade');
+            $table->foreign('input_stored_file_id')->references('id')->on('stored_files');
+            $table->foreign('output_stored_file_id')->references('id')->on('stored_files');
         });
     }
 }

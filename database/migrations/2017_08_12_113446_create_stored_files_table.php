@@ -13,6 +13,8 @@ class CreateStoredFilesTable extends Migration
             $table->string('hash');
             $table->string('storage_file_path');
             $table->timestamps();
+
+            $table->unique('hash');
         });
     }
 }

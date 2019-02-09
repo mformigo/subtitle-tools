@@ -10,10 +10,10 @@ class CreateSupJobMetasTable extends Migration
     {
         Schema::create('sup_job_metas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('sup_job_id');
+            $table->unsignedInteger('sup_job_id')->unique();
             $table->unsignedInteger('file_size');
             $table->string('format')->nullable();
-            $table->integer('cue_count')->nullable();
+            $table->unsignedInteger('cue_count')->nullable();
             $table->boolean('failed_to_open')->nullable();
             $table->timestamps();
 

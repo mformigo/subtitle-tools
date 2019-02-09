@@ -5,8 +5,12 @@ use App\Models\SubIdxLanguage;
 use Faker\Generator as Faker;
 
 $factory->define(SubIdxLanguage::class, function (Faker $faker) {
+    static $index = -1;
+
+    $index++;
+
     return [
-        'index' => (string) mt_rand(0, 12),
+        'index' => (string) $index,
         'language' => $faker->randomElement(array_keys(__('languages.subIdx'))),
         'output_stored_file_id' => null,
         'error_message' => null,
