@@ -11,7 +11,7 @@ class CreateFileJobsTable extends Migration
         Schema::create('file_jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('file_group_id');
-            $table->string('original_name');
+            $table->string('original_name', 2000);
             $table->string('new_extension')->nullable();
             $table->string('error_message')->nullable();
             $table->unsignedInteger('input_stored_file_id');
