@@ -15,7 +15,7 @@ Required binaries:
   - [Tesseract v3 traineddata](https://github.com/tesseract-ocr/tessdata/tree/3.04.00)
 
 Optional PECL extension:
-- [rar](http://php.net/manual/en/book.rar.php) for extracting rar archives
+- [rar](http://php.net/manual/en/book.rar.php) for extracting rar archives uploaded by users
 
 Installation
 ```bash
