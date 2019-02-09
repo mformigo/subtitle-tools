@@ -48,7 +48,7 @@ class ZipFileGroupJob extends BaseJob implements ShouldQueue
 
             $alreadyAddedNames[] = strtolower($nameInZip);
 
-            $newZip->addFile($fileJob->outputStoredFile->filePath, $nameInZip);
+            $newZip->addFile($fileJob->outputStoredFile->file_path, $nameInZip);
         }
 
         if ($newZip->numFiles === 0) {
