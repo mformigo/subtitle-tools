@@ -67,6 +67,18 @@ class MergeControllerTest extends TestCase
     }
 
     /** @test */
+    function the_base_subtitle_has_to_be_of_a_supported_format()
+    {
+        $this->post(route('merge'), [
+                'subtitles' => $this->createUploadedFile('text/smi/smi01.smi'),
+                'second-subtitle' => $this->createUploadedFile('text/ass/three-cues.ass'),
+                'mode' => 'simple',
+            ])
+            ->assertStatus(302)
+            ->assertSessionHasErrors(['subtitles' => 'The base subtitle format is not supported']);
+    }
+
+    /** @test */
     function it_can_glue_two_srt_files_end_to_end()
     {
         $this->snapshotGlueMerge('text/srt/three-cues.srt', 'text/srt/three-cues-chinese.srt', 0);

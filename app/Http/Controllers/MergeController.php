@@ -38,9 +38,9 @@ class MergeController extends FileJobController
                 function ($attribute, $value, $fail) {
                     $inputSubtitle = TextFileFormat::getMatchingFormat($value->getRealPath(), false);
 
-                    return $inputSubtitle instanceof ContainsGenericCues
-                        ? null
-                        : $fail('The base subtitle format is not supported');
+                    if (! $inputSubtitle instanceof ContainsGenericCues) {
+                        $fail('The base subtitle format is not supported');
+                    }
                 },
             ],
         ];
