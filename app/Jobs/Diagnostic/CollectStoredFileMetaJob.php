@@ -19,7 +19,7 @@ class CollectStoredFileMetaJob extends BaseJob implements ShouldQueue
 {
     public $timeout = 30;
 
-    public $queue = 'low-fast';
+    public $queue = 'A500';
 
     public $storedFile;
 

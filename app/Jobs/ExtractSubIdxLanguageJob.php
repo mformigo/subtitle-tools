@@ -13,7 +13,7 @@ class ExtractSubIdxLanguageJob extends BaseJob implements ShouldQueue
     // the shell_exec in VobSub2Srt times out after 300 seconds
     public $timeout = 330;
 
-    public $queue = 'sub-idx';
+    public $queue = 'B200';
 
     public $subIdxLanguage;
 

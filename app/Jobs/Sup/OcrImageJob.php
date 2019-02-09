@@ -148,7 +148,7 @@ class OcrImageJob extends BaseJob implements ShouldQueue
 
             $supJob = SupJob::findOrFail($this->supJobId);
 
-            BuildSupSrtJob::dispatch($supJob)->onQueue('larry-high');
+            BuildSupSrtJob::dispatch($supJob)->onQueue('A100');
         }
     }
 
@@ -204,7 +204,7 @@ class OcrImageJob extends BaseJob implements ShouldQueue
                 $this->supJobId,
                 $filePath,
                 $this->ocrLanguage
-            )->onQueue('larry-lowest');
+            )->onQueue('A400');
         }
     }
 }

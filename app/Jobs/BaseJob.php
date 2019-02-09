@@ -11,7 +11,7 @@ abstract class BaseJob
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $queue = 'default';
+    public $queue;
 
     public $tries = 1;
 

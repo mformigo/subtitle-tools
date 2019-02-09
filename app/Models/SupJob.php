@@ -50,7 +50,7 @@ class SupJob extends Model
      */
     public function dispatchJob()
     {
-        ExtractSupImagesJob::dispatch($this)->onQueue('larry-default');
+        ExtractSupImagesJob::dispatch($this)->onQueue('A200');
     }
 
     /**

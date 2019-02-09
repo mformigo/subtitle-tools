@@ -30,11 +30,11 @@ class CollectMetaForSupJobsJobTest extends TestCase
 
         Queue::assertPushed(CollectSupMetaJob::class, 2);
 
-        Queue::assertPushedOn('low-fast', CollectSupMetaJob::class, function (CollectSupMetaJob $job) use ($sup1) {
+        Queue::assertPushedOn('A500', CollectSupMetaJob::class, function (CollectSupMetaJob $job) use ($sup1) {
             return $job->supJob->id === $sup1->id;
         });
 
-        Queue::assertPushedOn('low-fast', CollectSupMetaJob::class, function (CollectSupMetaJob $job) use ($sup3) {
+        Queue::assertPushedOn('A500', CollectSupMetaJob::class, function (CollectSupMetaJob $job) use ($sup3) {
             return $job->supJob->id === $sup3->id;
         });
     }

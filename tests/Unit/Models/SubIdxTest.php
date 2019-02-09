@@ -130,6 +130,6 @@ class SubIdxTest extends TestCase
             return $job->subIdxLanguage->id === $language->id;
         });
 
-        Queue::assertPushedOn('sub-idx', ExtractSubIdxLanguageJob::class);
+        Queue::assertPushedOn('B200', ExtractSubIdxLanguageJob::class);
     }
 }

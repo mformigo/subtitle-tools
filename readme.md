@@ -29,78 +29,82 @@ php artisan migrate
 npm i && npm run dev
 ```
 
-## Queues
-```bash
-php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast
-```
-
 ## Laravel version
-[Compare to laravel master](https://github.com/laravel/laravel/compare/321d9e3786bfd605fe847e34687ccfa8def5bda2...master)
+The following link can be used to keep the application in sync with Laravel's master branch: [compare to laravel master](https://github.com/laravel/laravel/compare/321d9e3786bfd605fe847e34687ccfa8def5bda2...master)
 
 ## General information
 * Language codes use [ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) (same as Tesseract)
 
-## Queue workers
-Subtitle Tools runs four queue workers. The supervisor config that keeps these workers running is listed below. The queue workers that handle sub/idx and sup OCR jobs are [nice](https://en.wikipedia.org/wiki/Nice_(Unix)). When they are processing a job, they always use all available processing power. Making them nice ensures that web requests and other more important work is given priority.
+## Queues
+Subtitle Tools runs four separate queue workers. The supervisor config that keeps these workers running is listed below. The queue workers that handle sub/idx and sup OCR jobs are [nice](https://en.wikipedia.org/wiki/Nice_(Unix)). OCR'ing is a CPU heavy job, it will consume all available processing power of the thread it is running on. Making them nice ensures that web requests and other more important work is given priority.
 
 <details>
     <summary>Supervisor config</summary>
-    
+
+    [program:st-worker-default]
+    process_name=%(program_name)s_%(process_num)02d
+    command=php /var/www/st/current/artisan queue:work --queue=default --sleep=2 --tries=1
+    numprocs=3
+    autorestart=true
+    user=www-data
+
     [program:st-worker-broadcast]
     process_name=%(program_name)s_%(process_num)02d
     command=php /var/www/st/current/artisan queue:work --queue=broadcast --sleep=2 --tries=2
     autorestart=true
     user=www-data
 
-    [program:st-worker-default]
+    [program:st-worker-1]
     process_name=%(program_name)s_%(process_num)02d
-    command=php /var/www/st/current/artisan queue:work --queue=default,low-fast --sleep=2 --tries=2
+    command=nice php /var/www/st/current/artisan queue:work --queue=A100,A200,A300,A400,A500 --sleep=2 --tries=1
     autorestart=true
     user=www-data
 
-    [program:st-worker-jerry]
+    [program:st-worker-2]
     process_name=%(program_name)s_%(process_num)02d
-    command=nice php /var/www/st/current/artisan queue:work --queue=larry-high,larry-default,larry-low,larry-lowest --sleep=2 --tries=1
-    autorestart=true
-    user=www-data
-
-    [program:st-worker-larry]
-    process_name=%(program_name)s_%(process_num)02d
-    command=nice php /var/www/st/current/artisan queue:work --queue=slow-high,sub-idx,larry-high,larry-default,larry-low,larry-lowest --sleep=2 --tries=1
+    command=nice php /var/www/st/current/artisan queue:work --queue=B200,A100,A200,A300,A400,A500 --sleep=2 --tries=1
     autorestart=true
     user=www-data
 </details>
 
--------------
- 
--------------
- 
--------------
- 
--------------
- # OLD
- # OLD
- # OLD
+While debugging, you can run the following command to process all jobs:
+```bash
+artisan queue:work --queue=broadcast,default,B200,A100,A200,A300,A400,A500 --sleep=2 --tries=1
+```
 
+### Jobs per queue
+The list below shows which queue runs which jobs. The order in which the queues are handled can be found in the supervisor config above.
 
-## Queues and Workers
-`php artisan queue:work --queue=broadcast,default,slow-high,sub-idx,low-fast`
-* sup to srt jobs are run on the **slow-high** queue.
-* sub-idx language extract jobs run on the **sub-idx** queue when the slow-high queue is idle
-* broadcasting happens on the **broadcast** queue
-* file jobs happen on the **default** queue
-* fast low prio jobs happen on **low-fast**, when the default queue is idle
- 
-* **larry-high**: BuildSupSrtJob
-* **larry-default**: ExtractSupImagesJob
-* **larry-low**: OcrImageJob
-* **larry-lowest**: OcrImageJob (slow)
+**default**
+- All `FileJobs`
+
+**broadcast**
+- All events
+
+**A100**
+- `BuildSupSrtJob`
+
+**A200**
+- `ExtractSupImagesJob`
+
+**A300**
+- `OcrImageJob`
+
+**A400**
+- `OcrImageJob` (when the job in queue A300 takes too long, it is re-dispatched on this lower priority queue with a higher timeout)
+
+**A500**
+- `CollectSupMetaJob`
+- `CollectStoredFileMetaJob`
+
+**B200**
+- `ExtractSubIdxLanguageJob`
 
 ## Adding a FileGroup + FileJob tool
-* make a new controller that extends `FileJobController`, add routes and views
-* make a new job that extends `FileJob`
+* Make a new controller that extends `FileJobController`, add routes and views
+* Make a new job that extends `FileJob`
 
-### Adding a new plain-text format
+## Adding a new plain-text format
 * Create a `NewFormat` class that extends the abstract `TextFile`
 * Make it use either the `WithFileContent` trait or the `WithFileLines` trait
 * If it can be converted to `Srt`, implement the `TransformsToGenericSubtitle` interface

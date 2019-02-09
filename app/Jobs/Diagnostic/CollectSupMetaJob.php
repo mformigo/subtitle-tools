@@ -10,7 +10,7 @@ use SjorsO\Sup\SupFile;
 
 class CollectSupMetaJob extends BaseJob implements ShouldQueue
 {
-    public $queue = 'low-fast';
+    public $queue = 'A500';
 
     public $supJob;
 

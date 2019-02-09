@@ -64,7 +64,7 @@ class SubIdxControllerTest extends TestCase
             return $job->subIdxLanguage->id === $language->id;
         });
 
-        Queue::assertPushedOn('sub-idx', ExtractSubIdxLanguageJob::class);
+        Queue::assertPushedOn('B200', ExtractSubIdxLanguageJob::class);
 
         $this->assertNotNull($language->refresh()->queued_at);
     }

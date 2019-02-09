@@ -30,11 +30,11 @@ class CollectMetaForStoredFilesJobTest extends TestCase
 
         Queue::assertPushed(CollectStoredFileMetaJob::class, 2);
 
-        Queue::assertPushedOn('low-fast', CollectStoredFileMetaJob::class, function (CollectStoredFileMetaJob $job) use ($s1) {
+        Queue::assertPushedOn('A500', CollectStoredFileMetaJob::class, function (CollectStoredFileMetaJob $job) use ($s1) {
             return $job->storedFile->id === $s1->id;
         });
 
-        Queue::assertPushedOn('low-fast', CollectStoredFileMetaJob::class, function (CollectStoredFileMetaJob $job) use ($s3) {
+        Queue::assertPushedOn('A500', CollectStoredFileMetaJob::class, function (CollectStoredFileMetaJob $job) use ($s3) {
             return $job->storedFile->id === $s3->id;
         });
     }

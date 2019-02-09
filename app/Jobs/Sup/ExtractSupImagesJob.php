@@ -68,7 +68,7 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
                 $this->supJob->id,
                 $filePathsChunk,
                 $ocrLanguage
-            )->onQueue('larry-low');
+            )->onQueue('A300');
         }
 
         // fix a memory leak this job causes
