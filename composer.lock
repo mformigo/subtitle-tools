@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f079b29001f76539ad99f46a589e4c1c",
+    "content-hash": "561bc0bb2fa5e1b751b8a9628c914644",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -886,16 +886,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.24",
+            "version": "v5.7.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2ede55db4b8201ed0450fa7e7a4d7220aa29bc34"
+                "reference": "f8fb354878064b94a3ff09a6ffd48ee9a8d712cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2ede55db4b8201ed0450fa7e7a4d7220aa29bc34",
-                "reference": "2ede55db4b8201ed0450fa7e7a4d7220aa29bc34",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f8fb354878064b94a3ff09a6ffd48ee9a8d712cf",
+                "reference": "f8fb354878064b94a3ff09a6ffd48ee9a8d712cf",
                 "shasum": ""
             },
             "require": {
@@ -1028,7 +1028,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-01-29T22:13:46+00:00"
+            "time": "2019-02-05T14:28:43+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
@@ -1548,16 +1548,16 @@
         },
         {
             "name": "nexmo/client",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nexmo/nexmo-php.git",
-                "reference": "3dc03ca1dab726a23b757110897740e54304fc65"
+                "reference": "2f79f67f24225ea627ee14578e98c96276cdd4c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/3dc03ca1dab726a23b757110897740e54304fc65",
-                "reference": "3dc03ca1dab726a23b757110897740e54304fc65",
+                "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/2f79f67f24225ea627ee14578e98c96276cdd4c5",
+                "reference": "2f79f67f24225ea627ee14578e98c96276cdd4c5",
                 "shasum": ""
             },
             "require": {
@@ -1592,7 +1592,7 @@
                 }
             ],
             "description": "PHP Client for using Nexmo's API.",
-            "time": "2019-01-02T09:06:47+00:00"
+            "time": "2019-02-07T11:14:34+00:00"
         },
         {
             "name": "nicmart/tree",
@@ -2896,16 +2896,16 @@
         },
         {
             "name": "spatie/dropbox-api",
-            "version": "1.6.6",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/dropbox-api.git",
-                "reference": "7ffa228049c36bfb62fbeba2d1a73ea8aaaac424"
+                "reference": "efd9223d5e2d44ec56511aba5bb16c161e78e2aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/dropbox-api/zipball/7ffa228049c36bfb62fbeba2d1a73ea8aaaac424",
-                "reference": "7ffa228049c36bfb62fbeba2d1a73ea8aaaac424",
+                "url": "https://api.github.com/repos/spatie/dropbox-api/zipball/efd9223d5e2d44ec56511aba5bb16c161e78e2aa",
+                "reference": "efd9223d5e2d44ec56511aba5bb16c161e78e2aa",
                 "shasum": ""
             },
             "require": {
@@ -2948,7 +2948,7 @@
                 "spatie",
                 "v2"
             ],
-            "time": "2018-07-19T16:27:05+00:00"
+            "time": "2019-02-06T22:05:37+00:00"
         },
         {
             "name": "spatie/flysystem-dropbox",
@@ -3180,16 +3180,16 @@
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "5.2.7",
+            "version": "5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d"
+                "reference": "5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
-                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264",
+                "reference": "5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264",
                 "shasum": ""
             },
             "require": {
@@ -3235,7 +3235,7 @@
                 "laravel-sitemap",
                 "spatie"
             ],
-            "time": "2018-11-05T13:42:06+00:00"
+            "time": "2019-02-06T21:58:53+00:00"
         },
         {
             "name": "spatie/robots-txt",
@@ -4400,16 +4400,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v5.7.24",
+            "version": "v5.7.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "e841daa7959b3017f8a86e0ec899c042591c5dc3"
+                "reference": "bcdb1d4ca989a3aaa74aeac67c8e44ccf1761b9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/e841daa7959b3017f8a86e0ec899c042591c5dc3",
-                "reference": "e841daa7959b3017f8a86e0ec899c042591c5dc3",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/bcdb1d4ca989a3aaa74aeac67c8e44ccf1761b9d",
+                "reference": "bcdb1d4ca989a3aaa74aeac67c8e44ccf1761b9d",
                 "shasum": ""
             },
             "require": {
@@ -4446,7 +4446,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2019-01-29T17:59:42+00:00"
+            "time": "2019-02-05T15:00:41+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5998,16 +5998,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.3",
+            "version": "7.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2cb759721e53bc05f56487f628c6b9fbb6c18746"
+                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2cb759721e53bc05f56487f628c6b9fbb6c18746",
-                "reference": "2cb759721e53bc05f56487f628c6b9fbb6c18746",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2896657da5fb237bc316bdfc18c2650efeee0dc0",
+                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0",
                 "shasum": ""
             },
             "require": {
@@ -6078,7 +6078,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-01T05:24:07+00:00"
+            "time": "2019-02-07T14:15:04+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -6741,21 +6741,22 @@
         },
         {
             "name": "spatie/phpunit-snapshot-assertions",
-            "version": "1.4.1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/phpunit-snapshot-assertions.git",
-                "reference": "806539f38b4115593ee74c735c5186deb8ca5310"
+                "reference": "216f5710a595fdc08f0fd42129d91b659087fb2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/806539f38b4115593ee74c735c5186deb8ca5310",
-                "reference": "806539f38b4115593ee74c735c5186deb8ca5310",
+                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/216f5710a595fdc08f0fd42129d91b659087fb2e",
+                "reference": "216f5710a595fdc08f0fd42129d91b659087fb2e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
-                "phpunit/phpunit": "^6.0.5|^7.0"
+                "php": "^7.1",
+                "phpunit/phpunit": "^7.0",
+                "symfony/yaml": "^4.2"
             },
             "type": "library",
             "autoload": {
@@ -6785,7 +6786,7 @@
                 "spatie",
                 "testing"
             ],
-            "time": "2019-01-29T11:41:05+00:00"
+            "time": "2019-01-29T16:23:43+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -6834,6 +6835,65 @@
                 }
             ],
             "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-01-16T20:35:37+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v4.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "d461670ee145092b7e2a56c1da7118f19cadadb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/d461670ee145092b7e2a56c1da7118f19cadadb0",
+                "reference": "d461670ee145092b7e2a56c1da7118f19cadadb0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "conflict": {
+                "symfony/console": "<3.4"
+            },
+            "require-dev": {
+                "symfony/console": "~3.4|~4.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2019-01-16T20:35:37+00:00"
         },
