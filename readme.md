@@ -1,6 +1,9 @@
 # Subtitle Tools
 Online tools to sync, fix and convert subtitle files.
 
+The following repositories are part of Subtitle Tools:
+- https://github.com/SjorsO/sup
+
 ## Installation
 Required php extensions:
 - [gd](http://php.net/manual/en/book.image.php) for working with images extracted from sup files
@@ -107,3 +110,11 @@ The list below shows which queue runs which jobs. The order in which the queues 
 * Make it use either the `WithFileContent` trait or the `WithFileLines` trait
 * If it can be converted to `Srt`, implement the `TransformsToGenericSubtitle` interface
 * Add the `NewFormat` class to the `$formats` array in `\App\Subtitles\TextFileFormat`
+
+## Contributing
+Feel free to open a pull request if you want to add a new feature, or if you want to help improve the code, design, text, seo, or any other part of the website.
+
+If you want want to discuss an idea before implementing it, you can contact me by email, twitter, or by opening an issue. 
+
+## License
+This project is open-source software licensed under the [MIT license](http://opensource.org/licenses/MIT)
