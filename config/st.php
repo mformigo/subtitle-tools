@@ -32,7 +32,7 @@ return [
      *   PruneStoredFiles command
      *
      */
-    'checked-migration' => '2019_02_09_124907_more_foreign_keys',
+    'checked-migration' => '2018_02_18_142350_create_file_job_stats_table',
 
     'tesseract' => [
 

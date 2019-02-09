@@ -25,6 +25,8 @@ class CreateSubIdxesTable extends Migration
             $table->unsignedInteger('cache_hits')->default(0);
             $table->dateTime('last_cache_hit')->nullable();
             $table->timestamps();
+
+            $table->unique(['sub_hash', 'idx_hash']);
         });
     }
 }

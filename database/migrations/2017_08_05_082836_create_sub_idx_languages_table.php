@@ -24,6 +24,8 @@ class CreateSubIdxLanguagesTable extends Migration
 
             $table->foreign('sub_idx_id')->references('id')->on('sub_idxes')->onDelete('cascade');
             $table->foreign('output_stored_file_id')->references('id')->on('stored_files');
+
+            $table->unique(['sub_idx_id', 'index']);
         });
     }
 }
