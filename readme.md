@@ -67,6 +67,7 @@ Subtitle Tools runs four separate queue workers. The supervisor config that keep
     user=www-data
 </details>
 
+### Processing all jobs
 While debugging, you can run the following command to process all jobs:
 ```bash
 artisan queue:work --queue=broadcast,default,B200,A100,A200,A300,A400,A500 --sleep=2 --tries=1
@@ -75,30 +76,27 @@ artisan queue:work --queue=broadcast,default,B200,A100,A200,A300,A400,A500 --sle
 ### Jobs per queue
 The list below shows which queue runs which jobs. The order in which the queues are handled can be found in the supervisor config above.
 
-**default**
-- All `FileJobs`
+<details>
+    <summary>Jobs per queue</summary>
 
-**broadcast**
-- All events
-
-**A100**
-- `BuildSupSrtJob`
-
-**A200**
-- `ExtractSupImagesJob`
-
-**A300**
-- `OcrImageJob`
-
-**A400**
-- `OcrImageJob` (when the job in queue A300 takes too long, it is re-dispatched on this lower priority queue with a higher timeout)
-
-**A500**
-- `CollectSupMetaJob`
-- `CollectStoredFileMetaJob`
-
-**B200**
-- `ExtractSubIdxLanguageJob`
+- **default**
+    - All `FileJobs`
+- **broadcast**
+    - All events
+- **A100**
+    - `BuildSupSrtJob`
+- **A200**
+    - `ExtractSupImagesJob`
+- **A300**
+    - `OcrImageJob`
+- **A400**
+    - `OcrImageJob` (when the job in queue A300 takes too long, it is re-dispatched on this lower priority queue with a higher timeout)
+- **A500**
+    - `CollectSupMetaJob`
+    - `CollectStoredFileMetaJob`
+- **B200**
+    - `ExtractSubIdxLanguageJob`
+</details>
 
 ## Adding a FileGroup + FileJob tool
 * Make a new controller that extends `FileJobController`, add routes and views
