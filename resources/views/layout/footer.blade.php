@@ -2,8 +2,8 @@
     <div class="container mx-auto px-4 flex sm:flex-row flex-col justify-between flex-wrap text-center">
 
         <div class="flex flex-col">
-            <span class="mb-6">
-                <strong class="block">Donate</strong>
+            <span class="mb-4">
+                <strong class="block text-lg">Donate</strong>
                 <span class="block w-48 sm:mx-0 mx-auto">Help keep this site online</span>
             </span>
 
@@ -14,15 +14,15 @@
                 <img alt="" border="0" src="https://www.paypalobjects.com/nl_NL/i/scr/pixel.gif" width="1" height="1">
             </form>
 
-            <div class="flex items-center justify-around">
+            <div class="flex items-center justify-center">
 
-                <div class="w-6">
+                <div class="w-6 mx-4">
                     <a href="https://blockchain.info/address/1MSGtvPJ5nrtdqhsmnn4Fb6KjmkySLNGot" title="Donate Bitcoin (BTC)" target="_blank" rel="nofollow">
                         @include('helpers.svg.bitcoin')
                     </a>
                 </div>
 
-                <div class="w-4">
+                <div class="w-4 mx-4">
                     <a href="https://etherscan.io/address/0xC70e876b14eB5878Fe7Ae85431758c5b855902Fc" title="Donate Ethereum (ETH)" target="_blank" rel="nofollow">
                         @include('helpers.svg.ethereum')
                     </a>
@@ -33,16 +33,20 @@
         </div>
 
         <div class="flex flex-col sm:mt-0 mt-4 sm:text-right text-center">
-            <a class="mb-2 text-black hover:underline" href="{{ route('contact') }}">Contact, feedback or requests</a>
+            <a class="flex items-center justify-center sm:justify-end mb-2 text-black hover:underline" href="{{ route('contact') }}">
+                Contact / feedback
+                @include('helpers.svg.speech', ['class' => 'w-4 h-4 ml-2 min-w-5'])
+            </a>
 
-            <span class="mb-2">
-                Created by
-                <a class="text-black hover:underline" target="_blank" href="https://twitter.com/SjorsOttjes">Sjors Ottjes</a>
-            </span>
+            <a class="flex items-center justify-center sm:justify-end mb-2 text-black hover:underline" href="{{ route('stats') }}">
+                Statistics
+                @include('helpers.svg.chart', ['class' => 'h-4 w-4 ml-2 min-w-5'])
+            </a>
 
-            <span class="mb-2">
-                <a class="text-black hover:underline" href="{{ route('stats') }}">Statistics</a>
-            </span>
+            <a class="flex items-center justify-center sm:justify-end text-black hover:underline" href="https://github.com/SjorsO/subtitle-tools">
+                Github
+                @include('helpers.svg.github', ['class' => 'h-5 w-5 ml-2 min-w-5'])
+            </a>
         </div>
 
     </div>
