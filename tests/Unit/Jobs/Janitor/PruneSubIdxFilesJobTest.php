@@ -58,7 +58,7 @@ class PruneSubIdxFilesJobTest extends TestCase
         $storageDirectory = $subIdx->store_directory;
 
         $this->assertTrue(
-            (bool) preg_match('~^sub-idx/\d\d\d\d-\d\d/~', $storageDirectory)
+            (bool) preg_match('~^sub-idx/\d\d\d\d-\d\d?\d?/~', $storageDirectory)
         );
 
         $this->assertStringEndsWith('/', $storageDirectory);
