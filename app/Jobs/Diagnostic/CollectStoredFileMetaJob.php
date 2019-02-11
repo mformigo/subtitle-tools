@@ -86,32 +86,32 @@ class CollectStoredFileMetaJob extends BaseJob implements ShouldQueue
             $meta->line_endings = $detectedEol === 'unknown' ? 'unknown' : $lineEndings[$detectedEol];
 
 
-            try {
-                if ($subtitleFormat instanceof TransformsToGenericSubtitle) {
-                    $tool = new ToPlainText();
+//            try {
+//                if ($subtitleFormat instanceof TransformsToGenericSubtitle) {
+//                    $tool = new ToPlainText();
+//
+//                    $options = new ToPlainTextOptions();
+//
+//                    $options->newLineBetweenCues = false;
+//
+//                    $plainText = $tool->options($options)->convert($subtitleFormat);
+//
+//                    $detectableContent = is_null($plainText) ? null : $plainText->getContent();
+//                } else {
+//                    $detectableContent = $fileContent;
+//                }
+//
+//                $language = $detectableContent
+//                    ? (string) (new Language)->detect($detectableContent)
+//                    : 'failed';
+//            } catch (Exception $e) {
+//                Log::error('Language detection exception for stored file id: '.$meta->stored_file_id);
+//                Log::error($e->getMessage());
+//
+//                $language = 'failed';
+//            }
 
-                    $options = new ToPlainTextOptions();
-
-                    $options->newLineBetweenCues = false;
-
-                    $plainText = $tool->options($options)->convert($subtitleFormat);
-
-                    $detectableContent = is_null($plainText) ? null : $plainText->getContent();
-                } else {
-                    $detectableContent = $fileContent;
-                }
-
-                $language = $detectableContent
-                    ? (string) (new Language)->detect($detectableContent)
-                    : 'failed';
-            } catch (Exception $e) {
-                Log::error('Language detection exception for stored file id: '.$meta->stored_file_id);
-                Log::error($e->getMessage());
-
-                $language = 'failed';
-            }
-
-            $meta->language = $language;
+            $meta->language = 'skipped'; // $language;
         }
 
         $meta->save();
