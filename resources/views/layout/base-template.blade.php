@@ -26,6 +26,8 @@
 
         <link rel="icon" type="image/png" href="/favicon.png" />
 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
         <link rel="stylesheet" type="text/css" href="{{ mix('css/main.css') }}" />
 
         @if(App::environment('production'))
@@ -47,7 +49,7 @@
         @endif
 
     </head>
-    <body class="font-sans relative overflow-hidden overflow-y-scroll">
+    <body class="font-open-sans relative overflow-hidden overflow-y-scroll">
 
         @include('layout.header')
 
