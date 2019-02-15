@@ -4,10 +4,16 @@ namespace App\Models;
 
 use App\Support\Facades\FileName;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileJob extends Model
 {
     protected $guarded = [];
+
+    protected $casts = [
+        'input_stored_file_id' => 'int',
+        'output_stored_file_id' => 'int',
+    ];
 
     public function fileGroup()
     {
@@ -57,5 +63,19 @@ class FileJob extends Model
             'isFinished'   => $this->has_finished,
             'errorMessage' => $this->has_error ? __($this->error_message) : false,
         ];
+    }
+
+    public static function makeFromUploadedFile(UploadedFile $file)
+    {
+        $storedFile = StoredFile::getOrCreate($file);
+
+        $originalName = $file instanceof UploadedFile
+            ? ($file->_originalName ?? basename($file))
+            : basename($file);
+
+        return static::make([
+            'input_stored_file_id' => $storedFile->id,
+            'original_name' => $originalName,
+        ]);
     }
 }

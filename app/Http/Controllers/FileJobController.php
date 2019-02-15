@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Rules\AreUploadedFilesRule;
+use App\Jobs\FileJobs\FileJob;
 use App\Models\FileGroup;
+use App\Models\FileJob as FileJobModel;
 use App\Subtitles\Tools\Options\NoOptions;
 use App\Subtitles\Tools\Options\ToolOptions;
 use App\Support\Facades\FileName;
@@ -11,6 +13,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Arr;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 abstract class FileJobController extends BaseController
 {
@@ -18,11 +22,10 @@ abstract class FileJobController extends BaseController
 
     protected $indexRouteName;
 
+    /** @var FileJob $job */
     protected $job;
 
-    /**
-     * @var ToolOptions
-     */
+    /** @var ToolOptions $options */
     protected $options = NoOptions::class;
 
     protected $shouldAlwaysQueue = false;
@@ -59,7 +62,7 @@ abstract class FileJobController extends BaseController
             $options = $options->toArray();
         }
 
-        return $this->doFileJobs($this->job, $options);
+        return $this->doFileJobs($options);
     }
 
     protected function rules(): array
@@ -69,7 +72,6 @@ abstract class FileJobController extends BaseController
 
     protected function validateFileJob(Request $request, array $additionalRules = [])
     {
-        // Allow the additional rules to override the "subtitles" rule.
         $request->validate($additionalRules + [
             'subtitles' => ['required', 'array', 'max:100', new AreUploadedFilesRule],
         ]);
@@ -78,6 +80,56 @@ abstract class FileJobController extends BaseController
     protected function options(Request $request)
     {
         return $this->options->load($request);
+    }
+
+    protected function doFileJobs(array $jobOptions = [])
+    {
+        $files = array_wrap(
+            request()->files->get('subtitles')
+        );
+
+        $fileGroup = FileGroup::create([
+            'tool_route' => $this->indexRouteName,
+            'url_key' => generate_url_key(),
+            'job_options' => $jobOptions,
+        ]);
+
+        return $this->shouldAlwaysQueue || count($files) > 1
+            ? $this->queueFileJobs($fileGroup, $files)
+            : $this->processFileJob($fileGroup, Arr::first($files));
+    }
+
+    private function queueFileJobs(FileGroup $fileGroup, $files)
+    {
+        $fileJobModels = [];
+
+        foreach ($files as $file) {
+            $fileJobModels[] = FileJobModel::makeFromUploadedFile($file);
+        }
+
+        $fileGroup->fileJobs()->saveMany($fileJobModels);
+
+        foreach ($fileJobModels as $fileJobModel) {
+            $this->job::dispatch($fileJobModel);
+        }
+
+        return redirect($fileGroup->result_route);
+    }
+
+    private function processFileJob(FileGroup $fileGroup, UploadedFile $file)
+    {
+        $fileGroup->fileJobs()->save(
+            $fileJobModel = FileJobModel::makeFromUploadedFile($file)
+        );
+
+        $job = new $this->job($fileJobModel);
+
+        /** @var \App\Models\FileJob $fileJob */
+        $fileJob = $job->handle();
+
+        return $fileJob->has_error
+            ? back()->withInput()->withErrors(['subtitles' => __($fileJob->error_message)])
+            : redirect($fileGroup->result_route);
     }
 
     public function result($urlKey)
@@ -93,6 +145,7 @@ abstract class FileJobController extends BaseController
 
     public function download($urlKey, $id)
     {
+        /** @var \App\Models\FileJob $fileJob */
         $fileJob = FileGroup::findForTool($urlKey, $this->indexRouteName)
             ->fileJobs()
             ->whereNotNull('finished_at')
@@ -123,42 +176,5 @@ abstract class FileJobController extends BaseController
         $resultRoute = route($this->indexRouteName.'.result', $urlKey);
 
         return redirect($resultRoute);
-    }
-
-    protected function doFileJobs($jobClass, array $jobOptions = [])
-    {
-        $files = array_wrap(
-            request()->files->get('subtitles')
-        );
-
-        // only for safety. middleware should ensure this is never true
-        if (count($files) === 0) {
-            return back()->withErrors(['subtitles' => __('validation.unknown_error')]);
-        }
-
-        $fileGroup = FileGroup::create([
-            'tool_route' => $this->indexRouteName,
-            'url_key' => generate_url_key(),
-            'job_options' => $jobOptions,
-        ]);
-
-        if ($this->shouldAlwaysQueue || count($files) > 1) {
-            foreach ($files as $file) {
-                $this->dispatch(new $jobClass($fileGroup, $file));
-            }
-        } else {
-            // need to use array_values because we mess up the keys somewhere
-            $fileJob = $this->dispatchNow(new $jobClass($fileGroup, array_values($files)[0]));
-
-            if ($fileJob === null) {
-                return back(); // fileJob is null when testing with ->withoutJobs();
-            }
-
-            if ($fileJob->hasError) {
-                return back()->withInput()->withErrors(['subtitles' => __($fileJob->error_message)]);
-            }
-        }
-
-        return redirect($fileGroup->resultRoute);
     }
 }

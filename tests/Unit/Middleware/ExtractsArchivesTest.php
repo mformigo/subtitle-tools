@@ -4,6 +4,7 @@ namespace Tests\Unit\Middleware;
 
 use App\Models\FileJob;
 use App\Models\StoredFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -87,7 +88,12 @@ class ExtractsArchivesTest extends TestCase
             ])
             ->assertStatus(302);
 
-        $this->assertSame(1, StoredFile::count());
+        $storedFiles = StoredFile::all();
+
+        $this->assertCount(2, $storedFiles);
+
+        $this->assertSame('text/plain', Storage::mimeType($storedFiles->first()->storage_file_path));
+        $this->assertSame('text/plain', Storage::mimeType($storedFiles->last()->storage_file_path));
 
         $this->assertStringEndsWith('.srt', FileJob::findOrFail(1)->original_name);
     }

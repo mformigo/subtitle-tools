@@ -17,5 +17,5 @@ abstract class BaseJob
 
     public $timeout = 60;
 
-    public abstract function handle();
+    abstract public function handle();
 }

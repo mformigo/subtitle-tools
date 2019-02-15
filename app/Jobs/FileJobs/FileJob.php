@@ -6,11 +6,9 @@ use App\Jobs\BaseJob;
 use App\Support\Facades\TempFile;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\FileJobChanged;
-use App\Models\FileGroup;
 use App\Models\FileJob as FileJobModel;
 use App\Models\StoredFile;
 use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 abstract class FileJob extends BaseJob implements ShouldQueue
 {
@@ -20,25 +18,13 @@ abstract class FileJob extends BaseJob implements ShouldQueue
 
     protected $fileJob;
 
-    /**
-     * @param FileGroup $fileGroup
-     * @param $file string|UploadedFile
-     */
-    public function __construct(FileGroup $fileGroup, $file)
+    public function __construct(FileJobModel $fileJobModel)
     {
-        $this->fileGroup = $fileGroup;
+        $this->fileJob = $fileJobModel;
 
-        $this->inputStoredFile = StoredFile::getOrCreate($file);
+        $this->fileGroup = $fileJobModel->fileGroup;
 
-        $originalName = ($file instanceof UploadedFile)
-            ? $file->_originalName
-            : basename($file);
-
-        $this->fileJob = FileJobModel::create([
-            'input_stored_file_id' => $this->inputStoredFile->id,
-            'original_name'        => $originalName,
-            'file_group_id'        => $this->fileGroup->id,
-        ]);
+        $this->inputStoredFile = $fileJobModel->inputStoredFile;
     }
 
     public function startFileJob()

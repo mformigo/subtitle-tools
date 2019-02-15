@@ -4,6 +4,8 @@ namespace Tests\Unit\Controllers;
 
 use App\Jobs\FileJobs\ConvertToSrtJob;
 use App\Models\FileGroup;
+use App\Models\FileJob;
+use App\Models\StoredFile;
 use Illuminate\Http\UploadedFile;
 use Tests\PostsFileJobs;
 use Tests\TestCase;
@@ -12,17 +14,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ConvertToSrtControllerTest extends TestCase
 {
     use RefreshDatabase, PostsFileJobs;
-
-    private function convertAndSnapshot($filePath)
-    {
-        [$response, $fileGroup] = $this->postFileJob('convertToSrt', [
-            $this->createUploadedFile($filePath),
-        ]);
-
-        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
-
-        $this->assertMatchesStoredFileSnapshot(2);
-    }
 
     /** @test */
     function the_subtitles_field_is_server_side_required()
@@ -136,7 +127,7 @@ class ConvertToSrtControllerTest extends TestCase
         $fileGroup = FileGroup::findOrFail(1);
 
         $response->assertStatus(302)
-            ->assertRedirect($fileGroup->resultRoute);
+            ->assertRedirect($fileGroup->result_route);
     }
 
     /** @test */
@@ -154,20 +145,46 @@ class ConvertToSrtControllerTest extends TestCase
         $fileGroup = FileGroup::findOrFail(1);
 
         $response->assertStatus(302)
-            ->assertRedirect($fileGroup->resultRoute);
+            ->assertRedirect($fileGroup->result_route);
     }
 
     /** @test */
     function it_updates_the_file_group_when_all_jobs_finish()
     {
-        $response = $this->post(route('convertToSrt'), [
-            'subtitles' => [
-                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
-                $this->createUploadedFile("{$this->testFilesStoragePath}text/ass/three-cues.ass"),
-            ],
+        $this->postConvertToSrt([
+            $this->createUploadedFile('text/ass/three-cues.ass'),
+            $this->createUploadedFile('text/ass/three-cues.ass'),
         ]);
 
-        $this->assertNotNull(FileGroup::findOrFail(1)->file_jobs_finished_at);
+        $this->assertNotNull(
+            FileGroup::findOrFail(1)->file_jobs_finished_at
+        );
+    }
+
+    /** @test */
+    function it_can_process_the_same_file_multiple_times_in_one_request()
+    {
+        // Make sure the following error doesn't occur:
+        //   SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f86...f91' for key 'stored_files_hash_unique'
+
+        $this->postConvertToSrt([
+                // upload the same file 3 times...
+                $this->createUploadedFile('text/srt/three-cues.srt'),
+                $this->createUploadedFile('archives/zip/same-file-twice.zip'),
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertStatus(302);
+
+        $this->assertSame(2, StoredFile::count());
+
+        FileJob::all()
+            ->tap(function ($collection) {
+                $this->assertCount(3, $collection);
+            })
+            ->each(function (FileJob $fileJob) {
+                $this->assertSame(1, $fileJob->input_stored_file_id);
+                $this->assertSame(2, $fileJob->output_stored_file_id);
+            });
     }
 
     /** @test */
@@ -204,5 +221,21 @@ class ConvertToSrtControllerTest extends TestCase
     function it_can_convert_otranscribe_files_to_srt()
     {
         $this->convertAndSnapshot('text/otranscribe/otranscribe-01.txt');
+    }
+
+    private function postConvertToSrt($files)
+    {
+        return $this->post(route('convertToSrt'), ['subtitles' => $files]);
+    }
+
+    private function convertAndSnapshot($filePath)
+    {
+        [$response, $fileGroup] = $this->postFileJob('convertToSrt', [
+            $this->createUploadedFile($filePath),
+        ]);
+
+        $this->assertSuccessfulFileJobRedirect($response, $fileGroup);
+
+        $this->assertMatchesStoredFileSnapshot(2);
     }
 }
