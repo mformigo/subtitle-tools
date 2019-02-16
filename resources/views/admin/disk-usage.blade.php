@@ -1,24 +1,31 @@
 @extends('admin.layout.admin-template')
 
 @section('content')
-<div class="ml-8">
 
-    <h2 class="">Disk Usage</h2>
-    <p class="text-sm mb-8">
-        A <code class="mx-2 font-semibold">du -h --total</code> of the <code class="mx-2 font-semibold">/storage/app/</code> directory.
-    </p>
+    <h2 class="mb-4">Disk Usage</h2>
 
-<pre class="text-sm">
-@foreach($dirs as $name => $subDirs)
-<strong>{{ $name }}</strong>
-@foreach($subDirs as $subDir)
-{{ $subDir }}
-@endforeach
+    <div class="flex border-b py-2 font-bold">
+        <div class="w-48"></div>
+        <div class="w-32">Total size</div>
+        <div class="w-24">Total used</div>
+        <div class="w-16"></div>
+        <div class="w-32">Stored Files</div>
+        <div class="w-32">Sub/Idx</div>
+        <div class="w-32">Temp dirs</div>
+        <div class="w-32">Temp files</div>
+    </div>
 
-@endforeach
-</pre>
+    @foreach($diskUsages as $diskUsage)
+        <div class="flex border-b py-2 hover:bg-grey-light">
+            <div class="w-48">{{ $diskUsage->created_at->format('Y-m-d H:i') }}</div>
+            <div class="w-32">{{ format_kb($diskUsage->total_size) }}</div>
+            <div class="w-24">{{ format_kb($diskUsage->total_used) }}</div>
+            <div class="w-16">{{ $diskUsage->total_usage_percentage }}%</div>
+            <div class="w-32">{{ format_kb($diskUsage->stored_files_dir_size) }}</div>
+            <div class="w-32">{{ format_kb($diskUsage->sub_idx_dir_size) }}</div>
+            <div class="w-32">{{ format_kb($diskUsage->temp_dirs_dir_size) }}</div>
+            <div class="w-32">{{ format_kb($diskUsage->temp_files_dir_size) }}</div>
+        </div>
+    @endforeach
 
-    <div class="mb-16"></div>
-
-</div>
 @endsection

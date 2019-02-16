@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
         // Diagnostic
         $schedule->job(CollectMetaForStoredFilesJob::class)->everyFifteenMinutes();
         $schedule->job(CollectMetaForSupJobsJob::class)->everyFifteenMinutes();
-        $schedule->job(CalculateDiskUsageJob::class)->everyTenMinutes();
+        $schedule->job(CalculateDiskUsageJob::class)->cron('0 */3 * * *');
         $schedule->job(CollectFileJobStatsJob::class)->twiceDaily(2, 14);
 
         $schedule->command('backup:run-configless --only-db --disable-notifications --set-destination-disks=dropbox')->weeklyOn(1, '01:03');

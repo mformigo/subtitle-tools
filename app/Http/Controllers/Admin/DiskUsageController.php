@@ -2,24 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\DiskUsage;
+
 class DiskUsageController
 {
     public function index()
     {
-        $output = shell_exec('du -h --total '.storage_path('app'));
-
-        $output = str_replace(storage_path('app/'), '', $output);
-
-        $lines = explode("\n", $output);
-
-        $dirs = collect($lines)
-            ->mapToGroups(function ($string) {
-                return [str_before(str_after($string, "\t"), '/') => $string];
-            });
-
-
         return view('admin.disk-usage', [
-            'dirs' => $dirs,
+            'diskUsages' => DiskUsage::orderByDesc('created_at')->take(1000)->get(),
         ]);
     }
 }

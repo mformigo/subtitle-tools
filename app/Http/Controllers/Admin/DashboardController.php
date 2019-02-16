@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\DiskUsage;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController
 {
     public function index()
     {
-        $diskUsage = file_exists($diskUsageFilePath = storage_path('logs/disk-usage.txt'))
-            ? json_decode(file_get_contents($diskUsageFilePath))
-            : (object) ['warning' => true, 'error' => 'Unknown'];
-
         $feedbackFilePath = storage_path('logs/feedback.log');
         $logFilePath = storage_path('logs/laravel.log');
 
@@ -19,7 +16,7 @@ class DashboardController
             'feedbackLines' => file_exists($feedbackFilePath) ? read_lines($feedbackFilePath) : [],
             'errorLogLines' => file_exists($logFilePath) ? read_lines($logFilePath) : [],
             'supervisor' => $this->getSupervisorInfo(),
-            'diskUsage' => $diskUsage,
+            'diskUsage' => DiskUsage::latest()->first() ?? optional(),
             'dependencies' => $this->getDependenciesInfo(),
             'failedJobs' => DB::table('failed_jobs')->get(),
         ]);

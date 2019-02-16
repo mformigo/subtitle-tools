@@ -11,11 +11,7 @@ class DatabaseSeeder extends Seeder
             SubIdxTableSeeder::class,
             SupTableSeeder::class,
             StoredFilesTableSeeder::class,
+            DiskUsageTableSeeder::class,
         ]);
-
-        file_put_contents(
-            storage_path('logs/disk-usage.txt'),
-            '{"size":"30gb","used":"11gb","available":"19gb","percentage":"36%","warning":false,"error":null}'
-        );
     }
 }

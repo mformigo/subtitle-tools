@@ -3,14 +3,14 @@
 @section('content')
     <div class="flex mb-4 p-4 border rounded shadow bg-white">
 
-        <div class="border-l-8 pl-2 {{ $diskUsage->warning ? ' border-red' : 'border-green' }} mr-16">
+        <div class="border-l-8 pl-2 {{ $diskUsage->total_usage_percentage > 60 ? ' border-red' : 'border-green' }} mr-16">
             <div class="flex items-center justify-between font-semibold mb-2">
                 Disk usage
                 <a class="text-xs text-black" href="{{ route('admin.diskUsage.index') }}">details</a>
             </div>
 
             <div class="text-lg">
-                {{ $diskUsage->error ? $diskUsage->error : "$diskUsage->used / $diskUsage->size ($diskUsage->percentage)" }}
+                {{ format_kb($diskUsage->total_used) }} / {{ format_kb($diskUsage->total_size) }} ({{ $diskUsage->total_usage_percentage }}%)
             </div>
         </div>
 

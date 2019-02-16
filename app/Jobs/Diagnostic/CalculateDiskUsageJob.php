@@ -3,6 +3,7 @@
 namespace App\Jobs\Diagnostic;
 
 use App\Jobs\BaseJob;
+use App\Models\DiskUsage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CalculateDiskUsageJob extends BaseJob implements ShouldQueue
@@ -11,45 +12,53 @@ class CalculateDiskUsageJob extends BaseJob implements ShouldQueue
     {
         $diskName = app()->environment('local') ? '/dev/sda1' : '/dev/vda1';
 
-        $output = $this->executeCommand($diskName);
+        $output = $this->executeTotalCommand($diskName);
 
-        file_put_contents(
-            storage_path('logs/disk-usage.txt'),
-            $this->parseOutput($output, $diskName)
-        );
+        [$totalSize, $totalUsed] = $this->parseTotalUsage($output, $diskName);
+
+        $basePath = storage_path('app/');
+
+        DiskUsage::create([
+            'total_size' => $totalSize,
+            'total_used' => $totalUsed,
+            'stored_files_dir_size' => $this->directorySize($basePath.'stored-files'),
+            'sub_idx_dir_size' => $this->directorySize($basePath.'sub-idx'),
+            'temp_dirs_dir_size' => $this->directorySize($basePath.'temporary-dirs'),
+            'temp_files_dir_size' => $this->directorySize($basePath.'temporary-files'),
+        ]);
     }
 
-    protected function executeCommand($diskName)
+    protected function executeTotalCommand($diskName)
     {
         return trim(
-            shell_exec("df $diskName --human-readable 2>&1")
+            shell_exec("df $diskName --block-size=K 2>&1")
         );
     }
 
-    private function parseOutput($output, $diskName): string
+    private function parseTotalUsage($output, $diskName)
     {
-        if (stripos($output, 'No such file or directory') !== false) {
-            return json_encode(['warning' => true, 'error' => $output]);
-        }
-
-        // Filesystem      Size  Used Avail Use% Mounted on
-        // /dev/vda1        30G   11G   19G  36% /
-
-        $output = str_ireplace('g', 'gb', $output);
+        //    Filesystem     1K-blocks   Used Available Use% Mounted on
+        //    /dev/sda1        482922K 48300K   409688K  11% /boot
 
         $output = trim(
             str_after($output, $diskName)
         );
 
-        [$size, $used, $available, $percentage] = preg_split('/ +/', $output);
+        [$size, $used] = preg_split('/ +/', $output);
 
-        return json_encode([
-            'size' => $size,
-            'used' => $used,
-            'available' => $available,
-            'percentage' => $percentage,
-            'warning' => trim($percentage, '%') > 60,
-            'error' => null,
-        ]);
+        return [trim($size, 'K'), trim($used, 'K')];
+    }
+
+    protected function directorySize($directoryPath)
+    {
+        if (! file_exists($directoryPath) || ! is_dir($directoryPath)) {
+            throw new \RuntimeException('Directory does not exist: '.$directoryPath);
+        }
+
+        $output = trim(
+            shell_exec("du $directoryPath -ks 2>&1")
+        );
+
+        return (int) str_before($output, ' ');
     }
 }

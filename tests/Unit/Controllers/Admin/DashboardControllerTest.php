@@ -28,14 +28,8 @@ class DashboardControllerTest extends TestCase
     }
 
     /** @test */
-    function it_can_show_the_dashboard_when_there_is_no_disk_usage_data()
+    function it_can_show_the_dashboard_with_an_empty_database()
     {
-        $path = storage_path('logs/disk-usage.txt');
-
-        if (file_exists($path)) {
-            unlink($path);
-        }
-
         $this->adminLogin()
             ->getDashboard()
             ->assertStatus(200);
