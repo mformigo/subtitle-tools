@@ -81,7 +81,7 @@ function storage_disk_file_path($path, $disk = null)
 {
     $disk = $disk ?: config('filesystems.default');
 
-    $storagePath = Storage::disk($disk)->getDriver()->getAdapter()->getPathPrefix();
+    $storagePath = realpath(Storage::disk($disk)->getDriver()->getAdapter()->getPathPrefix());
 
     return rtrim($storagePath, '/').'/'.ltrim($path, '/');
 }
