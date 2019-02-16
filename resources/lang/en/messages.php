@@ -26,6 +26,7 @@ return [
     'sup.job_timed_out'                    => 'Failed converting this sup to srt (converting took too long)',
     'sup.job_failed'                       => 'Failed converting this sup to srt',
     'sup.exception_when_extracting_images' => 'Failed converting this sup to srt',
+    'sup.extracting_images_took_too_long'  => 'Failed converting this sup to srt',
 
     'zip_job.unknown_error' => 'Unknown error in zip job',
     'zip_job.create_failed' => 'Failed to create archive',

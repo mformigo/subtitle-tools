@@ -6,7 +6,6 @@ use App\Events\SupJobProgressChanged;
 use App\Jobs\BaseJob;
 use App\Support\Facades\TempDir;
 use App\Models\SupJob;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Artisan;
@@ -14,7 +13,7 @@ use SjorsO\Sup\SupFile;
 
 class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 {
-    public $timeout = 300;
+    public $timeout = 330;
 
     protected $supJob;
 
@@ -27,7 +26,7 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
     {
         SupJobProgressChanged::dispatch($this->supJob, 'Extracting images');
 
-        $extractingStartedAt = Carbon::now();
+        $extractingStartedAt = now();
 
         $this->supJob->measureStart();
 
@@ -48,14 +47,26 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
             return $this->failed(null, 'messages.sup.not_a_sup_file');
         }
 
+        $imageFilePaths = [];
+
         try {
-            $imageFilePaths = $sup->extractImages($this->supJob->temp_dir);
+            $cueIndexes = $sup->cueIndexes();
+
+            foreach ($cueIndexes as $index) {
+                $imageFilePaths[] = $sup->extractImage($index, $this->supJob->temp_dir);
+
+                if ($extractingStartedAt->diffInSeconds(now()) > 300) {
+                    info('ExtractSupImagesJob: extracting took too long, stopped at '.$index.' / '.count($cueIndexes));
+
+                    return $this->failed(new Exception, 'messages.sup.extracting_images_took_too_long');
+                }
+            }
         }
         catch(Exception $exception) {
             return $this->failed($exception, 'messages.sup.exception_when_extracting_images');
         }
 
-        $this->supJob->extract_time = Carbon::now()->diffInSeconds($extractingStartedAt);
+        $this->supJob->extract_time = now()->diffInSeconds($extractingStartedAt);
 
         $this->supJob->save();
 

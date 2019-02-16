@@ -886,16 +886,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.25",
+            "version": "v5.7.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f8fb354878064b94a3ff09a6ffd48ee9a8d712cf"
+                "reference": "ca3bc9769969e8af3bd9878a3e0242051c74dae4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f8fb354878064b94a3ff09a6ffd48ee9a8d712cf",
-                "reference": "f8fb354878064b94a3ff09a6ffd48ee9a8d712cf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ca3bc9769969e8af3bd9878a3e0242051c74dae4",
+                "reference": "ca3bc9769969e8af3bd9878a3e0242051c74dae4",
                 "shasum": ""
             },
             "require": {
@@ -1028,7 +1028,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-02-05T14:28:43+00:00"
+            "time": "2019-02-12T14:52:21+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
@@ -2684,16 +2684,16 @@
         },
         {
             "name": "sjorso/sup",
-            "version": "0.0.8",
+            "version": "0.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SjorsO/sup.git",
-                "reference": "2835d1d7e06ad6df0e724af5fd7368735678dbb2"
+                "reference": "f653e843ee1e6ac4617f78ba397db454a4cbee65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SjorsO/sup/zipball/2835d1d7e06ad6df0e724af5fd7368735678dbb2",
-                "reference": "2835d1d7e06ad6df0e724af5fd7368735678dbb2",
+                "url": "https://api.github.com/repos/SjorsO/sup/zipball/f653e843ee1e6ac4617f78ba397db454a4cbee65",
+                "reference": "f653e843ee1e6ac4617f78ba397db454a4cbee65",
                 "shasum": ""
             },
             "require": {
@@ -2727,7 +2727,7 @@
                 "subtitles",
                 "sup"
             ],
-            "time": "2018-09-28T12:37:41+00:00"
+            "time": "2019-02-16T07:45:53+00:00"
         },
         {
             "name": "spatie/browsershot",
@@ -2896,16 +2896,16 @@
         },
         {
             "name": "spatie/dropbox-api",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/dropbox-api.git",
-                "reference": "efd9223d5e2d44ec56511aba5bb16c161e78e2aa"
+                "reference": "22f0d5b03781ef411d134b05aeb237c0eebde544"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/dropbox-api/zipball/efd9223d5e2d44ec56511aba5bb16c161e78e2aa",
-                "reference": "efd9223d5e2d44ec56511aba5bb16c161e78e2aa",
+                "url": "https://api.github.com/repos/spatie/dropbox-api/zipball/22f0d5b03781ef411d134b05aeb237c0eebde544",
+                "reference": "22f0d5b03781ef411d134b05aeb237c0eebde544",
                 "shasum": ""
             },
             "require": {
@@ -2948,7 +2948,7 @@
                 "spatie",
                 "v2"
             ],
-            "time": "2019-02-06T22:05:37+00:00"
+            "time": "2019-02-15T11:05:52+00:00"
         },
         {
             "name": "spatie/flysystem-dropbox",
@@ -3180,16 +3180,16 @@
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "5.2.8",
+            "version": "5.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264"
+                "reference": "96652b05c907024b97f76d017f6336712c3b4a48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264",
-                "reference": "5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/96652b05c907024b97f76d017f6336712c3b4a48",
+                "reference": "96652b05c907024b97f76d017f6336712c3b4a48",
                 "shasum": ""
             },
             "require": {
@@ -3201,7 +3201,7 @@
             "require-dev": {
                 "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
                 "phpunit/phpunit": "^6.4.1|^7.0",
-                "spatie/phpunit-snapshot-assertions": "^1.0.0",
+                "spatie/phpunit-snapshot-assertions": "^2.0.0",
                 "spatie/temporary-directory": "^1.1"
             },
             "type": "library",
@@ -3235,7 +3235,7 @@
                 "laravel-sitemap",
                 "spatie"
             ],
-            "time": "2019-02-06T21:58:53+00:00"
+            "time": "2019-02-15T18:40:39+00:00"
         },
         {
             "name": "spatie/robots-txt",
@@ -4400,16 +4400,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v5.7.25",
+            "version": "v5.7.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "bcdb1d4ca989a3aaa74aeac67c8e44ccf1761b9d"
+                "reference": "c1a36a2a8a0aa731c1acdcd83f57724ffe630d00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/bcdb1d4ca989a3aaa74aeac67c8e44ccf1761b9d",
-                "reference": "bcdb1d4ca989a3aaa74aeac67c8e44ccf1761b9d",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/c1a36a2a8a0aa731c1acdcd83f57724ffe630d00",
+                "reference": "c1a36a2a8a0aa731c1acdcd83f57724ffe630d00",
                 "shasum": ""
             },
             "require": {
@@ -4446,7 +4446,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2019-02-05T15:00:41+00:00"
+            "time": "2019-02-13T19:40:13+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -4793,16 +4793,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.8.3",
+            "version": "1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "a6a3b44581398b7135c7baa0557b7c5b10808b47"
+                "reference": "bc364c2480c17941e2135cfc568fa41794392534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/a6a3b44581398b7135c7baa0557b7c5b10808b47",
-                "reference": "a6a3b44581398b7135c7baa0557b7c5b10808b47",
+                "url": "https://api.github.com/repos/composer/composer/zipball/bc364c2480c17941e2135cfc568fa41794392534",
+                "reference": "bc364c2480c17941e2135cfc568fa41794392534",
                 "shasum": ""
             },
             "require": {
@@ -4869,7 +4869,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2019-01-30T07:31:34+00:00"
+            "time": "2019-02-11T09:52:10+00:00"
         },
         {
             "name": "composer/semver",
@@ -5316,16 +5316,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.9.10",
+            "version": "0.9.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "4876fc0c7d9e5da49712554a35c94d84ed1e9ee5"
+                "reference": "be9bf28d8e57d67883cba9fcadfcff8caab667f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/4876fc0c7d9e5da49712554a35c94d84ed1e9ee5",
-                "reference": "4876fc0c7d9e5da49712554a35c94d84ed1e9ee5",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/be9bf28d8e57d67883cba9fcadfcff8caab667f8",
+                "reference": "be9bf28d8e57d67883cba9fcadfcff8caab667f8",
                 "shasum": ""
             },
             "require": {
@@ -5377,7 +5377,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2018-11-13T20:50:16+00:00"
+            "time": "2019-02-12T16:07:13+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -5998,16 +5998,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.4",
+            "version": "7.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0"
+                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2896657da5fb237bc316bdfc18c2650efeee0dc0",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
+                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
                 "shasum": ""
             },
             "require": {
@@ -6078,7 +6078,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-07T14:15:04+00:00"
+            "time": "2019-02-15T14:00:34+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
