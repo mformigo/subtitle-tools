@@ -19,7 +19,7 @@ class StoredFile extends Model
         return $this->hasOne(StoredFileMeta::class);
     }
 
-    protected function getFilePathAttribute()
+    public function getFilePathAttribute()
     {
         return storage_disk_file_path($this->storage_file_path);
     }

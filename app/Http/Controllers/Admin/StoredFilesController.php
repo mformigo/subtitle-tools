@@ -83,9 +83,11 @@ class StoredFilesController
 
     public function delete(Request $request)
     {
-        $rowsAffected = StoredFile::where('id', $request->get('id'))->delete();
+        $storedFile = StoredFile::findOrFail($request->get('id'));
 
-        return back()->with('success', $rowsAffected.' stored file records deleted');
+        file_put_contents($storedFile->file_path, '((deleted))');
+
+        return back();
     }
 
     private function getStoredFileIds($idsString)
