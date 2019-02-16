@@ -30,26 +30,27 @@ class StoredFile extends Model
 
         $hash = FileHash::make($filePath);
 
-        $fromCache = StoredFile::where('hash', $hash);
+        $storedFileFromCache = StoredFile::where('hash', $hash)->first();
 
-        if ($fromCache->count() > 0) {
-            return $fromCache->first();
+        if ($storedFileFromCache) {
+            return $storedFileFromCache;
         }
 
         $storagePath = 'stored-files/'.now()->format('Y-W/z');
 
-        if (!File::isDirectory($storagePath)) {
+        if (! File::isDirectory($storagePath)) {
             Storage::makeDirectory($storagePath);
         }
 
-        $storageFilePath = "{$storagePath}/" . now()->format('U') . "-" . substr($hash, 0, 16);
+        $storageFilePath = $storagePath.now()->format('/U-').substr($hash, 0, 16);
 
         // copy instead of moving to prevent from moving test files
         copy($filePath, storage_disk_file_path($storageFilePath));
 
-        return StoredFile::create([
-            'storage_file_path' => $storageFilePath,
+        return StoredFile::updateOrCreate([
             'hash' => $hash,
+        ], [
+            'storage_file_path' => $storageFilePath,
         ]);
     }
 
