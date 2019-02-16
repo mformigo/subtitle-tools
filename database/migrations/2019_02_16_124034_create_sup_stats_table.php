@@ -19,7 +19,5 @@ class CreateSupStatsTable extends Migration
             $table->unsignedBigInteger('milliseconds_spent_ocring')->default(0);
             $table->timestamps();
         });
-
-        \App\Models\SupStats::today();
     }
 }

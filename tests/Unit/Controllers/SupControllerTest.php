@@ -78,7 +78,8 @@ class SupControllerTest extends TestCase
 
         $this->assertSame(1, SupStats::count());
 
-        $supStats = SupStats::findOrFail(1);
+        // The cron also calls this static "today" method.
+        $supStats = SupStats::today();
 
         $this->assertSame(1, $supStats->bluray_sup_count);
         $this->assertSame(0, $supStats->dvd_sup_count);
