@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Rules\FileNotEmptyRule;
 use App\Http\Rules\SupRule;
+use App\Jobs\Sup\ExtractSupImagesJob;
 use App\Support\Facades\FileHash;
 use App\Support\Facades\FileName;
 use App\Models\StoredFile;
@@ -61,7 +62,7 @@ class SupController
             'original_name' => basename($supFile->getClientOriginalName()),
         ]);
 
-        $supJob->dispatchJob();
+        ExtractSupImagesJob::dispatch($supJob);
 
         return redirect()->route('sup.show', $supJob->url_key);
     }

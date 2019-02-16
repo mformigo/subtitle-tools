@@ -6,11 +6,12 @@ use App\Events\SupJobChanged;
 use App\Events\SupJobProgressChanged;
 use App\Jobs\BaseJob;
 use App\Models\SupJob;
+use App\Models\SupStats;
 use App\Support\Tesseract;
 use App\Support\Utils\FileName;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use RuntimeException;
 
 class OcrImageJob extends BaseJob implements ShouldQueue
 {
@@ -21,11 +22,11 @@ class OcrImageJob extends BaseJob implements ShouldQueue
 
     public $timeout = 60;
 
-    protected $supJobId;
+    private $supJobId;
 
-    protected $imageFilePaths;
+    private $imageFilePaths;
 
-    protected $ocrLanguage;
+    private $ocrLanguage;
 
     public function __construct($supJobId, $imageFilePaths, $ocrLanguage)
     {
@@ -49,17 +50,10 @@ class OcrImageJob extends BaseJob implements ShouldQueue
         $jobStartedAt = now();
 
         foreach ($this->imageFilePaths as $filePath) {
-            if (Carbon::now()->diffInSeconds($jobStartedAt) > $this->manualTimeout) {
+            if (now()->diffInSeconds($jobStartedAt) > $this->manualTimeout) {
                 $this->markAsSlow();
 
                 return $this->dispatchAsSlowJob();
-
-//                list($index, $total) = $this->parseFileName();
-//
-//                return $this->failed(
-//                    'messages.sup.job_timed_out',
-//                    "Stopped at frame {$index}/{$total}. Extracting ".count($this->imageFilePaths)." images took longer than {$this->manualTimeout} seconds"
-//                );
             }
 
             $this->ocrImage($filePath);
@@ -72,11 +66,13 @@ class OcrImageJob extends BaseJob implements ShouldQueue
         $this->fireBuildJobIfAllComplete();
     }
 
-    protected function ocrImage($filePath)
+    private function ocrImage($filePath)
     {
         if (! file_exists($filePath)) {
-            throw new Exception('File does not exist: '.$filePath);
+            throw new RuntimeException('File does not exist: '.$filePath);
         }
+
+        $ocrStartedAt = microtime(true) * 1000;
 
         $text = (new Tesseract($filePath))
             ->executable('/usr/bin/tesseract')
@@ -84,6 +80,10 @@ class OcrImageJob extends BaseJob implements ShouldQueue
             ->suppressErrors()
             ->lang($this->ocrLanguage)
             ->run();
+
+        SupStats::recordImageOcrd(
+            (int) round((microtime(true) * 1000) - $ocrStartedAt)
+        );
 
         $text = $this->sanitizeText($text);
 
@@ -96,12 +96,12 @@ class OcrImageJob extends BaseJob implements ShouldQueue
         file_put_contents($filePath, $text);
     }
 
-    protected function getDirectory()
+    private function getDirectory()
     {
         return str_finish(dirname($this->imageFilePaths[0]), DIRECTORY_SEPARATOR);
     }
 
-    protected function sanitizeText($text)
+    private function sanitizeText($text)
     {
         // sanitize tesseract output, this is a quick hack
         return str_replace([
@@ -113,7 +113,7 @@ class OcrImageJob extends BaseJob implements ShouldQueue
         ], '', $text);
     }
 
-    protected function parseFileName()
+    private function parseFileName()
     {
         $lastFilePath = $this->imageFilePaths[count($this->imageFilePaths) - 1];
 
@@ -129,7 +129,7 @@ class OcrImageJob extends BaseJob implements ShouldQueue
     /**
      * If all images for this sup have been OCR'd, we need to fire a job to build the srt file.
      */
-    protected function fireBuildJobIfAllComplete()
+    private function fireBuildJobIfAllComplete()
     {
         $directory = $this->getDirectory();
 
@@ -169,12 +169,12 @@ class OcrImageJob extends BaseJob implements ShouldQueue
         SupJobChanged::dispatch($supJob);
     }
 
-    protected function isMarkedAsFailed()
+    private function isMarkedAsFailed()
     {
         return file_exists($this->getDirectory().'FAILED');
     }
 
-    protected function markAsFailed()
+    private function markAsFailed()
     {
         $madeFile = touch($this->getDirectory().'FAILED');
 
@@ -183,12 +183,12 @@ class OcrImageJob extends BaseJob implements ShouldQueue
         }
     }
 
-    protected function isMarkedAsSlow()
+    private function isMarkedAsSlow()
     {
         return file_exists($this->getDirectory().'SLOW');
     }
 
-    protected function markAsSlow()
+    private function markAsSlow()
     {
         $madeFile = touch($this->getDirectory().'SLOW');
 
@@ -197,7 +197,7 @@ class OcrImageJob extends BaseJob implements ShouldQueue
         }
     }
 
-    protected function dispatchAsSlowJob()
+    private function dispatchAsSlowJob()
     {
         foreach ($this->imageFilePaths as $filePath) {
             OcrImageJob::dispatch(

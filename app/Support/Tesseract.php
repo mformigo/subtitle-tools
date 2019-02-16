@@ -101,7 +101,7 @@ class Tesseract
      * Sets a custom location for the tesseract executable.
      *
      * @param string $executable
-     * @return TesseractOCR
+     * @return $this
      */
     public function executable($executable)
     {
@@ -149,7 +149,7 @@ class Tesseract
      * Sets the language(s).
      *
      * @param string ...$languages
-     * @return TesseractOCR
+     * @return $this
      */
     public function lang()
     {

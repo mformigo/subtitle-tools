@@ -32,7 +32,7 @@ return [
      *   PruneStoredFiles command
      *
      */
-    'checked-migration' => '2019_02_16_094536_create_disk_usages_table',
+    'checked-migration' => '2019_02_16_124034_create_sup_stats_table',
 
     'tesseract' => [
 

@@ -4,6 +4,7 @@ namespace App\Jobs\Sup;
 
 use App\Events\SupJobProgressChanged;
 use App\Jobs\BaseJob;
+use App\Models\SupStats;
 use App\Support\Facades\TempDir;
 use App\Models\SupJob;
 use Exception;
@@ -14,6 +15,8 @@ use SjorsO\Sup\SupFile;
 class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 {
     public $timeout = 330;
+
+    public $queue = 'A200';
 
     protected $supJob;
 
@@ -38,14 +41,18 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
         try {
             $sup = SupFile::open($this->supJob->inputStoredFile->file_path);
-        }
-        catch(Exception $exception) {
+        } catch (Exception $exception) {
             return $this->failed($exception, 'messages.sup.exception_when_reading');
         }
 
-        if ($sup === false) {
+        if (! $sup) {
             return $this->failed(null, 'messages.sup.not_a_sup_file');
         }
+
+        SupStats::recordNewSupFile(
+            get_class($sup),
+            filesize($this->supJob->inputStoredFile->file_path)
+        );
 
         $imageFilePaths = [];
 
@@ -58,11 +65,10 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
                 if ($extractingStartedAt->diffInSeconds(now()) > 300) {
                     info('ExtractSupImagesJob: extracting took too long, stopped at '.$index.' / '.count($cueIndexes));
 
-                    return $this->failed(new Exception, 'messages.sup.extracting_images_took_too_long');
+                    return $this->failed(null, 'messages.sup.extracting_images_took_too_long');
                 }
             }
-        }
-        catch(Exception $exception) {
+        } catch(Exception $exception) {
             return $this->failed($exception, 'messages.sup.exception_when_extracting_images');
         }
 

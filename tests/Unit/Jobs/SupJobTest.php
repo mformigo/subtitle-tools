@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Jobs;
 
+use App\Jobs\Sup\ExtractSupImagesJob;
 use App\Models\StoredFile;
 use App\Models\SupJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -35,7 +36,7 @@ class SupJobTest extends TestCase
     {
         $supJob = $this->makeSupJob('sup/three-english-cues.sup', 'eng');
 
-        $supJob->dispatchJob();
+        (new ExtractSupImagesJob($supJob))->handle();
 
         $supJob = SupJob::findOrFail($supJob->id);
 

@@ -16,6 +16,7 @@ use App\Jobs\Janitor\PruneSupJobsTableJob;
 use App\Jobs\Janitor\PruneTemporaryFilesJob;
 use App\Jobs\RandomizeSubIdxUrlKeysJob;
 use App\Jobs\RandomizeSupUrlKeysJob;
+use App\Models\SupStats;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -45,6 +46,7 @@ class Kernel extends ConsoleKernel
         $schedule->job(CollectMetaForSupJobsJob::class)->everyFifteenMinutes();
         $schedule->job(CalculateDiskUsageJob::class)->hourly();
         $schedule->job(CollectFileJobStatsJob::class)->twiceDaily(2, 14);
+        $schedule->call([SupStats::class, 'today'])->twiceDaily();
 
         $schedule->command('backup:run-configless --only-db --disable-notifications --set-destination-disks=dropbox')->weeklyOn(1, '01:03');
     }

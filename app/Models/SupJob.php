@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Jobs\Sup\ExtractSupImagesJob;
 use App\Models\Diagnostic\SupJobMeta;
 use App\Models\Traits\MeasuresQueueTime;
 use Illuminate\Database\Eloquent\Model;
@@ -43,13 +42,5 @@ class SupJob extends Model
     public function getHasErrorAttribute()
     {
         return $this->error_message !== null;
-    }
-
-    /**
-     * Dispatch the job to turn this sup into an srt
-     */
-    public function dispatchJob()
-    {
-        ExtractSupImagesJob::dispatch($this)->onQueue('A200');
     }
 }

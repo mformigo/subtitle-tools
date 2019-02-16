@@ -4,6 +4,7 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\StoredFile;
 use App\Models\SupJob;
+use App\Models\SupStats;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -63,6 +64,29 @@ class SupControllerTest extends TestCase
         $this->assertSame($originalUpdatedAt, (string) $supJob->updated_at);
 
         $this->assertSame(1, SupJob::count());
+    }
+
+    /** @test */
+    function it_records_sup_statistics()
+    {
+        $this->postSup([
+            'subtitle' => $this->createUploadedFile('sup/three-english-cues.sup'),
+            'ocrLanguage' => 'eng',
+        ])
+        ->assertSessionHasNoErrors()
+        ->assertStatus(302);
+
+        $this->assertSame(1, SupStats::count());
+
+        $supStats = SupStats::findOrFail(1);
+
+        $this->assertSame(1, $supStats->bluray_sup_count);
+        $this->assertSame(0, $supStats->dvd_sup_count);
+        $this->assertSame(0, $supStats->hddvd_sup_count);
+
+        $this->assertSame(32753, $supStats->total_size);
+        $this->assertSame(3, $supStats->images_ocrd_count);
+        $this->assertTrue($supStats->milliseconds_spent_ocring > 100);
     }
 
     /** @test */
