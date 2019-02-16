@@ -101,11 +101,6 @@ function format_file_size($bytes)
     return round($bytes, 0).' '.$units[$pow];
 }
 
-function format_kb($kb)
-{
-    return format_file_size($kb * 1024);
-}
-
 /**
  * Trigger a "dd()" after it has been called "timesCalled" times.
  *

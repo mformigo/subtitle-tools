@@ -10,7 +10,7 @@
             </div>
 
             <div class="text-lg">
-                {{ format_kb($diskUsage->total_used) }} / {{ format_kb($diskUsage->total_size) }} ({{ $diskUsage->total_usage_percentage }}%)
+                {{ format_file_size($diskUsage->total_used) }} / {{ format_file_size($diskUsage->total_size) }} ({{ $diskUsage->total_usage_percentage }}%)
             </div>
         </div>
 

@@ -18,13 +18,13 @@
     @foreach($diskUsages as $diskUsage)
         <div class="flex border-b py-2 hover:bg-grey-light">
             <div class="w-48">{{ $diskUsage->created_at->format('Y-m-d H:i') }}</div>
-            <div class="w-32">{{ format_kb($diskUsage->total_size) }}</div>
-            <div class="w-24">{{ format_kb($diskUsage->total_used) }}</div>
+            <div class="w-32">{{ format_file_size($diskUsage->total_size) }}</div>
+            <div class="w-24">{{ format_file_size($diskUsage->total_used) }}</div>
             <div class="w-16">{{ $diskUsage->total_usage_percentage }}%</div>
-            <div class="w-32">{{ format_kb($diskUsage->stored_files_dir_size) }}</div>
-            <div class="w-32">{{ format_kb($diskUsage->sub_idx_dir_size) }}</div>
-            <div class="w-32">{{ format_kb($diskUsage->temp_dirs_dir_size) }}</div>
-            <div class="w-32">{{ format_kb($diskUsage->temp_files_dir_size) }}</div>
+            <div class="w-32">{{ format_file_size($diskUsage->stored_files_dir_size) }}</div>
+            <div class="w-32">{{ format_file_size($diskUsage->sub_idx_dir_size) }}</div>
+            <div class="w-32">{{ format_file_size($diskUsage->temp_dirs_dir_size) }}</div>
+            <div class="w-32">{{ format_file_size($diskUsage->temp_files_dir_size) }}</div>
         </div>
     @endforeach
 

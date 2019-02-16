@@ -10,12 +10,12 @@ class CreateDiskUsagesTable extends Migration
     {
         Schema::create('disk_usages', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('total_size');
-            $table->unsignedInteger('total_used');
-            $table->unsignedInteger('stored_files_dir_size');
-            $table->unsignedInteger('sub_idx_dir_size');
-            $table->unsignedInteger('temp_dirs_dir_size');
-            $table->unsignedInteger('temp_files_dir_size');
+            $table->unsignedBigInteger('total_size');
+            $table->unsignedBigInteger('total_used');
+            $table->unsignedBigInteger('stored_files_dir_size');
+            $table->unsignedBigInteger('sub_idx_dir_size');
+            $table->unsignedBigInteger('temp_dirs_dir_size');
+            $table->unsignedBigInteger('temp_files_dir_size');
             $table->timestamps();
         });
     }

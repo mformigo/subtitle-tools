@@ -18,8 +18,8 @@ class CalculateDiskUsageJobTest extends TestCase
 
         $diskUsage = DiskUsage::findOrFail(1);
 
-        $this->assertTrue($diskUsage->total_size > 0);
-        $this->assertTrue($diskUsage->total_used > 0);
+        $this->assertSame(482922 * 1024, $diskUsage->total_size);
+        $this->assertSame(48300 * 1024, $diskUsage->total_used);
 
         $this->assertTrue($diskUsage->total_size > $diskUsage->total_used);
     }
@@ -31,7 +31,7 @@ class CalculateDiskUsageJobTest extends TestCase
             {
                 return implode("\n", [
                     'Filesystem     1K-blocks   Used Available Use% Mounted on',
-                    '/dev/vda1        482922K 48300K   409688K  11% /boot',
+                    '/dev/sda1        482922K 48300K   409688K  11% /boot',
                 ]);
             }
         };

@@ -10,7 +10,7 @@ class CalculateDiskUsageJob extends BaseJob implements ShouldQueue
 {
     public function handle()
     {
-        $diskName = app()->environment('local') ? '/dev/sda1' : '/dev/vda1';
+        $diskName = app()->environment(['local', 'testing']) ? '/dev/sda1' : '/dev/vda1';
 
         $output = $this->executeTotalCommand($diskName);
 
@@ -46,7 +46,7 @@ class CalculateDiskUsageJob extends BaseJob implements ShouldQueue
 
         [$size, $used] = preg_split('/ +/', $output);
 
-        return [trim($size, 'K'), trim($used, 'K')];
+        return [trim($size, 'K') * 1024, trim($used, 'K') * 1024];
     }
 
     protected function directorySize($directoryPath)
@@ -56,7 +56,7 @@ class CalculateDiskUsageJob extends BaseJob implements ShouldQueue
         }
 
         $output = trim(
-            shell_exec("du $directoryPath -ks 2>&1")
+            shell_exec("du $directoryPath -bs 2>&1")
         );
 
         return (int) str_before($output, ' ');
