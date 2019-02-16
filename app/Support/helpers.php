@@ -66,9 +66,13 @@ function file_mime($filePath)
         throw new RuntimeException('File does not exist: '.$filePath);
     }
 
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mimeType = finfo_file($finfo, $filePath);
-    finfo_close($finfo);
+    try {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_file($finfo, $filePath);
+        finfo_close($finfo);
+    } catch (Exception $e) {
+        return 'application/octet-stream';
+    }
 
     return $mimeType;
 }

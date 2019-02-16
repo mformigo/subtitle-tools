@@ -23,7 +23,7 @@ class StoredFilesControllerTest extends TestCase
     }
 
     /** @test */
-    function it_can_delete_stored_files()
+    function it_can_wipe_stored_files()
     {
         $s1 = factory(StoredFile::class)->create();
         $s2 = factory(StoredFile::class)->create();
@@ -34,6 +34,8 @@ class StoredFilesControllerTest extends TestCase
             ->assertStatus(302);
 
         $this->assertNotNull(StoredFile::find($s1->id));
-        $this->assertNull(StoredFile::find($s2->id));
+        $this->assertNotNull($fresh = StoredFile::find($s2->id));
+
+        $this->assertSame('((deleted))', file_get_contents($fresh->file_path));
     }
 }
