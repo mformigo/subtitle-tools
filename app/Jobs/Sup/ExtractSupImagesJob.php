@@ -36,6 +36,11 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
         $this->supJob->save();
 
+        SupStats::recordNewSupFile(
+            SupFile::getFormat($this->supJob->inputStoredFile->file_path),
+            filesize($this->supJob->inputStoredFile->file_path)
+        );
+
         $sup = null;
 
         try {
@@ -47,11 +52,6 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
         if (! $sup) {
             return $this->failed(null, 'messages.sup.not_a_sup_file');
         }
-
-        SupStats::recordNewSupFile(
-            get_class($sup),
-            filesize($this->supJob->inputStoredFile->file_path)
-        );
 
         $imageFilePaths = [];
 
