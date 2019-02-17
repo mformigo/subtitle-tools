@@ -1,11 +1,9 @@
 @extends('admin.layout.admin-template')
 
 @section('content')
-
-<div class="container" id="SubIdxes">
     <h1>Sups</h1>
 
-    <div class="w-96 bg-white rounded shadow border p-4">
+    <div class="max-w-md bg-white rounded shadow border p-2 mb-8">
         <div class="font-semibold mb-2">Sup cache hit leaderboards</div>
 
         @foreach($supCacheHitList as $sup)
@@ -17,63 +15,39 @@
     </div>
 
 
+    @foreach($sups as $sup)
+    <div class="flex hover:bg-grey-light mb-8 font-mono text-sm border-l-4 pl-4 {{ $sup->is_finished ? ($sup->has_error ? 'border-red' : 'border-green') : 'border-yellow-dark' }}">
+        <div class="mr-24">
+            <a href="{{ route('sup.show', $sup->url_key) }}" target="_blank">Result page</a>
 
-        <div class="st-row header">
-            <div class="st-col minw-50"></div>
-            <div class="st-col minw-100">Input</div>
-            <div class="st-col minw-100">Output</div>
-            <div class="st-col minw-100">Format</div>
-            <div class="st-col minw-75">Cue Count</div>
-            <div class="st-col minw-100">Ocr Lang</div>
-            <div class="st-col st-grow">Size</div>
-            <div class="st-col minw-75">Queue</div>
-            <div class="st-col minw-75">Extract</div>
-            <div class="st-col minw-75">Work</div>
-            <div class="st-col minw-125">Age</div>
-            <div class="st-col minw-50">Retry</div>
+            <div><span class="font-bold">Input stored file id:</span> {{ $sup->input_stored_file_id }}</div>
+
+            <div>
+                <span class="font-bold">Output stored file id:</span>
+                @if($sup->output_stored_file_id)
+                    <a target="_blank" href="{{ route('admin.storedFiles.show', $sup->output_stored_file_id) }}">{{ $sup->output_stored_file_id }}</a>
+                @else
+                    none
+                @endif
+            </div>
+
+            <div><span class="font-bold">Queue time:</span> {{ $sup->queue_time }} s</div>
+            <div><span class="font-bold">Extract time:</span> {{ $sup->extract_time }} s</div>
+            <div><span class="font-bold">Work time:</span> {{ $sup->work_time }} s</div>
+            <div><span class="font-bold">Created at:</span> {{ \Carbon\Carbon::parse($sup->created_at)->diffForHumans() }}</div>
         </div>
 
+        <div>
 
-
-        @foreach($sups as $sup)
-            <div class="st-row">
-                <div class="st-col minw-50"><a href="{{ route('sup.show', $sup->url_key) }}" target="_blank">&nbsp;(*)</a></div>
-                <div class="st-col minw-100">{{ $sup->input_stored_file_id }}</div>
-                <div class="st-col minw-100">
-                    @if($sup->output_stored_file_id)
-                        <a target="_blank" href="{{ route('admin.storedFiles.show', $sup->output_stored_file_id) }}">{{ $sup->output_stored_file_id }}</a>
-                    @endif
-                </div>
-                <div class="st-col minw-100">{{ optional($sup->meta)->format }}</div>
-                <div class="st-col minw-100">{{ optional($sup->meta)->cue_count }} cues</div>
-                <div class="st-col minw-75">{{ $sup->ocr_language }}</div>
-                <div class="st-col st-grow">{{ ($sup->inputStoredFile->meta ?? null) ? round($sup->inputStoredFile->meta->size / 1024, 0).'kb' : '' }}</div>
-                <div class="st-col minw-75">{{ $sup->queue_time }} s</div>
-                <div class="st-col minw-75">{{ $sup->extract_time }} s</div>
-                <div class="st-col minw-75">{{ $sup->work_time }} s</div>
-                <div class="st-col minw-125">{{ \Carbon\Carbon::parse($sup->created_at)->diffForHumans() }}</div>
-                <div class="st-col minw-50">
-                    @if($sup->inputStoredFile !== null)
-                        @include('admin.components.form-url', ['route' => route('admin.sup.retry', $sup->id), 'text' => 'Retry'])
-                    @endif
-                </div>
-            </div>
-
-            <div class="st-row st-sub-row">
-                <div class="st-col st-grow">{{ $sup->original_name }}</div>
-            </div>
-            <div class="st-row st-sub-row">
-                <div class="st-col st-grow">{{ $sup->error_message }}</div>
-            </div>
-            <div class="st-row st-sub-row">
-                <div class="st-col st-grow">{{ $sup->internal_error_message }}</div>
-            </div>
-
-        <br>
-        <br>
-
-        @endforeach
-
-</div>
+            <div><span class="font-bold">Sup format:</span> {{ $sup->meta ? $sup->meta->format : 'no meta yet' }}</div>
+            <div><span class="font-bold">Cue count:</span> {{ $sup->meta ? $sup->meta->cue_count : 'no meta yet' }}</div>
+            <div><span class="font-bold">Sup size:</span> {{ ($sup->inputStoredFile->meta ?? null) ? format_file_size($sup->inputStoredFile->meta->size) : 'no input stored file meta' }}</div>
+            <div><span class="font-bold">Ocr language:</span> {{ $sup->ocr_language }}</div>
+            <div><span class="font-bold">Error message:</span> {{ $sup->error_message }}</div>
+            <div><span class="font-bold">Internal error message:</span> {{ $sup->internal_error_message }}</div>
+            <div><span class="font-bold">Original name:</span> {{ $sup->original_name }}</div>
+        </div>
+    </div>
+    @endforeach
 
 @endsection

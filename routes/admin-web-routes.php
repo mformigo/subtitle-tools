@@ -9,7 +9,6 @@ Route::delete('/feedback', ['uses' => 'FeedbackController@delete', 'as' => 'feed
 Route::delete('/failed-jobs/truncate', ['uses' => 'FailedJobsController@truncate', 'as' => 'failedJobs.truncate']);
 
 Route::get('/sup',           ['uses' => 'SupController@index', 'as' => 'sup.index']);
-Route::post('/sup/{supJob}', ['uses' => 'SupController@retry', 'as' => 'sup.retry']);
 
 Route::get('/disk-usage', ['uses' => 'DiskUsageController@index', 'as' => 'diskUsage.index']);
 
