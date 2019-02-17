@@ -67,9 +67,7 @@ abstract class ArchiveRead
             throw new RunTimeException('File does not exist: '.$filePath);
         }
 
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $mimeType = finfo_file($finfo, $filePath);
-        finfo_close($finfo);
+        $mimeType = file_mime($filePath);
 
         if ($mimeType === static::$archiveMimeType) {
             $archiveRead = new static($filePath);

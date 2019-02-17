@@ -24,9 +24,7 @@ class TextFileIdentifier
             return true;
         }
 
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $mimeType = finfo_file($finfo, $filePath);
-        finfo_close($finfo);
+        $mimeType = file_mime($filePath);
 
         if (strpos($mimeType, 'text/') === 0 || $mimeType === 'application/xml') {
             return true;

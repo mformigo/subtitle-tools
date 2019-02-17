@@ -9,11 +9,7 @@ class TextFileIdentifierTest extends TestCase
 {
     private function assertMime($expectedMime, $filePath)
     {
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $mimeType = finfo_file($finfo, $filePath);
-        finfo_close($finfo);
-
-        $this->assertSame($expectedMime, $mimeType);
+        $this->assertSame($expectedMime, file_mime($filePath));
     }
 
     private function assertIsTextFile($filePath)
