@@ -18,7 +18,7 @@ class OcrImageJob extends BaseJob implements ShouldQueue
     /**
      * Manually stop the job after this many seconds
      */
-    public $manualTimeout = 30;
+    public $manualTimeout = 50;
 
     public $timeout = 60;
 

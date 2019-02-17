@@ -13,7 +13,7 @@ use SjorsO\Sup\SupFile;
 
 class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 {
-    public $timeout = 330;
+    public $timeout = 300;
 
     public $queue = 'A200';
 
@@ -71,6 +71,10 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
             return $this->failed($exception, 'messages.sup.exception_when_extracting_images');
         }
 
+        $debugid = substr(sha1(str_random()), 0, 5);
+
+        info($debugid.' - Done extracting, preparing to dispatch ocr jobs');
+
         $this->supJob->extract_time = now()->diffInSeconds($extractingStartedAt);
 
         $this->supJob->save();
@@ -81,10 +85,17 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
         $dispatchingStartedAt = now();
 
-        $chunks = array_chunk($imageFilePaths, 10);
+        $chunks = array_chunk($imageFilePaths, 25);
         $i = 0;
 
+        info($debugid.' - Dispatching '.count($chunks).' chunks of 25 files');
+
         foreach ($chunks as $filePathsChunk) {
+
+            if ($i % 10 === 0) {
+                info($debugid.' - dispatching, at '.$i.' / '.count($chunks));
+            }
+
             OcrImageJob::dispatch(
                 $this->supJob->id,
                 $filePathsChunk,
@@ -116,6 +127,8 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
             $i++;
         }
+
+        info($debugid.' - Done!');
     }
 
     public function failed($e, $errorMessage = null)
