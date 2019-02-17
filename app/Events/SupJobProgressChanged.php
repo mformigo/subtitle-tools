@@ -5,8 +5,9 @@ namespace App\Events;
 use App\Models\SupJob;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SupJobProgressChanged extends BaseEvent implements ShouldBroadcast
+class SupJobProgressChanged extends BaseEvent implements ShouldBroadcast, ShouldQueue
 {
     protected $supJob;
 

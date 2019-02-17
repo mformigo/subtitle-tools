@@ -9,7 +9,6 @@ use App\Support\Facades\TempDir;
 use App\Models\SupJob;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Artisan;
 use SjorsO\Sup\SupFile;
 
 class ExtractSupImagesJob extends BaseJob implements ShouldQueue
@@ -18,7 +17,7 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
     public $queue = 'A200';
 
-    protected $supJob;
+    private $supJob;
 
     public function __construct(SupJob $supJob)
     {
@@ -80,28 +79,55 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
         $ocrLanguage = $this->getOcrLanguage();
 
-        foreach (array_chunk($imageFilePaths, 10) as $filePathsChunk) {
+        $dispatchingStartedAt = now();
+
+        $chunks = array_chunk($imageFilePaths, 10);
+        $i = 0;
+
+        foreach ($chunks as $filePathsChunk) {
             OcrImageJob::dispatch(
                 $this->supJob->id,
                 $filePathsChunk,
                 $ocrLanguage
             )->onQueue('A300');
-        }
 
-        // fix a memory leak this job causes
-        Artisan::call('queue:restart');
+            $diff = $dispatchingStartedAt->diffInSeconds(now());
+            static $l30 = false;
+            static $l60 = false;
+            static $l90 = false;
+            static $l120 = false;
+
+            if ($diff > 30 && ! $l30) {
+                info('Dispatching OcrImage jobs took 30 seconds: '.$i.' / '.count($chunks));
+                $l30 = true;
+            }
+            if ($diff > 60 && ! $l60) {
+                info('Dispatching OcrImage jobs took 60 seconds: '.$i.' / '.count($chunks));
+                $l60 = true;
+            }
+            if ($diff > 90 && ! $l90) {
+                info('Dispatching OcrImage jobs took 90 seconds: '.$i.' / '.count($chunks));
+                $l90 = true;
+            }
+            if ($diff > 120 && ! $l120) {
+                info('Dispatching OcrImage jobs took 120 seconds: '.$i.' / '.count($chunks));
+                $l120 = true;
+            }
+
+            $i++;
+        }
     }
 
     public function failed($e, $errorMessage = null)
     {
         $this->supJob->update([
-            'finished_at'            => now(),
-            'error_message'          => $errorMessage ?: 'messages.sup.job_failed',
+            'finished_at' => now(),
+            'error_message' => $errorMessage ?: 'messages.sup.job_failed',
             'internal_error_message' => ($e instanceof Exception) ? $e->getMessage() : $e,
         ]);
     }
 
-    protected function getOcrLanguage()
+    private function getOcrLanguage()
     {
         $ocrLanguage = $this->supJob->ocr_language;
 
