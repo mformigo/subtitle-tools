@@ -11,7 +11,7 @@ class PruneSubIdxTableJob extends BaseJob implements ShouldQueue
 {
     public function handle()
     {
-        $threshold = now()->subDays(21);
+        $threshold = now()->subDays(14);
 
         SubIdx::query()
             ->where('created_at', '<', $threshold)
