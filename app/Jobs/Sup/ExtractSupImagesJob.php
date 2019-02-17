@@ -26,6 +26,10 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
     public function handle()
     {
+        $debugid = 'D'.$this->supJob->id;
+
+        info($debugid.' - Starting sup job->handle()');
+
         SupJobProgressChanged::dispatch($this->supJob, 'Extracting images');
 
         $extractingStartedAt = now();
@@ -43,6 +47,8 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
         $sup = null;
 
+        info($debugid.' - Opening sup file');
+
         try {
             $sup = SupFile::open($this->supJob->inputStoredFile->file_path);
         } catch (Exception $exception) {
@@ -53,10 +59,14 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
             return $this->failed(null, 'messages.sup.not_a_sup_file');
         }
 
+        info($debugid.' - done opening, getting indexes');
+
         $imageFilePaths = [];
 
         try {
             $cueIndexes = $sup->cueIndexes();
+
+            info($debugid.' - Done getting indexes, starting to extract');
 
             foreach ($cueIndexes as $index) {
                 $imageFilePaths[] = $sup->extractImage($index, $this->supJob->temp_dir);
@@ -71,8 +81,6 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
             return $this->failed($exception, 'messages.sup.exception_when_extracting_images');
         }
 
-        $debugid = substr(sha1(str_random()), 0, 5);
-
         info($debugid.' - Done extracting, preparing to dispatch ocr jobs');
 
         $this->supJob->extract_time = now()->diffInSeconds($extractingStartedAt);
@@ -82,8 +90,6 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
         SupJobProgressChanged::dispatch($this->supJob, 'Finished extracting '.count($imageFilePaths).' images');
 
         $ocrLanguage = $this->getOcrLanguage();
-
-        $dispatchingStartedAt = now();
 
         $chunks = array_chunk($imageFilePaths, 25);
         $i = 0;
@@ -101,29 +107,6 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
                 $filePathsChunk,
                 $ocrLanguage
             )->onQueue('A300');
-
-            $diff = $dispatchingStartedAt->diffInSeconds(now());
-            static $l30 = false;
-            static $l60 = false;
-            static $l90 = false;
-            static $l120 = false;
-
-            if ($diff > 30 && ! $l30) {
-                info('Dispatching OcrImage jobs took 30 seconds: '.$i.' / '.count($chunks));
-                $l30 = true;
-            }
-            if ($diff > 60 && ! $l60) {
-                info('Dispatching OcrImage jobs took 60 seconds: '.$i.' / '.count($chunks));
-                $l60 = true;
-            }
-            if ($diff > 90 && ! $l90) {
-                info('Dispatching OcrImage jobs took 90 seconds: '.$i.' / '.count($chunks));
-                $l90 = true;
-            }
-            if ($diff > 120 && ! $l120) {
-                info('Dispatching OcrImage jobs took 120 seconds: '.$i.' / '.count($chunks));
-                $l120 = true;
-            }
 
             $i++;
         }
