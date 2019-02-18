@@ -9,6 +9,7 @@ use App\Models\SupJob;
 use App\Models\SupStats;
 use App\Support\Tesseract;
 use App\Support\Utils\FileName;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use RuntimeException;
@@ -162,7 +163,11 @@ class OcrImageJob extends BaseJob implements ShouldQueue
 
         $supJob->internal_error_message = $errorMessage ?: (($e instanceof Exception) ? $e->getMessage() : $e);
 
-        $supJob->measureEnd();
+        $startedAt = new Carbon($supJob->started_at);
+
+        $supJob->finished_at = $finishedAt = now();
+
+        $supJob->work_time = $finishedAt->diffInSeconds($startedAt);
 
         $supJob->save();
 

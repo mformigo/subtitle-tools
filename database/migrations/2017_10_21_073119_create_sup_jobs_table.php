@@ -19,17 +19,13 @@ class CreateSupJobsTable extends Migration
             $table->string('error_message')->nullable();
             $table->string('internal_error_message')->nullable();
             $table->string('temp_dir')->nullable();
-
-            // MeasuresQueueTime trait
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();
             $table->integer('queue_time')->nullable();
-            $table->integer('extract_time')->nullable(); // Not part of the MeasuresQueueTime trait
+            $table->integer('extract_time')->nullable();
             $table->integer('work_time')->nullable();
-
             $table->unsignedInteger('cache_hits')->default(0);
             $table->dateTime('last_cache_hit')->nullable();
-
             $table->timestamps();
 
             $table->foreign('input_stored_file_id')->references('id')->on('stored_files');

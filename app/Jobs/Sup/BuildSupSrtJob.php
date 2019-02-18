@@ -8,6 +8,7 @@ use App\Models\StoredFile;
 use App\Models\SupJob;
 use App\Subtitles\PlainText\Srt;
 use App\Subtitles\PlainText\SrtCue;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use SjorsO\Sup\SupFile;
@@ -87,7 +88,11 @@ class BuildSupSrtJob extends BaseJob implements ShouldQueue
 
     protected function endJob()
     {
-        $this->supJob->measureEnd();
+        $startedAt = new Carbon($this->supJob->started_at);
+
+        $this->supJob->finished_at = $finishedAt = now();
+
+        $this->supJob->work_time = $finishedAt->diffInSeconds($startedAt);
 
         $this->supJob->save();
 

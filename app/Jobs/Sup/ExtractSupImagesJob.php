@@ -7,13 +7,14 @@ use App\Jobs\BaseJob;
 use App\Models\SupStats;
 use App\Support\Facades\TempDir;
 use App\Models\SupJob;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use SjorsO\Sup\SupFile;
 
 class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 {
-    public $timeout = 300;
+    public $timeout = 330;
 
     public $queue = 'A200';
 
@@ -26,15 +27,11 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
     public function handle()
     {
-        $debugid = 'D'.$this->supJob->id;
-
-        info($debugid.' - Starting sup job->handle()');
-
         SupJobProgressChanged::dispatch($this->supJob, 'Extracting images');
 
-        $extractingStartedAt = now();
+        $this->supJob->started_at = $extractingStartedAt = now();
 
-        $this->supJob->measureStart();
+        $this->supJob->queue_time = $extractingStartedAt->diffInSeconds(new Carbon($this->supJob->created_at));
 
         $this->supJob->temp_dir = TempDir::make('sup');
 
@@ -47,8 +44,6 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
         $sup = null;
 
-        info($debugid.' - Opening sup file');
-
         try {
             $sup = SupFile::open($this->supJob->inputStoredFile->file_path);
         } catch (Exception $exception) {
@@ -59,14 +54,10 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
             return $this->failed(null, 'messages.sup.not_a_sup_file');
         }
 
-        info($debugid.' - done opening, getting indexes');
-
         $imageFilePaths = [];
 
         try {
             $cueIndexes = $sup->cueIndexes();
-
-            info($debugid.' - Done getting indexes, starting to extract');
 
             foreach ($cueIndexes as $index) {
                 $imageFilePaths[] = $sup->extractImage($index, $this->supJob->temp_dir);
@@ -77,11 +68,9 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
                     return $this->failed(null, 'messages.sup.extracting_images_took_too_long');
                 }
             }
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             return $this->failed($exception, 'messages.sup.exception_when_extracting_images');
         }
-
-        info($debugid.' - Done extracting, preparing to dispatch ocr jobs');
 
         $this->supJob->extract_time = now()->diffInSeconds($extractingStartedAt);
 
@@ -91,27 +80,9 @@ class ExtractSupImagesJob extends BaseJob implements ShouldQueue
 
         $ocrLanguage = $this->getOcrLanguage();
 
-        $chunks = array_chunk($imageFilePaths, 25);
-        $i = 0;
-
-        info($debugid.' - Dispatching '.count($chunks).' chunks of 25 files');
-
-        foreach ($chunks as $filePathsChunk) {
-
-            if ($i % 10 === 0) {
-                info($debugid.' - dispatching, at '.$i.' / '.count($chunks));
-            }
-
-            OcrImageJob::dispatch(
-                $this->supJob->id,
-                $filePathsChunk,
-                $ocrLanguage
-            )->onQueue('A300');
-
-            $i++;
+        foreach (array_chunk($imageFilePaths, 25) as $filePathsChunk) {
+            OcrImageJob::dispatch($this->supJob->id, $filePathsChunk, $ocrLanguage)->onQueue('A300');
         }
-
-        info($debugid.' - Done!');
     }
 
     public function failed($e, $errorMessage = null)

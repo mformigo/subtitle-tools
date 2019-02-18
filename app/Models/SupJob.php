@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use App\Models\Diagnostic\SupJobMeta;
-use App\Models\Traits\MeasuresQueueTime;
 use Illuminate\Database\Eloquent\Model;
 
 class SupJob extends Model
 {
-    use MeasuresQueueTime;
-
     protected $guarded = [];
 
     protected $casts = [
